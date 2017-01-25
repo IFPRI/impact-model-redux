@@ -34,13 +34,16 @@ window.onload = function () {
 	renderer.code = function (code, lang, escaped) {
 		if (lang == "vis") {
 			var jsonVis = YAML.parse(code);
-      console.log(jsonVis);
+      jsonVis.encoding.color = { value: '83C719' }
       var val = jsonVis.encoding.y.field
       var group = jsonVis.encoding.x.field
-      var postData = JSON.stringify(sqltoes({select: ['sum(Val)'], where: ['commodity = rice', `impactparameter = ${val}`], groupBy: [group]}))
+      var where = _.map(jsonVis.fixed, function (val, param) {
+        return `${param} = ${val}`
+      }).concat([`impactparameter = ${val}`])
+      var postData = JSON.stringify(sqltoes({select: ['sum(Val)'], where: where, groupBy: [group]}))
       counter++;
-      el = "#vis-" + counter;
-      htmlChart = "<div id='vis-" + counter + "'></div>";
+      el = `#vis-${counter}`;
+      htmlChart = `<div><h2>${jsonVis.title}</h2><div id="vis-${counter}"></div></div>`;
 
       reqwest({
         url: url,
@@ -49,15 +52,20 @@ window.onload = function () {
         success: function (resp) {
           jsonVis.encoding.y.field = translate(val)
           jsonVis.encoding.x.field = translate(group)
+          var wherePath = where.map(a => {
+            var b, c
+            [b, c] = a.replace(/\s/g, '').split('=')
+            return `where_${b}_${c}`
+          })
           jsonVis.data = {
-              values: resp.aggregations.where_commodity_rice[`where_impactparameter_${val}`][`group_by_${group}`].buckets.map(function (obj) {
-              return {
-                [translate(group)]: translate(obj.key),
-                [translate(val)]: obj.sum_Val.value
-              }
-            })
+              values: _.get(resp.aggregations, wherePath)[`group_by_${group}`].buckets.map(function (obj) {
+                return {
+                  [translate(group)]: translate(obj.key),
+                  [translate(val)]: obj.sum_Val.value
+                }
+              })
           }
-          var embedSpec = {mode: "vega-lite", spec: jsonVis, renderer: "svg" };
+          var embedSpec = {mode: "vega-lite", spec: jsonVis, renderer: "svg", actions: false};
           vg.embed(el, embedSpec, function(error, result) {});
         }
       })
@@ -170,13 +178,16 @@ Powered by [Visdown](http://visdown.amitkaps.com/)
 
 ```vis
 mark: bar
+title: chart
 encoding:
   x:
     type: ordinal
-    field: region
+    field: agg_subcontinent
   y:
     type: quantitative
     field: qsupxagg
+fixed:
+  commodity: rice
 ```
 </textarea>
 <section id="visdown-output"></div>
