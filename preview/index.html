@@ -8,8 +8,16 @@
 <script src="http://vega.github.io/vega-editor/vendor/vega-embed.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/yamljs/0.2.8/yaml.min.js"></script>
-<script src="sqltoes.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/reqwest/2.0.5/reqwest.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+<script src="sqltoes.js"></script>
+<script src="translation.js"></script>
+
+</script>
 
 <script>
 window.onload = function () {
@@ -39,11 +47,13 @@ window.onload = function () {
         method: 'post',
         data: postData,
         success: function (resp) {
+          jsonVis.encoding.y.field = translate(val)
+          jsonVis.encoding.x.field = translate(group)
           jsonVis.data = {
               values: resp.aggregations.where_commodity_rice[`where_impactparameter_${val}`][`group_by_${group}`].buckets.map(function (obj) {
               return {
-                [group]: obj.key,
-                [val]: obj.sum_Val.value
+                [translate(group)]: translate(obj.key),
+                [translate(val)]: obj.sum_Val.value
               }
             })
           }
