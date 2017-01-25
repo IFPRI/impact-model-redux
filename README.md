@@ -1,4 +1,4 @@
-# {{Project name}}
+ifpri-impact-redux
 
 A narrative-driven site for sharing the results of IFPRI Impact model runs, which seek to consider the long term challenges facing policymakers in reducing hunger, and poverty in a sustainable fashion.
 
