@@ -21,7 +21,7 @@ const store = createStore(reducer, applyMiddleware(logger))
 
 // Components
 import App from './views/app'
-import Home from './views/home'
+import Article from './views/article'
 import UhOh from './views/uhoh'
 
 render((
@@ -29,7 +29,7 @@ render((
     <Router history={hashHistory}>
       <Route path='/uhoh' component={UhOh} />
       <Route path='/' component={App}>
-        <IndexRoute component={Home} pageClass='page--homepage' />
+        <IndexRoute component={Article} pageClass='page--homepage' />
       </Route>
     </Router>
   </Provider>

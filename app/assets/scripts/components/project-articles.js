@@ -7,7 +7,7 @@ const ProjectArticles = React.createClass({
   render: function () {
     return (
       <div className='page__project-articles-list'>
-        <h1>Other Articles in Project</h1>
+        <h3>Other Articles in Project</h3>
       </div>
     )
   }

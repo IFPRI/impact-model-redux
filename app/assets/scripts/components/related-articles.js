@@ -7,7 +7,7 @@ const RelatedArticles = React.createClass({
   render: function () {
     return (
       <div className='page__related-articles-list'>
-        <h1>Related Articles</h1>
+        <h3>Related Articles</h3>
       </div>
     )
   }

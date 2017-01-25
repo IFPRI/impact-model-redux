@@ -7,7 +7,7 @@ const ArticleHeader = React.createClass({
   render: function () {
     return (
       <div className='article__header'>
-        <h1>Article Title</h1>
+        <h2>Article Title</h2>
       </div>
     )
   }
