@@ -4,6 +4,9 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 import c from 'classnames'
 
+import PageHeader from '../components/page-header'
+import PageFooter from '../components/page-footer'
+
 var App = React.createClass({
   displayName: 'App',
 
@@ -32,9 +35,11 @@ var App = React.createClass({
 
     return (
       <div className={c('page', pageClass)}>
+        <PageHeader />
         <main className='page__body' role='main'>
           {this.props.children}
         </main>
+        <PageFooter />
       </div>
     )
   }
