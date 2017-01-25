@@ -25,14 +25,14 @@ window.onload = function () {
     method: 'post',
     data: postData,
     success: function (resp) {
-      console.log(resp);
-      data = resp.aggregations.where_commodity_rice.where_impactparameter_qsupxagg.group_by_region.buckets.map(function (obj) {
-        return {
-          region: obj.key,
-          value: obj.sum_Val.value
-        }
-      })
-      console.log(data);
+      data = {
+          values: resp.aggregations.where_commodity_rice.where_impactparameter_qsupxagg.group_by_region.buckets.map(function (obj) {
+          return {
+            region: obj.key,
+            value: obj.sum_Val.value
+          }
+        })
+      }
       visdown()
     }
   })
@@ -46,6 +46,7 @@ window.onload = function () {
 	renderer.code = function (code, lang, escaped) {
 		if (lang == "vis") {
 			var jsonVis = YAML.parse(code);
+      jsonVis.data = data
 			var embedSpec = {mode: "vega-lite", spec: jsonVis, renderer: "svg" };
 			counter++;
 			el = "#vis-" + counter;
@@ -159,11 +160,11 @@ Powered by [Visdown](http://visdown.amitkaps.com/)
 mark: bar
 encoding:
   x:
-    type: quantitative
+    type: ordinal
     field: region
   y:
     type: quantitative
-    field: price
+    field: value
 ```
 </textarea>
 <section id="visdown-output"></div>
