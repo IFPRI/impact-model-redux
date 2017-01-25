@@ -1,5 +1,5 @@
-'use strict';
-var defaultsDeep = require('lodash.defaultsdeep');
+'use strict'
+var defaultsDeep = require('lodash.defaultsdeep')
 /*
  * App configuration.
  *
@@ -19,12 +19,12 @@ var defaultsDeep = require('lodash.defaultsdeep');
  *      polluting the repo.
  */
 
-var configurations = require('./config/*.js', {mode: 'hash'});
-var config = configurations.local || {};
+var configurations = require('./config/*.js', {mode: 'hash'})
+var config = configurations.local || {}
 
 if (process.env.DS_ENV === 'staging') {
-  defaultsDeep(config, configurations.staging);
+  defaultsDeep(config, configurations.staging)
 }
-defaultsDeep(config, configurations.production);
+defaultsDeep(config, configurations.production)
 
-module.exports = config;
+module.exports = config

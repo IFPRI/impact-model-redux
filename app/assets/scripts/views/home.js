@@ -1,6 +1,6 @@
-'use strict';
-import React from 'react';
-import { connect } from 'react-redux';
+'use strict'
+import React from 'react'
+import { connect } from 'react-redux'
 
 var Home = React.createClass({
   displayName: 'Home',
@@ -12,16 +12,16 @@ var Home = React.createClass({
     return (
       <div>
       </div>
-    );
+    )
   }
-});
+})
 
 // /////////////////////////////////////////////////////////////////// //
 // Connect functions
 
 function mapStateToProps (state) {
   return {
-  };
+  }
 }
 
-module.exports = connect(mapStateToProps)(Home);
+module.exports = connect(mapStateToProps)(Home)

@@ -1,8 +1,8 @@
-'use strict';
-import React from 'react';
-import { connect } from 'react-redux';
-import _ from 'lodash';
-import c from 'classnames';
+'use strict'
+import React from 'react'
+import { connect } from 'react-redux'
+import _ from 'lodash'
+import c from 'classnames'
 
 var App = React.createClass({
   displayName: 'App',
@@ -28,7 +28,7 @@ var App = React.createClass({
   // Start render methods
   //
   render: function () {
-    let pageClass = _.get(_.last(this.props.routes), 'pageClass', '');
+    let pageClass = _.get(_.last(this.props.routes), 'pageClass', '')
 
     return (
       <div className={c('page', pageClass)}>
@@ -36,16 +36,16 @@ var App = React.createClass({
           {this.props.children}
         </main>
       </div>
-    );
+    )
   }
-});
+})
 
 // /////////////////////////////////////////////////////////////////// //
 // Connect functions
 
 function mapStateToProps (state) {
   return {
-  };
+  }
 }
 
-module.exports = connect(mapStateToProps)(App);
+module.exports = connect(mapStateToProps)(App)
