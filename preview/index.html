@@ -17,26 +17,6 @@ window.onload = function () {
   // Base URL
   var url = 'https://82e66fb22a73abdaa81040f2abdc298f-us-east-1.foundcluster.com:9243/ifpri/ssp2_gfdl/_search?search_type=count'
 
-  // Test Post
-  var postData = JSON.stringify(sqltoes({select: ['sum(Val)'], where: ['commodity = rice', 'impactparameter = qsupxagg'], groupBy: ['region']}))
-  var data
-  reqwest({
-    url: url,
-    method: 'post',
-    data: postData,
-    success: function (resp) {
-      data = {
-          values: resp.aggregations.where_commodity_rice.where_impactparameter_qsupxagg.group_by_region.buckets.map(function (obj) {
-          return {
-            region: obj.key,
-            value: obj.sum_Val.value
-          }
-        })
-      }
-      visdown()
-    }
-  })
-
 	// Start a new marked instance and renderer
 	var marked = window.marked;
 	var renderer = new marked.Renderer();
@@ -46,13 +26,34 @@ window.onload = function () {
 	renderer.code = function (code, lang, escaped) {
 		if (lang == "vis") {
 			var jsonVis = YAML.parse(code);
-      jsonVis.data = data
-			var embedSpec = {mode: "vega-lite", spec: jsonVis, renderer: "svg" };
-			counter++;
-			el = "#vis-" + counter;
-			vg.embed(el, embedSpec, function(error, result) {});
-			htmlChart = "<div id='vis-" + counter + "'></div>";
-			return htmlChart;
+      console.log(jsonVis);
+      var val = jsonVis.encoding.y.field
+      var group = jsonVis.encoding.x.field
+      var postData = JSON.stringify(sqltoes({select: ['sum(Val)'], where: ['commodity = rice', `impactparameter = ${val}`], groupBy: [group]}))
+      counter++;
+      el = "#vis-" + counter;
+      htmlChart = "<div id='vis-" + counter + "'></div>";
+
+      reqwest({
+        url: url,
+        method: 'post',
+        data: postData,
+        success: function (resp) {
+          jsonVis.data = {
+              values: resp.aggregations.where_commodity_rice[`where_impactparameter_${val}`][`group_by_${group}`].buckets.map(function (obj) {
+              return {
+                [group]: obj.key,
+                [val]: obj.sum_Val.value
+              }
+            })
+          }
+          var embedSpec = {mode: "vega-lite", spec: jsonVis, renderer: "svg" };
+          vg.embed(el, embedSpec, function(error, result) {});
+        }
+      })
+
+      return htmlChart;
+
 		}
 		var result = marked.Renderer.prototype.code.call(this, code, lang, escaped);
 		return result;
@@ -65,8 +66,9 @@ window.onload = function () {
 	window.visdown = function () {
 		console.log('visdown');
 		var markdownText = input.value;
-		output.innerHTML = marked(markdownText, { renderer: renderer });
+    output.innerHTML = marked(markdownText, { renderer: renderer });
 	}
+  visdown()
 }
 </script>
 
@@ -164,7 +166,7 @@ encoding:
     field: region
   y:
     type: quantitative
-    field: value
+    field: qsupxagg
 ```
 </textarea>
 <section id="visdown-output"></div>
