@@ -8,16 +8,41 @@
 <script src="http://vega.github.io/vega-editor/vendor/vega-embed.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/yamljs/0.2.8/yaml.min.js"></script>
+<script src="sqltoes.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reqwest/2.0.5/reqwest.min.js"></script>
 
 <script>
 window.onload = function () {
+
+  // Base URL
+  var url = 'https://82e66fb22a73abdaa81040f2abdc298f-us-east-1.foundcluster.com:9243/ifpri/ssp2_gfdl/_search?search_type=count'
+
+  // Test Post
+  var postData = JSON.stringify(sqltoes({select: ['sum(Val)'], where: ['commodity = rice', 'impactparameter = qsupxagg'], groupBy: ['region']}))
+  var data
+  reqwest({
+    url: url,
+    method: 'post',
+    data: postData,
+    success: function (resp) {
+      console.log(resp);
+      data = resp.aggregations.where_commodity_rice.where_impactparameter_qsupxagg.group_by_region.buckets.map(function (obj) {
+        return {
+          region: obj.key,
+          value: obj.sum_Val.value
+        }
+      })
+      console.log(data);
+      visdown()
+    }
+  })
 
 	// Start a new marked instance and renderer
 	var marked = window.marked;
 	var renderer = new marked.Renderer();
 	var counter = 0;
 
-	// Render the ```vis as a vega-lite chart
+  // Render the ```vis as a vega-lite chart
 	renderer.code = function (code, lang, escaped) {
 		if (lang == "vis") {
 			var jsonVis = YAML.parse(code);
@@ -41,7 +66,6 @@ window.onload = function () {
 		var markdownText = input.value;
 		output.innerHTML = marked(markdownText, { renderer: renderer });
 	}
-	visdown()
 }
 </script>
 
@@ -132,43 +156,14 @@ Powered by [Visdown](http://visdown.amitkaps.com/)
 
 
 ```vis
-data:
-  url: "cars.csv"
-mark: point
+mark: bar
 encoding:
   x:
     type: quantitative
-    field: kmpl
+    field: region
   y:
     type: quantitative
     field: price
-```
-
-```vis
-data:
-  url: "cars.csv"
-mark: circle
-encoding:
-  x:
-    type: quantitative
-    field: kmpl
-    scale:
-     domain: [12,25]
-  y:
-    type: quantitative
-    field: price
-    scale:
-     domain: [100,900]
-  color:
-    type: nominal
-    field: type
-  size:
-    type: quantitative
-    field: bhp
-config:
-  cell:
-    width: 450
-    height: 300
 ```
 </textarea>
 <section id="visdown-output"></div>
