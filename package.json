@@ -1,10 +1,10 @@
 {
-  "name": "ifpri-risk",
+  "name": "ifpri-impact-redux",
   "version": "1.0.0",
   "description": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/developmentseed/risk-data.git"
+    "url": "https://github.com/developmentseed/ifpri-impact-redux.git"
   },
   "author": {
     "name": "Development Seed",
@@ -12,9 +12,9 @@
   },
   "license": "",
   "bugs": {
-    "url": "https://github.com/developmentseed/risk-data/issues"
+    "url": "https://github.com/developmentseed/ifpri-impact-redux/issues"
   },
-  "homepage": "https://github.com/developmentseed/risk-data",
+  "homepage": "https://github.com/developmentseed/ifpri-impact-redux",
   "scripts": {
     "postinstall": "[ -f app/assets/scripts/config/local.js ] || echo 'module.exports = {}' > app/assets/scripts/config/local.js",
     "serve": "gulp collecticons && DS_ENV=development NODE_ENV=development gulp serve",
