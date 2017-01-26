@@ -1,6 +1,7 @@
 'use strict'
 import React from 'react'
 import { connect } from 'react-redux'
+import jsyaml from 'js-yaml'
 import marked from 'marked'
 
 import { loadText } from '../utils/load-text.js'
@@ -18,15 +19,30 @@ var Home = React.createClass({
 
   getInitialState: function () {
     return {
-      articleText: '',
+      projectBody: '',
+      projectMetadata: {},
       testUrl: '/assets/data/projects/global-futures.md'
     }
   },
 
   componentWillMount: function () {
     loadText(this.state.testUrl).then((text) => {
-      this.setState({articleText: marked(text)})
+      const metadata = this.parseMetadata(text.split('---')[1])
+      const body = this.parseBody(text.split('---')[2])
+      console.log(metadata)
+      this.setState({
+        projectMetadata: metadata,
+        projectBody: body
+      })
     })
+  },
+
+  parseMetadata: function (metadata) {
+    return jsyaml.load(metadata)
+  },
+
+  parseBody: function (body) {
+    return marked(body)
   },
 
   render: function () {
@@ -35,9 +51,9 @@ var Home = React.createClass({
         <ArticleHeader />
         <div className='page__article-body'>
           <h4>
-            This is an article heading
+            {this.state.projectMetadata.title}
           </h4>
-          <div dangerouslySetInnerHTML={{__html: this.state.articleText}}></div>
+          <div dangerouslySetInnerHTML={{__html: this.state.projectBody}}></div>
         </div>
         <ProjectArticles />
         <RelatedArticles />
