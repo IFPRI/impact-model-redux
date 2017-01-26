@@ -67,7 +67,7 @@ window.onload = function () {
       counter++;
       el = `#vis-${counter}`;
       htmlChart = `<div><h2>${jsonVis.title}</h2><div id="vis-${counter}"></div></div>`;
-
+      console.log(where);
       // request the data and parse the response for our graph format
       var postData = JSON.stringify(sqltoes({select: [`sum(${val})`], where: where, groupBy: groupBy}))
       reqwest({
@@ -115,7 +115,6 @@ window.onload = function () {
 	var output = document.querySelector("#visdown-output");
 
 	window.visdown = function () {
-		console.log('visdown');
 		var markdownText = input.value;
     output.innerHTML = marked(markdownText, { renderer: renderer });
 	}
