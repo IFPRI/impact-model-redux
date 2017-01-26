@@ -34,37 +34,51 @@ window.onload = function () {
 	renderer.code = function (code, lang, escaped) {
 		if (lang == "vis") {
 			var jsonVis = YAML.parse(code);
-      jsonVis.encoding.color = { value: '83C719' }
+      // if we don't have a color scheme, make it a set color
+      if (!jsonVis.encoding.color) jsonVis.encoding.color = { value: '83C719' }
+
+      // grab the important field names
       var val = jsonVis.encoding.y.field
       var group = jsonVis.encoding.x.field
+      var series = jsonVis.encoding.color.field
+      var groupBy = [group]
+      if (series) groupBy.push(series)
+
+      // construct a where clause for our sql statement
       var where = _.map(jsonVis.fixed, function (val, param) {
         return `${param} = ${val}`
-      }).concat([`impactparameter = ${val}`])
-      var postData = JSON.stringify(sqltoes({select: ['sum(Val)'], where: where, groupBy: [group]}))
+      })
+      var postData = JSON.stringify(sqltoes({select: [`sum(${val})`], where: where, groupBy: groupBy}))
+
+      // keep track of the number of dependencies
       counter++;
       el = `#vis-${counter}`;
       htmlChart = `<div><h2>${jsonVis.title}</h2><div id="vis-${counter}"></div></div>`;
 
+      // request the data and parse the response for our graph format
       reqwest({
         url: url,
         method: 'post',
         data: postData,
         success: function (resp) {
-          jsonVis.encoding.y.field = translate(val)
-          jsonVis.encoding.x.field = translate(group)
+          jsonVis.encoding.y.field = val
+          jsonVis.encoding.x.field = group
+          jsonVis.encoding.color.field = series
+          console.log(resp);
+          // find out how to parse our response
           var wherePath = where.map(a => {
             var b, c
             [b, c] = a.replace(/\s/g, '').split('=')
             return `where_${b}_${c}`
           })
           jsonVis.data = {
-              values: _.get(resp.aggregations, wherePath)[`group_by_${group}`].buckets.map(function (obj) {
-                return {
-                  [translate(group)]: translate(obj.key),
-                  [translate(val)]: obj.sum_Val.value
-                }
-              })
+            values: _.flatten(_.get(resp.aggregations, wherePath)[`group_by_${group}`].buckets.map(function (obj) {
+              return parseDataObject(obj, group, val, {})
+            }))
           }
+          console.log(jsonVis);
+
+          // embed the graph in the element which is awaiting it
           var embedSpec = {mode: "vega-lite", spec: jsonVis, renderer: "svg", actions: false};
           vg.embed(el, embedSpec, function(error, result) {});
         }
@@ -87,6 +101,22 @@ window.onload = function () {
     output.innerHTML = marked(markdownText, { renderer: renderer });
 	}
   visdown()
+
+  function parseDataObject(obj, group, val, otherKeys) {
+    var nextGroup = Object.keys(obj).find(a => a.match('group_by'))
+    // we may have other groupings to parse through
+    if (nextGroup) {
+      return obj[nextGroup].buckets.map(a => {
+        return parseDataObject(a, nextGroup.replace('group_by_', ''), val, Object.assign({}, otherKeys, { [group]: obj.key}))
+      })
+    } else {
+      // we're at the lowest level, make our object
+      return Object.assign({}, {
+        [group]: obj.key,
+        [val]: obj[`sum_${val}`].value
+      }, otherKeys)
+    }
+  }
 }
 </script>
 
@@ -177,7 +207,7 @@ Powered by [Visdown](http://visdown.amitkaps.com/)
 
 
 ```vis
-mark: bar
+mark: line
 title: chart
 encoding:
   x:
@@ -185,7 +215,10 @@ encoding:
     field: agg_subcontinent
   y:
     type: quantitative
-    field: qsupxagg
+    field: Val
+  color:
+    type: ordinal
+    field: impactparameter
 fixed:
   commodity: rice
 ```
