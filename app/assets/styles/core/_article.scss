@@ -1,0 +1,49 @@
+.article {
+  .article__header {
+    min-height: 10rem;
+    background-color: $primary-color;
+    h2 {
+      padding: 7rem 0 3rem 4rem;
+      font-size: 4rem;
+      font-weight: 400;
+      color: white;
+    }
+  }
+
+  .page__project-articles-list {
+    min-height: 10rem;
+    background-color: $primary-color;
+    h3 {
+      padding: 2rem 0 0 4rem;
+      font-size: 2rem;
+      font-weight: 400;
+      color: white;
+    }
+  }
+
+  .page__related-articles-list {
+    min-height: 10rem;
+    background-color: $secondary-color;
+    h3 {
+      padding: 2rem 0 0 4rem;
+      font-size: 2rem;
+      font-weight: 400;
+      color: white;
+    }
+  }
+
+  .page__article-body {
+    padding: 2rem 4rem 0 4rem;
+    p {
+      color: $base-color;
+      line-height: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    h4 {
+      color: $base-color;
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+  }
+}
