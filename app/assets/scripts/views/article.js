@@ -1,7 +1,6 @@
 'use strict'
 import React from 'react'
 import { connect } from 'react-redux'
-import jsyaml from 'js-yaml'
 import marked from 'marked'
 
 import { loadText } from '../utils/load-text.js'
@@ -15,35 +14,26 @@ var Article = React.createClass({
   displayName: 'Article',
 
   propTypes: {
-    projects: React.PropTypes.array,
+    projects: React.PropTypes.object,
     project: React.PropTypes.string
   },
 
   getInitialState: function () {
     return {
       projectBody: '',
-      projectMetadata: {},
-      testUrl: '/assets/data/projects/global-futures.md'
+      projectMetadata: {}
     }
   },
 
   componentWillMount: function () {
-    loadText(this.state.testUrl).then((text) => {
-      const metadata = this.parseMetadata(text.split('---')[1])
-      const body = this.parseBody(text.split('---')[2])
+    const metadata = this.props.projects[this.props.project]
+    loadText(metadata.url).then((text) => {
+      const body = marked(text.split('---')[2])
       this.setState({
         projectMetadata: metadata,
         projectBody: body
       })
     })
-  },
-
-  parseMetadata: function (metadata) {
-    return jsyaml.load(metadata)
-  },
-
-  parseBody: function (body) {
-    return marked(body)
   },
 
   render: function () {
