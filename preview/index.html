@@ -45,9 +45,15 @@ window.onload = function () {
       if (series) groupBy.push(series)
 
       // construct a where clause for our sql statement
-      var where = _.map(jsonVis.fixed, function (val, param) {
-        return `${param} = ${val}`
-      })
+      var where = _.flatten(_.map(jsonVis.fixed, function (val, param) {
+        var vals = String(val).split(',').map(a => a.trim())
+        if (vals.length === 1) {
+          return `${param} = ${val}`
+        } else {
+          return `${param} in ${vals.join(',')}`
+        }
+      }))
+      console.log(where);
       var postData = JSON.stringify(sqltoes({select: [`sum(${val})`], where: where, groupBy: groupBy}))
 
       // keep track of the number of dependencies
@@ -64,12 +70,17 @@ window.onload = function () {
           jsonVis.encoding.y.field = val
           jsonVis.encoding.x.field = group
           jsonVis.encoding.color.field = series
-          console.log(resp);
           // find out how to parse our response
           var wherePath = where.map(a => {
             var b, c
-            [b, c] = a.replace(/\s/g, '').split('=')
-            return `where_${b}_${c}`
+            if (a.match(' = ')) {
+              [b, c] = a.split(' = ')
+              return `where_${b}_${c}`
+            } else {
+              [b, c] = a.split(' in ')
+              return `where_${b}_multiple`
+            }
+
           })
           jsonVis.data = {
             values: _.flatten(_.get(resp.aggregations, wherePath)[`group_by_${group}`].buckets.map(function (obj) {
@@ -207,20 +218,22 @@ Powered by [Visdown](http://visdown.amitkaps.com/)
 
 
 ```vis
-mark: line
+mark: bar
 title: chart
 encoding:
   x:
     type: ordinal
-    field: agg_subcontinent
+    field: agg_continent
   y:
     type: quantitative
     field: Val
   color:
     type: ordinal
-    field: impactparameter
+    field: commodity
 fixed:
-  commodity: rice
+  year: 2010
+  impactparameter: qdxagg
+  agg_commodity: cereals
 ```
 </textarea>
 <section id="visdown-output"></div>
