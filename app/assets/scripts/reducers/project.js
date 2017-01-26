@@ -2,11 +2,13 @@
 import { set } from 'object-path'
 import projects from '../../data/projects.json'
 import {
-  PROJECTS
+  PROJECTS,
+  PROJECT
 } from '../actions'
 
 export const initialState = {
-  projects: projects
+  projects: projects,
+  project: 'baseline'
 }
 
 export default function reducer (state = initialState, action) {
@@ -14,6 +16,9 @@ export default function reducer (state = initialState, action) {
   switch (action.type) {
     case PROJECTS:
       set(state, 'projects', action.data)
+      break
+    case PROJECT:
+      set(state, 'project', action.data)
       break
   }
   return state

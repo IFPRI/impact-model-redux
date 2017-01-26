@@ -15,7 +15,8 @@ var Article = React.createClass({
   displayName: 'Article',
 
   propTypes: {
-    projects: React.PropTypes.array
+    projects: React.PropTypes.array,
+    project: React.PropTypes.string
   },
 
   getInitialState: function () {
@@ -30,7 +31,6 @@ var Article = React.createClass({
     loadText(this.state.testUrl).then((text) => {
       const metadata = this.parseMetadata(text.split('---')[1])
       const body = this.parseBody(text.split('---')[2])
-      console.log(metadata)
       this.setState({
         projectMetadata: metadata,
         projectBody: body
@@ -68,7 +68,8 @@ var Article = React.createClass({
 
 function mapStateToProps (state) {
   return {
-    projects: state.projects.projects
+    projects: state.project.projects,
+    project: state.project.project
   }
 }
 
