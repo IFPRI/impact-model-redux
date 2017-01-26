@@ -23,10 +23,12 @@ cache:
 before_install:
 - chmod +x ./.build_scripts/deploy.sh
 - chmod +x ./.build_scripts/lint.sh
+- chmod +x ./.build_scripts/projects.js
 
 before_script:
 - ./.build_scripts/lint.sh
 - npm test
+- node ./.build_scripts/projects.js
 
 script:
 - npm run build

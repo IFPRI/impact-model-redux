@@ -11,10 +11,11 @@ import ArticleHeader from '../components/article-header'
 import ProjectArticles from '../components/project-articles'
 import RelatedArticles from '../components/related-articles'
 
-var Home = React.createClass({
-  displayName: 'Home',
+var Article = React.createClass({
+  displayName: 'Article',
 
   propTypes: {
+    projects: React.PropTypes.array
   },
 
   getInitialState: function () {
@@ -67,7 +68,8 @@ var Home = React.createClass({
 
 function mapStateToProps (state) {
   return {
+    projects: state.projects.projects
   }
 }
 
-module.exports = connect(mapStateToProps)(Home)
+module.exports = connect(mapStateToProps)(Article)

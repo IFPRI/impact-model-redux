@@ -1,5 +1,5 @@
-export const ACTION = 'ACTION'
+export const PROJECTS = 'PROJECTS'
 
-export function action () {
-  return { type: ACTION }
+export function getProjects (data) {
+  return { type: PROJECTS, data: data }
 }
