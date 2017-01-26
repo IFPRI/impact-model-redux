@@ -17,6 +17,9 @@
 <script src="sqltoes.js"></script>
 <script src="translation.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+<link rel="stylesheet" href="//rawgithub.com/Caged/d3-tip/master/examples/example-styles.css">
+
 </script>
 
 <script>
@@ -67,7 +70,7 @@ window.onload = function () {
       counter++;
       el = `#vis-${counter}`;
       htmlChart = `<div><h2>${jsonVis.title}</h2><div id="vis-${counter}"></div></div>`;
-      console.log(where);
+
       // request the data and parse the response for our graph format
       var postData = JSON.stringify(sqltoes({select: [`sum(${val})`], where: where, groupBy: groupBy}))
       reqwest({
@@ -95,11 +98,21 @@ window.onload = function () {
               return parseDataObject(obj, group, val, {}, change)
             }))
           }
-          console.log(jsonVis);
-
           // embed the graph in the element which is awaiting it
           var embedSpec = {mode: "vega-lite", spec: jsonVis, renderer: "svg", actions: false};
-          vg.embed(el, embedSpec, function(error, result) {});
+          vg.embed(el, embedSpec, function(error, result) {
+            // after we embed it; add d3 tip
+            var tip = d3.tip().attr('class', 'd3-tip').html(function(d) {
+              // display the value or the summed value
+              return (d.datum[val] || d.datum[`sum_${val}`]).toFixed(2);
+            });
+            var vis = d3.select(`${el} svg`)
+            vis.call(tip)
+            vis.select('.marks').selectAll('*')
+               .on('mouseover', tip.show)
+               .on('mouseout', tip.hide)
+
+          });
         }
       })
 
@@ -128,8 +141,9 @@ window.onload = function () {
       if (nextGroup === 'group_by_year' && change) {
         return Object.assign({}, {
           // assumes later value in bucket 1 and early value in bucket 0
+          // divide by earlier value if we want a percentage
           [val]: (obj[nextGroup].buckets[1][`sum_${val}`].value - obj[nextGroup].buckets[0][`sum_${val}`].value) /
-            (_.includes(['percentage', 'percent', '%'], change) ? obj[nextGroup].buckets[0][`sum_${val}`].value : 1),
+            (_.includes(['percentage', 'percent', '%', 'p'], change) ? obj[nextGroup].buckets[0][`sum_${val}`].value : 1),
           [group]: obj.key
         }, otherKeys)
       } else {
@@ -226,6 +240,10 @@ nav #drop-nav li ul li {border-top: 0px;}
 #visdown-output {
   display: inline-block;
 }
+
+rect:hover, path:hover {
+  opacity: 0.6 !important;
+}
 </style>
 
 <textarea id="visdown-input" oninput="visdown()">
@@ -240,13 +258,13 @@ mark: bar
 title: chart
 encoding:
   x:
-    type: ordinal
+    type: nominal
     field: agg_continent
   y:
     type: quantitative
     field: Val
   color:
-    type: ordinal
+    type: nominal
     field: commodity
 fixed:
   year: 2010
