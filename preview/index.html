@@ -41,8 +41,6 @@ window.onload = function () {
       var val = jsonVis.encoding.y.field
       var group = jsonVis.encoding.x.field
       var series = jsonVis.encoding.color.field
-      var groupBy = [group]
-      if (series) groupBy.push(series)
 
       // construct a where clause for our sql statement
       var where = _.flatten(_.map(jsonVis.fixed, function (val, param) {
@@ -53,8 +51,17 @@ window.onload = function () {
           return `${param} in ${vals.join(',')}`
         }
       }))
-      console.log(where);
-      var postData = JSON.stringify(sqltoes({select: [`sum(${val})`], where: where, groupBy: groupBy}))
+
+      // group by for sql statement, add series if necessary
+      var groupBy = [group]
+      if (series) groupBy.push(series)
+
+      // switch for getting change in var from 2015 - 2050
+      var change = jsonVis.change
+      if (change) {
+        groupBy.push('year')
+        where.push('year in 2015,2050')
+      }
 
       // keep track of the number of dependencies
       counter++;
@@ -62,6 +69,7 @@ window.onload = function () {
       htmlChart = `<div><h2>${jsonVis.title}</h2><div id="vis-${counter}"></div></div>`;
 
       // request the data and parse the response for our graph format
+      var postData = JSON.stringify(sqltoes({select: [`sum(${val})`], where: where, groupBy: groupBy}))
       reqwest({
         url: url,
         method: 'post',
@@ -83,8 +91,8 @@ window.onload = function () {
 
           })
           jsonVis.data = {
-            values: _.flatten(_.get(resp.aggregations, wherePath)[`group_by_${group}`].buckets.map(function (obj) {
-              return parseDataObject(obj, group, val, {})
+            values: _.flattenDeep(_.get(resp.aggregations, wherePath)[`group_by_${group}`].buckets.map(function (obj) {
+              return parseDataObject(obj, group, val, {}, change)
             }))
           }
           console.log(jsonVis);
@@ -113,13 +121,24 @@ window.onload = function () {
 	}
   visdown()
 
-  function parseDataObject(obj, group, val, otherKeys) {
+  function parseDataObject(obj, group, val, otherKeys, change) {
     var nextGroup = Object.keys(obj).find(a => a.match('group_by'))
     // we may have other groupings to parse through
     if (nextGroup) {
-      return obj[nextGroup].buckets.map(a => {
-        return parseDataObject(a, nextGroup.replace('group_by_', ''), val, Object.assign({}, otherKeys, { [group]: obj.key}))
-      })
+      // special parsing for change by year
+      if (nextGroup === 'group_by_year' && change) {
+        return Object.assign({}, {
+          // assumes later value in bucket 1 and early value in bucket 0
+          [val]: (obj[nextGroup].buckets[1][`sum_${val}`].value - obj[nextGroup].buckets[0][`sum_${val}`].value) /
+            (_.includes(['percentage', 'percent', '%'], change) ? obj[nextGroup].buckets[0][`sum_${val}`].value : 1),
+          [group]: obj.key
+        }, otherKeys)
+      } else {
+      // normal procedure
+        return obj[nextGroup].buckets.map(a => {
+          return parseDataObject(a, nextGroup.replace('group_by_', ''), val, Object.assign({}, otherKeys, { [group]: obj.key}), change)
+        })
+      }
     } else {
       // we're at the lowest level, make our object
       return Object.assign({}, {
