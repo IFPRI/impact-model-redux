@@ -8,7 +8,7 @@ import {
 
 export const initialState = {
   projects: projects,
-  project: 'baseline'
+  project: 'global-futures'
 }
 
 export default function reducer (state = initialState, action) {
