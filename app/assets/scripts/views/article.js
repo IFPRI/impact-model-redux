@@ -26,9 +26,16 @@ var Article = React.createClass({
   },
 
   componentWillMount: function () {
+    let renderer = new marked.Renderer()
+    renderer.heading = (text, level) => {
+      const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-')
+      // Change h1 to h5, h2 and above to h6
+      level = level <= 2 ? level + 4 : 6
+      return `<h${level}>${escapedText}</h${level}>`
+    }
     const metadata = this.props.projects[this.props.project]
     loadText(metadata.url).then((text) => {
-      const body = marked(text.split('---')[2])
+      const body = marked(text.split('---')[2], {renderer: renderer})
       this.setState({
         projectMetadata: metadata,
         projectBody: body
