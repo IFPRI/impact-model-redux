@@ -11,9 +11,15 @@ glob('app/assets/data/projects/*.md', function (err, files) {
     metadata = jsyaml.load(metadata.split('---')[1])
     metadata = {
       title: metadata.title,
-      tags: metadata.tags,
-      scenarios: metadata.scenarios,
-      url: file.replace('app/', '')
+      author: metadata.author,
+      date: metadata.date,
+      url: file.replace('app/', ''),
+      type: metadata.type,
+      project: metadata.project,
+      tags: metadata.resources,
+      resources: metadata.resources,
+      locations: metadata.locations,
+      scenarios: metadata.scenarios
     }
     inventory[path.basename(file, '.md')] = metadata
   })
