@@ -2,6 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import marked from 'marked'
+import fm from 'front-matter'
 
 import { loadText } from '../utils/load-text.js'
 
@@ -35,7 +36,7 @@ var Article = React.createClass({
     }
     const metadata = this.props.projects[this.props.project]
     loadText(metadata.url).then((text) => {
-      const body = marked(text.split('---')[2], {renderer: renderer})
+      const body = marked(fm(text).body, {renderer: renderer})
       this.setState({
         projectMetadata: metadata,
         projectBody: body
