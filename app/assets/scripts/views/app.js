@@ -12,8 +12,7 @@ var App = React.createClass({
 
   propTypes: {
     routes: React.PropTypes.array,
-    children: React.PropTypes.object,
-    params: React.PropTypes.object
+    children: React.PropTypes.object
   },
 
   //
@@ -37,7 +36,7 @@ var App = React.createClass({
       <div className={c('page', pageClass)}>
         <PageHeader />
         <main className='page__body' role='main'>
-          {this.props.children}
+        {this.props.children}
         </main>
         <PageFooter />
       </div>

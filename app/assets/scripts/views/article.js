@@ -1,16 +1,47 @@
 'use strict'
 import React from 'react'
 import { connect } from 'react-redux'
+import marked from 'marked'
+import fm from 'front-matter'
+
+import { loadText } from '../utils/load-text.js'
 
 // Components
 import ArticleHeader from '../components/article-header'
 import ProjectArticles from '../components/project-articles'
 import RelatedArticles from '../components/related-articles'
 
-var Home = React.createClass({
-  displayName: 'Home',
+var Article = React.createClass({
+  displayName: 'Article',
 
   propTypes: {
+    projects: React.PropTypes.object,
+    project: React.PropTypes.string
+  },
+
+  getInitialState: function () {
+    return {
+      projectBody: '',
+      projectMetadata: {}
+    }
+  },
+
+  componentWillMount: function () {
+    let renderer = new marked.Renderer()
+    renderer.heading = (text, level) => {
+      const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-')
+      // Change h1 to h5, h2 and above to h6
+      level = level <= 2 ? level + 4 : 6
+      return `<h${level}>${escapedText}</h${level}>`
+    }
+    const metadata = this.props.projects[this.props.project]
+    loadText(metadata.url).then((text) => {
+      const body = marked(fm(text).body, {renderer: renderer})
+      this.setState({
+        projectMetadata: metadata,
+        projectBody: body
+      })
+    })
   },
 
   render: function () {
@@ -19,16 +50,9 @@ var Home = React.createClass({
         <ArticleHeader />
         <div className='page__article-body'>
           <h4>
-            This is an article heading
+            {this.state.projectMetadata.title}
           </h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.
-          </p>
+          <div dangerouslySetInnerHTML={{__html: this.state.projectBody}}></div>
         </div>
         <ProjectArticles />
         <RelatedArticles />
@@ -42,7 +66,9 @@ var Home = React.createClass({
 
 function mapStateToProps (state) {
   return {
+    projects: state.project.projects,
+    project: state.project.project
   }
 }
 
-module.exports = connect(mapStateToProps)(Home)
+module.exports = connect(mapStateToProps)(Article)
