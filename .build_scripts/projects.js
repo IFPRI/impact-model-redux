@@ -1,14 +1,13 @@
 var fs = require('fs')
 var glob = require('glob')
 var path = require('path')
-var jsyaml = require('js-yaml')
+var fm = require('front-matter')
 
 glob('app/assets/data/projects/*.md', function (err, files) {
   if (err) console.warn(err)
   var inventory = {}
   files.map(function (file) {
-    var metadata = fs.readFileSync(file).toString()
-    metadata = jsyaml.load(metadata.split('---')[1])
+    var metadata = fm(fs.readFileSync(file).toString()).attributes
     metadata = {
       title: metadata.title,
       author: metadata.author,
