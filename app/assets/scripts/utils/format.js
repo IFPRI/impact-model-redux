@@ -8,3 +8,13 @@ export const slugify = (text) => {
   .replace(/^-+/, '')             // Trim - from start of text
   .replace(/-+$/, '')             // Trim - from end of text
 }
+
+// Extract n charecters of preview text, rounded to the closest full word
+export const cutAtWord = (text, charecters) => {
+  var lastCharecter = text.lastIndexOf(' ', charecters)
+  return text.substring(0, lastCharecter)
+}
+
+export const cutAtCharecter = (text, charecter) => {
+  return text.substring(0, charecter)
+}

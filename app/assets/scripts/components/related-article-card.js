@@ -2,6 +2,8 @@
 import React from 'react'
 import { Link } from 'react-router'
 
+import { cutAtWord } from '../utils/format'
+
 const RelatedArticleCard = React.createClass({
   displayName: 'RelatedArticleCard',
 
@@ -19,11 +21,11 @@ const RelatedArticleCard = React.createClass({
           </h4>
           <ul>
             <li>{article.date}</li>
-            <li>{article.author}</li>
+            <li><Link to={`${article.author}`}>{article.author}</Link></li>
           </ul>
         </header>
         <div className='article-card__body'>
-          <p>{article.preview}</p>
+          <p>{`${cutAtWord(article.preview, 190)}...`}</p>
         </div>
     </div>
     )

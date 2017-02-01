@@ -5,7 +5,6 @@ var fm = require('front-matter')
 
 // Extract n charecters of preview text, rounded to the closest full word
 function cutAt (text, charecters) {
-  console.log(text)
   var lastCharecter = text.lastIndexOf(' ', charecters)
   return text.substring(0, lastCharecter) + '...'
 }
