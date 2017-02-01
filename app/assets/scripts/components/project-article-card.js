@@ -6,8 +6,6 @@ import { Link } from 'react-router'
 import { cutAtWord } from '../utils/format'
 
 const ProjectArticleCard = React.createClass({
-  displayName: 'ProjectArticleCard',
-
   propTypes: {
     article: React.PropTypes.object
   },

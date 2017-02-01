@@ -5,8 +5,6 @@ import { Link } from 'react-router'
 import { cutAtWord, commaSeparate, toTitleCase } from '../utils/format'
 
 const RelatedArticleCard = React.createClass({
-  displayName: 'RelatedArticleCard',
-
   propTypes: {
     article: React.PropTypes.object
   },

@@ -2,8 +2,6 @@
 import React from 'react'
 
 const PageFooter = React.createClass({
-  displayName: 'PageFooter',
-
   render: function () {
     return (
       <div className='page__footer'>

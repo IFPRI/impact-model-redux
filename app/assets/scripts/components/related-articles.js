@@ -7,8 +7,6 @@ import { findRelatedArticles } from '../utils/related.js'
 import RelatedArticleCard from './related-article-card'
 
 const RelatedArticles = React.createClass({
-  displayName: 'RelatedArticles',
-
   propTypes: {
     articleMetadata: React.PropTypes.object,
     articles: React.PropTypes.object

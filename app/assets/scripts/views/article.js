@@ -12,8 +12,6 @@ import ProjectArticles from '../components/project-articles'
 import RelatedArticles from '../components/related-articles'
 
 var Article = React.createClass({
-  displayName: 'Article',
-
   propTypes: {
     projects: React.PropTypes.object,
     project: React.PropTypes.string

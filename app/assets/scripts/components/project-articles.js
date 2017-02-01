@@ -7,8 +7,6 @@ import { findProjectArticles } from '../utils/related.js'
 import ProjectArticleCard from './project-article-card'
 
 const ProjectArticles = React.createClass({
-  displayName: 'ProjectArticles',
-
   propTypes: {
     articleMetadata: React.PropTypes.object,
     articles: React.PropTypes.object

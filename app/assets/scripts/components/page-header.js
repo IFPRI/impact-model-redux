@@ -2,8 +2,6 @@
 import React from 'react'
 
 const PageHeader = React.createClass({
-  displayName: 'PageHeader',
-
   render: function () {
     return (
       <div className='page__header'>
