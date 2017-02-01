@@ -2,14 +2,16 @@
 import _ from 'lodash'
 
 export const findRelatedArticles = (articleMetadata, articles, desiredMatches) => {
+  let filteredArticles = Object.assign({}, articles)
+
   if (Object.keys(articleMetadata).length) {
     desiredMatches = desiredMatches || 3
     const articleTags = articleMetadata.tags
-    delete articles[articleMetadata.id]
+    delete filteredArticles[articleMetadata.id]
 
     let allNames = []
     let relatedArticles = []
-    _.forEach(articles, (article, key) => {
+    _.forEach(filteredArticles, (article, key) => {
       const matches = _.intersection(article.tags, articleTags).length
       article.matches = matches
       if (matches > 0) {
@@ -26,7 +28,7 @@ export const findRelatedArticles = (articleMetadata, articles, desiredMatches) =
       // if less than n related articles, add randomly selected articles
       while (relatedCount < 3) {
         let randomName = allNames[Math.floor(Math.random() * allNames.length)]
-        relatedArticles.push(articles[randomName])
+        relatedArticles.push(filteredArticles[randomName])
         relatedCount = relatedArticles.length
       }
       return relatedArticles
