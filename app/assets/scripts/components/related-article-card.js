@@ -1,9 +1,8 @@
 'use strict'
 import React from 'react'
-import moment from 'moment'
 import { Link } from 'react-router'
 
-import { cutAtWord } from '../utils/format'
+import { cutAtWord, commaSeparate, toTitleCase } from '../utils/format'
 
 const RelatedArticleCard = React.createClass({
   displayName: 'RelatedArticleCard',
@@ -14,20 +13,16 @@ const RelatedArticleCard = React.createClass({
 
   render: function () {
     const article = this.props.article
-    let date = moment(article.date, 'MM/DD/YYYY').format('MMMM D, YYYY')
     return (
-      <div className='article-card'>
-        <header className='article-card__header'>
+      <div className='article-card--related'>
+        <header className='article-card__header--related'>
           <h4>
             <Link to={`/articles/${article.id}`}>{article.title}</Link>
           </h4>
-          <ul>
-            <li>{date}</li>
-            <li><Link to={`${article.author}`}>{article.author}</Link></li>
-          </ul>
         </header>
-        <div className='article-card__body'>
+        <div className='article-card__body--related'>
           <p>{`${cutAtWord(article.preview, 190)}...`}</p>
+          <p className='article-card__tags'>{toTitleCase(commaSeparate(article.tags))}</p>
         </div>
     </div>
     )

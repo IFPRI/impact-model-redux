@@ -10,18 +10,48 @@
     }
   }
 
-  .page__project-articles-list {
-    min-height: 10rem;
+  .page__related-articles-list {
+    float: left;
+    width: 100%;
     background-color: $primary-color;
     padding: 2rem 0 0 4rem;
+    margin-bottom: 2rem;
     h3 {
       font-size: 2rem;
       font-weight: 400;
       color: white;
     }
+    .article-card--related {
+      color: #fff;
+      float: left;
+      width: 20rem;
+      margin: 1rem 4rem 3rem 0;
+      p {
+        font-weight: 200;
+        font-size: 0.85rem;
+        line-height: 1.5rem;
+        &.article-card__tags {
+          margin-top: 1.5rem;
+          font-style: italic;
+        }
+      }
+      a {
+        color: #fff;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      h4 {
+        margin-bottom: 1rem;
+        a {
+          font-size: 1.5rem;
+        }
+      }
+    }
   }
 
-  .page__related-articles-list {
+  .page__project-articles-list {
     float: left;
     width: 100%;
     min-height: 10rem;
@@ -30,13 +60,13 @@
     h3 {
       font-size: 2rem;
       font-weight: 400;
-      color: white;
+      color: #fff;
     }
-    .article-card {
+    .article-card--project {
       color: #fff;
       float: left;
       width: 20rem;
-      margin: 1rem 3rem 2rem 0;
+      margin: 1rem 3rem 3rem 0;
       padding: 1.5rem;
       border: 2px solid #fff;
       background-color: lighten($secondary-color, 3);

@@ -5,7 +5,6 @@ import marked from 'marked'
 import fm from 'front-matter'
 
 import { loadText } from '../utils/load-text.js'
-import { findRelatedArticles } from '../utils/related.js'
 
 // Components
 import ArticleHeader from '../components/article-header'
@@ -48,7 +47,6 @@ var Article = React.createClass({
   render: function () {
     const articleMetadata = this.state.projectMetadata
     const articles = this.props.projects
-    const relatedArticles = findRelatedArticles(articleMetadata, articles, 3)
     return (
       <div className='article'>
         <ArticleHeader />
@@ -58,8 +56,8 @@ var Article = React.createClass({
           </h4>
           <div dangerouslySetInnerHTML={{__html: this.state.projectBody}}></div>
         </div>
-        <ProjectArticles />
-        <RelatedArticles relatedArticles={relatedArticles} />
+        <ProjectArticles articleMetadata={articleMetadata} articles={articles} />
+        <RelatedArticles articleMetadata={articleMetadata} articles={articles} />
       </div>
     )
   }

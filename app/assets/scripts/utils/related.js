@@ -37,3 +37,13 @@ export const findRelatedArticles = (articleMetadata, articles, desiredMatches) =
     }
   }
 }
+
+export const findProjectArticles = (articleMetadata, articles, project, desiredMatches) => {
+  let filteredArticles = Object.assign({}, articles)
+  Object.keys(filteredArticles).forEach((article) => {
+    if (filteredArticles[article].project !== project) {
+      delete filteredArticles[article]
+    }
+  })
+  return findRelatedArticles(articleMetadata, filteredArticles, desiredMatches)
+}

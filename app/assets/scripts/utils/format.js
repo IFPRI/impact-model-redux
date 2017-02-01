@@ -15,6 +15,10 @@ export const cutAtWord = (text, charecters) => {
   return text.substring(0, lastCharecter)
 }
 
-export const cutAtCharecter = (text, charecter) => {
-  return text.substring(0, charecter)
+export const commaSeparate = (array) => array.join(', ')
+
+export const toTitleCase = (str) => {
+  return str.replace(/\w\S*/g, function (txt) {
+    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+  })
 }
