@@ -3,10 +3,10 @@ var glob = require('glob')
 var path = require('path')
 var fm = require('front-matter')
 
-// Extract n charecters of preview text, rounded to the closest full word
-function cutAt (text, charecters) {
-  var lastCharecter = text.lastIndexOf(' ', charecters)
-  return text.substring(0, lastCharecter) + '...'
+// Extract n characters of preview text, rounded to the closest full word
+function cutAt (text, characters) {
+  var lastCharacter = text.lastIndexOf(' ', characters)
+  return text.substring(0, lastCharacter) + '...'
 }
 
 glob('app/assets/data/projects/*.md', function (err, files) {

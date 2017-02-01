@@ -9,10 +9,10 @@ export const slugify = (text) => {
   .replace(/-+$/, '')             // Trim - from end of text
 }
 
-// Extract n charecters of preview text, rounded to the closest full word
-export const cutAtWord = (text, charecters) => {
-  var lastCharecter = text.lastIndexOf(' ', charecters)
-  return text.substring(0, lastCharecter)
+// Extract n characters of preview text, rounded to the closest full word
+export const cutAtWord = (text, characters) => {
+  var lastCharacter = text.lastIndexOf(' ', characters)
+  return text.substring(0, lastCharacter)
 }
 
 export const commaSeparate = (array) => array.join(', ')
