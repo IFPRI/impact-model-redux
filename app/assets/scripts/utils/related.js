@@ -1,5 +1,4 @@
 'use strict'
-
 import _ from 'lodash'
 import { slugify } from './format.js'
 
@@ -15,11 +14,10 @@ export const findRelatedArticles = (articleMetadata, articles, desiredMatches) =
       allNames.push(articleName)
       const article = articles[articleName]
       const matches = _.intersection(article.tags, articleTags).length
+      article.id = slugify(article.title)
+      article.matches = matches
       if (matches > 0) {
-        relatedArticles.push({
-          name: articleName,
-          matches: _.intersection(article.tags, articleTags).length
-        })
+        relatedArticles.push(article)
       }
     })
     relatedArticles = _.sortBy(relatedArticles, ['matches'])

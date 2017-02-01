@@ -13,8 +13,8 @@
   .page__project-articles-list {
     min-height: 10rem;
     background-color: $primary-color;
+    padding: 2rem 0 0 4rem;
     h3 {
-      padding: 2rem 0 0 4rem;
       font-size: 2rem;
       font-weight: 400;
       color: white;
@@ -22,13 +22,36 @@
   }
 
   .page__related-articles-list {
+    float: left;
+    width: 100%;
     min-height: 10rem;
+    padding: 2rem 0 0 4rem;
     background-color: $secondary-color;
     h3 {
-      padding: 2rem 0 0 4rem;
       font-size: 2rem;
       font-weight: 400;
       color: white;
+    }
+    .article-card {
+      color: #fff;
+      float: left;
+      width: 20rem;
+      margin: 1rem 3rem 2rem 0;
+      padding: 1.5rem;
+      border: 2px solid #fff;
+      background-color: lighten($secondary-color, 5);
+      transition: background-color 0.2s;
+      h4 {
+        a {
+          font-size: 1.5rem;
+          color: #fff;
+          text-decoration: none;
+        }
+      }
+      &:hover {
+        background-color: darken($secondary-color, 5);
+        text-decoration: underline;
+      }
     }
   }
 

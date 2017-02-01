@@ -49,7 +49,6 @@ var Article = React.createClass({
     const articleMetadata = this.state.projectMetadata
     const articles = this.props.projects
     const relatedArticles = findRelatedArticles(articleMetadata, articles, 3)
-    console.log(relatedArticles)
     return (
       <div className='article'>
         <ArticleHeader />
@@ -60,7 +59,7 @@ var Article = React.createClass({
           <div dangerouslySetInnerHTML={{__html: this.state.projectBody}}></div>
         </div>
         <ProjectArticles />
-        <RelatedArticles />
+        <RelatedArticles relatedArticles={relatedArticles} />
       </div>
     )
   }
