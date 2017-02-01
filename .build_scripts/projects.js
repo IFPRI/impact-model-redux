@@ -15,7 +15,7 @@ glob('app/assets/data/projects/*.md', function (err, files) {
       url: file.replace('app/', ''),
       type: metadata.type,
       project: metadata.project,
-      tags: metadata.resources,
+      tags: metadata.tags,
       resources: metadata.resources,
       locations: metadata.locations,
       scenarios: metadata.scenarios
