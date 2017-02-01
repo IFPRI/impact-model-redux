@@ -14,7 +14,7 @@ const ProjectArticleCard = React.createClass({
 
   render: function () {
     const article = this.props.article
-    let date = moment(article.date, 'MM/DD/YYYY').format('MMMM D, YYYY')
+    const date = moment(article.date, 'MM/DD/YYYY').format('MMMM D, YYYY')
     return (
       <div className='article-card--project'>
         <header className='article-card__header--project'>

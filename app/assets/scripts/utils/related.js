@@ -1,20 +1,16 @@
 'use strict'
 import _ from 'lodash'
-import { slugify } from './format.js'
 
 export const findRelatedArticles = (articleMetadata, articles, desiredMatches) => {
   if (Object.keys(articleMetadata).length) {
     desiredMatches = desiredMatches || 3
     const articleTags = articleMetadata.tags
-    delete articles[slugify(articleMetadata.title)]
+    delete articles[articleMetadata.id]
 
     let allNames = []
     let relatedArticles = []
-    Object.keys(articles).forEach((articleName) => {
-      allNames.push(articleName)
-      const article = articles[articleName]
+    _.forEach(articles, (article, key) => {
       const matches = _.intersection(article.tags, articleTags).length
-      article.id = slugify(article.title)
       article.matches = matches
       if (matches > 0) {
         relatedArticles.push(article)
@@ -40,9 +36,9 @@ export const findRelatedArticles = (articleMetadata, articles, desiredMatches) =
 
 export const findProjectArticles = (articleMetadata, articles, project, desiredMatches) => {
   let filteredArticles = Object.assign({}, articles)
-  Object.keys(filteredArticles).forEach((article) => {
-    if (filteredArticles[article].project !== project) {
-      delete filteredArticles[article]
+  _.forEach(filteredArticles, (article, articleName) => {
+    if (article.project !== project) {
+      delete filteredArticles[articleName]
     }
   })
   return findRelatedArticles(articleMetadata, filteredArticles, desiredMatches)

@@ -34,11 +34,11 @@ var App = React.createClass({
 
     return (
       <div className={c('page', pageClass)}>
-        <PageHeader />
         <main className='page__body' role='main'>
-        {this.props.children}
+          <PageHeader />
+          {this.props.children}
+          <PageFooter />
         </main>
-        <PageFooter />
       </div>
     )
   }
