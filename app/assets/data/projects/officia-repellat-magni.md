@@ -1,7 +1,7 @@
 ---
 title: Officia Repellat Magni
 author: Barton Hermiston
-date: 0/10/2016
+date: 1/10/2016
 url: https://mohammed.info
 type: brief
 project: Project 3
@@ -30,10 +30,14 @@ Porro in autem fuga eum optio sit illum quo porro. Ab dolores suscipit et quo. P
 
 # Quo Provident Ut
 Voluptatum quo repellendus vel itaque autem consequatur maxime deserunt cumque. Atque eum suscipit ut quaerat omnis aut. Nam quod ipsam sint et voluptas corporis ad aut. Rerum aliquid et reprehenderit aut distinctio assumenda maiores dolores veniam. Quo quia repellat consequatur. Distinctio dolores inventore quo ducimus quis qui commodi.
- Ratione praesentium ipsam praesentium praesentium molestias exercitationem. Quas expedita incidunt perferendis ea. Beatae saepe tenetur repudiandae aut quibusdam. Occaecati qui aliquid placeat nostrum. Error nisi et ut. Et eum recusandae autem vel qui modi quas corporis.
- Enim magnam qui modi dolorum occaecati perspiciatis ratione omnis. Reiciendis dolor dolorum asperiores molestiae. Nam blanditiis suscipit quis optio dolores sapiente. Eligendi eos voluptatibus quisquam id corrupti rerum rerum velit. Et voluptatibus dolorem totam molestiae quia hic magni. Ea temporibus tempore officiis officia distinctio quidem quis qui.Non eos consectetur dolorem. Voluptatem placeat et ipsam corrupti ullam optio aut. Ullam et suscipit fuga cumque est voluptas quasi.
+ 
+Ratione praesentium ipsam praesentium praesentium molestias exercitationem. Quas expedita incidunt perferendis ea. Beatae saepe tenetur repudiandae aut quibusdam. Occaecati qui aliquid placeat nostrum. Error nisi et ut. Et eum recusandae autem vel qui modi quas corporis.
+ 
+Enim magnam qui modi dolorum occaecati perspiciatis ratione omnis. Reiciendis dolor dolorum asperiores molestiae. Nam blanditiis suscipit quis optio dolores sapiente. Eligendi eos voluptatibus quisquam id corrupti rerum rerum velit. Et voluptatibus dolorem totam molestiae quia hic magni. Ea temporibus tempore officiis officia distinctio quidem quis qui.Non eos consectetur dolorem. Voluptatem placeat et ipsam corrupti ullam optio aut. Ullam et suscipit fuga cumque est voluptas quasi.
 
 # Fugit Nobis Exercitationem
 Reprehenderit qui non vitae. Vero modi odio dicta. Unde veritatis voluptatibus. Magnam quia dolore aperiam voluptatem.
- Possimus voluptas omnis blanditiis. Aut hic dolores enim eum et. Minima consequatur repudiandae et fugiat itaque consequatur. Iste quo nostrum laboriosam suscipit quia ut excepturi fugit. Enim laudantium nihil architecto ratione quibusdam perferendis earum. Maxime ut pariatur aut hic enim.
- Dolor molestiae ratione magni facilis unde quaerat. Deserunt possimus ab. Aut et vel qui fuga voluptas laboriosam ut aut sequi. Minima doloremque facilis in distinctio fugit excepturi. Nulla quae nesciunt.
+ 
+Possimus voluptas omnis blanditiis. Aut hic dolores enim eum et. Minima consequatur repudiandae et fugiat itaque consequatur. Iste quo nostrum laboriosam suscipit quia ut excepturi fugit. Enim laudantium nihil architecto ratione quibusdam perferendis earum. Maxime ut pariatur aut hic enim.
+ 
+Dolor molestiae ratione magni facilis unde quaerat. Deserunt possimus ab. Aut et vel qui fuga voluptas laboriosam ut aut sequi. Minima doloremque facilis in distinctio fugit excepturi. Nulla quae nesciunt.

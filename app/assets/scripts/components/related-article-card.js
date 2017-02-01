@@ -1,5 +1,6 @@
 'use strict'
 import React from 'react'
+import moment from 'moment'
 import { Link } from 'react-router'
 
 import { cutAtWord } from '../utils/format'
@@ -13,6 +14,7 @@ const RelatedArticleCard = React.createClass({
 
   render: function () {
     const article = this.props.article
+    let date = moment(article.date, 'MM/DD/YYYY').format('MMMM D, YYYY')
     return (
       <div className='article-card'>
         <header className='article-card__header'>
@@ -20,7 +22,7 @@ const RelatedArticleCard = React.createClass({
             <Link to={`/articles/${article.id}`}>{article.title}</Link>
           </h4>
           <ul>
-            <li>{article.date}</li>
+            <li>{date}</li>
             <li><Link to={`${article.author}`}>{article.author}</Link></li>
           </ul>
         </header>
