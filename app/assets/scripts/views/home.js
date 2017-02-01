@@ -3,8 +3,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 var Home = React.createClass({
-  displayName: 'Home',
-
   propTypes: {
   },
 
