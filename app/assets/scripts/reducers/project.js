@@ -8,7 +8,7 @@ import {
 
 export const initialState = {
   projects: projects,
-  project: 'a'
+  project: 'accusamus-vitae-consequatur'
 }
 
 export default function reducer (state = initialState, action) {

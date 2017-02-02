@@ -1,3 +1,4 @@
+'use strict'
 
 export const loadText = (url) => {
   return fetch(url)

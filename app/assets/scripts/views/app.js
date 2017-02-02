@@ -8,8 +8,6 @@ import PageHeader from '../components/page-header'
 import PageFooter from '../components/page-footer'
 
 var App = React.createClass({
-  displayName: 'App',
-
   propTypes: {
     routes: React.PropTypes.array,
     children: React.PropTypes.object
@@ -34,11 +32,11 @@ var App = React.createClass({
 
     return (
       <div className={c('page', pageClass)}>
-        <PageHeader />
         <main className='page__body' role='main'>
-        {this.props.children}
+          <PageHeader />
+          {this.props.children}
+          <PageFooter />
         </main>
-        <PageFooter />
       </div>
     )
   }

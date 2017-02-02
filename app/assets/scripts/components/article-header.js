@@ -2,8 +2,6 @@
 import React from 'react'
 
 const ArticleHeader = React.createClass({
-  displayName: 'ArticleHeader',
-
   render: function () {
     return (
       <div className='article__header'>
