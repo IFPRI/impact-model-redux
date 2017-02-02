@@ -18,7 +18,4 @@ const PageHeader = React.createClass({
   }
 })
 
-// /////////////////////////////////////////////////////////////////// //
-// Connect functions
-
 export default PageHeader

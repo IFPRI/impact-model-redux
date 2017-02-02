@@ -1,0 +1,14 @@
+.page__browse {
+  float: left;
+  .browse__header {
+    width: 100%;
+    min-height: 10rem;
+    background-color: $primary-color;
+    h2 {
+      padding: 7rem 0 3rem 4rem;
+      font-size: 4rem;
+      font-weight: 400;
+      color: white;
+    }
+  }
+}

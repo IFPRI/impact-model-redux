@@ -13,7 +13,4 @@ const PageFooter = React.createClass({
   }
 })
 
-// /////////////////////////////////////////////////////////////////// //
-// Connect functions
-
 export default PageFooter

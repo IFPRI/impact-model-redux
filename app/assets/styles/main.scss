@@ -48,15 +48,16 @@
 /* Settings
    ========================================================================== */
 
-   @import "settings/variables";
-   @import "settings/mixins";
+ @import "settings/variables";
+@import "settings/mixins";
 
 
 /* Core
    ========================================================================== */
 
 @import "core/base";
+@import "core/home";
 @import "core/page-header";
 @import "core/page-footer";
 @import "core/article";
-@import "core/home";
+@import "core/article-browse";

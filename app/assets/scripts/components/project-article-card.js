@@ -32,7 +32,4 @@ const ProjectArticleCard = React.createClass({
   }
 })
 
-// /////////////////////////////////////////////////////////////////// //
-// Connect functions
-
 export default ProjectArticleCard
