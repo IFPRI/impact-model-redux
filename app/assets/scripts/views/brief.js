@@ -1,7 +1,7 @@
 'use strict'
 import React from 'react'
 
-const Scenario = React.createClass({
+const Brief = React.createClass({
   propTypes: {
   },
 
@@ -9,11 +9,11 @@ const Scenario = React.createClass({
     return (
       <div className='page__browse'>
         <div className='browse__header'>
-          <h2>Scenario</h2>
+          <h2>Brief</h2>
         </div>`
       </div>
     )
   }
 })
 
-export default Scenario
+export default Brief

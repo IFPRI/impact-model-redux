@@ -21,12 +21,13 @@ const store = createStore(reducer, applyMiddleware(logger))
 
 // Components
 import App from './views/app'
+import Home from './views/home'
+import About from './views/about'
+import Contact from './views/contact'
 import BriefBrowse from './views/brief-browse'
 import Brief from './views/brief'
 import ScenarioBrowse from './views/scenario-browse'
 import Scenario from './views/scenario'
-import About from './views/about'
-import Home from './views/home'
 import UhOh from './views/uhoh'
 
 render((
@@ -34,11 +35,12 @@ render((
     <Router history={hashHistory}>
       <Route path='/404' component={UhOh} />
       <Route path='/' component={App}>
+        <Route path='about' component={About} />
+        <Route path='contact' component={Contact} />
         <Route path='briefs' component={BriefBrowse} />
         <Route path='scenarios' component={ScenarioBrowse} />
         <Route path='briefs/:id' component={Brief} />
         <Route path='scenarios/:id' component={Scenario} />
-        <Route path='about' component={About} />
         <IndexRoute component={Home} pageClass='page--homepage' />
       </Route>
     </Router>
