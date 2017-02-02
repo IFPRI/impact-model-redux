@@ -1,10 +1,9 @@
 .page__header {
-  width: col(12/12);
-  padding: 1.5rem 0 3rem 2rem;
+  width: 100%;
+  padding: 1.5rem 0 1.5rem 2rem;
   border-bottom: 1px solid $grey-outline;
   ul {
-    float: left;
-    margin: 0.15rem 0 0 3rem;
+    margin-top: 0.15rem;
   }
   li {
     color: $base-color;
@@ -44,6 +43,7 @@
     float: left;
     font-size: 1.45rem;
     weight: 800;
+    margin-right: 3rem;
     color: $base-color;
     a:before {
       top: 1.75rem;
