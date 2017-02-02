@@ -1,6 +1,7 @@
 .page__header {
   width: col(12/12);
   padding: 1.5rem 0 3rem 2rem;
+  border-bottom: 1px solid $grey-outline;
   h1 {
     float: left;
     font-size: 1.45rem;
@@ -12,6 +13,7 @@
     margin: 0.15rem 0 0 3rem;
   }
   li {
+    color: $base-color;
     margin: 1rem 2rem 0 0;
     font-weight: 200;
     font-size: 1.1rem;
@@ -22,11 +24,11 @@
   }
   li > a {
     position: relative;
-    color: #000;
+    color: $base-color;
     text-decoration: none;
   }
   li > a:hover {
-    color: #000;
+    color: $base-color;
   }
   li > a:before {
     content: "";
@@ -35,7 +37,7 @@
     height: 2px;
     top: 1.5rem;
     left: 0;
-    background-color: #000;
+    background-color: $base-color;
     visibility: hidden;
     transform: scaleX(0);
     transition: all 0.15s ease-in-out 0s;

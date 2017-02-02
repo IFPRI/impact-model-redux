@@ -14,7 +14,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .page__body {
-  max-width: 1150px;
+  width: 1150px;
   margin: 1rem auto 2rem auto;
-  box-shadow:  0 0 3px #888888;
+  border:  1px solid $grey-outline;
 }

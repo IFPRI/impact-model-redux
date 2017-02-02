@@ -1,14 +1,38 @@
 .page__browse {
-  float: left;
+  border-bottom: 1px solid $grey-outline;
   .browse__header {
     width: 100%;
     min-height: 10rem;
-    background-color: $primary-color;
-    h2 {
+    background-color: $header-background;
+    border-bottom: 1px solid $grey-outline;
+    .browse__header-text {
+      color: $base-color;
       padding: 7rem 0 3rem 4rem;
-      font-size: 4rem;
-      font-weight: 400;
-      color: white;
+      max-width: 35rem;
+      h2 {
+        font-size: 2.25rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem
+      }
+      p {
+        line-height: 1.75rem;
+      }
     }
+  }
+}
+
+.browse__filters {
+  display: inline-block;
+  width: 17rem;
+  .filters__header {
+    margin: 1rem 0 1rem 2rem;
+  }
+}
+
+.browse__article-list {
+  display: inline-block;
+  width: calc(100% - 17rem);
+  .article-list__header {
+    margin: 1rem 0 1rem 2rem;
   }
 }
