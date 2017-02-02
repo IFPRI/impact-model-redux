@@ -13,7 +13,7 @@ import RelatedArticles from '../components/related-articles'
 
 var Article = React.createClass({
   propTypes: {
-    projects: React.PropTypes.object,
+    projects: React.PropTypes.array,
     project: React.PropTypes.string
   },
 
@@ -32,7 +32,7 @@ var Article = React.createClass({
       level = level <= 2 ? level + 4 : 6
       return `<h${level}>${escapedText}</h${level}>`
     }
-    const metadata = this.props.projects[this.props.project]
+    const metadata = this.props.projects.find((project) => project.id === this.props.project)
     loadText(metadata.url).then((text) => {
       const body = marked(fm(text).body, {renderer: renderer})
       this.setState({

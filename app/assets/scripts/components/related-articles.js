@@ -9,7 +9,7 @@ import RelatedArticleCard from './related-article-card'
 const RelatedArticles = React.createClass({
   propTypes: {
     articleMetadata: React.PropTypes.object,
-    articles: React.PropTypes.object
+    articles: React.PropTypes.array
   },
 
   render: function () {

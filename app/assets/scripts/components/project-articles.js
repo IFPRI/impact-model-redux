@@ -9,7 +9,7 @@ import ProjectArticleCard from './project-article-card'
 const ProjectArticles = React.createClass({
   propTypes: {
     articleMetadata: React.PropTypes.object,
-    articles: React.PropTypes.object
+    articles: React.PropTypes.array
   },
 
   render: function () {
