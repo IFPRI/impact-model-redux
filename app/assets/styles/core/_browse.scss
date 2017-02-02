@@ -22,10 +22,11 @@
 }
 
 .browse__filters {
+  float: left;
   display: inline-block;
   width: 17rem;
   .filters__header {
-    margin: 1rem 0 1rem 2rem;
+    margin: 1rem 0;
   }
 }
 
@@ -33,6 +34,6 @@
   display: inline-block;
   width: calc(100% - 17rem);
   .article-list__header {
-    margin: 1rem 0 1rem 2rem;
+    margin: 1rem 0;
   }
 }
