@@ -33,7 +33,6 @@ import UhOh from './views/uhoh'
 render((
   <Provider store={store}>
     <Router history={hashHistory}>
-      <Route path='/404' component={UhOh} />
       <Route path='/' component={App}>
         <Route path='about' component={About} />
         <Route path='contact' component={Contact} />
@@ -42,6 +41,7 @@ render((
         <Route path='briefs/:id' component={Brief} />
         <Route path='scenarios/:id' component={Scenario} />
         <IndexRoute component={Home} pageClass='page--homepage' />
+        <Route path='*' component={UhOh} />
       </Route>
     </Router>
   </Provider>

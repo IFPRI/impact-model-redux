@@ -4,8 +4,8 @@ import React from 'react'
 var UhOh = React.createClass({
   render: function () {
     return (
-      <div>
-        <h1>Uh Oh!</h1>
+      <div className='page__uhoh'>
+        <h2>404</h2>
         <p>You're seaching for something that doesn't exist...</p>
       </div>
     )
