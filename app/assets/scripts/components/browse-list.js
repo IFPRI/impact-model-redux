@@ -1,8 +1,12 @@
 'use strict'
 import React from 'react'
 
+// Components
+import ListArticleCard from './list-article-card.js'
+
 const BrowseList = React.createClass({
   propTypes: {
+    articles: React.PropTypes.array
   },
 
   render: function () {
@@ -11,6 +15,14 @@ const BrowseList = React.createClass({
         <header className='article-list__header'>
           <h2>Results</h2>
         </header>
+        {this.props.articles.map((article, i) => {
+          return (
+            <ListArticleCard
+              article={article}
+              key={'list-article-card' + i}
+            />
+          )
+        })}
       </div>
     )
   }
