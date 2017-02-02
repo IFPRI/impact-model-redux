@@ -1,6 +1,5 @@
 var fs = require('fs')
 var glob = require('glob')
-var path = require('path')
 var fm = require('front-matter')
 
 // Extract n characters of preview text, rounded to the closest full word
@@ -20,11 +19,10 @@ function slugify (text) {
 
 glob('app/assets/data/projects/*.md', function (err, files) {
   if (err) console.warn(err)
-  var inventory = {}
-  files.map(function (file) {
+  const inventory = files.map(function (file) {
     var text = fm(fs.readFileSync(file).toString())
     var metadata = text.attributes
-    metadata = {
+    return {
       title: metadata.title,
       id: slugify(metadata.title),
       author: metadata.author,
@@ -39,7 +37,6 @@ glob('app/assets/data/projects/*.md', function (err, files) {
       // Correct for several edge cases that can occur around markdown parsing
       preview: cutAt(text.body, 300).replace(/# /g, '').replace(/\n\n/g, ' ').replace(/\n/g, ' ').replace('....', '...').replace(/. #.../g, '...')
     }
-    inventory[path.basename(file, '.md')] = metadata
   })
   fs.writeFile('./app/assets/data/projects.json', JSON.stringify(inventory))
 })
