@@ -11,7 +11,4 @@ const ArticleHeader = React.createClass({
   }
 })
 
-// /////////////////////////////////////////////////////////////////// //
-// Connect functions
-
 export default ArticleHeader

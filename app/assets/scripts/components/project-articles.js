@@ -30,7 +30,4 @@ const ProjectArticles = React.createClass({
   }
 })
 
-// /////////////////////////////////////////////////////////////////// //
-// Connect functions
-
 export default ProjectArticles

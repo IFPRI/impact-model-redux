@@ -29,7 +29,4 @@ const RelatedArticles = React.createClass({
   }
 })
 
-// /////////////////////////////////////////////////////////////////// //
-// Connect functions
-
 export default RelatedArticles

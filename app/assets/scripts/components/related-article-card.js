@@ -27,7 +27,4 @@ const RelatedArticleCard = React.createClass({
   }
 })
 
-// /////////////////////////////////////////////////////////////////// //
-// Connect functions
-
 export default RelatedArticleCard

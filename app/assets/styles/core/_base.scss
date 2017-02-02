@@ -6,15 +6,15 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Nunito+Sans');
 
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .page__body {
   max-width: 1150px;
   margin: 1rem auto 2rem auto;
-  box-shadow:  0 0 3px #888888;
+  border:  1px solid $grey-outline;
 }

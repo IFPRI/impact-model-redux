@@ -1,4 +1,5 @@
 .article {
+  float: left;
   .article__header {
     width: 100%;
     min-height: 10rem;
@@ -119,15 +120,16 @@
     p {
       color: $base-color;
       line-height: 1.5rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
     }
     h4 {
       color: $base-color;
       font-size: 1.75rem;
       font-weight: 600;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;
     }
     h5 {
+      margin-bottom: 0.75rem;
       font-size: 1.5rem
     }
     h6 {
