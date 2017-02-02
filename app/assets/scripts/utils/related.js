@@ -2,46 +2,17 @@
 import _ from 'lodash'
 
 export const findRelatedArticles = (articleMetadata, articles, desiredMatches) => {
-  let filteredArticles = Object.assign({}, articles)
-
-  if (Object.keys(articleMetadata).length) {
-    desiredMatches = desiredMatches || 3
-    const articleTags = articleMetadata.tags
-    delete filteredArticles[articleMetadata.id]
-
-    let allNames = []
-    let relatedArticles = []
-    _.forEach(filteredArticles, (article, key) => {
-      const matches = _.intersection(article.tags, articleTags).length
-      article.matches = matches
-      if (matches > 0) {
-        relatedArticles.push(article)
-      }
+  const relatedArticles = articles.filter((article) => article.id !== articleMetadata.id)
+    .map((article) => {
+      const count = _.intersection(article.tags, articleMetadata.tags).length
+      return Object.assign({}, article, {count})
     })
-    relatedArticles = _.sortBy(relatedArticles, ['matches'])
+    .sort((a, b) => b.count - a.count)
 
-    let relatedCount = relatedArticles.length
-    if (relatedCount >= desiredMatches) {
-      // return n related articles
-      return relatedArticles.slice(Math.max(relatedCount - desiredMatches, 1))
-    } else {
-      // if less than n related articles, add randomly selected articles
-      while (relatedCount < 3) {
-        let randomName = allNames[Math.floor(Math.random() * allNames.length)]
-        relatedArticles.push(filteredArticles[randomName])
-        relatedCount = relatedArticles.length
-      }
-      return relatedArticles
-    }
-  }
+  return relatedArticles.slice(0, desiredMatches || 3)
 }
 
 export const findProjectArticles = (articleMetadata, articles, project, desiredMatches) => {
-  let filteredArticles = Object.assign({}, articles)
-  _.forEach(filteredArticles, (article, articleName) => {
-    if (article.project !== project) {
-      delete filteredArticles[articleName]
-    }
-  })
+  const filteredArticles = articles.filter((article) => article.project === project)
   return findRelatedArticles(articleMetadata, filteredArticles, desiredMatches)
 }

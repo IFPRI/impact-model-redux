@@ -13,10 +13,10 @@
 
   .page__related-articles-list {
     float: left;
-    width: 100%;
-    background-color: $primary-color;
+    width: calc(100% - 4rem);
     padding: 2rem 0 0 4rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    background-color: $primary-color;
     h3 {
       font-size: 2rem;
       font-weight: 400;
@@ -26,7 +26,10 @@
       color: #fff;
       float: left;
       width: 20rem;
-      margin: 1rem 4rem 3rem 0;
+      margin: 1rem 2rem 3rem 0;
+      &:last-child {
+        margin-right: 0;
+      }
       p {
         font-weight: 200;
         font-size: 0.85rem;
@@ -55,6 +58,7 @@
   .page__project-articles-list {
     float: left;
     width: 100%;
+    width: calc(100% - 4rem);
     min-height: 10rem;
     padding: 2rem 0 0 4rem;
     background-color: $secondary-color;
