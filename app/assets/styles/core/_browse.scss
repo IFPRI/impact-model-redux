@@ -36,4 +36,50 @@
   .article-list__header {
     margin: 1rem 0;
   }
+  .article-list-card {
+    float: left;
+    margin: 0 3rem 1.5rem 0;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid $grey-outline;
+    a {
+      text-decoration: none;
+      color: $primary-color;
+      transition: all 0.2s linear;
+      &:hover {
+        text-decoration: underline;
+        color: lighten($primary-color, 20);
+      }
+    }
+    .article-list-card__title {
+      h4 {
+        font-size: 1.5rem;
+        font-weight: 800;
+        float: left;
+      }
+      span {
+        font-style: italic;
+        font-weight: 400;
+        font-size: 0.85rem;
+        float: right;
+      }
+    }
+    .article-list-card__meta {
+      font-size: 0.85rem;
+      float: left;
+      clear: left;
+      font-weight: 200;
+      margin: 0.235rem 0 0.35rem 0;
+      b {
+        font-weight: 600;
+      }
+    }
+    .article-list-card__body {
+      font-size: 0.85rem;
+      float: left;
+      clear:left;
+      font-weight: 200;
+      margin-bottom: 0.75rem;
+      max-width: 80%
+    }
+  }
 }
