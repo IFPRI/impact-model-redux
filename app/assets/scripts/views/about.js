@@ -1,19 +1,19 @@
 'use strict'
 import React from 'react'
 
-const ArticleList = React.createClass({
+const About = React.createClass({
   propTypes: {
   },
 
   render: function () {
     return (
       <div className='page__about'>
-        <div className='about__header'>
+        <header className='about__header'>
           <h2>About</h2>
-        </div>`
+        </header>
       </div>
     )
   }
 })
 
-export default ArticleList
+export default About
