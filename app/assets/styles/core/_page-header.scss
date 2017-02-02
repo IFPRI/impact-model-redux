@@ -2,12 +2,6 @@
   width: col(12/12);
   padding: 1.5rem 0 3rem 2rem;
   border-bottom: 1px solid $grey-outline;
-  h1 {
-    float: left;
-    font-size: 1.45rem;
-    weight: 800;
-    color: $base-color;
-  }
   ul {
     float: left;
     margin: 0.15rem 0 0 3rem;
@@ -22,15 +16,15 @@
       margin-right: 0;
     }
   }
-  li > a {
+  a {
     position: relative;
     color: $base-color;
     text-decoration: none;
   }
-  li > a:hover {
+  a:hover {
     color: $base-color;
   }
-  li > a:before {
+  a:before {
     content: "";
     position: absolute;
     width: 100%;
@@ -42,8 +36,17 @@
     transform: scaleX(0);
     transition: all 0.15s ease-in-out 0s;
   }
-  li > a:hover:before {
+  a:hover:before {
     visibility: visible;
     transform: scaleX(1);
+  }
+  h1 {
+    float: left;
+    font-size: 1.45rem;
+    weight: 800;
+    color: $base-color;
+    a:before {
+      top: 1.75rem;
+    }
   }
 }
