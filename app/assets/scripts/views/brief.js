@@ -7,7 +7,6 @@ import fm from 'front-matter'
 import { loadText } from '../utils/load-text.js'
 
 // Components
-import ArticleHeader from '../components/article-header'
 import ProjectArticles from '../components/project-articles'
 import RelatedArticles from '../components/related-articles'
 
@@ -25,16 +24,9 @@ var Brief = React.createClass({
   },
 
   componentWillMount: function () {
-    let renderer = new marked.Renderer()
-    renderer.heading = (text, level) => {
-      const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-')
-      // Change h1 to h5, h2 and above to h6
-      level = level <= 2 ? level + 4 : 6
-      return `<h${level}>${escapedText}</h${level}>`
-    }
     const metadata = this.props.projects.find((project) => project.id === this.props.project)
     loadText(metadata.url).then((text) => {
-      const body = marked(fm(text).body, {renderer: renderer})
+      const body = marked(fm(text).body)
       this.setState({
         projectMetadata: metadata,
         projectBody: body
@@ -47,11 +39,10 @@ var Brief = React.createClass({
     const articles = this.props.projects
     return (
       <div className='article'>
-        <ArticleHeader />
+        <header className='article__header'>
+          <h1>{this.state.projectMetadata.title}</h1>
+        </header>
         <div className='page__article-body'>
-          <h4>
-            {this.state.projectMetadata.title}
-          </h4>
           <div dangerouslySetInnerHTML={{__html: this.state.projectBody}}></div>
         </div>
         <ProjectArticles articleMetadata={articleMetadata} articles={articles} />

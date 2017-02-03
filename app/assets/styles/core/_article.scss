@@ -4,7 +4,7 @@
     width: 100%;
     min-height: 10rem;
     background-color: $primary-color;
-    h2 {
+    h1 {
       padding: 7rem 0 3rem 4rem;
       font-size: 4rem;
       font-weight: 400;
@@ -122,17 +122,15 @@
       line-height: 1.5rem;
       margin-bottom: 1rem;
     }
-    h4 {
+    h1 {
       color: $base-color;
       font-size: 1.75rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
+      font-weight: 800;
     }
-    h5 {
-      margin-bottom: 0.75rem;
+    h2 {
       font-size: 1.5rem
     }
-    h6 {
+    h3 {
       font-size: 1.25rem
     }
   }
