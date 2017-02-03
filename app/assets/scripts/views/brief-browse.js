@@ -1,14 +1,19 @@
 'use strict'
 import React from 'react'
+import { connect } from 'react-redux'
 
+// Components
 import BrowseFilters from '../components/browse-filters.js'
 import BrowseList from '../components/browse-list.js'
 
 const BriefBrowse = React.createClass({
   propTypes: {
+    articles: React.PropTypes.array,
+    route: React.PropTypes.object
   },
 
   render: function () {
+    const briefs = this.props.articles.filter((article) => article.type === 'brief')
     return (
       <div className='page__browse'>
         <header className='browse__header'>
@@ -22,10 +27,19 @@ const BriefBrowse = React.createClass({
           </div>
         </header>
         <BrowseFilters />
-        <BrowseList />
+        <BrowseList articles={briefs} path={this.props.route.path} />
       </div>
     )
   }
 })
 
-export default BriefBrowse
+// /////////////////////////////////////////////////////////////////// //
+// Connect functions
+
+function mapStateToProps (state) {
+  return {
+    articles: state.project.projects
+  }
+}
+
+module.exports = connect(mapStateToProps)(BriefBrowse)

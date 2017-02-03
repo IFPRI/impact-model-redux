@@ -1,5 +1,5 @@
 .page__header {
-  width: 100%;
+  width: calc(100% - 2rem);
   padding: 1.5rem 0 1.5rem 2rem;
   border-bottom: 1px solid $grey-outline;
   ul {
@@ -43,7 +43,7 @@
     float: left;
     font-size: 1.45rem;
     weight: 800;
-    margin-right: 3rem;
+    margin: 0 3rem 0.5rem 0;
     color: $base-color;
     a:before {
       top: 1.75rem;

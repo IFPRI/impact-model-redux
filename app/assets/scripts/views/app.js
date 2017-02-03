@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 import c from 'classnames'
 
+// Components
 import PageHeader from '../components/page-header'
 import PageFooter from '../components/page-footer'
 
