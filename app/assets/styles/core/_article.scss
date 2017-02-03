@@ -14,7 +14,6 @@
 
   .page__project-articles-list {
     float: left;
-    width: 100%;
     width: calc(100% - 4rem);
     min-height: 10rem;
     padding: 2rem 0 0 4rem;
@@ -115,7 +114,8 @@
   }
 
   .page__article-body {
-    padding: 2rem 4rem 0 4rem;
+    padding: 0 4rem;
+    margin: 3rem 0 4rem 0;
     p {
       color: $base-color;
       line-height: 1.5rem;
