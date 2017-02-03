@@ -1,15 +1,26 @@
 'use strict'
 import React from 'react'
-import { Link } from 'react-router'
 
 const PageFooter = React.createClass({
   render: function () {
     return (
-      <div className='page__footer'>
-        <div className='contact'>
-          <p className='contact__item'><span>Copyright IFPRI 2017. </span> <Link to={'/contact'}>Contact Us</Link></p>
+      <footer className='page__footer'>
+        <div className='footer__contact'>
+          <div className='contact__text'>
+            <h2>Sign Up For Updates</h2>
+            <p>Get updates whenever new information is added to the site.</p>
+          </div>
+          <div className='contact__input'>
+            <form action='temp'>
+              <input type='text' name='email' placeholder='Enter Your Email Address' />
+              <input type='submit' value='Sign Up' />
+            </form>
+          </div>
         </div>
-      </div>
+        <div className='footer__logo'>
+          logo
+        </div>
+      </footer>
     )
   }
 })
