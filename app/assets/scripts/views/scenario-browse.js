@@ -12,6 +12,7 @@ const ScenarioBrowse = React.createClass({
   },
 
   render: function () {
+    const scenarios = this.props.articles.filter((article) => article.type === 'project')
     return (
       <div className='page__browse'>
         <header className='browse__header'>
@@ -25,7 +26,7 @@ const ScenarioBrowse = React.createClass({
           </div>
         </header>
         <BrowseFilters />
-        <BrowseList articles={this.props.articles} />
+        <BrowseList articles={scenarios} />
       </div>
     )
   }

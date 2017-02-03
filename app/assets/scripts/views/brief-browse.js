@@ -12,6 +12,7 @@ const BriefBrowse = React.createClass({
   },
 
   render: function () {
+    const briefs = this.props.articles.filter((article) => article.type === 'brief')
     return (
       <div className='page__browse'>
         <header className='browse__header'>
@@ -25,7 +26,7 @@ const BriefBrowse = React.createClass({
           </div>
         </header>
         <BrowseFilters />
-        <BrowseList articles={this.props.articles} />
+        <BrowseList articles={briefs} />
       </div>
     )
   }
