@@ -11,7 +11,7 @@ const BrowseList = React.createClass({
   },
 
   render: function () {
-    const articles = this.props.articles
+    const {articles, path} = this.props
     return (
       <div className='browse__article-list'>
         <header className='article-list__header'>
@@ -21,7 +21,7 @@ const BrowseList = React.createClass({
           return (
             <ListArticleCard
               article={article}
-              path={this.props.path}
+              path={path}
               key={'list-article-card' + i}
             />
           )
