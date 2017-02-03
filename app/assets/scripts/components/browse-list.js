@@ -10,12 +10,13 @@ const BrowseList = React.createClass({
   },
 
   render: function () {
+    const articles = this.props.articles
     return (
       <div className='browse__article-list'>
         <header className='article-list__header'>
-          <h2>Results</h2>
+          <h2>Results <span className='result-count'>({articles.length})</span></h2>
         </header>
-        {this.props.articles.map((article, i) => {
+        {articles.map((article, i) => {
           return (
             <ListArticleCard
               article={article}
