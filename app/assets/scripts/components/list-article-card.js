@@ -7,7 +7,8 @@ import { commaSeparate, cutAtWord } from '../utils/format'
 
 const ListArticleCard = React.createClass({
   propTypes: {
-    article: React.PropTypes.object
+    article: React.PropTypes.object,
+    path: React.PropTypes.string
   },
 
   render: function () {
@@ -18,7 +19,7 @@ const ListArticleCard = React.createClass({
       <div className='article-list-card'>
         <header className='article-list-card__header'>
           <div className='article-list-card__title'>
-            <h4><Link to={`/articles/${article.id}`}>{article.title}</Link></h4>
+            <h4><Link to={`/${this.props.path}/${article.id}`}>{article.title}</Link></h4>
             <span>{date}</span>
           </div>
           <div className='article-list-card__meta'>

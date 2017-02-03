@@ -6,7 +6,8 @@ import ListArticleCard from './list-article-card.js'
 
 const BrowseList = React.createClass({
   propTypes: {
-    articles: React.PropTypes.array
+    articles: React.PropTypes.array,
+    path: React.PropTypes.string
   },
 
   render: function () {
@@ -20,6 +21,7 @@ const BrowseList = React.createClass({
           return (
             <ListArticleCard
               article={article}
+              path={this.props.path}
               key={'list-article-card' + i}
             />
           )

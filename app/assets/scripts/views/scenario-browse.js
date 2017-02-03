@@ -8,7 +8,8 @@ import BrowseList from '../components/browse-list.js'
 
 const ScenarioBrowse = React.createClass({
   propTypes: {
-    articles: React.PropTypes.array
+    articles: React.PropTypes.array,
+    route: React.PropTypes.object
   },
 
   render: function () {
@@ -26,7 +27,7 @@ const ScenarioBrowse = React.createClass({
           </div>
         </header>
         <BrowseFilters />
-        <BrowseList articles={scenarios} />
+        <BrowseList articles={scenarios} path={this.props.route.path} />
       </div>
     )
   }
