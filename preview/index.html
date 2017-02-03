@@ -66,10 +66,27 @@ window.onload = function () {
         where.push('year in 2015,2050')
       }
 
+      // add dropdown component...
+      var dropdown = jsonVis.dropdown
+      console.log(dropdown);
+      var dropdownComponent = ''
+      if (dropdown && dropdown.field && dropdown.values) {
+        // ...to where clause
+        var values = dropdown.values.split(',').map(function (val) {
+          return val.trim()
+        })
+        where.push(`${dropdown.field} = ${values[0]}`)
+
+        // ...to the DOM
+        dropdownComponent = `<select>${values.map(function (val) {
+          return `<option value="${val}">${val}</option>`
+        })}</select>`
+      }
+
       // keep track of the number of dependencies
       counter++;
       el = `#vis-${counter}`;
-      htmlChart = `<div><h2>${jsonVis.title}</h2><div id="vis-${counter}"></div></div>`;
+      htmlChart = `<div><h2>${jsonVis.title}</h2><div id="vis-${counter}"></div>${dropdownComponent}</div>`
 
       // request the data and parse the response for our graph format
       var postData = JSON.stringify(sqltoes({select: [`sum(${val})`], where: where, groupBy: groupBy}))
@@ -252,7 +269,6 @@ Powered by [Visdown](http://visdown.amitkaps.com/)
 
 ---
 
-
 ```vis
 mark: bar
 title: chart
@@ -263,13 +279,13 @@ encoding:
   y:
     type: quantitative
     field: Val
-  color:
-    type: nominal
-    field: commodity
 fixed:
   year: 2010
   impactparameter: qdxagg
   agg_commodity: cereals
+dropdown:
+  field: commodity
+  values: maiz, barl
 ```
 </textarea>
 <section id="visdown-output"></div>
