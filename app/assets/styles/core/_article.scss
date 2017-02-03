@@ -12,53 +12,8 @@
     }
   }
 
-  .page__related-articles-list {
-    float: left;
-    width: calc(100% - 4rem);
-    padding: 2rem 0 0 4rem;
-    margin-bottom: 1.5rem;
-    background-color: $primary-color;
-    h3 {
-      font-size: 2rem;
-      font-weight: 400;
-      color: white;
-    }
-    .article-card--related {
-      color: #fff;
-      float: left;
-      width: 20rem;
-      margin: 1rem 2rem 3rem 0;
-      &:last-child {
-        margin-right: 0;
-      }
-      p {
-        font-weight: 200;
-        font-size: 0.85rem;
-        line-height: 1.5rem;
-        &.article-card__tags {
-          margin-top: 1.5rem;
-          font-style: italic;
-        }
-      }
-      a {
-        color: #fff;
-        text-decoration: none;
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-      h4 {
-        margin-bottom: 1rem;
-        a {
-          font-size: 1.5rem;
-        }
-      }
-    }
-  }
-
   .page__project-articles-list {
     float: left;
-    width: 100%;
     width: calc(100% - 4rem);
     min-height: 10rem;
     padding: 2rem 0 0 4rem;
@@ -115,8 +70,52 @@
     }
   }
 
+  .page__related-articles-list {
+    float: left;
+    width: calc(100% - 4rem);
+    padding: 2rem 0 0 4rem;
+    background-color: $primary-color;
+    h3 {
+      font-size: 2rem;
+      font-weight: 400;
+      color: white;
+    }
+    .article-card--related {
+      color: #fff;
+      float: left;
+      width: 20rem;
+      margin: 1rem 2rem 3rem 0;
+      &:last-child {
+        margin-right: 0;
+      }
+      p {
+        font-weight: 200;
+        font-size: 0.85rem;
+        line-height: 1.5rem;
+        &.article-card__tags {
+          margin-top: 1.5rem;
+          font-style: italic;
+        }
+      }
+      a {
+        color: #fff;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      h4 {
+        margin-bottom: 1rem;
+        a {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+
   .page__article-body {
-    padding: 2rem 4rem 0 4rem;
+    padding: 0 4rem;
+    margin: 3rem 0 4rem 0;
     p {
       color: $base-color;
       line-height: 1.5rem;
