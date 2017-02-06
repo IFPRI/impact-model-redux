@@ -37,6 +37,7 @@
     }
   }
   .article-list-card {
+    color: $base-color;
     float: left;
     margin: 0 3rem 1.5rem 0;
     padding-bottom: 1.5rem;
@@ -85,13 +86,13 @@
 }
 
 .browse__filters {
+  color: $base-color;
   float: left;
   display: inline-block;
   width: 20rem;
   .filters__header {
     margin: 3rem 0 0 2rem;
     h2 {
-      color: $base-color;
       font-size: 1.5rem;
       font-weight: 800;
     }
@@ -99,7 +100,6 @@
   .filters__form {
     margin: 1rem 0 0 2rem;
     h3 {
-      color: $base-color;
       font-size: 1rem;
       font-weight: 800;
       margin: 1rem 0 0.5rem 0;
@@ -107,7 +107,6 @@
       clear: left;
     }
     .filters__check-group {
-      color: $base-color;
       font-weight: 400;
       font-size: 0.8rem;
       margin-left: 0.5rem;
