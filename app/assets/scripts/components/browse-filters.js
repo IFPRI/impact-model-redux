@@ -41,6 +41,7 @@ const BrowseFilters = React.createClass({
 
   generateAccordionItems: function (list) {
     list = _.pickBy(list, (value, key) => key)
+    console.log(list)
     return _.map(list, (subtypes, type) => {
       return (
         <Panel header={type} key={'filter-item-' + type}>
