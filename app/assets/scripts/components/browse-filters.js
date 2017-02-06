@@ -3,7 +3,7 @@ import React from 'react'
 import Collapse, { Panel } from 'rc-collapse'
 import _ from 'lodash'
 
-import { invertCommodities } from '../utils/translation'
+import { translate, invertCommodities } from '../utils/translation'
 
 import { commodities } from '../../data/aggregate-commodity'
 
@@ -34,7 +34,7 @@ const BrowseFilters = React.createClass({
             return (
               <div className='filters__check-group' key={subtype + '-check-group'}>
                 <input type='checkbox' name={subtype + '-check'} value={subtype + '-check'} />
-                {subtype}
+                {translate(subtype)}
               </div>
             )
           })}
