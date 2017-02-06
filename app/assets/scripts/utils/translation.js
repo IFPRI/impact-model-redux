@@ -1,11 +1,11 @@
 'use strict'
 
 import _ from 'lodash'
-import { translationData } from '../../data/translation'
+import { translations } from '../../data/translation'
 
-export const translate = (str) => translationData[str]
+export const translate = (str) => translations[str]
 
-export const untranslate = (str) => _.invert(translationData)[str]
+export const untranslate = (str) => _.invert(translations)[str]
 
 export const invertCommodities = (commodities) => {
   const inverted = {}

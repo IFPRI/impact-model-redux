@@ -29,12 +29,16 @@ const BrowseFilters = React.createClass({
   },
 
   generateItems: function (list) {
+    list = _.pickBy(list, (value, key) => key)
     return _.map(list, (subtypes, type) => {
       return (
         <Panel header={type} key={'filter-item-' + type}>
           {subtypes.map((subtype) => {
             // use the id attribute in the case of countries
             if (subtype.id) subtype = subtype.id
+            if (!translate(subtype)) {
+              console.log(subtype)
+            }
             return (
               <div className='filters__check-group' key={subtype + '-check-group'}>
                 <input type='checkbox' name={subtype + '-check'} value={subtype + '-check'} />
@@ -70,14 +74,14 @@ const BrowseFilters = React.createClass({
             <input type='checkbox' name='commodity-summary-check' value='commodity-summary-check' />
             Commodity Summary
           </div>
-          <h3 className='filters__group-label'>Commodities</h3>
+          {/* <h3 className='filters__group-label'>Commodities</h3>
           <div className='filters__check-group'>
             <Collapse
               accordion={accordion}
               onChange={this.onChange} >
               {this.generateItems(commodityList)}
             </Collapse>
-          </div>
+          </div> */}
           <h3 className='filters__group-label'>Location</h3>
           <div className='filters__check-group'>
             <Collapse
