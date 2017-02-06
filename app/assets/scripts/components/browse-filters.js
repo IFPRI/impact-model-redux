@@ -18,17 +18,28 @@ const BrowseFilters = React.createClass({
   getInitialState: function () {
     return {
       accordion: false,
-      activeKey: ['1']
+      activeAccordionKey: ['1'],
+      checklist: []
     }
   },
 
-  onChange: function (activeKey) {
+  onAccordionChange: function (activeAccordionKey) {
     this.setState({
-      activeKey
+      activeAccordionKey
     })
   },
 
-  generateItems: function (list) {
+  handleFilterSelection: function (event) {
+    const checkbox = event.target.value
+    let checklist = this.state.checklist
+    checklist = !_.includes(checklist, checkbox)
+      ? checklist.concat(checkbox)
+      : checklist.filter((opt) => opt !== checkbox)
+
+    this.setState({checklist: checklist})
+  },
+
+  generateAccordionItems: function (list) {
     list = _.pickBy(list, (value, key) => key)
     return _.map(list, (subtypes, type) => {
       return (
@@ -38,7 +49,12 @@ const BrowseFilters = React.createClass({
             if (subtype.id) subtype = subtype.id
             return (
               <div className='filters__check-group' key={subtype + '-check-group'}>
-                <input type='checkbox' name={subtype + '-check'} value={subtype + '-check'} />
+                <input
+                  type='checkbox'
+                  name={subtype + '-check'}
+                  value={subtype}
+                  onChange={this.handleFilterSelection}
+                  checked={_.includes(this.state.checklist, subtype) } />
                 {translate(subtype)}
               </div>
             )
@@ -75,16 +91,16 @@ const BrowseFilters = React.createClass({
           <div className='filters__check-group'>
             <Collapse
               accordion={accordion}
-              onChange={this.onChange} >
-              {this.generateItems(commodityList)}
+              onChange={this.onAccordionChange} >
+              {this.generateAccordionItems(commodityList)}
             </Collapse>
           </div>
           <h3 className='filters__group-label'>Location</h3>
           <div className='filters__check-group'>
             <Collapse
               accordion={accordion}
-              onChange={this.onChange}>
-              {this.generateItems(countryList)}
+              onChange={this.onAccordionChange}>
+              {this.generateAccordionItems(countryList)}
             </Collapse>
           </div>
         </form>
