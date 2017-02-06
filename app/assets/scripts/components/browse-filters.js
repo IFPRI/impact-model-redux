@@ -3,9 +3,13 @@ import React from 'react'
 import Collapse, { Panel } from 'rc-collapse'
 import _ from 'lodash'
 
-import { translate, invertCommodities } from '../utils/translation'
+import {
+  translate,
+  invertCommodities,
+  countryIdsToSubcontinents } from '../utils/translation'
 
 import { commodities } from '../../data/aggregate-commodity'
+import countries from '../../data/aggregate-region'
 
 const BrowseFilters = React.createClass({
   propTypes: {
@@ -14,7 +18,7 @@ const BrowseFilters = React.createClass({
   getInitialState: function () {
     return {
       accordion: false,
-      activeKey: ['4']
+      activeKey: ['1']
     }
   },
 
@@ -24,13 +28,13 @@ const BrowseFilters = React.createClass({
     })
   },
 
-  getItems: function () {
-    const commodityList = invertCommodities(commodities)
-    const items = []
-    _.forEach(commodityList, (subtypes, type) => {
-      items.push(
+  generateItems: function (list) {
+    return _.map(list, (subtypes, type) => {
+      return (
         <Panel header={type} key={'filter-item-' + type}>
           {subtypes.map((subtype) => {
+            // use the id attribute in the case of countries
+            if (subtype.id) subtype = subtype.id
             return (
               <div className='filters__check-group' key={subtype + '-check-group'}>
                 <input type='checkbox' name={subtype + '-check'} value={subtype + '-check'} />
@@ -41,20 +45,12 @@ const BrowseFilters = React.createClass({
         </Panel>
       )
     })
-
-    return items
-  },
-
-  toggle: function () {
-    this.setState({
-      accordion: !this.state.accordion
-    })
   },
 
   render: function () {
+    const commodityList = invertCommodities(commodities)
+    const countryList = countryIdsToSubcontinents(countries)
     const accordion = this.state.accordion
-    const activeKey = this.state.activeKey
-
     return (
       <div className='browse__filters'>
         <header className='filters__header'>
@@ -78,10 +74,16 @@ const BrowseFilters = React.createClass({
           <div className='filters__check-group'>
             <Collapse
               accordion={accordion}
-              onChange={this.onChange}
-              activeKey={activeKey}
-            >
-              {this.getItems()}
+              onChange={this.onChange} >
+              {this.generateItems(commodityList)}
+            </Collapse>
+          </div>
+          <h3 className='filters__group-label'>Location</h3>
+          <div className='filters__check-group'>
+            <Collapse
+              accordion={accordion}
+              onChange={this.onChange}>
+              {this.generateItems(countryList)}
             </Collapse>
           </div>
         </form>

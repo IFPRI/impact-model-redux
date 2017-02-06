@@ -17,31 +17,36 @@ export const invertCommodities = (commodities) => {
 }
 
 export const countryIdsToContinents = (countries) => {
-  const continents = _.map(countries, (attributes, id) => {
+  const continents = {}
+  _.forEach(countries, (attributes, id) => {
     const continent = attributes.continent
     if (!continents[continent]) {
       continents[continent] = []
     }
-    return {
+    if (!continents[continent]) {
+      continents[continent] = []
+    }
+    continents[continent].push({
       id: id,
       region: attributes.region,
       subcontinent: attributes.subcontinent
-    }
+    })
   })
   return continents
 }
 
-export const countryIdsToSubontinents = (countries) => {
-  const subcontinents = _.map(countries, (attributes, id) => {
+export const countryIdsToSubcontinents = (countries) => {
+  const subcontinents = {}
+  _.forEach(countries, (attributes, id) => {
     const subcontinent = attributes.subcontinent
     if (!subcontinents[subcontinent]) {
       subcontinents[subcontinent] = []
     }
-    return {
+    subcontinents[subcontinent].push({
       id: id,
       region: attributes.region,
       continent: attributes.continent
-    }
+    })
   })
   return subcontinents
 }
