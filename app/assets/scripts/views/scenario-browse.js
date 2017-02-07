@@ -13,7 +13,7 @@ const ScenarioBrowse = React.createClass({
   },
 
   render: function () {
-    const scenarios = this.props.articles.filter((article) => article.type === 'article')
+    const scenarios = this.props.articles.filter((article) => article.type === 'scenario')
     return (
       <div className='page__browse'>
         <header className='browse__header'>

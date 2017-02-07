@@ -4,6 +4,7 @@ import moment from 'moment'
 import { Link } from 'react-router'
 
 import { commaSeparate, cutAtWord } from '../utils/format'
+import { translate } from '../utils/translation'
 
 const ListArticleCard = React.createClass({
   propTypes: {
@@ -14,7 +15,12 @@ const ListArticleCard = React.createClass({
   render: function () {
     const article = this.props.article
     const date = moment(article.date, 'MM/DD/YYYY').format('MMMM D, YYYY')
-    const locations = article.locations
+    let locations = article.locations
+    locations = locations
+      ? <dt><b>Location{locations.length > 1 ? 's' : ''}: </b>
+      {locations.length > 1 ? commaSeparate(locations.map((loc) => translate(loc))) : translate(locations)}</dt>
+      : ''
+
     return (
       <div className='article-list-card'>
         <header className='article-list-card__header'>
@@ -25,8 +31,7 @@ const ListArticleCard = React.createClass({
           <div className='article-list-card__meta'>
             <dl>
               <dt><b>Author:</b> <Link to={`${article.author}`}>{article.author}</Link></dt>
-              <dt><b>Location{locations.length > 1 ? 's' : ''}:</b> {locations.length > 1 ? commaSeparate(locations) : locations}
-              </dt>
+              {locations}
             </dl>
           </div>
         </header>

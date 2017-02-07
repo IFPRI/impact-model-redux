@@ -13,7 +13,8 @@ import RelatedArticles from '../components/related-articles'
 var Brief = React.createClass({
   propTypes: {
     articles: React.PropTypes.array,
-    article: React.PropTypes.string
+    article: React.PropTypes.string,
+    location: React.PropTypes.object
   },
 
   getInitialState: function () {
@@ -24,7 +25,9 @@ var Brief = React.createClass({
   },
 
   componentWillMount: function () {
-    const metadata = this.props.articles.find((article) => article.id === this.props.article)
+    let articleId = (this.props.location.pathname).split('/')
+    articleId = articleId[articleId.length - 1].split('?')[0]
+    const metadata = this.props.articles.find((article) => article.id === articleId)
     loadText(metadata.url).then((text) => {
       const body = marked(fm(text).body)
       this.setState({

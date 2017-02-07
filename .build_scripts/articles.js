@@ -29,14 +29,16 @@ glob('app/assets/data/articles/*.md', function (err, files) {
       date: metadata.date,
       url: file.replace('app/', ''),
       type: metadata.type,
-      article: metadata.article,
-      tags: metadata.tags,
-      resources: metadata.resources,
+      project: metadata.project,
       locations: metadata.locations,
+      commodities: metadata.commodities,
+      tags: metadata.tags,
       scenarios: metadata.scenarios,
+      resources: metadata.resources,
       // Correct for several edge cases that can occur around markdown parsing
       preview: cutAt(text.body, 300).replace(/# /g, '').replace(/\n\n/g, ' ').replace(/\n/g, ' ').replace('....', '...').replace(/. #.../g, '...')
     }
   })
+  console.log(inventory)
   fs.writeFile('./app/assets/data/articles.json', JSON.stringify(inventory))
 })
