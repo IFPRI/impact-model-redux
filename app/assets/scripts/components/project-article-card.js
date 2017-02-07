@@ -17,7 +17,7 @@ const ProjectArticleCard = React.createClass({
       <div className='article-card--project'>
         <header className='article-card__header--project'>
           <h4>
-            <Link to={`/articles/${article.id}`}>{article.title}</Link>
+            <Link to={`/${article.type}s/${article.id}`}>{article.title}</Link>
           </h4>
           <ul>
             <li>{date}</li>
