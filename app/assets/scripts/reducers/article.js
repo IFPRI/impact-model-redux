@@ -1,24 +1,24 @@
 'use strict'
 import { set } from 'object-path'
-import projects from '../../data/projects.json'
+import articles from '../../data/articles.json'
 import {
-  PROJECTS,
-  PROJECT
+  ARTICLES,
+  ARTICLE
 } from '../actions'
 
 export const initialState = {
-  projects: projects,
-  project: 'accusamus-vitae-consequatur'
+  articles: articles,
+  article: 'accusamus-vitae-consequatur'
 }
 
 export default function reducer (state = initialState, action) {
   state = Object.assign({}, state)
   switch (action.type) {
-    case PROJECTS:
-      set(state, 'projects', action.data)
+    case ARTICLES:
+      set(state, 'articles', action.data)
       break
-    case PROJECT:
-      set(state, 'project', action.data)
+    case ARTICLE:
+      set(state, 'article', action.data)
       break
   }
   return state

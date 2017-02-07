@@ -17,7 +17,7 @@ function slugify (text) {
   .replace(/-+$/, '')             // Trim - from end of text
 }
 
-glob('app/assets/data/projects/*.md', function (err, files) {
+glob('app/assets/data/articles/*.md', function (err, files) {
   if (err) console.warn(err)
   const inventory = files.map(function (file) {
     var text = fm(fs.readFileSync(file).toString())
@@ -29,7 +29,7 @@ glob('app/assets/data/projects/*.md', function (err, files) {
       date: metadata.date,
       url: file.replace('app/', ''),
       type: metadata.type,
-      project: metadata.project,
+      article: metadata.article,
       tags: metadata.tags,
       resources: metadata.resources,
       locations: metadata.locations,
@@ -38,5 +38,5 @@ glob('app/assets/data/projects/*.md', function (err, files) {
       preview: cutAt(text.body, 300).replace(/# /g, '').replace(/\n\n/g, ' ').replace(/\n/g, ' ').replace('....', '...').replace(/. #.../g, '...')
     }
   })
-  fs.writeFile('./app/assets/data/projects.json', JSON.stringify(inventory))
+  fs.writeFile('./app/assets/data/articles.json', JSON.stringify(inventory))
 })
