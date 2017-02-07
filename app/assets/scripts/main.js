@@ -4,7 +4,8 @@ import { render } from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import createLogger from 'redux-logger'
-import { Router, Route, IndexRoute, hashHistory } from 'react-router'
+import { useScroll } from 'react-router-scroll'
+import { Router, Route, IndexRoute, hashHistory, applyRouterMiddleware } from 'react-router'
 
 import config from './config'
 import reducer from './reducers'
@@ -19,6 +20,11 @@ const logger = createLogger({
 
 const store = createStore(reducer, applyMiddleware(logger))
 
+const scrollerMiddleware = useScroll((prevRouterProps, currRouterProps) => {
+  return prevRouterProps &&
+    decodeURIComponent(currRouterProps.location.pathname) !== decodeURIComponent(prevRouterProps.location.pathname)
+})
+
 // Components
 import App from './views/app'
 import Home from './views/home'
@@ -32,7 +38,7 @@ import UhOh from './views/uhoh'
 
 render((
   <Provider store={store}>
-    <Router history={hashHistory}>
+    <Router history={hashHistory} render={applyRouterMiddleware(scrollerMiddleware)}>
       <Route path='/' component={App}>
         <Route path='about' component={About} />
         <Route path='contact' component={Contact} />
