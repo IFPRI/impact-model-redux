@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux'
 
-import project from './project'
+import article from './article'
 
 export const reducers = {
-  def: (state = {}, action) => state,
-  project
+  article
 }
 
 export default combineReducers(Object.assign({}, reducers, {

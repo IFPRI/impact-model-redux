@@ -15,7 +15,7 @@ const RelatedArticleCard = React.createClass({
       <div className='article-card--related'>
         <header className='article-card__header--related'>
           <h4>
-            <Link to={`/articles/${article.id}`}>{article.title}</Link>
+            <Link to={`/${article.type}s/${article.id}`}>{article.title}</Link>
           </h4>
         </header>
         <div className='article-card__body--related'>

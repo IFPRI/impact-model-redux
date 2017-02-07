@@ -38,7 +38,7 @@ const BriefBrowse = React.createClass({
 
 function mapStateToProps (state) {
   return {
-    articles: state.project.projects
+    articles: state.article.articles
   }
 }
 

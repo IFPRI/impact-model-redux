@@ -20,20 +20,6 @@
   }
 }
 
-.browse__filters {
-  float: left;
-  display: inline-block;
-  width: 20rem;
-  .filters__header {
-    margin: 3rem 0 0 2rem;
-    h2 {
-      color: $base-color;
-      font-size: 1.5rem;
-      font-weight: 800;
-    }
-  }
-}
-
 .browse__article-list {
   display: inline-block;
   width: calc(100% - 20rem);
@@ -51,6 +37,7 @@
     }
   }
   .article-list-card {
+    color: $base-color;
     float: left;
     margin: 0 3rem 1.5rem 0;
     padding-bottom: 1.5rem;
@@ -95,5 +82,82 @@
       margin-bottom: 0.75rem;
       max-width: 80%
     }
+  }
+}
+
+.browse__filters {
+  color: $base-color;
+  float: left;
+  display: inline-block;
+  width: 20rem;
+  .filters__header {
+    margin: 3rem 0 0 2rem;
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+  }
+  .filters__form {
+    margin: 1rem 0 0 2rem;
+    h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      margin: 1rem 0 0.5rem 0;
+      float: left;
+      clear: left;
+    }
+    .filters__check-group {
+      font-weight: 400;
+      font-size: 0.8rem;
+      margin-left: 0.5rem;
+      float: left;
+      clear: left;
+      margin-bottom: 0.25rem;
+      input[type=checkbox] {
+        margin-right: 0.5rem;
+      }
+    }
+
+    .rc-collapse-anim-active {
+      -webkit-transition: height 0.2s ease-out;
+      transition: height 0.2s ease-out;
+    }
+    .rc-collapse > .rc-collapse-item > .rc-collapse-header {
+      line-height: 1.25rem;
+      cursor: pointer;
+    }
+    .rc-collapse > .rc-collapse-item > .rc-collapse-header .arrow {
+      display: inline-block;
+      content: '\20';
+      width: 0;
+      height: 0;
+      font-size: 0;
+      line-height: 0;
+      border-top: 3px solid transparent;
+      border-bottom: 3px solid transparent;
+      border-left: 4px solid #666;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    .rc-collapse-content {
+      overflow: hidden;
+    }
+    .rc-collapse-content > .rc-collapse-content-box {
+      margin-top: 0.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .rc-collapse-content-inactive {
+      display: none;
+    }
+    .rc-collapse-item:last-child > .rc-collapse-content {
+      border-radius: 0 0 3px 3px;
+    }
+    .rc-collapse > .rc-collapse-item-active > .rc-collapse-header .arrow {
+      border-left: 3px solid transparent;
+      border-right: 3px solid transparent;
+      border-top: 4px solid #666;
+      margin-right: 6px;
+    }
+
   }
 }

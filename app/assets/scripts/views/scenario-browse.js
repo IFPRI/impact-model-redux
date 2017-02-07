@@ -13,7 +13,7 @@ const ScenarioBrowse = React.createClass({
   },
 
   render: function () {
-    const scenarios = this.props.articles.filter((article) => article.type === 'project')
+    const scenarios = this.props.articles.filter((article) => article.type === 'scenario')
     return (
       <div className='page__browse'>
         <header className='browse__header'>
@@ -38,7 +38,7 @@ const ScenarioBrowse = React.createClass({
 
 function mapStateToProps (state) {
   return {
-    articles: state.project.projects
+    articles: state.article.articles
   }
 }
 
