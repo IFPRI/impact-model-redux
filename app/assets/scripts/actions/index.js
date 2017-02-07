@@ -1,10 +1,10 @@
-export const ARTICLES = 'ARTICLES'
-export const ARTICLE = 'ARTICLE'
+export const UPDATE_ARTICLES = 'UPDATE_ARTICLES'
+export const UPDATE_ARTICLE = 'UPDATE_ARTICLE'
 
 export function updateArticles (data) {
-  return { type: ARTICLES, data: data }
+  return { type: UPDATE_ARTICLES, data: data }
 }
 
 export function updateArticle (data) {
-  return { type: ARTICLE, data: data }
+  return { type: UPDATE_ARTICLE, data: data }
 }

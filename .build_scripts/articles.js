@@ -39,6 +39,6 @@ glob('app/assets/data/articles/*.md', function (err, files) {
       preview: cutAt(text.body, 300).replace(/# /g, '').replace(/\n\n/g, ' ').replace(/\n/g, ' ').replace('....', '...').replace(/. #.../g, '...')
     }
   })
-  console.log(inventory)
   fs.writeFile('./app/assets/data/articles.json', JSON.stringify(inventory))
+  console.log('Inventory saved to ./app/assets/data/articles.json')
 })
