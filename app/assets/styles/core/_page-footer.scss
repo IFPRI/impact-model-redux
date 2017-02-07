@@ -1,0 +1,46 @@
+.page__footer {
+  width: calc(100% - 8rem);
+  display: inline-block;
+  padding: 2rem 4rem;
+  background-color: $header-background;
+  border-top: 1px solid $grey-outline;
+  color: $base-color;
+  h2 {
+    font-size: 1.75rem;
+    weight: 800;
+  }
+  .footer__contact {
+    display: inline-block;
+    float: left;
+    .contact__input {
+      margin-top: 1rem;
+    }
+    input[type=text] {
+      background-color: rgb(255, 255, 255);
+      border: 1px solid $grey-outline;
+      border-radius: 5px;
+      padding: 0.75rem 1rem;
+      width: 14rem;
+      margin-right: 1.5rem;
+      &:focus {
+        border: 1px solid $primary-color;
+      }
+    }
+    input[type=submit] {
+      color: rgb(255, 255, 255);
+      background-color: $base-color;
+      border-radius: 5px;
+      padding: 0.75rem 1rem;
+      width: 10rem;
+      margin-right: 1rem;
+      transition: all 0.2s linear;
+      &:hover {
+        background-color: lighten($base-color, 20);
+      }
+    }
+  }
+  .footer__logo {
+    display: inline-block;
+    float: right;
+  }
+}

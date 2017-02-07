@@ -1,0 +1,15 @@
+/* ==========================================================================
+   Import fonts
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+.page__body {
+  max-width: 1150px;
+  margin: 1rem auto 2rem auto;
+  border:  1px solid $grey-outline;
+}
