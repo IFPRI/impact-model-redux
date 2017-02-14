@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import marked from 'marked'
 import fm from 'front-matter'
 
+// Utils
 import { loadText } from '../utils/load-text.js'
 
 // Components
