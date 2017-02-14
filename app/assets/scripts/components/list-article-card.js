@@ -3,16 +3,12 @@ import React from 'react'
 import moment from 'moment'
 import { Link } from 'react-router'
 
+// Utils
 import { commaSeparate, cutAtWord } from '../utils/format'
 import { translate } from '../utils/translation'
 
-const ListArticleCard = React.createClass({
-  propTypes: {
-    article: React.PropTypes.object,
-    path: React.PropTypes.string
-  },
-
-  render: function () {
+class ListArticleCard extends React.Component {
+  render () {
     const article = this.props.article
     const date = moment(article.date, 'MM/DD/YYYY').format('MMMM D, YYYY')
     let locations = article.locations
@@ -41,6 +37,12 @@ const ListArticleCard = React.createClass({
     </div>
     )
   }
-})
+}
+
+// Set default props
+ListArticleCard.propTypes = {
+  article: React.PropTypes.object,
+  path: React.PropTypes.string
+}
 
 export default ListArticleCard

@@ -3,33 +3,35 @@ import React from 'react'
 import Collapse, { Panel } from 'rc-collapse'
 import _ from 'lodash'
 
+// Utils
 import {
   translate,
   invertCommodities,
   countryIdsToSubcontinents } from '../utils/translation'
 
+// Data
 import { commodities } from '../../data/aggregate-commodity'
 import countries from '../../data/aggregate-region'
 
-const BrowseFilters = React.createClass({
-  propTypes: {
-  },
-
-  getInitialState: function () {
-    return {
+class BrowseFilters extends React.Component {
+  constructor (props, context) {
+    super(props, context)
+    this.state = {
       accordion: false,
       activeAccordionKey: ['1'],
       checklist: []
     }
-  },
+    this.onAccordionChange = this.onAccordionChange.bind(this)
+    this.handleFilterSelection = this.handleFilterSelection.bind(this)
+  }
 
-  onAccordionChange: function (activeAccordionKey) {
+  onAccordionChange (activeAccordionKey) {
     this.setState({
       activeAccordionKey
     })
-  },
+  }
 
-  handleFilterSelection: function (event) {
+  handleFilterSelection (event) {
     const checkbox = event.target.value
     let checklist = this.state.checklist
     checklist = !_.includes(checklist, checkbox)
@@ -37,9 +39,9 @@ const BrowseFilters = React.createClass({
       : checklist.filter((opt) => opt !== checkbox)
 
     this.setState({checklist: checklist})
-  },
+  }
 
-  generateAccordionItems: function (list) {
+  generateAccordionItems (list) {
     list = _.pickBy(list, (value, key) => key)
     return _.map(list, (subtypes, type) => {
       return (
@@ -62,9 +64,9 @@ const BrowseFilters = React.createClass({
         </Panel>
       )
     })
-  },
+  }
 
-  render: function () {
+  render () {
     const commodityList = invertCommodities(commodities)
     const countryList = countryIdsToSubcontinents(countries)
     const accordion = this.state.accordion
@@ -107,6 +109,10 @@ const BrowseFilters = React.createClass({
       </div>
     )
   }
-})
+}
+
+// Set default props
+BrowseFilters.propTypes = {
+}
 
 export default BrowseFilters

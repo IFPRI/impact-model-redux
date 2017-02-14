@@ -4,13 +4,8 @@ import React from 'react'
 // Components
 import ListArticleCard from './list-article-card.js'
 
-const BrowseList = React.createClass({
-  propTypes: {
-    articles: React.PropTypes.array,
-    path: React.PropTypes.string
-  },
-
-  render: function () {
+class BrowseList extends React.Component {
+  render () {
     const {articles, path} = this.props
     return (
       <div className='browse__article-list'>
@@ -29,6 +24,12 @@ const BrowseList = React.createClass({
       </div>
     )
   }
-})
+}
+
+// Set default props
+BrowseList.propTypes = {
+  articles: React.PropTypes.array,
+  path: React.PropTypes.string
+}
 
 export default BrowseList

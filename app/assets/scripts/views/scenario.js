@@ -4,27 +4,21 @@ import { connect } from 'react-redux'
 import marked from 'marked'
 import fm from 'front-matter'
 
+// Utils
 import { loadText } from '../utils/load-text.js'
 
 // Components
 import ProjectArticles from '../components/project-articles'
 import RelatedArticles from '../components/related-articles'
 
-var Scenario = React.createClass({
-  propTypes: {
-    articles: React.PropTypes.array,
-    article: React.PropTypes.string,
-    location: React.PropTypes.object
-  },
-
-  getInitialState: function () {
-    return {
+class ScenarioBrowse extends React.Component {
+  constructor (props, context) {
+    super(props, context)
+    this.state = {
       articleBody: '',
       articleMetadata: {}
     }
-  },
-
-  componentWillMount: function () {
+    // Before component mount
     let articleId = (this.props.location.pathname).split('/')
     articleId = articleId[articleId.length - 1].split('?')[0]
     const metadata = this.props.articles.find((article) => article.id === articleId)
@@ -35,9 +29,9 @@ var Scenario = React.createClass({
         articleBody: body
       })
     })
-  },
+  }
 
-  render: function () {
+  render () {
     const articleMetadata = this.state.articleMetadata
     const articles = this.props.articles
     return (
@@ -53,16 +47,23 @@ var Scenario = React.createClass({
       </div>
     )
   }
-})
+}
+
+// Set default props
+ScenarioBrowse.propTypes = {
+  articles: React.PropTypes.array,
+  article: React.PropTypes.string,
+  location: React.PropTypes.object
+}
 
 // /////////////////////////////////////////////////////////////////// //
 // Connect functions
 
-function mapStateToProps (state) {
+const mapStateToProps = (state) => {
   return {
     articles: state.article.articles,
     article: state.article.article
   }
 }
 
-module.exports = connect(mapStateToProps)(Scenario)
+module.exports = connect(mapStateToProps)(ScenarioBrowse)

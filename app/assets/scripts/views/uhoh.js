@@ -1,8 +1,8 @@
 'use strict'
 import React from 'react'
 
-var UhOh = React.createClass({
-  render: function () {
+class UhOh extends React.Component {
+  render () {
     return (
       <div className='page__uhoh'>
         <h2>404</h2>
@@ -10,7 +10,7 @@ var UhOh = React.createClass({
       </div>
     )
   }
-})
+}
 
 // /////////////////////////////////////////////////////////////////// //
 // Connect functions
