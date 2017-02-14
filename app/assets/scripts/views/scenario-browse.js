@@ -6,13 +6,8 @@ import { connect } from 'react-redux'
 import BrowseFilters from '../components/browse-filters.js'
 import BrowseList from '../components/browse-list.js'
 
-const ScenarioBrowse = React.createClass({
-  propTypes: {
-    articles: React.PropTypes.array,
-    route: React.PropTypes.object
-  },
-
-  render: function () {
+class ScenarioBrowse extends React.Component {
+  render () {
     const scenarios = this.props.articles.filter((article) => article.type === 'scenario')
     return (
       <div className='page__browse'>
@@ -31,12 +26,18 @@ const ScenarioBrowse = React.createClass({
       </div>
     )
   }
-})
+}
+
+// Set default props
+ScenarioBrowse.propTypes = {
+  articles: React.PropTypes.array,
+  route: React.PropTypes.object
+}
 
 // /////////////////////////////////////////////////////////////////// //
 // Connect functions
 
-function mapStateToProps (state) {
+const mapStateToProps = (state) => {
   return {
     articles: state.article.articles
   }

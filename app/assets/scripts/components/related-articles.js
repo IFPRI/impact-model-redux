@@ -1,18 +1,14 @@
 'use strict'
 import React from 'react'
 
+// Utils
 import { findRelatedArticles } from '../utils/related.js'
 
 // Components
 import RelatedArticleCard from './related-article-card'
 
-const RelatedArticles = React.createClass({
-  propTypes: {
-    articleMetadata: React.PropTypes.object,
-    articles: React.PropTypes.array
-  },
-
-  render: function () {
+class RelatedArticles extends React.Component {
+  render () {
     const articleMetadata = this.props.articleMetadata
     let articles = findRelatedArticles(articleMetadata, this.props.articles, 3)
     articles = articles
@@ -27,6 +23,12 @@ const RelatedArticles = React.createClass({
       </div>
     )
   }
-})
+}
+
+// Set default props
+RelatedArticles.propTypes = {
+  articleMetadata: React.PropTypes.object,
+  articles: React.PropTypes.array
+}
 
 export default RelatedArticles

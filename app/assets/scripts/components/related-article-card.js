@@ -2,14 +2,11 @@
 import React from 'react'
 import { Link } from 'react-router'
 
+// Utils
 import { cutAtWord, commaSeparate, toTitleCase } from '../utils/format'
 
-const RelatedArticleCard = React.createClass({
-  propTypes: {
-    article: React.PropTypes.object
-  },
-
-  render: function () {
+class RelatedArticleCard extends React.Component {
+  render () {
     const article = this.props.article
     return (
       <div className='article-card--related'>
@@ -25,6 +22,11 @@ const RelatedArticleCard = React.createClass({
     </div>
     )
   }
-})
+}
+
+// Set default props
+RelatedArticleCard.propTypes = {
+  article: React.PropTypes.object
+}
 
 export default RelatedArticleCard

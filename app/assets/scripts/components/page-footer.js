@@ -1,8 +1,8 @@
 'use strict'
 import React from 'react'
 
-const PageFooter = React.createClass({
-  render: function () {
+class PageFooter extends React.Component {
+  render () {
     return (
       <footer className='page__footer'>
         <div className='footer__contact'>
@@ -23,6 +23,6 @@ const PageFooter = React.createClass({
       </footer>
     )
   }
-})
+}
 
 export default PageFooter

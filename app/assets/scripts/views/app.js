@@ -8,29 +8,12 @@ import c from 'classnames'
 import PageHeader from '../components/page-header'
 import PageFooter from '../components/page-footer'
 
-var App = React.createClass({
-  propTypes: {
-    routes: React.PropTypes.array,
-    children: React.PropTypes.object
-  },
-
-  //
-  // Start life-cycle methods
-  //
-  componentWillMount: function () {
-
-  },
-
-  componentWillReceiveProps: function (nextProps) {
-
-  },
-
+class App extends React.Component {
   //
   // Start render methods
   //
-  render: function () {
-    let pageClass = _.get(_.last(this.props.routes), 'pageClass', '')
-
+  render () {
+    const pageClass = _.get(_.last(this.props.routes), 'pageClass', '')
     return (
       <div className={c('page', pageClass)}>
         <main className='page__body' role='main'>
@@ -41,12 +24,18 @@ var App = React.createClass({
       </div>
     )
   }
-})
+}
+
+// Set default props
+App.propTypes = {
+  routes: React.PropTypes.array,
+  children: React.PropTypes.object
+}
 
 // /////////////////////////////////////////////////////////////////// //
 // Connect functions
 
-function mapStateToProps (state) {
+const mapStateToProps = (state) => {
   return {
   }
 }

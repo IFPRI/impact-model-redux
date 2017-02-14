@@ -1,11 +1,8 @@
 'use strict'
 import React from 'react'
 
-const Home = React.createClass({
-  propTypes: {
-  },
-
-  render: function () {
+class Home extends React.Component {
+  render () {
     return (
       <div className='page__home'>
         <header className='home__header'>
@@ -14,6 +11,10 @@ const Home = React.createClass({
       </div>
     )
   }
-})
+}
+
+// Set default props
+Home.propTypes = {
+}
 
 export default Home

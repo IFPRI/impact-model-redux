@@ -1,11 +1,8 @@
 'use strict'
 import React from 'react'
 
-const Contact = React.createClass({
-  propTypes: {
-  },
-
-  render: function () {
+class Contact extends React.Component {
+  render () {
     return (
       <div className='page__contact'>
         <header className='contact__header'>
@@ -14,6 +11,10 @@ const Contact = React.createClass({
       </div>
     )
   }
-})
+}
+
+// Set default props
+Contact.propTypes = {
+}
 
 export default Contact

@@ -6,13 +6,8 @@ import { connect } from 'react-redux'
 import BrowseFilters from '../components/browse-filters.js'
 import BrowseList from '../components/browse-list.js'
 
-const BriefBrowse = React.createClass({
-  propTypes: {
-    articles: React.PropTypes.array,
-    route: React.PropTypes.object
-  },
-
-  render: function () {
+class BriefBrowse extends React.Component {
+  render () {
     const briefs = this.props.articles.filter((article) => article.type === 'brief')
     return (
       <div className='page__browse'>
@@ -31,12 +26,18 @@ const BriefBrowse = React.createClass({
       </div>
     )
   }
-})
+}
+
+// Set default props
+BriefBrowse.propTypes = {
+  articles: React.PropTypes.array,
+  route: React.PropTypes.object
+}
 
 // /////////////////////////////////////////////////////////////////// //
 // Connect functions
 
-function mapStateToProps (state) {
+const mapStateToProps = (state) => {
   return {
     articles: state.article.articles
   }

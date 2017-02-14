@@ -2,8 +2,8 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-const PageHeader = React.createClass({
-  render: function () {
+class PageHeader extends React.Component {
+  render () {
     return (
       <nav className='page__header'>
         <h1><Link to={'/'}>IFPRI IMPACT</Link></h1>
@@ -16,6 +16,6 @@ const PageHeader = React.createClass({
       </nav>
     )
   }
-})
+}
 
 export default PageHeader
