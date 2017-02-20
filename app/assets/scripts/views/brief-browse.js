@@ -14,10 +14,8 @@ class BriefBrowse extends React.Component {
     if (filters.length) {
       briefs = briefs.filter((brief) => {
         const metadata = _.concat(brief.commodities, brief.locations, brief.project).filter((item) => item)
-        const matches = _.intersection(metadata, this.props.articleFilters).length
-        brief['matches'] = matches
-        return matches
-      }).sort((a, b) => a.matches < b.matches)
+        return _.intersection(metadata, filters).length
+      })
     }
     return (
       <div className='page__browse'>

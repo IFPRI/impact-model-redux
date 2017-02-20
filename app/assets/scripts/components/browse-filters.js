@@ -132,7 +132,7 @@ class BrowseFilters extends React.Component {
                     name={project + '-check'}
                     value={project}
                     onChange={this.handleFilterSelection}
-                    checked={_.includes(this.state.articleFilters, project) } />
+                    checked={_.includes(this.props.articleFilters, project) } />
                   <label>{project}</label>
                 </div>
               )
