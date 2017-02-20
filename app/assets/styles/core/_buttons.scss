@@ -1,0 +1,18 @@
+.button {
+  font-family: $header-family;
+  font-weight: $header-black;
+  text-transform: uppercase;
+}
+
+.button--main {
+  background-color: $base-green;
+}
+
+.button--outline {
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+.button--small {
+
+}

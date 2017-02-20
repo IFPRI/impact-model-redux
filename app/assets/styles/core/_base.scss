@@ -1,15 +1,35 @@
-/* ==========================================================================
-   Import fonts
-   ========================================================================== */
-
-@import url('https://fonts.googleapis.com/css?family=Lato');
-
-body {
-  font-family: 'Lato', sans-serif;
+// IE < 10
+// Don't delete.
+.lt-ie10 {
+  #site-canvas {
+    display: none;
+  }
+  #nocando {
+    margin: 200px auto;
+    padding: 32px;
+    max-width: 440px;
+    background: #fff;
+    h1 {
+      font-size: 24px;
+      line-height: 1.1;
+      margin-bottom: 32px;
+    }
+  }
 }
 
-.page__body {
-  max-width: 1150px;
-  margin: 1rem auto 2rem auto;
-  border:  1px solid $grey-outline;
+
+body {
+  color: $dark-grey;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+  font-family: $base-font-family;
+}
+
+.row {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1280px;
+  padding: 0 64px;
+  display: block;
+  width: auto;
 }
