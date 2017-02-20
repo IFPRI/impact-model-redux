@@ -10,8 +10,9 @@ import {
   countryIdsToSubcontinents } from '../utils/translation'
 
 // Data
-import { commodities } from '../../data/aggregate-commodity'
-import countries from '../../data/aggregate-region'
+import filterCategories from '../../data/filter-categories'
+import commodityAggregation from '../../data/aggregate-commodity'
+import locationAggregation from '../../data/aggregate-region'
 
 class BrowseFilters extends React.Component {
   constructor (props, context) {
@@ -21,6 +22,21 @@ class BrowseFilters extends React.Component {
       activeAccordionKey: ['1'],
       checklist: []
     }
+
+    // generate list of commodities organized by type
+    this.commodityList = {}
+    filterCategories.commodities.forEach((commodity) => {
+      this.commodityList[commodity] = commodityAggregation[commodity]
+    })
+    this.commodityList = invertCommodities(this.commodityList)
+
+    // generate list of regions organized by subcontinent
+    this.locationList = {}
+    filterCategories.locations.forEach((location) => {
+      this.locationList[location] = locationAggregation[location]
+    })
+    this.locationList = countryIdsToSubcontinents(this.locationList)
+
     this.onAccordionChange = this.onAccordionChange.bind(this)
     this.handleFilterSelection = this.handleFilterSelection.bind(this)
   }
@@ -67,8 +83,6 @@ class BrowseFilters extends React.Component {
   }
 
   render () {
-    const commodityList = invertCommodities(commodities)
-    const countryList = countryIdsToSubcontinents(countries)
     const accordion = this.state.accordion
     return (
       <div className='browse__filters'>
@@ -94,7 +108,7 @@ class BrowseFilters extends React.Component {
             <Collapse
               accordion={accordion}
               onChange={this.onAccordionChange} >
-              {this.generateAccordionItems(commodityList)}
+              {this.generateAccordionItems(this.commodityList)}
             </Collapse>
           </div>
           <h3 className='filters__group-label'>Location</h3>
@@ -102,7 +116,7 @@ class BrowseFilters extends React.Component {
             <Collapse
               accordion={accordion}
               onChange={this.onAccordionChange}>
-              {this.generateAccordionItems(countryList)}
+              {this.generateAccordionItems(this.locationList)}
             </Collapse>
           </div>
         </form>
