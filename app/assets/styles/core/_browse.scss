@@ -2,10 +2,10 @@
   .browse__header {
     width: 100%;
     min-height: 10rem;
-    background-color: $header-background;
-    border-bottom: 1px solid $grey-outline;
+    background-color: $light-grey;
+    border-bottom: 1px solid $light-grey;
     .browse__header-text {
-      color: $base-color;
+      color: $light-grey;
       padding: 7rem 0 3rem 4rem;
       max-width: 35rem;
       h2 {
@@ -26,29 +26,29 @@
   .article-list__header {
     margin: 3rem 0 2rem 0;
     padding-bottom: 2rem;
-    border-bottom: 1px solid $grey-outline;
+    border-bottom: 1px solid $light-grey;
     h2 {
-      color: $base-color;
+      color: $light-grey;
       font-size: 1.5rem;
       font-weight: 800;
       .result-count {
-        color: lighten($base-color, 35);
+        color: lighten($light-grey, 35);
       }
     }
   }
   .article-list-card {
-    color: $base-color;
+    color: $light-grey;
     float: left;
     margin: 0 3rem 1.5rem 0;
     padding-bottom: 1.5rem;
-    border-bottom: 1px solid $grey-outline;
+    border-bottom: 1px solid $light-grey;
     a {
       text-decoration: none;
-      color: $primary-color;
+      color: $light-grey;
       transition: all 0.2s linear;
       &:hover {
         text-decoration: underline;
-        color: lighten($primary-color, 20);
+        color: lighten($light-grey, 20);
       }
     }
     .article-list-card__title {
@@ -86,7 +86,7 @@
 }
 
 .browse__filters {
-  color: $base-color;
+  color: $light-grey;
   float: left;
   display: inline-block;
   width: 20rem;

@@ -49,6 +49,12 @@
 
 @import "vendor/normalize-opentype";
 
+/* Fonts
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600');
+
 
 /* Settings
    ========================================================================== */
@@ -65,6 +71,8 @@
 @import "core/page-header";
 @import "core/page-footer";
 @import "core/browse";
+@import "core/type";
+@import "core/buttons";
 @import "core/article";
 @import "core/about";
 @import "core/contact";
