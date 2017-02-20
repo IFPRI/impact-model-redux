@@ -3,6 +3,9 @@ import React from 'react'
 import Collapse, { Panel } from 'rc-collapse'
 import _ from 'lodash'
 
+// Actions
+import { updateFilters } from '../actions'
+
 // Utils
 import {
   translate,
@@ -20,7 +23,7 @@ class BrowseFilters extends React.Component {
     this.state = {
       accordion: false,
       activeAccordionKey: ['1'],
-      checklist: []
+      articleFilters: []
     }
 
     // generate list of commodities organized by type
@@ -49,12 +52,12 @@ class BrowseFilters extends React.Component {
 
   handleFilterSelection (event) {
     const checkbox = event.target.value
-    let checklist = this.state.checklist
-    checklist = !_.includes(checklist, checkbox)
-      ? checklist.concat(checkbox)
-      : checklist.filter((opt) => opt !== checkbox)
+    let articleFilters = this.props.articleFilters
+    articleFilters = !_.includes(articleFilters, checkbox)
+      ? articleFilters.concat(checkbox)
+      : articleFilters.filter((opt) => opt !== checkbox)
 
-    this.setState({checklist: checklist})
+    this.props.dispatch(updateFilters(articleFilters))
   }
 
   generateAccordionItems (list) {
@@ -72,8 +75,8 @@ class BrowseFilters extends React.Component {
                   name={subtype + '-check'}
                   value={subtype}
                   onChange={this.handleFilterSelection}
-                  checked={_.includes(this.state.checklist, subtype) } />
-                {translate(subtype)}
+                  checked={_.includes(this.props.articleFilters, subtype) } />
+                <label>{translate(subtype)}</label>
               </div>
             )
           })}
@@ -93,15 +96,15 @@ class BrowseFilters extends React.Component {
           <h3 className='filters__group-label'>Type</h3>
           <div className='filters__check-group'>
             <input type='checkbox' name='custom-check' value='custom-check' />
-            Custom
+            <label>Custom</label>
           </div>
           <div className='filters__check-group'>
             <input type='checkbox' name='country-summary-check' value='country-summary-check' />
-            Country Summary
+            <label>Country Summary</label>
           </div>
           <div className='filters__check-group'>
             <input type='checkbox' name='commodity-summary-check' value='commodity-summary-check' />
-            Commodity Summary
+            <label>Commodity Summary</label>
           </div>
           <h3 className='filters__group-label'>Commodities</h3>
           <div className='filters__check-group'>
@@ -129,8 +132,8 @@ class BrowseFilters extends React.Component {
                     name={project + '-check'}
                     value={project}
                     onChange={this.handleFilterSelection}
-                    checked={_.includes(this.state.checklist, project) } />
-                  {project}
+                    checked={_.includes(this.state.articleFilters, project) } />
+                  <label>{project}</label>
                 </div>
               )
             })}
@@ -143,6 +146,8 @@ class BrowseFilters extends React.Component {
 
 // Set default props
 BrowseFilters.propTypes = {
+  dispatch: React.PropTypes.func,
+  articleFilters: React.PropTypes.array
 }
 
 export default BrowseFilters
