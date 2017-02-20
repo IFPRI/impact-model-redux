@@ -8,7 +8,7 @@ class PageFooter extends React.Component {
         <div className='footer__contact'>
           <div className='contact__text'>
             <h2>Sign Up For Updates</h2>
-            <p>Get updates whenever new information is added to the site.</p>
+            <span>Get updates whenever new information is added to the site.</span>
           </div>
           <div className='contact__input'>
             <form action='temp'>

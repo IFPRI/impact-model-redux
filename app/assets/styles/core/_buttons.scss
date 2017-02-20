@@ -1,7 +1,13 @@
-.button {
+.button, .button:visited {
   font-family: $header-family;
   font-weight: $header-black;
   text-transform: uppercase;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  color: #fff;
+  padding: .7em 4em;
+  display: inline-block;
 }
 
 .button--main {
@@ -14,5 +20,5 @@
 }
 
 .button--small {
-
+  padding: .5em 3em;
 }
