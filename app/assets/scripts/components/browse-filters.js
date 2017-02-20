@@ -119,6 +119,22 @@ class BrowseFilters extends React.Component {
               {this.generateAccordionItems(this.locationList)}
             </Collapse>
           </div>
+          <h3 className='filters__group-label'>Project</h3>
+          <div className='filters__check-group'>
+            {filterCategories.projects.map((project, i) => {
+              return (
+                <div key={'project-' + i}>
+                  <input
+                    type='checkbox'
+                    name={project + '-check'}
+                    value={project}
+                    onChange={this.handleFilterSelection}
+                    checked={_.includes(this.state.checklist, project) } />
+                  {project}
+                </div>
+              )
+            })}
+          </div>
         </form>
       </div>
     )
