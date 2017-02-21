@@ -10,26 +10,20 @@ import BrowseList from '../components/browse-list.js'
 class ScenarioBrowse extends React.Component {
   constructor (props, context) {
     super(props, context)
-    let articles = this.sortArticles(props.articles.filter((article) => article.type === 'scenarios'), props.articleSorting)
-    articles = this.filterArticles(props.articles, props.articleFilters)
-    this.state = {
-      articles: articles
-    }
+    this.articles = this.sortArticles(props.articles.filter((article) => article.type === 'scenario'), props.articleSorting)
+    this.articles = this.displayArticles = this.filterArticles(this.articles, props.articleFilters)
   }
 
   componentWillReceiveProps (nextProps) {
-    let articles = this.props.articles
+    let articles = this.articles
     if (nextProps.articleSorting !== this.props.articleSorting) {
-      articles = this.filterArticles(articles, nextProps.articleFilters)
       articles = this.sortArticles(articles, nextProps.articleSorting)
+      articles = this.filterArticles(articles, nextProps.articleFilters)
     }
     if (nextProps.articleFilters !== this.props.articleFilters) {
-      articles = this.sortArticles(articles, nextProps.articleSorting)
       articles = this.filterArticles(articles, nextProps.articleFilters)
     }
-    this.setState({
-      articles: articles
-    })
+    this.displayArticles = articles
   }
 
   sortArticles (articles, articleSorting) {
@@ -73,7 +67,7 @@ class ScenarioBrowse extends React.Component {
         />
         <BrowseList
           dispatch={this.props.dispatch}
-          articles={this.state.articles}
+          articles={this.displayArticles}
           articleSorting={this.props.articleSorting}
           path={this.props.route.path}
         />
