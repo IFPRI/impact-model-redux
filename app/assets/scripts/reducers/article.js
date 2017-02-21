@@ -4,13 +4,15 @@ import articles from '../../data/articles.json'
 import {
   UPDATE_ARTICLES,
   UPDATE_ARTICLE,
-  UPDATE_FILTERS
+  UPDATE_FILTERS,
+  UPDATE_ARTICLE_SORTING
 } from '../actions'
 
 export const initialState = {
   articles: articles,
   article: 'accusamus-vitae-consequatur',
-  articleFilters: []
+  articleFilters: [],
+  articleSorting: 'recency'
 }
 
 export default function reducer (state = initialState, action) {
@@ -24,6 +26,9 @@ export default function reducer (state = initialState, action) {
       break
     case UPDATE_FILTERS:
       set(state, 'articleFilters', action.data)
+      break
+    case UPDATE_ARTICLE_SORTING:
+      set(state, 'articleSorting', action.data)
       break
   }
   return state
