@@ -11,6 +11,10 @@ class BrowseList extends React.Component {
       <div className='browse__article-list'>
         <header className='article-list__header'>
           <h2>Results <span className='result-count'>({articles.length})</span></h2>
+          <select className='article-list__sort-menu'>
+            <option value='recent'>Recent Updates</option>
+            <option value='relevance'>Relevance</option>
+          </select>
         </header>
         {articles.map((article, i) => {
           return (

@@ -31,9 +31,15 @@
       color: $base-color;
       font-size: 1.5rem;
       font-weight: 800;
+      display: inline;
       .result-count {
         color: lighten($base-color, 35);
       }
+    }
+    .article-list__sort-menu {
+      font-size: 1rem;
+      float: right;
+      margin-right: 3rem;
     }
   }
   .article-list-card {
