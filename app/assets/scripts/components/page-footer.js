@@ -7,15 +7,15 @@ class PageFooter extends React.Component {
       <footer className='page__footer'>
         <div className='row'>
           <div className='footer__contact'>
-            <h6 className='header--smallest'>Sign Up For Updates</h6>
-            <span>Get updates whenever new information is added to the site.</span>
+            <h6 className='header--xsmall'>Sign Up For Updates</h6>
+            <span className='sub-description'>Get updates whenever new information is added to the site.</span>
             <form className='contact__input' action='temp'>
-              <input type='text' name='email' placeholder='Enter Your Email Address' />
-              <input type='submit' value='Sign Up' />
+              <input className='input--small' type='text' name='email' placeholder='Enter Your Email Address' />
+              <button className='button button--main button--small' type='submit'>Sign Up</button>
             </form>
           </div>
-          <a class='logo__item' target='_blank' href='http://www.ifpri.org/''>
-            <img src='assets/graphics/content/iflri.png' alt='IFPRI Logo' />
+          <a className='footer__logo' target='_blank' href='http://www.ifpri.org/'>
+            <img src='assets/graphics/content/ifpri.png' alt='IFPRI Logo' />
           </a>
         </div>
       </footer>

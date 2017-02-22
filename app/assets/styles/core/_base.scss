@@ -26,6 +26,7 @@ body {
 }
 
 .row {
+  @extend .clearfix;
   margin-left: auto;
   margin-right: auto;
   max-width: 1280px;
@@ -40,6 +41,7 @@ a, a:visited {
 
 .header__internal {
   background-color: $darkest-blue;
+  padding-top: 185px;
   h2 {
     color: #fff;
   }
@@ -47,3 +49,4 @@ a, a:visited {
     color: $black;
   }
 }
+
