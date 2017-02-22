@@ -52,7 +52,6 @@ class ScenarioBrowse extends React.Component {
 // Set default props
 ScenarioBrowse.propTypes = {
   articles: React.PropTypes.array,
-  article: React.PropTypes.string,
   location: React.PropTypes.object
 }
 
@@ -62,7 +61,6 @@ ScenarioBrowse.propTypes = {
 const mapStateToProps = (state) => {
   return {
     articles: state.article.articles,
-    article: state.article.article
   }
 }
 

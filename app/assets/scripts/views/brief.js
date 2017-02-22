@@ -52,7 +52,6 @@ class Brief extends React.Component {
 // Set default props
 Brief.propTypes = {
   articles: React.PropTypes.array,
-  article: React.PropTypes.string,
   location: React.PropTypes.object
 }
 
@@ -61,8 +60,7 @@ Brief.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    articles: state.article.articles,
-    article: state.article.article
+    articles: state.article.articles
   }
 }
 
