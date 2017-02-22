@@ -23,25 +23,10 @@
 .browse__article-list {
   display: inline-block;
   width: calc(100% - 20rem);
-  .article-list__header {
-    margin: 3rem 0 2rem 0;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid $light-grey;
-    h2 {
-      color: $light-grey;
-      font-size: 1.5rem;
-      font-weight: 800;
-      .result-count {
-        color: lighten($light-grey, 35);
-      }
-    }
-  }
   .article-list-card {
-    color: $light-grey;
     float: left;
     margin: 0 3rem 1.5rem 0;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid $light-grey;
+    border: 1px solid darken($lightest-grey, 10%);
     a {
       text-decoration: none;
       color: $light-grey;
@@ -52,11 +37,6 @@
       }
     }
     .article-list-card__title {
-      h4 {
-        font-size: 1.5rem;
-        font-weight: 800;
-        float: left;
-      }
       span {
         font-style: italic;
         font-weight: 400;
@@ -65,14 +45,12 @@
       }
     }
     .article-list-card__meta {
+      @extend .clearfix;
+      display: inline-block;
       font-size: 0.85rem;
-      float: left;
-      clear: left;
-      font-weight: 200;
-      margin: 0.235rem 0 0.35rem 0;
-      b {
-        font-weight: 600;
-      }
+      width: 100%;
+      padding: .8em 2em;
+      background-color: darken($lightest-grey, 2%);
     }
     .article-list-card__body {
       font-size: 0.85rem;
