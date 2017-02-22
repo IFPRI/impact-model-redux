@@ -17,10 +17,12 @@ class RelatedArticles extends React.Component {
       })
       : ''
     return (
-      <div className='page__related-articles-list'>
-        <h3>Related Articles</h3>
-        {articles}
-      </div>
+      <section className='page__related-articles-list'>
+        <div className='row'>
+          <h3>Related Articles</h3>
+          {articles}
+        </div>
+      </section>
     )
   }
 }

@@ -18,10 +18,12 @@ class ProjectArticles extends React.Component {
       })
       : ''
     return (
-      <div className='page__project-articles-list'>
-        <h3>Other Articles in {project}</h3>
-        {articles}
-      </div>
+      <section className='page__project-articles-list'>
+        <div className='row'>
+          <h3>Other Articles in {project}</h3>
+          {articles}
+        </div>
+      </section>
     )
   }
 }

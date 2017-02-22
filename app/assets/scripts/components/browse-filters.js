@@ -72,39 +72,38 @@ class BrowseFilters extends React.Component {
     const accordion = this.state.accordion
     return (
       <div className='browse__filters'>
-        <header className='filters__header'>
-          <h2>Filter</h2>
-        </header>
+        <h5>Filter</h5>
         <form className='filters__form'>
-          <h3 className='filters__group-label'>Type</h3>
-          <div className='filters__check-group'>
-            <input type='checkbox' name='custom-check' value='custom-check' />
-            Custom
-          </div>
-          <div className='filters__check-group'>
-            <input type='checkbox' name='country-summary-check' value='country-summary-check' />
-            Country Summary
-          </div>
-          <div className='filters__check-group'>
-            <input type='checkbox' name='commodity-summary-check' value='commodity-summary-check' />
-            Commodity Summary
-          </div>
-          <h3 className='filters__group-label'>Commodities</h3>
-          <div className='filters__check-group'>
-            <Collapse
-              accordion={accordion}
-              onChange={this.onAccordionChange} >
-              {this.generateAccordionItems(commodityList)}
-            </Collapse>
-          </div>
-          <h3 className='filters__group-label'>Location</h3>
-          <div className='filters__check-group'>
-            <Collapse
-              accordion={accordion}
-              onChange={this.onAccordionChange}>
-              {this.generateAccordionItems(countryList)}
-            </Collapse>
-          </div>
+          <fieldset>
+            <legend>Type</legend>
+            <label><input type="checkbox" name='custom-check' value='custom-check' />Custom</label>
+            <label><input type="checkbox" name='country-summary-check' value='country-summary-check' />Country Summary</label>
+            <label><input type="checkbox" name='commodity-summary-check' value='commodity-summary-check' />Commodity Summary</label>
+          </fieldset>
+          <fieldset>
+            <legend>Commodities</legend>
+            <ul>
+              <li className='filters__check-group'>
+                <Collapse
+                  accordion={accordion}
+                  onChange={this.onAccordionChange} >
+                  {this.generateAccordionItems(commodityList)}
+                </Collapse>
+              </li>
+            </ul>
+          </fieldset>
+          <fieldset>
+            <legend>Location</legend>
+            <ul>
+              <li className='filters__check-group'>
+                <Collapse
+                  accordion={accordion}
+                  onChange={this.onAccordionChange}>
+                  {this.generateAccordionItems(countryList)}
+                </Collapse>
+              </li>
+            </ul>
+          </fieldset>
         </form>
       </div>
     )
