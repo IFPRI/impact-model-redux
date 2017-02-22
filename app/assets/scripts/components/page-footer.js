@@ -14,8 +14,8 @@ class PageFooter extends React.Component {
               <input type='submit' value='Sign Up' />
             </form>
           </div>
-          <a class="logo__item" target="_blank" href="http://www.ifpri.org/">
-            <img src="assets/graphics/content/iflri.png" alt="Sponsor Logo" />
+          <a class='logo__item' target='_blank' href='http://www.ifpri.org/''>
+            <img src='assets/graphics/content/iflri.png' alt='IFPRI Logo' />
           </a>
         </div>
       </footer>
