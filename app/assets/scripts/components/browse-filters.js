@@ -4,7 +4,7 @@ import Collapse, { Panel } from 'rc-collapse'
 import _ from 'lodash'
 
 // Actions
-import { updateFilters } from '../actions'
+import { updateArticleFilters } from '../actions'
 
 // Utils
 import {
@@ -22,7 +22,7 @@ class BrowseFilters extends React.Component {
     super(props, context)
     this.state = {
       accordion: false,
-      activeAccordionKey: ['1'],
+      activeAccordionKey: [],
       articleFilters: []
     }
 
@@ -57,7 +57,7 @@ class BrowseFilters extends React.Component {
       ? articleFilters.concat(checkbox)
       : articleFilters.filter((opt) => opt !== checkbox)
 
-    this.props.dispatch(updateFilters(articleFilters))
+    this.props.dispatch(updateArticleFilters(articleFilters))
   }
 
   generateAccordionItems (list) {
@@ -118,7 +118,7 @@ class BrowseFilters extends React.Component {
           <div className='filters__check-group'>
             <Collapse
               accordion={accordion}
-              onChange={this.onAccordionChange}>
+              onChange={this.onAccordionChange} >
               {this.generateAccordionItems(this.locationList)}
             </Collapse>
           </div>

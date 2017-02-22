@@ -4,7 +4,7 @@ import articles from '../../data/articles.json'
 import {
   UPDATE_ARTICLES,
   UPDATE_ARTICLE,
-  UPDATE_FILTERS,
+  UPDATE_ARTICLE_FILTERS,
   UPDATE_ARTICLE_SORTING
 } from '../actions'
 
@@ -24,7 +24,7 @@ export default function reducer (state = initialState, action) {
     case UPDATE_ARTICLE:
       set(state, 'article', action.data)
       break
-    case UPDATE_FILTERS:
+    case UPDATE_ARTICLE_FILTERS:
       set(state, 'articleFilters', action.data)
       break
     case UPDATE_ARTICLE_SORTING:

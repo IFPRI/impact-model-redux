@@ -3,6 +3,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 
+// Actions
+import { updateArticleFilters, updateArticleSorting } from '../actions'
+
 // Components
 import BrowseFilters from '../components/browse-filters.js'
 import BrowseList from '../components/browse-list.js'
@@ -12,6 +15,11 @@ class ScenarioBrowse extends React.Component {
     super(props, context)
     this.articles = this.sortArticles(props.articles.filter((article) => article.type === 'scenario'), props.articleSorting)
     this.articles = this.displayArticles = this.filterArticles(this.articles, props.articleFilters)
+  }
+
+  componentWillUnmount () {
+    this.props.dispatch(updateArticleFilters([]))
+    this.props.dispatch(updateArticleSorting('recency'))
   }
 
   componentWillReceiveProps (nextProps) {
