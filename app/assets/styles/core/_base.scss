@@ -37,3 +37,13 @@ body {
 a, a:visited {
   text-decoration: none;
 }
+
+.header__internal {
+  background-color: $darkest-blue;
+  h2 {
+    color: #fff;
+  }
+  p {
+    color: $black;
+  }
+}

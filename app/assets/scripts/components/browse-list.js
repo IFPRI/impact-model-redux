@@ -9,9 +9,9 @@ class BrowseList extends React.Component {
     const {articles, path} = this.props
     return (
       <div className='browse__article-list'>
-        <header className='article-list__header'>
-          <h2>Results <span className='result-count'>({articles.length})</span></h2>
-        </header>
+        <div className='article-list__header'>
+          <h5>Results <span className='result-count'>({articles.length})</span></h5>
+        </div>
         {articles.map((article, i) => {
           return (
             <ListArticleCard

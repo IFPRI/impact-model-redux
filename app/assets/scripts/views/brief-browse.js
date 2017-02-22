@@ -11,16 +11,14 @@ class BriefBrowse extends React.Component {
     const briefs = this.props.articles.filter((article) => article.type === 'brief')
     return (
       <div className='page__browse'>
-        <header className='browse__header'>
-          <div className='browse__header-text'>
-            <h2>Briefs</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse ut augue aliquet ligula aliquam. Lorem ipsum dolor
-              sit amet, consectetur adipiscing elit. Suspendisse ut augue
-              aliquet ligula aliquam.
-            </p>
+        <section className='header__internal'>
+          <div className='row'>
+            <div className='browse__header-text'>
+              <h2 className='header--xlarge'>Briefs</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut augue aliquet ligula aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut augue aliquet ligula aliquam.</p>
+            </div>
           </div>
-        </header>
+        </section>
         <BrowseFilters />
         <BrowseList articles={briefs} path={this.props.route.path} />
       </div>

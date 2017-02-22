@@ -5,20 +5,18 @@ class PageFooter extends React.Component {
   render () {
     return (
       <footer className='page__footer'>
-        <div className='footer__contact'>
-          <div className='contact__text'>
-            <h2>Sign Up For Updates</h2>
+        <div className='row'>
+          <div className='footer__contact'>
+            <h6 className='header--smallest'>Sign Up For Updates</h6>
             <span>Get updates whenever new information is added to the site.</span>
-          </div>
-          <div className='contact__input'>
-            <form action='temp'>
+            <form className='contact__input' action='temp'>
               <input type='text' name='email' placeholder='Enter Your Email Address' />
               <input type='submit' value='Sign Up' />
             </form>
           </div>
-        </div>
-        <div className='footer__logo'>
-          logo
+          <a class="logo__item" target="_blank" href="http://www.ifpri.org/">
+            <img src="assets/graphics/content/iflri.png" alt="Sponsor Logo" />
+          </a>
         </div>
       </footer>
     )

@@ -5,9 +5,11 @@ class About extends React.Component {
   render () {
     return (
       <div className='page__about'>
-        <header className='about__header'>
-          <h2>About</h2>
-        </header>
+        <section className='header__internal'>
+          <div className='row'>
+            <h2 className='header--xlarge'>About</h2>
+          </div>
+        </section>
       </div>
     )
   }

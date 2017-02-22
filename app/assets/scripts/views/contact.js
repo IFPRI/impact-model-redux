@@ -5,9 +5,11 @@ class Contact extends React.Component {
   render () {
     return (
       <div className='page__contact'>
-        <header className='contact__header'>
-          <h2>Contact US</h2>
-        </header>
+        <section className='header__internal'>
+          <div className='row'>
+            <h2 className='header--xlarge'>Contact Us</h2>
+          </div>
+        </section>
       </div>
     )
   }
