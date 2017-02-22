@@ -89,7 +89,7 @@ ScenarioBrowse.propTypes = {
   dispatch: React.PropTypes.func,
   articles: React.PropTypes.array,
   articleFilters: React.PropTypes.array,
-  articleSorting: React.PropTypes.string,
+  articleSorting: React.PropTypes.oneOf(['recency', 'relevance']),
   route: React.PropTypes.object
 }
 

@@ -18,6 +18,47 @@
       }
     }
   }
+  .browse__pagination {
+    float: left;
+    width: calc(100% - 23rem);
+    margin: 1rem 3rem 2.5rem 20rem;
+    text-align: center;
+    button {
+      height: 2.25rem;
+      width: 3.5rem;
+      font-size: 1.25rem;
+      background-color: $header-background;
+      border: 1px solid $grey-outline;
+      border-radius: 10px;
+      transition: background-color, border-color, 0.2s;
+      &.pagination-button--disabled {
+        pointer-events: none;
+        color: lighten($base-color, 50%);
+      }
+      &:hover {
+        border: 1px solid darken($grey-outline, 20%);
+        background-color: darken($header-background, 20%);
+        &.pagination-button--disabled {
+          background-color: $header-background;
+          border: 1px solid $grey-outline;
+        }
+      }
+    }
+    span {
+      color: $base-color;
+      font-size: 0.8rem;
+      font-weight: 600;
+      line-height: 2.25rem;
+    }
+    .browse__pagination-button--back {
+      float: left;
+      margin-left: 5rem;
+    }
+    .browse__pagination-button--forward {
+      float: right;
+      margin-right: 5rem;
+    }
+  }
 }
 
 .browse__article-list {

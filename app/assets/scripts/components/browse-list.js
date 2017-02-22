@@ -24,7 +24,7 @@ class BrowseList extends React.Component {
     return (
       <div className='browse__article-list'>
         <header className='article-list__header'>
-          <h2>Results <span className='result-count'>({articles.length})</span></h2>
+          <h2>Results <span className='result-count'>({this.props.articleCount})</span></h2>
           <select onChange={this.handleSortingUpdate} className='article-list__sort-menu' selected={articleSorting}>
             <option value='recency'>Recent Updates</option>
             <option value='relevance'>Relevance</option>
@@ -48,7 +48,8 @@ class BrowseList extends React.Component {
 BrowseList.propTypes = {
   dispatch: React.PropTypes.func,
   articles: React.PropTypes.array,
-  articleSorting: React.PropTypes.string,
+  articleSorting: React.PropTypes.oneOf(['recency', 'relevance']),
+  articleCount: React.PropTypes.number,
   path: React.PropTypes.string
 }
 
