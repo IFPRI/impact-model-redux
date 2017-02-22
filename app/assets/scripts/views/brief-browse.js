@@ -33,20 +33,22 @@ class BriefBrowse extends React.Component {
 
   componentWillReceiveProps (nextProps) {
     let articles = this.articles
-    if (nextProps.articleSorting !== this.props.articleSorting) {
+
+    if (nextProps.articleSorting !== this.props.articleSorting || nextProps.articlePage !== this.props.articlePage) {
       articles = this.sortArticles(articles, nextProps.articleSorting)
       articles = this.filterArticles(articles, nextProps.articleFilters)
     }
 
     if (nextProps.articleFilters !== this.props.articleFilters) {
       articles = this.filterArticles(articles, nextProps.articleFilters)
+      this.articleCount = articles.length
+
+      if (this.props.articlePage !== 0) {
+        this.goToPage(0)
+      }
     }
 
-    if (nextProps.articlePage !== this.props.articlePage) {
-      this.displayArticles = articles.slice(articleBrowsePageLength * nextProps.articlePage, articleBrowsePageLength * nextProps.articlePage + articleBrowsePageLength)
-      articles = this.sortArticles(articles, nextProps.articleSorting)
-      articles = this.filterArticles(articles, nextProps.articleFilters)
-    }
+    this.displayArticles = articles.slice(articleBrowsePageLength * nextProps.articlePage, articleBrowsePageLength * nextProps.articlePage + articleBrowsePageLength)
   }
 
   incrementPage () {
@@ -59,6 +61,10 @@ class BriefBrowse extends React.Component {
     let { articlePage } = this.props
     articlePage = articlePage > 0 ? articlePage - 1 : 0
     this.props.dispatch(updateArticlePage(articlePage))
+  }
+
+  goToPage (page) {
+    this.props.dispatch(updateArticlePage(page))
   }
 
   sortArticles (articles, articleSorting) {
