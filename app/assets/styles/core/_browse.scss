@@ -27,7 +27,8 @@
     margin: 3rem 0 2rem 0;
     padding-bottom: 2rem;
     border-bottom: 1px solid $light-grey;
-    h2 {
+    h5 {
+      float: left;
       color: $light-grey;
       font-size: 1.5rem;
       font-weight: 800;
@@ -36,9 +37,9 @@
       }
     }
     .article-list__sort-menu {
-      font-size: 1rem;
       float: right;
       margin-right: 3rem;
+      font-size: 1rem;
     }
   }
   .article-list-card {
@@ -87,6 +88,51 @@
       margin-bottom: 0.75rem;
       max-width: 80%
     }
+  }
+}
+
+.browse__pagination {
+  float: left;
+  width: calc(100% - 23rem);
+  margin: 1rem 3rem 2.5rem 20rem;
+  text-align: center;
+  button {
+    height: 2.25rem;
+    width: 3.5rem;
+    font-size: 1.25rem;
+    color: $darkest-grey;
+    background-color: lighten($light-grey, 25%);
+    border: 1px solid $light-grey;
+    border-radius: 10px;
+    transition: background-color, border-color, 0.2s;
+    &.pagination-button--disabled {
+      pointer-events: none;
+      color: $light-grey;
+      background-color: lighten($light-grey, 30%);
+      border-color: lighten($light-grey, 10%);
+    }
+    &:hover {
+      background-color: lighten($light-grey, 10%);
+      border-color: $grey;
+      &.pagination-button--disabled {
+        background-color: lighten($light-grey, 25%);
+        border-color: $light-grey;
+      }
+    }
+  }
+  span {
+    color: $darkest-grey;
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 2.25rem;
+  }
+  .browse__pagination-button--back {
+    float: left;
+    margin-left: 5rem;
+  }
+  .browse__pagination-button--forward {
+    float: right;
+    margin-right: 5rem;
   }
 }
 
@@ -162,48 +208,6 @@
       border-right: 3px solid transparent;
       border-top: 4px solid #666;
       margin-right: 6px;
-    }
-  }
-
-  .browse__pagination {
-    float: left;
-    width: calc(100% - 23rem);
-    margin: 1rem 3rem 2.5rem 20rem;
-    text-align: center;
-    button {
-      height: 2.25rem;
-      width: 3.5rem;
-      font-size: 1.25rem;
-      border-color: 1px darken($light-grey, 10%);
-      background-color: lighten($light-grey, 25%);
-      border-radius: 10px;
-      transition: background-color, border-color, 0.2s;
-      &.pagination-button--disabled {
-        pointer-events: none;
-        color: $light-grey;
-      }
-      &:hover {
-        border: 1px solid darken($light-grey, 30%);
-        background-color: lighten($light-grey, 15%);
-        &.pagination-button--disabled {
-          border-color: 1px darken($light-grey, 10%);
-          background-color: lighten($light-grey, 25%);
-        }
-      }
-    }
-    span {
-      color: $darkest-grey;
-      font-size: 0.8rem;
-      font-weight: 600;
-      line-height: 2.25rem;
-    }
-    .browse__pagination-button--back {
-      float: left;
-      margin-left: 5rem;
-    }
-    .browse__pagination-button--forward {
-      float: right;
-      margin-right: 5rem;
     }
   }
 }
