@@ -8,7 +8,7 @@ class PageHeader extends React.Component {
       <header>
         <div className='row'>
           <h1><Link to={'/'}>IFPRI IMPACT</Link></h1>
-          <nav className='page__header'>
+          <nav className='nav__main'>
             <ul className='page__prime-nav'>
               <li><Link to={'/briefs'}>Briefs</Link></li>
               <li><Link to={'/scenarios'}>Scenarios</Link></li>
