@@ -22,9 +22,9 @@ class BrowseList extends React.Component {
   render () {
     const {articles, articleSorting, path} = this.props
     return (
-      <div className='browse__article-list'>
+      <section className='browse__article-list'>
         <header className='article-list__header'>
-          <h2>Results <span className='result-count'>({this.props.articleCount})</span></h2>
+          <h5>Results <span className='result-count'>({this.props.articleCount})</span></h5>
           <select onChange={this.handleSortingUpdate} className='article-list__sort-menu' selected={articleSorting}>
             <option value='recency'>Recent Updates</option>
             <option value='relevance'>Relevance</option>
@@ -39,7 +39,7 @@ class BrowseList extends React.Component {
             />
           )
         })}
-      </div>
+      </section>
     )
   }
 }

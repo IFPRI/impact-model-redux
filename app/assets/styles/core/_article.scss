@@ -3,7 +3,7 @@
   .article__header {
     width: 100%;
     min-height: 10rem;
-    background-color: $primary-color;
+    background-color: $light-grey;
     h1 {
       padding: 7rem 0 3rem 4rem;
       font-size: 4rem;
@@ -17,7 +17,7 @@
     width: calc(100% - 4rem);
     min-height: 10rem;
     padding: 2rem 0 0 4rem;
-    background-color: $secondary-color;
+    background-color: $light-grey;
     h3 {
       font-size: 2rem;
       font-weight: 400;
@@ -30,7 +30,7 @@
       margin: 1rem 3rem 3rem 0;
       padding: 1.5rem;
       border: 2px solid #fff;
-      background-color: lighten($secondary-color, 3);
+      background-color: lighten($light-grey, 3);
       transition: background-color 0.2s;
       p, li {
         font-weight: 200;
@@ -65,7 +65,7 @@
         }
       }
       &:hover {
-        background-color: darken($secondary-color, 3);
+        background-color: darken($light-grey, 3);
       }
     }
   }
@@ -74,7 +74,7 @@
     float: left;
     width: calc(100% - 4rem);
     padding: 2rem 0 0 4rem;
-    background-color: $primary-color;
+    background-color: $light-grey;
     h3 {
       font-size: 2rem;
       font-weight: 400;
@@ -117,12 +117,12 @@
     padding: 0 4rem;
     margin: 3rem 0 4rem 0;
     p {
-      color: $base-color;
+      color: $light-grey;
       line-height: 1.5rem;
       margin-bottom: 1rem;
     }
     h1 {
-      color: $base-color;
+      color: $light-grey;
       font-size: 1.75rem;
       font-weight: 800;
     }

@@ -3,6 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import marked from 'marked'
 import fm from 'front-matter'
+import { Link } from 'react-router'
 
 // Utils
 import { loadText } from '../utils/load-text.js'
@@ -36,12 +37,21 @@ class Brief extends React.Component {
     const articles = this.props.articles
     return (
       <div className='article'>
-        <header className='article__header'>
-          <h1>{this.state.articleMetadata.title}</h1>
-        </header>
-        <div className='page__article-body'>
-          <div dangerouslySetInnerHTML={{__html: this.state.articleBody}}></div>
-        </div>
+        <section className='header__internal'>
+          <div className='header-split--left'>
+            <h2 className='header--xlarge'>{this.state.articleMetadata.title}</h2>
+            <span>date</span>
+          </div>
+          <div className='header-split--right'>
+            <Link to={'/'} className='button button--outline'>Download Report</Link>
+            <Link to={'/'} className='button button--outline'>Share</Link>
+          </div>
+        </section>
+        <section>
+          <div className='row'>
+            <div dangerouslySetInnerHTML={{__html: this.state.articleBody}}></div>
+          </div>
+        </section>
         <ProjectArticles articleMetadata={articleMetadata} articles={articles} />
         <RelatedArticles articleMetadata={articleMetadata} articles={articles} />
       </div>

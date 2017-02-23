@@ -89,55 +89,52 @@ class BrowseFilters extends React.Component {
     const accordion = this.state.accordion
     return (
       <div className='browse__filters'>
-        <header className='filters__header'>
-          <h2>Filter</h2>
-        </header>
+        <h5>Filter</h5>
         <form className='filters__form'>
-          <h3 className='filters__group-label'>Type</h3>
-          <div className='filters__check-group'>
-            <input type='checkbox' name='custom-check' value='custom-check' />
-            <label>Custom</label>
-          </div>
-          <div className='filters__check-group'>
-            <input type='checkbox' name='country-summary-check' value='country-summary-check' />
-            <label>Country Summary</label>
-          </div>
-          <div className='filters__check-group'>
-            <input type='checkbox' name='commodity-summary-check' value='commodity-summary-check' />
-            <label>Commodity Summary</label>
-          </div>
-          <h3 className='filters__group-label'>Commodities</h3>
-          <div className='filters__check-group'>
-            <Collapse
-              accordion={accordion}
-              onChange={this.onAccordionChange} >
-              {this.generateAccordionItems(this.commodityList)}
-            </Collapse>
-          </div>
-          <h3 className='filters__group-label'>Location</h3>
-          <div className='filters__check-group'>
-            <Collapse
-              accordion={accordion}
-              onChange={this.onAccordionChange} >
-              {this.generateAccordionItems(this.locationList)}
-            </Collapse>
-          </div>
-          <h3 className='filters__group-label'>Project</h3>
-          <div className='filters__check-group'>
-            {filterCategories.projects.map((project, i) => {
-              return (
-                <div key={'project-' + i}>
-                  <input
-                    type='checkbox'
-                    name={project + '-check'}
-                    value={project}
-                    onChange={this.handleFilterSelection}
-                    checked={_.includes(this.props.articleFilters, project) } />
-                  <label>{project}</label>
-                </div>
-              )
-            })}
-          </div>
+          <fieldset>
+            <legend>Type</legend>
+            <label><input type="checkbox" name='custom-check' value='custom-check' />Custom</label>
+            <label><input type="checkbox" name='country-summary-check' value='country-summary-check' />Country Summary</label>
+            <label><input type="checkbox" name='commodity-summary-check' value='commodity-summary-check' />Commodity Summary</label>
+          </fieldset>
+          <fieldset>
+            <legend>Commodities</legend>
+            <div className='filters__check-group'>
+              <Collapse
+                accordion={accordion}
+                onChange={this.onAccordionChange} >
+                {this.generateAccordionItems(this.commodityList)}
+              </Collapse>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Location</legend>
+            <div className='filters__check-group'>
+              <Collapse
+                accordion={accordion}
+                onChange={this.onAccordionChange}>
+                {this.generateAccordionItems(this.countryList)}
+              </Collapse>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Projects</legend>
+            <div className='filters__check-group'>
+              {filterCategories.projects.map((project, i) => {
+                return (
+                  <div key={'project-' + i}>
+                    <input
+                      type='checkbox'
+                      name={project + '-check'}
+                      value={project}
+                      onChange={this.handleFilterSelection}
+                      checked={_.includes(this.props.articleFilters, project) } />
+                    <label>{project}</label>
+                  </div>
+                )
+              })}
+            </div>
+          </fieldset>
         </form>
       </div>
     )

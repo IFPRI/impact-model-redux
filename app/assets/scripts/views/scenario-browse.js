@@ -96,15 +96,13 @@ class ScenarioBrowse extends React.Component {
     highArticle = highArticle < this.articleCount ? highArticle : this.articleCount
 
     return (
-      <div className='page__browse'>
-        <header className='browse__header'>
-          <div className='browse__header-text'>
-            <h2>Scenarios</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse ut augue aliquet ligula aliquam. Lorem ipsum dolor
-              sit amet, consectetur adipiscing elit. Suspendisse ut augue
-              aliquet ligula aliquam.
-            </p>
+      <section className='page__browse'>
+        <header className='header__internal'>
+          <div className='row'>
+            <div className='browse__header-text'>
+              <h2 className='header--xlarge'>Scenarios</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut augue aliquet ligula aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut augue aliquet ligula aliquam.</p>
+            </div>
           </div>
         </header>
         <BrowseFilters
@@ -129,7 +127,7 @@ class ScenarioBrowse extends React.Component {
             onClick={this.incrementPage}>
           </button>
         </nav>
-      </div>
+      </section>
     )
   }
 }

@@ -4,11 +4,11 @@ import React from 'react'
 class Home extends React.Component {
   render () {
     return (
-      <div className='page__home'>
+      <section className='page__home'>
         <header className='home__header'>
           <h2>Home</h2>
         </header>
-      </div>
+      </section>
     )
   }
 }
