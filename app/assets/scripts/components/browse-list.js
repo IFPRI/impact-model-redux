@@ -14,9 +14,8 @@ class BrowseList extends React.Component {
     this.handleSortingUpdate = this.handleSortingUpdate.bind(this)
   }
 
-  handleSortingUpdate (evt) {
-    const e = evt.target
-    this.props.dispatch(updateArticleSorting(e.options[e.selectedIndex].value))
+  handleSortingUpdate (event) {
+    this.props.dispatch(updateArticleSorting(event.target.value))
   }
 
   render () {

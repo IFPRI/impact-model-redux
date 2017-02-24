@@ -9,7 +9,8 @@ import {
 } from '../actions'
 
 export const initialState = {
-  articles: articles,
+  briefs: articles.filter((article) => article.type === 'brief'),
+  scenarios: articles.filter((article) => article.type === 'scenario'),
   articleFilters: [],
   articleSorting: 'recency',
   articlePage: 0

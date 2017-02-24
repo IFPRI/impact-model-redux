@@ -17,7 +17,7 @@ import { articleBrowsePageLength } from '../constants.js'
 class BriefBrowse extends React.Component {
   constructor (props, context) {
     super(props, context)
-    this.articles = this.sortArticles(props.articles.filter((article) => article.type === 'brief'), props.articleSorting)
+    this.articles = this.sortArticles(props.articles, props.articleSorting)
     this.articles = this.displayArticles = this.filterArticles(this.articles, props.articleFilters)
     this.articleCount = this.articles.length
     this.displayArticles = this.displayArticles.slice(articleBrowsePageLength * this.props.articlePage, articleBrowsePageLength * this.props.articlePage + articleBrowsePageLength)
@@ -34,15 +34,11 @@ class BriefBrowse extends React.Component {
   componentWillReceiveProps (nextProps) {
     let articles = this.articles
 
-    if (nextProps.articleSorting !== this.props.articleSorting || nextProps.articlePage !== this.props.articlePage) {
-      articles = this.sortArticles(articles, nextProps.articleSorting)
-      articles = this.filterArticles(articles, nextProps.articleFilters)
-    }
+    this.sortArticles(articles, nextProps.articleSorting)
+    articles = this.filterArticles(articles, nextProps.articleFilters)
 
     if (nextProps.articleFilters !== this.props.articleFilters) {
-      articles = this.filterArticles(articles, nextProps.articleFilters)
       this.articleCount = articles.length
-
       if (this.props.articlePage !== 0) {
         this.goToPage(0)
       }
@@ -53,14 +49,12 @@ class BriefBrowse extends React.Component {
 
   incrementPage () {
     let { articlePage } = this.props
-    articlePage = articlePage * articleBrowsePageLength + articleBrowsePageLength - 1 < this.articleCount ? articlePage + 1 : articlePage
-    this.props.dispatch(updateArticlePage(articlePage))
+    this.goToPage(articlePage * articleBrowsePageLength + articleBrowsePageLength - 1 < this.articleCount ? articlePage + 1 : articlePage)
   }
 
   decrementPage () {
     let { articlePage } = this.props
-    articlePage = articlePage > 0 ? articlePage - 1 : 0
-    this.props.dispatch(updateArticlePage(articlePage))
+    this.goToPage(articlePage > 0 ? articlePage - 1 : 0)
   }
 
   goToPage (page) {
@@ -92,8 +86,7 @@ class BriefBrowse extends React.Component {
   render () {
     const { articlePage } = this.props
     const lowArticle = articleBrowsePageLength * articlePage + 1
-    let highArticle = articleBrowsePageLength * articlePage + articleBrowsePageLength + 1
-    highArticle = highArticle < this.articleCount ? highArticle : this.articleCount
+    const highArticle = Math.min(this.articleCount, articleBrowsePageLength * articlePage + articleBrowsePageLength + 1)
 
     return (
       <section className='page__browse'>
@@ -146,8 +139,9 @@ BriefBrowse.propTypes = {
 // Connect functions
 
 const mapStateToProps = (state) => {
+  // connect brief article type as articles
   return {
-    articles: state.article.articles,
+    articles: state.article.briefs,
     articleFilters: state.article.articleFilters,
     articleSorting: state.article.articleSorting,
     articlePage: state.article.articlePage

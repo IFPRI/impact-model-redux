@@ -113,7 +113,7 @@ class BrowseFilters extends React.Component {
               <Collapse
                 accordion={accordion}
                 onChange={this.onAccordionChange}>
-                {this.generateAccordionItems(this.countryList)}
+                {this.generateAccordionItems(this.locationList)}
               </Collapse>
             </div>
           </fieldset>
