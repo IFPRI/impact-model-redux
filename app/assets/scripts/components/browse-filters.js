@@ -3,6 +3,9 @@ import React from 'react'
 import Collapse, { Panel } from 'rc-collapse'
 import _ from 'lodash'
 
+// Actions
+import { updateArticleFilters } from '../actions'
+
 // Utils
 import {
   translate,
@@ -10,17 +13,33 @@ import {
   countryIdsToSubcontinents } from '../utils/translation'
 
 // Data
-import { commodities } from '../../data/aggregate-commodity'
-import countries from '../../data/aggregate-region'
+import filterCategories from '../../data/filter-categories'
+import commodityAggregation from '../../data/aggregate-commodity'
+import locationAggregation from '../../data/aggregate-region'
 
 class BrowseFilters extends React.Component {
   constructor (props, context) {
     super(props, context)
     this.state = {
       accordion: false,
-      activeAccordionKey: ['1'],
-      checklist: []
+      activeAccordionKey: [],
+      articleFilters: []
     }
+
+    // generate list of commodities organized by type
+    this.commodityList = {}
+    filterCategories.commodities.forEach((commodity) => {
+      this.commodityList[commodity] = commodityAggregation[commodity]
+    })
+    this.commodityList = invertCommodities(this.commodityList)
+
+    // generate list of regions organized by subcontinent
+    this.locationList = {}
+    filterCategories.locations.forEach((location) => {
+      this.locationList[location] = locationAggregation[location]
+    })
+    this.locationList = countryIdsToSubcontinents(this.locationList)
+
     this.onAccordionChange = this.onAccordionChange.bind(this)
     this.handleFilterSelection = this.handleFilterSelection.bind(this)
   }
@@ -33,12 +52,12 @@ class BrowseFilters extends React.Component {
 
   handleFilterSelection (event) {
     const checkbox = event.target.value
-    let checklist = this.state.checklist
-    checklist = !_.includes(checklist, checkbox)
-      ? checklist.concat(checkbox)
-      : checklist.filter((opt) => opt !== checkbox)
+    let articleFilters = this.props.articleFilters
+    articleFilters = !_.includes(articleFilters, checkbox)
+      ? articleFilters.concat(checkbox)
+      : articleFilters.filter((opt) => opt !== checkbox)
 
-    this.setState({checklist: checklist})
+    this.props.dispatch(updateArticleFilters(articleFilters))
   }
 
   generateAccordionItems (list) {
@@ -56,8 +75,8 @@ class BrowseFilters extends React.Component {
                   name={subtype + '-check'}
                   value={subtype}
                   onChange={this.handleFilterSelection}
-                  checked={_.includes(this.state.checklist, subtype) } />
-                {translate(subtype)}
+                  checked={_.includes(this.props.articleFilters, subtype) } />
+                <label>{translate(subtype)}</label>
               </div>
             )
           })}
@@ -67,8 +86,6 @@ class BrowseFilters extends React.Component {
   }
 
   render () {
-    const commodityList = invertCommodities(commodities)
-    const countryList = countryIdsToSubcontinents(countries)
     const accordion = this.state.accordion
     return (
       <div className='browse__filters'>
@@ -82,27 +99,41 @@ class BrowseFilters extends React.Component {
           </fieldset>
           <fieldset>
             <legend>Commodities</legend>
-            <ul>
-              <li className='filters__check-group'>
-                <Collapse
-                  accordion={accordion}
-                  onChange={this.onAccordionChange} >
-                  {this.generateAccordionItems(commodityList)}
-                </Collapse>
-              </li>
-            </ul>
+            <div className='filters__check-group'>
+              <Collapse
+                accordion={accordion}
+                onChange={this.onAccordionChange} >
+                {this.generateAccordionItems(this.commodityList)}
+              </Collapse>
+            </div>
           </fieldset>
           <fieldset>
             <legend>Location</legend>
-            <ul>
-              <li className='filters__check-group'>
-                <Collapse
-                  accordion={accordion}
-                  onChange={this.onAccordionChange}>
-                  {this.generateAccordionItems(countryList)}
-                </Collapse>
-              </li>
-            </ul>
+            <div className='filters__check-group'>
+              <Collapse
+                accordion={accordion}
+                onChange={this.onAccordionChange}>
+                {this.generateAccordionItems(this.locationList)}
+              </Collapse>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Projects</legend>
+            <div className='filters__check-group'>
+              {filterCategories.projects.map((project, i) => {
+                return (
+                  <div key={'project-' + i}>
+                    <input
+                      type='checkbox'
+                      name={project + '-check'}
+                      value={project}
+                      onChange={this.handleFilterSelection}
+                      checked={_.includes(this.props.articleFilters, project) } />
+                    <label>{project}</label>
+                  </div>
+                )
+              })}
+            </div>
           </fieldset>
         </form>
       </div>
@@ -112,6 +143,8 @@ class BrowseFilters extends React.Component {
 
 // Set default props
 BrowseFilters.propTypes = {
+  dispatch: React.PropTypes.func,
+  articleFilters: React.PropTypes.array
 }
 
 export default BrowseFilters

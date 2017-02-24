@@ -35,7 +35,7 @@ class ScenarioBrowse extends React.Component {
     const articleMetadata = this.state.articleMetadata
     const articles = this.props.articles
     return (
-      <div className='article'>
+      <section className='article'>
         <header className='article__header'>
           <h1>{this.state.articleMetadata.title}</h1>
         </header>
@@ -44,7 +44,7 @@ class ScenarioBrowse extends React.Component {
         </div>
         <ProjectArticles articleMetadata={articleMetadata} articles={articles} />
         <RelatedArticles articleMetadata={articleMetadata} articles={articles} />
-      </div>
+      </section>
     )
   }
 }
@@ -52,7 +52,6 @@ class ScenarioBrowse extends React.Component {
 // Set default props
 ScenarioBrowse.propTypes = {
   articles: React.PropTypes.array,
-  article: React.PropTypes.string,
   location: React.PropTypes.object
 }
 
@@ -61,8 +60,7 @@ ScenarioBrowse.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    articles: state.article.articles,
-    article: state.article.article
+    articles: state.article.articles
   }
 }
 

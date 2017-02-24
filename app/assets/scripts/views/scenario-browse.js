@@ -8,29 +8,40 @@ import BrowseList from '../components/browse-list.js'
 
 class ScenarioBrowse extends React.Component {
   render () {
-    const scenarios = this.props.articles.filter((article) => article.type === 'scenario')
     return (
-      <div className='page__browse'>
-        <header className='browse__header'>
-          <div className='browse__header-text'>
-            <h2>Scenarios</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse ut augue aliquet ligula aliquam. Lorem ipsum dolor
-              sit amet, consectetur adipiscing elit. Suspendisse ut augue
-              aliquet ligula aliquam.
-            </p>
+      <section className='page__browse'>
+        <header className='header__internal'>
+          <div className='row'>
+            <div className='browse__header-text'>
+              <h2 className='header--xlarge'>Scenarios</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut augue aliquet ligula aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut augue aliquet ligula aliquam.</p>
+            </div>
           </div>
         </header>
-        <BrowseFilters />
-        <BrowseList articles={scenarios} path={this.props.route.path} />
-      </div>
+        <BrowseFilters
+          dispatch={this.props.dispatch}
+          articleFilters={this.props.articleFilters}
+        />
+        <BrowseList
+          dispatch={this.props.dispatch}
+          articles={this.props.articles}
+          articleFilters={this.props.articleFilters}
+          articleSorting={this.props.articleSorting}
+          articlePage={this.props.articlePage}
+          path={this.props.route.path}
+        />
+      </section>
     )
   }
 }
 
 // Set default props
 ScenarioBrowse.propTypes = {
+  dispatch: React.PropTypes.func,
   articles: React.PropTypes.array,
+  articleFilters: React.PropTypes.array,
+  articleSorting: React.PropTypes.oneOf(['recency', 'relevance']),
+  articlePage: React.PropTypes.number,
   route: React.PropTypes.object
 }
 
@@ -39,7 +50,11 @@ ScenarioBrowse.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    articles: state.article.articles
+    // connect scenario article type as articles
+    articles: state.article.scenarios,
+    articleFilters: state.article.articleFilters,
+    articleSorting: state.article.articleSorting,
+    articlePage: state.article.articlePage
   }
 }
 

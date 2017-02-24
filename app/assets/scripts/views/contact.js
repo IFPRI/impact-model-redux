@@ -4,13 +4,13 @@ import React from 'react'
 class Contact extends React.Component {
   render () {
     return (
-      <div className='page__contact'>
-        <section className='header__internal'>
+      <section className='page__contact'>
+        <header className='header__internal'>
           <div className='row'>
             <h2 className='header--xlarge'>Contact Us</h2>
           </div>
-        </section>
-      </div>
+        </header>
+      </section>
     )
   }
 }

@@ -1,10 +1,20 @@
 export const UPDATE_ARTICLES = 'UPDATE_ARTICLES'
-export const UPDATE_ARTICLE = 'UPDATE_ARTICLE'
+export const UPDATE_ARTICLE_FILTERS = 'UPDATE_ARTICLE_FILTERS'
+export const UPDATE_ARTICLE_SORTING = 'UPDATE_ARTICLE_SORTING'
+export const UPDATE_ARTICLE_PAGE = 'UPDATE_ARTICLE_PAGE'
 
-export function updateArticles (data) {
-  return { type: UPDATE_ARTICLES, data: data }
+export const updateArticles = (articles) => {
+  return { type: UPDATE_ARTICLES, data: articles }
 }
 
-export function updateArticle (data) {
-  return { type: UPDATE_ARTICLE, data: data }
+export const updateArticleFilters = (articleFilters) => {
+  return { type: UPDATE_ARTICLE_FILTERS, data: articleFilters }
+}
+
+export const updateArticleSorting = (articleSorting) => {
+  return { type: UPDATE_ARTICLE_SORTING, data: articleSorting }
+}
+
+export const updateArticlePage = (articlePage) => {
+  return { type: UPDATE_ARTICLE_PAGE, data: articlePage }
 }
