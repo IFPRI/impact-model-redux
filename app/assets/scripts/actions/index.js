@@ -7,14 +7,14 @@ export function updateArticles (articles) {
   return { type: UPDATE_ARTICLES, data: articles }
 }
 
-export function updateArticleFilters (filters) {
-  return { type: UPDATE_ARTICLE_FILTERS, data: filters }
+export function updateArticleFilters (articleFilters) {
+  return { type: UPDATE_ARTICLE_FILTERS, data: articleFilters }
 }
 
-export function updateArticleSorting (sortRule) {
-  return { type: UPDATE_ARTICLE_SORTING, data: sortRule }
+export function updateArticleSorting (articleSorting) {
+  return { type: UPDATE_ARTICLE_SORTING, data: articleSorting }
 }
 
-export function updateArticlePage (page) {
-  return { type: UPDATE_ARTICLE_PAGE, data: page }
+export function updateArticlePage (articlePage) {
+  return { type: UPDATE_ARTICLE_PAGE, data: articlePage }
 }

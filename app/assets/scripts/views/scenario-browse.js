@@ -1,93 +1,13 @@
 'use strict'
 import React from 'react'
 import { connect } from 'react-redux'
-import classnames from 'classnames'
-import _ from 'lodash'
-
-// Actions
-import { updateArticleFilters, updateArticleSorting, updateArticlePage } from '../actions'
 
 // Components
 import BrowseFilters from '../components/browse-filters.js'
 import BrowseList from '../components/browse-list.js'
 
-// Constants
-import { articleBrowsePageLength } from '../constants.js'
-
 class ScenarioBrowse extends React.Component {
-  constructor (props, context) {
-    super(props, context)
-    this.articles = this.sortArticles(props.articles, props.articleSorting)
-    this.articles = this.displayArticles = this.filterArticles(this.articles, props.articleFilters)
-    this.articleCount = this.articles.length
-    this.displayArticles = this.displayArticles.slice(articleBrowsePageLength * this.props.articlePage, articleBrowsePageLength * this.props.articlePage + articleBrowsePageLength)
-
-    this.incrementPage = this.incrementPage.bind(this)
-    this.decrementPage = this.decrementPage.bind(this)
-  }
-
-  componentWillUnmount () {
-    this.props.dispatch(updateArticleFilters([]))
-    this.props.dispatch(updateArticleSorting('recency'))
-  }
-
-  componentWillReceiveProps (nextProps) {
-    let articles = this.articles
-
-    this.sortArticles(articles, nextProps.articleSorting)
-    articles = this.filterArticles(articles, nextProps.articleFilters)
-
-    if (nextProps.articleFilters !== this.props.articleFilters) {
-      this.articleCount = articles.length
-      if (this.props.articlePage !== 0) {
-        this.goToPage(0)
-      }
-    }
-
-    this.displayArticles = articles.slice(articleBrowsePageLength * nextProps.articlePage, articleBrowsePageLength * nextProps.articlePage + articleBrowsePageLength)
-  }
-
-  incrementPage () {
-    let { articlePage } = this.props
-    this.goToPage(articlePage * articleBrowsePageLength + articleBrowsePageLength - 1 < this.articleCount ? articlePage + 1 : articlePage)
-  }
-
-  decrementPage () {
-    let { articlePage } = this.props
-    this.goToPage(articlePage > 0 ? articlePage - 1 : 0)
-  }
-
-  goToPage (page) {
-    this.props.dispatch(updateArticlePage(page))
-  }
-
-  sortArticles (articles, articleSorting) {
-    switch (articleSorting) {
-      case 'recency':
-        return articles.sort((a, b) => new Date(b.date) - new Date(a.date))
-      case 'relevance':
-        return articles.sort((a, b) => b.matches - a.matches)
-    }
-    return articles
-  }
-
-  filterArticles (articles, articleFilters) {
-    if (articleFilters.length) {
-      return articles.filter((article) => {
-        const metadata = _.concat(article.commodities, article.locations, article.project).filter((item) => item)
-        const matches = _.intersection(metadata, articleFilters).length
-        article.matches = matches
-        return matches
-      })
-    }
-    return articles
-  }
-
   render () {
-    const { articlePage } = this.props
-    const lowArticle = articleBrowsePageLength * articlePage + 1
-    const highArticle = Math.min(this.articleCount, articleBrowsePageLength * articlePage + articleBrowsePageLength + 1)
-
     return (
       <section className='page__browse'>
         <header className='header__internal'>
@@ -104,22 +24,12 @@ class ScenarioBrowse extends React.Component {
         />
         <BrowseList
           dispatch={this.props.dispatch}
-          articles={this.displayArticles}
+          articles={this.props.articles}
+          articleFilters={this.props.articleFilters}
           articleSorting={this.props.articleSorting}
-          articleCount= {this.articleCount}
+          articlePage={this.props.articlePage}
           path={this.props.route.path}
         />
-        <nav className='browse__pagination'>
-          <button
-            className={classnames('browse__pagination-button', 'browse__pagination-button--back', 'collecticon-chevron-left', {'pagination-button--disabled': articlePage === 0})}
-            onClick={this.decrementPage}>
-          </button>
-          <span className='browse__pagination-status'>Article {lowArticle} - {highArticle} of {this.articleCount}</span>
-          <button
-            className={classnames('browse__pagination-button', 'browse__pagination-button--forward', 'collecticon-chevron-right', {'pagination-button--disabled': highArticle === this.articleCount})}
-            onClick={this.incrementPage}>
-          </button>
-        </nav>
       </section>
     )
   }
@@ -139,8 +49,8 @@ ScenarioBrowse.propTypes = {
 // Connect functions
 
 const mapStateToProps = (state) => {
-  // connect scenario article type as articles
   return {
+    // connect scenario article type as articles
     articles: state.article.scenarios,
     articleFilters: state.article.articleFilters,
     articleSorting: state.article.articleSorting,

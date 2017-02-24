@@ -33,7 +33,7 @@
       font-size: 1.5rem;
       font-weight: 800;
       .result-count {
-        color: lighten($light-grey, 35);
+        color: $light-grey;
       }
     }
     .article-list__sort-menu {
@@ -92,8 +92,8 @@
 }
 
 .browse__pagination {
-  float: left;
-  width: calc(100% - 23rem);
+  float: right;
+  width: 17rem;
   margin: 1rem 3rem 2.5rem 20rem;
   text-align: center;
   button {
@@ -125,14 +125,15 @@
     font-size: 0.8rem;
     font-weight: 600;
     line-height: 2.25rem;
+    // margin: 0 2rem 0 2rem;
   }
   .browse__pagination-button--back {
     float: left;
-    margin-left: 5rem;
+    // margin-left: 5rem;
   }
   .browse__pagination-button--forward {
     float: right;
-    margin-right: 5rem;
+    // margin-right: 5rem;
   }
 }
 
