@@ -16,7 +16,7 @@ export const initialState = {
   articlePage: 0
 }
 
-export default  (state = initialState, action) => {
+export default (state = initialState, action) => {
   state = Object.assign({}, state)
   switch (action.type) {
     case UPDATE_ARTICLES:
