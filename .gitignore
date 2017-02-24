@@ -108,6 +108,7 @@ nbproject
 .idea
 .resources
 .node_history
+.nyc_output
 temp
 tmp
 .tmp
