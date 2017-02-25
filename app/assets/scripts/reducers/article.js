@@ -5,7 +5,9 @@ import {
   UPDATE_ARTICLES,
   UPDATE_ARTICLE_FILTERS,
   UPDATE_ARTICLE_SORTING,
-  UPDATE_ARTICLE_PAGE
+  UPDATE_ARTICLE_PAGE,
+  UPDATE_ARTICLE_LOADING,
+  UPDATE_ARTICLE
 } from '../actions'
 
 export const initialState = {
@@ -30,6 +32,12 @@ export default (state = initialState, action) => {
       break
     case UPDATE_ARTICLE_PAGE:
       set(state, 'articlePage', action.data)
+      break
+    case UPDATE_ARTICLE:
+      set(state, 'article', action.data)
+      break
+    case UPDATE_ARTICLE_LOADING:
+      set(state, 'articleLoading', action.data)
       break
   }
   return state
