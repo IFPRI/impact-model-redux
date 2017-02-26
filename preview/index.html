@@ -33,6 +33,9 @@ window.onload = function () {
 	var renderer = new marked.Renderer();
 	var counter = 0;
 
+  // Awful global state for submitting with dropdown value
+  var dropdownOverride = null;
+
   // Render the ```vis as a vega-lite chart
 	renderer.code = function (code, lang, escaped) {
 		if (lang == "vis") {
@@ -75,11 +78,11 @@ window.onload = function () {
         var values = dropdown.values.split(',').map(function (val) {
           return val.trim()
         })
-        where.push(`${dropdown.field} = ${values[0]}`)
+        where.push(`${dropdown.field} = ${dropdownOverride || values[0]}`)
 
         // ...to the DOM
         dropdownComponent = `<select>${values.map(function (val) {
-          return `<option value="${val}">${val}</option>`
+          return `<option value="${val}" ${val === (dropdownOverride || values[0]) ? 'selected' : ''}>${val}</option>`
         })}</select>`
       }
 
@@ -146,8 +149,21 @@ window.onload = function () {
 
 	window.visdown = function () {
 		var markdownText = input.value;
+    dropdownOverride = null
     output.innerHTML = marked(markdownText, { renderer: renderer });
+    document.querySelectorAll('select')[0].addEventListener('change', (e) =>
+      dropdownUpdate()
+    )
 	}
+
+  window.dropdownUpdate = function () {
+    var markdownText = input.value;
+    dropdownOverride = document.querySelectorAll('select')[0].value
+    output.innerHTML = marked(markdownText, { renderer: renderer });
+    document.querySelectorAll('select')[0].addEventListener('change', (e) =>
+      dropdownUpdate()
+    )
+  }
   visdown()
 
   function parseDataObject(obj, group, val, otherKeys, change) {
