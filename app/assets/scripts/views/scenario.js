@@ -3,6 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import marked from 'marked'
 import fm from 'front-matter'
+import moment from 'moment'
 import { Link } from 'react-router'
 
 // Actions
@@ -35,12 +36,16 @@ class Scenario extends React.Component {
     }
     const articleMetadata = this.metadata
     const articles = this.props.articles
+    const date = moment(articleMetadata.date, 'M/D/YYYY').format('MMMM Do, YYYY')
     return (
       <div className='article'>
         <section className='header__internal'>
           <div className='header-split--left'>
             <h2 className='header--xlarge'>{articleMetadata.title}</h2>
-            <span>{articleMetadata.date}</span>
+            <ul className='article-byline'>
+              <li>{date}</li>
+              <li>{articleMetadata.author}</li>
+            </ul>
           </div>
           <div className='header-split--right'>
             <Link to={'/'} className='button button--outline'>Download Report</Link>
