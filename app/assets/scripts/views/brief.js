@@ -40,7 +40,7 @@ class Brief extends React.Component {
         <section className='header__internal'>
           <div className='header-split--left'>
             <h2 className='header--xlarge'>{articleMetadata.title}</h2>
-            <span>date</span>
+            <span>{articleMetadata.date}</span>
           </div>
           <div className='header-split--right'>
             <Link to={'/'} className='button button--outline'>Download Report</Link>
