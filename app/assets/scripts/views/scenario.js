@@ -3,6 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import marked from 'marked'
 import fm from 'front-matter'
+import { Link } from 'react-router'
 
 // Utils
 import { loadText } from '../utils/load-text.js'
@@ -11,7 +12,7 @@ import { loadText } from '../utils/load-text.js'
 import ProjectArticles from '../components/project-articles'
 import RelatedArticles from '../components/related-articles'
 
-class ScenarioBrowse extends React.Component {
+class Scenario extends React.Component {
   constructor (props, context) {
     super(props, context)
     this.state = {
@@ -19,9 +20,9 @@ class ScenarioBrowse extends React.Component {
       articleMetadata: {}
     }
     // Before component mount
-    let articleId = (this.props.location.pathname).split('/')
+    let articleId = (props.location.pathname).split('/')
     articleId = articleId[articleId.length - 1].split('?')[0]
-    const metadata = this.props.articles.find((article) => article.id === articleId)
+    const metadata = props.articles.find((article) => article.id === articleId)
     loadText(metadata.url).then((text) => {
       const body = marked(fm(text).body)
       this.setState({
@@ -35,22 +36,31 @@ class ScenarioBrowse extends React.Component {
     const articleMetadata = this.state.articleMetadata
     const articles = this.props.articles
     return (
-      <section className='article'>
-        <header className='article__header'>
-          <h1>{this.state.articleMetadata.title}</h1>
-        </header>
-        <div className='page__article-body'>
-          <div dangerouslySetInnerHTML={{__html: this.state.articleBody}}></div>
-        </div>
+      <div className='article'>
+        <section className='header__internal'>
+          <div className='header-split--left'>
+            <h2 className='header--xlarge'>{this.state.articleMetadata.title}</h2>
+            <span>date</span>
+          </div>
+          <div className='header-split--right'>
+            <Link to={'/'} className='button button--outline'>Download Report</Link>
+            <Link to={'/'} className='button button--outline'>Share</Link>
+          </div>
+        </section>
+        <section>
+          <div className='row'>
+            <div dangerouslySetInnerHTML={{__html: this.state.articleBody}}></div>
+          </div>
+        </section>
         <ProjectArticles articleMetadata={articleMetadata} articles={articles} />
         <RelatedArticles articleMetadata={articleMetadata} articles={articles} />
-      </section>
+      </div>
     )
   }
 }
 
 // Set default props
-ScenarioBrowse.propTypes = {
+Scenario.propTypes = {
   articles: React.PropTypes.array,
   location: React.PropTypes.object
 }
@@ -60,8 +70,8 @@ ScenarioBrowse.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    articles: state.article.articles
+    articles: state.article.scenarios
   }
 }
 
-module.exports = connect(mapStateToProps)(ScenarioBrowse)
+module.exports = connect(mapStateToProps)(Scenario)

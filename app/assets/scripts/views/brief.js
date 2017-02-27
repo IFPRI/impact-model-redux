@@ -20,9 +20,9 @@ class Brief extends React.Component {
       articleMetadata: {}
     }
     // Before component mount
-    let articleId = (this.props.location.pathname).split('/')
+    let articleId = (props.location.pathname).split('/')
     articleId = articleId[articleId.length - 1].split('?')[0]
-    const metadata = this.props.articles.find((article) => article.id === articleId)
+    const metadata = props.articles.find((article) => article.id === articleId)
     loadText(metadata.url).then((text) => {
       const body = marked(fm(text).body)
       this.setState({
@@ -70,7 +70,7 @@ Brief.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    articles: state.article.articles
+    articles: state.article.briefs
   }
 }
 
