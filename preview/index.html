@@ -33,8 +33,9 @@ window.onload = function () {
 	var renderer = new marked.Renderer();
 	var counter = 0;
 
-  // Awful global state for submitting with dropdown value
+  // Awful global state for submitting with dropdown values
   var dropdownOverride = null;
+  var axisOverride = null;
 
   // Render the ```vis as a vega-lite chart
 	renderer.code = function (code, lang, escaped) {
@@ -44,8 +45,19 @@ window.onload = function () {
       if (!jsonVis.encoding.color) jsonVis.encoding.color = { value: '83C719' }
 
       // grab the important field names
+      var groups =  String(jsonVis.encoding.x.field).split(',').map(a => a.trim())
+      var group
+      var axisComponent = ''
+      if (groups.length === 1) {
+        group = groups[0]
+      } else {
+        group = axisOverride || groups[0]
+        axisComponent = `<span>X Axis</span><select>${groups.map(function (g) {
+          return `<option value="${g}" ${g === (axisOverride || groups[0]) ? 'selected' : ''}>${g}</option>`
+        })}</select>`
+      }
+
       var val = jsonVis.encoding.y.field
-      var group = jsonVis.encoding.x.field
       var series = jsonVis.encoding.color.field
 
       // construct a where clause for our sql statement
@@ -71,7 +83,7 @@ window.onload = function () {
 
       // add dropdown component...
       var dropdown = jsonVis.dropdown
-      console.log(dropdown);
+
       var dropdownComponent = ''
       if (dropdown && dropdown.field && dropdown.values) {
         // ...to where clause
@@ -81,7 +93,7 @@ window.onload = function () {
         where.push(`${dropdown.field} = ${dropdownOverride || values[0]}`)
 
         // ...to the DOM
-        dropdownComponent = `<select>${values.map(function (val) {
+        dropdownComponent = `<span>Filter</span><select>${values.map(function (val) {
           return `<option value="${val}" ${val === (dropdownOverride || values[0]) ? 'selected' : ''}>${val}</option>`
         })}</select>`
       }
@@ -89,7 +101,7 @@ window.onload = function () {
       // keep track of the number of dependencies
       counter++;
       el = `#vis-${counter}`;
-      htmlChart = `<div><h2>${jsonVis.title}</h2><div id="vis-${counter}"></div>${dropdownComponent}</div>`
+      htmlChart = `<div><h2>${jsonVis.title}</h2><div id="vis-${counter}"></div>${dropdownComponent}${axisComponent}</div>`
 
       // request the data and parse the response for our graph format
       var postData = JSON.stringify(sqltoes({select: [`sum(${val})`], where: where, groupBy: groupBy}))
@@ -150,19 +162,25 @@ window.onload = function () {
 	window.visdown = function () {
 		var markdownText = input.value;
     dropdownOverride = null
+    axisOverride = null
     output.innerHTML = marked(markdownText, { renderer: renderer });
-    document.querySelectorAll('select')[0].addEventListener('change', (e) =>
-      dropdownUpdate()
-    )
+    document.querySelectorAll('select').forEach(s => {
+      s.addEventListener('change', (e) =>
+        secondaryUpdate()
+      )
+    })
 	}
 
-  window.dropdownUpdate = function () {
+  window.secondaryUpdate = function () {
     var markdownText = input.value;
     dropdownOverride = document.querySelectorAll('select')[0].value
+    axisOverride = document.querySelectorAll('select')[1].value
     output.innerHTML = marked(markdownText, { renderer: renderer });
-    document.querySelectorAll('select')[0].addEventListener('change', (e) =>
-      dropdownUpdate()
-    )
+    document.querySelectorAll('select').forEach(s => {
+      s.addEventListener('change', (e) =>
+        secondaryUpdate()
+      )
+    })
   }
   visdown()
 
