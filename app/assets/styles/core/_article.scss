@@ -1,14 +1,12 @@
 .article {
   float: left;
-  .article__header {
-    width: 100%;
-    min-height: 10rem;
-    background-color: $light-grey;
-    h1 {
-      padding: 7rem 0 3rem 4rem;
-      font-size: 4rem;
-      font-weight: 400;
-      color: white;
+  .article-byline {
+    li {
+      display: inline;
+      list-style-type: none;
+      &:last-child::before {
+        content: ' | ';
+      }
     }
   }
 
