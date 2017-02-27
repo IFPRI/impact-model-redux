@@ -15,7 +15,9 @@ export const initialState = {
   scenarios: articles.filter((article) => article.type === 'scenario'),
   articleFilters: [],
   articleSorting: 'recency',
-  articlePage: 0
+  articlePage: 0,
+  articleLoading: false,
+  article: ''
 }
 
 export default (state = initialState, action) => {
@@ -33,11 +35,11 @@ export default (state = initialState, action) => {
     case UPDATE_ARTICLE_PAGE:
       set(state, 'articlePage', action.data)
       break
-    case UPDATE_ARTICLE:
-      set(state, 'article', action.data)
-      break
     case UPDATE_ARTICLE_LOADING:
       set(state, 'articleLoading', action.data)
+      break
+    case UPDATE_ARTICLE:
+      set(state, 'article', action.data)
       break
   }
   return state

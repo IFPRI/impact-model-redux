@@ -5,7 +5,7 @@ export const UPDATE_ARTICLES = 'UPDATE_ARTICLES'
 export const UPDATE_ARTICLE_FILTERS = 'UPDATE_ARTICLE_FILTERS'
 export const UPDATE_ARTICLE_SORTING = 'UPDATE_ARTICLE_SORTING'
 export const UPDATE_ARTICLE_PAGE = 'UPDATE_ARTICLE_PAGE'
-export const UPDATE_ARTICLE_LOADING = 'UPDATE_ARTICLE'
+export const UPDATE_ARTICLE_LOADING = 'UPDATE_ARTICLE_LOADING'
 export const UPDATE_ARTICLE = 'UPDATE_ARTICLE'
 
 export const updateArticles = (articles) => {
@@ -24,6 +24,7 @@ export const updateArticlePage = (articlePage) => {
   return { type: UPDATE_ARTICLE_PAGE, data: articlePage }
 }
 
+// < internal article fetching actions
 export const updateArticleLoading = (bool) => {
   return { type: UPDATE_ARTICLE_LOADING, data: bool }
 }
@@ -43,3 +44,4 @@ export const fetchArticle = (url) => {
   })
   }
 }
+// />

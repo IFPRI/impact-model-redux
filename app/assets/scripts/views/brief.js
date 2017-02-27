@@ -5,41 +5,41 @@ import marked from 'marked'
 import fm from 'front-matter'
 import { Link } from 'react-router'
 
+// Actions
+import { updateArticleLoading, updateArticle } from '../actions'
+
 // Utils
-import { loadText } from '../utils/load-text.js'
+import { parsePath, loadArticle } from '../utils/load-text.js'
 
 // Components
 import ProjectArticles from '../components/project-articles'
 import RelatedArticles from '../components/related-articles'
+import Loading from '../components/loading'
 
 class Brief extends React.Component {
   constructor (props, context) {
     super(props, context)
-    this.state = {
-      articleBody: '',
-      articleMetadata: {}
-    }
-    // Before component mount
-    let articleId = (props.location.pathname).split('/')
-    articleId = articleId[articleId.length - 1].split('?')[0]
-    const metadata = props.articles.find((article) => article.id === articleId)
-    loadText(metadata.url).then((text) => {
+    props.dispatch(updateArticleLoading(true))
+    const articleId = parsePath(props.location.pathname)
+    this.metadata = props.articles.find((article) => article.id === articleId)
+    loadArticle(this.metadata.url).then((text) => {
       const body = marked(fm(text).body)
-      this.setState({
-        articleMetadata: metadata,
-        articleBody: body
-      })
+      props.dispatch(updateArticle(body))
+      props.dispatch(updateArticleLoading(false))
     })
   }
 
   render () {
-    const articleMetadata = this.state.articleMetadata
+    if (this.props.articleLoading) {
+      return <Loading />
+    }
+    const articleMetadata = this.metadata
     const articles = this.props.articles
     return (
       <div className='article'>
         <section className='header__internal'>
           <div className='header-split--left'>
-            <h2 className='header--xlarge'>{this.state.articleMetadata.title}</h2>
+            <h2 className='header--xlarge'>{articleMetadata.title}</h2>
             <span>date</span>
           </div>
           <div className='header-split--right'>
@@ -49,7 +49,7 @@ class Brief extends React.Component {
         </section>
         <section>
           <div className='row'>
-            <div dangerouslySetInnerHTML={{__html: this.state.articleBody}}></div>
+            <div dangerouslySetInnerHTML={{__html: this.props.article}}></div>
           </div>
         </section>
         <ProjectArticles articleMetadata={articleMetadata} articles={articles} />
@@ -61,7 +61,10 @@ class Brief extends React.Component {
 
 // Set default props
 Brief.propTypes = {
+  dispatch: React.PropTypes.func,
   articles: React.PropTypes.array,
+  articleLoading: React.PropTypes.bool,
+  article: React.PropTypes.string,
   location: React.PropTypes.object
 }
 
@@ -70,7 +73,9 @@ Brief.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    articles: state.article.briefs
+    articles: state.article.briefs,
+    articleLoading: state.article.articleLoading,
+    article: state.article.article
   }
 }
 
