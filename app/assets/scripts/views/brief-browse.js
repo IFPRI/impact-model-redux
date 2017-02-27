@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import BrowseFilters from '../components/browse-filters.js'
 import BrowseList from '../components/browse-list.js'
 
-class BriefBrowse extends React.Component {
+export class BriefBrowse extends React.Component {
   render () {
     return (
       <section className='page__browse'>
@@ -58,4 +58,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-module.exports = connect(mapStateToProps)(BriefBrowse)
+export default connect(mapStateToProps)(BriefBrowse)

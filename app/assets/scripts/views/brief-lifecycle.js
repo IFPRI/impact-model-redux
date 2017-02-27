@@ -12,14 +12,22 @@ import ProjectArticles from '../components/project-articles'
 import RelatedArticles from '../components/related-articles'
 import Loading from '../components/loading'
 
-export class Brief extends React.Component {
-  constructor (props, context) {
-    super(props, context)
-    this.metadata = props.articles.find((article) => article.id === props.params.id)
-    props.dispatch(fetchArticle(this.metadata.url))
-  }
+const Brief = React.createClass({
+  propTypes: {
+    dispatch: React.PropTypes.func,
+    articles: React.PropTypes.array,
+    fetchArticle: React.PropTypes.func,
+    articleLoading: React.PropTypes.bool,
+    article: React.PropTypes.string,
+    params: React.PropTypes.object
+  },
 
-  render () {
+  componentWillMount: function () {
+    this.metadata = this.props.articles.find((article) => article.id === this.props.params.id)
+    this.props.dispatch(fetchArticle(this.metadata.url))
+  },
+
+  render: function () {
     const articleMetadata = this.metadata
     const articles = this.props.articles
     const date = moment(articleMetadata.date, 'M/D/YYYY').format('MMMM Do, YYYY')
@@ -51,20 +59,18 @@ export class Brief extends React.Component {
       </div>
     )
   }
-}
-
-// Set default props
-Brief.propTypes = {
-  dispatch: React.PropTypes.func,
-  articles: React.PropTypes.array,
-  fetchArticle: React.PropTypes.func,
-  articleLoading: React.PropTypes.bool,
-  article: React.PropTypes.string,
-  params: React.PropTypes.object
-}
+})
 
 // /////////////////////////////////////////////////////////////////// //
 // Connect functions
+
+const mapDispatchToProps = (dispatch) => {
+  return ({
+    fetchArticle: (url) => {
+      dispatch(fetchArticle(url))
+    }
+  })
+}
 
 const mapStateToProps = (state) => {
   return {

@@ -13,8 +13,4 @@ class Home extends React.Component {
   }
 }
 
-// Set default props
-Home.propTypes = {
-}
-
 export default Home

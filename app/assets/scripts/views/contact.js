@@ -15,8 +15,4 @@ class Contact extends React.Component {
   }
 }
 
-// Set default props
-Contact.propTypes = {
-}
-
 export default Contact

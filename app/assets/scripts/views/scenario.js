@@ -10,19 +10,18 @@ import { Link } from 'react-router'
 import { updateArticleLoading, updateArticle } from '../actions'
 
 // Utils
-import { parsePath, loadArticle } from '../utils/load-text.js'
+import { loadArticle } from '../utils/load-text.js'
 
 // Components
 import ProjectArticles from '../components/project-articles'
 import RelatedArticles from '../components/related-articles'
 import Loading from '../components/loading'
 
-class Scenario extends React.Component {
+export class Scenario extends React.Component {
   constructor (props, context) {
     super(props, context)
     props.dispatch(updateArticleLoading(true))
-    const articleId = parsePath(props.location.pathname)
-    this.metadata = props.articles.find((article) => article.id === articleId)
+    this.metadata = props.articles.find((article) => article.id === props.params.id)
     loadArticle(this.metadata.url).then((text) => {
       const body = marked(fm(text).body)
       props.dispatch(updateArticle(body))
@@ -34,6 +33,7 @@ class Scenario extends React.Component {
     if (this.props.articleLoading) {
       return <Loading />
     }
+    console.log(this.props)
     const articleMetadata = this.metadata
     const articles = this.props.articles
     const date = moment(articleMetadata.date, 'M/D/YYYY').format('MMMM Do, YYYY')
@@ -70,7 +70,7 @@ Scenario.propTypes = {
   articles: React.PropTypes.array,
   articleLoading: React.PropTypes.bool,
   article: React.PropTypes.string,
-  location: React.PropTypes.object
+  params: React.PropTypes.object
 }
 
 // /////////////////////////////////////////////////////////////////// //
@@ -84,4 +84,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-module.exports = connect(mapStateToProps)(Scenario)
+export default connect(mapStateToProps)(Scenario)

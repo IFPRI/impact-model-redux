@@ -13,8 +13,4 @@ class About extends React.Component {
   }
 }
 
-// Set default props
-About.propTypes = {
-}
-
 export default About
