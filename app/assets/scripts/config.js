@@ -19,7 +19,11 @@ var defaultsDeep = require('lodash.defaultsdeep')
  *      polluting the repo.
  */
 
-var configurations = require('./config/*.js', {mode: 'hash'})
+var configurations = {
+  local: require('./config/local.js'),
+  staging: require('./config/staging.js'),
+  production: require('./config/production.js')
+}
 var config = configurations.local || {}
 
 if (process.env.DS_ENV === 'staging') {
