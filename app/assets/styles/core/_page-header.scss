@@ -1,0 +1,48 @@
+header {
+  margin: 1em 0;
+  @extend .clearfix;
+  .nav__main {
+    float: left;
+    li {
+      margin: .45rem 2rem 0 0;
+      display: inline-block;
+    }
+    a, a:visited {
+      color: $darkest-grey;
+      position: relative;
+      text-decoration: none;
+    }
+    a:hover {
+      color: $light-grey;
+    }
+    a:before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      top: 1.5rem;
+      left: 0;
+      background-color: $light-grey;
+      visibility: hidden;
+      transform: scaleX(0);
+      transition: all 0.15s ease-in-out 0s;
+    }
+    a:hover:before {
+      visibility: visible;
+      transform: scaleX(1);
+    }
+  }
+
+  h1 {
+    float: left;
+    font-size: 1.45rem;
+    font-weight: $base-font-bold;
+    margin: 0 3rem 0 0;
+    a, a:visited {
+      color: $darkest-grey;
+    }
+    a:before {
+      top: 1.75rem;
+    }
+  }
+}

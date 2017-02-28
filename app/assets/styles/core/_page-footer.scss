@@ -1,0 +1,23 @@
+
+.page__footer {
+  padding: 2em 0 3.5em;
+  border-top: 1px solid darken($lightest-grey, 5%);
+  .footer__contact {
+    display: inline-block;
+    float: left;
+    .contact__input {
+      margin-top: .5rem;
+    }
+    input {
+      margin-right: 1em;
+    }
+  }
+  .footer__logo {
+    display: inline-block;
+    float: right;
+    img {
+      width: 165px;
+      height: 90px;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+h1, h2, h3, h4, h5, h6 {
+  font-family: $header-family;
+  color: $header-color;
+}
+
+.header--xxlarge {
+  font-size: 4.714em;
+  font-weight: $header-light;
+}
+
+.header--xlarge {
+  font-size: 4.286em;
+  font-weight: $header-light;
+}
+
+.header--large {
+  font-size: 2.571em;
+}
+
+.header--medium {
+  font-size: 2.429em;
+}
+
+.header--small {
+  font-size: 1.571em;
+  font-weight: $header-bold;
+}
+
+.header--xsmall {
+  font-size: 1.28em;
+}
+
+.sub-description {
+  color: $grey;
+  font-size: .852em;
+}
