@@ -52,7 +52,7 @@ window.onload = function () {
         group = groups[0]
       } else {
         group = axisOverride || groups[0]
-        axisComponent = `<span>X Axis</span><select>${groups.map(function (g) {
+        axisComponent = `<span>X Axis</span><select class="axis-select">${groups.map(function (g) {
           return `<option value="${g}" ${g === (axisOverride || groups[0]) ? 'selected' : ''}>${g}</option>`
         })}</select>`
       }
@@ -93,7 +93,7 @@ window.onload = function () {
         where.push(`${dropdown.field} = ${dropdownOverride || values[0]}`)
 
         // ...to the DOM
-        dropdownComponent = `<span>Filter</span><select>${values.map(function (val) {
+        dropdownComponent = `<span>Filter</span><select class="dropdown-select">${values.map(function (val) {
           return `<option value="${val}" ${val === (dropdownOverride || values[0]) ? 'selected' : ''}>${val}</option>`
         })}</select>`
       }
@@ -173,8 +173,8 @@ window.onload = function () {
 
   window.secondaryUpdate = function () {
     var markdownText = input.value;
-    dropdownOverride = document.querySelectorAll('select')[0].value
-    axisOverride = document.querySelectorAll('select')[1].value
+    dropdownOverride = document.querySelectorAll('.dropdown-select').length && document.querySelectorAll('.dropdown-select')[0].value
+    axisOverride = document.querySelectorAll('.axis-select').length && document.querySelectorAll('.axis-select')[0].value
     output.innerHTML = marked(markdownText, { renderer: renderer });
     document.querySelectorAll('select').forEach(s => {
       s.addEventListener('change', (e) =>
