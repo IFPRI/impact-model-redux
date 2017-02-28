@@ -17,7 +17,7 @@ import filterCategories from '../../data/filter-categories'
 import commodityAggregation from '../../data/aggregate-commodity'
 import locationAggregation from '../../data/aggregate-region'
 
-class BrowseFilters extends React.Component {
+export class BrowseFilters extends React.Component {
   constructor (props, context) {
     super(props, context)
     this.state = {
