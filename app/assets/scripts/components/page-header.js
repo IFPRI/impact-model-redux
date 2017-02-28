@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 export class PageHeader extends React.Component {
   render () {
     return (
-      <header>
+      <header className='page__header'>
         <div className='row'>
           <h1><Link to={'/'}>IFPRI IMPACT</Link></h1>
           <nav className='nav__main'>
