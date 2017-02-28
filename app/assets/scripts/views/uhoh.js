@@ -1,7 +1,7 @@
 'use strict'
 import React from 'react'
 
-class UhOh extends React.Component {
+export class UhOh extends React.Component {
   render () {
     return (
       <section className='page__uhoh'>

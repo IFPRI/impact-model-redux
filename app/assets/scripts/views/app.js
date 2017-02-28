@@ -7,7 +7,7 @@ import c from 'classnames'
 import PageHeader from '../components/page-header'
 import PageFooter from '../components/page-footer'
 
-class App extends React.Component {
+export class App extends React.Component {
   //
   // Start render methods
   //
