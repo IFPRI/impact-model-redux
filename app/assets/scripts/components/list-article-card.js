@@ -7,7 +7,7 @@ import { Link } from 'react-router'
 import { commaSeparate, cutAtWord } from '../utils/format'
 import { translate } from '../utils/translation'
 
-class ListArticleCard extends React.Component {
+export class ListArticleCard extends React.Component {
   render () {
     const article = this.props.article
     const date = moment(article.date, 'MM/DD/YYYY').format('MMMM D, YYYY')

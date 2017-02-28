@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 // Utils
 import { cutAtWord, commaSeparate, toTitleCase } from '../utils/format'
 
-class RelatedArticleCard extends React.Component {
+export class RelatedArticleCard extends React.Component {
   render () {
     const article = this.props.article
     return (

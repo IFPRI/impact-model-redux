@@ -12,7 +12,7 @@ import ListArticleCard from './list-article-card.js'
 // Constants
 import { articleBrowsePageLength } from '../constants.js'
 
-class BrowseList extends React.Component {
+export class BrowseList extends React.Component {
   constructor (props, context) {
     super(props, context)
     this.handleSortingUpdate = this.handleSortingUpdate.bind(this)
@@ -71,6 +71,7 @@ class BrowseList extends React.Component {
 
   render () {
     const { articlePage, articleFilters, articleSorting, path } = this.props
+    console.log(path)
     let articles = this.sortArticles(this.filterArticles(this.props.articles, articleFilters), articleSorting)
     const articleCount = articles.length
     articles = articles.slice(articleBrowsePageLength * articlePage, articleBrowsePageLength * articlePage + articleBrowsePageLength)

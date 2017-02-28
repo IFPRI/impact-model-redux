@@ -7,7 +7,7 @@ import { findRelatedArticles } from '../utils/related.js'
 // Components
 import RelatedArticleCard from './related-article-card'
 
-class RelatedArticles extends React.Component {
+export class RelatedArticles extends React.Component {
   render () {
     const articleMetadata = this.props.articleMetadata
     let articles = findRelatedArticles(articleMetadata, this.props.articles, 3)

@@ -7,7 +7,7 @@ import { findProjectArticles } from '../utils/related.js'
 // Components
 import ProjectArticleCard from './project-article-card'
 
-class ProjectArticles extends React.Component {
+export class ProjectArticles extends React.Component {
   render () {
     const articleMetadata = this.props.articleMetadata
     const project = articleMetadata.project

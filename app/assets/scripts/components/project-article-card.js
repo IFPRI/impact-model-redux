@@ -6,7 +6,7 @@ import { Link } from 'react-router'
 // Utils
 import { cutAtWord } from '../utils/format'
 
-class ProjectArticleCard extends React.Component {
+export class ProjectArticleCard extends React.Component {
   render () {
     const article = this.props.article
     const date = moment(article.date, 'MM/DD/YYYY').format('MMMM D, YYYY')

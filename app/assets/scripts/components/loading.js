@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default class Loading extends React.Component {
+export class Loading extends React.Component {
   render () {
     return (
       <div className='loading-spinner'>
@@ -11,3 +11,5 @@ export default class Loading extends React.Component {
     )
   }
 }
+
+export default Loading
