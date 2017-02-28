@@ -71,7 +71,6 @@ export class BrowseList extends React.Component {
 
   render () {
     const { articlePage, articleFilters, articleSorting, path } = this.props
-    console.log(path)
     let articles = this.sortArticles(this.filterArticles(this.props.articles, articleFilters), articleSorting)
     const articleCount = articles.length
     articles = articles.slice(articleBrowsePageLength * articlePage, articleBrowsePageLength * articlePage + articleBrowsePageLength)

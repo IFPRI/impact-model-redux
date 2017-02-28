@@ -7,6 +7,7 @@ import { BrowseFilters } from '../../app/assets/scripts/components/browse-filter
 
 const dispatch = sinon.spy()
 const articleFilters = []
+
 test('brief test', t => {
   const component = shallow(<BrowseFilters articleFilters={articleFilters} dispatch={dispatch} />)
   component.instance().handleFilterSelection = () => {}
