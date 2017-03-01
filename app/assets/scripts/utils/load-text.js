@@ -1,7 +1,7 @@
 'use strict'
 import fetch from 'isomorphic-fetch'
 
-import config from '../utils'
+import config from '../config'
 
 export const loadText = (url) => {
   return fetch(`${config.baseUrl}/${url}`)

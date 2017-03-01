@@ -6,5 +6,6 @@ import { App } from '../../app/assets/scripts/views/app'
 
 test('app test', t => {
   const component = shallow(<App />)
+
   t.truthy(component.hasClass('page'))
 })

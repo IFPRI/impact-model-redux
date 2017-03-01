@@ -1,7 +1,7 @@
 import marked from 'marked'
 import fm from 'front-matter'
 
-import loadText from '../utils/load-text'
+import { loadText } from '../utils/load-text'
 
 export const UPDATE_ARTICLES = 'UPDATE_ARTICLES'
 export const UPDATE_ARTICLE_FILTERS = 'UPDATE_ARTICLE_FILTERS'

@@ -11,7 +11,6 @@ const dispatch = sinon.spy()
 
 test('scenario test', t => {
   const component = shallow(<Scenario articles={articles} params={pathname} dispatch={dispatch} />)
-  component.instance().articleSetup = () => {}
 
   t.truthy(component.hasClass('page__article'))
 })

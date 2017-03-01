@@ -11,7 +11,6 @@ const dispatch = sinon.spy()
 
 test('brief test', t => {
   const component = shallow(<Brief articles={articles} params={pathname} dispatch={dispatch} />)
-  component.instance().articleSetup = () => {}
 
   t.truthy(component.hasClass('page__article'))
 })

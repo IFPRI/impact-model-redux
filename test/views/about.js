@@ -6,5 +6,6 @@ import { About } from '../../app/assets/scripts/views/about'
 
 test('about test', t => {
   const component = shallow(<About />)
+
   t.truthy(component.hasClass('page__about'))
 })
