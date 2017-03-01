@@ -25,38 +25,35 @@
   width: calc(100% - 20rem);
   .article-list-card {
     float: left;
-    margin: 0 3rem 1.5rem 0;
+    margin-bottom: 3em;
     border: 1px solid darken($lightest-grey, 10%);
-    a {
-      text-decoration: none;
-      color: $light-grey;
-      transition: all 0.2s linear;
-      &:hover {
-        text-decoration: underline;
-        color: lighten($light-grey, 20);
-      }
+    .article-list-card__header {
+      padding: 1.8em 2.2em .8em;
+      min-height: 9em;
     }
-    .article-list-card__title {
-      span {
-        font-style: italic;
-        font-weight: 400;
-        font-size: 0.85rem;
-        float: right;
-      }
+    .metadata-italic {
+      display: block;
+      margin-top: 1px;
+      margin-bottom: 1em;
+    }
+    dt, dd {
+      float: left;
+    }
+    dd {
+      margin-right: 2em;
     }
     .article-list-card__meta {
       @extend .clearfix;
       display: inline-block;
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       width: 100%;
-      padding: .8em 2em;
+      padding: 1em 2.2em;
       background-color: darken($lightest-grey, 2%);
+      border-top: 1px solid darken($lightest-grey, 7%);
+      vertical-align: bottom;
     }
     .article-list-card__body {
-      font-size: 0.85rem;
-      float: left;
-      clear:left;
-      font-weight: 200;
+      font-size: 0.75rem;
       margin-bottom: 0.75rem;
       max-width: 80%
     }
