@@ -1,5 +1,5 @@
 'use strict'
-var defaultsDeep = require('lodash.defaultsdeep')
+import { defaultsDeep } from 'lodash'
 /*
  * App configuration.
  *
@@ -19,12 +19,12 @@ var defaultsDeep = require('lodash.defaultsdeep')
  *      polluting the repo.
  */
 
-var configurations = {
+const configurations = {
   local: require('./config/local.js'),
   staging: require('./config/staging.js'),
   production: require('./config/production.js')
 }
-var config = configurations.local || {}
+let config = configurations.local || {}
 
 if (process.env.DS_ENV === 'staging') {
   defaultsDeep(config, configurations.staging)
