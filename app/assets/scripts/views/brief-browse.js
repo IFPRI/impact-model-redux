@@ -8,27 +8,40 @@ import BrowseList from '../components/browse-list.js'
 
 class BriefBrowse extends React.Component {
   render () {
-    const briefs = this.props.articles.filter((article) => article.type === 'brief')
     return (
-      <div className='page__browse'>
-        <section className='header__internal'>
+      <section className='page__browse'>
+        <header className='header__internal'>
           <div className='row'>
             <div className='browse__header-text'>
               <h2 className='header--xlarge'>Briefs</h2>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut augue aliquet ligula aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut augue aliquet ligula aliquam.</p>
             </div>
           </div>
-        </section>
-        <BrowseFilters />
-        <BrowseList articles={briefs} path={this.props.route.path} />
-      </div>
+        </header>
+        <BrowseFilters
+          dispatch={this.props.dispatch}
+          articleFilters={this.props.articleFilters}
+        />
+        <BrowseList
+          dispatch={this.props.dispatch}
+          articles={this.props.articles}
+          articleFilters={this.props.articleFilters}
+          articleSorting={this.props.articleSorting}
+          articlePage={this.props.articlePage}
+          path={this.props.route.path}
+        />
+      </section>
     )
   }
 }
 
 // Set default props
 BriefBrowse.propTypes = {
+  dispatch: React.PropTypes.func,
   articles: React.PropTypes.array,
+  articleFilters: React.PropTypes.array,
+  articleSorting: React.PropTypes.oneOf(['recency', 'relevance']),
+  articlePage: React.PropTypes.number,
   route: React.PropTypes.object
 }
 
@@ -37,7 +50,11 @@ BriefBrowse.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    articles: state.article.articles
+    // connect brief article type as articles
+    articles: state.article.briefs,
+    articleFilters: state.article.articleFilters,
+    articleSorting: state.article.articleSorting,
+    articlePage: state.article.articlePage
   }
 }
 

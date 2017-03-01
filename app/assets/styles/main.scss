@@ -34,6 +34,14 @@
  * http://jeet.gs/
  */
 
+ @import "core/collecticons";
+
+ /**
+  * Icon font from Collecticons, designed by Development Seed
+  * https://collecticons.io/
+  * https://developmentseed.org/)
+  */
+
 
 /* Reboot
    ========================================================================== */
@@ -79,3 +87,4 @@
 @import "core/utils";
 @import "core/forms";
 @import "core/uhoh";
+@import "core/loading";

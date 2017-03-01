@@ -8,8 +8,19 @@
 <script src="http://vega.github.io/vega-editor/vendor/vega-embed.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/yamljs/0.2.8/yaml.min.js"></script>
-<script src="sqltoes.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/reqwest/2.0.5/reqwest.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+<script src="sqltoes.js"></script>
+<script src="translation.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+<link rel="stylesheet" href="//rawgithub.com/Caged/d3-tip/master/examples/example-styles.css">
+
+</script>
 
 <script>
 window.onload = function () {
@@ -22,33 +33,118 @@ window.onload = function () {
 	var renderer = new marked.Renderer();
 	var counter = 0;
 
+  // Awful global state for submitting with dropdown values
+  var dropdownOverride = null;
+  var axisOverride = null;
+
   // Render the ```vis as a vega-lite chart
 	renderer.code = function (code, lang, escaped) {
 		if (lang == "vis") {
 			var jsonVis = YAML.parse(code);
-      console.log(jsonVis);
-      var val = jsonVis.encoding.y.field
-      var group = jsonVis.encoding.x.field
-      var postData = JSON.stringify(sqltoes({select: ['sum(Val)'], where: ['commodity = rice', `impactparameter = ${val}`], groupBy: [group]}))
-      counter++;
-      el = "#vis-" + counter;
-      htmlChart = "<div id='vis-" + counter + "'></div>";
+      // if we don't have a color scheme, make it a set color
+      if (!jsonVis.encoding.color) jsonVis.encoding.color = { value: '83C719' }
 
+      // grab the important field names
+      var groups =  String(jsonVis.encoding.x.field).split(',').map(a => a.trim())
+      var group
+      var axisComponent = ''
+      if (groups.length === 1) {
+        group = groups[0]
+      } else {
+        group = axisOverride || groups[0]
+        axisComponent = `<span>X Axis</span><select class="axis-select">${groups.map(function (g) {
+          return `<option value="${g}" ${g === (axisOverride || groups[0]) ? 'selected' : ''}>${g}</option>`
+        })}</select>`
+      }
+
+      var val = jsonVis.encoding.y.field
+      var series = jsonVis.encoding.color.field
+
+      // construct a where clause for our sql statement
+      var where = _.flatten(_.map(jsonVis.fixed, function (val, param) {
+        var vals = String(val).split(',').map(a => a.trim())
+        if (vals.length === 1) {
+          return `${param} = ${val}`
+        } else {
+          return `${param} in ${vals.join(',')}`
+        }
+      }))
+
+      // group by for sql statement, add series if necessary
+      var groupBy = [group]
+      if (series) groupBy.push(series)
+
+      // switch for getting change in var from 2015 - 2050
+      var change = jsonVis.change
+      if (change) {
+        groupBy.push('year')
+        where.push('year in 2015,2050')
+      }
+
+      // add dropdown component...
+      var dropdown = jsonVis.dropdown
+
+      var dropdownComponent = ''
+      if (dropdown && dropdown.field && dropdown.values) {
+        // ...to where clause
+        var values = dropdown.values.split(',').map(function (val) {
+          return val.trim()
+        })
+        where.push(`${dropdown.field} = ${dropdownOverride || values[0]}`)
+
+        // ...to the DOM
+        dropdownComponent = `<span>Filter</span><select class="dropdown-select">${values.map(function (val) {
+          return `<option value="${val}" ${val === (dropdownOverride || values[0]) ? 'selected' : ''}>${val}</option>`
+        })}</select>`
+      }
+
+      // keep track of the number of dependencies
+      counter++;
+      el = `#vis-${counter}`;
+      htmlChart = `<div><h2>${jsonVis.title}</h2><div id="vis-${counter}"></div>${dropdownComponent}${axisComponent}</div>`
+
+      // request the data and parse the response for our graph format
+      var postData = JSON.stringify(sqltoes({select: [`sum(${val})`], where: where, groupBy: groupBy}))
       reqwest({
         url: url,
         method: 'post',
         data: postData,
         success: function (resp) {
+          jsonVis.encoding.y.field = val
+          jsonVis.encoding.x.field = group
+          jsonVis.encoding.color.field = series
+          // find out how to parse our response
+          var wherePath = where.map(a => {
+            var b, c
+            if (a.match(' = ')) {
+              [b, c] = a.split(' = ')
+              return `where_${b}_${c}`
+            } else {
+              [b, c] = a.split(' in ')
+              return `where_${b}_multiple`
+            }
+
+          })
           jsonVis.data = {
-              values: resp.aggregations.where_commodity_rice[`where_impactparameter_${val}`][`group_by_${group}`].buckets.map(function (obj) {
-              return {
-                [group]: obj.key,
-                [val]: obj.sum_Val.value
-              }
-            })
+            values: _.flattenDeep(_.get(resp.aggregations, wherePath)[`group_by_${group}`].buckets.map(function (obj) {
+              return parseDataObject(obj, group, val, {}, change)
+            }))
           }
-          var embedSpec = {mode: "vega-lite", spec: jsonVis, renderer: "svg" };
-          vg.embed(el, embedSpec, function(error, result) {});
+          // embed the graph in the element which is awaiting it
+          var embedSpec = {mode: "vega-lite", spec: jsonVis, renderer: "svg", actions: false};
+          vg.embed(el, embedSpec, function(error, result) {
+            // after we embed it; add d3 tip
+            var tip = d3.tip().attr('class', 'd3-tip').html(function(d) {
+              // display the value or the summed value
+              return (d.datum[val] || d.datum[`sum_${val}`]).toFixed(2);
+            });
+            var vis = d3.select(`${el} svg`)
+            vis.call(tip)
+            vis.select('.marks').selectAll('*')
+               .on('mouseover', tip.show)
+               .on('mouseout', tip.hide)
+
+          });
         }
       })
 
@@ -64,11 +160,57 @@ window.onload = function () {
 	var output = document.querySelector("#visdown-output");
 
 	window.visdown = function () {
-		console.log('visdown');
 		var markdownText = input.value;
+    dropdownOverride = null
+    axisOverride = null
     output.innerHTML = marked(markdownText, { renderer: renderer });
+    document.querySelectorAll('select').forEach(s => {
+      s.addEventListener('change', (e) =>
+        secondaryUpdate()
+      )
+    })
 	}
+
+  window.secondaryUpdate = function () {
+    var markdownText = input.value;
+    dropdownOverride = document.querySelectorAll('.dropdown-select').length && document.querySelectorAll('.dropdown-select')[0].value
+    axisOverride = document.querySelectorAll('.axis-select').length && document.querySelectorAll('.axis-select')[0].value
+    output.innerHTML = marked(markdownText, { renderer: renderer });
+    document.querySelectorAll('select').forEach(s => {
+      s.addEventListener('change', (e) =>
+        secondaryUpdate()
+      )
+    })
+  }
   visdown()
+
+  function parseDataObject(obj, group, val, otherKeys, change) {
+    var nextGroup = Object.keys(obj).find(a => a.match('group_by'))
+    // we may have other groupings to parse through
+    if (nextGroup) {
+      // special parsing for change by year
+      if (nextGroup === 'group_by_year' && change) {
+        return Object.assign({}, {
+          // assumes later value in bucket 1 and early value in bucket 0
+          // divide by earlier value if we want a percentage
+          [val]: (obj[nextGroup].buckets[1][`sum_${val}`].value - obj[nextGroup].buckets[0][`sum_${val}`].value) /
+            (_.includes(['percentage', 'percent', '%', 'p'], change) ? obj[nextGroup].buckets[0][`sum_${val}`].value : 1),
+          [group]: obj.key
+        }, otherKeys)
+      } else {
+      // normal procedure
+        return obj[nextGroup].buckets.map(a => {
+          return parseDataObject(a, nextGroup.replace('group_by_', ''), val, Object.assign({}, otherKeys, { [group]: obj.key}), change)
+        })
+      }
+    } else {
+      // we're at the lowest level, make our object
+      return Object.assign({}, {
+        [group]: obj.key,
+        [val]: obj[`sum_${val}`].value
+      }, otherKeys)
+    }
+  }
 }
 </script>
 
@@ -149,6 +291,10 @@ nav #drop-nav li ul li {border-top: 0px;}
 #visdown-output {
   display: inline-block;
 }
+
+rect:hover, path:hover {
+  opacity: 0.6 !important;
+}
 </style>
 
 <textarea id="visdown-input" oninput="visdown()">
@@ -157,16 +303,23 @@ Powered by [Visdown](http://visdown.amitkaps.com/)
 
 ---
 
-
 ```vis
 mark: bar
+title: chart
 encoding:
   x:
-    type: ordinal
-    field: region
+    type: nominal
+    field: agg_continent
   y:
     type: quantitative
-    field: qsupxagg
+    field: Val
+fixed:
+  year: 2010
+  impactparameter: qdxagg
+  agg_commodity: cereals
+dropdown:
+  field: commodity
+  values: maiz, barl
 ```
 </textarea>
 <section id="visdown-output"></div>

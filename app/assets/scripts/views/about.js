@@ -4,13 +4,11 @@ import React from 'react'
 class About extends React.Component {
   render () {
     return (
-      <div className='page__about'>
-        <section className='header__internal'>
-          <div className='row'>
-            <h2 className='header--xlarge'>About</h2>
-          </div>
-        </section>
-      </div>
+      <section className='page__about'>
+        <header className='about__header'>
+          <h2>About</h2>
+        </header>
+      </section>
     )
   }
 }

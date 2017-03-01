@@ -17,11 +17,18 @@ function slugify (text) {
   .replace(/-+$/, '')             // Trim - from end of text
 }
 
+let commodities = []
+let locations = []
+let projects = []
+
 glob('app/assets/data/articles/*.md', function (err, files) {
   if (err) console.warn(err)
   const inventory = files.map(function (file) {
     var text = fm(fs.readFileSync(file).toString())
     var metadata = text.attributes
+    commodities = commodities.concat(metadata.commodities)
+    locations = locations.concat(metadata.locations)
+    projects = projects.concat(metadata.project)
     return {
       title: metadata.title,
       id: slugify(metadata.title),
@@ -39,6 +46,17 @@ glob('app/assets/data/articles/*.md', function (err, files) {
       preview: cutAt(text.body, 300).replace(/# /g, '').replace(/\n\n/g, ' ').replace(/\n/g, ' ').replace('....', '...').replace(/. #.../g, '...')
     }
   })
-  fs.writeFile('./app/assets/data/articles.json', JSON.stringify(inventory))
+  fs.writeFile('./app/assets/data/articles.json', JSON.stringify(inventory), (err) => {
+    if (err) return err
+  })
+  fs.writeFile('./app/assets/data/filter-categories.json',
+    JSON.stringify({
+      commodities: commodities.filter((value, index, self) => self.indexOf(value) === index && value && value !== 'undefined').sort(),
+      locations: locations.filter((value, index, self) => self.indexOf(value) === index && value && value !== 'undefined').sort(),
+      projects: projects.filter((value, index, self) => self.indexOf(value) === index && value && value !== 'undefined').sort()
+    }), (err) => {
+      if (err) return err
+    })
   console.log('Inventory saved to ./app/assets/data/articles.json')
+  console.log('List of filter categories saved to ./app/assets/data/filter-categories.json')
 })

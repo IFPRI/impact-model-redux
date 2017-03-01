@@ -13,7 +13,7 @@ class ListArticleCard extends React.Component {
     const date = moment(article.date, 'MM/DD/YYYY').format('MMMM D, YYYY')
     let locations = article.locations
     locations = locations
-      ?<dd>{locations.length > 1 ? commaSeparate(locations.map((loc) => translate(loc))) : translate(locations)}</dd>
+      ? <dd>{locations.length > 1 ? commaSeparate(locations.map((loc) => translate(loc))) : translate(locations)}</dd>
       : ''
 
     return (

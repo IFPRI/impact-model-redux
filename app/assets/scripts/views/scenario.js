@@ -3,45 +3,60 @@ import React from 'react'
 import { connect } from 'react-redux'
 import marked from 'marked'
 import fm from 'front-matter'
+import moment from 'moment'
+import { Link } from 'react-router'
+
+// Actions
+import { updateArticleLoading, updateArticle } from '../actions'
 
 // Utils
-import { loadText } from '../utils/load-text.js'
+import { parsePath, loadArticle } from '../utils/load-text.js'
 
 // Components
 import ProjectArticles from '../components/project-articles'
 import RelatedArticles from '../components/related-articles'
+import Loading from '../components/loading'
 
-class ScenarioBrowse extends React.Component {
+class Scenario extends React.Component {
   constructor (props, context) {
     super(props, context)
-    this.state = {
-      articleBody: '',
-      articleMetadata: {}
-    }
-    // Before component mount
-    let articleId = (this.props.location.pathname).split('/')
-    articleId = articleId[articleId.length - 1].split('?')[0]
-    const metadata = this.props.articles.find((article) => article.id === articleId)
-    loadText(metadata.url).then((text) => {
+    props.dispatch(updateArticleLoading(true))
+    const articleId = parsePath(props.location.pathname)
+    this.metadata = props.articles.find((article) => article.id === articleId)
+    loadArticle(this.metadata.url).then((text) => {
       const body = marked(fm(text).body)
-      this.setState({
-        articleMetadata: metadata,
-        articleBody: body
-      })
+      props.dispatch(updateArticle(body))
+      props.dispatch(updateArticleLoading(false))
     })
   }
 
   render () {
-    const articleMetadata = this.state.articleMetadata
+    if (this.props.articleLoading) {
+      return <Loading />
+    }
+    const articleMetadata = this.metadata
     const articles = this.props.articles
+    const date = moment(articleMetadata.date, 'M/D/YYYY').format('MMMM Do, YYYY')
     return (
       <div className='article'>
-        <header className='article__header'>
-          <h1>{this.state.articleMetadata.title}</h1>
-        </header>
-        <div className='page__article-body'>
-          <div dangerouslySetInnerHTML={{__html: this.state.articleBody}}></div>
-        </div>
+        <section className='header__internal'>
+          <div className='header-split--left'>
+            <h2 className='header--xlarge'>{articleMetadata.title}</h2>
+            <ul className='article-byline'>
+              <li>{date}</li>
+              <li>{articleMetadata.author}</li>
+            </ul>
+          </div>
+          <div className='header-split--right'>
+            <Link to={'/'} className='button button--outline'>Download Report</Link>
+            <Link to={'/'} className='button button--outline'>Share</Link>
+          </div>
+        </section>
+        <section>
+          <div className='row'>
+            <div dangerouslySetInnerHTML={{__html: this.props.article}}></div>
+          </div>
+        </section>
         <ProjectArticles articleMetadata={articleMetadata} articles={articles} />
         <RelatedArticles articleMetadata={articleMetadata} articles={articles} />
       </div>
@@ -50,8 +65,10 @@ class ScenarioBrowse extends React.Component {
 }
 
 // Set default props
-ScenarioBrowse.propTypes = {
+Scenario.propTypes = {
+  dispatch: React.PropTypes.func,
   articles: React.PropTypes.array,
+  articleLoading: React.PropTypes.bool,
   article: React.PropTypes.string,
   location: React.PropTypes.object
 }
@@ -61,9 +78,10 @@ ScenarioBrowse.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    articles: state.article.articles,
+    articles: state.article.scenarios,
+    articleLoading: state.article.articleLoading,
     article: state.article.article
   }
 }
 
-module.exports = connect(mapStateToProps)(ScenarioBrowse)
+module.exports = connect(mapStateToProps)(Scenario)
