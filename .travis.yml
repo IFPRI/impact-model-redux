@@ -27,8 +27,8 @@ before_install:
 
 before_script:
 - ./.build_scripts/lint.sh
-- npm test
 - node ./.build_scripts/articles.js
+- npm test
 
 script:
 - npm run build

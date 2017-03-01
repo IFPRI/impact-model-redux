@@ -12,7 +12,7 @@ import ListArticleCard from './list-article-card.js'
 // Constants
 import { articleBrowsePageLength } from '../constants.js'
 
-class BrowseList extends React.Component {
+export class BrowseList extends React.Component {
   constructor (props, context) {
     super(props, context)
     this.handleSortingUpdate = this.handleSortingUpdate.bind(this)
