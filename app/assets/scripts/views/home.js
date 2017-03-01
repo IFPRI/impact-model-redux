@@ -1,7 +1,7 @@
 'use strict'
 import React from 'react'
 
-class Home extends React.Component {
+export class Home extends React.Component {
   render () {
     return (
       <section className='page__home'>
@@ -11,10 +11,6 @@ class Home extends React.Component {
       </section>
     )
   }
-}
-
-// Set default props
-Home.propTypes = {
 }
 
 export default Home

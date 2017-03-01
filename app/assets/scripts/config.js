@@ -19,7 +19,7 @@ var defaultsDeep = require('lodash.defaultsdeep')
  *      polluting the repo.
  */
 
-const configurations = {
+var configurations = {
   local: require('./config/local.js'),
   staging: require('./config/staging.js'),
   production: require('./config/production.js')

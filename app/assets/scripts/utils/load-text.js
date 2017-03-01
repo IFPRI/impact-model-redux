@@ -1,12 +1,10 @@
 'use strict'
+import fetch from 'isomorphic-fetch'
 
-export const parsePath = (path) => {
-  const articleId = (path).split('/')
-  return articleId[articleId.length - 1].split('?')[0]
-}
+import config from '../config'
 
-export const loadArticle = (url) => {
-  return fetch(url)
+export const loadText = (url) => {
+  return fetch(`${config.baseUrl}/${url}`)
     .then((response) => {
       if (response.status === 200) {
         return response.text()

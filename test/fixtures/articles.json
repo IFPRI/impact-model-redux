@@ -1,82 +1,88 @@
 [
   {
-    "title": "A Id Occaecati",
-    "id": "a-id-occaecati",
-    "author": "Rolando Metz",
-    "date": "5/24/2016",
-    "url": "assets/data/articles/a-id-occaecati.md",
-    "type": "brief",
+    "title": "A Quia Voluptas",
+    "id": "a-quia-voluptas",
+    "author": "Vincent Block",
+    "date": "11/8/2016",
+    "url": "assets/data/articles/a-quia-voluptas.md",
+    "type": "scenario",
     "project": "Deepmind",
     "locations": [
-      "AGO",
-      "BFA",
-      "MEX",
+      "ALB",
       "LVA"
     ],
     "commodities": [
-      "opul",
-      "pkrl"
+      "plol"
     ],
     "tags": [
-      "rice",
-      "famine"
+      "nutrition",
+      "climate-change",
+      "baseline",
+      "improved-varieties"
     ],
     "scenarios": [
-      "SSP2_GFDL_DTOL_RICE",
-      "SSP2_GFDL_CBIOL3_CASS",
-      "SSP2_NOCC_CBIOL3_CASS",
-      "SSP2_GFDL_HTOL_MAIZ",
-      "SSP2_GFDL_DTOL_WHEA",
-      "SSP2_GFDL_D_H_Y_GN",
       "SSP2_NOCC_DTOL_WHEA",
-      "SSP2_NOCC_DTOL_MAIZ",
-      "SSP2_GFDL_MealyBug_CASS"
+      "SSP2_NOCC_D_H_Y_GN",
+      "SSP2_GFDL_MealyBug_CASS",
+      "SSP2_NOCC_HTOL_POT",
+      "SSP2_NOCC_D_H_POT",
+      "SSP2_GFDL_HTOL_POT",
+      "SSP2_GFDL_DTOL_GN",
+      "SSP2_NOCC_HTOL_GN",
+      "SSP2_GFDL_DTOL_WHEA",
+      "SSP2_NOCC_CBIOL3_CASS",
+      "SSP2_GFDL_D_H_WHEA"
     ],
     "resources": [
-      "https://carter.net",
-      "https://lilian.biz",
-      "https://daphney.name",
-      "http://oleta.net",
-      "https://jairo.net"
+      "https://devan.info",
+      "http://myah.info",
+      "https://erin.org",
+      "https://katlyn.com"
     ],
-    "preview": "Quod Impedit Amet Nihil est totam voluptatem. Et exercitationem consectetur velit quae non quia. Non ea aut et in voluptas reprehenderit quos. Natus Error Voluptatum Facilis occaecati ratione aspernatur non quam sunt. Voluptatem quia odit maxime animi. Consequatur quidem quidem nam sed illo id..."
+    "preview": "Dolores Aliquam Ad Atque optio illo velit necessitatibus et autem qui. Excepturi eos molestias inventore consequuntur. Dolor voluptatibus optio aut. Itaque maiores voluptates velit nesciunt nihil asperiores eaque. Est exercitationem rerum sit quod repudiandae unde. Enim cupiditate odio eligendi..."
   },
   {
-    "title": "A Molestiae Aut",
-    "id": "a-molestiae-aut",
-    "author": "Jasper Runolfsdottir",
-    "date": "12/15/2016",
-    "url": "assets/data/articles/a-molestiae-aut.md",
+    "title": "Accusantium Eos Corporis",
+    "id": "accusantium-eos-corporis",
+    "author": "Berta Schiller",
+    "date": "11/3/2016",
+    "url": "assets/data/articles/accusantium-eos-corporis.md",
     "type": "brief",
-    "project": "Bride of Buster",
+    "project": "Deepmind",
     "locations": [
-      "AGO"
+      "ALB",
+      "CHL",
+      "LAO",
+      "TUR"
     ],
-    "commodities": null,
+    "commodities": [
+      "lent",
+      "rpol",
+      "fodr",
+      "cott"
+    ],
     "tags": [
-      "legumes",
-      "food-relief"
+      "improved-varieties",
+      "famine",
+      "rice"
     ],
     "scenarios": [
-      "SSP2_NOCC_CBIOL1_CASS",
-      "SSP2_GFDL_HTOL_MAIZ",
-      "SSP2_GFDL_CBIOL3_CASS",
-      "SSP2_NOCC_DTOL_POT",
-      "SSP2_GFDL_HTOL_GN",
-      "SSP2_NOCC_DTOL_WHEA",
-      "SSP2_NOCC_HTOL_MAIZ",
+      "SSP2_GFDL_DTOL_WHEA",
+      "SSP2_GFDL_D_H_WHEA",
       "SSP2_NOCC_D_H_WHEA",
-      "SSP2_GFDL_HTOL_WHEA",
+      "SSP2_GFDL_HTOL_GN",
       "SSP2_GFDL_DTOL_RICE",
-      "SSP2_GFDL_MealyBug_CASS"
+      "SSP2_GFDL_HTOL_WHEA",
+      "SSP2_GFDL_CBIOL3_CASS",
+      "SSP2_NOCC_HTOL_GN",
+      "SSP2_GFDL_CBIOL2_CASS"
     ],
     "resources": [
-      "http://stuart.com",
-      "http://weldon.org",
-      "http://shawna.biz",
-      "https://rick.org",
-      "https://arielle.net"
+      "http://karianne.net",
+      "http://ottis.com",
+      "http://marisol.net",
+      "http://raphaelle.info"
     ],
-    "preview": "Facilis Similique Natus Voluptatem exercitationem quibusdam repellat explicabo aperiam ex consequatur accusantium. Id enim vel aut. Delectus et atque nostrum optio ea. Voluptatibus Tempore Ut Et qui quisquam. Quos non aut magni est est est velit temporibus fugiat. Porro dolorum ipsum itaque..."
+    "preview": "Quis Praesentium Quisquam Vel rerum commodi vel modi omnis et quod. Nam aut et quasi unde. Architecto eligendi nihil doloribus est quisquam et. Sit Aut Dolorem Atque dolorum ea autem cum voluptatem corrupti sunt voluptas illum. Exercitationem eaque rem quam illum quis nostrum dolorem fuga. Ut..."
   }
 ]

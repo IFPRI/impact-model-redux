@@ -1,7 +1,7 @@
 'use strict'
 import React from 'react'
 
-class Contact extends React.Component {
+export class Contact extends React.Component {
   render () {
     return (
       <section className='page__contact'>
@@ -13,10 +13,6 @@ class Contact extends React.Component {
       </section>
     )
   }
-}
-
-// Set default props
-Contact.propTypes = {
 }
 
 export default Contact
