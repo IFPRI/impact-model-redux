@@ -1,7 +1,10 @@
 'use strict'
+import fetch from 'isomorphic-fetch'
 
-export const loadArticle = (url) => {
-  return fetch('http://localhost:3000/' + url)
+import config from '../utils'
+
+export const loadText = (url) => {
+  return fetch(`${config.baseUrl}/${url}`)
     .then((response) => {
       if (response.status === 200) {
         return response.text()

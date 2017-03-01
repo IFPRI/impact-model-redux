@@ -1,8 +1,7 @@
-import fetch from 'isomorphic-fetch'
 import marked from 'marked'
 import fm from 'front-matter'
 
-import config from '../config.js'
+import loadText from '../utils/load-text'
 
 export const UPDATE_ARTICLES = 'UPDATE_ARTICLES'
 export const UPDATE_ARTICLE_FILTERS = 'UPDATE_ARTICLE_FILTERS'
@@ -37,10 +36,8 @@ export const updateArticle = (article) => {
 export const fetchArticle = (url) => {
   return (dispatch) => {
     dispatch(updateArticleLoading(true))
-    return fetch(`${config.baseUrl}/${url}`)
-    .then(response => {
-      return response.text()
-    }).then(text => {
+    loadText(url)
+    .then(text => {
       text = marked(fm(text).body)
       dispatch(updateArticle(text))
       dispatch(updateArticleLoading(false))
