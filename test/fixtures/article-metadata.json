@@ -1,0 +1,42 @@
+{
+  "title": "A Id Occaecati",
+  "id": "a-id-occaecati",
+  "author": "Rolando Metz",
+  "date": "5/24/2016",
+  "url": "assets/data/articles/a-id-occaecati.md",
+  "type": "brief",
+  "project": "Deepmind",
+  "locations": [
+    "AGO",
+    "BFA",
+    "MEX",
+    "LVA"
+  ],
+  "commodities": [
+    "opul",
+    "pkrl"
+  ],
+  "tags": [
+    "rice",
+    "famine"
+  ],
+  "scenarios": [
+    "SSP2_GFDL_DTOL_RICE",
+    "SSP2_GFDL_CBIOL3_CASS",
+    "SSP2_NOCC_CBIOL3_CASS",
+    "SSP2_GFDL_HTOL_MAIZ",
+    "SSP2_GFDL_DTOL_WHEA",
+    "SSP2_GFDL_D_H_Y_GN",
+    "SSP2_NOCC_DTOL_WHEA",
+    "SSP2_NOCC_DTOL_MAIZ",
+    "SSP2_GFDL_MealyBug_CASS"
+  ],
+  "resources": [
+    "https://carter.net",
+    "https://lilian.biz",
+    "https://daphney.name",
+    "http://oleta.net",
+    "https://jairo.net"
+  ],
+  "preview": "Quod Impedit Amet Nihil est totam voluptatem. Et exercitationem consectetur velit quae non quia. Non ea aut et in voluptas reprehenderit quos. Natus Error Voluptatum Facilis occaecati ratione aspernatur non quam sunt. Voluptatem quia odit maxime animi. Consequatur quidem quidem nam sed illo id..."
+}

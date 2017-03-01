@@ -1,6 +1,5 @@
 'use strict'
 import React from 'react'
-import { connect } from 'react-redux'
 import _ from 'lodash'
 import c from 'classnames'
 
@@ -8,7 +7,7 @@ import c from 'classnames'
 import PageHeader from '../components/page-header'
 import PageFooter from '../components/page-footer'
 
-class App extends React.Component {
+export class App extends React.Component {
   //
   // Start render methods
   //
@@ -32,12 +31,4 @@ App.propTypes = {
   children: React.PropTypes.object
 }
 
-// /////////////////////////////////////////////////////////////////// //
-// Connect functions
-
-const mapStateToProps = (state) => {
-  return {
-  }
-}
-
-module.exports = connect(mapStateToProps)(App)
+export default App
