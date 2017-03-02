@@ -20,7 +20,7 @@
     "serve": "node ./.build_scripts/article-metadata.js && gulp collecticons && DS_ENV=development NODE_ENV=development gulp serve",
     "build": "node ./.build_scripts/placeholder-articles.js && ./.build_scripts/article-metadata.js && gulp collecticons && DS_ENV=production NODE_ENV=production gulp",
     "lint": "eslint app/assets/scripts/ --ext .js",
-    "test": "node DS_ENV=testing nyc ava test -c 4",
+    "test": "DS_ENV=testing nyc ava test -c 4",
     "report": "nyc report"
   },
   "ava": {
