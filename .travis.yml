@@ -23,11 +23,13 @@ cache:
 before_install:
 - chmod +x ./.build_scripts/deploy.sh
 - chmod +x ./.build_scripts/lint.sh
-- chmod +x ./.build_scripts/articles.js
+- chmod +x ./.build_scripts/article-metadata.js
+- chmod +x ./.build_scripts/placeholder-articles.js
 
 before_script:
 - ./.build_scripts/lint.sh
-- node ./.build_scripts/articles.js
+- node ./.build_scripts/article-metadata.js
+- node ./.build_scripts/placeholder-articles.js
 - npm test
 
 script:
