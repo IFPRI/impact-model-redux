@@ -3,22 +3,31 @@ h1, h2, h3, h4, h5, h6 {
   color: $header-color;
 }
 
-.header--xxlarge {
+h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, h5 a, h5 a:visited, h6 a, h6 a:visited {
+  color: $header-color;
+}
+
+.header--xxxlarge {
   font-size: 4.714em;
   font-weight: $header-light;
 }
 
-.header--xlarge {
+.header--xxlarge { 
   font-size: 4.286em;
   font-weight: $header-light;
 }
 
-.header--large {
+.header--xlarge { 
   font-size: 2.571em;
+  font-weight: $header-light;
+}
+
+.header--large {
+  font-size: 2.429em;
 }
 
 .header--medium {
-  font-size: 2.429em;
+  font-size: 1.57em;
 }
 
 .header--small {
@@ -33,4 +42,15 @@ h1, h2, h3, h4, h5, h6 {
 .sub-description {
   color: $grey;
   font-size: .852em;
+}
+
+.metadata-italic {
+  color: $light-grey;
+  font-style: italic;
+  font-size: .75em;
+  margin-top: -5px;
+}
+
+dt {
+  color: $header-color;
 }

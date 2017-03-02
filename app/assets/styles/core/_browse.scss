@@ -23,68 +23,39 @@
 .browse__article-list {
   display: inline-block;
   width: calc(100% - 20rem);
-  .article-list__header {
-    margin: 3rem 0 2rem 0;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid $light-grey;
-    h5 {
-      float: left;
-      color: $light-grey;
-      font-size: 1.5rem;
-      font-weight: 800;
-      .result-count {
-        color: $light-grey;
-      }
-    }
-    .article-list__sort-menu {
-      float: right;
-      margin-right: 3rem;
-      font-size: 1rem;
-    }
-  }
   .article-list-card {
-    color: $light-grey;
     float: left;
-    margin: 0 3rem 1.5rem 0;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid $light-grey;
-    a {
-      text-decoration: none;
-      color: $light-grey;
-      transition: all 0.2s linear;
-      &:hover {
-        text-decoration: underline;
-        color: lighten($light-grey, 20);
-      }
+    margin-bottom: 3em;
+    border: 1px solid darken($lightest-grey, 10%);
+    .article-list-card__header {
+      padding: 1.8em 2.2em .8em;
+      min-height: 9em;
     }
-    .article-list-card__title {
-      h4 {
-        font-size: 1.5rem;
-        font-weight: 800;
-        float: left;
-      }
-      span {
-        font-style: italic;
-        font-weight: 400;
-        font-size: 0.85rem;
-        float: right;
-      }
+    .metadata-italic {
+      display: block;
+      margin-top: 1px;
+      margin-bottom: 1em;
+    }
+    dt, dd {
+      float: left;
+    }
+    dd {
+      margin-right: 2em;
     }
     .article-list-card__meta {
-      font-size: 0.85rem;
-      float: left;
-      clear: left;
-      font-weight: 200;
-      margin: 0.235rem 0 0.35rem 0;
-      b {
-        font-weight: 600;
-      }
+      @extend .clearfix;
+      display: inline-block;
+      font-size: 0.75rem;
+      width: 100%;
+      padding: 1em 2.2em;
+      box-sizing: border-box;
+      background-color: darken($lightest-grey, 2%);
+      border-top: 1px solid darken($lightest-grey, 7%);
+      vertical-align: bottom;
+      box-sizing: border-box;
     }
     .article-list-card__body {
-      font-size: 0.85rem;
-      float: left;
-      clear:left;
-      font-weight: 200;
+      font-size: 0.75rem;
       margin-bottom: 0.75rem;
       max-width: 80%
     }

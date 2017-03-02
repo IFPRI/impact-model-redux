@@ -49,3 +49,9 @@ a, a:visited {
     color: $black;
   }
 }
+
+dt {
+  font-weight: $base-font-bold;
+  float: left;
+  margin-right: .7em;
+} 
