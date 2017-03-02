@@ -51,6 +51,7 @@
       background-color: darken($lightest-grey, 2%);
       border-top: 1px solid darken($lightest-grey, 7%);
       vertical-align: bottom;
+      box-sizing: border-box;
     }
     .article-list-card__body {
       font-size: 0.75rem;
