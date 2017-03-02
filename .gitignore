@@ -41,6 +41,7 @@ app/assets/scripts/config/local.js
 app/assets/styles/core/_collecticons.scss
 app/assets/data/articles.json
 app/assets/data/filter-categories.json
+app/assets/data/articles/*
 
 ################################################
 # Dependencies

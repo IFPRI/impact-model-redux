@@ -154,10 +154,6 @@ function pickRandomTags () {
   tagSet.forEach(tag => uniqueTags.push(tag))
   return uniqueTags
 }
-function replaceAll (name, search, replacement) {
-  var target = this
-  return target.replace(new RegExp(search, 'g'), replacement)
-}
 
 var figure = `%!%vis
 mark: bar
@@ -181,7 +177,7 @@ dropdown:
 function generateMock (i) {
   var name = faker.fake('{{lorem.words}}')
   var title = toTitleCase(name)
-  var fileName = replaceAll(name, ' ', '-')
+  var fileName = name.replace(/ /g, '-')
   var author = pickRandomAuthor()
   var date = faker.fake('{{date.past}}')
   date = new Date(date)
