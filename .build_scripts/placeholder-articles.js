@@ -3,6 +3,7 @@
 ************/
 
 var faker = require('faker')
+var glob = require('glob')
 var fs = require('fs')
 
 function toTitleCase (str) {
@@ -247,6 +248,18 @@ ${article}`
 
   fs.writeFileSync(`./app/assets/data/articles/${fileName}.md`, output)
 }
+
+glob('app/assets/data/articles/*.md', (err, files) => {
+  if (err) console.warn(err)
+  files.forEach((file) => {
+    fs.stat(file, (err, stats) => {
+      if (err) console.warn(err)
+      fs.unlink(file, (err) => {
+        if (err) console.warn(err)
+      })
+    })
+  })
+})
 
 for (let i = 0; i < 300; i++) {
   generateMock(i)
