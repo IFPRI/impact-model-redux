@@ -35,25 +35,50 @@ body {
   width: auto;
 }
 
+.row--shortened {
+  max-width: 980px;
+}
+
 a, a:visited {
   text-decoration: none;
 }
 
 .header__internal {
-  background-color: $darkest-blue;
-  padding-top: 185px;
+  height: 300px;
+  background-color: $medium-blue;
+  position: relative;
+  @extend .clearfix;
+  .split__internal--left {
+    width: 57%;
+  }
 }
 
 .header__internal, .home__header {
+  margin-bottom: 4em;
   h2 {
     color: #fff;
   }
   p {
     color: $black;
-    font-size: 1.2em;
     line-height: 1.7em;
     max-width: 90%;
   }
+}
+
+.home__header {
+  p {
+    font-size: 1.2em;
+    width: 83%;
+  }
+}
+
+.section__internal {
+  padding-bottom: 5em;
+}
+
+.browse__header-text {
+  margin-top: 6em;
+  width: 60%;
 }
 
 dt {
