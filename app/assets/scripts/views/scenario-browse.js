@@ -18,7 +18,7 @@ export class ScenarioBrowse extends React.Component {
             </div>
           </div>
         </header>
-        <section> 
+        <section>
           <div className='row'>
             <BrowseFilters
               dispatch={this.props.dispatch}
