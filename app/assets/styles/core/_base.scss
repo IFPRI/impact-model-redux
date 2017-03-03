@@ -39,6 +39,10 @@ a, a:visited {
   text-decoration: none;
 }
 
+.section__padding {
+  padding: 4em 0 7em;
+}
+
 .header__internal {
   background-color: $darkest-blue;
   padding-top: 185px;
@@ -54,6 +58,10 @@ a, a:visited {
     line-height: 1.7em;
     max-width: 90%;
   }
+}
+
+section {
+  width: 100%;
 }
 
 dt {
