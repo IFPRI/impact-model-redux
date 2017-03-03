@@ -7,7 +7,7 @@ export class Home extends React.Component {
     return (
       <div className='page__home'>
         <header className='home__header'>
-          <div className='row'>
+          <div className='row row--shortened'>
             <div className='home__header-split--left'>
               <div className='home__header-split--left__content'>
                 <h2 className='header--xxxlarge'>Answering Questions About Our World’s Food Supply</h2>
@@ -20,8 +20,8 @@ export class Home extends React.Component {
             </div>
           </div>
         </header>
-        <section>
-          <div className='row'>
+        <section className='section__internal'>
+          <div className='row row--shortened'>
             <h3 className='header--xlarge'>Featured Projects</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et dui gravida, posuere diam id, congue augue. Pellentesque nec purus ex.</p>
             <ul>
@@ -38,8 +38,8 @@ export class Home extends React.Component {
             </ul>
           </div>
         </section>
-        <section className='section__secondary'>
-          <div className='row'>
+        <section className='section__internal'>
+          <div className='row row--shortened'>
             <h4 className='header--large'>Recently Added Briefs</h4>
             <ul>
               <li>
