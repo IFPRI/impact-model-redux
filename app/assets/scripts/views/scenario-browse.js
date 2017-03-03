@@ -13,23 +13,27 @@ export class ScenarioBrowse extends React.Component {
         <header className='header__internal'>
           <div className='row'>
             <div className='browse__header-text'>
-              <h2 className='header--xlarge'>Scenarios</h2>
+              <h2 className='header--xxlarge'>Scenarios</h2>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut augue aliquet ligula aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut augue aliquet ligula aliquam.</p>
             </div>
           </div>
         </header>
-        <BrowseFilters
-          dispatch={this.props.dispatch}
-          articleFilters={this.props.articleFilters}
-        />
-        <BrowseList
-          dispatch={this.props.dispatch}
-          articles={this.props.articles}
-          articleFilters={this.props.articleFilters}
-          articleSorting={this.props.articleSorting}
-          articlePage={this.props.articlePage}
-          path={this.props.route.path}
-        />
+        <section> 
+          <div className='row'>
+            <BrowseFilters
+              dispatch={this.props.dispatch}
+              articleFilters={this.props.articleFilters}
+            />
+            <BrowseList
+              dispatch={this.props.dispatch}
+              articles={this.props.articles}
+              articleFilters={this.props.articleFilters}
+              articleSorting={this.props.articleSorting}
+              articlePage={this.props.articlePage}
+              path={this.props.route.path}
+            />
+          </div>
+        </section>
       </section>
     )
   }

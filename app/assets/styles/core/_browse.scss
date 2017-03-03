@@ -22,7 +22,7 @@
 
 .browse__article-list {
   display: inline-block;
-  width: calc(100% - 20rem);
+  width: 72%;
   .article-list-card {
     float: left;
     margin-bottom: 3em;
@@ -111,7 +111,8 @@
   color: $light-grey;
   float: left;
   display: inline-block;
-  width: 20rem;
+  width: 25%;
+  margin-right: 3%;
   .filters__header {
     margin: 3rem 0 0 2rem;
     h2 {
