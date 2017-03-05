@@ -17,9 +17,9 @@ export class RelatedArticles extends React.Component {
       })
       : ''
     return (
-      <section className='page__related-articles-list'>
+      <section className='page__related-articles-list section__padding'>
         <div className='row'>
-          <h3>Related Articles</h3>
+          <h4 className='header--large section__header'>Related Articles</h4>
           {articles}
         </div>
       </section>

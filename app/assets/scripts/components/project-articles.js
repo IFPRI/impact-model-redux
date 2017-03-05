@@ -18,9 +18,9 @@ export class ProjectArticles extends React.Component {
       })
       : ''
     return (
-      <section className='page__project-articles-list'>
+      <section className='page__project-articles-list section__padding '>
         <div className='row'>
-          <h3>Other Articles in {project}</h3>
+          <h4 className='header--large section__header'>Other Articles in {project}</h4>
           {articles}
         </div>
       </section>

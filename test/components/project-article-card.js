@@ -9,5 +9,5 @@ import articleMetadata from '../fixtures/article-metadata.json'
 test('project-article-card test', t => {
   const component = shallow(<ProjectArticleCard article={articleMetadata} />)
 
-  t.truthy(component.hasClass('article-card__link--project'))
+  t.truthy(component.hasClass('article-card--project'))
 })
