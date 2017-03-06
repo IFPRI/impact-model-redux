@@ -156,8 +156,7 @@ function pickRandomTags () {
   return uniqueTags
 }
 
-var figure = `%!%vis
-type: chart
+var figure = `%!%chart
 mark: bar
 title: chart
 encoding:

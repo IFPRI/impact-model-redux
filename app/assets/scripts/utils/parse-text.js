@@ -8,9 +8,9 @@ export const setupRenderer = () => {
   const renderer = new marked.Renderer()
   renderer.code = (code, lang, escaped) => {
     const data = yaml.load(code)
-    if (data.type === 'chart') {
+    if (lang === 'chart') {
       return makeChart(data)
-    } else if (data.type === 'map') {
+    } else if (lang === 'map') {
       return makeMap(data)
     }
   }
