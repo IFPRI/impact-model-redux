@@ -12,6 +12,7 @@ export const UPDATE_ARTICLE_SORTING = 'UPDATE_ARTICLE_SORTING'
 export const UPDATE_ARTICLE_PAGE = 'UPDATE_ARTICLE_PAGE'
 export const UPDATE_ARTICLE_LOADING = 'UPDATE_ARTICLE_LOADING'
 export const UPDATE_ARTICLE = 'UPDATE_ARTICLE'
+export const UPDATE_FIGURES = 'UPDATE_FIGURES'
 
 export const updateArticles = (articles) => {
   return { type: UPDATE_ARTICLES, data: articles }
@@ -29,6 +30,10 @@ export const updateArticlePage = (articlePage) => {
   return { type: UPDATE_ARTICLE_PAGE, data: articlePage }
 }
 
+export const updateFigures = (figure) => {
+  return { type: UPDATE_FIGURES, data: figure }
+}
+
 // < internal article fetching actions
 export const updateArticleLoading = (bool) => {
   return { type: UPDATE_ARTICLE_LOADING, data: bool }
@@ -43,6 +48,7 @@ export const fetchArticle = (url) => {
     .then(text => {
       text = marked(fm(text).body, {renderer: renderer})
       dispatch(updateArticle(text))
+      // dispatch(updateFigures())
       dispatch(updateArticleLoading(false))
     })
   .catch(error => {

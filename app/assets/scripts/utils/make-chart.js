@@ -1,5 +1,5 @@
-import sqltoes from 'sqltoes'
 import fetch from 'isomorphic-fetch'
+import sqltoes from 'sqltoes'
 import _ from 'lodash'
 
 import config from '../config'
