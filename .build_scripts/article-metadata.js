@@ -3,12 +3,12 @@ var glob = require('glob')
 var fm = require('front-matter')
 
 // Extract n characters of preview text, rounded to the closest full word
-function cutAt (text, characters) {
+const cutAt = (text, characters) => {
   var lastCharacter = text.lastIndexOf(' ', characters)
   return text.substring(0, lastCharacter) + '...'
 }
 
-function slugify (text) {
+const slugify = (text) => {
   return text.toString().toLowerCase()
   .replace(/\s+/g, '-')           // Replace spaces with -
   .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
@@ -21,11 +21,11 @@ let commodities = []
 let locations = []
 let projects = []
 
-glob('app/assets/data/articles/*.md', function (err, files) {
+glob('app/assets/data/articles/*.md', (err, files) => {
   if (err) console.warn(err)
-  const inventory = files.map(function (file) {
-    var text = fm(fs.readFileSync(file).toString())
-    var metadata = text.attributes
+  const inventory = files.map((file) => {
+    const text = fm(fs.readFileSync(file).toString())
+    const metadata = text.attributes
     commodities = commodities.concat(metadata.commodities)
     locations = locations.concat(metadata.locations)
     projects = projects.concat(metadata.project)

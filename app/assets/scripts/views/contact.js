@@ -7,7 +7,10 @@ export class Contact extends React.Component {
       <section className='page__contact'>
         <header className='header__internal'>
           <div className='row'>
-            <h2 className='header--xlarge'>Contact Us</h2>
+            <div className='browse__header-text'>
+              <h2 className='header--xxlarge'>Contact</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut augue aliquet ligula aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut augue aliquet ligula aliquam.</p>
+            </div>
           </div>
         </header>
       </section>

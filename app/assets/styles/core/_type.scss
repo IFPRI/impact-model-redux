@@ -8,12 +8,14 @@ h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, 
 }
 
 .header--xxxlarge {
-  font-size: 4.714em;
+  font-size: 4em;
   font-weight: $header-light;
+  line-height: 1.2em;
+  margin-bottom: .2em;
 }
 
 .header--xxlarge { 
-  font-size: 4.286em;
+  font-size: 3.56em;
   font-weight: $header-light;
 }
 
@@ -23,15 +25,17 @@ h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, 
 }
 
 .header--large {
-  font-size: 2.429em;
+  font-size: 2.28em;
+  font-weight: $header-light;
 }
 
 .header--medium {
-  font-size: 1.57em;
+  font-size: 2em;
+  font-weight: $header-light;
 }
 
 .header--small {
-  font-size: 1.571em;
+  font-size: 1.45em;
   font-weight: $header-bold;
 }
 
@@ -53,4 +57,8 @@ h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, 
 
 dt {
   color: $header-color;
+}
+
+.section__header {
+  margin-bottom: .8em;
 }

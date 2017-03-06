@@ -1,11 +1,41 @@
 .page__home {
-  width: 100%;
-  padding: 4rem 0 4rem 0;
   .home__header {
-    text-align: center;
-    h2 {
-      font-size: 3rem;
-      font-weight: 800;
-    }
+    background-color: $medium-blue;
+    position: relative;
+    @extend .clearfix;
+    height: 500px;
+  }
+}
+
+.home__header-split--left {
+  width: 52%;
+  position: absolute;
+  background-color: $darkest-blue;
+  height: 100%;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -50em;
+    background: $darkest-blue;
+    height: 100%;
+    width: 50em;
+  }
+}
+
+.home__header-split--left__content {
+  padding: 6em 6em 0 0;
+}
+
+.home__header-split--right {
+  width: 30%;
+  margin-left: 10em;
+  position: absolute;
+  right: 0;
+  margin-top: 8em;
+  a {
+    min-width: 7em;
+    margin-bottom: 1em;
   }
 }

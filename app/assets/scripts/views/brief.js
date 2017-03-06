@@ -26,16 +26,20 @@ export class Brief extends React.Component {
     return (
       <div className='page__article'>
         <section className='header__internal'>
-          <div className='header-split--left'>
-            <h2 className='header--xlarge'>{articleMetadata.title}</h2>
-            <ul className='article-byline'>
-              <li>{date}</li>
-              <li>{articleMetadata.author}</li>
-            </ul>
-          </div>
-          <div className='header-split--right'>
-            <Link to={'/'} className='button button--outline'>Download Report</Link>
-            <Link to={'/'} className='button button--outline'>Share</Link>
+          <div className='row'>
+            <div className='home__header-split--left split__internal--left'>
+              <div className='home__header-split--left__content'>
+                <h2 className='header--xxlarge'>{articleMetadata.title}</h2>
+                <ul className='article-byline'>
+                  <li>{date}</li>
+                  <li>{articleMetadata.author}</li>
+                </ul>
+              </div>
+            </div>
+            <div className='home__header-split--right'>
+              <Link to={'/'} className='button button--outline'>Download Report</Link>
+              <Link to={'/'} className='button button--outline'>Share</Link>
+            </div>
           </div>
         </section>
         {this.props.articleLoading
