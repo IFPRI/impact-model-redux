@@ -157,6 +157,7 @@ function pickRandomTags () {
 }
 
 var figure = `%!%vis
+type: chart
 mark: bar
 title: chart
 encoding:

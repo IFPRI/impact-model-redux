@@ -2,6 +2,9 @@ import marked from 'marked'
 import fm from 'front-matter'
 
 import { loadText } from '../utils/load-text'
+import { setupRenderer } from '../utils/parse-text'
+
+const renderer = setupRenderer()
 
 export const UPDATE_ARTICLES = 'UPDATE_ARTICLES'
 export const UPDATE_ARTICLE_FILTERS = 'UPDATE_ARTICLE_FILTERS'
@@ -38,7 +41,7 @@ export const fetchArticle = (url) => {
     dispatch(updateArticleLoading(true))
     loadText(url)
     .then(text => {
-      text = marked(fm(text).body)
+      text = marked(fm(text).body, {renderer: renderer})
       dispatch(updateArticle(text))
       dispatch(updateArticleLoading(false))
     })
