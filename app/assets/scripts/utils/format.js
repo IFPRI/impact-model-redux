@@ -13,4 +13,4 @@ export const toTitleCase = (str) => {
   })
 }
 
-export const formatNumber = (number) => parseInt(number).toLocaleString()
+export const formatNumber = (number, label) => Math.round(number[label]).toLocaleString()

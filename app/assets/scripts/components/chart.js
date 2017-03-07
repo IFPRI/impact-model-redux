@@ -1,7 +1,7 @@
 'use strict'
 import React from 'react'
 import _ from 'lodash'
-import { HorizontalBar } from '../../../../node_modules/react-chartjs-2'
+import ChartJS from 'chart.js'
 
 // Actions
 import { parseChart } from '../utils/make-chart'
@@ -16,12 +16,6 @@ import translation from '../../data/translation'
 import { nineColorPalette } from '../constants'
 
 export class Chart extends React.Component {
-  constructor (props, context) {
-    super(props, context)
-    this.state = {
-      chart: ''
-    }
-  }
   componentDidMount () {
     const { name, data } = this.props
     const field = data.encoding.x.field
@@ -37,24 +31,34 @@ export class Chart extends React.Component {
         chart.labels.push(translation[item[field]])
         chart.datasets[0].data.push(item.Val)
       })
-      this.setState({chart: <HorizontalBar data={chart} />})
+
+      const ctx = document.getElementById(`chart-${name}`).getContext('2d')
+      this.chart = new ChartJS(ctx, {
+        type: data.mark,
+        options: {
+          tooltips: {
+            callbacks: {
+              label: (tooltipItem, data) => formatNumber(tooltipItem, 'yLabel')
+            }
+          }
+        },
+        data: chart
+      })
     })
   }
 
   render () {
     return (
-      <div>
-        {this.state.chart
-          ? this.state.chart
-          : ''}
-      </div>
+      <canvas
+        id={`chart-${this.props.name}`}>
+      </canvas>
     )
   }
 }
 
 Chart.propTypes = {
-  data: React.PropTypes.object,
-  chart: React.PropTypes.string
+  name: React.PropTypes.string,
+  data: React.PropTypes.object
 }
 
 export default Chart
