@@ -19,7 +19,7 @@ export const initialState = {
   articlePage: 0,
   articleLoading: false,
   article: '',
-  figures: []
+  figures: {}
 }
 
 export default (state = initialState, action) => {

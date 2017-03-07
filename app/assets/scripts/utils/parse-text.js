@@ -1,20 +1,21 @@
 import marked from 'marked'
 import yaml from 'js-yaml'
 
-import makeChart from './make-chart'
-import makeMap from './make-map'
-
-import { updateFigures } from '../actions'
-
 export const setupRenderer = () => {
+  const figures = {}
   const renderer = new marked.Renderer()
   renderer.code = (code, lang, escaped) => {
     const data = yaml.load(code)
+    const id = `${lang}-${data.title}`
+    figures[id] = data
     if (lang === 'chart') {
-      return `<figure class="chart-${data.title}"></figure>`
+      return `<figure class="${id}"></figure>`
     } else if (lang === 'map') {
-      return `<figure class="map-${data.title}"></figure>`
+      return `<figure class="${id}"></figure>`
     }
   }
-  return renderer
+  return {
+    renderer: renderer,
+    figures: figures
+  }
 }

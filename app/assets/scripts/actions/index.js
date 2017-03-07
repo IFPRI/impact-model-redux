@@ -4,8 +4,6 @@ import fm from 'front-matter'
 import { loadText } from '../utils/load-text'
 import { setupRenderer } from '../utils/parse-text'
 
-const renderer = setupRenderer()
-
 export const UPDATE_ARTICLES = 'UPDATE_ARTICLES'
 export const UPDATE_ARTICLE_FILTERS = 'UPDATE_ARTICLE_FILTERS'
 export const UPDATE_ARTICLE_SORTING = 'UPDATE_ARTICLE_SORTING'
@@ -30,8 +28,8 @@ export const updateArticlePage = (articlePage) => {
   return { type: UPDATE_ARTICLE_PAGE, data: articlePage }
 }
 
-export const updateFigures = (figure) => {
-  return { type: UPDATE_FIGURES, data: figure }
+export const updateFigures = (figures) => {
+  return { type: UPDATE_FIGURES, data: figures }
 }
 
 // < internal article fetching actions
@@ -46,9 +44,10 @@ export const fetchArticle = (url) => {
     dispatch(updateArticleLoading(true))
     loadText(url)
     .then(text => {
-      text = marked(fm(text).body, {renderer: renderer})
+      const renderer = setupRenderer()
+      text = marked(fm(text).body, {renderer: renderer.renderer})
+      dispatch(updateFigures(renderer.figures))
       dispatch(updateArticle(text))
-      // dispatch(updateFigures())
       dispatch(updateArticleLoading(false))
     })
   .catch(error => {
