@@ -1,3 +1,5 @@
+'use strict'
+
 const makeMap = (data) => {
   return '## Map'
 }

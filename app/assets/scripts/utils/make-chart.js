@@ -1,10 +1,11 @@
+'use strict'
 import fetch from 'isomorphic-fetch'
 import sqltoes from 'sqltoes'
 import _ from 'lodash'
 
 import config from '../config'
 
-const makeChart = (data) => {
+const parseChart = (data) => {
   if (!data.encoding.color) data.encoding.color = { value: '83C719' }
 
   // // grab the important field names
@@ -95,4 +96,4 @@ const parseDataObject = (obj, group, val, otherKeys, change) => {
 }
 // }
 
-export default makeChart
+export default parseChart

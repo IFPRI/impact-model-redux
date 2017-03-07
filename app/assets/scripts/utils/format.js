@@ -1,5 +1,4 @@
 'use strict'
-
 // Extract n characters of preview text, rounded to the closest full word
 export const cutAtWord = (text, characters) => {
   var lastCharacter = text.lastIndexOf(' ', characters)

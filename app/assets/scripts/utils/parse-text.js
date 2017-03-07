@@ -1,6 +1,8 @@
+'use strict'
 import marked from 'marked'
 import yaml from 'js-yaml'
 
+// Actions
 import { updateFigures } from '../actions'
 
 export const setupRenderer = (dispatch) => {
