@@ -5,7 +5,7 @@ import _ from 'lodash'
 
 import config from '../config'
 
-const parseChart = (data) => {
+export const parseChart = (data, callback) => {
   if (!data.encoding.color) data.encoding.color = { value: '83C719' }
 
   // // grab the important field names
@@ -39,7 +39,7 @@ const parseChart = (data) => {
 
   // request the data and parse the response for our graph format
   const postData = JSON.stringify(sqltoes({select: [`sum(${val})`], where: where, groupBy: groupBy}))
-  fetch(config.dbUrl, {
+  return fetch(config.dbUrl, {
     method: 'post',
     body: postData})
   .then((resp) => resp.json())
@@ -63,7 +63,7 @@ const parseChart = (data) => {
         return parseDataObject(obj, group, val, {}, change)
       }))
     }
-    console.log(data)
+    callback(data)
   })
 }
 
@@ -95,5 +95,3 @@ const parseDataObject = (obj, group, val, otherKeys, change) => {
   }
 }
 // }
-
-export default parseChart
