@@ -8,7 +8,8 @@ import {
   UPDATE_ARTICLE_PAGE,
   UPDATE_ARTICLE_LOADING,
   UPDATE_ARTICLE,
-  UPDATE_FIGURES
+  UPDATE_CHARTS,
+  UPDATE_MAPS
 } from '../actions'
 
 export const initialState = {
@@ -19,10 +20,12 @@ export const initialState = {
   articlePage: 0,
   articleLoading: false,
   article: '',
-  figures: {}
+  charts: {},
+  maps: {}
 }
 
 export default (state = initialState, action) => {
+  console.log(state)
   state = Object.assign({}, state)
   switch (action.type) {
     case UPDATE_ARTICLES:
@@ -43,8 +46,11 @@ export default (state = initialState, action) => {
     case UPDATE_ARTICLE:
       set(state, 'article', action.data)
       break
-    case UPDATE_FIGURES:
-      set(state, 'figures', action.data)
+    case UPDATE_CHARTS:
+      set(state, 'charts', action.data)
+      break
+    case UPDATE_MAPS:
+      set(state, 'maps', action.data)
       break
   }
   return state
