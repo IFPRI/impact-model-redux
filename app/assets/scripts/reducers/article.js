@@ -25,7 +25,6 @@ export const initialState = {
 }
 
 export default (state = initialState, action) => {
-  console.log(state)
   state = Object.assign({}, state)
   switch (action.type) {
     case UPDATE_ARTICLES:
