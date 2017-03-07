@@ -15,11 +15,11 @@ export const setupRenderer = (dispatch) => {
     if (lang === 'chart') {
       charts[id] = data
       dispatch(updateCharts(charts))
-      return `<figure class="${id}"></figure>`
+      return `<figure class="${id} chart"></figure>`
     } else if (lang === 'map') {
       maps[id] = data
       dispatch(updateMaps(maps))
-      return `<figure class="${id}"></figure>`
+      return `<figure class="${id} chart"></figure>`
     }
   }
   return renderer

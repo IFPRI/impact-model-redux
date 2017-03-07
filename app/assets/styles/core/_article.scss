@@ -1,5 +1,12 @@
 .page__article {
   float: left;
+
+  .chart-dropdown {
+    margin-top: 1rem;
+    text-align: center;
+    width: 100%;
+  }
+
   .article-byline {
     li {
       display: inline;
