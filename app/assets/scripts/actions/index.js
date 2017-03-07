@@ -44,9 +44,8 @@ export const fetchArticle = (url) => {
     dispatch(updateArticleLoading(true))
     loadText(url)
     .then(text => {
-      const renderer = setupRenderer()
-      text = marked(fm(text).body, {renderer: renderer.renderer})
-      dispatch(updateFigures(renderer.figures))
+      const renderer = setupRenderer(dispatch)
+      text = marked(fm(text).body, {renderer: renderer})
       dispatch(updateArticle(text))
       dispatch(updateArticleLoading(false))
     })
