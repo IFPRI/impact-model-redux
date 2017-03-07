@@ -5,9 +5,7 @@ import _ from 'lodash'
 
 import config from '../config'
 
-export const parseChart = (data, callback) => {
-  if (!data.encoding.color) data.encoding.color = { value: '83C719' }
-
+export const parseChart = (data, whereClause, callback) => {
   // // grab the important field names
   const groups = String(data.encoding.x.field).split(',').map(a => a.trim())
   let group
@@ -18,17 +16,15 @@ export const parseChart = (data, callback) => {
   }
 
   let val = data.encoding.y.field
-  const series = data.encoding.color.field
-
   // construct a where clause for our sql statement
   const where = _.flatten(_.map(data.fixed, (val, param) => {
     const vals = String(val).split(',').map(a => a.trim())
     return vals.length === 1 ? `${param} = ${val}` : `${param} in ${vals.join(',')}`
   }))
+  where.push(data.dropdown.field + ' = ' + whereClause)
 
   // group by for sql statement, add series if necessary
   const groupBy = [group]
-  if (series) groupBy.push(series)
 
   // switch for getting change in var from 2015 - 2050
   const change = data.change
@@ -44,9 +40,6 @@ export const parseChart = (data, callback) => {
     body: postData})
   .then((resp) => resp.json())
   .then((resp) => {
-    data.encoding.y.field = val
-    data.encoding.x.field = group
-    data.encoding.color.field = series
     // find out how to parse our response
     const wherePath = where.map(a => {
       let b, c
@@ -58,12 +51,12 @@ export const parseChart = (data, callback) => {
         return `where_${b}_multiple`
       }
     })
-    data.data = {
+    const queryData = {
       values: _.flattenDeep(_.get(resp.aggregations, wherePath)[`group_by_${group}`].buckets.map((obj) => {
         return parseDataObject(obj, group, val, {}, change)
       }))
     }
-    callback(data)
+    callback(queryData)
   })
 }
 
