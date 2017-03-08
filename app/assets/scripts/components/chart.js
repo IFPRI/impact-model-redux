@@ -94,7 +94,7 @@ export class Chart extends React.Component {
             <span>Filter</span>
             <select className={`${name}-dropdown`} defaultValue={activeQuery} onChange={this.updateQuery}>
               {this.dropdownValues.map((value, i) => {
-                return <option value={value} key={`${name}-${i}`}>{value}</option>
+                return <option value={value} key={`${name}-${i}`}>{translation[value]}</option>
               })}
             </select>
           </div>
