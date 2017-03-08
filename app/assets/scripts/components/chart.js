@@ -81,7 +81,7 @@ export class Chart extends React.Component {
     const name = this.props.name
     return (
       <div>
-        <canvas id={name}></canvas>
+        <canvas id={name} className={'chart-canvas'}></canvas>
           <div className='chart-dropdown'>
           <span>Filter</span>
           <select className={`${name}-dropdown`} defaultValue={this.activeQuery} onChange={this.updateQuery}>

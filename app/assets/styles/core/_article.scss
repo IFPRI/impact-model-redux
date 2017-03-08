@@ -1,6 +1,10 @@
 .page__article {
   float: left;
 
+  .chart-canvas {
+    width: 100% !important;
+  }
+
   .chart-dropdown {
     margin-top: 1rem;
     text-align: center;
