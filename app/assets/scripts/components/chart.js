@@ -41,9 +41,19 @@ export class Chart extends React.Component {
         legend: {
           display: false
         },
+        scales: {
+          yAxes: [{
+            ticks: {
+              userCallback: (value, index, values) => formatNumber(value)
+            }
+          }]
+        },
         tooltips: {
           callbacks: {
-            label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')
+            label: (tooltipItem) => {
+              console.log(tooltipItem)
+              formatNumber(tooltipItem, 'yLabel')
+            }
           }
         }
       },
@@ -55,6 +65,7 @@ export class Chart extends React.Component {
         }]
       }
     }
+
     const aggregation = data.encoding.x.field
     queryDatabase(data, this.activeQuery, (chartData) => {
       _.forEach(chartData.values, (item) => {
