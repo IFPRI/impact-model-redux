@@ -23,6 +23,10 @@ export class Brief extends React.Component {
   }
 
   componentDidUpdate () {
+    this.addCharts()
+  }
+
+  addCharts () {
     _.forEach(this.props.charts, (data, name) => {
       const placeholder = document.querySelector('.' + name)
       if (placeholder) {
