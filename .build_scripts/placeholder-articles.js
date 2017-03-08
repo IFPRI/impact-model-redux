@@ -168,7 +168,7 @@ encoding:
     field: Val
 fixed:
   year: 2010
-  impactparameter: qdxagg
+  impactparameter: QDXAgg
   agg_commodity: cereals
 dropdown:
   field: commodity

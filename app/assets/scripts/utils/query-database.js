@@ -5,7 +5,7 @@ import _ from 'lodash'
 
 import config from '../config'
 
-export const parseChart = (data, whereClause, callback) => {
+export const queryDatabase = (data, whereClause, callback) => {
   // // grab the important field names
   const groups = String(data.encoding.x.field).split(',').map(a => a.trim())
   let group
@@ -15,7 +15,8 @@ export const parseChart = (data, whereClause, callback) => {
     group = null || groups[0]
   }
 
-  let val = data.encoding.y.field
+  data.fixed.impactparameter = data.fixed.impactparameter.toLowerCase()
+
   // construct a where clause for our sql statement
   const where = _.flatten(_.map(data.fixed, (val, param) => {
     const vals = String(val).split(',').map(a => a.trim())
@@ -33,6 +34,7 @@ export const parseChart = (data, whereClause, callback) => {
     where.push('year in 2015,2050')
   }
 
+  let val = data.encoding.y.field
   // request the data and parse the response for our graph format
   const postData = JSON.stringify(sqltoes({select: [`sum(${val})`], where: where, groupBy: groupBy}))
   return fetch(config.dbUrl, {
@@ -56,7 +58,8 @@ export const parseChart = (data, whereClause, callback) => {
         return parseDataObject(obj, group, val, {}, change)
       }))
     }
-    callback(queryData)
+
+    callback(Object.assign(queryData, data.fixed, {groupBy: groupBy[0]}))
   })
 }
 
@@ -87,4 +90,5 @@ const parseDataObject = (obj, group, val, otherKeys, change) => {
     }, otherKeys)
   }
 }
-// }
+
+export default queryDatabase

@@ -4,10 +4,10 @@ import _ from 'lodash'
 import ChartJS from 'chart.js'
 
 // Actions
-import { parseChart } from '../utils/make-chart'
+import queryDatabase from '../utils/query-database'
 
 // Utils
-import { formatNumber } from '../utils/format'
+import { toTitleCase, formatNumber } from '../utils/format'
 
 // Constants
 import { nineColorPalette } from '../constants'
@@ -22,6 +22,7 @@ export class Chart extends React.Component {
     if (this.dropdownValues && this.dropdownValues.field && this.dropdownValues.values) {
       this.dropdownValues = this.dropdownValues.values.split(',').map((value) => value.trim())
     }
+    this.activeQuery = this.dropdownValues[0] || null
 
     this.initializeChart = this.initializeChart.bind(this)
     this.updateQuery = this.updateQuery.bind(this)
@@ -37,6 +38,9 @@ export class Chart extends React.Component {
     const chart = {
       type: data.mark,
       options: {
+        legend: {
+          display: false
+        },
         tooltips: {
           callbacks: {
             label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')
@@ -52,8 +56,7 @@ export class Chart extends React.Component {
       }
     }
     const aggregation = data.encoding.x.field
-    this.activeQuery = this.dropdownValues[0] || null
-    parseChart(data, this.activeQuery, (chartData) => {
+    queryDatabase(data, this.activeQuery, (chartData) => {
       _.forEach(chartData.values, (item) => {
         chart.data.labels.push(translation[item[aggregation]])
         chart.data.datasets[0].data.push(item.Val)
@@ -68,7 +71,7 @@ export class Chart extends React.Component {
   updateQuery (event) {
     this.activeQuery = event.target.value
     const chart = []
-    parseChart(this.props.data, this.activeQuery, (chartData) => {
+    queryDatabase(this.props.data, this.activeQuery, (chartData) => {
       _.forEach(chartData.values, (item) => {
         chart.push(item.Val)
       })
@@ -78,18 +81,23 @@ export class Chart extends React.Component {
   }
 
   render () {
-    const name = this.props.name
+    const { name, data } = this.props
+    const activeQuery = this.activeQuery
+
     return (
       <div>
+        <figcaption>
+          <h3>{`${translation[data.fixed.impactparameter]} for ${translation[activeQuery]} in ${data.fixed.year.toString()}, Aggregated by ${toTitleCase(translation[data.encoding.x.field])}`}</h3>
+        </figcaption>
         <canvas id={name} className={'chart-canvas'}></canvas>
           <div className='chart-dropdown'>
-          <span>Filter</span>
-          <select className={`${name}-dropdown`} defaultValue={this.activeQuery} onChange={this.updateQuery}>
-            {this.dropdownValues.map((value, i) => {
-              return <option value={value} key={`${name}-${i}`}>{value}</option>
-            })}
-          </select>
-        </div>
+            <span>Filter</span>
+            <select className={`${name}-dropdown`} defaultValue={activeQuery} onChange={this.updateQuery}>
+              {this.dropdownValues.map((value, i) => {
+                return <option value={value} key={`${name}-${i}`}>{value}</option>
+              })}
+            </select>
+          </div>
       </div>
     )
   }
