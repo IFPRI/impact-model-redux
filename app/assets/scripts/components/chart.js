@@ -12,7 +12,7 @@ import queryDatabase from '../utils/query-database'
 import { toTitleCase, formatNumber } from '../utils/format'
 
 // Constants
-import { nineColorPalette } from '../constants'
+import { nineColorPalette, oneColorPalette } from '../constants'
 
 // Data
 import translation from '../../data/translation'
@@ -20,9 +20,6 @@ import translation from '../../data/translation'
 export class Chart extends React.Component {
   constructor (props, context) {
     super(props, context)
-    this.state = {
-      width: 100
-    }
     this.dropdownValues = props.data.dropdown
     if (this.dropdownValues && this.dropdownValues.field && this.dropdownValues.values) {
       this.dropdownValues = this.dropdownValues.values.split(',').map((value) => value.trim())
@@ -39,7 +36,7 @@ export class Chart extends React.Component {
 
   initializeChart () {
     const { name, data } = this.props
-    const chartType = 'bar' // data.mark
+    const chartType = 'horizontalBar' // data.mark
 
     let chart = {
       type: chartType,
@@ -78,9 +75,19 @@ export class Chart extends React.Component {
       chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'xLabel')}}
     }
 
-    if (chartType === 'pie' || chartType === 'doughnut') {
-      delete chart.options.scales
+    if (chartType === 'line') {
       chart.options.responsive = true
+      chart.options.maintainAspectRatio = false
+      chart.data.datasets[0].fill = false
+      chart.data.datasets[0].borderColor = oneColorPalette
+      chart.data.datasets[0].borderWidth = 5
+      chart.options.scales.yAxes[0].ticks.userCallback = (value) => formatNumber(value)
+      chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')}}
+    }
+
+    const isPieChart = chartType === 'pie' || chartType === 'doughnut'
+    if (isPieChart) {
+      delete chart.options.scales
       chart.options.maintainAspectRatio = true
       chart.options.legend = {display: true, position: 'bottom'}
     }
@@ -91,7 +98,7 @@ export class Chart extends React.Component {
         chart.data.labels.push(translation[item[aggregation]])
         chart.data.datasets[0].data.push(item.Val)
       })
-      if (chartType === 'pie' || chartType === 'doughnut') {
+      if (isPieChart || chartType === 'polarArea') {
         chart.options.tooltips = {callbacks: {label: (tooltipItem, data) => {
           const label = chart.data.labels[tooltipItem.index]
           const datasetLabel = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]
@@ -125,18 +132,20 @@ export class Chart extends React.Component {
     const focus = translation[activeQuery]
     const year = data.fixed.year.toString()
     const aggregation = toTitleCase(translation[data.encoding.x.field])
-    const chartType = 'bar' // data.marked
+    const chartType = 'horizontalBar' // data.marked
+
     const chartClass = classNames(
-      'chart-container1', {
-        'full-width': chartType !== 'pie' && chartType !== 'doughnut',
-        'pie-width': chartType === 'pie' || chartType === 'doughnut'
+      'figure', {
+        'bar-chart': chartType === 'bar' || chartType === 'horizontalBar',
+        'pie-chart': chartType === 'pie' || chartType === 'doughnut' || chartType === 'polarArea',
+        'line-chart': chartType === 'line'
       })
 
     return (
-      <div className={chartClass} ref='chartContainer'>
+      <div className={chartClass}>
         <h3>{`${impactParameter} for ${focus} in ${year}, Aggregated by ${aggregation}`}</h3>
         <div className='chart-container'>
-          <canvas id={name}></canvas>
+          <canvas id={name} className='chart'></canvas>
         </div>
         <div className='chart-dropdown'>
           <span>Filter:</span>
