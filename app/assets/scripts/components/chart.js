@@ -35,7 +35,7 @@ export class Chart extends React.Component {
 
   initializeChart () {
     const { name, data } = this.props
-    const chartType = 'pie' // data.mark
+    const chartType = 'bar' // data.mark
 
     let chart = {
       type: chartType,
@@ -62,6 +62,7 @@ export class Chart extends React.Component {
     }
 
     if (chartType === 'bar') {
+      chart.options.responsive = true
       chart.options.scales.yAxes[0].ticks.userCallback = (value) => formatNumber(value)
       chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')}}
     }
@@ -73,7 +74,8 @@ export class Chart extends React.Component {
 
     if (chartType === 'pie' || chartType === 'doughnut') {
       delete chart.options.scales
-      chart.options = {maintainAspectRatio: false}
+      chart.options.responsive = false
+      chart.options.maintainAspectRatio = true
       chart.options.legend = {display: true, position: 'bottom'}
     }
 
@@ -112,14 +114,22 @@ export class Chart extends React.Component {
   render () {
     const { name, data } = this.props
     const activeQuery = this.activeQuery
-    const chartType = 'pie' // data.marked
+    const impactParameter = translation[data.fixed.impactparameter]
+    const focus = translation[activeQuery]
+    const year = data.fixed.year.toString()
+    const aggregation = toTitleCase(translation[data.encoding.x.field])
+
+    const chartType = 'bar' // data.marked
+    const chartClass = classNames(
+      'chart-container', {
+        'full-width': chartType !== 'pie' && chartType !== 'doughnut',
+        'pie-width': chartType === 'pie' || chartType === 'doughnut'
+      })
 
     return (
-      <div>
-        <figcaption>
-          <h3>{`${translation[data.fixed.impactparameter]} for ${translation[activeQuery]} in ${data.fixed.year.toString()}, Aggregated by ${toTitleCase(translation[data.encoding.x.field])}`}</h3>
-        </figcaption>
-        <canvas id={name}></canvas>
+      <figure className={chartClass}>
+          <h3>{`${impactParameter} for ${focus} in ${year}, Aggregated by ${aggregation}`}</h3>
+        <canvas id={name} className='chart'></canvas>
           <div className='chart-dropdown'>
             <span>Filter:</span>
             <select className={`${name}-dropdown`} defaultValue={activeQuery} onChange={this.updateQuery}>
@@ -128,7 +138,7 @@ export class Chart extends React.Component {
               })}
             </select>
           </div>
-      </div>
+      </figure>
     )
   }
 }
