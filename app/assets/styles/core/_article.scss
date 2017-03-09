@@ -3,23 +3,24 @@
 
   .chart {
     figcaption {
-      width: 100%;
+      // width: 100%;
       text-align: center;
       margin-bottom: 1rem;
       font-weight: 800;
       h3 {
-        font-size: 2em;
+        font-size: 1.4em;
       }
-    }
-
-    .chart-canvas {
-      width: 100% !important;
     }
 
     .chart-dropdown {
       margin-top: 1rem;
       text-align: center;
       width: 100%;
+      font-weight: 800;
+      font-size: 1rem;
+      select {
+        color: $darkest-blue;
+      }
     }
   }
 
