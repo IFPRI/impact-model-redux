@@ -20,6 +20,9 @@ import translation from '../../data/translation'
 export class Chart extends React.Component {
   constructor (props, context) {
     super(props, context)
+    this.state = {
+      width: 100
+    }
     this.dropdownValues = props.data.dropdown
     if (this.dropdownValues && this.dropdownValues.field && this.dropdownValues.values) {
       this.dropdownValues = this.dropdownValues.values.split(',').map((value) => value.trim())
@@ -28,6 +31,10 @@ export class Chart extends React.Component {
 
     this.initializeChart = this.initializeChart.bind(this)
     this.updateQuery = this.updateQuery.bind(this)
+  }
+
+  componentDidMount () {
+    this.initializeChart()
   }
 
   initializeChart () {
