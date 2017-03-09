@@ -2,49 +2,43 @@
   float: left;
 
   .figure-container {
+    border: 1px red solid;
+    padding: 0;
+    margin: 0;
     float: left;
     width: 100%;
     text-align: center;
-    .chart-container {
-      margin: 0 auto;
+    h3 {
+      width: 100%;
+      margin: 1rem;
+      font-size: 1.4em;
+    }
+    .chart-dropdown {
+      float: left;
+      width: 100%;
+      margin-top: 1rem;
       text-align: center;
-      h3 {
-        width: 100%;
-        font-size: 1.4em;
-        margin: 1rem;
+      font-weight: 800;
+      font-size: 1rem;
+      select {
+        color: $darkest-blue;
       }
-      .chart-dropdown {
-        float: left;
-        margin-top: 1rem;
-        text-align: center;
-        width: 100%;
-        font-weight: 800;
-        font-size: 1rem;
-        select {
-          color: $darkest-blue;
-        }
+    }
+    .pie-width {
+      .chart-container {
+        width: 60%;
+        min-width: 15rem;
+        max-width: 30rem;
+        margin: auto;
       }
-      &.pie-width {
-        .chart-container {
-          max-width: 40rem;
-        }
-        .chart {
-          width: 40% !important;
-          text-align: center !important;
-          margin: 0 auto !important;
-        }
-      }
-      &.full-width {
-        .chart-container {
-          max-width: 60rem;
-        }
-        .chart {
-          width: 100%;
-          width: 90% !important;
-          max-height: 20rem !important;
-          text-align: center !important;
-          margin: 0 auto !important;
-        }
+    }
+    .full-width {
+      .chart-container {
+        width: 90%;
+        height: 15rem;
+        min-width: 20rem;
+        max-width: 50rem;
+        margin: auto;
       }
     }
   }

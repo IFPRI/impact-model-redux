@@ -30,17 +30,14 @@ export class Chart extends React.Component {
     this.updateQuery = this.updateQuery.bind(this)
   }
 
-  componentDidMount () {
-    this.initializeChart()
-  }
-
   initializeChart () {
     const { name, data } = this.props
-    const chartType = 'pie' // data.mark
+    const chartType = 'bar' // data.mark
 
     let chart = {
       type: chartType,
       options: {
+        responsive: true,
         legend: {
           display: false
         },
@@ -64,6 +61,7 @@ export class Chart extends React.Component {
 
     if (chartType === 'bar') {
       chart.options.responsive = true
+      chart.options.maintainAspectRatio = false
       chart.options.scales.yAxes[0].ticks.userCallback = (value) => formatNumber(value)
       chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')}}
     }
@@ -75,7 +73,7 @@ export class Chart extends React.Component {
 
     if (chartType === 'pie' || chartType === 'doughnut') {
       delete chart.options.scales
-      chart.options.responsive = false
+      chart.options.responsive = true
       chart.options.maintainAspectRatio = true
       chart.options.legend = {display: true, position: 'bottom'}
     }
@@ -93,6 +91,7 @@ export class Chart extends React.Component {
           return ` ${label}: ${formatNumber(datasetLabel)}`
         }}}
       }
+
       this.chart = new ChartJS(
         document.getElementById(name).getContext('2d'),
         chart
@@ -119,27 +118,28 @@ export class Chart extends React.Component {
     const focus = translation[activeQuery]
     const year = data.fixed.year.toString()
     const aggregation = toTitleCase(translation[data.encoding.x.field])
-
-    const chartType = 'pie' // data.marked
+    const chartType = 'bar' // data.marked
     const chartClass = classNames(
-      'chart-container', {
+      'chart-container1', {
         'full-width': chartType !== 'pie' && chartType !== 'doughnut',
         'pie-width': chartType === 'pie' || chartType === 'doughnut'
       })
 
     return (
-      <figure className={chartClass}>
-          <h3>{`${impactParameter} for ${focus} in ${year}, Aggregated by ${aggregation}`}</h3>
-        <canvas id={name} className='chart'></canvas>
-          <div className='chart-dropdown'>
-            <span>Filter:</span>
-            <select className={`${name}-dropdown`} defaultValue={activeQuery} onChange={this.updateQuery}>
-              {this.dropdownValues.map((value, i) => {
-                return <option value={value} key={`${name}-${i}`}>{translation[value]}</option>
-              })}
-            </select>
-          </div>
-      </figure>
+      <div className={chartClass} ref='chartContainer'>
+        <h3>{`${impactParameter} for ${focus} in ${year}, Aggregated by ${aggregation}`}</h3>
+        <div className='chart-container'>
+          <canvas id={name}></canvas>
+        </div>
+        <div className='chart-dropdown'>
+          <span>Filter:</span>
+          <select className={`${name}-dropdown`} defaultValue={activeQuery} onChange={this.updateQuery}>
+            {this.dropdownValues.map((value, i) => {
+              return <option value={value} key={`${name}-${i}`}>{translation[value]}</option>
+            })}
+          </select>
+        </div>
+      </div>
     )
   }
 }
