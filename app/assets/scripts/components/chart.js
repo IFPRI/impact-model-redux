@@ -1,8 +1,9 @@
 'use strict'
 import React from 'react'
-import ChartJS from 'chart.js'
 import classNames from 'classnames'
 import _ from 'lodash'
+if (typeof window === 'undefined') global.window = {}
+const ChartJS = require('chart.js')
 
 // Actions
 import queryDatabase from '../utils/query-database'
@@ -35,7 +36,7 @@ export class Chart extends React.Component {
 
   initializeChart () {
     const { name, data } = this.props
-    const chartType = 'bar' // data.mark
+    const chartType = 'pie' // data.mark
 
     let chart = {
       type: chartType,
@@ -119,7 +120,7 @@ export class Chart extends React.Component {
     const year = data.fixed.year.toString()
     const aggregation = toTitleCase(translation[data.encoding.x.field])
 
-    const chartType = 'bar' // data.marked
+    const chartType = 'pie' // data.marked
     const chartClass = classNames(
       'chart-container', {
         'full-width': chartType !== 'pie' && chartType !== 'doughnut',
