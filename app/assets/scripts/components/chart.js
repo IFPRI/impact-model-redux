@@ -20,6 +20,10 @@ import translation from '../../data/translation'
 export class Chart extends React.Component {
   constructor (props, context) {
     super(props, context)
+    this.state = {
+      impactParameter: props.data.fixed.impactparameter,
+      activeQuery: props.data.dropdown.values.split(', ')[0]
+    }
     this.dropdownValues = props.data.dropdown
     if (this.dropdownValues && this.dropdownValues.field && this.dropdownValues.values) {
       this.dropdownValues = this.dropdownValues.values.split(',').map((value) => value.trim())
@@ -36,7 +40,7 @@ export class Chart extends React.Component {
 
   initializeChart () {
     const { name, data } = this.props
-    const chartType = 'horizontalBar' // data.mark
+    const chartType = data.mark
 
     let chart = {
       type: chartType,
@@ -114,9 +118,10 @@ export class Chart extends React.Component {
   }
 
   updateQuery (event) {
-    this.activeQuery = event.target.value
+    const activeQuery = event.target.value
+    this.setState({activeQuery: activeQuery})
     const chart = []
-    queryDatabase(this.props.data, this.activeQuery, (chartData) => {
+    queryDatabase(this.props.data, activeQuery, (chartData) => {
       _.forEach(chartData.values, (item) => {
         chart.push(item.Val)
       })
@@ -127,12 +132,12 @@ export class Chart extends React.Component {
 
   render () {
     const { name, data } = this.props
-    const activeQuery = this.activeQuery
-    const impactParameter = translation[data.fixed.impactparameter]
+    const activeQuery = this.state.activeQuery
+    const impactParameter = translation[this.state.impactParameter]
     const focus = translation[activeQuery]
     const year = data.fixed.year.toString()
     const aggregation = toTitleCase(translation[data.encoding.x.field])
-    const chartType = 'horizontalBar' // data.marked
+    const chartType = data.mark
 
     const chartClass = classNames(
       'figure', {
