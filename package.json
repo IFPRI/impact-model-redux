@@ -109,7 +109,7 @@
     "watchify": "^3.7.0"
   },
   "dependencies": {
-    "chart.js": "^2.5.0",
+    "chart.js": "git://github.com/nbumbarger/Chart.js.git",
     "chroma-js": "^1.2.2",
     "classnames": "^2.2.5",
     "front-matter": "^2.1.2",
