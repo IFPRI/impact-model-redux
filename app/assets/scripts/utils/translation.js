@@ -1,6 +1,7 @@
 'use strict'
-
 import _ from 'lodash'
+
+// Data
 import translations from '../../data/translation'
 
 export const translate = (str) => translations[str]

@@ -7,7 +7,9 @@ import {
   UPDATE_ARTICLE_SORTING,
   UPDATE_ARTICLE_PAGE,
   UPDATE_ARTICLE_LOADING,
-  UPDATE_ARTICLE
+  UPDATE_ARTICLE,
+  UPDATE_CHARTS,
+  UPDATE_MAPS
 } from '../actions'
 
 export const initialState = {
@@ -17,7 +19,9 @@ export const initialState = {
   articleSorting: 'recency',
   articlePage: 0,
   articleLoading: false,
-  article: ''
+  article: '',
+  charts: {},
+  maps: {}
 }
 
 export default (state = initialState, action) => {
@@ -40,6 +44,12 @@ export default (state = initialState, action) => {
       break
     case UPDATE_ARTICLE:
       set(state, 'article', action.data)
+      break
+    case UPDATE_CHARTS:
+      set(state, 'charts', action.data)
+      break
+    case UPDATE_MAPS:
+      set(state, 'maps', action.data)
       break
   }
   return state

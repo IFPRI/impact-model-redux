@@ -24,12 +24,12 @@ before_install:
 - chmod +x ./.build_scripts/deploy.sh
 - chmod +x ./.build_scripts/lint.sh
 - chmod +x ./.build_scripts/article-metadata.js
-- chmod +x ./.build_scripts/placeholder-articles.js
+- chmod +x ./.build_scripts/placeholder-articles/placeholder-articles-systematic.js
 
 before_script:
 - ./.build_scripts/lint.sh
 - node ./.build_scripts/article-metadata.js
-- node ./.build_scripts/placeholder-articles.js
+- node ./.build_scripts/placeholder-articles/placeholder-articles-systematic.js
 - npm test
 
 script:
