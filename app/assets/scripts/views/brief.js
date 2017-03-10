@@ -13,6 +13,7 @@ import { fetchArticle } from '../actions'
 import ProjectArticles from '../components/project-articles'
 import RelatedArticles from '../components/related-articles'
 import Chart from '../components/chart'
+import Map from '../components/Map'
 import Loading from '../components/loading'
 
 export class Brief extends React.Component {
@@ -23,14 +24,24 @@ export class Brief extends React.Component {
   }
 
   componentDidUpdate () {
-    this.addCharts()
+    this.addCharts(this.props.charts)
+    this.addMaps(this.props.maps)
   }
 
-  addCharts () {
-    _.forEach(this.props.charts, (data, name) => {
+  addCharts (charts) {
+    _.forEach(charts, (data, name) => {
       const placeholder = document.querySelector('.' + name)
       if (placeholder) {
         ReactDOM.render(<Chart name={name} data={data} />, placeholder)
+      }
+    })
+  }
+
+  addMaps (maps) {
+    _.forEach(maps, (data, name) => {
+      const placeholder = document.querySelector('.' + name)
+      if (placeholder) {
+        ReactDOM.render(<Map name={name} data={data} />, placeholder)
       }
     })
   }
@@ -81,6 +92,7 @@ Brief.propTypes = {
   articleLoading: React.PropTypes.bool,
   article: React.PropTypes.string,
   charts: React.PropTypes.object,
+  maps: React.PropTypes.object,
   params: React.PropTypes.object
 }
 
@@ -92,7 +104,8 @@ const mapStateToProps = (state) => {
     articles: state.article.briefs,
     articleLoading: state.article.articleLoading,
     article: state.article.article,
-    charts: state.article.charts
+    charts: state.article.charts,
+    maps: state.article.maps
   }
 }
 export default connect(mapStateToProps)(Brief)
