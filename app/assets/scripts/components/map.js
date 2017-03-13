@@ -6,10 +6,35 @@ import { json, csv } from 'd3-request'
 import { scaleLinear } from 'd3-scale'
 import _ from 'lodash'
 import { feature, merge } from 'topojson-client'
-import queryDatabase from '../utils/query-database'
 import { body as tip } from '@redsift/d3-rs-tip'
+import c from 'classnames'
+
+import queryDatabase from '../utils/query-database'
+import translation from '../../data/translation'
+
+const yellow = '#CDAA00'
+const green = '#4B7838'
 
 export class Map extends React.Component {
+  constructor (props, context) {
+    super(props, context)
+    this.state = {
+      impactParameter: props.data.fixed.impactparameter,
+      activeQuery: props.data.dropdown.values.split(', ')[0]
+    }
+    this.dropdownValues = props.data.dropdown
+    if (this.dropdownValues && this.dropdownValues.field && this.dropdownValues.values) {
+      this.dropdownValues = this.dropdownValues.values.split(',').map((value) => value.trim())
+    }
+    this.activeQuery = this.dropdownValues[0] || null
+
+    this.initializeChart = this.initializeMap.bind(this)
+    this.queryMapData = this.queryMapData.bind(this)
+    this.drawMap = this.drawMap.bind(this)
+    this.updateMap = this.updateMap.bind(this)
+    this.handleDropdown = this.handleDropdown.bind(this)
+  }
+
   componentDidMount () {
     this.initializeMap()
   }
@@ -86,18 +111,13 @@ export class Map extends React.Component {
         y: { type: 'quantitative', field: 'Val' }
       }
     })
-    queryDatabase(mapQuery, null, (mapData) => {
+    queryDatabase(mapQuery, this.state.activeQuery, (mapData) => {
       this.updateMap(mapData)
     })
   }
 
   drawMap () {
     // draw the blank map first, the rest is conditional on good data
-    this.mapSvg.selectAll('path').remove()
-    this.mapSvg.selectAll('.legend-line').remove()
-    this.mapSvg.selectAll('.label').remove()
-    this.mapSvg.selectAll('defs').remove()
-
     var defs = this.mapSvg.append('defs')
     var dashWidth = 5
     var pattern = defs.append('pattern')
@@ -119,6 +139,10 @@ export class Map extends React.Component {
   }
 
   updateMap (mapData) {
+    this.mapSvg.selectAll('.overlay').remove()
+    this.mapSvg.selectAll('.legend-line').remove()
+    this.mapSvg.selectAll('.label').remove()
+
     var values = mapData.values.map(a => a.Val)
     var mapMax = Math.max(...values)
     var mapMin = Math.min(...values)
@@ -132,7 +156,7 @@ export class Map extends React.Component {
     //   var mapColor = d3.scale.linear()
     //
     //   if (mapMin < 0) {
-    mapColor.domain([mapMin, 0, mapMax]).range(['#CDAA00', '#fff', '#4B7838'])
+    mapColor.domain([mapMin, 0, mapMax]).range([yellow, '#fff', green])
     //     // mapColor.domain([mapMin, 0, mapMax]).range(['#CDAA00', '#fff', '#4B7838'])
     //   } else {
     //     mapColor.domain([0, percentileHigh, mapMax]).range(['#fff', '#4B7838', '#4B7838'])
@@ -233,13 +257,26 @@ export class Map extends React.Component {
     //   .style('font-weight', 300)
     //   .text(translate(textFix(IfpriImpact.state.map.aggCommodity)) + translate(textFix(IfpriImpact.state.map.commodity)) + ' from ' + that.yearRange[0] + ' to ' + that.yearRange[1])
     // }
+  handleDropdown (e) {
+    console.log(e.target.value);
+    this.setState({ activeQuery: e.target.value })
+    this.queryMapData()
+  }
 
   render () {
     return (
       <figure className='map'>
         <figcaption>The map shows change in key output parameters from across geographies. Use dropdown menus to select desired commodity (or group) and parameters to display. Toggle buttons at top right allow different geographic aggregations. Hover over countries or regions to observe the actual results.</figcaption>
         <div className='map-container'>
-            <div id='world-map'></div>
+          <div id='world-map'></div>
+          <div className={c('map-dropdown', {visible: this.props.data.dropdown})}>
+            <span>Filter:</span>
+            <select className={`${name}-dropdown`} defaultValue={this.state.activeQuery} onChange={this.handleDropdown}>
+              {this.dropdownValues.map((value, i) => {
+                return <option value={value} key={`${name}-${i}`}>{translation[value]}</option>
+              })}
+            </select>
+          </div>
         </div>
       </figure>
     )
