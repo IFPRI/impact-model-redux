@@ -147,20 +147,19 @@ export class Map extends React.Component {
     var mapMax = Math.max(...values)
     var mapMin = Math.min(...values)
     var mapColor = scaleLinear()
-    // var positiveValues = values.filter(function (x) { return x >= 0 })
-    //   var negativeValues = values.filter(function (x) { return x < 0 })
-    //   // trade values get more outliers cut out of the legend
-    //   var customBreak = _.includes(['qnxagg', 'qnsh1xagg', 'qnsh2xagg', 'qeshxagg', 'qmshxagg'], IfpriImpact.state.map.parameter) ? 0.8 : 0.95
-    //   var percentileHigh = positiveValues[Math.floor(positiveValues.length * customBreak)]
-    //   var percentileLow = negativeValues[Math.floor(negativeValues.length * (1 - customBreak))] || 0
-    //   var mapColor = d3.scale.linear()
-    //
-    //   if (mapMin < 0) {
-    mapColor.domain([mapMin, 0, mapMax]).range([yellow, '#fff', green])
-    //     // mapColor.domain([mapMin, 0, mapMax]).range(['#CDAA00', '#fff', '#4B7838'])
-    //   } else {
-    //     mapColor.domain([0, percentileHigh, mapMax]).range(['#fff', '#4B7838', '#4B7838'])
-    //   }
+    var positiveValues = values.filter(function (x) { return x >= 0 })
+    var negativeValues = values.filter(function (x) { return x < 0 })
+    // trade values get more outliers cut out of the legend
+    // var customBreak = _.includes(['qnxagg', 'qnsh1xagg', 'qnsh2xagg', 'qeshxagg', 'qmshxagg'], IfpriImpact.state.map.parameter) ? 0.8 : 0.95
+    var customBreak = 0.8
+    var percentileHigh = positiveValues[Math.floor(positiveValues.length * customBreak)]
+    var percentileLow = negativeValues[Math.floor(negativeValues.length * (1 - customBreak))] || 0
+
+    if (mapMin < 0) {
+      mapColor.domain([mapMin, percentileLow, 0, percentileHigh, mapMax]).range([yellow, yellow, '#fff', green, green])
+    } else {
+      mapColor.domain([0, percentileHigh, mapMax]).range(['#fff', green, green])
+    }
     var filtered = _.map(mapData.values, x => {
       var obj = {
         geometry: {
@@ -192,54 +191,38 @@ export class Map extends React.Component {
         .style('stroke', '#555')
         .on('mouseover', this.mapTip.show)
         .on('mouseout', this.mapTip.hide)
-  }
 
-    //
-    //   mapSvg.selectAll('.legend-line')
-    //       .data(_.map(_.range(101), function (oneLine) {
-    //         return oneLine * (percentileHigh - Math.min(percentileLow, 0)) / 100 + Math.min(percentileLow, 0)
-    //       }))
-    //       .enter().append('path')
-    //       .attr('class', 'legend-line')
-    //       .attr('d', function (d, i) {
-    //         return 'M' + (25 + i) + ', ' + (mapHeight - 150) + 'L' + (25 + i) + ', ' + (mapHeight - 130)
-    //       })
-    //       .style('stroke', function (d) {
-    //         return mapColor(d)
-    //       })
-    //       .style('stroke-width', 1)
-    //
-    //   mapSvg.selectAll('.label')
-    //     .data(_.sortBy([0, percentileLow, percentileHigh], function (label) { return label }))
-    //   .enter().append('text')
-    //     .attr('class', 'label')
-    //     .attr('x', function (d) {
-    //       return 25 + (d - Math.min(percentileLow, 0)) / ((percentileHigh - Math.min(percentileLow, 0)) / 100)
-    //     })
-    //     .attr('y', function (d, i) { return (i === 1) ? mapHeight - 116 : mapHeight - 156 })
-    //     .style('text-anchor', 'middle')
-    //     .style('font-size', 10)
-    //     .style('font-weight', 400)
-    //     .style('fill', '#333')
-    //     .text(function (d) {
-    //       return (d * 100).toFixed(1) + '%'
-    //     })
-    // } else {
-    //   mapSvg.append('text').attr('class', 'label')
-    //     .attr('x', mapWidth / 2)
-    //     .attr('y', mapHeight / 2)
-    //     .style('text-anchor', 'middle')
-    //     .style('font-size', 12)
-    //     .style('fill', '#333')
-    //     .style('font-weight', 300)
-    //     .text('NO DATA')
-    // }
-    //
+    this.mapSvg.selectAll('.legend-line')
+        .data(_.map(_.range(101), oneLine => {
+          return oneLine * (percentileHigh - Math.min(percentileLow, 0)) / 100 + Math.min(percentileLow, 0)
+        }))
+        .enter().append('path')
+        .attr('class', 'legend-line')
+        .attr('d', (d, i) => {
+          return 'M' + (25 + i) + ', ' + (this.mapHeight - 150) + 'L' + (25 + i) + ', ' + (this.mapHeight - 130)
+        })
+        .style('stroke', d => mapColor(d))
+        .style('stroke-width', 1)
+
+    this.mapSvg.selectAll('.label')
+      .data(_.sortBy(percentileLow > 0 ? [0, percentileLow, percentileHigh] : [0, percentileHigh], label => label))
+    .enter().append('text')
+      .attr('class', 'label')
+      .attr('x', function (d) {
+        return 25 + (d - Math.min(percentileLow, 0)) / ((percentileHigh - Math.min(percentileLow, 0)) / 100)
+      })
+      .attr('y', (d, i) => { return (i === 1) ? this.mapHeight - 116 : this.mapHeight - 156 })
+      .style('text-anchor', 'middle')
+      .style('font-size', 10)
+      .style('font-weight', 400)
+      .style('fill', '#333')
+      .text(d => (d * 100).toFixed(1) + '%')
+
+    // TODO: text
     // var textFix = function (state) {
     //   return typeof state === 'undefined' ? '' : state
     // }
-    //
-    // mapSvg.append('text').attr('class', 'label')
+    // this.mapSvg.append('text').attr('class', 'label')
     //   .attr('x', 15)
     //   .attr('y', mapHeight - 210)
     //   .style('text-anchor', 'start')
@@ -248,7 +231,7 @@ export class Map extends React.Component {
     //   .style('font-weight', 300)
     //   .text('Change in ' + translate(IfpriImpact.state.map.parameter) + ' of')
     //
-    // mapSvg.append('text').attr('class', 'label')
+    // this.mapSvg.append('text').attr('class', 'label')
     //   .attr('x', 15)
     //   .attr('y', mapHeight - 190)
     //   .style('text-anchor', 'start')
@@ -256,9 +239,9 @@ export class Map extends React.Component {
     //   .style('fill', '#333')
     //   .style('font-weight', 300)
     //   .text(translate(textFix(IfpriImpact.state.map.aggCommodity)) + translate(textFix(IfpriImpact.state.map.commodity)) + ' from ' + that.yearRange[0] + ' to ' + that.yearRange[1])
-    // }
+  }
+
   handleDropdown (e) {
-    console.log(e.target.value);
     this.setState({ activeQuery: e.target.value })
     this.queryMapData()
   }
