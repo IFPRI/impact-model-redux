@@ -104,14 +104,14 @@ export class Map extends React.Component {
     })
   }
 
-  queryMapData () {
+  queryMapData (activeQuery) {
     const mapQuery = Object.assign({}, this.props.data, {
       encoding: {
         x: { type: 'nominal', field: 'region' },
         y: { type: 'quantitative', field: 'Val' }
       }
     })
-    queryDatabase(mapQuery, this.state.activeQuery, (mapData) => {
+    queryDatabase(mapQuery, activeQuery || this.state.activeQuery, (mapData) => {
       this.updateMap(mapData)
     })
   }
@@ -217,33 +217,11 @@ export class Map extends React.Component {
       .style('font-weight', 400)
       .style('fill', '#333')
       .text(d => (d * 100).toFixed(1) + '%')
-
-    // TODO: text
-    // var textFix = function (state) {
-    //   return typeof state === 'undefined' ? '' : state
-    // }
-    // this.mapSvg.append('text').attr('class', 'label')
-    //   .attr('x', 15)
-    //   .attr('y', mapHeight - 210)
-    //   .style('text-anchor', 'start')
-    //   .style('font-size', 12)
-    //   .style('fill', '#333')
-    //   .style('font-weight', 300)
-    //   .text('Change in ' + translate(IfpriImpact.state.map.parameter) + ' of')
-    //
-    // this.mapSvg.append('text').attr('class', 'label')
-    //   .attr('x', 15)
-    //   .attr('y', mapHeight - 190)
-    //   .style('text-anchor', 'start')
-    //   .style('font-size', 12)
-    //   .style('fill', '#333')
-    //   .style('font-weight', 300)
-    //   .text(translate(textFix(IfpriImpact.state.map.aggCommodity)) + translate(textFix(IfpriImpact.state.map.commodity)) + ' from ' + that.yearRange[0] + ' to ' + that.yearRange[1])
   }
 
   handleDropdown (e) {
     this.setState({ activeQuery: e.target.value })
-    this.queryMapData()
+    this.queryMapData(e.target.value)
   }
 
   render () {
