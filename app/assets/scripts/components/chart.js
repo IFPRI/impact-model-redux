@@ -62,7 +62,7 @@ export class Chart extends React.Component {
         labels: [],
         datasets: [{
           data: [],
-          backgroundColor: oneColorPalette
+          backgroundColor: nineColorPalette
         }]
       }
     }
