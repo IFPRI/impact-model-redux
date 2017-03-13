@@ -5,7 +5,7 @@ import { select, selectAll } from 'd3-selection'
 import { json, csv } from 'd3-request'
 import _ from 'lodash'
 import sqlToES from 'sqltoes'
-import topojson from 'topojson'
+import { feature } from 'topojson-client'
 
 export class Map extends React.Component {
   //   this.mapTip = d3.tip()
@@ -45,6 +45,7 @@ export class Map extends React.Component {
   //     })
   // }
   componentDidMount () {
+    console.log(this.props);
     this.initializeMap()
   }
 
@@ -87,7 +88,7 @@ export class Map extends React.Component {
           }
         })
         this.world = world
-        // this.drawMap()
+        this.drawMap()
       })
     })
   }
@@ -97,8 +98,6 @@ export class Map extends React.Component {
     var mapSvg = this.mapSvg
     var mapPath = this.mapPath
     var mapTip = this.mapTip
-    var mapHeight = this.mapHeight
-    var mapWidth = this.mapWidth
 
     // draw the blank map first, the rest is conditional on good data
     // normally don't need to remove anything but we want to clear the overlay and legend in case we don't render anything except the base map
@@ -107,80 +106,78 @@ export class Map extends React.Component {
     mapSvg.selectAll('.label').remove()
     mapSvg.selectAll('defs').remove()
 
-    // for reasons I don't fully grasp, this has to be readded each time
     var defs = mapSvg.append('defs')
     var dashWidth = 5
     var pattern = defs.append('pattern')
-    .attr('id', 'maphash')
-    .attr('patternUnits', 'userSpaceOnUse')
-    .attr('width', dashWidth)
-    .attr('height', dashWidth)
-    .attr('x', 0).attr('y', 0)
-    .append('g').style('fill', 'none').style('stroke', '#888').style('stroke-width', 0.5)
+      .attr('id', 'maphash')
+      .attr('patternUnits', 'userSpaceOnUse')
+      .attr('width', dashWidth)
+      .attr('height', dashWidth)
+      .attr('x', 0).attr('y', 0)
+      .append('g').style('fill', 'none').style('stroke', '#888').style('stroke-width', 0.5)
 
     // pattern.append('path').attr('d', 'M0, 0 l'+dashWidth+', '+dashWidth)
     pattern.append('path').attr('d', 'M' + dashWidth + ', 0 l-' + dashWidth + ', ' + dashWidth)
 
-    var world = this.world
     mapSvg.selectAll('.land')
-        .data(topojson.feature(world, world.objects.natural_earth_50m).features)
+        .data(feature(this.world, this.world.objects.natural_earth_50m).features)
         .enter().append('path')
         .attr('class', 'land')
         .attr('d', mapPath)
         .attr('style', 'fill:url(#maphash)')
 
-    if (this.collection.mapChoro.models[0]) {
-      var values = _.sortBy(_.map(this.collection.mapChoro.models, function (x) { return that.getDiff(x) }), function (sort) { return sort })
-      var mapMax = values[values.length - 1]
-      var mapMin = values[0]
-      var positiveValues = values.filter(function (x) { return x >= 0 })
-      var negativeValues = values.filter(function (x) { return x < 0 })
-      // trade values get more outliers cut out of the legend
-      var customBreak = _.includes(['qnxagg', 'qnsh1xagg', 'qnsh2xagg', 'qeshxagg', 'qmshxagg'], IfpriImpact.state.map.parameter) ? 0.8 : 0.95
-      var percentileHigh = positiveValues[Math.floor(positiveValues.length * customBreak)]
-      var percentileLow = negativeValues[Math.floor(negativeValues.length * (1 - customBreak))] || 0
-      var mapColor = d3.scale.linear()
-
-      if (mapMin < 0) {
-        mapColor.domain([mapMin, percentileLow, 0, percentileHigh, mapMax]).range(['#CDAA00', '#CDAA00', '#fff', '#4B7838', '#4B7838'])
-        // mapColor.domain([mapMin, 0, mapMax]).range(['#CDAA00', '#fff', '#4B7838'])
-      } else {
-        mapColor.domain([0, percentileHigh, mapMax]).range(['#fff', '#4B7838', '#4B7838'])
-      }
-
-      var filtered = _.map(this.collection.mapChoro.models, function (x) {
-        var obj = {
-          geometry: {
-            type: 'MultiPolygon'
-          }
-        }
-        obj['geometry']['coordinates'] = topojson.merge(world, _.filter(world.objects.natural_earth_50m.geometries, function (y) {
-          return _.includes(_.map(y.properties, function (z) {
-            return z.replace(/ /g, '_').toLowerCase()
-          }), x.get('key'))
-        }))['coordinates']
-        obj['id'] = x.get('key')
-        obj['type'] = 'Feature'
-        return obj
-      })
-
-      mapSvg.selectAll('.overlay')
-          .data(filtered)
-          .enter().append('path')
-          .attr('class', 'overlay')
-          .attr('d', mapPath)
-          .style('fill', function (d) {
-            var co = that.findMapInfo(d.id)
-            if (co) {
-              return mapColor(that.getDiff(co))
-            } else {
-              return 'lightgray'
-            }
-          })
-          .style('stroke-width', 0.5)
-          .style('stroke', '#555')
-          .on('mouseover', mapTip.show)
-          .on('mouseout', mapTip.hide)
+    // if (this.collection.mapChoro.models[0]) {
+    //   var values = _.sortBy(_.map(this.collection.mapChoro.models, function (x) { return that.getDiff(x) }), function (sort) { return sort })
+    //   var mapMax = values[values.length - 1]
+    //   var mapMin = values[0]
+    //   var positiveValues = values.filter(function (x) { return x >= 0 })
+    //   var negativeValues = values.filter(function (x) { return x < 0 })
+    //   // trade values get more outliers cut out of the legend
+    //   var customBreak = _.includes(['qnxagg', 'qnsh1xagg', 'qnsh2xagg', 'qeshxagg', 'qmshxagg'], IfpriImpact.state.map.parameter) ? 0.8 : 0.95
+    //   var percentileHigh = positiveValues[Math.floor(positiveValues.length * customBreak)]
+    //   var percentileLow = negativeValues[Math.floor(negativeValues.length * (1 - customBreak))] || 0
+    //   var mapColor = d3.scale.linear()
+    //
+    //   if (mapMin < 0) {
+    //     mapColor.domain([mapMin, percentileLow, 0, percentileHigh, mapMax]).range(['#CDAA00', '#CDAA00', '#fff', '#4B7838', '#4B7838'])
+    //     // mapColor.domain([mapMin, 0, mapMax]).range(['#CDAA00', '#fff', '#4B7838'])
+    //   } else {
+    //     mapColor.domain([0, percentileHigh, mapMax]).range(['#fff', '#4B7838', '#4B7838'])
+    //   }
+    //
+    //   var filtered = _.map(this.collection.mapChoro.models, function (x) {
+    //     var obj = {
+    //       geometry: {
+    //         type: 'MultiPolygon'
+    //       }
+    //     }
+    //     obj['geometry']['coordinates'] = topojson.merge(world, _.filter(world.objects.natural_earth_50m.geometries, function (y) {
+    //       return _.includes(_.map(y.properties, function (z) {
+    //         return z.replace(/ /g, '_').toLowerCase()
+    //       }), x.get('key'))
+    //     }))['coordinates']
+    //     obj['id'] = x.get('key')
+    //     obj['type'] = 'Feature'
+    //     return obj
+    //   })
+    //
+    //   mapSvg.selectAll('.overlay')
+    //       .data(filtered)
+    //       .enter().append('path')
+    //       .attr('class', 'overlay')
+    //       .attr('d', mapPath)
+    //       .style('fill', function (d) {
+    //         var co = that.findMapInfo(d.id)
+    //         if (co) {
+    //           return mapColor(that.getDiff(co))
+    //         } else {
+    //           return 'lightgray'
+    //         }
+    //       })
+    //       .style('stroke-width', 0.5)
+    //       .style('stroke', '#555')
+    //       .on('mouseover', mapTip.show)
+    //       .on('mouseout', mapTip.hide)
     //
     //   mapSvg.selectAll('.legend-line')
     //       .data(_.map(_.range(101), function (oneLine) {
@@ -243,7 +240,7 @@ export class Map extends React.Component {
     //   .style('fill', '#333')
     //   .style('font-weight', 300)
     //   .text(translate(textFix(IfpriImpact.state.map.aggCommodity)) + translate(textFix(IfpriImpact.state.map.commodity)) + ' from ' + that.yearRange[0] + ' to ' + that.yearRange[1])
-    }
+    // }
   }
   //
   // query (pass) {
