@@ -7,44 +7,9 @@ import { scaleLinear } from 'd3-scale'
 import _ from 'lodash'
 import { feature, merge } from 'topojson-client'
 import queryDatabase from '../utils/query-database'
+import { body as tip } from '@redsift/d3-rs-tip'
 
 export class Map extends React.Component {
-  //   this.mapTip = d3.tip()
-  //     .attr('class', 'd3-tip')
-  //     .offset(function (d) {
-  //       // this will have to be custom/manually adjusted to account for countries with unusual bounding boxes, like CHM or USA
-  //       switch (d.id) {
-  //         case 'rus':
-  //           return [0, 0]
-  //         case 'can':
-  //           return [0, 0]
-  //         case 'usa':
-  //           return [75, -300]
-  //         case 'chm':
-  //           return [25, 0]
-  //         case 'northern_america':
-  //           return [0, -300]
-  //         case 'eastern_europe':
-  //           return [0, 0]
-  //         case 'northern_europe':
-  //           return [10, 0]
-  //         case 'south_eastern_asia':
-  //           return [10, -30]
-  //         case 'europe':
-  //           return [50, 50]
-  //         case 'oceania':
-  //           return [20, 350]
-  //         case 'americas':
-  //           return [0, -300]
-  //         default:
-  //           return [-10, 0]
-  //       }
-  //     })
-  //     .html(function (d) {
-  //       var front = (that.findMapInfo(d.id) > 0) ? '+' : ''
-  //       return '<strong>' + translate(d.id) + '</strong><br>Change: ' + front + (that.getDiff(that.findMapInfo(d.id)) * 100).toFixed(1) + '%'
-  //     })
-  // }
   componentDidMount () {
     this.initializeMap()
   }
@@ -61,11 +26,43 @@ export class Map extends React.Component {
         .attr('width', mapWidth)
         .attr('height', mapHeight)
 
-    // mapSvg.call(that.mapTip)
+    this.mapTip = tip()
+      .offset(d => {
+            // this will have to be custom/manually adjusted to account for countries with unusual bounding boxes, like CHM or USA
+        switch (d.id) {
+          case 'rus':
+            return [0, 0]
+          case 'can':
+            return [0, 0]
+          case 'usa':
+            return [75, -300]
+          case 'chm':
+            return [25, 0]
+          case 'northern_america':
+            return [0, -300]
+          case 'eastern_europe':
+            return [0, 0]
+          case 'northern_europe':
+            return [10, 0]
+          case 'south_eastern_asia':
+            return [10, -30]
+          case 'europe':
+            return [50, 50]
+          case 'oceania':
+            return [20, 350]
+          case 'americas':
+            return [0, -300]
+          default:
+            return [-10, 0]
+        }
+      })
+      .html(d => `<strong>${d.id}</strong><br>Value: ${d.properties.val.toFixed(1)}`)
+
     this.mapSvg = mapSvg
     this.mapPath = mapPath
     this.mapHeight = mapHeight
     this.mapWidth = mapWidth
+    this.mapSvg.call(this.mapTip)
 
     json('assets/data/geo/world.topojson', (error, world) => {
       if (error) console.warn(error)
@@ -169,9 +166,10 @@ export class Map extends React.Component {
         })
         .style('stroke-width', 0.5)
         .style('stroke', '#555')
+        .on('mouseover', this.mapTip.show)
+        .on('mouseout', this.mapTip.hide)
   }
-    //       .on('mouseover', mapTip.show)
-    //       .on('mouseout', mapTip.hide)
+
     //
     //   mapSvg.selectAll('.legend-line')
     //       .data(_.map(_.range(101), function (oneLine) {
