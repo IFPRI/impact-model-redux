@@ -3,9 +3,10 @@ import React from 'react'
 import { geoEquirectangular, geoPath } from 'd3-geo'
 import { select, selectAll } from 'd3-selection'
 import { json, csv } from 'd3-request'
+import { scaleLinear } from 'd3-scale'
 import _ from 'lodash'
-import sqlToES from 'sqltoes'
-import { feature } from 'topojson-client'
+import { feature, merge } from 'topojson-client'
+import queryDatabase from '../utils/query-database'
 
 export class Map extends React.Component {
   //   this.mapTip = d3.tip()
@@ -45,7 +46,6 @@ export class Map extends React.Component {
   //     })
   // }
   componentDidMount () {
-    console.log(this.props);
     this.initializeMap()
   }
 
@@ -54,10 +54,6 @@ export class Map extends React.Component {
     var mapHeight = 600
 
     var projection = geoEquirectangular()
-        // .scale(150)
-        // .translate([mapWidth / 2, mapHeight / 2 + 110])
-        // .precision(0.1)
-        // .rotate([-11, 0])
 
     var mapPath = geoPath(projection)
 
@@ -70,22 +66,14 @@ export class Map extends React.Component {
     this.mapPath = mapPath
     this.mapHeight = mapHeight
     this.mapWidth = mapWidth
-    // var drawMap = $.proxy(that.drawMap, that)
 
     json('assets/data/geo/world.topojson', (error, world) => {
       if (error) console.warn(error)
-      csv('assets/data/geo/aggregation.csv', (err, prop) => {
+      csv('assets/data/geo/aggregation.csv', (err, agg) => {
         if (err) console.warn(err)
-        _.each(world.objects.natural_earth_50m.geometries, c => {
-          var newProperties = _.find(prop, agg => {
-            return agg.id === c.id
-          })
-          // remove the id so we don't match on it (the map aggregation searches the entire 'properties' object)
-          // add (or replace) the properties object to our topojson
-          if (newProperties) {
-            delete newProperties.id
-            c.properties = newProperties
-          }
+        // add aggregation info to geometries
+        world.objects.natural_earth_50m.geometries.forEach(country => {
+          country.properties = agg.find(a => a.id === country.id)
         })
         this.world = world
         this.drawMap()
@@ -94,10 +82,8 @@ export class Map extends React.Component {
   }
 
   drawMap () {
-    var that = this
     var mapSvg = this.mapSvg
     var mapPath = this.mapPath
-    var mapTip = this.mapTip
 
     // draw the blank map first, the rest is conditional on good data
     // normally don't need to remove anything but we want to clear the overlay and legend in case we don't render anything except the base map
@@ -116,7 +102,6 @@ export class Map extends React.Component {
       .attr('x', 0).attr('y', 0)
       .append('g').style('fill', 'none').style('stroke', '#888').style('stroke-width', 0.5)
 
-    // pattern.append('path').attr('d', 'M0, 0 l'+dashWidth+', '+dashWidth)
     pattern.append('path').attr('d', 'M' + dashWidth + ', 0 l-' + dashWidth + ', ' + dashWidth)
 
     mapSvg.selectAll('.land')
@@ -126,56 +111,60 @@ export class Map extends React.Component {
         .attr('d', mapPath)
         .attr('style', 'fill:url(#maphash)')
 
-    // if (this.collection.mapChoro.models[0]) {
-    //   var values = _.sortBy(_.map(this.collection.mapChoro.models, function (x) { return that.getDiff(x) }), function (sort) { return sort })
-    //   var mapMax = values[values.length - 1]
-    //   var mapMin = values[0]
-    //   var positiveValues = values.filter(function (x) { return x >= 0 })
-    //   var negativeValues = values.filter(function (x) { return x < 0 })
-    //   // trade values get more outliers cut out of the legend
-    //   var customBreak = _.includes(['qnxagg', 'qnsh1xagg', 'qnsh2xagg', 'qeshxagg', 'qmshxagg'], IfpriImpact.state.map.parameter) ? 0.8 : 0.95
-    //   var percentileHigh = positiveValues[Math.floor(positiveValues.length * customBreak)]
-    //   var percentileLow = negativeValues[Math.floor(negativeValues.length * (1 - customBreak))] || 0
-    //   var mapColor = d3.scale.linear()
-    //
-    //   if (mapMin < 0) {
-    //     mapColor.domain([mapMin, percentileLow, 0, percentileHigh, mapMax]).range(['#CDAA00', '#CDAA00', '#fff', '#4B7838', '#4B7838'])
-    //     // mapColor.domain([mapMin, 0, mapMax]).range(['#CDAA00', '#fff', '#4B7838'])
-    //   } else {
-    //     mapColor.domain([0, percentileHigh, mapMax]).range(['#fff', '#4B7838', '#4B7838'])
-    //   }
-    //
-    //   var filtered = _.map(this.collection.mapChoro.models, function (x) {
-    //     var obj = {
-    //       geometry: {
-    //         type: 'MultiPolygon'
-    //       }
-    //     }
-    //     obj['geometry']['coordinates'] = topojson.merge(world, _.filter(world.objects.natural_earth_50m.geometries, function (y) {
-    //       return _.includes(_.map(y.properties, function (z) {
-    //         return z.replace(/ /g, '_').toLowerCase()
-    //       }), x.get('key'))
-    //     }))['coordinates']
-    //     obj['id'] = x.get('key')
-    //     obj['type'] = 'Feature'
-    //     return obj
-    //   })
-    //
-    //   mapSvg.selectAll('.overlay')
-    //       .data(filtered)
-    //       .enter().append('path')
-    //       .attr('class', 'overlay')
-    //       .attr('d', mapPath)
-    //       .style('fill', function (d) {
-    //         var co = that.findMapInfo(d.id)
-    //         if (co) {
-    //           return mapColor(that.getDiff(co))
-    //         } else {
-    //           return 'lightgray'
-    //         }
-    //       })
-    //       .style('stroke-width', 0.5)
-    //       .style('stroke', '#555')
+    const mapQuery = Object.assign({}, this.props.data, {
+      encoding: { x: {type: 'nominal', field: 'region'}, y: { type: 'quantitative', field: 'Val'}}
+    })
+
+    queryDatabase(mapQuery, null, (mapData) => {
+      var values = mapData.values.map(a => a.Val)
+      var mapMax = Math.max(...values)
+      var mapMin = Math.min(...values)
+      var mapColor = scaleLinear()
+      // var positiveValues = values.filter(function (x) { return x >= 0 })
+      //   var negativeValues = values.filter(function (x) { return x < 0 })
+      //   // trade values get more outliers cut out of the legend
+      //   var customBreak = _.includes(['qnxagg', 'qnsh1xagg', 'qnsh2xagg', 'qeshxagg', 'qmshxagg'], IfpriImpact.state.map.parameter) ? 0.8 : 0.95
+      //   var percentileHigh = positiveValues[Math.floor(positiveValues.length * customBreak)]
+      //   var percentileLow = negativeValues[Math.floor(negativeValues.length * (1 - customBreak))] || 0
+      //   var mapColor = d3.scale.linear()
+      //
+      //   if (mapMin < 0) {
+      mapColor.domain([mapMin, 0, mapMax]).range(['#CDAA00', '#fff', '#4B7838'])
+      //     // mapColor.domain([mapMin, 0, mapMax]).range(['#CDAA00', '#fff', '#4B7838'])
+      //   } else {
+      //     mapColor.domain([0, percentileHigh, mapMax]).range(['#fff', '#4B7838', '#4B7838'])
+      //   }
+      var filtered = _.map(mapData.values, x => {
+        var obj = {
+          geometry: {
+            type: 'MultiPolygon'
+          },
+          properties: {
+            val: x.Val
+          }
+        }
+        obj['geometry']['coordinates'] = merge(this.world, _.filter(this.world.objects.natural_earth_50m.geometries, function (y) {
+          return _.includes(_.map(y.properties, function (z) {
+            return z.replace(/ /g, '_').toLowerCase()
+          }), x.region)
+        }))['coordinates']
+        obj['id'] = x.region
+        obj['type'] = 'Feature'
+        return obj
+      })
+      console.log(filtered);
+
+      mapSvg.selectAll('.overlay')
+          .data(filtered)
+          .enter().append('path')
+          .attr('class', 'overlay')
+          .attr('d', mapPath)
+          .style('fill', function (d) {
+            return mapColor(d.properties.val)
+          })
+          .style('stroke-width', 0.5)
+          .style('stroke', '#555')
+    })
     //       .on('mouseover', mapTip.show)
     //       .on('mouseout', mapTip.hide)
     //
