@@ -46,10 +46,12 @@ export class Brief extends React.Component {
             <div className='home__header-split--left split__internal--left'>
               <div className='home__header-split--left__content'>
                 <h2 className='header--xxlarge'>{articleMetadata.title}</h2>
-                <ul className='article-byline'>
-                  <li>{date}</li>
-                  <li>{articleMetadata.author}</li>
-                </ul>
+                <dl className='article-byline header__metadata'>
+                  <dt className='visually-hidden'>Date</dt>
+                  <dd>{date}</dd>
+                  <dt className='visually-hidden'>Author</dt>
+                  <dd>{articleMetadata.author}</dd>
+                </dl>
               </div>
             </div>
             <div className='home__header-split--right'>
@@ -60,9 +62,9 @@ export class Brief extends React.Component {
         </section>
         {this.props.articleLoading
          ? <Loading />
-         : <section>
+         : <section className='section__internal'>
              <div className='row'>
-               <div dangerouslySetInnerHTML={{__html: this.props.article}}></div>
+               <div className='article--content' dangerouslySetInnerHTML={{__html: this.props.article}}></div>
              </div>
            </section>
         }

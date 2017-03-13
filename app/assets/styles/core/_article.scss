@@ -1,17 +1,17 @@
+.article--content {
+  p {
+    margin-bottom: 1.5em;
+  }
+}
+
 .page__article {
   float: left;
 
   .figure-container {
     padding: 0;
-    margin: 0;
-    float: left;
-    width: 100%;
-    text-align: center;
-    h3 {
-      width: 100%;
-      margin: 1rem;
-      font-size: 1.4em;
-    }
+    margin: 2em 0;
+    width: 70%;
+    @extend .clearfix;
     .chart {
       float: left !important;
     }
@@ -31,16 +31,12 @@
         width: 60%;
         min-width: 15rem;
         max-width: 30rem;
-        margin: auto;
       }
     }
     .bar-chart {
       .chart-container {
-        width: 90%;
         height: 15rem;
         min-width: 20rem;
-        max-width: 50rem;
-        margin: auto;
       }
     }
     .line-chart {
@@ -49,17 +45,19 @@
         height: 10rem;
         min-width: 15rem;
         max-width: 40rem;
-        margin: auto;
       }
     }
   }
 
   .article-byline {
-    li {
-      display: inline;
+    dd {
+      line-height: 1.2em;
+      display: inline-block;
       list-style-type: none;
-      &:last-child::before {
-        content: ' | ';
+      &:first-of-type {
+        border-right: 1px solid black;
+        margin-right: 1em;
+        padding-right: 1em;
       }
     }
   }

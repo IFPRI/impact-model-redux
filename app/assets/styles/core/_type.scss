@@ -1,6 +1,7 @@
 h1, h2, h3, h4, h5, h6 {
   font-family: $header-family;
   color: $header-color;
+  margin-bottom: .5em;
 }
 
 h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, h5 a, h5 a:visited, h6 a, h6 a:visited {
@@ -29,17 +30,17 @@ h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, 
   font-weight: $header-light;
 }
 
-.header--medium {
+.header--medium, .article--content h1 {
   font-size: 2em;
   font-weight: $header-light;
 }
 
-.header--small {
+.header--small, .article--content h2 {
   font-size: 1.45em;
   font-weight: $header-bold;
 }
 
-.header--xsmall {
+.header--xsmall, .article--content h3 {
   font-size: 1.28em;
 }
 
