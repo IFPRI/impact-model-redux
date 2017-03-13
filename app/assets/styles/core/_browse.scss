@@ -156,12 +156,14 @@
     }
     .rc-collapse > .rc-collapse-item > .rc-collapse-header .arrow {
       display: inline-block;
-      content: '\EA0E';
-      font-size: 1em;
-      vertical-align: middle;
+      background-image: url(../graphics/collecticons/chevron-right.svg);
+      background-size: 10px 10px;
+      width: 10px;
+      height: 10px;
       margin-right: 8px;
-      line-height: inherit !important;
-      color: black;
+      transition: all 0.2s ease 0s;
+      -webkit-transition: all 0.2s;
+      -moz-transition: all 0.2s;
     }
     .rc-collapse-content {
       overflow: hidden;
@@ -175,14 +177,10 @@
     .rc-collapse-content-inactive {
       display: none;
     }
-    .rc-collapse-item:last-child > .rc-collapse-content {
-      border-radius: 0 0 3px 3px;
-    }
     .rc-collapse > .rc-collapse-item-active > .rc-collapse-header .arrow {
-      border-left: 3px solid transparent;
-      border-right: 3px solid transparent;
-      border-top: 4px solid #666;
-      margin-right: 6px;
+      transform: rotate(90deg);
+      -ms-transform: rotate(90deg); /* IE 9 */
+      -webkit-transform: rotate(90deg);
     }
   }
 }
