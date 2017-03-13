@@ -116,6 +116,7 @@
     "d3-geo-projection": "^1.2.2",
     "d3-tip": "^0.7.1",
     "front-matter": "^2.1.2",
+    "jquery": "^3.1.1",
     "js-yaml": "^3.8.2",
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
@@ -129,6 +130,7 @@
     "redux": "^3.6.0",
     "redux-logger": "^2.7.4",
     "redux-thunk": "^2.2.0",
-    "sqltoes": "nbumbarger/sqltoes"
+    "sqltoes": "nbumbarger/sqltoes",
+    "topojson": "^2.2.0"
   }
 }
