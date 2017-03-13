@@ -13,7 +13,7 @@ import { fetchArticle } from '../actions'
 import ProjectArticles from '../components/project-articles'
 import RelatedArticles from '../components/related-articles'
 import Chart from '../components/chart'
-import Map from '../components/Map'
+import Map from '../components/map'
 import Loading from '../components/loading'
 
 export class Brief extends React.Component {
