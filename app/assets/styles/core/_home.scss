@@ -39,3 +39,17 @@
     margin-bottom: 1em;
   }
 }
+
+.featured-project__item {
+  width: 45%;
+  float: left;
+  &:first-of-type {
+    margin-right: 6%;
+  }
+  .featured-project__item--body {
+    float: left;
+    width: 82%;
+  }
+}
+
+

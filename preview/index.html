@@ -28,19 +28,19 @@ window.onload = function () {
   // Base URL
   var url = 'https://82e66fb22a73abdaa81040f2abdc298f-us-east-1.foundcluster.com:9243/ifpri/ssp2_gfdl/_search?search_type=count'
 
-	// Start a new marked instance and renderer
-	var marked = window.marked;
-	var renderer = new marked.Renderer();
-	var counter = 0;
+  // Start a new marked instance and renderer
+  var marked = window.marked;
+  var renderer = new marked.Renderer();
+  var counter = 0;
 
   // Awful global state for submitting with dropdown values
   var dropdownOverride = null;
   var axisOverride = null;
 
   // Render the ```vis as a vega-lite chart
-	renderer.code = function (code, lang, escaped) {
-		if (lang == "vis") {
-			var jsonVis = YAML.parse(code);
+  renderer.code = function (code, lang, escaped) {
+    if (lang == "vis") {
+      var jsonVis = YAML.parse(code);
       // if we don't have a color scheme, make it a set color
       if (!jsonVis.encoding.color) jsonVis.encoding.color = { value: '83C719' }
 
@@ -84,13 +84,17 @@ window.onload = function () {
       // add dropdown component...
       var dropdown = jsonVis.dropdown
 
+      console.log(data)
+
       var dropdownComponent = ''
       if (dropdown && dropdown.field && dropdown.values) {
         // ...to where clause
         var values = dropdown.values.split(',').map(function (val) {
           return val.trim()
         })
+
         where.push(`${dropdown.field} = ${dropdownOverride || values[0]}`)
+
 
         // ...to the DOM
         dropdownComponent = `<span>Filter</span><select class="dropdown-select">${values.map(function (val) {
@@ -102,9 +106,10 @@ window.onload = function () {
       counter++;
       el = `#vis-${counter}`;
       htmlChart = `<div><h2>${jsonVis.title}</h2><div id="vis-${counter}"></div>${dropdownComponent}${axisComponent}</div>`
-
+      console.log(val, where, groupBy)
       // request the data and parse the response for our graph format
       var postData = JSON.stringify(sqltoes({select: [`sum(${val})`], where: where, groupBy: groupBy}))
+      console.log(postData)
       reqwest({
         url: url,
         method: 'post',
@@ -150,17 +155,17 @@ window.onload = function () {
 
       return htmlChart;
 
-		}
-		var result = marked.Renderer.prototype.code.call(this, code, lang, escaped);
-		return result;
-	};
+    }
+    var result = marked.Renderer.prototype.code.call(this, code, lang, escaped);
+    return result;
+  };
 
-	// Convert from Markdown to HTML
-	var input = document.querySelector("#visdown-input");
-	var output = document.querySelector("#visdown-output");
+  // Convert from Markdown to HTML
+  var input = document.querySelector("#visdown-input");
+  var output = document.querySelector("#visdown-output");
 
-	window.visdown = function () {
-		var markdownText = input.value;
+  window.visdown = function () {
+    var markdownText = input.value;
     dropdownOverride = null
     axisOverride = null
     output.innerHTML = marked(markdownText, { renderer: renderer });
@@ -169,7 +174,7 @@ window.onload = function () {
         secondaryUpdate()
       )
     })
-	}
+  }
 
   window.secondaryUpdate = function () {
     var markdownText = input.value;

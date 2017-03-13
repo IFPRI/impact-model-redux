@@ -1,8 +1,10 @@
 'use strict'
 import React from 'react'
+import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import { Link } from 'react-router'
+import _ from 'lodash'
 
 // Actions
 import { fetchArticle } from '../actions'
@@ -10,6 +12,7 @@ import { fetchArticle } from '../actions'
 // Components
 import ProjectArticles from '../components/project-articles'
 import RelatedArticles from '../components/related-articles'
+import Chart from '../components/chart'
 import Loading from '../components/loading'
 
 export class Scenario extends React.Component {
@@ -19,6 +22,19 @@ export class Scenario extends React.Component {
     props.dispatch(fetchArticle(this.metadata.url))
   }
 
+  componentDidUpdate () {
+    this.addCharts()
+  }
+
+  addCharts () {
+    _.forEach(this.props.charts, (data, name) => {
+      const placeholder = document.querySelector('.' + name)
+      if (placeholder) {
+        ReactDOM.render(<Chart name={name} data={data} />, placeholder)
+      }
+    })
+  }
+
   render () {
     const articleMetadata = this.metadata
     const articles = this.props.articles
@@ -26,16 +42,20 @@ export class Scenario extends React.Component {
     return (
       <div className='page__article'>
         <section className='header__internal'>
-          <div className='header-split--left'>
-            <h2 className='header--xlarge'>{articleMetadata.title}</h2>
-            <ul className='article-byline'>
-              <li>{date}</li>
-              <li>{articleMetadata.author}</li>
-            </ul>
-          </div>
-          <div className='header-split--right'>
-            <Link to={'/'} className='button button--outline'>Download Report</Link>
-            <Link to={'/'} className='button button--outline'>Share</Link>
+          <div className='row'>
+            <div className='home__header-split--left split__internal--left'>
+              <div className='home__header-split--left__content'>
+                <h2 className='header--xxlarge'>{articleMetadata.title}</h2>
+                <ul className='article-byline'>
+                  <li>{date}</li>
+                  <li>{articleMetadata.author}</li>
+                </ul>
+              </div>
+            </div>
+            <div className='home__header-split--right'>
+              <Link to={'/'} className='button button--outline'>Download Report</Link>
+              <Link to={'/'} className='button button--outline'>Share</Link>
+            </div>
           </div>
         </section>
         {this.props.articleLoading
@@ -60,6 +80,7 @@ Scenario.propTypes = {
   fetchArticle: React.PropTypes.func,
   articleLoading: React.PropTypes.bool,
   article: React.PropTypes.string,
+  charts: React.PropTypes.object,
   params: React.PropTypes.object
 }
 
@@ -70,7 +91,8 @@ const mapStateToProps = (state) => {
   return {
     articles: state.article.scenarios,
     articleLoading: state.article.articleLoading,
-    article: state.article.article
+    article: state.article.article,
+    charts: state.article.charts
   }
 }
 export default connect(mapStateToProps)(Scenario)

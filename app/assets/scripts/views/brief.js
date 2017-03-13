@@ -1,8 +1,10 @@
 'use strict'
 import React from 'react'
+import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import { Link } from 'react-router'
+import _ from 'lodash'
 
 // Actions
 import { fetchArticle } from '../actions'
@@ -10,6 +12,7 @@ import { fetchArticle } from '../actions'
 // Components
 import ProjectArticles from '../components/project-articles'
 import RelatedArticles from '../components/related-articles'
+import Chart from '../components/chart'
 import Loading from '../components/loading'
 
 export class Brief extends React.Component {
@@ -17,6 +20,19 @@ export class Brief extends React.Component {
     super(props, context)
     this.metadata = props.articles.find((article) => article.id === props.params.id)
     props.dispatch(fetchArticle(this.metadata.url))
+  }
+
+  componentDidUpdate () {
+    this.addCharts()
+  }
+
+  addCharts () {
+    _.forEach(this.props.charts, (data, name) => {
+      const placeholder = document.querySelector('.' + name)
+      if (placeholder) {
+        ReactDOM.render(<Chart name={name} data={data} />, placeholder)
+      }
+    })
   }
 
   render () {
@@ -64,6 +80,7 @@ Brief.propTypes = {
   fetchArticle: React.PropTypes.func,
   articleLoading: React.PropTypes.bool,
   article: React.PropTypes.string,
+  charts: React.PropTypes.object,
   params: React.PropTypes.object
 }
 
@@ -74,7 +91,8 @@ const mapStateToProps = (state) => {
   return {
     articles: state.article.briefs,
     articleLoading: state.article.articleLoading,
-    article: state.article.article
+    article: state.article.article,
+    charts: state.article.charts
   }
 }
 export default connect(mapStateToProps)(Brief)

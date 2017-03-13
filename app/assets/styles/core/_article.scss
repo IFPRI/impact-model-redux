@@ -1,5 +1,59 @@
 .page__article {
   float: left;
+
+  .figure-container {
+    padding: 0;
+    margin: 0;
+    float: left;
+    width: 100%;
+    text-align: center;
+    h3 {
+      width: 100%;
+      margin: 1rem;
+      font-size: 1.4em;
+    }
+    .chart {
+      float: left !important;
+    }
+    .chart-dropdown {
+      float: left;
+      width: 100%;
+      margin-top: 1rem;
+      text-align: center;
+      font-weight: 800;
+      font-size: 1rem;
+      select {
+        color: $darkest-blue;
+      }
+    }
+    .pie-chart {
+      .chart-container {
+        width: 60%;
+        min-width: 15rem;
+        max-width: 30rem;
+        margin: auto;
+      }
+    }
+    .bar-chart {
+      .chart-container {
+        width: 90%;
+        height: 15rem;
+        min-width: 20rem;
+        max-width: 50rem;
+        margin: auto;
+      }
+    }
+    .line-chart {
+      .chart-container {
+        width: 90%;
+        height: 10rem;
+        min-width: 15rem;
+        max-width: 40rem;
+        margin: auto;
+      }
+    }
+  }
+
   .article-byline {
     li {
       display: inline;
@@ -9,8 +63,9 @@
       }
     }
   }
+}
 
-  .page__project-articles-list {
+.page__project-articles-list {
     float: left;
     background-color: $light-blue;
     .section__header {
@@ -79,4 +134,3 @@
       }
     }
   }
-}
