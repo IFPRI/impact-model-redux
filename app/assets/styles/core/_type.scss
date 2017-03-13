@@ -8,6 +8,10 @@ h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, 
   color: $header-color;
 }
 
+.with-description {
+  margin-bottom: 0em;
+}
+
 .header--xxxlarge {
   font-size: 4em;
   font-weight: $header-light;
@@ -18,6 +22,7 @@ h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, 
 .header--xxlarge { 
   font-size: 3.56em;
   font-weight: $header-light;
+  line-height: 1.2em
 }
 
 .header--xlarge { 
@@ -28,6 +33,7 @@ h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, 
 .header--large {
   font-size: 2.28em;
   font-weight: $header-light;
+  line-height: 1.3em;
 }
 
 .header--medium, .article--content h1 {
@@ -62,4 +68,9 @@ dt {
 
 .section__header {
   margin-bottom: .8em;
+}
+
+.link-block {
+  margin-top: 1.2em;
+  display: block;
 }
