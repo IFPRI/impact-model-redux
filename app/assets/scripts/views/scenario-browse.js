@@ -13,7 +13,7 @@ export class ScenarioBrowse extends React.Component {
         <header className='header__internal'>
           <div className='row'>
             <div className='browse__header-text'>
-              <h2 className='header--xxlarge'>Scenarios</h2>
+              <h2 className='header--xxlarge with-metadata'>Scenarios</h2>
               <p className='header__metadata'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut augue aliquet ligula aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut augue aliquet ligula aliquam.</p>
             </div>
           </div>

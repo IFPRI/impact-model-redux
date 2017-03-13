@@ -1,7 +1,7 @@
 input, select {
   background-color: rgb(255, 255, 255);
   border: 1px solid lighten($light-grey, 20%);
-  padding: 0.75rem 1rem;
+  padding: 0.2rem .5rem;
   min-width: 14rem;
   &:focus {
     border: 1px solid $light-grey;
@@ -10,4 +10,21 @@ input, select {
 
 .input--small {
   padding: 0.4rem .8rem .3rem;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: relative;
+  &:after {
+    background-image: url(../graphics/collecticons/chevron-down.svg);
+    background-size: 10px 10px;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    right: .5em;
+    content: '';
+    display: block;
+  }
 }

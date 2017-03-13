@@ -1,29 +1,27 @@
 .article--content {
+  margin-bottom: 3em;
   p {
     margin-bottom: 1.5em;
+    width: 75%;
   }
 }
 
 .page__article {
-  float: left;
-
   .figure-container {
     padding: 0;
-    margin: 2em 0;
+    margin: 3em 0;
     width: 70%;
     @extend .clearfix;
     .chart {
       float: left !important;
     }
     .chart-dropdown {
-      float: left;
+      clear: both;
       width: 100%;
-      margin-top: 1rem;
+      padding-top: 1rem;
       text-align: center;
-      font-weight: 800;
-      font-size: 1rem;
-      select {
-        color: $darkest-blue;
+      label {
+        margin-right: .5em;
       }
     }
     .pie-chart {
@@ -60,6 +58,15 @@
         padding-right: 1em;
       }
     }
+  }
+  .home__header-split--right {
+    margin-top: 12em;
+  }
+  .home__header-split--left__content {
+    padding: 11.5em 4em 0 0;
+  }
+  .header__metadata {
+    font-size: .86em;
   }
 }
 
@@ -131,4 +138,9 @@
         }
       }
     }
+  }
+  .label--chart {
+    font-size: 1.28em;
+    font-weight: $header-regular;
+    margin-bottom: 1.3em;
   }
