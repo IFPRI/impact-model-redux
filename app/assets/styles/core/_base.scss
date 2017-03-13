@@ -94,3 +94,11 @@ dt {
   float: left;
   margin-right: .7em;
 }
+
+.header-internal {
+  margin-bottom: 3em;
+  width: 70%;
+  p {
+    color: $light-grey;
+  }
+}
