@@ -89,13 +89,15 @@ export class BrowseFilters extends React.Component {
     const accordion = this.state.accordion
     return (
       <div className='browse__filters'>
-        <h5>Filter</h5>
+        <h5 className='header--small'>Filter</h5>
         <form className='filters__form'>
           <fieldset>
             <legend>Type</legend>
-            <label><input type="checkbox" name='custom-check' value='custom-check' />Custom</label>
-            <label><input type="checkbox" name='country-summary-check' value='country-summary-check' />Country Summary</label>
-            <label><input type="checkbox" name='commodity-summary-check' value='commodity-summary-check' />Commodity Summary</label>
+            <ul className='filters__main-check-group'>
+              <li><label><input type="checkbox" name='custom-check' value='custom-check' />Custom</label></li>
+              <li><label><input type="checkbox" name='country-summary-check' value='country-summary-check' />Country Summary</label></li>
+              <li><label><input type="checkbox" name='commodity-summary-check' value='commodity-summary-check' />Commodity Summary</label></li>
+            </ul>
           </fieldset>
           <fieldset>
             <legend>Commodities</legend>
@@ -119,10 +121,10 @@ export class BrowseFilters extends React.Component {
           </fieldset>
           <fieldset>
             <legend>Projects</legend>
-            <div className='filters__check-group'>
+            <ul className='filters__main-check-group'>
               {filterCategories.projects.map((project, i) => {
                 return (
-                  <div key={'project-' + i}>
+                  <li key={'project-' + i}>
                     <input
                       type='checkbox'
                       name={project + '-check'}
@@ -130,10 +132,10 @@ export class BrowseFilters extends React.Component {
                       onChange={this.handleFilterSelection}
                       checked={_.includes(this.props.articleFilters, project) } />
                     <label>{project}</label>
-                  </div>
+                  </li>
                 )
               })}
-            </div>
+            </ul>
           </fieldset>
         </form>
       </div>
