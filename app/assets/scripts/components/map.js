@@ -51,7 +51,7 @@ export class Map extends React.Component {
 
   initializeMap () {
     var mapWidth = 960
-    var mapHeight = 600
+    var mapHeight = 480
 
     var projection = geoEquirectangular()
 
