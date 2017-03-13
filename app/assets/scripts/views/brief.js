@@ -40,35 +40,37 @@ export class Brief extends React.Component {
     const articles = this.props.articles
     const date = moment(articleMetadata.date, 'M/D/YYYY').format('MMMM Do, YYYY')
     return (
-      <div className='page__article'>
+      <section className='page__article'>
         <section className='header__internal'>
-          <div className='row'>
+          <div className='row row--shortened'>
             <div className='home__header-split--left split__internal--left'>
               <div className='home__header-split--left__content'>
-                <h2 className='header--xxlarge'>{articleMetadata.title}</h2>
-                <ul className='article-byline'>
-                  <li>{date}</li>
-                  <li>{articleMetadata.author}</li>
-                </ul>
+                <h2 className='header--xxlarge with-metadata'>{articleMetadata.title}</h2>
+                <dl className='article-byline header__metadata'>
+                  <dt className='visually-hidden'>Date</dt>
+                  <dd>{date}</dd>
+                  <dt className='visually-hidden'>Author</dt>
+                  <dd>{articleMetadata.author}</dd>
+                </dl>
               </div>
             </div>
             <div className='home__header-split--right'>
-              <Link to={'/'} className='button button--outline'>Download Report</Link>
+              <Link to={'/'} className='button button--outline button--download'>Download Report</Link>
               <Link to={'/'} className='button button--outline'>Share</Link>
             </div>
           </div>
         </section>
         {this.props.articleLoading
          ? <Loading />
-         : <section>
-             <div className='row'>
-               <div dangerouslySetInnerHTML={{__html: this.props.article}}></div>
+         : <section className='section__internal'>
+             <div className='row row--shortened'>
+               <div className='article--content' dangerouslySetInnerHTML={{__html: this.props.article}}></div>
              </div>
            </section>
         }
         <ProjectArticles articleMetadata={articleMetadata} articles={articles} />
         <RelatedArticles articleMetadata={articleMetadata} articles={articles} />
-      </div>
+      </section>
     )
   }
 }

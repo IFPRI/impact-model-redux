@@ -48,7 +48,7 @@ a, a:visited {
 }
 
 .header__internal {
-  height: 300px;
+  height: 350px;
   background-color: $medium-blue;
   position: relative;
   @extend .clearfix;
@@ -62,20 +62,23 @@ a, a:visited {
   h2 {
     color: #fff;
   }
-  p {
+  .header__metadata {
     color: $black;
     line-height: 1.7em;
     max-width: 90%;
   }
 }
 
+.visually-hidden { display: none; }
+
 section {
   width: 100%;
+  @extend .clearfix;
 }
 
 .home__header {
   p {
-    font-size: 1.2em;
+    font-size: 1.1em;
     width: 83%;
   }
 }
@@ -85,7 +88,7 @@ section {
 }
 
 .browse__header-text {
-  margin-top: 6em;
+  margin-top: 10em;
   width: 60%;
 }
 
@@ -101,4 +104,8 @@ dt {
   p {
     color: $light-grey;
   }
+}
+
+.page__body {
+  @extend .clearfix;
 }

@@ -148,12 +148,12 @@ export class Chart extends React.Component {
 
     return (
       <div className={chartClass}>
-        <h3>{`${impactParameter} for ${focus} in ${year}, Aggregated by ${aggregation}`}</h3>
+        <h5 className='label--chart'>{`${impactParameter} for ${focus} in ${year}, Aggregated by ${aggregation}`}</h5>
         <div className='chart-container'>
           <canvas id={name} className='chart'></canvas>
         </div>
         <div className='chart-dropdown'>
-          <span>Filter:</span>
+          <label>Filter:</label>
           <select className={`${name}-dropdown`} defaultValue={activeQuery} onChange={this.updateQuery}>
             {this.dropdownValues.map((value, i) => {
               return <option value={value} key={`${name}-${i}`}>{translation[value]}</option>

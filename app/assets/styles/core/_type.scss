@@ -12,6 +12,10 @@ h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, 
   margin-bottom: 0em;
 }
 
+.with-metadata {
+  margin-bottom: .2em;
+}
+
 .header--xxxlarge {
   font-size: 4em;
   font-weight: $header-light;
@@ -22,7 +26,7 @@ h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, 
 .header--xxlarge { 
   font-size: 3.56em;
   font-weight: $header-light;
-  line-height: 1.2em
+  line-height: 1.1em
 }
 
 .header--xlarge { 
@@ -36,17 +40,17 @@ h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, 
   line-height: 1.3em;
 }
 
-.header--medium {
+.header--medium, .article--content h1 {
   font-size: 2em;
   font-weight: $header-light;
 }
 
-.header--small {
+.header--small, .article--content h2 {
   font-size: 1.45em;
   font-weight: $header-bold;
 }
 
-.header--xsmall {
+.header--xsmall, .article--content h3 {
   font-size: 1.28em;
 }
 

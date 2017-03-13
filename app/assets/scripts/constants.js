@@ -15,7 +15,7 @@ export const nineColorPalette = [
 ]
 
 export const oneColorPalette = [
-  '#6ca315'
+  '#83C61A'
 ]
 
 export const greenGradientPalette = (steps) => chroma.scale(['#00ff00', '#ccffcc']).colors(steps)

@@ -1,29 +1,27 @@
-.page__article {
-  float: left;
+.article--content {
+  margin-bottom: 3em;
+  p {
+    margin-bottom: 1.5em;
+    width: 75%;
+  }
+}
 
+.page__article {
   .figure-container {
     padding: 0;
-    margin: 0;
-    float: left;
-    width: 100%;
-    text-align: center;
-    h3 {
-      width: 100%;
-      margin: 1rem;
-      font-size: 1.4em;
-    }
+    margin: 3em 0;
+    width: 70%;
+    @extend .clearfix;
     .chart {
       float: left !important;
     }
     .chart-dropdown {
-      float: left;
+      clear: both;
       width: 100%;
-      margin-top: 1rem;
+      padding-top: 1rem;
       text-align: center;
-      font-weight: 800;
-      font-size: 1rem;
-      select {
-        color: $darkest-blue;
+      label {
+        margin-right: .5em;
       }
     }
     .pie-chart {
@@ -31,16 +29,12 @@
         width: 60%;
         min-width: 15rem;
         max-width: 30rem;
-        margin: auto;
       }
     }
     .bar-chart {
       .chart-container {
-        width: 90%;
         height: 15rem;
         min-width: 20rem;
-        max-width: 50rem;
-        margin: auto;
       }
     }
     .line-chart {
@@ -49,19 +43,30 @@
         height: 10rem;
         min-width: 15rem;
         max-width: 40rem;
-        margin: auto;
       }
     }
   }
 
   .article-byline {
-    li {
-      display: inline;
+    dd {
+      line-height: 1.2em;
+      display: inline-block;
       list-style-type: none;
-      &:last-child::before {
-        content: ' | ';
+      &:first-of-type {
+        border-right: 1px solid black;
+        margin-right: 1em;
+        padding-right: 1em;
       }
     }
+  }
+  .home__header-split--right {
+    margin-top: 12em;
+  }
+  .home__header-split--left__content {
+    padding: 11.5em 4em 0 0;
+  }
+  .header__metadata {
+    font-size: .86em;
   }
 }
 
@@ -133,4 +138,9 @@
         }
       }
     }
+  }
+  .label--chart {
+    font-size: 1.28em;
+    font-weight: $header-regular;
+    margin-bottom: 1.3em;
   }

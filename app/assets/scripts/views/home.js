@@ -5,13 +5,13 @@ import { Link } from 'react-router'
 export class Home extends React.Component {
   render () {
     return (
-      <div className='page__home'>
+      <section className='page__home'>
         <header className='home__header'>
           <div className='row row--shortened'>
             <div className='home__header-split--left'>
               <div className='home__header-split--left__content'>
                 <h2 className='header--xxxlarge'>Answering Questions About Our World’s Food Supply</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet ligula aliquam. Lorem ipsum dolor sit amet, consectetur elit.</p>
+                <p className='header__metadata'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet ligula aliquam. Lorem ipsum dolor sit amet, consectetur elit.</p>
               </div>
             </div>
             <div className='home__header-split--right'>
@@ -82,7 +82,7 @@ export class Home extends React.Component {
             <Link className='button button--main button--more-information' to={'/'}>View All Briefs</Link>
           </div>
         </section>
-      </div>
+      </section>
     )
   }
 }
