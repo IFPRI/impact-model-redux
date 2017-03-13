@@ -1,7 +1,7 @@
 'use strict'
 import React from 'react'
 import { geoEquirectangular, geoPath } from 'd3-geo'
-import { select, selectAll } from 'd3-selection'
+import { select } from 'd3-selection'
 import { json, csv } from 'd3-request'
 import { scaleLinear } from 'd3-scale'
 import _ from 'lodash'
@@ -77,22 +77,31 @@ export class Map extends React.Component {
         })
         this.world = world
         this.drawMap()
+        this.queryMapData()
       })
     })
   }
 
+  queryMapData () {
+    const mapQuery = Object.assign({}, this.props.data, {
+      encoding: {
+        x: { type: 'nominal', field: 'region' },
+        y: { type: 'quantitative', field: 'Val' }
+      }
+    })
+    queryDatabase(mapQuery, null, (mapData) => {
+      this.updateMap(mapData)
+    })
+  }
+
   drawMap () {
-    var mapSvg = this.mapSvg
-    var mapPath = this.mapPath
-
     // draw the blank map first, the rest is conditional on good data
-    // normally don't need to remove anything but we want to clear the overlay and legend in case we don't render anything except the base map
-    mapSvg.selectAll('path').remove()
-    mapSvg.selectAll('.legend-line').remove()
-    mapSvg.selectAll('.label').remove()
-    mapSvg.selectAll('defs').remove()
+    this.mapSvg.selectAll('path').remove()
+    this.mapSvg.selectAll('.legend-line').remove()
+    this.mapSvg.selectAll('.label').remove()
+    this.mapSvg.selectAll('defs').remove()
 
-    var defs = mapSvg.append('defs')
+    var defs = this.mapSvg.append('defs')
     var dashWidth = 5
     var pattern = defs.append('pattern')
       .attr('id', 'maphash')
@@ -104,67 +113,63 @@ export class Map extends React.Component {
 
     pattern.append('path').attr('d', 'M' + dashWidth + ', 0 l-' + dashWidth + ', ' + dashWidth)
 
-    mapSvg.selectAll('.land')
+    this.mapSvg.selectAll('.land')
         .data(feature(this.world, this.world.objects.natural_earth_50m).features)
         .enter().append('path')
         .attr('class', 'land')
-        .attr('d', mapPath)
+        .attr('d', this.mapPath)
         .attr('style', 'fill:url(#maphash)')
+  }
 
-    const mapQuery = Object.assign({}, this.props.data, {
-      encoding: { x: {type: 'nominal', field: 'region'}, y: { type: 'quantitative', field: 'Val'}}
-    })
-
-    queryDatabase(mapQuery, null, (mapData) => {
-      var values = mapData.values.map(a => a.Val)
-      var mapMax = Math.max(...values)
-      var mapMin = Math.min(...values)
-      var mapColor = scaleLinear()
-      // var positiveValues = values.filter(function (x) { return x >= 0 })
-      //   var negativeValues = values.filter(function (x) { return x < 0 })
-      //   // trade values get more outliers cut out of the legend
-      //   var customBreak = _.includes(['qnxagg', 'qnsh1xagg', 'qnsh2xagg', 'qeshxagg', 'qmshxagg'], IfpriImpact.state.map.parameter) ? 0.8 : 0.95
-      //   var percentileHigh = positiveValues[Math.floor(positiveValues.length * customBreak)]
-      //   var percentileLow = negativeValues[Math.floor(negativeValues.length * (1 - customBreak))] || 0
-      //   var mapColor = d3.scale.linear()
-      //
-      //   if (mapMin < 0) {
-      mapColor.domain([mapMin, 0, mapMax]).range(['#CDAA00', '#fff', '#4B7838'])
-      //     // mapColor.domain([mapMin, 0, mapMax]).range(['#CDAA00', '#fff', '#4B7838'])
-      //   } else {
-      //     mapColor.domain([0, percentileHigh, mapMax]).range(['#fff', '#4B7838', '#4B7838'])
-      //   }
-      var filtered = _.map(mapData.values, x => {
-        var obj = {
-          geometry: {
-            type: 'MultiPolygon'
-          },
-          properties: {
-            val: x.Val
-          }
+  updateMap (mapData) {
+    var values = mapData.values.map(a => a.Val)
+    var mapMax = Math.max(...values)
+    var mapMin = Math.min(...values)
+    var mapColor = scaleLinear()
+    // var positiveValues = values.filter(function (x) { return x >= 0 })
+    //   var negativeValues = values.filter(function (x) { return x < 0 })
+    //   // trade values get more outliers cut out of the legend
+    //   var customBreak = _.includes(['qnxagg', 'qnsh1xagg', 'qnsh2xagg', 'qeshxagg', 'qmshxagg'], IfpriImpact.state.map.parameter) ? 0.8 : 0.95
+    //   var percentileHigh = positiveValues[Math.floor(positiveValues.length * customBreak)]
+    //   var percentileLow = negativeValues[Math.floor(negativeValues.length * (1 - customBreak))] || 0
+    //   var mapColor = d3.scale.linear()
+    //
+    //   if (mapMin < 0) {
+    mapColor.domain([mapMin, 0, mapMax]).range(['#CDAA00', '#fff', '#4B7838'])
+    //     // mapColor.domain([mapMin, 0, mapMax]).range(['#CDAA00', '#fff', '#4B7838'])
+    //   } else {
+    //     mapColor.domain([0, percentileHigh, mapMax]).range(['#fff', '#4B7838', '#4B7838'])
+    //   }
+    var filtered = _.map(mapData.values, x => {
+      var obj = {
+        geometry: {
+          type: 'MultiPolygon'
+        },
+        properties: {
+          val: x.Val
         }
-        obj['geometry']['coordinates'] = merge(this.world, _.filter(this.world.objects.natural_earth_50m.geometries, function (y) {
-          return _.includes(_.map(y.properties, function (z) {
-            return z.replace(/ /g, '_').toLowerCase()
-          }), x.region)
-        }))['coordinates']
-        obj['id'] = x.region
-        obj['type'] = 'Feature'
-        return obj
-      })
-      console.log(filtered);
-
-      mapSvg.selectAll('.overlay')
-          .data(filtered)
-          .enter().append('path')
-          .attr('class', 'overlay')
-          .attr('d', mapPath)
-          .style('fill', function (d) {
-            return mapColor(d.properties.val)
-          })
-          .style('stroke-width', 0.5)
-          .style('stroke', '#555')
+      }
+      obj['geometry']['coordinates'] = merge(this.world, _.filter(this.world.objects.natural_earth_50m.geometries, function (y) {
+        return _.includes(_.map(y.properties, function (z) {
+          return z.replace(/ /g, '_').toLowerCase()
+        }), x.region)
+      }))['coordinates']
+      obj['id'] = x.region
+      obj['type'] = 'Feature'
+      return obj
     })
+
+    this.mapSvg.selectAll('.overlay')
+        .data(filtered)
+        .enter().append('path')
+        .attr('class', 'overlay')
+        .attr('d', this.mapPath)
+        .style('fill', function (d) {
+          return mapColor(d.properties.val)
+        })
+        .style('stroke-width', 0.5)
+        .style('stroke', '#555')
+  }
     //       .on('mouseover', mapTip.show)
     //       .on('mouseout', mapTip.hide)
     //
@@ -230,58 +235,6 @@ export class Map extends React.Component {
     //   .style('font-weight', 300)
     //   .text(translate(textFix(IfpriImpact.state.map.aggCommodity)) + translate(textFix(IfpriImpact.state.map.commodity)) + ' from ' + that.yearRange[0] + ' to ' + that.yearRange[1])
     // }
-  }
-  //
-  // query (pass) {
-  //   var aggCommodityFilter = 'agg_commodity = ' + IfpriImpact.state.map.aggCommodity
-  //   var commodityFilter = 'commodity = ' + IfpriImpact.state.map.commodity
-  //   var descriptionFilter = 'impactparameter = ' + IfpriImpact.state.map.parameter
-  //   var groupby = IfpriImpact.state.map.aggregation
-  //   var yearRangeFilter = 'year in ' + IfpriImpact.state.yearRange[0] +
-  //       ', ' + IfpriImpact.state.yearRange[1]
-  //   var cFilter
-  //   var that = this
-  //   if (IfpriImpact.state.map.commodity) {
-  //     cFilter = commodityFilter
-  //     IfpriImpact.state.map.aggCommodity = ''
-  //   } else {
-  //     cFilter = aggCommodityFilter
-  //   }
-  //   var mapChoroData = sqlToES({
-  //     select: ['sum(Val)'],
-  //     from: [''],
-  //     where: [cFilter, descriptionFilter, yearRangeFilter],
-  //     groupby: [groupby, 'year']
-  //   })
-  //   // reset loading conditions, spin, and POST
-  //
-  //   this.spinner.spin(document.getElementById('map-loader'))
-  //
-  //   // prevents router changes when called with pass parameter
-  //   if (!pass) {
-  //     IfpriImpact.router.navigate('scenario/' + that.scenario + '/map' + JSON.stringify(IfpriImpact.state.map).replace(/[{}, ":]/g, '').split(/aggCommodity|commodity|parameter|aggregation/).join('/'), {
-  //       trigger: false,
-  //       replace: true
-  //     })
-  //   }
-  //   if (_.includes(['tyldxagg', 'anmlyldxagg'], IfpriImpact.state.map.parameter)) {
-  //     that.yieldQuery(cFilter, yearRangeFilter, groupby)
-  //   } else if (_.includes(['qnsh1xagg', 'qnsh2xagg'])) {
-  //     that.tradeQuery(cFilter, yearRangeFilter, groupby)
-  //   } else {
-  //     IfpriImpact.collections.mapChoro.fetch({
-  //       data: mapChoroData,
-  //       type: 'POST',
-  //       dataType: 'json',
-  //       scenario: that.scenario.toLowerCase()
-  //     })
-  //   }
-  //
-  //   // update the dropdowns
-  //   this.checkDropdowns()
-  // }
-  //
-  // }
 
   render () {
     return (
@@ -297,7 +250,7 @@ export class Map extends React.Component {
 
 // Set default props
 Map.propTypes = {
-
+  data: React.PropTypes.object
 }
 
 export default Map
