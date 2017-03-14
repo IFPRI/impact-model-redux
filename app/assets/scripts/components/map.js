@@ -2,7 +2,6 @@
 import React from 'react'
 import { geoEquirectangular, geoPath } from 'd3-geo'
 import { select } from 'd3-selection'
-import { json } from 'd3-request'
 import { scaleLinear } from 'd3-scale'
 import _ from 'lodash'
 import { feature, merge } from 'topojson-client'
@@ -12,6 +11,7 @@ import c from 'classnames'
 import queryDatabase from '../utils/query-database'
 import translation from '../../data/translation'
 import locationAggregation from '../../data/aggregate-region'
+import world from '../../data/geo/world.json'
 
 const yellow = '#CDAA00'
 const green = '#4B7838'
@@ -94,16 +94,13 @@ export class Map extends React.Component {
     this.mapWidth = mapWidth
     this.mapSvg.call(this.mapTip)
 
-    json('assets/data/geo/world.topojson', (error, world) => {
-      if (error) console.warn(error)
-      // add aggregation info to geometries
-      world.objects.natural_earth_50m.geometries.forEach(country => {
-        country.properties = locationAggregation[country.id]
-      })
-      this.world = world
-      this.drawMap()
-      this.queryMapData()
+    // add aggregation info to geometries
+    world.objects.natural_earth_50m.geometries.forEach(country => {
+      country.properties = locationAggregation[country.id]
     })
+    this.world = world
+    this.drawMap()
+    this.queryMapData()
   }
 
   queryMapData (activeQuery) {
