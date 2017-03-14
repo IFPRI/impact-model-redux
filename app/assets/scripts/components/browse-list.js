@@ -82,10 +82,19 @@ export class BrowseList extends React.Component {
       <section className='browse__article-list'>
         <header className='article-list__header'>
           <h5 className='header--small'>Results <span className='result-count'>({articleCount})</span></h5>
-          <select onChange={this.handleSortingUpdate} className='article-list__sort-menu' selected={articleSorting}>
-            <option value='recency'>Recent Updates</option>
-            <option value='relevance'>Relevance</option>
-          </select>
+          <div className='select--wrapper'>
+            <select onChange={this.handleSortingUpdate} className='article-list__sort-menu' selected={articleSorting}>
+              <option value='recency'>Recent Updates</option>
+              <option value='relevance'>Relevance</option>
+            </select>
+          </div>
+          <div className='filter__selects'>
+            <ul>
+              <li>Wheat</li>
+              <li>South America</li>
+            </ul>
+            <a className='filter__selects__clear link__underline' href='/'>Clear All Filters</a>
+          </div>
         </header>
         {articles.map((article, i) => {
           return (

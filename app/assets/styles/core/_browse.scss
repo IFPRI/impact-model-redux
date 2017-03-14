@@ -184,3 +184,35 @@
     }
   }
 }
+
+.filter__selects {
+  clear: both;
+  display: block;
+  margin-bottom: 1.5em;
+  padding-top: .5em;
+  li {
+    float: left;
+    border: 1px solid $base-purple;
+    display: block;
+    padding: .3em .8em .2em;
+    font-size: .85em;
+    margin-right: 1em;
+    color: $base-purple;
+    &:before {
+      content: '';
+      background-image: url(../graphics/collecticons/xmark.svg);
+      background-size: 8px 8px;
+      width: 8px;
+      height: 8px;
+      display: inline-block;
+      margin-right: .5em;
+    }
+  }
+}
+
+.filter__selects__clear {
+  font-size: .85em;
+  margin-top: .3em;
+  display: inline-block;
+}
+
