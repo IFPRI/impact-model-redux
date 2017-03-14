@@ -12,6 +12,9 @@ import ListArticleCard from './list-article-card.js'
 // Constants
 import { articleBrowsePageLength } from '../constants.js'
 
+// Utils
+import { translate } from '../utils/translation'
+
 export class BrowseList extends React.Component {
   constructor (props, context) {
     super(props, context)
@@ -84,6 +87,10 @@ export class BrowseList extends React.Component {
     const lowArticle = articleBrowsePageLength * articlePage + 1
     const highArticle = Math.min(articleCount, articleBrowsePageLength * articlePage + articleBrowsePageLength + 1)
 
+    const ClearFilters = articleFilters.length
+    ? <a className='filter__selects__clear link__underline' href='' onClick={this.clearFilters}>Clear All Filters</a>
+    : ''
+
     return (
       <section className='browse__article-list'>
         <header className='article-list__header'>
@@ -96,10 +103,9 @@ export class BrowseList extends React.Component {
           </div>
           <div className='filter__selects'>
             <ul>
-              <li>Wheat</li>
-              <li>South America</li>
+              {articleFilters.map(filter => <li>{translate(filter)}</li>)}
             </ul>
-            <a className='filter__selects__clear link__underline' href='' onClick={this.clearFilters}>Clear All Filters</a>
+            {ClearFilters}
           </div>
         </header>
         {articles.map((article, i) => {
