@@ -16,6 +16,11 @@ export class ListArticleCard extends React.Component {
       ? <dd>{locations.length > 1 ? commaSeparate(locations.map((loc) => translate(loc))) : translate(locations)}</dd>
       : ''
 
+    let commodities = article.commodities
+    commodities = commodities
+      ? <dd>{commodities.length > 1 ? commaSeparate(commodities.map((com) => translate(com))) : translate(commodities)}</dd>
+      : ''
+
     return (
       <div className='article-list-card'>
         <div className='article-list-card__header'>
@@ -27,8 +32,8 @@ export class ListArticleCard extends React.Component {
           <dl>
             <dt>Location{locations.length > 1 ? 's' : ''}:</dt>
             {locations}
-            <dt>Author:</dt>
-            <dd><Link to={`${article.author}`}>{article.author}</Link></dd>
+            <dt>{commodities.length > 1 ? 'Commodity' : 'Commodities'}:</dt>
+            {commodities}
           </dl>
         </div>
       </div>
