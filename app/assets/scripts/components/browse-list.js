@@ -22,6 +22,7 @@ export class BrowseList extends React.Component {
     this.incrementPage = this.incrementPage.bind(this)
     this.decrementPage = this.decrementPage.bind(this)
     this.clearFilters = this.clearFilters.bind(this)
+    this.removeOneFilter = this.removeOneFilter.bind(this)
   }
 
   componentWillUnmount () {
@@ -78,6 +79,11 @@ export class BrowseList extends React.Component {
     this.props.dispatch(updateArticleFilters([]))
   }
 
+  removeOneFilter (e) {
+    const toRemove = e.target.id
+    this.props.dispatch(updateArticleFilters(this.props.articleFilters.filter(f => f !== toRemove)))
+  }
+
   render () {
     const { articlePage, articleFilters, articleSorting, path } = this.props
     let articles = this.sortArticles(this.filterArticles(this.props.articles, articleFilters), articleSorting)
@@ -103,7 +109,17 @@ export class BrowseList extends React.Component {
           </div>
           <div className='filter__selects'>
             <ul>
-              {articleFilters.map(filter => <li>{translate(filter)}</li>)}
+              {articleFilters.map(filter => {
+                return (
+                  <li
+                    key={filter}
+                    id={filter}
+                    onClick={this.removeOneFilter}
+                  >
+                    {translate(filter)}
+                  </li>
+                )
+              })}
             </ul>
             {ClearFilters}
           </div>
