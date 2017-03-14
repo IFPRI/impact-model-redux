@@ -12,12 +12,17 @@ import ListArticleCard from './list-article-card.js'
 // Constants
 import { articleBrowsePageLength } from '../constants.js'
 
+// Utils
+import { translate } from '../utils/translation'
+
 export class BrowseList extends React.Component {
   constructor (props, context) {
     super(props, context)
     this.handleSortingUpdate = this.handleSortingUpdate.bind(this)
     this.incrementPage = this.incrementPage.bind(this)
     this.decrementPage = this.decrementPage.bind(this)
+    this.clearFilters = this.clearFilters.bind(this)
+    this.removeOneFilter = this.removeOneFilter.bind(this)
   }
 
   componentWillUnmount () {
@@ -69,6 +74,16 @@ export class BrowseList extends React.Component {
     return articles
   }
 
+  clearFilters (e) {
+    e.preventDefault()
+    this.props.dispatch(updateArticleFilters([]))
+  }
+
+  removeOneFilter (e) {
+    const toRemove = e.target.id
+    this.props.dispatch(updateArticleFilters(this.props.articleFilters.filter(f => f !== toRemove)))
+  }
+
   render () {
     const { articlePage, articleFilters, articleSorting, path } = this.props
     let articles = this.sortArticles(this.filterArticles(this.props.articles, articleFilters), articleSorting)
@@ -77,6 +92,10 @@ export class BrowseList extends React.Component {
 
     const lowArticle = articleBrowsePageLength * articlePage + 1
     const highArticle = Math.min(articleCount, articleBrowsePageLength * articlePage + articleBrowsePageLength + 1)
+
+    const ClearFilters = articleFilters.length
+    ? <a className='filter__selects__clear link__underline' href='' onClick={this.clearFilters}>Clear All Filters</a>
+    : ''
 
     return (
       <section className='browse__article-list'>
@@ -90,10 +109,19 @@ export class BrowseList extends React.Component {
           </div>
           <div className='filter__selects'>
             <ul>
-              <li>Wheat</li>
-              <li>South America</li>
+              {articleFilters.map(filter => {
+                return (
+                  <li
+                    key={filter}
+                    id={filter}
+                    onClick={this.removeOneFilter}
+                  >
+                    {translate(filter)}
+                  </li>
+                )
+              })}
             </ul>
-            <a className='filter__selects__clear link__underline' href='/'>Clear All Filters</a>
+            {ClearFilters}
           </div>
         </header>
         {articles.map((article, i) => {
