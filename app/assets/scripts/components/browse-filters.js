@@ -38,7 +38,6 @@ export class BrowseFilters extends React.Component {
     })
     this.locationList = countryIdsToSubcontinents(this.locationList)
 
-    this.onAccordionChange = this.onAccordionChange.bind(this)
     this.handleFilterSelection = this.handleFilterSelection.bind(this)
   }
 
@@ -86,9 +85,9 @@ export class BrowseFilters extends React.Component {
           <fieldset>
             <legend>Type</legend>
             <ul className='filters__main-check-group'>
-              <li><label><input type="checkbox" name='custom-check' value='custom-check' />Custom</label></li>
-              <li><label><input type="checkbox" name='country-summary-check' value='country-summary-check' />Country Summary</label></li>
-              <li><label><input type="checkbox" name='commodity-summary-check' value='commodity-summary-check' />Commodity Summary</label></li>
+              <li><label><input type="checkbox" name='custom-check' value='custom' onChange={this.handleFilterSelection} />Custom</label></li>
+              <li><label><input type="checkbox" name='country-summary-check' value='country-summary' onChange={this.handleFilterSelection} />Country Summary</label></li>
+              <li><label><input type="checkbox" name='commodity-summary-check' value='commodity-summary' onChange={this.handleFilterSelection} />Commodity Summary</label></li>
             </ul>
           </fieldset>
           <fieldset>
