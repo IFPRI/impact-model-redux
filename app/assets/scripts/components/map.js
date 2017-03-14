@@ -40,10 +40,14 @@ export class Map extends React.Component {
   }
 
   initializeMap () {
-    var mapWidth = 960
-    var mapHeight = 480
+    const containerWidth = this.mapRef.getBoundingClientRect().width
+    const mapWidth = containerWidth
+    const mapHeight = containerWidth / 2
 
+    const baseProjectionScale = 152.63
     var projection = geoEquirectangular()
+      .scale(baseProjectionScale / (960 / containerWidth))
+      .translate([containerWidth / 2, containerWidth / 4])
 
     var mapPath = geoPath(projection)
 
@@ -229,7 +233,7 @@ export class Map extends React.Component {
       <figure className='map'>
         <figcaption>The map shows change in key output parameters from across geographies. Use dropdown menus to select desired commodity (or group) and parameters to display. Toggle buttons at top right allow different geographic aggregations. Hover over countries or regions to observe the actual results.</figcaption>
         <div className='map-container'>
-          <div id='world-map'></div>
+          <div ref={(a) => { this.mapRef = a }} id='world-map'></div>
           <div className={c('map-dropdown', {visible: this.props.data.dropdown})}>
             <span>Filter:</span>
             <select className={`${name}-dropdown`} defaultValue={this.state.activeQuery} onChange={this.handleDropdown}>
