@@ -70,6 +70,32 @@
   }
 }
 
+.article-metadata {
+  margin-bottom: 3.5em;
+  @extend .clearfix;
+  .article-metadata__item {
+    float: left;
+    width: 40%;
+  }
+  ul {
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+  }
+  li {
+    margin-bottom: .3em;
+    font-size: .86em;
+    color: $grey;
+  }
+}
+
+.article-metadata__header {
+  font-weight: $base-font-bold;
+  color: $black;
+  margin-bottom: .5em;
+  display: inline-block;
+}
+
 .page__project-articles-list {
     float: left;
     background-color: $light-blue;
