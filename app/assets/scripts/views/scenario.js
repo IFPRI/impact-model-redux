@@ -15,6 +15,9 @@ import RelatedArticles from '../components/related-articles'
 import Chart from '../components/chart'
 import Loading from '../components/loading'
 
+// Utils
+import { translate } from '../utils/translation'
+
 export class Scenario extends React.Component {
   constructor (props, context) {
     super(props, context)
@@ -39,6 +42,17 @@ export class Scenario extends React.Component {
     const articleMetadata = this.metadata
     const articles = this.props.articles
     const date = moment(articleMetadata.date, 'M/D/YYYY').format('MMMM Do, YYYY')
+
+    let locations = articleMetadata.locations
+    locations = locations
+      ? locations.length > 1 ? locations.map((loc) => <li>{translate(loc)}</li>) : <li>{translate(locations)}</li>
+      : ''
+
+    let resources = articleMetadata.resources
+    resources = resources
+      ? resources.length > 1 ? resources.map((res) => <li><a target="_blank" href={res}>{res}</a></li>) : <li><a target="_blank" href={resources}>{resources}</a></li>
+      : ''
+
     return (
       <section className='page__article'>
         <section className='header__internal'>
@@ -64,6 +78,12 @@ export class Scenario extends React.Component {
          ? <Loading />
          : <section className='section__internal'>
              <div className='row row--shortened'>
+               <div className='article-metadata'>
+                 Locations:
+                 <ul>{locations}</ul>
+                 Resources:
+                 <ul>{resources}</ul>
+               </div>
                <div className='article--content' dangerouslySetInnerHTML={{__html: this.props.article}}></div>
              </div>
            </section>
