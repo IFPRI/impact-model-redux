@@ -19,7 +19,7 @@ export class ListArticleCard extends React.Component {
     return (
       <div className='article-list-card'>
         <div className='article-list-card__header'>
-          <h4 className='header--medium'><Link to={`/${this.props.path}/${article.id}`}>{article.title}</Link></h4>
+          <h4 className='header--small with-description'><Link to={`/${this.props.path}/${article.id}`}>{article.title}</Link></h4>
           <span className='metadata-italic'>{date}</span>
           <p className='article-list-card__body'>{`${cutAtWord(article.preview, 190)}...`}</p>
         </div>
