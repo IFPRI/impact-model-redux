@@ -182,15 +182,27 @@ function generateMock (i, chart, group, translatedGroup, commodities) {
       type: quantitative
       field: Val
   fixed:
-    year: 2010
+    year: 2015
     impactparameter: QDXAgg
     agg_commodity: ${group.toLowerCase()}
   dropdown:
     field: commodity
     values: ${commaSeparate(commodities)}
-  %!%`.replace(/%!%/g, '```')
+%!%`.replace(/%!%/g, '```')
 
-  var article = faker.fake(`# ${articleH1}\n{{lorem.paragraph}}\n\n${figure}\n\n# ${articleH2}\n{{lorem.paragraphs}}{{lorem.paragraph}}\n\n# ${articleH3}\n{{lorem.paragraphs}}\n`)
+  var map = `%!%map
+title: chart
+aggregation: country
+fixed:
+  year: 2015
+  impactparameter: QDXAgg
+  agg_commodity: ${group.toLowerCase()}
+dropdown:
+  field: commodity
+  values: ${commaSeparate(commodities)}
+%!%`.replace(/%!%/g, '```')
+
+  var article = faker.fake(`# ${articleH1}\n{{lorem.paragraph}}\n\n${figure}\n\n# ${articleH2}\n{{lorem.paragraphs}}{{lorem.paragraphs}}\n\n${map}\n\n# ${articleH3}\n{{lorem.paragraphs}}\n`)
 
   var resourceString = ''
   resources.forEach((res) => {

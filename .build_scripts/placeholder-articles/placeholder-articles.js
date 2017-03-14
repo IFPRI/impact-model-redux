@@ -175,6 +175,11 @@ dropdown:
   values: maiz, barl
 %!%`.replace(/%!%/g, '```')
 
+var map = `%!%map
+title: chart
+aggregation: country
+%!%`.replace(/%!%/g, '```')
+
 function generateMock (i) {
   var name = faker.fake('{{lorem.words}}')
   var title = toTitleCase(name)
@@ -194,7 +199,7 @@ function generateMock (i) {
   var articleH1 = toTitleCase(faker.fake('{{lorem.words}}'))
   var articleH2 = toTitleCase(faker.fake('{{lorem.words}}'))
   var articleH3 = toTitleCase(faker.fake('{{lorem.words}}'))
-  var article = faker.fake(`# ${articleH1}\n{{lorem.paragraph}}\n\n${figure}\n\n# ${articleH2}\n{{lorem.paragraphs}}{{lorem.paragraph}}\n\n# ${articleH3}\n{{lorem.paragraphs}}\n`)
+  var article = faker.fake(`# ${articleH1}\n{{lorem.paragraph}}\n\n${figure}\n\n# ${articleH2}\n{{lorem.paragraphs}}{{lorem.paragraphs}}\n\n${map}\n\n# ${articleH3}\n{{lorem.paragraphs}}\n`)
 
   var resourceString = ''
   resources.forEach((res) => {

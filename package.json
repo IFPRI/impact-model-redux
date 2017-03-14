@@ -109,9 +109,14 @@
     "watchify": "^3.7.0"
   },
   "dependencies": {
+    "@redsift/d3-rs-tip": "^0.3.3",
     "chart.js": "git://github.com/nbumbarger/Chart.js.git",
     "chroma-js": "^1.2.2",
     "classnames": "^2.2.5",
+    "d3-geo-projection": "^1.2.2",
+    "d3-request": "^1.0.5",
+    "d3-scale": "^1.0.5",
+    "d3-selection": "^1.0.5",
     "front-matter": "^2.1.2",
     "js-yaml": "^3.8.2",
     "lodash": "^4.17.4",
@@ -126,6 +131,7 @@
     "redux": "^3.6.0",
     "redux-logger": "^2.7.4",
     "redux-thunk": "^2.2.0",
-    "sqltoes": "nbumbarger/sqltoes"
+    "sqltoes": "nbumbarger/sqltoes",
+    "topojson-client": "^2.1.0"
   }
 }
