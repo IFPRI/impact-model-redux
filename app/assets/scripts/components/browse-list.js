@@ -18,6 +18,7 @@ export class BrowseList extends React.Component {
     this.handleSortingUpdate = this.handleSortingUpdate.bind(this)
     this.incrementPage = this.incrementPage.bind(this)
     this.decrementPage = this.decrementPage.bind(this)
+    this.clearFilters = this.clearFilters.bind(this)
   }
 
   componentWillUnmount () {
@@ -69,6 +70,11 @@ export class BrowseList extends React.Component {
     return articles
   }
 
+  clearFilters (e) {
+    e.preventDefault()
+    this.props.dispatch(updateArticleFilters([]))
+  }
+
   render () {
     const { articlePage, articleFilters, articleSorting, path } = this.props
     let articles = this.sortArticles(this.filterArticles(this.props.articles, articleFilters), articleSorting)
@@ -93,7 +99,7 @@ export class BrowseList extends React.Component {
               <li>Wheat</li>
               <li>South America</li>
             </ul>
-            <a className='filter__selects__clear link__underline' href='/'>Clear All Filters</a>
+            <a className='filter__selects__clear link__underline' href='' onClick={this.clearFilters}>Clear All Filters</a>
           </div>
         </header>
         {articles.map((article, i) => {
