@@ -36,6 +36,7 @@ glob('app/assets/data/articles/*.md', (err, files) => {
       date: metadata.date,
       url: file.replace('app/', ''),
       type: metadata.type,
+      briefType: metadata.briefType,
       project: metadata.project,
       locations: metadata.locations,
       commodities: metadata.commodities,
