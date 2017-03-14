@@ -24,7 +24,7 @@
     margin-bottom: 3em;
     border: 1px solid darken($lightest-grey, 10%);
     .article-list-card__header {
-      padding: 1.8em 2.2em .8em;
+      padding: 1.6em 2.2em 1.5em;
       min-height: 9em;
     }
     .metadata-italic {
@@ -32,11 +32,12 @@
       margin-top: 1px;
       margin-bottom: 1em;
     }
-    dt, dd {
-      float: left;
-    }
     dd {
       margin-right: 2em;
+      color: $grey;
+      &:first-of-type {
+        margin-bottom: .1em;
+      }
     }
     .article-list-card__meta {
       @extend .clearfix;
@@ -50,9 +51,8 @@
       box-sizing: border-box;
     }
     .article-list-card__body {
-      font-size: 0.75rem;
       margin-bottom: 0.75rem;
-      max-width: 80%
+      max-width: 90%
     }
   }
 }
