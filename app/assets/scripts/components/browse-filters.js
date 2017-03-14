@@ -21,9 +21,7 @@ export class BrowseFilters extends React.Component {
   constructor (props, context) {
     super(props, context)
     this.state = {
-      accordion: false,
-      activeAccordionKey: [],
-      articleFilters: []
+      accordion: false
     }
 
     // generate list of commodities organized by type
@@ -42,12 +40,6 @@ export class BrowseFilters extends React.Component {
 
     this.onAccordionChange = this.onAccordionChange.bind(this)
     this.handleFilterSelection = this.handleFilterSelection.bind(this)
-  }
-
-  onAccordionChange (activeAccordionKey) {
-    this.setState({
-      activeAccordionKey
-    })
   }
 
   handleFilterSelection (event) {
