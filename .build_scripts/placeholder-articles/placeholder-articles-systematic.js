@@ -63,6 +63,11 @@ function pickRandomType () {
   return potentialTypes[getRandomInt(0, 8)]
 }
 
+function pickRandomBriefType () {
+  var potentialTypes = ['custom', 'commodity-summary', 'country-summary']
+  return potentialTypes[getRandomInt(0, 2)]
+}
+
 function pickRandomScenarios () {
   var potentialScenarios = [
     'SSP2_GFDL_CBIOL1_CASS', 'SSP2_GFDL_CBIOL2_CASS', 'SSP2_GFDL_CBIOL3_CASS', 'SSP2_GFDL_D_H_POT',
@@ -159,6 +164,7 @@ function generateMock (i, chart, group, translatedGroup, commodities) {
   date = `${date.getMonth() + 1}/${date.getDate()}/${1900 + date.getYear()}`
   var url = faker.fake('{{internet.url}}')
   var articleType = pickRandomType()
+  var briefType = pickRandomBriefType()
   var projectName = pickRandomProjectName(articleType)
   var tags = pickRandomTags()
   var locations = pickRandomLocations(i)
@@ -240,6 +246,7 @@ author: ${author}
 date: ${date}
 report url: ${url}
 type: ${articleType}
+briefType: ${briefType}
 project: ${projectName}
 locations:
 ${locationString}
