@@ -20,7 +20,9 @@ export class RelatedArticles extends React.Component {
       <section className='page__related-articles-list section__padding'>
         <div className='row'>
           <h4 className='header--large section__header'>Related Articles</h4>
-          {articles}
+          <ul>
+            {articles}
+          </ul>
         </div>
       </section>
     )

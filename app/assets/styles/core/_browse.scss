@@ -21,16 +21,24 @@
   width: 72%;
   .article-list-card {
     float: left;
-    margin-bottom: 3em;
+    margin-bottom: 2.5em;
     border: 1px solid darken($lightest-grey, 10%);
+    background-color: #fff;
+    font-weight: $base-font-light;
     .article-list-card__header {
-      padding: 1.6em 2.2em 1.5em;
+      padding: 2em 2.6em 1.5em;
       min-height: 9em;
+      a, a:visited {
+        color: $medium-blue;
+      }
     }
     .metadata-italic {
       display: block;
       margin-top: 1px;
       margin-bottom: 1em;
+    }
+    dt {
+      color: $dark-grey;
     }
     dd {
       margin-right: 2em;
@@ -41,11 +49,9 @@
     }
     .article-list-card__meta {
       @extend .clearfix;
-      display: inline-block;
+      display: block;
       font-size: 0.75rem;
-      width: 100%;
-      padding: 1em 2.2em;
-      background-color: darken($lightest-grey, 2%);
+      padding: 1em 3.2em 1.2em;
       border-top: 1px solid darken($lightest-grey, 7%);
       vertical-align: bottom;
       box-sizing: border-box;

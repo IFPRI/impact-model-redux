@@ -9,7 +9,7 @@ export class RelatedArticleCard extends React.Component {
   render () {
     const article = this.props.article
     return (
-      <div className='article-card--related'>
+      <li className='article-card--related'>
         <header className='article-card__header--related'>
           <h5 className='header--small'>
             <Link to={`/${article.type}s/${article.id}`}>{article.title}</Link>
@@ -19,7 +19,7 @@ export class RelatedArticleCard extends React.Component {
           <p>{`${cutAtWord(article.preview, 190)}...`}</p>
         </div>
         <span className='article-card__tags'>{toTitleCase(commaSeparate(article.tags))}</span>
-      </div>
+      </li>
     )
   }
 }
