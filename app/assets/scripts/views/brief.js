@@ -70,6 +70,7 @@ export class Brief extends React.Component {
           <div className='row row--shortened'>
             <div className='home__header-split--left split__internal--left'>
               <div className='home__header-split--left__content'>
+                <span className='header--type'>{articleMetadata.briefType}</span>
                 <h2 className='header--xxlarge with-metadata'>{articleMetadata.title}</h2>
                 <dl className='article-byline header__metadata'>
                   <dt className='visually-hidden'>Date</dt>
