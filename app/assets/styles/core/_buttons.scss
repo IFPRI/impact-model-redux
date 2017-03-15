@@ -6,11 +6,8 @@ button {
   font-family: $header-family;
   font-weight: $header-black;
   text-transform: uppercase;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
   color: #fff;
-  padding: .7em 4em;
+  padding: .7em 3em;
   display: inline-block;
   text-align: center;
 }
@@ -25,11 +22,11 @@ button {
 }
 
 .button--small {
-  padding: .5em 3em;
+  padding: .5em 2.5em;
 }
 
 .button--more-information {
-  margin-top: 2.5em;
+  margin-top: 3em;
 }
 
 .button--download {

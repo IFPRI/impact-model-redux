@@ -65,9 +65,6 @@
   .home__header-split--left__content {
     padding: 11.5em 4em 0 0;
   }
-  .header__metadata {
-    font-size: .86em;
-  }
 }
 
 .article-metadata {
@@ -105,14 +102,14 @@
     .article-card--project {
       color: #fff;
       float: left;
-      width: 29%;
+      width: 27%;
       margin-right: 2rem;
       padding: 2rem 2.2rem 3rem 2.2rem;
       border: 2px solid #fff;
       min-height: 14em;
       .metadata-italic {
         color: darken($lightest-grey, 10%);
-        margin-bottom: 2em;
+        margin-bottom: 1.5em;
         display: block;
         margin-top: .2rem;
       }
@@ -139,9 +136,13 @@
       margin-right: 5%;
       .article-card__body--related {
         min-height: 8.5em;
+        position: relative;
       }
       .article-card__header--related {
         margin: 0 0 .5em;
+        a, a:visited {
+          color: lighten($darkest-grey, 8%);
+        }
       }
       .article-card__tags {
         color: $light-grey;

@@ -34,7 +34,7 @@
   right: 0;
   margin-top: 8.5em;
   a {
-    min-width: 7em;
+    min-width: 9em;
     margin-bottom: 1em;
   }
 }
@@ -51,4 +51,13 @@
   }
 }
 
+.related__card__tags {
+  position: absolute;
+  bottom: 0;
+  li {
+    display: inline-block;
+    font-size: .86em;
+    margin-right: .5em;
+  }
+}
 

@@ -30,10 +30,10 @@ export class ListArticleCard extends React.Component {
         </div>
         <div className='article-list-card__meta'>
           <dl>
-            <dt>Location{locations.length > 1 ? 's' : ''}:</dt>
-            {locations}
             <dt>{commodities.length > 1 ? 'Commodity' : 'Commodities'}:</dt>
             {commodities}
+            <dt>Location{locations.length > 1 ? 's' : ''}:</dt>
+            {locations}
           </dl>
         </div>
       </div>

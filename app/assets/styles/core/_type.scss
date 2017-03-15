@@ -61,9 +61,8 @@ h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, 
 
 .metadata-italic {
   color: $light-grey;
-  font-style: italic;
-  font-size: .75em;
-  margin-top: -5px;
+  font-size: .86em;
+  font-weight: $base-font-light;
 }
 
 dt {

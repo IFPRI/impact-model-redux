@@ -23,6 +23,12 @@ body {
   font-size: $base-font-size;
   line-height: $base-line-height;
   font-family: $base-font-family;
+  background-color: $background-grey;
+}
+
+p { 
+  line-height: 1.8em; 
+  font-weight: $base-font-light;
 }
 
 .row {
@@ -66,6 +72,7 @@ a, a:visited {
     color: $black;
     line-height: 1.7em;
     max-width: 90%;
+    font-weight: $base-font-regular;
   }
 }
 
