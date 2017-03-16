@@ -35,7 +35,6 @@ export class BrowseList extends React.Component {
   }
 
   goToPage (page) {
-    console.log(page);
     this.props.dispatch(updateArticlePage(page))
   }
 
@@ -95,7 +94,10 @@ export class BrowseList extends React.Component {
       articlePage + 2
     ]
     .map(a => Math.min(Math.max(a, 0), lastPage) + 1)).sort((a, b) => a - b)
-    console.log(pages);
+
+    // add ellipses
+    if (pages[1] !== 1) pages.splice(1, 0, '...')
+    if (pages[pages.length - 2] !== lastPage - 1) pages.splice(pages.length - 1, 0, '...')
 
     const ClearFilters = articleFilters.length
     ? <a className='filter__selects__clear link__underline' href='' onClick={this.clearFilters}>Clear All Filters</a>
@@ -142,7 +144,11 @@ export class BrowseList extends React.Component {
             className={classnames('browse__pagination-button', 'browse__pagination-button--back', 'collecticon-chevron-left', {'pagination-button--disabled': articlePage === 0})}
             onClick={() => this.goToPage(articlePage - 1)}>
           </button>
-          {pages.map(page => <button key={page} className='browse__pagination-button' onClick={() => this.goToPage(page)}>{page}</button>)}
+          {pages.map((page, i) => {
+            return isNaN(page)
+            ? <button key={`ellipses-${i}`} className='browse__pagination-button'>{page}</button>
+            : <button key={page} className='browse__pagination-button' onClick={() => this.goToPage(page)}>{page}</button>
+          })}
           <button
             className={classnames('browse__pagination-button', 'browse__pagination-button--forward', 'collecticon-chevron-right', {'pagination-button--disabled': highArticle === articleCount})}
             onClick={() => this.goToPage(articlePage + 1)}>
