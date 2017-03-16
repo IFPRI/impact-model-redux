@@ -1,5 +1,6 @@
 'use strict'
 import React from 'react'
+import ReactDOM from 'react-dom'
 import c from 'classnames'
 import _ from 'lodash'
 
@@ -36,6 +37,7 @@ export class BrowseList extends React.Component {
 
   goToPage (page, e) {
     if (e) e.preventDefault()
+    window.scroll(0, ReactDOM.findDOMNode(this).offsetTop - 50)
     this.props.dispatch(updateArticlePage(page))
   }
 
