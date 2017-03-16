@@ -82,7 +82,7 @@ export class BrowseList extends React.Component {
     articles = articles.slice(articleBrowsePageLength * articlePage, articleBrowsePageLength * articlePage + articleBrowsePageLength)
 
     // show first/last/two on each side
-    const lastPage = Math.floor(articleCount / articleBrowsePageLength) - 1
+    const lastPage = Math.ceil(articleCount / articleBrowsePageLength) - 1
 
     const pages = _.uniq([
       0,
@@ -96,7 +96,7 @@ export class BrowseList extends React.Component {
     .map(a => Math.min(Math.max(a, 0), lastPage) + 1)).sort((a, b) => a - b)
 
     // add ellipses
-    if (pages[1] !== 1) pages.splice(1, 0, '...')
+    if (pages[1] !== 2) pages.splice(1, 0, '...')
     if (pages[pages.length - 2] !== lastPage) pages.splice(pages.length - 1, 0, '...')
 
     const ClearFilters = articleFilters.length
