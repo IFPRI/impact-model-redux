@@ -139,21 +139,21 @@ export class BrowseList extends React.Component {
             />
           )
         })}
-        <nav className='browse__pagination'>
-          <button
+        <ul className='browse__pagination'>
+          <li
             className={classnames('browse__pagination-button', 'browse__pagination-button--back', 'collecticon-chevron-left', {'pagination-button--disabled': articlePage === 0})}
-            onClick={() => this.goToPage(articlePage - 1)}>
-          </button>
+            onClick={() => this.goToPage(articlePage - 1)}><a className='links-next-prev' href=''>Previous</a>
+          </li>
           {pages.map((page, i) => {
             return isNaN(page)
-            ? <button key={`ellipses-${i}`} className='browse__pagination-button'>{page}</button>
-            : <button key={page} className='browse__pagination-button' onClick={() => this.goToPage(page)}>{page}</button>
+            ? <li key={`ellipses-${i}`} className='browse__pagination-button'><a href=''>{page}</a></li>
+            : <li key={page} className='browse__pagination-button' onClick={() => this.goToPage(page)}><a href=''>{page}</a></li>
           })}
-          <button
+          <li
             className={classnames('browse__pagination-button', 'browse__pagination-button--forward', 'collecticon-chevron-right', {'pagination-button--disabled': highArticle === articleCount})}
-            onClick={() => this.goToPage(articlePage + 1)}>
-          </button>
-        </nav>
+            onClick={() => this.goToPage(articlePage + 1)}><a className='links-next-prev' href=''>Next</a>
+          </li>
+        </ul>
       </section>
     )
   }

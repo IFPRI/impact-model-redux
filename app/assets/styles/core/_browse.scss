@@ -64,40 +64,33 @@
 }
 
 .browse__pagination {
-  float: right;
-  width: 17rem;
-  margin: 1rem 3rem 2.5rem 20rem;
   text-align: center;
-  button {
-    height: 2.25rem;
-    width: 3.5rem;
-    font-size: 1.25rem;
-    color: $darkest-grey;
-    background-color: lighten($light-grey, 25%);
-    border: 1px solid $light-grey;
-    border-radius: 10px;
-    transition: background-color, border-color, 0.2s;
+  @extend .clearfix;
+  margin-bottom: 5em;
+  .browse__pagination-button {
+    display: inline-block;
+    margin: 0 .3em;
+    transition: all 0.3s ease 0s;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    a, a:visited {
+      color: $darkest-grey;
+      padding: 0 .2em;
+      &:hover {
+        color: lighten($base-purple, 20%);
+      }
+    }
     &.pagination-button--disabled {
       pointer-events: none;
       color: $light-grey;
-      background-color: lighten($light-grey, 30%);
-      border-color: lighten($light-grey, 10%);
     }
-    &:hover {
-      background-color: lighten($light-grey, 10%);
-      border-color: $grey;
-      &.pagination-button--disabled {
-        background-color: lighten($light-grey, 25%);
-        border-color: $light-grey;
-      }
+    .links-next-prev {
+      display: none;
     }
   }
-  span {
-    color: $darkest-grey;
-    font-size: 0.8rem;
-    font-weight: 600;
-    line-height: 2.25rem;
-    // margin: 0 2rem 0 2rem;
+  .active {
+    a, a:visited { color: $base-purple; }
+    border-bottom: 1px solid $base-purple;
   }
   .browse__pagination-button--back {
     float: left;
