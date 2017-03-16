@@ -60,7 +60,7 @@ export class Scenario extends React.Component {
             <div className='home__header-split--left split__internal--left'>
               <div className='home__header-split--left__content'>
                 <h2 className='header--xxlarge with-metadata'>{articleMetadata.title}</h2>
-                <dl className='article-byline header__metadata'>
+                <dl className='article-byline header__metadata header__descriptions'>
                   <dt className='visually-hidden'>Date</dt>
                   <dd>{date}</dd>
                   <dt className='visually-hidden'>Author</dt>

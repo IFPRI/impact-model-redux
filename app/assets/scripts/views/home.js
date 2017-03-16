@@ -11,7 +11,7 @@ export class Home extends React.Component {
             <div className='home__header-split--left'>
               <div className='home__header-split--left__content'>
                 <h2 className='header--xxxlarge'>Answering Questions About Our World’s Food Supply</h2>
-                <p className='header__metadata'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet ligula aliquam. Lorem ipsum dolor sit amet, consectetur elit.</p>
+                <p className='header__descriptions'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet ligula aliquam. Lorem ipsum dolor sit amet, consectetur elit.</p>
               </div>
             </div>
             <div className='home__header-split--right'>
