@@ -84,6 +84,10 @@
       pointer-events: none;
       color: $light-grey;
     }
+    &.browse__pagination-button--back,
+    &.browse__pagination-button--forward {
+      cursor: pointer;
+    }
     .links-next-prev {
       display: none;
     }
@@ -214,4 +218,3 @@
   margin-top: .3em;
   display: inline-block;
 }
-
