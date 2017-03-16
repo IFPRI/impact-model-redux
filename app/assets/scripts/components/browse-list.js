@@ -19,8 +19,6 @@ export class BrowseList extends React.Component {
   constructor (props, context) {
     super(props, context)
     this.handleSortingUpdate = this.handleSortingUpdate.bind(this)
-    this.incrementPage = this.incrementPage.bind(this)
-    this.decrementPage = this.decrementPage.bind(this)
     this.clearFilters = this.clearFilters.bind(this)
     this.removeOneFilter = this.removeOneFilter.bind(this)
   }
@@ -36,15 +34,8 @@ export class BrowseList extends React.Component {
     }
   }
 
-  incrementPage (page, articleCount) {
-    this.goToPage(page * articleBrowsePageLength + articleBrowsePageLength - 1 < articleCount ? page + 1 : page)
-  }
-
-  decrementPage (page) {
-    this.goToPage(Math.max(0, page - 1))
-  }
-
   goToPage (page) {
+    console.log(page);
     this.props.dispatch(updateArticlePage(page))
   }
 
@@ -90,8 +81,21 @@ export class BrowseList extends React.Component {
     const articleCount = articles.length
     articles = articles.slice(articleBrowsePageLength * articlePage, articleBrowsePageLength * articlePage + articleBrowsePageLength)
 
-    const lowArticle = articleBrowsePageLength * articlePage + 1
     const highArticle = Math.min(articleCount, articleBrowsePageLength * articlePage + articleBrowsePageLength + 1)
+
+    // show first/last/two on each side
+    const lastPage = Math.floor(articleCount / articleBrowsePageLength)
+    const pages = _.uniq([
+      0,
+      lastPage,
+      articlePage - 2,
+      articlePage - 1,
+      articlePage,
+      articlePage + 1,
+      articlePage + 2
+    ]
+    .map(a => Math.min(Math.max(a, 0), lastPage) + 1)).sort((a, b) => a - b)
+    console.log(pages);
 
     const ClearFilters = articleFilters.length
     ? <a className='filter__selects__clear link__underline' href='' onClick={this.clearFilters}>Clear All Filters</a>
@@ -136,12 +140,12 @@ export class BrowseList extends React.Component {
         <nav className='browse__pagination'>
           <button
             className={classnames('browse__pagination-button', 'browse__pagination-button--back', 'collecticon-chevron-left', {'pagination-button--disabled': articlePage === 0})}
-            onClick={() => this.decrementPage(articlePage)}>
+            onClick={() => this.goToPage(articlePage - 1)}>
           </button>
-          <span className='browse__pagination-status'>Article {lowArticle} - {highArticle} of {articleCount}</span>
+          {pages.map(page => <button key={page} className='browse__pagination-button' onClick={() => this.goToPage(page)}>{page}</button>)}
           <button
             className={classnames('browse__pagination-button', 'browse__pagination-button--forward', 'collecticon-chevron-right', {'pagination-button--disabled': highArticle === articleCount})}
-            onClick={() => this.incrementPage(articlePage, articleCount)}>
+            onClick={() => this.goToPage(articlePage + 1)}>
           </button>
         </nav>
       </section>
