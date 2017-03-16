@@ -56,12 +56,12 @@ export class Brief extends React.Component {
 
     let locations = articleMetadata.locations
     locations = locations
-      ? locations.length > 1 ? locations.map((loc) => <li>{translate(loc)}</li>) : <li>{translate(locations)}</li>
+      ? locations.length > 1 ? locations.map((loc) => <li key={loc}>{translate(loc)}</li>) : <li>{translate(locations)}</li>
       : ''
 
     let resources = articleMetadata.resources
     resources = resources
-      ? resources.length > 1 ? resources.map((res) => <li><a target="_blank" href={res}>{res}</a></li>) : <li><a target="_blank" href={resources}>{resources}</a></li>
+      ? resources.length > 1 ? resources.map((res) => <li key={res}><a target="_blank" href={res}>{res}</a></li>) : <li><a target="_blank" href={resources}>{resources}</a></li>
       : ''
 
     return (
