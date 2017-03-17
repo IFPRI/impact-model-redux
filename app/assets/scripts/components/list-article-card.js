@@ -2,39 +2,62 @@
 import React from 'react'
 import moment from 'moment'
 import { Link } from 'react-router'
+import c from 'classnames'
 
 // Utils
 import { commaSeparate, cutAtWord } from '../utils/format'
 import { translate } from '../utils/translation'
 
 export class ListArticleCard extends React.Component {
+
+  toDictionaryDefintionArray (array) {
+    return array && array.length
+      ? <dd>{array.length > 1 ? commaSeparate(array.map((a) => translate(a))) : translate(array[0])}</dd>
+      : ''
+  }
+
   render () {
     const article = this.props.article
+    const { locations, commodities, tags, briefType, type } = article
     const date = moment(article.date, 'MM/DD/YYYY').format('MMMM D, YYYY')
-    let locations = article.locations
-    locations = locations
-      ? <dd>{locations.length > 1 ? commaSeparate(locations.map((loc) => translate(loc))) : translate(locations)}</dd>
-      : ''
 
-    let commodities = article.commodities
-    commodities = commodities
-      ? <dd>{commodities.length > 1 ? commaSeparate(commodities.map((com) => translate(com))) : translate(commodities)}</dd>
-      : ''
+    const Locations = this.toDictionaryDefintionArray(locations)
+    const Commodities = this.toDictionaryDefintionArray(commodities)
+    const Tags = this.toDictionaryDefintionArray(tags)
+
+    let CardMeta = ''
+    if (type === 'scenario') {
+      CardMeta = <dl><dt>{tags.length > 1 ? 'Tags' : 'Tag'}:</dt>{Tags}</dl>
+    } else if (type === 'brief') {
+      switch (briefType) {
+        case 'custom':
+          CardMeta = (
+            <dl>
+              <dt>Location{locations.length > 1 ? 's' : ''}:</dt>
+              {Locations}
+              <dt>{commodities.length > 1 ? 'Commodities' : 'Commodity'}:</dt>
+              {Commodities}
+            </dl>
+          )
+          break
+        case 'country-summary':
+          CardMeta = <dl><dt>{commodities.length > 1 ? 'Main Commodities' : 'Main Commodity'}:</dt>{Commodities}</dl>
+          break
+        case 'commodity-summary':
+          CardMeta = <dl><dt>Main Location{locations.length > 1 ? 's' : ''}:</dt>{Locations}</dl>
+          break
+      }
+    }
 
     return (
-      <div className='article-list-card'>
+      <div className={c('article-list-card', type === 'scenario' ? type : briefType)}>
         <div className='article-list-card__header'>
-          <h4 className='header--small with-description'><Link to={`/${this.props.path}/${article.id}`}>{article.title}</Link></h4>
-          <span className='metadata-italic'>{date}</span>
+          <h4 className='header--small with-metadata'><Link className='link__main' to={`/${this.props.path}/${article.id}`}>{article.title}</Link></h4>
+          <span className='metadata-italic'>{(type === 'brief' ? `${translate(briefType)} | ` : '') + date}</span>
           <p className='article-list-card__body'>{`${cutAtWord(article.preview, 190)}...`}</p>
         </div>
         <div className='article-list-card__meta'>
-          <dl>
-            <dt>{commodities.length > 1 ? 'Commodity' : 'Commodities'}:</dt>
-            {commodities}
-            <dt>Location{locations.length > 1 ? 's' : ''}:</dt>
-            {locations}
-          </dl>
+          {CardMeta}
         </div>
       </div>
     )

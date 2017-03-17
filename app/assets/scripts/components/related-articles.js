@@ -15,7 +15,18 @@ export class RelatedArticles extends React.Component {
         <div className='row'>
           <h4 className='header--large section__header'>{this.props.title || 'Related Articles'}</h4>
           <ul>
-            {articles.map(article => <RelatedArticleCard cardType={cardType} article={article} key={`article-${article.id}`} />)}
+            {articles.map(article => {
+              return (
+                <RelatedArticleCard
+                  type={this.props.type}
+                  cardType={cardType}
+                  article={article}
+                  key={`article-${article.id}`}
+                  router={this.props.router}
+                  updateArticleFilters={this.props.updateArticleFilters}
+                  />
+              )
+            })}
           </ul>
           {this.props.children}
         </div>
@@ -29,7 +40,10 @@ RelatedArticles.propTypes = {
   articles: React.PropTypes.array,
   title: React.PropTypes.string,
   cardType: React.PropTypes.string,
-  children: React.PropTypes.node
+  children: React.PropTypes.node,
+  type: React.PropTypes.string,
+  router: React.PropTypes.object,
+  updateArticleFilters: React.PropTypes.func
 }
 
 export default RelatedArticles

@@ -7,7 +7,7 @@ export class PageFooter extends React.Component {
       <footer className='page__footer'>
         <div className='row'>
           <div className='footer__contact'>
-            <h6 className='header--xsmall'>Sign Up For Updates</h6>
+            <h6 className='header--xsmall with-description'>Sign Up For Updates</h6>
             <span className='sub-description'>Get updates whenever new information is added to the site.</span>
             <form className='contact__input' action='temp'>
               <input className='input--small' type='text' name='email' placeholder='Enter Your Email Address' />

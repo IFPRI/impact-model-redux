@@ -7,7 +7,7 @@ import { Link } from 'react-router'
 import _ from 'lodash'
 
 // Actions
-import { fetchArticle } from '../actions'
+import { fetchArticle, updateArticleFilters } from '../actions'
 
 // Components
 import RelatedArticles from '../components/related-articles'
@@ -23,6 +23,7 @@ export class Brief extends React.Component {
   constructor (props, context) {
     super(props, context)
     this.metadata = props.articles.find((article) => article.id === props.params.id)
+    this.updateArticleFilters = this.updateArticleFilters.bind(this)
     props.dispatch(fetchArticle(this.metadata.url))
   }
 
@@ -49,6 +50,10 @@ export class Brief extends React.Component {
     })
   }
 
+  updateArticleFilters (filters) {
+    this.props.dispatch(updateArticleFilters(filters))
+  }
+
   render () {
     const articleMetadata = this.metadata
     const articles = this.props.articles
@@ -61,7 +66,7 @@ export class Brief extends React.Component {
 
     let resources = articleMetadata.resources
     resources = resources
-      ? resources.length > 1 ? resources.map((res) => <li key={res}><a target="_blank" href={res}>{res}</a></li>) : <li><a target="_blank" href={resources}>{resources}</a></li>
+      ? resources.length > 1 ? resources.map((res) => <li key={res}><a className='link__underline' target="_blank" href={res}>{res}</a></li>) : <li><a target="_blank" href={resources}>{resources}</a></li>
       : ''
 
     return (
@@ -105,11 +110,18 @@ export class Brief extends React.Component {
            </section>
         }
         <RelatedArticles
+          type='project'
           cardType='project'
           title={`Other Articles in ${articleMetadata.project}`}
           articles={findProjectArticles(articleMetadata, articles, articleMetadata.project, 2)}
           />
-        <RelatedArticles cardType='related' articles={findRelatedArticles(articleMetadata, articles, 3)} />
+        <RelatedArticles
+          type='brief'
+          cardType='related'
+          articles={findRelatedArticles(articleMetadata, articles, 3)}
+          router={this.props.router}
+          updateArticleFilters={this.updateArticleFilters}
+          />
       </section>
     )
   }
@@ -124,7 +136,8 @@ Brief.propTypes = {
   article: React.PropTypes.string,
   charts: React.PropTypes.object,
   maps: React.PropTypes.object,
-  params: React.PropTypes.object
+  params: React.PropTypes.object,
+  router: React.PropTypes.object
 }
 
 // /////////////////////////////////////////////////////////////////// //

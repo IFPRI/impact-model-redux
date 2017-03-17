@@ -177,7 +177,7 @@ function generateMock (i, chart, group, translatedGroup, commodities) {
   var name = faker.fake(translatedGroup + ' ' + chart + '-{{lorem.word}}-{{lorem.word}}')
   var fileName = name.replace(/ /g, '-').toLowerCase()
   var title = toTitleCase(faker.fake((translatedGroup + ' ' + chart + ' ' + '{{lorem.word}} {{lorem.word}}')))
-  var figure = `%!%chart
+  var figure = `\`\`\`chart
   mark: ${chart}
   title: chart
   encoding:
@@ -194,9 +194,28 @@ function generateMock (i, chart, group, translatedGroup, commodities) {
   dropdown:
     field: commodity
     values: ${commaSeparate(commodities)}
-%!%`.replace(/%!%/g, '```')
+\`\`\``
 
-  var map = `%!%map
+  var figureTwo = `\`\`\`chart
+  mark: ${chart}
+  title: chartTwo
+  encoding:
+    x:
+      type: nominal
+      field: agg_continent
+    y:
+      type: quantitative
+      field: Val
+  fixed:
+    year: 2015
+    impactparameter: QDXAgg
+    agg_commodity: ${group.toLowerCase()}
+  dropdown:
+    field: commodity
+    values: ${commaSeparate(commodities)}
+  \`\`\``
+
+  var map = `\`\`\`map
 title: chart
 aggregation: country
 fixed:
@@ -206,9 +225,9 @@ fixed:
 dropdown:
   field: commodity
   values: ${commaSeparate(commodities)}
-%!%`.replace(/%!%/g, '```')
+\`\`\``
 
-  var article = faker.fake(`# ${articleH1}\n{{lorem.paragraph}}\n\n${figure}\n\n# ${articleH2}\n{{lorem.paragraphs}}{{lorem.paragraphs}}\n\n${map}\n\n# ${articleH3}\n{{lorem.paragraphs}}\n`)
+  var article = faker.fake(`# ${articleH1}\n{{lorem.paragraph}}\n\n${figure}\n\n${figureTwo}\n\n# ${articleH2}\n{{lorem.paragraphs}}{{lorem.paragraphs}}\n\n${map}\n\n# ${articleH3}\n{{lorem.paragraphs}}\n`)
 
   var resourceString = ''
   resources.forEach((res) => {

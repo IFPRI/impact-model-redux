@@ -28,9 +28,6 @@
     .article-list-card__header {
       padding: 2em 2.6em 1.5em;
       min-height: 9em;
-      a, a:visited {
-        color: $medium-blue;
-      }
     }
     .metadata-italic {
       display: block;
@@ -59,6 +56,17 @@
     .article-list-card__body {
       margin-bottom: 0.75rem;
       max-width: 90%
+    }
+  }
+  .country-summary, .commodity-summary {
+    border: 1px solid lighten($light-grey, 15%);
+    background-color: rgba(255, 255, 255, 0.3);
+    .article-list-card__meta { 
+      border-top: 0;
+      padding: .5em 3.8em 2.7em;
+    }
+    .article-list-card__header {
+      padding: 2.2em 3.2em .5em;
     }
   }
 }
@@ -192,7 +200,9 @@
   clear: both;
   display: block;
   margin-bottom: 1.5em;
-  padding-top: .5em;
+  ul {
+    @extend .clearfix;
+  }
   li {
     float: left;
     border: 1px solid $base-purple;
@@ -201,6 +211,7 @@
     font-size: .85em;
     margin-right: 1em;
     color: $base-purple;
+    margin-top: .7em;
     &:before {
       content: '';
       background-image: url(../graphics/collecticons/xmark.svg);
@@ -208,7 +219,13 @@
       width: 8px;
       height: 8px;
       display: inline-block;
-      margin-right: .5em;
+      margin-right: .8em;
+    }
+  }
+  .clear-filters {
+    border: 0;
+    &:before {
+      content: none;
     }
   }
 }

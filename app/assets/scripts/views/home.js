@@ -45,7 +45,14 @@ export class Home extends React.Component {
           updateArticleFilters={this.updateArticleFilters}
           router={this.props.router}
           />
-        <RelatedArticles title="Recently Added Briefs" cardType='related' articles={this.props.briefs.sort((a, b) => b.date - a.date).slice(0, 3)}>
+        <RelatedArticles
+          title='Recently Added Briefs'
+          cardType='related'
+          type='brief'
+          articles={this.props.briefs.sort((a, b) => b.date - a.date).slice(0, 3)}
+          updateArticleFilters={this.updateArticleFilters}
+          router={this.props.router}
+          >
           <Link className='button button--main button--more-information' to={'/briefs'}>View All Briefs</Link>
         </RelatedArticles>
       </section>

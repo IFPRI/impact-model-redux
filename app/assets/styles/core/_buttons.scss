@@ -10,19 +10,36 @@ button {
   padding: .7em 3em;
   display: inline-block;
   text-align: center;
+  transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  &:hover {
+    border-radius: 2em;
+  }
 }
 
 .button--main {
   background-color: $base-green;
+  border: 2px solid $base-green;
+  padding: .6em 2.8em;
+  &:hover {
+    background-color: transparent;
+    color: $base-green;
+    border: 2px solid $base-green;
+  }
 }
 
 .button--outline {
   border: 2px solid #fff;
   color: #fff;
+  &:hover {
+    background-color: #fff;
+    color: $medium-blue;
+  }
 }
 
 .button--small {
-  padding: .5em 2.5em;
+  padding: .4em 2.3em .3em;
 }
 
 .button--more-information {
