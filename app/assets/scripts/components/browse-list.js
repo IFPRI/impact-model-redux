@@ -120,8 +120,8 @@ export class BrowseList extends React.Component {
                   </li>
                 )
               })}
+              <li className='clear-filters'>{ClearFilters}</li>
             </ul>
-            {ClearFilters}
           </div>
         </header>
         {articles.map((article, i) => {
