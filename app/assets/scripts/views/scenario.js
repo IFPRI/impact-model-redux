@@ -10,14 +10,13 @@ import _ from 'lodash'
 import { fetchArticle } from '../actions'
 
 // Components
-import ProjectArticles from '../components/project-articles'
 import RelatedArticles from '../components/related-articles'
 import Chart from '../components/chart'
 import Loading from '../components/loading'
 
 // Utils
 import { translate } from '../utils/translation'
-import { findRelatedArticles } from '../utils/related'
+import { findRelatedArticles, findProjectArticles } from '../utils/related'
 
 export class Scenario extends React.Component {
   constructor (props, context) {
@@ -89,8 +88,12 @@ export class Scenario extends React.Component {
              </div>
            </section>
         }
-        <ProjectArticles articleMetadata={articleMetadata} articles={articles} />
-        <RelatedArticles articles={findRelatedArticles(articleMetadata, this.props.articles, 3)} />
+        <RelatedArticles
+          cardType='project'
+          title={`Other Articles in ${articleMetadata.project}`}
+          articles={findProjectArticles(articleMetadata, articles, articleMetadata.project, 2)}
+          />
+        <RelatedArticles cardType='related' articles={findRelatedArticles(articleMetadata, articles, 3)} />
       </section>
     )
   }
