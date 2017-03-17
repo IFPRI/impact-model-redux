@@ -117,9 +117,19 @@ export class BrowseList extends React.Component {
           </div>
           <div className='filter__selects'>
             <ul>
-              {articleFilters.map(filter => <li key={filter} id={filter} onClick={this.removeOneFilter} >{translate(filter)}</li>)}
+              {articleFilters.map(filter => {
+                return (
+                  <li
+                    key={filter}
+                    id={filter}
+                    onClick={this.removeOneFilter}
+                  >
+                    {translate(filter)}
+                  </li>
+                )
+              })}
+              <li className='clear-filters'>{ClearFilters}</li>
             </ul>
-            {ClearFilters}
           </div>
         </header>
         {articles.map((article, i) => {
