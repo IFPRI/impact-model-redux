@@ -10,7 +10,7 @@
   .figure-container {
     padding: 0;
     margin: 3em 0;
-    width: 70%;
+    display: inline-block;
     @extend .clearfix;
     .chart {
       float: left !important;
