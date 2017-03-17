@@ -17,7 +17,7 @@ class FeaturedProjects extends React.Component {
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et dui gravida, posuere diam id, congue augue. Pellentesque nec purus ex.</p>
           </header>
           <ul>
-            {projects.map(project => <ProjectCard project={project} key={project} updateArticleFilters={this.props.updateArticleFilters}/>)}
+            {projects.map(project => <ProjectCard project={project} key={project} router={this.props.router} updateArticleFilters={this.props.updateArticleFilters}/>)}
           </ul>
         </div>
       </section>

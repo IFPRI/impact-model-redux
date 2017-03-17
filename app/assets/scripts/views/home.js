@@ -41,8 +41,8 @@ export class Home extends React.Component {
           </div>
         </header>
         <FeaturedProjects
-          projects={filterCategories.projects}
-          udpateArticleFilter={this.updateArticleFilters}
+          projects={filterCategories.projects.slice(0, 2)}
+          updateArticleFilters={this.updateArticleFilters}
           router={this.props.router}
           />
         <RelatedArticles title="Recently Added Briefs" cardType='related' articles={this.props.briefs.sort((a, b) => b.date - a.date).slice(0, 3)}>
