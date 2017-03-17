@@ -129,10 +129,6 @@
       }
       a {
         color: #fff;
-        text-decoration: none;
-        &:hover {
-          text-decoration: underline;
-        }
       }
     }
   }
@@ -167,12 +163,6 @@
         font-weight: 200;
         font-size: 0.75rem;
         line-height: 1.5rem;
-      }
-      a {
-        text-decoration: none;
-        &:hover {
-          text-decoration: underline;
-        }
       }
     }
   }

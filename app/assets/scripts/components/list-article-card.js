@@ -52,7 +52,7 @@ export class ListArticleCard extends React.Component {
     return (
       <div className={c('article-list-card', type === 'scenario' ? type : briefType)}>
         <div className='article-list-card__header'>
-          <h4 className='header--small with-description'><Link to={`/${this.props.path}/${article.id}`}>{article.title}</Link></h4>
+          <h4 className='header--small with-metadata'><Link className='link__main' to={`/${this.props.path}/${article.id}`}>{article.title}</Link></h4>
           <span className='metadata-italic'>{(type === 'brief' ? `${translate(briefType)} | ` : '') + date}</span>
           <p className='article-list-card__body'>{`${cutAtWord(article.preview, 190)}...`}</p>
         </div>

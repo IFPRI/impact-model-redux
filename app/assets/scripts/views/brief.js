@@ -61,7 +61,7 @@ export class Brief extends React.Component {
 
     let resources = articleMetadata.resources
     resources = resources
-      ? resources.length > 1 ? resources.map((res) => <li key={res}><a target="_blank" href={res}>{res}</a></li>) : <li><a target="_blank" href={resources}>{resources}</a></li>
+      ? resources.length > 1 ? resources.map((res) => <li key={res}><a className='link__underline' target="_blank" href={res}>{res}</a></li>) : <li><a target="_blank" href={resources}>{resources}</a></li>
       : ''
 
     return (

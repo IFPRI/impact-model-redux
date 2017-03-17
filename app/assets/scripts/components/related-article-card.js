@@ -12,7 +12,7 @@ export class RelatedArticleCard extends React.Component {
       <li className='article-card--related'>
         <header className='article-card__header--related'>
           <h5 className='header--small'>
-            <Link to={`/${article.type}s/${article.id}`}>{article.title}</Link>
+            <Link className='link__underline--dark' to={`/${article.type}s/${article.id}`}>{article.title}</Link>
           </h5>
         </header>
         <div className='article-card__body--related'>
