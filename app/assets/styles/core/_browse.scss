@@ -61,6 +61,17 @@
       max-width: 90%
     }
   }
+  .country-summary, .commodity-summary {
+    border: 1px solid lighten($light-grey, 15%);
+    background-color: rgba(255, 255, 255, 0.3);
+    .article-list-card__meta { 
+      border-top: 0;
+      padding: .5em 3.8em 2.7em;
+    }
+    .article-list-card__header {
+      padding: 2.2em 3.2em .5em;
+    }
+  }
 }
 
 .browse__pagination {
