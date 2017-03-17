@@ -1,6 +1,9 @@
 'use strict'
 import React from 'react'
 import { Link } from 'react-router'
+import { connect } from 'react-redux'
+
+import RelatedArticles from '../components/related-articles'
 
 export class Home extends React.Component {
   render () {
@@ -44,55 +47,22 @@ export class Home extends React.Component {
             </ul>
           </div>
         </section>
-        <section className='page__related-articles-list section__padding'>
-          <div className='row row--shortened'>
-            <header className='header-internal'>
-              <h4 className='header--large'>Recently Added Briefs</h4>
-            </header>
-            <ul>
-              <li className='article-card--related'>
-                <h5 className='header--small'>Drought Tolerant Beans and Climate Change</h5>
-                <div className='article-card__body--related'>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a molestie sapien. Sed ac nunc vel risus luctus suscipit ut ut….</p>
-                  <ul className='related__card__tags'>
-                    <li><Link to={'/'}>tag 1,</Link></li>
-                    <li><Link to={'/'}>tag 2,</Link></li>
-                    <li><Link to={'/'}>tag 3,</Link></li>
-                    <li><Link to={'/'}>tag 4,</Link></li>
-                  </ul>
-                </div>
-              </li>
-              <li className='article-card--related'>
-                <h5 className='header--small'>Drought Tolerant Beans and Climate Change</h5>
-                <div className='article-card__body--related'>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a molestie sapien. Sed ac nunc vel risus luctus suscipit ut ut….</p>
-                  <ul className='related__card__tags'>
-                    <li><Link to={'/'}>tag 1,</Link></li>
-                    <li><Link to={'/'}>tag 2,</Link></li>
-                    <li><Link to={'/'}>tag 3,</Link></li>
-                    <li><Link to={'/'}>tag 4,</Link></li>
-                  </ul>
-                </div>
-              </li>
-              <li className='article-card--related'>
-                <h5 className='header--small'>Drought Tolerant Beans and Climate Change</h5>
-                <div className='article-card__body--related'>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a molestie sapien. Sed ac nunc vel risus luctus suscipit ut ut….</p>
-                  <ul className='related__card__tags'>
-                    <li><Link to={'/'}>tag 1,</Link></li>
-                    <li><Link to={'/'}>tag 2,</Link></li>
-                    <li><Link to={'/'}>tag 3,</Link></li>
-                    <li><Link to={'/'}>tag 4,</Link></li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
-            <Link className='button button--main button--more-information' to={'/briefs'}>View All Briefs</Link>
-          </div>
-        </section>
+        <RelatedArticles title="Recently Added Briefs" articles={this.props.briefs.sort((a, b) => b.date - a.date).slice(0, 3)}>
+          <Link className='button button--main button--more-information' to={'/briefs'}>View All Briefs</Link>
+        </RelatedArticles>
       </section>
     )
   }
 }
 
-export default Home
+Home.propTypes = {
+  briefs: React.PropTypes.array
+}
+
+const mapStateToProps = (state) => {
+  return {
+    briefs: state.article.briefs,
+    scenarios: state.article.scenarios
+  }
+}
+export default connect(mapStateToProps)(Home)

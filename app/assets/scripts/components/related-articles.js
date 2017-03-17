@@ -12,10 +12,11 @@ export class RelatedArticles extends React.Component {
     return (
       <section className='page__related-articles-list section__padding'>
         <div className='row'>
-          <h4 className='header--large section__header'>Related Articles</h4>
+          <h4 className='header--large section__header'>{this.props.title || 'Related Articles'}</h4>
           <ul>
             {articles.map(article => <RelatedArticleCard article={article} key={`related-article-${article.id}`} />)}
           </ul>
+          {this.props.children}
         </div>
       </section>
     )
@@ -24,7 +25,9 @@ export class RelatedArticles extends React.Component {
 
 // Set default props
 RelatedArticles.propTypes = {
-  articles: React.PropTypes.array
+  articles: React.PropTypes.array,
+  title: React.PropTypes.string,
+  children: React.PropTypes.node
 }
 
 export default RelatedArticles
