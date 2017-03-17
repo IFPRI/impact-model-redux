@@ -15,8 +15,8 @@ export class Home extends React.Component {
               </div>
             </div>
             <div className='home__header-split--right'>
-              <Link className='button button--outline' to={'/'}>Learn More</Link>
-              <Link className='button button--outline' to={'/'}>View Briefs</Link>
+              <Link className='button button--outline' to={'/about'}>Learn More</Link>
+              <Link className='button button--outline' to={'/briefs'}>View Briefs</Link>
             </div>
           </div>
         </header>
