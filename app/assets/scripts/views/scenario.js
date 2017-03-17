@@ -17,6 +17,7 @@ import Loading from '../components/loading'
 
 // Utils
 import { translate } from '../utils/translation'
+import { findRelatedArticles } from '../utils/related'
 
 export class Scenario extends React.Component {
   constructor (props, context) {
@@ -89,7 +90,7 @@ export class Scenario extends React.Component {
            </section>
         }
         <ProjectArticles articleMetadata={articleMetadata} articles={articles} />
-        <RelatedArticles articleMetadata={articleMetadata} articles={articles} />
+        <RelatedArticles articles={findRelatedArticles(articleMetadata, this.props.articles, 3)} />
       </section>
     )
   }

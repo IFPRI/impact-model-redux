@@ -87,7 +87,7 @@ export class Home extends React.Component {
                 </div>
               </li>
             </ul>
-            <Link className='button button--main button--more-information' to={'/'}>View All Briefs</Link>
+            <Link className='button button--main button--more-information' to={'/briefs'}>View All Briefs</Link>
           </div>
         </section>
       </section>
