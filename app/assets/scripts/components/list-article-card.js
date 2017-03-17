@@ -15,15 +15,15 @@ export class ListArticleCard extends React.Component {
     const date = moment(article.date, 'MM/DD/YYYY').format('MMMM D, YYYY')
 
     const Locations = locations
-      ? <dd>{locations.length > 1 ? commaSeparate(locations.map((loc) => translate(loc))) : translate(locations)}</dd>
+      ? <dd>{locations.length > 1 ? commaSeparate(locations.map((loc) => translate(loc))) : translate(locations[0])}</dd>
       : ''
 
     const Commodities = commodities
-      ? <dd>{commodities.length > 1 ? commaSeparate(commodities.map((com) => translate(com))) : translate(commodities)}</dd>
+      ? <dd>{commodities.length > 1 ? commaSeparate(commodities.map((com) => translate(com))) : translate(commodities[0])}</dd>
       : ''
 
     const Tags = tags
-      ? <dd>{tags.length > 1 ? commaSeparate(tags.map((com) => translate(com))) : translate(tags)}</dd>
+      ? <dd>{tags.length > 1 ? commaSeparate(tags.map((com) => translate(com))) : translate(tags[0])}</dd>
       : ''
 
     let CardMeta = ''
