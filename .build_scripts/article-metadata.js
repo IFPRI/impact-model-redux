@@ -44,7 +44,13 @@ glob('app/assets/data/articles/*.md', (err, files) => {
       scenarios: metadata.scenarios,
       resources: metadata.resources,
       // Correct for several edge cases that can occur around markdown parsing
-      preview: cutAt(text.body, 300).replace(/# /g, '').replace(/\n\n/g, ' ').replace(/\n/g, ' ').replace('....', '...').replace(/. #.../g, '...')
+      preview: cutAt(text.body.replace(/```[\s\S]*```/g, ''), 300)
+        .replace(/# /g, '')
+        .replace(/\n\n/g, ' ')
+        .replace(/\n/g, ' ')
+        .replace('....', '...')
+        .replace(/. #.../g, '...')
+
     }
   })
   fs.writeFile('./app/assets/data/articles.json', JSON.stringify(inventory), (err) => {
