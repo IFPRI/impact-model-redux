@@ -1,6 +1,6 @@
 'use strict'
 import React from 'react'
-import Collapse  from 'rc-collapse'
+import Collapse from 'rc-collapse'
 import _ from 'lodash'
 
 // Utils
@@ -8,11 +8,22 @@ import { translate } from '../utils/translation'
 
 class BrowseFilter extends React.Component {
   render () {
-    console.log(this.props);
     const { name, list } = this.props.filter
-    const { handleFilterSelection, articleFilters } = this.props
+    const { handleFilterSelection, onAccordionChange, generateAccordionItems,
+      articleFilters } = this.props
     if (this.props.filter.accordion) {
-      return <div>Test</div>
+      return (
+        <fieldset>
+          <legend>{name}</legend>
+          <div className='filters__check-group'>
+            <Collapse
+              accordion={this.props.accordion}
+              onChange={onAccordionChange}>
+              {generateAccordionItems(list)}
+            </Collapse>
+          </div>
+        </fieldset>
+      )
     } else {
       return (
         <fieldset>

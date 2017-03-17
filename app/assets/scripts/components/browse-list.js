@@ -65,7 +65,7 @@ export class BrowseList extends React.Component {
   filterArticles (articles, articleFilters) {
     if (articleFilters.length) {
       return articles.filter((article) => {
-        const metadata = _.concat([article.briefType], article.commodities, article.locations, article.project).filter((item) => item)
+        const metadata = _.concat([article.briefType], article.tags, article.commodities, article.locations, article.project).filter((item) => item)
         const matches = _.intersection(metadata, articleFilters).length
         article.matches = matches
         return matches

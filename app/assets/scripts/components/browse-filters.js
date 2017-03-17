@@ -75,6 +75,7 @@ export class BrowseFilters extends React.Component {
     })
 
     this.handleFilterSelection = this.handleFilterSelection.bind(this)
+    this.generateAccordionItems = this.generateAccordionItems.bind(this)
   }
 
   handleFilterSelection (event) {
