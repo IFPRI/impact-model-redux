@@ -34,7 +34,7 @@ export class BrowseFilters extends React.Component {
       this.filters.push({
         name: 'Type',
         list: ['custom', 'commodity-summary', 'country-summary'],
-        accordion: false
+        type: 'checkbox'
       })
       // generate list of commodities organized by type
       let commodityList = {}
@@ -45,33 +45,29 @@ export class BrowseFilters extends React.Component {
       this.filters.push({
         name: 'Commodities',
         list: commodityList,
-        accordion: true
+        type: 'accordion'
       })
 
-      // generate list of regions organized by subcontinent
-      let locationList = {}
-      filterCategories.locations.forEach((location) => {
-        locationList[location] = locationAggregation[location]
-      })
-      locationList = countryIdsToSubcontinents(locationList)
+      // generate list of regions
       this.filters.push({
         name: 'Locations',
-        list: locationList,
-        accordion: true
+        list: _.uniq(_.flatten(Object.values(locationAggregation).map(loc => Object.values(loc)))
+          .filter(Boolean).map(translate)).sort(),
+        type: 'autocomplete'
       })
     } else if (props.type === 'scenario') {
       // generate list of tags
       this.filters.push({
         name: 'Tags',
         list: filterCategories.tags,
-        accordion: false
+        type: 'checkbox'
       })
     }
     // generate list of projects
     this.filters.push({
       name: 'Projects',
       list: filterCategories.projects,
-      accordion: false
+      type: 'checkbox'
     })
 
     this.handleFilterSelection = this.handleFilterSelection.bind(this)
