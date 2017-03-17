@@ -23,6 +23,7 @@ export class ScenarioBrowse extends React.Component {
             <BrowseFilters
               dispatch={this.props.dispatch}
               articleFilters={this.props.articleFilters}
+              type='scenario'
             />
             <BrowseList
               dispatch={this.props.dispatch}

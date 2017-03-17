@@ -7,7 +7,7 @@ import { Link } from 'react-router'
 import _ from 'lodash'
 
 // Actions
-import { fetchArticle } from '../actions'
+import { fetchArticle, updateArticleFilters } from '../actions'
 
 // Components
 import ProjectArticles from '../components/project-articles'
@@ -23,6 +23,7 @@ export class Brief extends React.Component {
   constructor (props, context) {
     super(props, context)
     this.metadata = props.articles.find((article) => article.id === props.params.id)
+    this.updateArticleFilters = this.updateArticleFilters.bind(this)
     props.dispatch(fetchArticle(this.metadata.url))
   }
 
@@ -47,6 +48,10 @@ export class Brief extends React.Component {
         ReactDOM.render(<Map name={name} data={data} />, placeholder)
       }
     })
+  }
+
+  updateArticleFilters (filters) {
+    this.props.dispatch(updateArticleFilters(filters))
   }
 
   render () {
@@ -105,7 +110,13 @@ export class Brief extends React.Component {
            </section>
         }
         <ProjectArticles articleMetadata={articleMetadata} articles={articles} />
-        <RelatedArticles articleMetadata={articleMetadata} articles={articles} />
+        <RelatedArticles
+          type='brief'
+          articleMetadata={articleMetadata}
+          articles={articles}
+          router={this.props.router}
+          updateArticleFilters={this.updateArticleFilters}
+          />
       </section>
     )
   }
@@ -120,7 +131,8 @@ Brief.propTypes = {
   article: React.PropTypes.string,
   charts: React.PropTypes.object,
   maps: React.PropTypes.object,
-  params: React.PropTypes.object
+  params: React.PropTypes.object,
+  router: React.PropTypes.object
 }
 
 // /////////////////////////////////////////////////////////////////// //

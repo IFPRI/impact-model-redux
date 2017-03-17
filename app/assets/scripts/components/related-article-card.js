@@ -3,9 +3,15 @@ import React from 'react'
 import { Link } from 'react-router'
 
 // Utils
-import { cutAtWord, commaSeparate, toTitleCase } from '../utils/format'
+import { cutAtWord, toTitleCase } from '../utils/format'
 
 export class RelatedArticleCard extends React.Component {
+  goToTag (tag, e) {
+    e.preventDefault()
+    this.props.updateArticleFilters([tag])
+    this.props.router.push(`/${this.props.type}s`)
+  }
+
   render () {
     const article = this.props.article
     return (
@@ -18,7 +24,11 @@ export class RelatedArticleCard extends React.Component {
         <div className='article-card__body--related'>
           <p>{`${cutAtWord(article.preview, 190)}...`}</p>
         </div>
-        <span className='article-card__tags'>{toTitleCase(commaSeparate(article.tags))}</span>
+        <ul className='article-card__tags'>
+          {article.tags.map(tag => {
+            return <li key={tag}><a onClick={this.goToTag.bind(this, tag)} href=''>{toTitleCase(tag)}</a></li>
+          })}
+        </ul>
       </li>
     )
   }
@@ -26,7 +36,10 @@ export class RelatedArticleCard extends React.Component {
 
 // Set default props
 RelatedArticleCard.propTypes = {
-  article: React.PropTypes.object
+  type: React.PropTypes.string,
+  article: React.PropTypes.object,
+  router: React.PropTypes.object,
+  updateArticleFilters: React.PropTypes.func
 }
 
 export default RelatedArticleCard
