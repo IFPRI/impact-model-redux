@@ -14,6 +14,7 @@ export class RelatedArticles extends React.Component {
     articles = articles
       ? articles.map((article, i) => {
         return <RelatedArticleCard
+          type={this.props.type}
           article={article}
           key={`related-article-${i}`}
           router={this.props.router}

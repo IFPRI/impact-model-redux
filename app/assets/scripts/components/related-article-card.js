@@ -9,7 +9,7 @@ export class RelatedArticleCard extends React.Component {
   goToTag (tag, e) {
     e.preventDefault()
     this.props.updateArticleFilters([tag])
-    this.props.router.push(`/${this.props.type}`)
+    this.props.router.push(`/${this.props.type}s`)
   }
 
   render () {
