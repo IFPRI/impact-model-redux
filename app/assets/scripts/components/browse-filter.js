@@ -29,7 +29,10 @@ class BrowseFilter extends React.Component {
         <fieldset>
           <legend>{name}</legend>
           <ul className='filters__main-check-group'>
-            {list.map(li => <li key={li}><input type="checkbox" name={`${li}-check`} value={li} onChange={handleFilterSelection} checked={_.includes(articleFilters, li) }/><label>{translate(li)}</label></li>)}
+            {list.map(li => {
+              const checked = _.includes(articleFilters, li)
+              return <li key={li}><input type="checkbox" name={`${li}-check`} value={li} onChange={handleFilterSelection.bind(null, checked, li)} checked={checked}/><label>{translate(li)}</label></li>
+            })}
           </ul>
         </fieldset>
       )
