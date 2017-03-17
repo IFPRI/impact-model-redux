@@ -9,22 +9,21 @@ import { commaSeparate, cutAtWord } from '../utils/format'
 import { translate } from '../utils/translation'
 
 export class ListArticleCard extends React.Component {
+
+  toDictionaryDefintionArray (array) {
+    return array && array.length
+      ? <dd>{array.length > 1 ? commaSeparate(array.map((a) => translate(a))) : translate(array[0])}</dd>
+      : ''
+  }
+
   render () {
     const article = this.props.article
     const { locations, commodities, tags, briefType, type } = article
     const date = moment(article.date, 'MM/DD/YYYY').format('MMMM D, YYYY')
 
-    const Locations = locations
-      ? <dd>{locations.length > 1 ? commaSeparate(locations.map((loc) => translate(loc))) : translate(locations[0])}</dd>
-      : ''
-
-    const Commodities = commodities
-      ? <dd>{commodities.length > 1 ? commaSeparate(commodities.map((com) => translate(com))) : translate(commodities[0])}</dd>
-      : ''
-
-    const Tags = tags
-      ? <dd>{tags.length > 1 ? commaSeparate(tags.map((com) => translate(com))) : translate(tags[0])}</dd>
-      : ''
+    const Locations = this.toDictionaryDefintionArray(locations)
+    const Commodities = this.toDictionaryDefintionArray(commodities)
+    const Tags = this.toDictionaryDefintionArray(tags)
 
     let CardMeta = ''
     if (type === 'scenario') {
