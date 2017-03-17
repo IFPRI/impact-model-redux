@@ -4,7 +4,7 @@ import _ from 'lodash'
 // Data
 import translations from '../../data/translation'
 
-export const translate = (str) => translations[str]
+export const translate = (str) => translations[str] || str
 
 export const untranslate = (str) => _.invert(translations)[str]
 
