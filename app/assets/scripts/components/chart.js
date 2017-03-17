@@ -12,7 +12,7 @@ import queryDatabase from '../utils/query-database'
 import { toTitleCase, formatNumber } from '../utils/format'
 
 // Constants
-import { nineColorPalette, oneColorPalette } from '../constants'
+import { sixColorPalette, oneColorPalette } from '../constants'
 
 // Data
 import translation from '../../data/translation'
@@ -62,7 +62,7 @@ export class Chart extends React.Component {
         labels: [],
         datasets: [{
           data: [],
-          backgroundColor: nineColorPalette
+          backgroundColor: sixColorPalette
         }]
       }
     }
