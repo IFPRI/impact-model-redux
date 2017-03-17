@@ -22,9 +22,9 @@ import { findRelatedArticles, findProjectArticles } from '../utils/related'
 export class Brief extends React.Component {
   constructor (props, context) {
     super(props, context)
-    this.metadata = props.articles.find((article) => article.id === props.params.id)
+
     this.updateArticleFilters = this.updateArticleFilters.bind(this)
-    props.dispatch(fetchArticle(this.metadata.url))
+    props.dispatch(fetchArticle(this.props.metadata.url))
   }
 
   componentDidUpdate () {
@@ -54,17 +54,22 @@ export class Brief extends React.Component {
     this.props.dispatch(updateArticleFilters(filters))
   }
 
-  render () {
-    const articleMetadata = this.metadata
-    const articles = this.props.articles
-    const date = moment(articleMetadata.date, 'M/D/YYYY').format('MMMM Do, YYYY')
+  componentWillReceiveProps (nextProps) {
+    if (this.props.params.id !== nextProps.params.id) {
+      nextProps.dispatch(fetchArticle(nextProps.metadata.url))
+    }
+  }
 
-    let locations = articleMetadata.locations
+  render () {
+    const { articles, metadata } = this.props
+    const date = moment(metadata.date, 'M/D/YYYY').format('MMMM Do, YYYY')
+
+    let locations = metadata.locations
     locations = locations
       ? locations.length > 1 ? locations.map((loc) => <li key={loc}>{translate(loc)}</li>) : <li>{translate(locations)}</li>
       : ''
 
-    let resources = articleMetadata.resources
+    let resources = metadata.resources
     resources = resources
       ? resources.length > 1 ? resources.map((res) => <li key={res}><a className='link__underline' target="_blank" href={res}>{res}</a></li>) : <li><a target="_blank" href={resources}>{resources}</a></li>
       : ''
@@ -75,13 +80,13 @@ export class Brief extends React.Component {
           <div className='row row--shortened'>
             <div className='home__header-split--left split__internal--left'>
               <div className='home__header-split--left__content'>
-                <span className='header--type'>{translate(articleMetadata.briefType)}</span>
-                <h2 className='header--xxlarge with-metadata'>{articleMetadata.title}</h2>
+                <span className='header--type'>{translate(metadata.briefType)}</span>
+                <h2 className='header--xxlarge with-metadata'>{metadata.title}</h2>
                 <dl className='article-byline header__metadata header__descriptions'>
                   <dt className='visually-hidden'>Date</dt>
                   <dd>{date}</dd>
                   <dt className='visually-hidden'>Author</dt>
-                  <dd>{articleMetadata.author}</dd>
+                  <dd>{metadata.author}</dd>
                 </dl>
               </div>
             </div>
@@ -112,13 +117,13 @@ export class Brief extends React.Component {
         <RelatedArticles
           type='project'
           cardType='project'
-          title={`Other Articles in ${articleMetadata.project}`}
-          articles={findProjectArticles(articleMetadata, articles, articleMetadata.project, 2)}
+          title={`Other Articles in ${metadata.project}`}
+          articles={findProjectArticles(metadata, articles, metadata.project, 2)}
           />
         <RelatedArticles
           type='brief'
           cardType='related'
-          articles={findRelatedArticles(articleMetadata, articles, 3)}
+          articles={findRelatedArticles(metadata, articles, 3)}
           router={this.props.router}
           updateArticleFilters={this.updateArticleFilters}
           />
@@ -137,14 +142,16 @@ Brief.propTypes = {
   charts: React.PropTypes.object,
   maps: React.PropTypes.object,
   params: React.PropTypes.object,
-  router: React.PropTypes.object
+  router: React.PropTypes.object,
+  metadata: React.PropTypes.object
 }
 
 // /////////////////////////////////////////////////////////////////// //
 // Connect functions
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
   return {
+    metadata: state.article.briefs.find((article) => article.id === props.params.id),
     articles: state.article.briefs,
     articleLoading: state.article.articleLoading,
     article: state.article.article,
