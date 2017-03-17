@@ -1,12 +1,28 @@
 'use strict'
 import _ from 'lodash'
 
+// Format
+import { toTitleCase } from './format'
+
 // Data
 import translations from '../../data/translation'
 
-export const translate = (str) => translations[str] || str
+export const translate = (str) => translations[str] || defaultTranslate(str)
 
-export const untranslate = (str) => _.invert(translations)[str]
+export const untranslate = (str) => _.invert(translations)[str] || defaultUntranslate(str)
+
+function defaultTranslate (str) {
+  if (!str) return str
+  return str.split('-')
+    .map(toTitleCase)
+    .join(' ')
+}
+
+function defaultUntranslate (str) {
+  if (!str) return str
+  return str.toLowerCase()
+    .replace(/ /g, '-')
+}
 
 export const invertCommodities = (commodities) => {
   const inverted = {}

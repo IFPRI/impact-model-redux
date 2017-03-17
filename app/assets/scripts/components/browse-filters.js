@@ -78,32 +78,51 @@ export class BrowseFilters extends React.Component {
     this.generateAccordionItems = this.generateAccordionItems.bind(this)
   }
 
-  handleFilterSelection (event) {
-    const checkbox = event.target.value
-    let articleFilters = this.props.articleFilters
-    articleFilters = !_.includes(articleFilters, checkbox)
-      ? articleFilters.concat(checkbox)
-      : articleFilters.filter((opt) => opt !== checkbox)
+  handleFilterSelection (checked, subtype) {
+    const { articleFilters, dispatch } = this.props
+    const newArticleFilters = checked
+      ? articleFilters.filter(opt => opt !== subtype)
+      : articleFilters.concat(subtype)
 
-    this.props.dispatch(updateArticleFilters(articleFilters))
+    dispatch(updateArticleFilters(newArticleFilters))
+  }
+
+  handleFilterSelectionAll (checked, list) {
+    const { articleFilters, dispatch } = this.props
+    const newArticleFilters = checked
+    ? articleFilters.filter(opt => !_.includes(list, opt))
+    : _.uniq(articleFilters.concat(list))
+
+    dispatch(updateArticleFilters(newArticleFilters))
   }
 
   generateAccordionItems (list) {
     list = _.pickBy(list, (value, key) => key)
     return _.map(list, (subtypes, type) => {
+      const checked = list[type].every(t => _.includes(this.props.articleFilters, t))
       return (
-        <Panel header={type} key={'filter-item-' + type}>
+        <Panel header={type} key={`filter-item-${type}`}>
+          <div className='filters__check-group' key={`${type}-check-group`}>
+            <input
+              type='checkbox'
+              name={`${type}-all`}
+              value={type}
+              onChange={this.handleFilterSelectionAll.bind(this, checked, list[type])}
+              checked={checked} />
+            <label>All</label>
+          </div>
           {subtypes.map((subtype) => {
             // use the id attribute in the case of countries
             if (subtype.id) subtype = subtype.id
+            const subChecked = _.includes(this.props.articleFilters, subtype)
             return (
               <div className='filters__check-group' key={subtype + '-check-group'}>
                 <input
                   type='checkbox'
                   name={subtype + '-check'}
                   value={subtype}
-                  onChange={this.handleFilterSelection}
-                  checked={_.includes(this.props.articleFilters, subtype) } />
+                  onChange={this.handleFilterSelection.bind(this, subChecked, subtype)}
+                  checked={subChecked} />
                 <label>{translate(subtype)}</label>
               </div>
             )
