@@ -9,12 +9,14 @@ export const translate = (str) => translations[str] || defaultTranslate(str)
 export const untranslate = (str) => _.invert(translations)[str] || defaultUntranslate(str)
 
 function defaultTranslate (str) {
+  if (!str) return str
   return str.split('-')
     .map(a => a.charAt(0).toUpperCase() + a.substr(1).toLowerCase())
     .join(' ')
 }
 
 function defaultUntranslate (str) {
+  if (!str) return str
   return str.toLowerCase()
     .replace(/ /g, '-')
 }
