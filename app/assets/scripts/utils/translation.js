@@ -4,9 +4,20 @@ import _ from 'lodash'
 // Data
 import translations from '../../data/translation'
 
-export const translate = (str) => translations[str]
+export const translate = (str) => translations[str] || defaultTranslate(str)
 
-export const untranslate = (str) => _.invert(translations)[str]
+export const untranslate = (str) => _.invert(translations)[str] || defaultUntranslate(str)
+
+function defaultTranslate (str) {
+  return str.split('-')
+    .map(a => a.charAt(0).toUpperCase() + a.substr(1).toLowerCase())
+    .join(' ')
+}
+
+function defaultUntranslate (str) {
+  return str.toLowerCase()
+    .replace(/ /g, '-')
+}
 
 export const invertCommodities = (commodities) => {
   const inverted = {}
