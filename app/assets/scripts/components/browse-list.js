@@ -1,6 +1,7 @@
 'use strict'
 import React from 'react'
-import classnames from 'classnames'
+import ReactDOM from 'react-dom'
+import c from 'classnames'
 import _ from 'lodash'
 
 // Actions
@@ -19,8 +20,6 @@ export class BrowseList extends React.Component {
   constructor (props, context) {
     super(props, context)
     this.handleSortingUpdate = this.handleSortingUpdate.bind(this)
-    this.incrementPage = this.incrementPage.bind(this)
-    this.decrementPage = this.decrementPage.bind(this)
     this.clearFilters = this.clearFilters.bind(this)
     this.removeOneFilter = this.removeOneFilter.bind(this)
   }
@@ -36,15 +35,9 @@ export class BrowseList extends React.Component {
     }
   }
 
-  incrementPage (page, articleCount) {
-    this.goToPage(page * articleBrowsePageLength + articleBrowsePageLength - 1 < articleCount ? page + 1 : page)
-  }
-
-  decrementPage (page) {
-    this.goToPage(Math.max(0, page - 1))
-  }
-
-  goToPage (page) {
+  goToPage (page, e) {
+    if (e) e.preventDefault()
+    window.scroll(0, ReactDOM.findDOMNode(this).offsetTop - 50)
     this.props.dispatch(updateArticlePage(page))
   }
 
@@ -90,8 +83,23 @@ export class BrowseList extends React.Component {
     const articleCount = articles.length
     articles = articles.slice(articleBrowsePageLength * articlePage, articleBrowsePageLength * articlePage + articleBrowsePageLength)
 
-    const lowArticle = articleBrowsePageLength * articlePage + 1
-    const highArticle = Math.min(articleCount, articleBrowsePageLength * articlePage + articleBrowsePageLength + 1)
+    // show first/last/two on each side
+    const lastPage = Math.ceil(articleCount / articleBrowsePageLength) - 1
+
+    const pages = _.uniq([
+      0,
+      lastPage,
+      articlePage - 2,
+      articlePage - 1,
+      articlePage,
+      articlePage + 1,
+      articlePage + 2
+    ]
+    .map(a => Math.min(Math.max(a, 0), lastPage) + 1)).sort((a, b) => a - b)
+
+    // add ellipses
+    if (pages[1] !== 2) pages.splice(1, 0, '...')
+    if (pages[pages.length - 2] !== lastPage) pages.splice(pages.length - 1, 0, '...')
 
     const ClearFilters = articleFilters.length
     ? <a className='filter__selects__clear link__underline' href='' onClick={this.clearFilters}>Clear All Filters</a>
@@ -133,17 +141,19 @@ export class BrowseList extends React.Component {
             />
           )
         })}
-        <nav className='browse__pagination'>
-          <button
-            className={classnames('browse__pagination-button', 'browse__pagination-button--back', 'collecticon-chevron-left', {'pagination-button--disabled': articlePage === 0})}
-            onClick={() => this.decrementPage(articlePage)}>
-          </button>
-          <span className='browse__pagination-status'>Article {lowArticle} - {highArticle} of {articleCount}</span>
-          <button
-            className={classnames('browse__pagination-button', 'browse__pagination-button--forward', 'collecticon-chevron-right', {'pagination-button--disabled': highArticle === articleCount})}
-            onClick={() => this.incrementPage(articlePage, articleCount)}>
-          </button>
-        </nav>
+        <ul className='browse__pagination'>
+          <li onClick={() => this.goToPage(articlePage - 1)} className={c('browse__pagination-button', 'browse__pagination-button--back', 'collecticon-chevron-left', {'pagination-button--disabled': articlePage === 0})}>
+            <a className='links-next-prev' href=''>Previous</a>
+          </li>
+          {pages.map((page, i) => {
+            return isNaN(page)
+            ? <li key={`ellipses-${i}`} className='browse__pagination-button'><a href=''>{page}</a></li>
+            : <li key={page} className={c('browse__pagination-button', { active: articlePage === (page - 1) })}><a onClick={(e) => this.goToPage(page - 1, e)} href=''>{page}</a></li>
+          })}
+          <li onClick={() => this.goToPage(articlePage + 1)} className={c('browse__pagination-button', 'browse__pagination-button--forward', 'collecticon-chevron-right', {'pagination-button--disabled': articlePage === lastPage})}>
+            <a className='links-next-prev' href=''>Next</a>
+          </li>
+        </ul>
       </section>
     )
   }
