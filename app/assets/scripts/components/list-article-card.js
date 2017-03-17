@@ -28,7 +28,7 @@ export class ListArticleCard extends React.Component {
 
     let CardMeta = ''
     if (type === 'scenario') {
-      CardMeta = <dl><dt>{commodities.length > 1 ? 'Commodity' : 'Commodities'}:</dt>{Tags}</dl>
+      CardMeta = <dl><dt>{tags.length > 1 ? 'Tags' : 'Tag'}:</dt>{Tags}</dl>
     } else if (type === 'brief') {
       switch (briefType) {
         case 'custom':
@@ -51,7 +51,7 @@ export class ListArticleCard extends React.Component {
     }
 
     return (
-      <div className={c('article-list-card', briefType)}>
+      <div className={c('article-list-card', type === 'scenario' ? type : briefType)}>
         <div className='article-list-card__header'>
           <h4 className='header--small with-description'><Link to={`/${this.props.path}/${article.id}`}>{article.title}</Link></h4>
           <span className='metadata-italic'>{date}</span>
