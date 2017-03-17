@@ -46,7 +46,49 @@ p {
 }
 
 a, a:visited {
+  color: $base-purple;
   text-decoration: none;
+  transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+}
+
+.link-block {
+  margin-top: 1.2em;
+}
+
+.link__underline {
+  border-bottom: 1px solid lighten($base-purple, 50%);
+  display: inline-block;
+  &:hover {
+    border-bottom: 1px solid lighten($base-purple, 25%);
+  }
+}
+
+.link__underline--white {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  display: inline;
+  &:hover {
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  }
+}
+
+.link__underline--dark {
+  border-bottom: 1px solid rgba(153, 153, 153, 0.2);
+  display: inline;
+  &:hover {
+    text-decoration: none;
+    border-bottom: 1px solid rgba(153, 153, 153, 0.6);
+  }
+}
+
+
+.link__main, .link__main:visited {
+  color: $medium-blue;
+  &:hover {
+    color: darken($darkest-blue, 8%);
+  }
 }
 
 .section__padding {
