@@ -13,7 +13,12 @@ export class RelatedArticles extends React.Component {
     let articles = findRelatedArticles(articleMetadata, this.props.articles, 3)
     articles = articles
       ? articles.map((article, i) => {
-        return <RelatedArticleCard article={article} key={`related-article-${i}`} />
+        return <RelatedArticleCard
+          article={article}
+          key={`related-article-${i}`}
+          router={this.props.router}
+          updateArticleFilters={this.props.updateArticleFilters}
+          />
       })
       : ''
     return (
@@ -31,8 +36,11 @@ export class RelatedArticles extends React.Component {
 
 // Set default props
 RelatedArticles.propTypes = {
+  type: React.PropTypes.string,
   articleMetadata: React.PropTypes.object,
-  articles: React.PropTypes.array
+  articles: React.PropTypes.array,
+  router: React.PropTypes.object,
+  updateArticleFilters: React.PropTypes.func
 }
 
 export default RelatedArticles

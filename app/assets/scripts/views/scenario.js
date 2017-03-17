@@ -89,7 +89,13 @@ export class Scenario extends React.Component {
            </section>
         }
         <ProjectArticles articleMetadata={articleMetadata} articles={articles} />
-        <RelatedArticles articleMetadata={articleMetadata} articles={articles} />
+        <RelatedArticles
+          type='scenario'
+          articleMetadata={articleMetadata}
+          articles={articles}
+          router={this.props.router}
+          updateArticleFilters={this.updateArticleFilters}
+          />
       </section>
     )
   }
@@ -103,7 +109,8 @@ Scenario.propTypes = {
   articleLoading: React.PropTypes.bool,
   article: React.PropTypes.string,
   charts: React.PropTypes.object,
-  params: React.PropTypes.object
+  params: React.PropTypes.object,
+  router: React.PropTypes.object
 }
 
 // /////////////////////////////////////////////////////////////////// //
