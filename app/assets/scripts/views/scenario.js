@@ -103,6 +103,8 @@ export class Scenario extends React.Component {
           cardType='project'
           title={`Other Articles in ${metadata.project}`}
           articles={findProjectArticles(metadata, articles, metadata.project, 2)}
+          router={this.props.router}
+          updateArticleFilters={this.updateArticleFilters}
           />
         <RelatedArticles
           type='scenario'
