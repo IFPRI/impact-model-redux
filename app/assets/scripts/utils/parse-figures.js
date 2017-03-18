@@ -15,13 +15,13 @@ export const setupRenderer = (dispatch) => {
     const id = `fig-${md5(data.title).slice(0, 12)}`
     if (lang === 'chart') {
       charts[id] = data
-      dispatch(updateCharts(charts))
       return `<div class="${id} figure-container"></div>`
     } else if (lang === 'map') {
       maps[id] = data
-      dispatch(updateMaps(maps))
       return `<div class="${id} figure-container"></div>`
     }
   }
+  dispatch(updateCharts(charts))
+  dispatch(updateMaps(maps))
   return renderer
 }
