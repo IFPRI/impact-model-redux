@@ -37,7 +37,7 @@ dropdown:
 
   var article = `Summary of IMPACT model outputs for ${name}\n\n${figure}`
 
-  var scenarioString = scenarios.map(s => `  - ${s}`).join('\n')
+  var scenarioString = scenarios.map(s => ` - ${s}`).join('\n')
   var tagString = tags.map(t => ` - ${t}`).join('\n')
 
   var output = `---

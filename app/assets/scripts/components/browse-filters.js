@@ -9,13 +9,11 @@ import { updateArticleFilters } from '../actions'
 // Utils
 import {
   translate,
-  invertCommodities,
-  countryIdsToSubcontinents } from '../utils/translation'
+  invertCommodities } from '../utils/translation'
 
 // Data
 import filterCategories from '../../data/filter-categories'
 import commodityAggregation from '../../data/aggregate-commodity'
-import locationAggregation from '../../data/aggregate-region'
 
 // Components
 import BrowseFilter from './browse-filter'

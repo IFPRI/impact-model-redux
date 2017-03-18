@@ -25,7 +25,7 @@ export class RelatedArticleCard extends React.Component {
           </h5>
         </header>
         <div className={`article-card__body--${cardType}`}>
-          <p>{`${cutAtWord(article.preview, 190)}...`}</p>
+          <p>{`${cutAtWord(article.preview, 190)}`}</p>
         </div>
         <ul className='article-card__tags'>
           {tags.map(tag => {
