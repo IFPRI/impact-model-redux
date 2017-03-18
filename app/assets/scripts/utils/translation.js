@@ -1,15 +1,15 @@
 'use strict'
-import _ from 'lodash'
+const _ = require('lodash')
 
 // Format
-import { toTitleCase } from './format'
+const toTitleCase = require('./format').toTitleCase
 
 // Data
-import translations from '../../data/translation'
+const translations = require('../../data/translation')
 
-export const translate = (str) => translations[str] || defaultTranslate(str)
+const translate = (str) => translations[str] || defaultTranslate(str)
 
-export const untranslate = (str) => _.invert(translations)[str] || defaultUntranslate(str)
+const untranslate = (str) => _.invert(translations)[str] || defaultUntranslate(str)
 
 function defaultTranslate (str) {
   if (!str) return str
@@ -24,7 +24,7 @@ function defaultUntranslate (str) {
     .replace(/ /g, '-')
 }
 
-export const invertCommodities = (commodities) => {
+const invertCommodities = (commodities) => {
   const inverted = {}
   _.forEach(commodities, (category, item) => {
     if (!inverted[category]) inverted[category] = []
@@ -33,7 +33,7 @@ export const invertCommodities = (commodities) => {
   return inverted
 }
 
-export const countryIdsToContinents = (countries) => {
+const countryIdsToContinents = (countries) => {
   const continents = {}
   _.forEach(countries, (attributes, id) => {
     const continent = attributes.continent
@@ -52,7 +52,7 @@ export const countryIdsToContinents = (countries) => {
   return continents
 }
 
-export const countryIdsToSubcontinents = (countries) => {
+const countryIdsToSubcontinents = (countries) => {
   const subcontinents = {}
   _.forEach(countries, (attributes, id) => {
     const subcontinent = attributes.subcontinent
@@ -66,4 +66,12 @@ export const countryIdsToSubcontinents = (countries) => {
     })
   })
   return subcontinents
+}
+
+module.exports = {
+  translate,
+  untranslate,
+  invertCommodities,
+  countryIdsToContinents,
+  countryIdsToSubcontinents
 }
