@@ -14,6 +14,7 @@ export class RelatedArticleCard extends React.Component {
 
   render () {
     const article = this.props.article
+    const tags = article.tags || []
     return (
       <li className='article-card--related'>
         <header className='article-card__header--related'>
@@ -25,7 +26,7 @@ export class RelatedArticleCard extends React.Component {
           <p>{`${cutAtWord(article.preview, 190)}...`}</p>
         </div>
         <ul className='article-card__tags'>
-          {article.tags.map(tag => {
+          {tags.map(tag => {
             return <li key={tag}><a onClick={this.goToTag.bind(this, tag)} href=''>{toTitleCase(tag)}</a></li>
           })}
         </ul>
