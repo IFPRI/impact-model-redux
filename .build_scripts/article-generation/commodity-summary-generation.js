@@ -49,7 +49,7 @@ dropdown:
 title: Change in ${name} Demand from 2015 - 2050 (%)
 aggregation: country
 fixed:
-  impactparameter: QDXAgg
+  impactparameter: qdxagg
   commodity: ${commodity}
 change: percentage
 \`\`\``
