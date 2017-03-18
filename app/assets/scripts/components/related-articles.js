@@ -1,34 +1,34 @@
 'use strict'
 import React from 'react'
-
-// Utils
-import { findRelatedArticles } from '../utils/related.js'
+import c from 'classnames'
 
 // Components
 import RelatedArticleCard from './related-article-card'
 
 export class RelatedArticles extends React.Component {
   render () {
-    const articleMetadata = this.props.articleMetadata
-    let articles = findRelatedArticles(articleMetadata, this.props.articles, 3)
-    articles = articles
-      ? articles.map((article, i) => {
-        return <RelatedArticleCard
-          type={this.props.type}
-          article={article}
-          key={`related-article-${i}`}
-          router={this.props.router}
-          updateArticleFilters={this.props.updateArticleFilters}
-          />
-      })
-      : ''
+    let { articles, cardType } = this.props
+    articles = articles || []
+
     return (
-      <section className='page__related-articles-list section__padding'>
+      <section className={c((cardType === 'project' ? 'page__project-articles-list' : 'page__related-articles-list'), 'section__padding')}>
         <div className='row'>
-          <h4 className='header--large section__header'>Related Articles</h4>
+          <h4 className='header--large section__header'>{this.props.title || 'Related Articles'}</h4>
           <ul>
-            {articles}
+            {articles.map(article => {
+              return (
+                <RelatedArticleCard
+                  type={this.props.type}
+                  cardType={cardType}
+                  article={article}
+                  key={`article-${article.id}`}
+                  router={this.props.router}
+                  updateArticleFilters={this.props.updateArticleFilters}
+                  />
+              )
+            })}
           </ul>
+          {this.props.children}
         </div>
       </section>
     )
@@ -37,9 +37,11 @@ export class RelatedArticles extends React.Component {
 
 // Set default props
 RelatedArticles.propTypes = {
-  type: React.PropTypes.string,
-  articleMetadata: React.PropTypes.object,
   articles: React.PropTypes.array,
+  title: React.PropTypes.string,
+  cardType: React.PropTypes.string,
+  children: React.PropTypes.node,
+  type: React.PropTypes.string,
   router: React.PropTypes.object,
   updateArticleFilters: React.PropTypes.func
 }

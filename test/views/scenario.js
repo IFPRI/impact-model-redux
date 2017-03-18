@@ -8,9 +8,10 @@ import { Scenario } from '../../app/assets/scripts/views/scenario'
 import articles from '../fixtures/articles.json'
 const pathname = {id: 'a-quia-voluptas'}
 const dispatch = sinon.spy()
+const metadata = { url: 'testurl' }
 
 test('scenario test', t => {
-  const component = shallow(<Scenario articles={articles} params={pathname} dispatch={dispatch} />)
+  const component = shallow(<Scenario articles={articles} params={pathname} dispatch={dispatch} metadata={metadata} />)
 
   t.truthy(component.hasClass('page__article'))
 })
