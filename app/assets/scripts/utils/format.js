@@ -2,8 +2,9 @@
 
 // Extract n characters of preview text, rounded to the closest full word
 const cutAtWord = (text, characters) => {
+  if (text.length < characters) return text
   var lastCharacter = text.lastIndexOf(' ', characters)
-  return text.substring(0, lastCharacter)
+  return text.substring(0, lastCharacter) + '...'
 }
 
 const commaSeparate = (array) => array.join(', ')

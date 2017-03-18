@@ -41,10 +41,8 @@ export class ListArticleCard extends React.Component {
           )
           break
         case 'country-summary':
-          if (commodities) CardMeta = <dl><dt>{commodities.length > 1 ? 'Main Commodities' : 'Main Commodity'}:</dt>{Commodities}</dl>
-          break
         case 'commodity-summary':
-          if (locations) CardMeta = <dl><dt>Main Location{locations.length > 1 ? 's' : ''}:</dt>{Locations}</dl>
+          if (tags) CardMeta = <dl><dt>Tag{tags.length > 1 ? 's' : ''}:</dt>{Tags}</dl>
           break
       }
     }
@@ -54,7 +52,7 @@ export class ListArticleCard extends React.Component {
         <div className='article-list-card__header'>
           <h4 className='header--small with-metadata'><Link className='link__main' to={`/${this.props.path}/${article.id}`}>{article.title}</Link></h4>
           <span className='metadata-italic'>{(type === 'brief' ? `${translate(briefType)} | ` : '') + date}</span>
-          <p className='article-list-card__body'>{`${cutAtWord(article.preview, 190)}...`}</p>
+          <p className='article-list-card__body'>{`${cutAtWord(article.preview, 190)}`}</p>
         </div>
         <div className='article-list-card__meta'>
           {CardMeta}
