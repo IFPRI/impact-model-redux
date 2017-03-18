@@ -41,10 +41,10 @@ export class ListArticleCard extends React.Component {
           )
           break
         case 'country-summary':
-          CardMeta = <dl><dt>{commodities.length > 1 ? 'Main Commodities' : 'Main Commodity'}:</dt>{Commodities}</dl>
+          if (commodities) CardMeta = <dl><dt>{commodities.length > 1 ? 'Main Commodities' : 'Main Commodity'}:</dt>{Commodities}</dl>
           break
         case 'commodity-summary':
-          CardMeta = <dl><dt>Main Location{locations.length > 1 ? 's' : ''}:</dt>{Locations}</dl>
+          if (locations) CardMeta = <dl><dt>Main Location{locations.length > 1 ? 's' : ''}:</dt>{Locations}</dl>
           break
       }
     }
