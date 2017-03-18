@@ -7,10 +7,7 @@ import _ from 'lodash'
 import { updateArticleFilters } from '../actions'
 
 // Utils
-import {
-  translate,
-  invertCommodities,
-  countryIdsToSubcontinents } from '../utils/translation'
+import { translate, invertCommodities } from '../utils/translation'
 
 // Data
 import filterCategories from '../../data/filter-categories'
