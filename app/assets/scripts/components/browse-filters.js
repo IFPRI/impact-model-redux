@@ -47,18 +47,6 @@ export class BrowseFilters extends React.Component {
         list: commodityList,
         accordion: true
       })
-
-      // generate list of regions organized by subcontinent
-      let locationList = {}
-      filterCategories.locations.forEach((location) => {
-        locationList[location] = locationAggregation[location]
-      })
-      locationList = countryIdsToSubcontinents(locationList)
-      this.filters.push({
-        name: 'Locations',
-        list: locationList,
-        accordion: true
-      })
     } else if (props.type === 'scenario') {
       // generate list of tags
       this.filters.push({
