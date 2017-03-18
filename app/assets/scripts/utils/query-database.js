@@ -15,8 +15,6 @@ export const queryDatabase = (data, whereClause, callback) => {
     group = null || groups[0]
   }
 
-  data.fixed.impactparameter = data.fixed.impactparameter.toLowerCase()
-
   // construct a where clause for our sql statement
   const where = _.flatten(_.map(data.fixed, (val, param) => {
     const vals = String(val).split(',').map(a => a.trim())

@@ -1,6 +1,7 @@
 'use strict'
 import marked from 'marked'
 import yaml from 'js-yaml'
+import md5 from 'browser-md5'
 
 // Actions
 import { updateCharts, updateMaps } from '../actions'
@@ -11,7 +12,7 @@ export const setupRenderer = (dispatch) => {
   const renderer = new marked.Renderer()
   renderer.code = (code, lang, escaped) => {
     const data = yaml.load(code)
-    const id = `${lang}-${data.title}`
+    const id = `fig-${md5(data.title).slice(0, 12)}`
     if (lang === 'chart') {
       charts[id] = data
       dispatch(updateCharts(charts))
