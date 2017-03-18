@@ -9,7 +9,7 @@ const ChartJS = require('chart.js')
 import queryDatabase from '../utils/query-database'
 
 // Utils
-import { toTitleCase, formatNumber } from '../utils/format'
+import { formatNumber } from '../utils/format'
 
 // Constants
 import { nineColorPalette, oneColorPalette } from '../constants'
@@ -133,10 +133,6 @@ export class Chart extends React.Component {
   render () {
     const { name, data } = this.props
     const activeQuery = this.state.activeQuery
-    const impactParameter = translation[this.state.impactParameter]
-    const focus = translation[activeQuery]
-    const year = data.fixed.year.toString()
-    const aggregation = toTitleCase(translation[data.encoding.x.field])
     const chartType = data.mark
 
     const chartClass = classNames(
@@ -148,7 +144,7 @@ export class Chart extends React.Component {
 
     return (
       <div className={chartClass}>
-        <h5 className='label--chart'>{`${impactParameter} for ${focus} in ${year}, Aggregated by ${aggregation}`}</h5>
+        <h5 className='label--chart'>{data.title}</h5>
         <div className='chart-container'>
           <canvas id={name} className='chart'></canvas>
         </div>
