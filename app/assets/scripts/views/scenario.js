@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import moment from 'moment'
 import { Link } from 'react-router'
 import _ from 'lodash'
+import md5 from 'browser-md5'
 
 // Actions
 import { fetchArticle, updateArticleFilters } from '../actions'
@@ -32,7 +33,7 @@ export class Scenario extends React.Component {
 
   addCharts () {
     _.forEach(this.props.charts, (data, name) => {
-      const placeholder = document.querySelector('.' + name)
+      const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
       if (placeholder) {
         ReactDOM.render(<Chart name={name} data={data} />, placeholder)
       }
