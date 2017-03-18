@@ -102,7 +102,7 @@ export class Scenario extends React.Component {
         <RelatedArticles
           type='project'
           cardType='project'
-          title={`Other Articles in ${metadata.project}`}
+          title={`Other Scenarios in ${translate(metadata.project)}`}
           articles={findProjectArticles(metadata, articles, metadata.project, 2)}
           router={this.props.router}
           updateArticleFilters={this.updateArticleFilters}
@@ -119,7 +119,6 @@ export class Scenario extends React.Component {
   }
 }
 
-// Set default props
 Scenario.propTypes = {
   dispatch: React.PropTypes.func,
   articles: React.PropTypes.array,
@@ -131,9 +130,6 @@ Scenario.propTypes = {
   router: React.PropTypes.object,
   metadata: React.PropTypes.object
 }
-
-// /////////////////////////////////////////////////////////////////// //
-// Connect functions
 
 const mapStateToProps = (state, props) => {
   return {
