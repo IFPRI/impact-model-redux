@@ -70,6 +70,7 @@ export class BrowseList extends React.Component {
           // return all matches on aggregated regions
           _.flatten(article.locations
             .map(l => locationAgg.find(b => b.region === l || b.subcontinent === l))
+            .filter(Boolean)
             .map(l => Object.values(l))),
           article.project
         ).filter(Boolean)

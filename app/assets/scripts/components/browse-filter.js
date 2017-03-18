@@ -56,16 +56,16 @@ class BrowseFilter extends React.Component {
             <legend>{name}</legend>
             <Autocomplete
               value={this.state.value}
+              wrapperProps={{className: 'autocomplete-wrapper'}}
               items={list}
               getItemValue={a => a}
+              menuStyle={{}}
+              renderMenu={renderMenu}
               shouldItemRender={filterAutoComplete}
               onChange={(event, value) => this.setState({ value })}
               onSelect={value => this.handleAutoCompleteSelect(value)}
               renderItem={(item, isHighlighted) => (
-                <div
-                  key={item}
-                  className={(isHighlighted) ? 'highlighted' : ''}
-                >{item}</div>
+                <li key={item} className={(isHighlighted) ? 'highlighted' : ''}>{item}</li>
               )}
             />
           </fieldset>
@@ -78,6 +78,10 @@ function filterAutoComplete (str, value) {
   return (
     str.toLowerCase().indexOf(value.toLowerCase()) !== -1
   )
+}
+
+function renderMenu (items, value, style) {
+  return <ul className='automcomplete-list' children={items}/>
 }
 
 BrowseFilter.propTypes = {
