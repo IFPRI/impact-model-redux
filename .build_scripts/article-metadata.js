@@ -5,7 +5,7 @@ var fm = require('front-matter')
 // Extract n characters of preview text, rounded to the closest full word
 const cutAt = (text, characters) => {
   var lastCharacter = text.lastIndexOf(' ', characters)
-  return text.substring(0, lastCharacter) + '...'
+  return text.substring(0, lastCharacter)
 }
 
 const slugify = (text) => {
@@ -45,14 +45,8 @@ glob('app/assets/data/articles/*.md', (err, files) => {
       tags: metadata.tags,
       scenarios: metadata.scenarios,
       resources: metadata.resources,
-      // Correct for several edge cases that can occur around markdown parsing
-      preview: cutAt(text.body.replace(/```[\s\S]*```/g, ''), 300)
-        .replace(/# /g, '')
-        .replace(/\n\n/g, ' ')
-        .replace(/\n/g, ' ')
-        .replace('....', '...')
-        .replace(/. #.../g, '...')
-
+      // Remove charts, maps, markdown title markers, and newlines
+      preview: cutAt(text.body.replace(/```[\s\S]*```/g, '').replace(/#+ /g, '').replace(/\n+/g, ' '), 300)
     }
   })
   fs.writeFile('./app/assets/data/articles.json', JSON.stringify(inventory), (err) => {
