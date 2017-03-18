@@ -24,7 +24,8 @@ before_install:
 - chmod +x ./.build_scripts/deploy.sh
 - chmod +x ./.build_scripts/lint.sh
 - chmod +x ./.build_scripts/article-metadata.js
-- chmod +x ./.build_scripts/article-generation/commodity-summary-generation.js
+- chmod +x ./.build_scripts/article-generation/commodity-summary.js
+- chmod +x ./.build_scripts/article-generation/country-summary.js
 
 before_script:
 - ./.build_scripts/lint.sh
