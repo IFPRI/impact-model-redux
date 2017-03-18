@@ -10,12 +10,10 @@ import queryDatabase from '../utils/query-database'
 
 // Utils
 import { formatNumber } from '../utils/format'
+import { translate } from '../utils/translation'
 
 // Constants
 import { nineColorPalette, oneColorPalette } from '../constants'
-
-// Data
-import translation from '../../data/translation'
 
 export class Chart extends React.Component {
   constructor (props, context) {
@@ -99,7 +97,7 @@ export class Chart extends React.Component {
     const aggregation = data.encoding.x.field
     queryDatabase(data, this.activeQuery, (chartData) => {
       _.forEach(chartData.values, (item) => {
-        chart.data.labels.push(translation[item[aggregation]])
+        chart.data.labels.push(translate(item[aggregation]))
         chart.data.datasets[0].data.push(item.Val)
       })
       if (isPieChart || chartType === 'polarArea') {
@@ -152,7 +150,7 @@ export class Chart extends React.Component {
           <label>Filter:</label>
           <select className={`${name}-dropdown`} defaultValue={activeQuery} onChange={this.updateQuery}>
             {this.dropdownValues.map((value, i) => {
-              return <option value={value} key={`${name}-${i}`}>{translation[value]}</option>
+              return <option value={value} key={`${name}-${i}`}>{translate(value)}</option>
             })}
           </select>
         </div>

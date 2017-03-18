@@ -13,6 +13,7 @@ const untranslate = (str) => _.invert(translations)[str] || defaultUntranslate(s
 
 function defaultTranslate (str) {
   if (!str) return str
+  if (typeof str !== 'string') str = String(str)
   return str.split('-')
     .map(toTitleCase)
     .join(' ')
