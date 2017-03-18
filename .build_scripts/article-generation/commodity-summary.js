@@ -5,16 +5,16 @@ var _ = require('lodash')
 var translation = require('../../app/assets/scripts/utils/translation')
 
 var potentialCommodities = {
-  'Animal_Products': ['beef', 'eggs', 'lamb', 'milk', 'pork', 'poul'],
-  'Cereals': ['maiz', 'barl', 'mill', 'ocer', 'rice', 'sorg', 'whea'],
-  'Fruits_Vegetables': ['bana', 'plnt', 'subf', 'temf', 'vege'],
-  'Oils_Seeds': ['grnd', 'palm', 'pkrl', 'rpsd', 'soyb', 'snfl', 'tols'],
-  'Food_Oils': ['gdol', 'plol', 'pkol', 'rpol', 'sbol', 'sfol', 'tool'],
-  'Oil_Meals': ['gdml', 'pkml', 'rpml', 'sbml', 'sfml', 'toml'],
-  'Other': ['cafe', 'coco', 'cott', 'fodr', 'othr', 'pstr', 'grss', 'teas'],
-  'Pulses': ['bean', 'chkp', 'cowp', 'lent', 'opul', 'pigp'],
-  'Roots_Tubers': ['cass', 'orat', 'pota', 'swpt', 'yams'],
-  'Sugar': ['sugb', 'sugc', 'sugr']
+  'animal_products': ['beef', 'eggs', 'lamb', 'milk', 'pork', 'poul'],
+  'cereals': ['maiz', 'barl', 'mill', 'ocer', 'rice', 'sorg', 'whea'],
+  'fruits_vegetables': ['bana', 'plnt', 'subf', 'temf', 'vege'],
+  'oils_seeds': ['grnd', 'palm', 'pkrl', 'rpsd', 'soyb', 'snfl', 'tols'],
+  'food_oils': ['gdol', 'plol', 'pkol', 'rpol', 'sbol', 'sfol', 'tool'],
+  'oil_meals': ['gdml', 'pkml', 'rpml', 'sbml', 'sfml', 'toml'],
+  'other': ['cafe', 'coco', 'cott', 'fodr', 'othr', 'pstr', 'grss', 'teas'],
+  'pulses': ['bean', 'chkp', 'cowp', 'lent', 'opul', 'pigp'],
+  'roots_tubers': ['cass', 'orat', 'pota', 'swpt', 'yams'],
+  'sugar': ['sugb', 'sugc', 'sugr']
 }
 
 var baselineScenarios = ['SSP2_GFDL', 'SSP2_HGEM', 'SSP2_MIROC', 'SSP2_IPSL', 'SSP2_NOCC']
