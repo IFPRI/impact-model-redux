@@ -21,13 +21,13 @@ export class Map extends React.Component {
     super(props, context)
     this.state = {
       impactParameter: props.data.fixed.impactparameter,
-      activeQuery: props.data.dropdown.values.split(', ')[0]
+      // activeQuery: props.data.dropdown.values.split(', ')[0]
     }
     this.dropdownValues = props.data.dropdown
     if (this.dropdownValues && this.dropdownValues.field && this.dropdownValues.values) {
       this.dropdownValues = this.dropdownValues.values.split(',').map((value) => value.trim())
     }
-    this.activeQuery = this.dropdownValues[0] || null
+    // this.activeQuery = this.dropdownValues[0] || null
 
     this.initializeChart = this.initializeMap.bind(this)
     this.queryMapData = this.queryMapData.bind(this)
@@ -224,19 +224,21 @@ export class Map extends React.Component {
   }
 
   render () {
+    const { data } = this.props
     return (
       <figure className='map'>
+        <h5 className='label--map'>{data.title}</h5>
         <figcaption>The map shows change in key output parameters from across geographies. Use dropdown menus to select desired commodity (or group) and parameters to display. Toggle buttons at top right allow different geographic aggregations. Hover over countries or regions to observe the actual results.</figcaption>
         <div className='map-container'>
           <div ref={(a) => { this.mapRef = a }} id='world-map'></div>
-          <div className={c('map-dropdown', {visible: this.props.data.dropdown})}>
+          {/*<div className={c('map-dropdown', {visible: this.props.data.dropdown})}>
             <span>Filter:</span>
             <select className={`${name}-dropdown`} defaultValue={this.state.activeQuery} onChange={this.handleDropdown}>
               {this.dropdownValues.map((value, i) => {
                 return <option value={value} key={`${name}-${i}`}>{translation[value]}</option>
               })}
             </select>
-          </div>
+          </div>*/}
         </div>
       </figure>
     )
