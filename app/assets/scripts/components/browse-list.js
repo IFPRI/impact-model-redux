@@ -18,7 +18,7 @@ import { translate } from '../utils/translation'
 
 // Data
 import locationAggregation from '../../data/aggregate-region'
-const locationAgg = Object.values(locationAggregation)
+const locationAgg = _.values(locationAggregation)
 
 export class BrowseList extends React.Component {
   constructor (props, context) {
@@ -71,7 +71,7 @@ export class BrowseList extends React.Component {
           _.flatten(article.locations
             .map(l => locationAgg.find(b => b.region === l || b.subcontinent === l))
             .filter(Boolean)
-            .map(l => Object.values(l))),
+            .map(l => _.values(l))),
           article.project
         ).filter(Boolean)
         const matches = _.intersection(metadata, articleFilters).length
