@@ -56,7 +56,7 @@ fixed:
 change: percentage
 \`\`\``
 
-  var article = `# ${name}\n\n${figure}\n\n${map}`
+  var article = `Summary of IMPACT model outputs for ${name.toLowerCase()}\n\n${figure}\n\n${map}`
 
   var scenarioString = scenarios.map(s => `  - ${s}`).join('\n')
   var tagString = tags.map(t => ` - ${t}`).join('\n')
