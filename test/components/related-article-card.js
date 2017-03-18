@@ -7,7 +7,11 @@ import { RelatedArticleCard } from '../../app/assets/scripts/components/related-
 import articleMetadata from '../fixtures/article-metadata.json'
 
 test('related-article-card test', t => {
-  const component = shallow(<RelatedArticleCard article={articleMetadata} />)
+  const relatedComponent = shallow(<RelatedArticleCard article={articleMetadata} cardType='related'/>)
 
-  t.truthy(component.hasClass('article-card--related'))
+  t.truthy(relatedComponent.hasClass('article-card--related'))
+
+  const projectComponent = shallow(<RelatedArticleCard article={articleMetadata} cardType='project'/>)
+
+  t.truthy(projectComponent.hasClass('article-card--project'))
 })
