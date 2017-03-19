@@ -107,10 +107,9 @@ export class Chart extends React.Component {
     })
   }
 
-  updateQuery () {
+  updateQuery (newData) {
     const chart = []
-    console.log(this.props.data.dropdown.values);
-    queryDatabase(this.props.data, (chartData) => {
+    queryDatabase(newData, (chartData) => {
       _.forEach(chartData.values, (item) => {
         chart.push(item.Val)
       })
@@ -124,7 +123,7 @@ export class Chart extends React.Component {
     const newData = _.cloneDeep(this.props.data)
     newData.dropdown.values = [valueToFront, ...this.props.data.dropdown.values.filter(a => a !== valueToFront)]
     this.props.updateChart(newData, this.props.name)
-    this.updateQuery()
+    this.updateQuery(newData)
   }
 
   render () {
