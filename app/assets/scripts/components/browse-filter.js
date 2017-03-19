@@ -57,6 +57,7 @@ class BrowseFilter extends React.Component {
             <Autocomplete
               value={this.state.value}
               wrapperProps={{className: 'autocomplete-wrapper'}}
+              inputProps={{placeholder: 'Enter in region or country'}}
               items={list}
               getItemValue={a => a}
               menuStyle={{}}

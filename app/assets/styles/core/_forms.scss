@@ -53,8 +53,7 @@ select {
     &:hover,  {
       color: $medium-blue;
     }
-    &:active {
-      color: $medium-blue;
-    }
   }
 }
+
+.highlighted { color: $medium-blue; }
