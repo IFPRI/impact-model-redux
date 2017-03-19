@@ -6,7 +6,7 @@ import _ from 'lodash'
 import config from '../config'
 
 export const queryDatabase = (data, whereClause, callback) => {
-  // // grab the important field names
+  // grab the important field names
   const groups = String(data.encoding.x.field).split(',').map(a => a.trim())
   let group
   if (groups.length === 1) {

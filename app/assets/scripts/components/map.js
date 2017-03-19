@@ -9,7 +9,7 @@ import { body as tip } from '@redsift/d3-rs-tip'
 import c from 'classnames'
 
 import queryDatabase from '../utils/query-database'
-import translation from '../../data/translation'
+import { translate } from '../utils/translation'
 import locationAggregation from '../../data/aggregate-region'
 import world from '../../data/geo/world.json'
 
@@ -19,15 +19,6 @@ const green = '#4B7838'
 export class Map extends React.Component {
   constructor (props, context) {
     super(props, context)
-    this.state = {
-      impactParameter: props.data.fixed.impactparameter,
-      // activeQuery: props.data.dropdown.values.split(', ')[0]
-    }
-    this.dropdownValues = props.data.dropdown
-    if (this.dropdownValues && this.dropdownValues.field && this.dropdownValues.values) {
-      this.dropdownValues = this.dropdownValues.values.split(',').map((value) => value.trim())
-    }
-    // this.activeQuery = this.dropdownValues[0] || null
 
     this.initializeChart = this.initializeMap.bind(this)
     this.queryMapData = this.queryMapData.bind(this)
@@ -86,7 +77,7 @@ export class Map extends React.Component {
             return [-10, 0]
         }
       })
-      .html(d => `<strong>${translation[d.id.toUpperCase()]}</strong><br>Value: ${d.properties.val.toFixed(1)}`)
+      .html(d => `<strong>${translate(d.id)}</strong><br>Value: ${d.properties.val.toFixed(1)}`)
 
     this.mapSvg = mapSvg
     this.mapPath = mapPath
@@ -103,14 +94,14 @@ export class Map extends React.Component {
     this.queryMapData()
   }
 
-  queryMapData (activeQuery) {
+  queryMapData () {
     const mapQuery = Object.assign({}, this.props.data, {
       encoding: {
         x: { type: 'nominal', field: 'region' },
         y: { type: 'quantitative', field: 'Val' }
       }
     })
-    queryDatabase(mapQuery, activeQuery || this.state.activeQuery, (mapData) => {
+    queryDatabase(mapQuery, (mapData) => {
       this.updateMap(mapData)
     })
   }
@@ -219,26 +210,31 @@ export class Map extends React.Component {
   }
 
   handleDropdown (e) {
-    this.setState({ activeQuery: e.target.value })
-    this.queryMapData(e.target.value)
+    this.updateMap()
+    this.queryMapData()
   }
 
   render () {
-    const { data } = this.props
+    const { data, name } = this.props
+
+    let Dropdown = ''
+    if (this.props.data.dropdown) {
+      Dropdown = <div className='map-dropdown'>
+        <span>{this.props.data.dropdown.field}:</span>
+        <select className={`${name}-dropdown`} defaultValue={this.props.data.dropdown.values[0]} onChange={this.handleDropdown}>
+          {this.props.data.dropdown.values.map((value, i) => {
+            return <option value={value} key={`${name}-${i}`}>{translate(value)}</option>
+          })}
+        </select>
+      </div>
+    }
     return (
       <figure className='map'>
         <h5 className='label--map'>{data.title}</h5>
         <figcaption>The map shows change in key output parameters from across geographies. Use dropdown menus to select desired commodity (or group) and parameters to display. Toggle buttons at top right allow different geographic aggregations. Hover over countries or regions to observe the actual results.</figcaption>
         <div className='map-container'>
           <div ref={(a) => { this.mapRef = a }} id='world-map'></div>
-          {/*<div className={c('map-dropdown', {visible: this.props.data.dropdown})}>
-            <span>Filter:</span>
-            <select className={`${name}-dropdown`} defaultValue={this.state.activeQuery} onChange={this.handleDropdown}>
-              {this.dropdownValues.map((value, i) => {
-                return <option value={value} key={`${name}-${i}`}>{translation[value]}</option>
-              })}
-            </select>
-          </div>*/}
+          {Dropdown}
         </div>
       </figure>
     )
@@ -247,7 +243,8 @@ export class Map extends React.Component {
 
 // Set default props
 Map.propTypes = {
-  data: React.PropTypes.object
+  data: React.PropTypes.object,
+  name: React.PropTypes.string
 }
 
 export default Map

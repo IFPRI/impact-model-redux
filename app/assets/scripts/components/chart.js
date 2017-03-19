@@ -18,15 +18,6 @@ import { nineColorPalette, oneColorPalette } from '../constants'
 export class Chart extends React.Component {
   constructor (props, context) {
     super(props, context)
-    this.state = {
-      impactParameter: props.data.fixed.impactparameter,
-      activeQuery: props.data.dropdown.values.split(', ')[0]
-    }
-    this.dropdownValues = props.data.dropdown
-    if (this.dropdownValues && this.dropdownValues.field && this.dropdownValues.values) {
-      this.dropdownValues = this.dropdownValues.values.split(',').map((value) => value.trim())
-    }
-    this.activeQuery = this.dropdownValues[0] || null
 
     this.initializeChart = this.initializeChart.bind(this)
     this.updateQuery = this.updateQuery.bind(this)
@@ -115,11 +106,9 @@ export class Chart extends React.Component {
     })
   }
 
-  updateQuery (event) {
-    const activeQuery = event.target.value
-    this.setState({activeQuery: activeQuery})
+  updateQuery () {
     const chart = []
-    queryDatabase(this.props.data, activeQuery, (chartData) => {
+    queryDatabase(this.props.data, (chartData) => {
       _.forEach(chartData.values, (item) => {
         chart.push(item.Val)
       })
@@ -130,7 +119,6 @@ export class Chart extends React.Component {
 
   render () {
     const { name, data } = this.props
-    const activeQuery = this.state.activeQuery
     const chartType = data.mark
 
     const chartClass = classNames(
@@ -140,20 +128,25 @@ export class Chart extends React.Component {
         'line-chart': chartType === 'line'
       })
 
+    let Dropdown = ''
+    if (this.props.data.dropdown) {
+      Dropdown = <div className='chart-dropdown'>
+        <span>{this.props.data.dropdown.field}:</span>
+        <select className={`${name}-dropdown`} defaultValue={this.props.data.dropdown.values[0]} onChange={this.handleDropdown}>
+          {this.props.data.dropdown.values.map((value, i) => {
+            return <option value={value} key={`${name}-${i}`}>{translate(value)}</option>
+          })}
+        </select>
+      </div>
+    }
+
     return (
       <div className={chartClass}>
         <h5 className='label--chart'>{data.title}</h5>
         <div className='chart-container'>
           <canvas id={name} className='chart'></canvas>
         </div>
-        <div className='chart-dropdown'>
-          <label>Filter:</label>
-          <select className={`${name}-dropdown`} defaultValue={activeQuery} onChange={this.updateQuery}>
-            {this.dropdownValues.map((value, i) => {
-              return <option value={value} key={`${name}-${i}`}>{translate(value)}</option>
-            })}
-          </select>
-        </div>
+        {Dropdown}
       </div>
     )
   }
