@@ -5,7 +5,7 @@ import _ from 'lodash'
 
 import config from '../config'
 
-export const queryDatabase = (data, whereClause, callback) => {
+export const queryDatabase = (data, callback) => {
   // grab the important field names
   const groups = String(data.encoding.x.field).split(',').map(a => a.trim())
   let group
@@ -21,7 +21,7 @@ export const queryDatabase = (data, whereClause, callback) => {
     return vals.length === 1 ? `${param} = ${val}` : `${param} in ${vals.join(',')}`
   }))
   if (data.dropdown) {
-    where.push(data.dropdown.field + ' = ' + whereClause)
+    where.push(data.dropdown.field + ' = ' + data.dropdown.values[0])
   }
 
   // group by for sql statement, add series if necessary

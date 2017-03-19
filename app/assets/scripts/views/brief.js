@@ -8,7 +8,7 @@ import _ from 'lodash'
 import md5 from 'browser-md5'
 
 // Actions
-import { fetchArticle, updateArticleFilters } from '../actions'
+import { fetchArticle, updateArticleFilters, updateChart } from '../actions'
 
 // Components
 import RelatedArticles from '../components/related-articles'
@@ -25,6 +25,7 @@ export class Brief extends React.Component {
     super(props, context)
 
     this.updateArticleFilters = this.updateArticleFilters.bind(this)
+    this.updateChart = this.updateChart.bind(this)
     props.dispatch(fetchArticle(this.props.metadata.url))
   }
 
@@ -37,7 +38,7 @@ export class Brief extends React.Component {
     _.forEach(charts, (data, name) => {
       const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
       if (placeholder) {
-        ReactDOM.render(<Chart name={name} data={data} />, placeholder)
+        ReactDOM.render(<Chart name={name} data={data} updateChart={this.updateChart}/>, placeholder)
       }
     })
   }
@@ -53,6 +54,10 @@ export class Brief extends React.Component {
 
   updateArticleFilters (filters) {
     this.props.dispatch(updateArticleFilters(filters))
+  }
+
+  updateChart (data, id) {
+    this.props.dispatch(updateChart(data, id))
   }
 
   componentWillReceiveProps (nextProps) {

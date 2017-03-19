@@ -21,6 +21,7 @@ export class Chart extends React.Component {
 
     this.initializeChart = this.initializeChart.bind(this)
     this.updateQuery = this.updateQuery.bind(this)
+    this.handleDropdown = this.handleDropdown.bind(this)
   }
 
   componentDidMount () {
@@ -86,7 +87,7 @@ export class Chart extends React.Component {
     }
 
     const aggregation = data.encoding.x.field
-    queryDatabase(data, this.activeQuery, (chartData) => {
+    queryDatabase(data, (chartData) => {
       _.forEach(chartData.values, (item) => {
         chart.data.labels.push(translate(item[aggregation]))
         chart.data.datasets[0].data.push(item.Val)
@@ -108,6 +109,7 @@ export class Chart extends React.Component {
 
   updateQuery () {
     const chart = []
+    console.log(this.props.data.dropdown.values);
     queryDatabase(this.props.data, (chartData) => {
       _.forEach(chartData.values, (item) => {
         chart.push(item.Val)
@@ -115,6 +117,14 @@ export class Chart extends React.Component {
       this.chart.data.datasets[0].data = chart
       this.chart.update()
     })
+  }
+
+  handleDropdown (e) {
+    const valueToFront = e.target.value
+    const newData = _.cloneDeep(this.props.data)
+    newData.dropdown.values = [valueToFront, ...this.props.data.dropdown.values.filter(a => a !== valueToFront)]
+    this.props.updateChart(newData, this.props.name)
+    this.updateQuery()
   }
 
   render () {
@@ -131,7 +141,7 @@ export class Chart extends React.Component {
     let Dropdown = ''
     if (this.props.data.dropdown) {
       Dropdown = <div className='chart-dropdown'>
-        <span>{this.props.data.dropdown.field}:</span>
+        <span>{translate(this.props.data.dropdown.field)}:</span>
         <select className={`${name}-dropdown`} defaultValue={this.props.data.dropdown.values[0]} onChange={this.handleDropdown}>
           {this.props.data.dropdown.values.map((value, i) => {
             return <option value={value} key={`${name}-${i}`}>{translate(value)}</option>
@@ -154,7 +164,8 @@ export class Chart extends React.Component {
 
 Chart.propTypes = {
   name: React.PropTypes.string,
-  data: React.PropTypes.object
+  data: React.PropTypes.object,
+  updateChart: React.PropTypes.func
 }
 
 export default Chart
