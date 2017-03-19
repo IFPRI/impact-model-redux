@@ -20,6 +20,7 @@ const slugify = (text) => {
 let commodities = []
 let locations = []
 let projects = []
+let tags = []
 
 glob('app/assets/data/articles/*.md', (err, files) => {
   if (err) console.warn(err)
@@ -29,6 +30,7 @@ glob('app/assets/data/articles/*.md', (err, files) => {
     commodities = commodities.concat(metadata.commodities)
     locations = locations.concat(metadata.locations)
     projects = projects.concat(metadata.project)
+    tags = tags.concat(metadata.tags)
     return {
       title: metadata.title,
       id: slugify(metadata.title),
@@ -60,7 +62,8 @@ glob('app/assets/data/articles/*.md', (err, files) => {
     JSON.stringify({
       commodities: commodities.filter((value, index, self) => self.indexOf(value) === index && value && value !== 'undefined').sort(),
       locations: locations.filter((value, index, self) => self.indexOf(value) === index && value && value !== 'undefined').sort(),
-      projects: projects.filter((value, index, self) => self.indexOf(value) === index && value && value !== 'undefined').sort()
+      projects: projects.filter((value, index, self) => self.indexOf(value) === index && value && value !== 'undefined').sort(),
+      tags: tags.filter((value, index, self) => self.indexOf(value) === index && value && value !== 'undefined').sort()
     }), (err) => {
       if (err) return err
     })

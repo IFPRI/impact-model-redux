@@ -3,7 +3,7 @@ input, select {
   border: 1px solid lighten($light-grey, 25%);
   padding: 0.3rem .5rem .2em;
   border-radius: 0;
-  min-width: 14rem;
+  width: 14rem;
 }
 
 .input--small {
@@ -31,3 +31,29 @@ select {
     top: .7em;
   }
 }
+
+.autocomplete-wrapper {
+  position: relative;
+  input {
+    width: 100%;
+  }
+}
+.automcomplete-list {
+  position: absolute;
+  background-color: #fff;
+  height: 15em;
+  overflow-y: scroll;
+  display: block;
+  margin-top: .5em;
+  border: 1px solid darken($lightest-grey, 2%);
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, .1);
+  li {
+    padding: .7em .8em;
+    border-bottom: 1px solid darken($lightest-grey, 2%);
+    &:hover,  {
+      color: $medium-blue;
+    }
+  }
+}
+
+.highlighted { color: $medium-blue; }

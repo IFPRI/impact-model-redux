@@ -1,6 +1,9 @@
 'use strict'
 import { set } from 'object-path'
+import moment from 'moment'
 import articles from '../../data/articles.json'
+articles.forEach(article => { article.date = moment(article.date, 'MM/DD/YYYY') })
+
 import {
   UPDATE_ARTICLES,
   UPDATE_ARTICLE_FILTERS,

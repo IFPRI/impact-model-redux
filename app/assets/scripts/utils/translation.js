@@ -1,6 +1,9 @@
 'use strict'
 import _ from 'lodash'
 
+// Format
+import { toTitleCase } from './format'
+
 // Data
 import translations from '../../data/translation'
 
@@ -11,7 +14,7 @@ export const untranslate = (str) => _.invert(translations)[str] || defaultUntran
 function defaultTranslate (str) {
   if (!str) return str
   return str.split('-')
-    .map(a => a.charAt(0).toUpperCase() + a.substr(1).toLowerCase())
+    .map(toTitleCase)
     .join(' ')
 }
 

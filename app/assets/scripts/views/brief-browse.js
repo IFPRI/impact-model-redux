@@ -23,6 +23,7 @@ export class BriefBrowse extends React.Component {
             <BrowseFilters
               dispatch={this.props.dispatch}
               articleFilters={this.props.articleFilters}
+              type='brief'
             />
             <BrowseList
               dispatch={this.props.dispatch}
