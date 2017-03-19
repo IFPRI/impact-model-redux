@@ -17,11 +17,15 @@
     }
     .chart-dropdown {
       clear: both;
-      width: 100%;
+      width: 60%;
       padding-top: 1rem;
-      text-align: center;
+      margin: 0 auto;
+      font-size: .86em;
       label {
         margin-right: .5em;
+      }
+      input {
+
       }
     }
     .pie-chart {
