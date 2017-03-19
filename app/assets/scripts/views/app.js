@@ -12,11 +12,11 @@ export class App extends React.Component {
   // Start render methods
   //
   render () {
-    const pageClass = _.get(_.last(this.props.routes), 'pageClass', '')
+    const pageClass = _.get(_.last(this.props.routes), 'path')
     return (
       <div className={c('page', pageClass)}>
         <main className='page__body' role='main'>
-          <PageHeader />
+          <PageHeader page={pageClass}/>
           {this.props.children}
           <PageFooter />
         </main>

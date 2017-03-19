@@ -1,8 +1,28 @@
 'use strict'
 import React from 'react'
 import { Link } from 'react-router'
+import { connect } from 'react-redux'
+
+// Actions
+import { updateArticleFilters } from '../actions'
+
+// Components
+import RelatedArticles from '../components/related-articles'
+import FeaturedProjects from '../components/featured-projects'
+
+// Data
+import filterCategories from '../../data/filter-categories'
 
 export class Home extends React.Component {
+  constructor (props, context) {
+    super(props, context)
+    this.updateArticleFilters = this.updateArticleFilters.bind(this)
+  }
+
+  updateArticleFilters (filters) {
+    this.props.dispatch(updateArticleFilters(filters))
+  }
+
   render () {
     return (
       <section className='page__home'>
@@ -15,84 +35,42 @@ export class Home extends React.Component {
               </div>
             </div>
             <div className='home__header-split--right'>
-              <Link className='button button--outline' to={'/'}>Learn More</Link>
-              <Link className='button button--outline' to={'/'}>View Briefs</Link>
+              <Link className='button button--outline' to={'/about'}>Learn More</Link>
+              <Link className='button button--outline' to={'/briefs'}>View Briefs</Link>
             </div>
           </div>
         </header>
-        <section className='section__internal'>
-          <div className='row row--shortened'>
-            <header className='header-internal'>
-              <h3 className='header--xlarge with-description'>Featured Projects</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et dui gravida, posuere diam id, congue augue. Pellentesque nec purus ex.</p>
-            </header>
-            <ul>
-              <li className='featured-project__item featured-project__item--settings'>
-                <div className='featured-project__item--body'>
-                  <h4 className='header--large'>Drought Tolerant Beans and Climate Change</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a molestie sapien. Sed ac nunc vel risus luctus suscipit ut ut dolor. Etiam sit amet elit volutpat, tempus nisl non, sem. Etiam sit amet elit volutpat, tempus nisl non…</p>
-                  <Link className='link-block link__underline' to={'/'}>View All Related Scenarios</Link>
-                </div>
-              </li>
-              <li className='featured-project__item featured-project__item--energy'>
-                <div className='featured-project__item--body'>
-                  <h4 className='header--large'>Drought Tolerant Beans and Climate Change</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a molestie sapien. Sed ac nunc vel risus luctus suscipit ut ut dolor. Etiam sit amet elit volutpat, tempus nisl non, sem. Etiam sit amet elit volutpat, tempus nisl non…</p>
-                  <Link className='link-block link__underline' to={'/'}>View All Related Scenarios</Link>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </section>
-        <section className='page__related-articles-list section__padding'>
-          <div className='row row--shortened'>
-            <header className='header-internal'>
-              <h4 className='header--large'>Recently Added Briefs</h4>
-            </header>
-            <ul>
-              <li className='article-card--related'>
-                <h5 className='header--small'><Link className='link__underline--dark' to={'/'}>Drought Tolerant Beans and Climate Change</Link></h5>
-                <div className='article-card__body--related'>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a molestie sapien. Sed ac nunc vel risus luctus suscipit ut ut….</p>
-                  <ul className='related__card__tags'>
-                    <li><Link className='link__underline' to={'/'}>tag 1,</Link></li>
-                    <li><Link className='link__underline' to={'/'}>tag 2,</Link></li>
-                    <li><Link className='link__underline' to={'/'}>tag 3,</Link></li>
-                    <li><Link className='link__underline' to={'/'}>tag 4,</Link></li>
-                  </ul>
-                </div>
-              </li>
-              <li className='article-card--related'>
-                <h5 className='header--small'><Link className='link__underline--dark' to={'/'}>Drought Tolerant Beans and Climate Change</Link></h5>
-                <div className='article-card__body--related'>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a molestie sapien. Sed ac nunc vel risus luctus suscipit ut ut….</p>
-                  <ul className='related__card__tags'>
-                    <li><Link className='link__underline' to={'/'}>tag 1,</Link></li>
-                    <li><Link className='link__underline' to={'/'}>tag 2,</Link></li>
-                    <li><Link className='link__underline' to={'/'}>tag 3,</Link></li>
-                    <li><Link className='link__underline' to={'/'}>tag 4,</Link></li>
-                  </ul>
-                </div>
-              </li>
-              <li className='article-card--related'>
-                <h5 className='header--small'><Link className='link__underline--dark' to={'/'}>Drought Tolerant Beans and Climate Change</Link></h5>
-                <div className='article-card__body--related'>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a molestie sapien. Sed ac nunc vel risus luctus suscipit ut ut….</p>
-                  <ul className='related__card__tags'>
-                    <li><Link className='link__underline' to={'/'}>tag 1,</Link></li>
-                    <li><Link className='link__underline' to={'/'}>tag 2,</Link></li>
-                    <li><Link className='link__underline' to={'/'}>tag 3,</Link></li>
-                    <li><Link className='link__underline' to={'/'}>tag 4,</Link></li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
-            <Link className='button button--main button--more-information' to={'/'}>View All Briefs</Link>
-          </div>
-        </section>
+        <FeaturedProjects
+          projects={filterCategories.projects.slice(0, 2)}
+          updateArticleFilters={this.updateArticleFilters}
+          router={this.props.router}
+          />
+        <RelatedArticles
+          title='Recently Added Briefs'
+          cardType='related'
+          type='brief'
+          articles={this.props.briefs.sort((a, b) => b.date - a.date).slice(0, 3)}
+          updateArticleFilters={this.updateArticleFilters}
+          router={this.props.router}
+          >
+          <Link className='button button--main button--more-information' to={'/briefs'}>View All Briefs</Link>
+        </RelatedArticles>
       </section>
     )
   }
 }
 
-export default Home
+Home.propTypes = {
+  briefs: React.PropTypes.array,
+  dispatch: React.PropTypes.func,
+  router: React.PropTypes.object
+}
+
+const mapStateToProps = (state) => {
+  return {
+    briefs: state.article.briefs,
+    scenarios: state.article.scenarios,
+    projects: state.articles
+  }
+}
+export default connect(mapStateToProps)(Home)
