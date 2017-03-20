@@ -4,6 +4,7 @@ var _ = require('lodash')
 
 var translation = require('../../app/assets/scripts/utils/translation')
 var regions = require('../../app/assets/data/aggregate-region.json')
+var commodities = require('../../app/assets/data/aggregate-commodity.json')
 
 var baselineScenarios = ['SSP2_GFDL', 'SSP2_HGEM', 'SSP2_MIROC', 'SSP2_IPSL', 'SSP2_NOCC']
 
@@ -18,9 +19,12 @@ function generateArticle (region, subcontinent, continent) {
   var name = translation.translate(region)
   var fileName = name.replace(/ /g, '-').toLowerCase()
   var title = `${name} Summary`
-  var figure = `\`\`\`chart
-mark: line
-title: ${name} Impact Parameters over time
+
+  function outputChart (param) {
+    return `\`\`\`chart
+mark: bar
+title: ${name} - ${translation.translate(param)}
+width: 33%
 encoding:
   x:
     type: nominal
@@ -30,25 +34,38 @@ encoding:
     field: Val
 fixed:
   region: ${region}
+  impactparameter: ${param}
+  year: 2015,2030,2050
 dropdown:
-  field: impactparameter
-  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupagg
+  field: agg_commodity
+  values: ${_.uniq(_.values(commodities)).join(',')}
 \`\`\``
+  }
 
-  var figureTwo = `\`\`\`chart
+  function foodSecurity (param) {
+    return `\`\`\`chart
 mark: bar
-title: ${name} - Food Security
+title: ${name} - ${translation.translate(param)}
+width: 33%
 encoding:
   x:
     type: nominal
-    field: impactparameter
+    field: year
   y:
     type: quantitative
     field: Val
 fixed:
   region: ${region}
-  impactparameter: populationatriskxagg, totalmalnourishedxagg, foodavailxagg
+  impactparameter: ${param}
+  year: 2015,2030,2050
 \`\`\``
+  }
+  // qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+  var outputFigures = ['qdxagg', 'qsupxagg', 'qnxagg']
+    .map(param => `${outputChart(param)}\n\n`).join('')
+
+  var foodSecurityFigures = ['populationatriskxagg', 'foodavailxagg', 'totalmalnourishedxagg']
+    .map(param => `${foodSecurity(param)}\n\n`).join('')
 
   var table = `|   |   | 2015 | 2030 | 2050 |
 |---|---|---|---|---|
@@ -59,7 +76,7 @@ fixed:
 |  | GDP (billion $US) |
 |  | Per capita GDP ($US) |`
 
-  var article = `Summary of IMPACT model outputs for ${name}\n\n${figure}\n\n${figureTwo}\n\n${table}`
+  var article = `Summary of IMPACT model outputs for ${name}\n\n${outputFigures}${foodSecurityFigures}${table}`
 
   var scenarioString = scenarios.map(s => ` - ${s}`).join('\n')
   var tagString = tags.map(t => ` - ${t}`).join('\n')
