@@ -56,7 +56,6 @@ change: true
 
   var map = `\`\`\`map
 title: Change in ${name} IMPACT Parameters from 2015 - 2050 (%)
-aggregation: country
 fixed:
   commodity: ${commodity}
 dropdown:
