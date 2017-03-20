@@ -13,7 +13,7 @@ import { fetchArticle, updateArticleFilters, updateChart } from '../actions'
 // Components
 import RelatedArticles from '../components/related-articles'
 import Chart from '../components/chart'
-import Map from '../components/map'
+import MapComponent from '../components/map'
 import Loading from '../components/loading'
 
 // Utils
@@ -47,7 +47,7 @@ export class Brief extends React.Component {
     _.forEach(maps, (data, name) => {
       const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
       if (placeholder) {
-        ReactDOM.render(<Map name={name} data={data} />, placeholder)
+        ReactDOM.render(<MapComponent name={name} data={data} />, placeholder)
       }
     })
   }

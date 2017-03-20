@@ -8,11 +8,12 @@ import _ from 'lodash'
 import md5 from 'browser-md5'
 
 // Actions
-import { fetchArticle, updateArticleFilters } from '../actions'
+import { fetchArticle, updateArticleFilters, updateChart } from '../actions'
 
 // Components
 import RelatedArticles from '../components/related-articles'
 import Chart from '../components/chart'
+import MapComponent from '../components/map'
 import Loading from '../components/loading'
 
 // Utils
@@ -24,24 +25,39 @@ export class Scenario extends React.Component {
     super(props, context)
 
     this.updateArticleFilters = this.updateArticleFilters.bind(this)
+    this.updateChart = this.updateChart.bind(this)
     props.dispatch(fetchArticle(this.props.metadata.url))
   }
 
   componentDidUpdate () {
-    this.addCharts()
+    this.addCharts(this.props.charts)
+    this.addMaps(this.props.maps)
   }
 
-  addCharts () {
-    _.forEach(this.props.charts, (data, name) => {
+  addCharts (charts) {
+    _.forEach(charts, (data, name) => {
       const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
       if (placeholder) {
-        ReactDOM.render(<Chart name={name} data={data} />, placeholder)
+        ReactDOM.render(<Chart name={name} data={data} updateChart={this.updateChart} />, placeholder)
+      }
+    })
+  }
+
+  addMaps (maps) {
+    _.forEach(maps, (data, name) => {
+      const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
+      if (placeholder) {
+        ReactDOM.render(<MapComponent name={name} data={data} />, placeholder)
       }
     })
   }
 
   updateArticleFilters (filters) {
     this.props.dispatch(updateArticleFilters(filters))
+  }
+
+  updateChart (data, id) {
+    this.props.dispatch(updateChart(data, id))
   }
 
   componentWillReceiveProps (nextProps) {
@@ -130,6 +146,7 @@ Scenario.propTypes = {
   articleLoading: React.PropTypes.bool,
   article: React.PropTypes.string,
   charts: React.PropTypes.object,
+  maps: React.PropTypes.object,
   params: React.PropTypes.object,
   router: React.PropTypes.object,
   metadata: React.PropTypes.object
@@ -141,7 +158,8 @@ const mapStateToProps = (state, props) => {
     articles: state.article.scenarios,
     articleLoading: state.article.articleLoading,
     article: state.article.article,
-    charts: state.article.charts
+    charts: state.article.charts,
+    maps: state.article.maps
   }
 }
 export default connect(mapStateToProps)(Scenario)

@@ -15,7 +15,7 @@ import world from '../../data/geo/world.json'
 const yellow = '#E2C117'
 const green = '#83C61A'
 
-export class Map extends React.Component {
+export class MapComponent extends React.Component {
   constructor (props, context) {
     super(props, context)
 
@@ -246,9 +246,9 @@ export class Map extends React.Component {
 }
 
 // Set default props
-Map.propTypes = {
+MapComponent.propTypes = {
   data: React.PropTypes.object,
   name: React.PropTypes.string
 }
 
-export default Map
+export default MapComponent

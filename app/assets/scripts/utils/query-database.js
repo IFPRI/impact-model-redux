@@ -20,9 +20,11 @@ export const queryDatabase = (data, callback) => {
     const vals = String(val).split(',').map(a => a.trim())
     return vals.length === 1 ? `${param} = ${val}` : `${param} in ${vals.join(',')}`
   }))
-  if (data.dropdown) {
-    where.push(data.dropdown.field + ' = ' + data.dropdown.values[0])
-  }
+  Object.keys(data).forEach(dataKey => {
+    if (dataKey.match(/dropdown/)) {
+      where.push(data[dataKey].field + ' = ' + data[dataKey].values[0])
+    }
+  })
 
   // group by for sql statement, add series if necessary
   const groupBy = [group]
