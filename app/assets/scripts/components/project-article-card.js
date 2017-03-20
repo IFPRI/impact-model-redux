@@ -14,7 +14,7 @@ export class ProjectArticleCard extends React.Component {
       <div className='article-card--project'>
         <h5 className='header--small with-description'><Link to={`/${article.type}s/${article.id}`} className='article-card__link--project link__underline--white'>{article.title}</Link></h5>
         <span className='metadata-italic'>{date}</span>
-        <p className='article-card__body--project'>{`${cutAtWord(article.preview, 190)}...`}</p>
+        <p className='article-card__body--project'>{`${cutAtWord(article.preview, 190)}`}</p>
       </div>
     )
   }

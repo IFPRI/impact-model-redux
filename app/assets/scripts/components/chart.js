@@ -9,29 +9,19 @@ const ChartJS = require('chart.js')
 import queryDatabase from '../utils/query-database'
 
 // Utils
-import { toTitleCase, formatNumber } from '../utils/format'
+import { formatNumber } from '../utils/format'
+import { translate } from '../utils/translation'
 
 // Constants
 import { sixColorPalette, oneColorPalette } from '../constants'
 
-// Data
-import translation from '../../data/translation'
-
 export class Chart extends React.Component {
   constructor (props, context) {
     super(props, context)
-    this.state = {
-      impactParameter: props.data.fixed.impactparameter,
-      activeQuery: props.data.dropdown.values.split(', ')[0]
-    }
-    this.dropdownValues = props.data.dropdown
-    if (this.dropdownValues && this.dropdownValues.field && this.dropdownValues.values) {
-      this.dropdownValues = this.dropdownValues.values.split(',').map((value) => value.trim())
-    }
-    this.activeQuery = this.dropdownValues[0] || null
 
     this.initializeChart = this.initializeChart.bind(this)
     this.updateQuery = this.updateQuery.bind(this)
+    this.handleDropdown = this.handleDropdown.bind(this)
   }
 
   componentDidMount () {
@@ -118,9 +108,9 @@ export class Chart extends React.Component {
     }
 
     const aggregation = data.encoding.x.field
-    queryDatabase(data, this.activeQuery, (chartData) => {
+    queryDatabase(data, (chartData) => {
       _.forEach(chartData.values, (item) => {
-        chart.data.labels.push(translation[item[aggregation]])
+        chart.data.labels.push(translate(item[aggregation]))
         chart.data.datasets[0].data.push(item.Val)
       })
       if (isPieChart || chartType === 'polarArea') {
@@ -138,11 +128,9 @@ export class Chart extends React.Component {
     })
   }
 
-  updateQuery (event) {
-    const activeQuery = event.target.value
-    this.setState({activeQuery: activeQuery})
+  updateQuery (newData) {
     const chart = []
-    queryDatabase(this.props.data, activeQuery, (chartData) => {
+    queryDatabase(newData, (chartData) => {
       _.forEach(chartData.values, (item) => {
         chart.push(item.Val)
       })
@@ -151,13 +139,17 @@ export class Chart extends React.Component {
     })
   }
 
+  handleDropdown (e) {
+    const valueToFront = e.target.value
+    const dropdown = e.target.id
+    const newData = _.cloneDeep(this.props.data)
+    newData[dropdown].values = [valueToFront, ...this.props.data[dropdown].values.filter(a => a !== valueToFront)]
+    this.props.updateChart(newData, this.props.name)
+    this.updateQuery(newData)
+  }
+
   render () {
     const { name, data } = this.props
-    const activeQuery = this.state.activeQuery
-    const impactParameter = translation[this.state.impactParameter]
-    const focus = translation[activeQuery]
-    const year = data.fixed.year.toString()
-    const aggregation = toTitleCase(translation[data.encoding.x.field])
     const chartType = data.mark
 
     const chartClass = classNames(
@@ -167,22 +159,28 @@ export class Chart extends React.Component {
         'line-chart': chartType === 'line'
       })
 
-    return (
-      <div className={chartClass}>
-        <h5 className='label--chart'>{`${impactParameter} for ${focus} in ${year}, Aggregated by ${aggregation}`}</h5>
-        <div className='chart-container'>
-          <canvas id={name} className='chart'></canvas>
-        </div>
-        <div className='chart-dropdown'>
-          <label>Filter:</label>
+    const Dropdowns = Object.keys(this.props.data)
+      .filter(key => key.match(/dropdown/))
+      .map(key => {
+        return <div key={key} className='chart-dropdown'>
+          <label>{translate(this.props.data[key].field)}:</label>
           <div className='select--wrapper'>
-            <select className={`${name}-dropdown`} defaultValue={activeQuery} onChange={this.updateQuery}>
-              {this.dropdownValues.map((value, i) => {
-                return <option value={value} key={`${name}-${i}`}>{translation[value]}</option>
+            <select id={key} className={`${name}`} defaultValue={this.props.data[key].values[0]} onChange={this.handleDropdown}>
+              {this.props.data[key].values.map((value, i) => {
+                return <option value={value} key={`${name}-${key}-${i}`}>{translate(value)}</option>
               })}
             </select>
           </div>
         </div>
+      })
+
+    return (
+      <div className={chartClass}>
+        <h5 className='label--chart'>{data.title}</h5>
+        <div className='chart-container'>
+          <canvas id={name} className='chart'></canvas>
+        </div>
+        {Dropdowns}
       </div>
     )
   }
@@ -190,7 +188,8 @@ export class Chart extends React.Component {
 
 Chart.propTypes = {
   name: React.PropTypes.string,
-  data: React.PropTypes.object
+  data: React.PropTypes.object,
+  updateChart: React.PropTypes.func
 }
 
 export default Chart

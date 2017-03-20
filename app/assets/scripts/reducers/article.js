@@ -11,8 +11,8 @@ import {
   UPDATE_ARTICLE_PAGE,
   UPDATE_ARTICLE_LOADING,
   UPDATE_ARTICLE,
-  UPDATE_CHARTS,
-  UPDATE_MAPS
+  UPDATE_CHART,
+  UPDATE_MAP
 } from '../actions'
 
 export const initialState = {
@@ -48,11 +48,11 @@ export default (state = initialState, action) => {
     case UPDATE_ARTICLE:
       set(state, 'article', action.data)
       break
-    case UPDATE_CHARTS:
-      set(state, 'charts', action.data)
+    case UPDATE_CHART:
+      set(state, `charts.${action.id}`, action.data)
       break
-    case UPDATE_MAPS:
-      set(state, 'maps', action.data)
+    case UPDATE_MAP:
+      set(state, `maps.${action.id}`, action.data)
       break
   }
   return state

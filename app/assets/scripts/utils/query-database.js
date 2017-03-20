@@ -5,8 +5,8 @@ import _ from 'lodash'
 
 import config from '../config'
 
-export const queryDatabase = (data, whereClause, callback) => {
-  // // grab the important field names
+export const queryDatabase = (data, callback) => {
+  // grab the important field names
   const groups = String(data.encoding.x.field).split(',').map(a => a.trim())
   let group
   if (groups.length === 1) {
@@ -15,16 +15,16 @@ export const queryDatabase = (data, whereClause, callback) => {
     group = null || groups[0]
   }
 
-  data.fixed.impactparameter = data.fixed.impactparameter.toLowerCase()
-
   // construct a where clause for our sql statement
   const where = _.flatten(_.map(data.fixed, (val, param) => {
     const vals = String(val).split(',').map(a => a.trim())
     return vals.length === 1 ? `${param} = ${val}` : `${param} in ${vals.join(',')}`
   }))
-  if (data.dropdown) {
-    where.push(data.dropdown.field + ' = ' + whereClause)
-  }
+  Object.keys(data).forEach(dataKey => {
+    if (dataKey.match(/dropdown/)) {
+      where.push(data[dataKey].field + ' = ' + data[dataKey].values[0])
+    }
+  })
 
   // group by for sql statement, add series if necessary
   const groupBy = [group]

@@ -28,6 +28,7 @@
     border: 1px solid darken($lightest-grey, 10%);
     background-color: #fff;
     font-weight: $base-font-light;
+    width: 100%;
     transition: all 0.3s ease 0s;
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
@@ -73,7 +74,7 @@
   .country-summary, .commodity-summary {
     border: 1px solid lighten($light-grey, 15%);
     background-color: rgba(255, 255, 255, 0.3);
-    .article-list-card__meta { 
+    .article-list-card__meta {
       border-top: 0;
       padding: .5em 3.8em 2.7em;
       @include media(small-down) {

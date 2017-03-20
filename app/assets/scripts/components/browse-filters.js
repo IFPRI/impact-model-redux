@@ -94,7 +94,7 @@ export class BrowseFilters extends React.Component {
     return _.map(list, (subtypes, type) => {
       const checked = list[type].every(t => _.includes(this.props.articleFilters, t))
       return (
-        <Panel header={type} key={`filter-item-${type}`}>
+        <Panel header={translate(type)} key={`filter-item-${type}`}>
           <div className='filters__check-group' key={`${type}-check-group`}>
             <input
               type='checkbox'

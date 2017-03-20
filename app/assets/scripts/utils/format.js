@@ -1,19 +1,28 @@
 'use strict'
+
 // Extract n characters of preview text, rounded to the closest full word
-export const cutAtWord = (text, characters) => {
+const cutAtWord = (text, characters) => {
+  if (text.length < characters) return text
   var lastCharacter = text.lastIndexOf(' ', characters)
-  return text.substring(0, lastCharacter)
+  return text.substring(0, lastCharacter) + '...'
 }
 
-export const commaSeparate = (array) => array.join(', ')
+const commaSeparate = (array) => array.join(', ')
 
-export const toTitleCase = (str) => {
+const toTitleCase = (str) => {
   return str.replace(/\w\S*/g, function (txt) {
     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
   })
 }
 
-export const formatNumber = (number, label) => {
+const formatNumber = (number, label) => {
   if (label) return Math.round(number[label]).toLocaleString()
   return Math.round(number).toLocaleString()
+}
+
+module.exports = {
+  cutAtWord,
+  commaSeparate,
+  toTitleCase,
+  formatNumber
 }

@@ -1,24 +1,27 @@
 'use strict'
 import marked from 'marked'
 import yaml from 'js-yaml'
+import md5 from 'browser-md5'
 
 // Actions
-import { updateCharts, updateMaps } from '../actions'
+import { updateChart, updateMap } from '../actions'
 
 export const setupRenderer = (dispatch) => {
-  const charts = {}
-  const maps = {}
   const renderer = new marked.Renderer()
   renderer.code = (code, lang, escaped) => {
     const data = yaml.load(code)
-    const id = `${lang}-${data.title}`
+    const id = `fig-${md5(data.title).slice(0, 12)}`
+    // convert dropdown values from string to array
+    Object.keys(data).forEach(dataKey => {
+      if (dataKey.match(/dropdown/)) {
+        data[dataKey].values = data[dataKey].values.split(',').map(a => a.trim())
+      }
+    })
     if (lang === 'chart') {
-      charts[id] = data
-      dispatch(updateCharts(charts))
-      return `<div class="${id} figure-container"></div>`
+      dispatch(updateChart(data, id))
+      return `<div style="width:${data.width}" class="${id} figure-container"></div>`
     } else if (lang === 'map') {
-      maps[id] = data
-      dispatch(updateMaps(maps))
+      dispatch(updateMap(data, id))
       return `<div class="${id} figure-container"></div>`
     }
   }

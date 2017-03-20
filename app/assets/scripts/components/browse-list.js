@@ -68,7 +68,7 @@ export class BrowseList extends React.Component {
           article.commodities,
           article.locations,
           // return all matches on aggregated regions
-          _.flatten(article.locations
+          _.flatten((article.locations || [])
             .map(l => locationAgg.find(b => b.region === l || b.subcontinent === l))
             .filter(Boolean)
             .map(l => _.values(l))),

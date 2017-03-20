@@ -3,7 +3,8 @@ import React from 'react'
 import { Link } from 'react-router'
 
 // Utils
-import { cutAtWord, toTitleCase } from '../utils/format'
+import { cutAtWord } from '../utils/format'
+import { translate } from '../utils/translation'
 
 export class RelatedArticleCard extends React.Component {
   goToTag (tag, e) {
@@ -14,6 +15,8 @@ export class RelatedArticleCard extends React.Component {
 
   render () {
     const { article, cardType } = this.props
+    const tags = article.tags || []
+
     return (
       <li className={`article-card--${cardType}`}>
         <header className={`article-card__header--${cardType}`}>
@@ -22,11 +25,11 @@ export class RelatedArticleCard extends React.Component {
           </h5>
         </header>
         <div className={`article-card__body--${cardType}`}>
-          <p>{`${cutAtWord(article.preview, 190)}...`}</p>
+          <p>{`${cutAtWord(article.preview, 190)}`}</p>
         </div>
         <ul className='article-card__tags link-block'>
-          {article.tags.map(tag => {
-            return <li key={tag}><a className='link__underline' onClick={this.goToTag.bind(this, tag)} href=''>{toTitleCase(tag)}</a></li>
+          {tags.map(tag => {
+            return <li key={tag}><a className='link__underline' onClick={this.goToTag.bind(this, tag)} href=''>{translate(tag)}</a></li>
           })}
         </ul>
       </li>

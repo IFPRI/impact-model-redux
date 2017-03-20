@@ -5,14 +5,15 @@ import { connect } from 'react-redux'
 import moment from 'moment'
 import { Link } from 'react-router'
 import _ from 'lodash'
+import md5 from 'browser-md5'
 
 // Actions
-import { fetchArticle, updateArticleFilters } from '../actions'
+import { fetchArticle, updateArticleFilters, updateChart } from '../actions'
 
 // Components
 import RelatedArticles from '../components/related-articles'
 import Chart from '../components/chart'
-import Map from '../components/map'
+import MapComponent from '../components/map'
 import Loading from '../components/loading'
 
 // Utils
@@ -24,6 +25,7 @@ export class Brief extends React.Component {
     super(props, context)
 
     this.updateArticleFilters = this.updateArticleFilters.bind(this)
+    this.updateChart = this.updateChart.bind(this)
     props.dispatch(fetchArticle(this.props.metadata.url))
   }
 
@@ -34,24 +36,28 @@ export class Brief extends React.Component {
 
   addCharts (charts) {
     _.forEach(charts, (data, name) => {
-      const placeholder = document.querySelector('.' + name)
+      const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
       if (placeholder) {
-        ReactDOM.render(<Chart name={name} data={data} />, placeholder)
+        ReactDOM.render(<Chart name={name} data={data} updateChart={this.updateChart}/>, placeholder)
       }
     })
   }
 
   addMaps (maps) {
     _.forEach(maps, (data, name) => {
-      const placeholder = document.querySelector('.' + name)
+      const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
       if (placeholder) {
-        ReactDOM.render(<Map name={name} data={data} />, placeholder)
+        ReactDOM.render(<MapComponent name={name} data={data} />, placeholder)
       }
     })
   }
 
   updateArticleFilters (filters) {
     this.props.dispatch(updateArticleFilters(filters))
+  }
+
+  updateChart (data, id) {
+    this.props.dispatch(updateChart(data, id))
   }
 
   componentWillReceiveProps (nextProps) {
@@ -117,7 +123,7 @@ export class Brief extends React.Component {
         <RelatedArticles
           type='project'
           cardType='project'
-          title={`Other Articles in ${metadata.project}`}
+          title={`Other Briefs in ${translate(metadata.project)}`}
           articles={findProjectArticles(metadata, articles, metadata.project, 2)}
           router={this.props.router}
           updateArticleFilters={this.updateArticleFilters}
@@ -134,7 +140,6 @@ export class Brief extends React.Component {
   }
 }
 
-// Set default props
 Brief.propTypes = {
   dispatch: React.PropTypes.func,
   articles: React.PropTypes.array,
@@ -147,9 +152,6 @@ Brief.propTypes = {
   router: React.PropTypes.object,
   metadata: React.PropTypes.object
 }
-
-// /////////////////////////////////////////////////////////////////// //
-// Connect functions
 
 const mapStateToProps = (state, props) => {
   return {

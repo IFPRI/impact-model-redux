@@ -17,11 +17,12 @@
   "homepage": "https://github.com/developmentseed/ifpri-impact-redux",
   "scripts": {
     "postinstall": "[ -f app/assets/scripts/config/local.js ] || echo 'module.exports = {}' > app/assets/scripts/config/local.js",
-    "serve": "node ./.build_scripts/placeholder-articles/placeholder-articles-systematic.js && node ./.build_scripts/article-metadata.js && gulp collecticons && DS_ENV=development NODE_ENV=development gulp serve",
-    "build": "node ./.build_scripts/placeholder-articles/placeholder-articles-systematic.js && node ./.build_scripts/article-metadata.js && gulp collecticons && DS_ENV=production NODE_ENV=production gulp",
+    "serve": "gulp collecticons && DS_ENV=development NODE_ENV=development gulp serve",
+    "build": "npm run generate && gulp collecticons && DS_ENV=production NODE_ENV=production gulp",
     "lint": "eslint app/assets/scripts/ --ext .js",
     "test": "DS_ENV=testing nyc ava test -c 4",
-    "report": "nyc report"
+    "report": "nyc report",
+    "generate": ".build_scripts/generate.sh"
   },
   "ava": {
     "require": [
@@ -101,6 +102,7 @@
     "node-notifier": "^4.5.0",
     "node-sass": "^3.7.0",
     "nyc": "^10.1.2",
+    "queue-async": "^1.2.1",
     "react-addons-test-utils": "^15.4.2",
     "require-globify": "^1.3.0",
     "sinon": "^1.17.7",
@@ -110,6 +112,7 @@
   },
   "dependencies": {
     "@redsift/d3-rs-tip": "^0.3.3",
+    "browser-md5": "^1.0.0",
     "chart.js": "git://github.com/nbumbarger/Chart.js.git",
     "chroma-js": "^1.2.2",
     "classnames": "^2.2.5",
@@ -131,7 +134,7 @@
     "redux": "^3.6.0",
     "redux-logger": "^2.7.4",
     "redux-thunk": "^2.2.0",
-    "sqltoes": "nbumbarger/sqltoes",
+    "sqltoes": "0.1.3",
     "topojson-client": "^2.1.0"
   }
 }
