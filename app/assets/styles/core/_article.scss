@@ -1,4 +1,3 @@
-
 .article--content {
   margin-bottom: 3em;
   p {
@@ -16,24 +15,43 @@
     .chart {
       float: left !important;
     }
-    .chart-dropdown {
+    .chart-dropdown, .map-dropdown {
       clear: both;
-      width: 60%;
-      padding-top: 1rem;
+      width: 40%;
+      padding-top: 1.3rem;
       margin: 0 auto;
       font-size: .86em;
       label {
         margin-right: .5em;
       }
-      input {
-
+      select {
+        width: 80%;
       }
+      &:after {
+        top: 2.4em;
+        right: 1.2em;
+      }
+    }
+    .map-dropdown {
+      padding-top: 0;
+      padding-bottom: 2em;
+      margin: 0;
+      width: 20%;
+      &:after {
+        top: .8em;
+      }
+    }
+    .label--chart {
+      width: 80%;
     }
     .pie-chart {
       .chart-container {
-        width: 60%;
+        width: 45%;
         min-width: 15rem;
         max-width: 30rem;
+      }
+      .chart-dropdown {
+        margin: 0;
       }
     }
     .bar-chart {

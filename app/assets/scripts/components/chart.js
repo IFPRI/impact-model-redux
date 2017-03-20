@@ -113,6 +113,7 @@ export class Chart extends React.Component {
     if (isPieChart) {
       delete chart.options.scales
       chart.options.maintainAspectRatio = true
+      chart.options.cutoutPercentage = 80
       chart.options.legend = {display: true, position: 'bottom'}
     }
 
