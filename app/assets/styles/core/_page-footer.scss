@@ -19,5 +19,11 @@
       width: 165px;
       height: 90px;
     }
+    @include media(medium-down) {
+      float: none;
+      padding-top: 2em;
+      clear: both;
+      display: block;
+    }
   }
 }

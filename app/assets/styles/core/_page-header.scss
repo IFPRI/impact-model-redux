@@ -33,6 +33,60 @@
     .active a:before {
       top: 0em;
     }
+    ul {
+      @include media(medium-down) {
+        position: absolute;
+        right: 0;
+        top: 3em;
+        z-index: 3;
+        background-color: #fff;
+        min-width: 8em;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, .1);
+        border: 1px solid darken($lightest-grey, 5%);
+        a:before {
+          border-bottom: 0;
+        }
+        li {
+          display: block;
+          padding: .9em .8em;
+          border-bottom: 1px solid darken($lightest-grey, 5%);
+          margin: 0;
+          a {
+            &:hover {
+              color: $medium-blue;
+            }
+          }
+        }
+      }
+    }
+    @include media(medium-down) {
+      /*display: none;*/
+      position: relative;
+      float: none;
+    }
+  }
+
+  .mobile-menu {
+    float: right;
+    margin-top: .3em;
+    display: none;
+    span {
+      width: 1px;
+      height: 1px;
+      position: absolute;
+      clip: rect(0,0,0,0);
+    }
+    &:after {
+      content: '';
+      width: 25px;
+      height: 25px;
+      background-image: url(../graphics/collecticons/hamburger-menu.svg);
+      background-size: 25px 25px;
+      display: inline-block;
+    }
+    @include media(medium-down) {
+      display: inline-block;
+    }
   }
 
   h1 {

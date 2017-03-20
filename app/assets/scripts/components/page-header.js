@@ -12,6 +12,7 @@ export class PageHeader extends React.Component {
       <header className='page__header'>
         <div className='row'>
           <h1><Link to={'/'}>IFPRI IMPACT</Link></h1>
+          <Link className='mobile-menu' to={'#'}><span>Menu</span></Link>
           <nav className='nav__main'>
             <ul className='page__prime-nav'>
               {links.map(link => <li key={link} className={page === link ? 'active' : ''}><Link to={`/${link}`}>{toTitleCase(link)}</Link></li>)}

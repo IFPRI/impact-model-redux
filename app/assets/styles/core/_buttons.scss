@@ -16,6 +16,9 @@ button {
   &:hover {
     border-radius: 2em;
   }
+  @include media(medium-down) {
+    font-size: .86em;
+  }
 }
 
 .button--main {
@@ -44,6 +47,9 @@ button {
 
 .button--more-information {
   margin-top: 3em;
+  @include media(medium-down) {
+    margin-top: 1em;
+  }
 }
 
 .button--download {

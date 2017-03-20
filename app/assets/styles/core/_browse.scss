@@ -19,6 +19,9 @@
 .browse__article-list {
   display: inline-block;
   width: 72%;
+  @include media(medium-down) {
+    width: 100%;
+  }
   .article-list-card {
     float: left;
     margin-bottom: 2.5em;
@@ -122,6 +125,10 @@
   display: inline-block;
   width: 18%;
   margin-right: 5%;
+  @include media(medium-down) {
+    position: absolute;
+    display: none;
+  }
   .header--small {
     margin-bottom: 1em;
   }
