@@ -141,8 +141,9 @@ export class Chart extends React.Component {
 
   handleDropdown (e) {
     const valueToFront = e.target.value
+    const dropdown = e.target.id
     const newData = _.cloneDeep(this.props.data)
-    newData.dropdown.values = [valueToFront, ...this.props.data.dropdown.values.filter(a => a !== valueToFront)]
+    newData[dropdown].values = [valueToFront, ...this.props.data[dropdown].values.filter(a => a !== valueToFront)]
     this.props.updateChart(newData, this.props.name)
     this.updateQuery(newData)
   }
@@ -158,17 +159,18 @@ export class Chart extends React.Component {
         'line-chart': chartType === 'line'
       })
 
-    let Dropdown = ''
-    if (this.props.data.dropdown) {
-      Dropdown = <div className='chart-dropdown'>
-        <span>{translate(this.props.data.dropdown.field)}:</span>
-        <select className={`${name}-dropdown`} defaultValue={this.props.data.dropdown.values[0]} onChange={this.handleDropdown}>
-          {this.props.data.dropdown.values.map((value, i) => {
-            return <option value={value} key={`${name}-${i}`}>{translate(value)}</option>
-          })}
-        </select>
-      </div>
-    }
+    const Dropdowns = Object.keys(this.props.data)
+      .filter(key => key.match(/dropdown/))
+      .map(key => {
+        return <div key={key} className='chart-dropdown'>
+          <span>{translate(this.props.data[key].field)}:</span>
+          <select id={key} className={`${name}`} defaultValue={this.props.data[key].values[0]} onChange={this.handleDropdown}>
+            {this.props.data[key].values.map((value, i) => {
+              return <option value={value} key={`${name}-${key}-${i}`}>{translate(value)}</option>
+            })}
+          </select>
+        </div>
+      })
 
     return (
       <div className={chartClass}>
@@ -176,7 +178,7 @@ export class Chart extends React.Component {
         <div className='chart-container'>
           <canvas id={name} className='chart'></canvas>
         </div>
-        {Dropdown}
+        {Dropdowns}
       </div>
     )
   }

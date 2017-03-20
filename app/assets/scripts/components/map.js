@@ -86,15 +86,15 @@ export class Map extends React.Component {
 
     // add aggregation info to geometries
     world.objects.natural_earth_50m.geometries.forEach(country => {
-      country.properties = locationAggregation[country.id]
+      country.properties = locationAggregation[country.id.toLowerCase()]
     })
     this.world = world
     this.drawMap()
-    this.queryMapData()
+    this.queryMapData(this.props.data)
   }
 
-  queryMapData () {
-    const mapQuery = Object.assign({}, this.props.data, {
+  queryMapData (newData) {
+    const mapQuery = Object.assign({}, newData, {
       encoding: {
         x: { type: 'nominal', field: 'region' },
         y: { type: 'quantitative', field: 'Val' }
@@ -209,31 +209,36 @@ export class Map extends React.Component {
   }
 
   handleDropdown (e) {
-    this.updateMap()
-    this.queryMapData()
+    const valueToFront = e.target.value
+    const dropdown = e.target.id
+    const newData = _.cloneDeep(this.props.data)
+    newData[dropdown].values = [valueToFront, ...this.props.data[dropdown].values.filter(a => a !== valueToFront)]
+    this.queryMapData(newData)
   }
 
   render () {
     const { data, name } = this.props
 
-    let Dropdown = ''
-    if (this.props.data.dropdown) {
-      Dropdown = <div className='map-dropdown'>
-        <span>{this.props.data.dropdown.field}:</span>
-        <select className={`${name}-dropdown`} defaultValue={this.props.data.dropdown.values[0]} onChange={this.handleDropdown}>
-          {this.props.data.dropdown.values.map((value, i) => {
-            return <option value={value} key={`${name}-${i}`}>{translate(value)}</option>
-          })}
-        </select>
-      </div>
-    }
+    const Dropdowns = Object.keys(this.props.data)
+      .filter(key => key.match(/dropdown/))
+      .map(key => {
+        return <div key={key} className='map-dropdown'>
+          <span>{translate(this.props.data[key].field)}:</span>
+          <select id={key} className={`${name}`} defaultValue={this.props.data[key].values[0]} onChange={this.handleDropdown}>
+            {this.props.data[key].values.map((value, i) => {
+              return <option value={value} key={`${name}-${key}-${i}`}>{translate(value)}</option>
+            })}
+          </select>
+        </div>
+      })
+
     return (
       <figure className='map'>
         <h5 className='label--map'>{data.title}</h5>
         <figcaption>The map shows change in key output parameters from across geographies. Use dropdown menus to select desired commodity (or group) and parameters to display. Toggle buttons at top right allow different geographic aggregations. Hover over countries or regions to observe the actual results.</figcaption>
         <div className='map-container'>
           <div ref={(a) => { this.mapRef = a }} id='world-map'></div>
-          {Dropdown}
+          {Dropdowns}
         </div>
       </figure>
     )

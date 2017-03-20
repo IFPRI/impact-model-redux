@@ -12,7 +12,11 @@ export const setupRenderer = (dispatch) => {
     const data = yaml.load(code)
     const id = `fig-${md5(data.title).slice(0, 12)}`
     // convert dropdown values from string to array
-    if (data.dropdown) data.dropdown.values = data.dropdown.values.split(',').map(a => a.trim())
+    Object.keys(data).forEach(dataKey => {
+      if (dataKey.match(/dropdown/)) {
+        data[dataKey].values = data[dataKey].values.split(',').map(a => a.trim())
+      }
+    })
     if (lang === 'chart') {
       dispatch(updateChart(data, id))
       return `<div style="width:${data.width}" class="${id} figure-container"></div>`
