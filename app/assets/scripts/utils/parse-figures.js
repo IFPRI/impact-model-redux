@@ -15,7 +15,7 @@ export const setupRenderer = (dispatch) => {
     if (data.dropdown) data.dropdown.values = data.dropdown.values.split(',').map(a => a.trim())
     if (lang === 'chart') {
       dispatch(updateChart(data, id))
-      return `<div class="${id} figure-container"></div>`
+      return `<div style="width:${data.width}" class="${id} figure-container"></div>`
     } else if (lang === 'map') {
       dispatch(updateMap(data, id))
       return `<div class="${id} figure-container"></div>`
