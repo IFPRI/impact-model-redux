@@ -56,7 +56,10 @@
     width: 100%;
     margin-top: 0;
     a {
-      margin-right: 1em;
+      min-width: 4em;
+      &:first-of-type {
+        margin-right: 1em;
+      }
     }
   }
 }

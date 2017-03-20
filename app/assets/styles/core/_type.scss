@@ -28,7 +28,7 @@ h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, 
     font-size: 3.42em;
   }
   @include media(small-down) {
-    font-size: 3em;
+    font-size: 2.5em;
   }
 }
 
@@ -37,7 +37,10 @@ h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, 
   font-weight: $header-light;
   line-height: 1.1em;
   @include media(medium-down) {
-    font-size: 3.2em;
+    font-size: 2.8em;
+  }
+  @include media(medium-down) {
+    font-size: 2.7em;
   }
 }
 

@@ -10,6 +10,9 @@
     }
     input {
       margin-right: 1em;
+      @include media(small-down) {
+        margin-bottom: .5em;
+      }
     }
   }
   .footer__logo {

@@ -34,6 +34,9 @@
     .article-list-card__header {
       padding: 2em 2.6em 1.5em;
       min-height: 9em;
+      @include media(small-down) {
+        padding: 2em 1.8em 1.5em;
+      }
     }
     .metadata-italic {
       display: block;
@@ -58,6 +61,9 @@
       border-top: 1px solid darken($lightest-grey, 7%);
       vertical-align: bottom;
       box-sizing: border-box;
+      @include media(small-down) {
+        padding: 1em 2em 1.2em;
+      }
     }
     .article-list-card__body {
       margin-bottom: 0.75rem;
@@ -70,9 +76,15 @@
     .article-list-card__meta { 
       border-top: 0;
       padding: .5em 3.8em 2.7em;
+      @include media(small-down) {
+        padding: .5em 2em 2.7em;
+      }
     }
     .article-list-card__header {
       padding: 2.2em 3.2em .5em;
+      @include media(small-down) {
+        padding: 2em 1.8em 1.5em;
+      }
     }
   }
 }
@@ -127,7 +139,14 @@
   margin-right: 5%;
   @include media(medium-down) {
     position: absolute;
-    display: none;
+    background-color: #fff;
+    width: 89%;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 3em 3em;
+    /*display: none;*/
   }
   .header--small {
     margin-bottom: 1em;

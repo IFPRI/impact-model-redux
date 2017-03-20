@@ -124,6 +124,9 @@ a, a:visited {
     line-height: 1.7em;
     max-width: 90%;
     font-weight: $base-font-regular;
+    @include media(small-down) {
+      max-width: 100%;
+    }
   }
 }
 

@@ -93,6 +93,9 @@
   }
   .home__header-split--left__content {
     padding: 9.8em 4em 0 0;
+    @include media(medium-down) {
+      padding: 5.5em 0 0;
+    }
   }
   .header--type {
     color: #fff;
@@ -158,7 +161,7 @@
         width: 38%;
       }
       @include media(small-down) {
-        width: 80%;
+        width: 78%;
         &:first-of-type {
           margin-bottom: 2em;
         }
@@ -218,6 +221,9 @@
           min-height: 0;
           margin-bottom: .5em;
         }
+      }
+      &:last-of-type {
+        margin-bottom: 0em;
       }
       .article-card__header--related {
         margin: 0 0 .5em;
