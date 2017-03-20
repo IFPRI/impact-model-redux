@@ -239,15 +239,15 @@
   display: inline-block;
 }
 
-.link-card {
-  display: block;
-  @extend .clearfix;
-  h4 { color: $medium-blue;; }
+.article-list-card {
   &:hover {
-    .article-list-card {
-      border: 1px solid rgba(59, 168, 186, .5);
-      box-shadow: 1px 8px 7px rgba(129, 117, 117, .04);
-      transform: translateY(-3px)
-    }
+    border: 1px solid rgba(59, 168, 186, .5);
+    box-shadow: 1px 8px 7px rgba(129, 117, 117, .04);
+    transform: translateY(-3px)
+  }
+  .link-card {
+    display: block;
+    @extend .clearfix;
+    h4 { color: $medium-blue; }
   }
 }
