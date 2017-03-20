@@ -223,12 +223,14 @@ export class MapComponent extends React.Component {
       .filter(key => key.match(/dropdown/))
       .map(key => {
         return <div key={key} className='map-dropdown'>
-          <span>{translate(this.props.data[key].field)}:</span>
-          <select id={key} className={`${name}`} defaultValue={this.props.data[key].values[0]} onChange={this.handleDropdown}>
-            {this.props.data[key].values.map((value, i) => {
-              return <option value={value} key={`${name}-${key}-${i}`}>{translate(value)}</option>
-            })}
-          </select>
+          <label>{translate(this.props.data[key].field)}:</label>
+          <div className='select--wrapper'>
+            <select id={key} className={`${name}`} defaultValue={this.props.data[key].values[0]} onChange={this.handleDropdown}>
+              {this.props.data[key].values.map((value, i) => {
+                return <option value={value} key={`${name}-${key}-${i}`}>{translate(value)}</option>
+              })}
+            </select>
+          </div>
         </div>
       })
 

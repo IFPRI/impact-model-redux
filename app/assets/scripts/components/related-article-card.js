@@ -27,9 +27,9 @@ export class RelatedArticleCard extends React.Component {
         <div className={`article-card__body--${cardType}`}>
           <p>{`${cutAtWord(article.preview, 190)}`}</p>
         </div>
-        <ul className='article-card__tags'>
+        <ul className='article-card__tags link-block'>
           {tags.map(tag => {
-            return <li key={tag}><a onClick={this.goToTag.bind(this, tag)} href=''>{translate(tag)}</a></li>
+            return <li key={tag}><a className='link__underline' onClick={this.goToTag.bind(this, tag)} href=''>{translate(tag)}</a></li>
           })}
         </ul>
       </li>

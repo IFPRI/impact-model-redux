@@ -39,6 +39,9 @@ p {
   padding: 0 64px;
   display: block;
   width: auto;
+  @include media(small-down) {
+    padding: 0 25px;
+  }
 }
 
 .row--shortened {
@@ -102,6 +105,9 @@ a, a:visited {
   @extend .clearfix;
   .split__internal--left {
     width: 57%;
+    @include media(medium-down) {
+      width: 100%;
+    }
   }
 }
 
@@ -118,6 +124,9 @@ a, a:visited {
     line-height: 1.7em;
     max-width: 90%;
     font-weight: $base-font-regular;
+    @include media(small-down) {
+      max-width: 100%;
+    }
   }
 }
 
@@ -142,6 +151,9 @@ section {
 .browse__header-text {
   margin-top: 10em;
   width: 60%;
+  @include media(medium-down) {
+    width: 90%;
+  }
 }
 
 dt {
@@ -153,11 +165,18 @@ dt {
 .header-internal {
   margin-bottom: 3em;
   width: 70%;
+  @include media(medium-down) {
+    width: 90%;
+  }
   p {
     color: $light-grey;
   }
 }
 
 .page__body {
+  @extend .clearfix;
+}
+
+.related-articles {
   @extend .clearfix;
 }
