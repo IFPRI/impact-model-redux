@@ -6,11 +6,12 @@
     li {
       display: inline-block;
       margin-top: .5em;
+      margin: .5em .8em;
     }
     a, a:visited {
       color: $darkest-grey;
       margin-right: .5em;
-      padding: .5em 1em;
+      padding: .5em .3em;
       position: relative;
     }
     a:before {
@@ -29,13 +30,16 @@
     a:hover:before {
       top: 0em;
     }
+    .active a:before {
+      top: 0em;
+    }
   }
 
   h1 {
     float: left;
     font-size: 1.45rem;
     font-weight: $base-font-bold;
-    margin: 0 2.5rem 0 0;
+    margin: 0 2rem 0 0;
     a, a:visited {
       color: $darkest-grey;
     }

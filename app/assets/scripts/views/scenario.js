@@ -90,10 +90,14 @@ export class Scenario extends React.Component {
          : <section className='section__internal'>
              <div className='row row--shortened'>
                <div className='article-metadata'>
-                 Locations:
-                 <ul>{locations}</ul>
-                 Resources:
-                 <ul>{resources}</ul>
+                  <div className='article-metadata__item'>
+                    <span className='article-metadata__header'>Locations:</span>
+                    <ul>{locations}</ul>
+                  </div>
+                  <div className='article-metadata__item'>
+                    <span className='article-metadata__header'>Resources:</span>
+                    <ul>{resources}</ul>
+                  </div>
                </div>
                <div className='article--content' dangerouslySetInnerHTML={{__html: this.props.article}}></div>
              </div>

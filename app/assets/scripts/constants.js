@@ -2,16 +2,14 @@ import chroma from 'chroma-js'
 
 export const articleBrowsePageLength = 15
 
-export const nineColorPalette = [
-  '#4d4d4d', // (gray)
-  '#5da5da', // (blue)
-  '#faa43a', // (orange)
-  '#60bd68', // (green)
-  '#f17cb0', // (pink)
-  '#b2912f', // (brown)
-  '#b276b2', // (purple)
-  '#decf3f', // (yellow)
-  '#f15854'  // (red)
+export const sixColorPalette = [
+  '#5185A3', // (blue/gray)
+  '#38A386', // (dark green)
+  '#83C61A', // (green)
+  '#BDD05E', // (light green)
+  '#E2C117', // (yellow)
+  '#C6881A', // (orange)
+  '#B55215' // (red)
 ]
 
 export const oneColorPalette = [

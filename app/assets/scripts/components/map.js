@@ -6,15 +6,14 @@ import { scaleLinear } from 'd3-scale'
 import _ from 'lodash'
 import { feature, merge } from 'topojson-client'
 import { body as tip } from '@redsift/d3-rs-tip'
-import c from 'classnames'
 
 import queryDatabase from '../utils/query-database'
 import { translate } from '../utils/translation'
 import locationAggregation from '../../data/aggregate-region'
 import world from '../../data/geo/world.json'
 
-const yellow = '#CDAA00'
-const green = '#4B7838'
+const yellow = '#E2C117'
+const green = '#83C61A'
 
 export class Map extends React.Component {
   constructor (props, context) {
