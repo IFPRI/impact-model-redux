@@ -1,19 +1,21 @@
 'use strict'
 import React from 'react'
 
-const Contact = React.createClass({
-  propTypes: {
-  },
-
-  render: function () {
+export class Contact extends React.Component {
+  render () {
     return (
-      <div className='page__contact'>
-        <header className='contact__header'>
-          <h2>Contact US</h2>
+      <section className='page__contact'>
+        <header className='header__internal'>
+          <div className='row'>
+            <div className='browse__header-text'>
+              <h2 className='header--xxlarge with-metadata'>Contact</h2>
+              <p className='header__descriptions'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut augue aliquet ligula aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut augue aliquet ligula aliquam.</p>
+            </div>
+          </div>
         </header>
-      </div>
+      </section>
     )
   }
-})
+}
 
 export default Contact

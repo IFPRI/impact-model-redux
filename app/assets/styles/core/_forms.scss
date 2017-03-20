@@ -1,0 +1,65 @@
+input, select {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid lighten($light-grey, 25%);
+  padding: 0.3rem .5rem .2em;
+  border-radius: 0;
+  width: 14rem;
+}
+
+.input--small {
+  padding: 0.4rem .8rem .3rem;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: relative;
+}
+
+.select--wrapper {
+  position: relative;
+  display: block;
+  float: left;
+  width: 40%;
+  @include media(small-down) {
+    width: 80%;
+  }
+  &:after {
+    content: '';
+    background-image: url(../graphics/collecticons/chevron-down.svg);
+    background-size: 10px 10px;
+    width: 10px;
+    height: 10px;
+    display: block;
+    position: absolute;
+    right: .9em;
+    top: .7em;
+  }
+}
+
+.autocomplete-wrapper {
+  position: relative;
+  input {
+    width: 100%;
+  }
+}
+.automcomplete-list {
+  position: absolute;
+  background-color: #fff;
+  height: 15em;
+  overflow-y: scroll;
+  display: block;
+  margin-top: .5em;
+  border: 1px solid darken($lightest-grey, 2%);
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, .1);
+  li {
+    padding: .7em .8em;
+    border-bottom: 1px solid darken($lightest-grey, 2%);
+    &:hover,  {
+      color: $medium-blue;
+    }
+  }
+}
+
+.highlighted { color: $medium-blue; }

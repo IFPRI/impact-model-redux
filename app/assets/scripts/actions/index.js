@@ -1,10 +1,63 @@
+import marked from 'marked'
+import fm from 'front-matter'
+
+import { loadText } from '../utils/load-text'
+import { setupRenderer } from '../utils/parse-figures'
+
 export const UPDATE_ARTICLES = 'UPDATE_ARTICLES'
+export const UPDATE_ARTICLE_FILTERS = 'UPDATE_ARTICLE_FILTERS'
+export const UPDATE_ARTICLE_SORTING = 'UPDATE_ARTICLE_SORTING'
+export const UPDATE_ARTICLE_PAGE = 'UPDATE_ARTICLE_PAGE'
+export const UPDATE_ARTICLE_LOADING = 'UPDATE_ARTICLE_LOADING'
 export const UPDATE_ARTICLE = 'UPDATE_ARTICLE'
+export const UPDATE_CHART = 'UPDATE_CHART'
+export const UPDATE_MAP = 'UPDATE_MAP'
 
-export function updateArticles (data) {
-  return { type: UPDATE_ARTICLES, data: data }
+export const updateArticles = (articles) => {
+  return { type: UPDATE_ARTICLES, data: articles }
 }
 
-export function updateArticle (data) {
-  return { type: UPDATE_ARTICLE, data: data }
+export const updateArticleFilters = (articleFilters) => {
+  return { type: UPDATE_ARTICLE_FILTERS, data: articleFilters }
 }
+
+export const updateArticleSorting = (articleSorting) => {
+  return { type: UPDATE_ARTICLE_SORTING, data: articleSorting }
+}
+
+export const updateArticlePage = (articlePage) => {
+  return { type: UPDATE_ARTICLE_PAGE, data: articlePage }
+}
+
+export const updateChart = (chartMarkup, id) => {
+  return { type: UPDATE_CHART, data: chartMarkup, id }
+}
+
+export const updateMap = (mapMarkup, id) => {
+  return { type: UPDATE_MAP, data: mapMarkup, id }
+}
+
+// < internal article fetching actions
+export const updateArticleLoading = (bool) => {
+  return { type: UPDATE_ARTICLE_LOADING, data: bool }
+}
+export const updateArticle = (article) => {
+  return { type: UPDATE_ARTICLE, data: article }
+}
+export const fetchArticle = (url) => {
+  return (dispatch) => {
+    dispatch(updateArticleLoading(true))
+    loadText(url)
+    .then(text => {
+      const renderer = setupRenderer(dispatch)
+      text = marked(fm(text).body, {renderer: renderer})
+      dispatch(updateArticle(text))
+      dispatch(updateArticleLoading(false))
+    })
+  .catch(error => {
+    dispatch(updateArticleLoading(false))
+    throw (error)
+  })
+  }
+}
+// />

@@ -40,6 +40,8 @@
 app/assets/scripts/config/local.js
 app/assets/styles/core/_collecticons.scss
 app/assets/data/articles.json
+app/assets/data/filter-categories.json
+app/assets/data/articles/*.md
 
 ################################################
 # Dependencies
@@ -107,7 +109,9 @@ nbproject
 .idea
 .resources
 .node_history
+.nyc_output
 temp
 tmp
 .tmp
 dist
+.nyc_output

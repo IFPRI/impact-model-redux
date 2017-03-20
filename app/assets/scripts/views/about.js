@@ -1,19 +1,21 @@
 'use strict'
 import React from 'react'
 
-const About = React.createClass({
-  propTypes: {
-  },
-
-  render: function () {
+export class About extends React.Component {
+  render () {
     return (
-      <div className='page__about'>
-        <header className='about__header'>
-          <h2>About</h2>
+      <section className='page__about'>
+        <header className='header__internal'>
+          <div className='row'>
+            <div className='browse__header-text'>
+              <h2 className='header--xxlarge with-metadata'>About</h2>
+              <p className='header__descriptions'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut augue aliquet ligula aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut augue aliquet ligula aliquam.</p>
+            </div>
+          </div>
         </header>
-      </div>
+      </section>
     )
   }
-})
+}
 
 export default About

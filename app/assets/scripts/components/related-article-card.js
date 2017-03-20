@@ -2,29 +2,48 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-import { cutAtWord, commaSeparate, toTitleCase } from '../utils/format'
+// Utils
+import { cutAtWord } from '../utils/format'
+import { translate } from '../utils/translation'
 
-const RelatedArticleCard = React.createClass({
-  propTypes: {
-    article: React.PropTypes.object
-  },
+export class RelatedArticleCard extends React.Component {
+  goToTag (tag, e) {
+    e.preventDefault()
+    this.props.updateArticleFilters([tag])
+    this.props.router.push(`/${this.props.type}s`)
+  }
 
-  render: function () {
-    const article = this.props.article
+  render () {
+    const { article, cardType } = this.props
+    const tags = article.tags || []
+
     return (
-      <div className='article-card--related'>
-        <header className='article-card__header--related'>
-          <h4>
-            <Link to={`/${article.type}s/${article.id}`}>{article.title}</Link>
-          </h4>
+      <li className={`article-card--${cardType}`}>
+        <header className={`article-card__header--${cardType}`}>
+          <h5 className='header--small'>
+            <Link className='link__underline--dark' to={`/${article.type}s/${article.id}`}>{article.title}</Link>
+          </h5>
         </header>
-        <div className='article-card__body--related'>
-          <p>{`${cutAtWord(article.preview, 190)}...`}</p>
-          <p className='article-card__tags'>{toTitleCase(commaSeparate(article.tags))}</p>
+        <div className={`article-card__body--${cardType}`}>
+          <p>{`${cutAtWord(article.preview, 190)}`}</p>
         </div>
-    </div>
+        <ul className='article-card__tags link-block'>
+          {tags.map(tag => {
+            return <li key={tag}><a className='link__underline' onClick={this.goToTag.bind(this, tag)} href=''>{translate(tag)}</a></li>
+          })}
+        </ul>
+      </li>
     )
   }
-})
+}
+
+// Set default props
+RelatedArticleCard.propTypes = {
+  article: React.PropTypes.object,
+  cardType: React.PropTypes.string,
+  type: React.PropTypes.string,
+  router: React.PropTypes.object,
+  updateArticleFilters: React.PropTypes.func
+}
 
 export default RelatedArticleCard

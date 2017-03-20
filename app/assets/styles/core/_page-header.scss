@@ -1,50 +1,102 @@
 .page__header {
-  width: calc(100% - 2rem);
-  padding: 1.5rem 0 1.5rem 2rem;
-  border-bottom: 1px solid $grey-outline;
-  ul {
-    margin-top: 0.15rem;
-  }
-  li {
-    color: $base-color;
-    margin: 1rem 2rem 0 0;
-    font-weight: 200;
-    font-size: 1.1rem;
-    display: inline;
-    &:last-child {
-      margin-right: 0;
+  margin: 1.2em 0;
+  @extend .clearfix;
+  .nav__main {
+    float: left;
+    li {
+      display: inline-block;
+      margin-top: .5em;
+      margin: .5em .8em;
+    }
+    a, a:visited {
+      color: $darkest-grey;
+      margin-right: .5em;
+      padding: .5em .3em;
+      position: relative;
+    }
+    a:before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2.5em;
+      top: 4.5em;
+      left: 0;
+      border-bottom: 1px solid lighten($light-grey, 25%);
+      overflow-y: hidden;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      transition: all 0.3s;
+    }
+    a:hover:before {
+      top: 0em;
+    }
+    .active a:before {
+      top: 0em;
+    }
+    ul {
+      @include media(medium-down) {
+        position: absolute;
+        right: 0;
+        top: 3em;
+        z-index: 3;
+        background-color: #fff;
+        min-width: 8em;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, .1);
+        border: 1px solid darken($lightest-grey, 5%);
+        a:before {
+          border-bottom: 0;
+        }
+        li {
+          display: block;
+          padding: .9em .8em;
+          border-bottom: 1px solid darken($lightest-grey, 5%);
+          margin: 0;
+          a {
+            &:hover {
+              color: $medium-blue;
+            }
+          }
+        }
+      }
+    }
+    @include media(medium-down) {
+      /*display: none;*/
+      position: relative;
+      float: none;
     }
   }
-  a {
-    position: relative;
-    color: $base-color;
-    text-decoration: none;
+
+  .mobile-menu {
+    float: right;
+    margin-top: .3em;
+    display: none;
+    span {
+      width: 1px;
+      height: 1px;
+      position: absolute;
+      clip: rect(0,0,0,0);
+    }
+    &:after {
+      content: '';
+      width: 25px;
+      height: 25px;
+      background-image: url(../graphics/collecticons/hamburger-menu.svg);
+      background-size: 25px 25px;
+      display: inline-block;
+    }
+    @include media(medium-down) {
+      display: inline-block;
+    }
   }
-  a:hover {
-    color: $base-color;
-  }
-  a:before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    top: 1.5rem;
-    left: 0;
-    background-color: $base-color;
-    visibility: hidden;
-    transform: scaleX(0);
-    transition: all 0.15s ease-in-out 0s;
-  }
-  a:hover:before {
-    visibility: visible;
-    transform: scaleX(1);
-  }
+
   h1 {
     float: left;
     font-size: 1.45rem;
-    weight: 800;
-    margin: 0 3rem 0.5rem 0;
-    color: $base-color;
+    font-weight: $base-font-bold;
+    margin: 0 2rem 0 0;
+    a, a:visited {
+      color: $darkest-grey;
+    }
     a:before {
       top: 1.75rem;
     }

@@ -1,32 +1,49 @@
 'use strict'
 import React from 'react'
-
-import { findRelatedArticles } from '../utils/related.js'
+import c from 'classnames'
 
 // Components
 import RelatedArticleCard from './related-article-card'
 
-const RelatedArticles = React.createClass({
-  propTypes: {
-    articleMetadata: React.PropTypes.object,
-    articles: React.PropTypes.array
-  },
+export class RelatedArticles extends React.Component {
+  render () {
+    let { articles, cardType } = this.props
+    articles = articles || []
 
-  render: function () {
-    const articleMetadata = this.props.articleMetadata
-    let articles = findRelatedArticles(articleMetadata, this.props.articles, 3)
-    articles = articles
-      ? articles.map((article, i) => {
-        return <RelatedArticleCard article={article} key={`related-article-${i}`} />
-      })
-      : ''
     return (
-      <div className='page__related-articles-list'>
-        <h3>Related Articles</h3>
-        {articles}
-      </div>
+      <section className={c((cardType === 'project' ? 'page__project-articles-list' : 'page__related-articles-list'), 'section__padding')}>
+        <div className='row row--shortened'>
+          <h4 className='header--large section__header'>{this.props.title || 'Related Articles'}</h4>
+          <ul className='related-articles'>
+            {articles.map(article => {
+              return (
+                <RelatedArticleCard
+                  type={this.props.type}
+                  cardType={cardType}
+                  article={article}
+                  key={`article-${article.id}`}
+                  router={this.props.router}
+                  updateArticleFilters={this.props.updateArticleFilters}
+                  />
+              )
+            })}
+          </ul>
+          {this.props.children}
+        </div>
+      </section>
     )
   }
-})
+}
+
+// Set default props
+RelatedArticles.propTypes = {
+  articles: React.PropTypes.array,
+  title: React.PropTypes.string,
+  cardType: React.PropTypes.string,
+  children: React.PropTypes.node,
+  type: React.PropTypes.string,
+  router: React.PropTypes.object,
+  updateArticleFilters: React.PropTypes.func
+}
 
 export default RelatedArticles

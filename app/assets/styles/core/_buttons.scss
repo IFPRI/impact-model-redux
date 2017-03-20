@@ -1,0 +1,57 @@
+button {
+  border: none;
+}
+
+.button, .button:visited {
+  font-family: $header-family;
+  font-weight: $header-black;
+  text-transform: uppercase;
+  color: #fff;
+  padding: .7em 3em;
+  display: inline-block;
+  text-align: center;
+  transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  &:hover {
+    border-radius: 2em;
+  }
+  @include media(medium-down) {
+    font-size: .86em;
+  }
+}
+
+.button--main {
+  background-color: $base-green;
+  border: 2px solid $base-green;
+  padding: .6em 2.8em;
+  &:hover {
+    background-color: transparent;
+    color: $base-green;
+    border: 2px solid $base-green;
+  }
+}
+
+.button--outline {
+  border: 2px solid #fff;
+  color: #fff;
+  &:hover {
+    background-color: #fff;
+    color: $medium-blue;
+  }
+}
+
+.button--small {
+  padding: .4em 2.3em .3em;
+}
+
+.button--more-information {
+  margin-top: 3em;
+  @include media(medium-down) {
+    margin-top: 1em;
+  }
+}
+
+.button--download {
+  padding: .7em 2.35em;
+}

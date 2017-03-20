@@ -1,0 +1,95 @@
+h1, h2, h3, h4, h5, h6 {
+  font-family: $header-family;
+  color: $header-color;
+  margin-bottom: .5em;
+}
+
+h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, h5 a, h5 a:visited, h6 a, h6 a:visited {
+  color: $header-color;
+}
+
+.with-description {
+  margin-bottom: 0em;
+}
+
+.with-metadata {
+  margin-bottom: .2em;
+  a {
+    margin-bottom: .3em;
+  }
+}
+
+.header--xxxlarge {
+  font-size: 4em;
+  font-weight: $header-light;
+  line-height: 1.2em;
+  margin-bottom: .2em;
+  @include media(medium-down) {
+    font-size: 3.42em;
+  }
+  @include media(small-down) {
+    font-size: 2.5em;
+  }
+}
+
+.header--xxlarge { 
+  font-size: 3.56em;
+  font-weight: $header-light;
+  line-height: 1.1em;
+  @include media(medium-down) {
+    font-size: 2.8em;
+  }
+  @include media(medium-down) {
+    font-size: 2.7em;
+  }
+}
+
+.header--xlarge { 
+  font-size: 2.571em;
+  font-weight: $header-light;
+}
+
+.header--large {
+  font-size: 2.28em;
+  font-weight: $header-light;
+  line-height: 1.3em;
+  @include media(medium-down) {
+    font-size: 2em;
+  }
+  @include media(small-up) {
+    font-size: 1.8em;
+  }
+}
+
+.header--medium, .article--content h1 {
+  font-size: 2em;
+  font-weight: $header-light;
+}
+
+.header--small, .article--content h2 {
+  font-size: 1.45em;
+  font-weight: $header-bold;
+}
+
+.header--xsmall, .article--content h3 {
+  font-size: 1.28em;
+}
+
+.sub-description, .article--content h4 {
+  color: $grey;
+  font-size: .852em;
+}
+
+.metadata-italic {
+  color: $light-grey;
+  font-size: .86em;
+  font-weight: $base-font-light;
+}
+
+dt {
+  color: $header-color;
+}
+
+.section__header {
+  margin-bottom: .8em;
+}

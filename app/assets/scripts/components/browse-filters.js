@@ -1,112 +1,158 @@
 'use strict'
 import React from 'react'
-import Collapse, { Panel } from 'rc-collapse'
+import { Panel } from 'rc-collapse'
 import _ from 'lodash'
 
-import {
-  translate,
-  invertCommodities,
-  countryIdsToSubcontinents } from '../utils/translation'
+// Actions
+import { updateArticleFilters } from '../actions'
 
-import { commodities } from '../../data/aggregate-commodity'
-import countries from '../../data/aggregate-region'
+// Utils
+import { translate, invertCommodities } from '../utils/translation'
 
-const BrowseFilters = React.createClass({
-  propTypes: {
-  },
+// Data
+import filterCategories from '../../data/filter-categories'
+import commodityAggregation from '../../data/aggregate-commodity'
+import locationAggregation from '../../data/aggregate-region'
 
-  getInitialState: function () {
-    return {
-      accordion: false,
-      activeAccordionKey: ['1'],
-      checklist: []
+// Components
+import BrowseFilter from './browse-filter'
+
+export class BrowseFilters extends React.Component {
+  constructor (props, context) {
+    super(props, context)
+    this.state = {
+      accordion: false
     }
-  },
 
-  onAccordionChange: function (activeAccordionKey) {
-    this.setState({
-      activeAccordionKey
+    this.filters = []
+
+    if (props.type === 'brief') {
+      // generate list of type filters
+      this.filters.push({
+        name: 'Type',
+        list: ['custom', 'commodity-summary', 'country-summary'],
+        type: 'checkbox'
+      })
+      // generate list of commodities organized by type
+      let commodityList = {}
+      filterCategories.commodities.forEach((commodity) => {
+        commodityList[commodity] = commodityAggregation[commodity]
+      })
+      commodityList = invertCommodities(commodityList)
+      this.filters.push({
+        name: 'Commodities',
+        list: commodityList,
+        type: 'accordion'
+      })
+
+      // generate list of regions
+      this.filters.push({
+        name: 'Locations',
+        list: _.uniq(_.flatten(Object.values(locationAggregation).map(loc => Object.values(loc)))
+          .filter(Boolean).map(translate)).sort(),
+        type: 'autocomplete'
+      })
+    } else if (props.type === 'scenario') {
+      // generate list of tags
+      this.filters.push({
+        name: 'Tags',
+        list: filterCategories.tags,
+        type: 'checkbox'
+      })
+    }
+    // generate list of projects
+    this.filters.push({
+      name: 'Projects',
+      list: filterCategories.projects,
+      type: 'checkbox'
     })
-  },
 
-  handleFilterSelection: function (event) {
-    const checkbox = event.target.value
-    let checklist = this.state.checklist
-    checklist = !_.includes(checklist, checkbox)
-      ? checklist.concat(checkbox)
-      : checklist.filter((opt) => opt !== checkbox)
+    this.handleFilterSelection = this.handleFilterSelection.bind(this)
+    this.generateAccordionItems = this.generateAccordionItems.bind(this)
+  }
 
-    this.setState({checklist: checklist})
-  },
+  handleFilterSelection (checked, subtype) {
+    const { articleFilters, dispatch } = this.props
+    const newArticleFilters = checked
+      ? articleFilters.filter(opt => opt !== subtype)
+      : articleFilters.concat(subtype)
 
-  generateAccordionItems: function (list) {
+    dispatch(updateArticleFilters(newArticleFilters))
+  }
+
+  handleFilterSelectionAll (checked, list) {
+    const { articleFilters, dispatch } = this.props
+    const newArticleFilters = checked
+    ? articleFilters.filter(opt => !_.includes(list, opt))
+    : _.uniq(articleFilters.concat(list))
+
+    dispatch(updateArticleFilters(newArticleFilters))
+  }
+
+  generateAccordionItems (list) {
     list = _.pickBy(list, (value, key) => key)
     return _.map(list, (subtypes, type) => {
+      const checked = list[type].every(t => _.includes(this.props.articleFilters, t))
       return (
-        <Panel header={type} key={'filter-item-' + type}>
+        <Panel header={translate(type)} key={`filter-item-${type}`}>
+          <div className='filters__check-group' key={`${type}-check-group`}>
+            <input
+              type='checkbox'
+              name={`${type}-all`}
+              value={type}
+              onChange={this.handleFilterSelectionAll.bind(this, checked, list[type])}
+              checked={checked} />
+            <label>All</label>
+          </div>
           {subtypes.map((subtype) => {
             // use the id attribute in the case of countries
             if (subtype.id) subtype = subtype.id
+            const subChecked = _.includes(this.props.articleFilters, subtype)
             return (
               <div className='filters__check-group' key={subtype + '-check-group'}>
                 <input
                   type='checkbox'
                   name={subtype + '-check'}
                   value={subtype}
-                  onChange={this.handleFilterSelection}
-                  checked={_.includes(this.state.checklist, subtype) } />
-                {translate(subtype)}
+                  onChange={this.handleFilterSelection.bind(this, subChecked, subtype)}
+                  checked={subChecked} />
+                <label>{translate(subtype)}</label>
               </div>
             )
           })}
         </Panel>
       )
     })
-  },
+  }
 
-  render: function () {
-    const commodityList = invertCommodities(commodities)
-    const countryList = countryIdsToSubcontinents(countries)
+  render () {
     const accordion = this.state.accordion
     return (
       <div className='browse__filters'>
-        <header className='filters__header'>
-          <h2>Filter</h2>
-        </header>
+        <h5 className='header--small'>Filter</h5>
         <form className='filters__form'>
-          <h3 className='filters__group-label'>Type</h3>
-          <div className='filters__check-group'>
-            <input type='checkbox' name='custom-check' value='custom-check' />
-            Custom
-          </div>
-          <div className='filters__check-group'>
-            <input type='checkbox' name='country-summary-check' value='country-summary-check' />
-            Country Summary
-          </div>
-          <div className='filters__check-group'>
-            <input type='checkbox' name='commodity-summary-check' value='commodity-summary-check' />
-            Commodity Summary
-          </div>
-          <h3 className='filters__group-label'>Commodities</h3>
-          <div className='filters__check-group'>
-            <Collapse
+          {this.filters.map(filter => {
+            return <BrowseFilter
+              key={filter.name}
+              filter={filter}
               accordion={accordion}
-              onChange={this.onAccordionChange} >
-              {this.generateAccordionItems(commodityList)}
-            </Collapse>
-          </div>
-          <h3 className='filters__group-label'>Location</h3>
-          <div className='filters__check-group'>
-            <Collapse
-              accordion={accordion}
-              onChange={this.onAccordionChange}>
-              {this.generateAccordionItems(countryList)}
-            </Collapse>
-          </div>
+              articleFilters={this.props.articleFilters}
+              onAccordionChange={this.onAccordionChange}
+              handleFilterSelection={this.handleFilterSelection}
+              generateAccordionItems={this.generateAccordionItems}
+            />
+          })}
         </form>
       </div>
     )
   }
-})
+}
+
+// Set default props
+BrowseFilters.propTypes = {
+  dispatch: React.PropTypes.func,
+  articleFilters: React.PropTypes.array,
+  type: React.PropTypes.string
+}
 
 export default BrowseFilters

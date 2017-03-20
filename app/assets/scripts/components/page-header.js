@@ -2,20 +2,30 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-const PageHeader = React.createClass({
-  render: function () {
+import { toTitleCase } from '../utils/format'
+
+export class PageHeader extends React.Component {
+  render () {
+    const { page } = this.props
+    const links = ['briefs', 'scenarios', 'about', 'contact']
     return (
-      <nav className='page__header'>
-        <h1><Link to={'/'}>IFPRI IMPACT</Link></h1>
-        <ul className='page__prime-nav'>
-          <li><Link to={'/briefs'}>Briefs</Link></li>
-          <li><Link to={'/scenarios'}>Scenarios</Link></li>
-          <li><Link to={'/about'}>About</Link></li>
-          <li><Link to={'/contact'}>Contact</Link></li>
-        </ul>
-      </nav>
+      <header className='page__header'>
+        <div className='row'>
+          <h1><Link to={'/'}>IFPRI IMPACT</Link></h1>
+          <Link className='mobile-menu' to={'#'}><span>Menu</span></Link>
+          <nav className='nav__main'>
+            <ul className='page__prime-nav'>
+              {links.map(link => <li key={link} className={page === link ? 'active' : ''}><Link to={`/${link}`}>{toTitleCase(link)}</Link></li>)}
+            </ul>
+          </nav>
+        </div>
+      </header>
     )
   }
-})
+}
+
+PageHeader.propTypes = {
+  page: React.PropTypes.string
+}
 
 export default PageHeader
