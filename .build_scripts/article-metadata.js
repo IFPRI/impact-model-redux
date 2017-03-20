@@ -46,7 +46,7 @@ glob('app/assets/data/articles/*.md', (err, files) => {
       scenarios: metadata.scenarios,
       resources: metadata.resources,
       // Remove charts, maps, markdown title markers, and newlines
-      preview: cutAt(text.body.replace(/```[\s\S]*```/g, '').replace(/#+ /g, '').replace(/\n+/g, ' '), 300)
+      preview: cutAt(text.body.replace(/```[\s\S]*```/g, '').replace(/|[\s\S]*|/g, '').replace(/#+ /g, '').replace(/\n+/g, ' '), 300)
     }
   })
   fs.writeFile('./app/assets/data/articles.json', JSON.stringify(inventory), (err) => {

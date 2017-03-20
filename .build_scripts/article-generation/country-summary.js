@@ -32,10 +32,34 @@ fixed:
   region: ${region}
 dropdown:
   field: impactparameter
-  values: qdxagg, qnxagg
+  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupagg
 \`\`\``
 
-  var article = `Summary of IMPACT model outputs for ${name}\n\n${figure}`
+  var figureTwo = `\`\`\`chart
+mark: bar
+title: ${name} - Food Security
+encoding:
+  x:
+    type: nominal
+    field: impactparameter
+  y:
+    type: quantitative
+    field: Val
+fixed:
+  region: ${region}
+  impactparameter: populationatriskxagg, totalmalnourishedxagg, foodavailxagg
+\`\`\``
+
+  var table = `|   |   | 2015 | 2030 | 2050 |
+|---|---|---|---|---|
+| ${translation.translate(subcontinent)} | Population (million) |
+|  | GDP (billion $US) |
+|  | Per capita GDP ($US) |
+| ${translation.translate(region)} | Population (million) |
+|  | GDP (billion $US) |
+|  | Per capita GDP ($US) |`
+
+  var article = `Summary of IMPACT model outputs for ${name}\n\n${figure}\n\n${figureTwo}\n\n${table}`
 
   var scenarioString = scenarios.map(s => ` - ${s}`).join('\n')
   var tagString = tags.map(t => ` - ${t}`).join('\n')
