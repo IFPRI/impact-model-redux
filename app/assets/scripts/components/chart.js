@@ -54,22 +54,22 @@ export class Chart extends React.Component {
             gridLines: {
               drawOnChartArea: false,
               drawTicks: true,
-              tickMarkLength: 8,
+              tickMarkLength: 8
             },
             ticks: {
               fontColor: '#9E9E9E',
-              fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif"
             }
           }],
           xAxes: [{
             gridLines: {
               drawOnChartArea: false,
               drawTicks: true,
-              tickMarkLength: 8,
+              tickMarkLength: 8
             },
             ticks: {
               fontColor: '#9E9E9E',
-              fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif"
             }
           }]
         }
@@ -78,7 +78,7 @@ export class Chart extends React.Component {
         labels: [],
         datasets: [{
           data: [],
-          backgroundColor: sixColorPalette,
+          backgroundColor: sixColorPalette
         }]
       }
     }
@@ -103,7 +103,7 @@ export class Chart extends React.Component {
       chart.data.datasets[0].fill = false
       chart.data.datasets[0].borderColor = oneColorPalette
       chart.data.datasets[0].borderWidth = 4
-      chart.data.datasets[0].pointBackgroundColor = "#fff"
+      chart.data.datasets[0].pointBackgroundColor = '#fff'
       chart.data.datasets[0].pointBorderWidth = 2
       chart.options.scales.yAxes[0].ticks.userCallback = (value) => formatNumber(value)
       chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')}}

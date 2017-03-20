@@ -9,7 +9,7 @@ export const sixColorPalette = [
   '#BDD05E', // (light green)
   '#E2C117', // (yellow)
   '#C6881A', // (orange)
-  '#B55215', // (red)
+  '#B55215' // (red)
 ]
 
 export const oneColorPalette = [
