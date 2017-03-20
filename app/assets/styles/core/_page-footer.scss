@@ -10,6 +10,9 @@
     }
     input {
       margin-right: 1em;
+      @include media(small-down) {
+        margin-bottom: .5em;
+      }
     }
   }
   .footer__logo {
@@ -18,6 +21,12 @@
     img {
       width: 165px;
       height: 90px;
+    }
+    @include media(medium-down) {
+      float: none;
+      padding-top: 2em;
+      clear: both;
+      display: block;
     }
   }
 }

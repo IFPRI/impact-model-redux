@@ -228,13 +228,15 @@ export class Map extends React.Component {
       <figure className='map'>
         <h3>Map</h3>
         <figcaption>The map shows change in key output parameters from across geographies. Use dropdown menus to select desired commodity (or group) and parameters to display. Toggle buttons at top right allow different geographic aggregations. Hover over countries or regions to observe the actual results.</figcaption>
-        <div className={c('map-dropdown', 'select--wrapper', {visible: this.props.data.dropdown})}>
+        <div className={c('map-dropdown', {visible: this.props.data.dropdown})}>
           <label>Filter:</label>
-          <select className={`${name}-dropdown`} defaultValue={this.state.activeQuery} onChange={this.handleDropdown}>
-            {this.dropdownValues.map((value, i) => {
-              return <option value={value} key={`${name}-${i}`}>{translation[value]}</option>
-            })}
-          </select>
+          <div className='select--wrapper'>
+            <select className={`${name}-dropdown`} defaultValue={this.state.activeQuery} onChange={this.handleDropdown}>
+              {this.dropdownValues.map((value, i) => {
+                return <option value={value} key={`${name}-${i}`}>{translation[value]}</option>
+              })}
+            </select>
+          </div>
         </div>
         <div className='map-container'>
           <div ref={(a) => { this.mapRef = a }} id='world-map'></div>

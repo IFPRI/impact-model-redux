@@ -3,6 +3,9 @@
   p {
     margin-bottom: 1.5em;
     width: 75%;
+    @include media(medium-down) {
+      width: 90%;
+    }
   }
 }
 
@@ -23,26 +26,38 @@
       font-size: .86em;
       label {
         margin-right: .5em;
+        float: left;
+        margin-top: .5em;
       }
       select {
-        width: 80%;
+        width: 100%;
+        display: block;
       }
       &:after {
         top: 2.4em;
         right: 1.2em;
+      }
+      .select--wrapper {
+        width: 80%;
+      }
+      @include media(small-down) {
+        width: 70%;
       }
     }
     .map-dropdown {
       padding-top: 0;
       padding-bottom: 2em;
       margin: 0;
-      width: 20%;
+      width: 30%;
       &:after {
         top: .8em;
       }
+      @include media(small-down) {
+        width: 70%;
+      }
     }
     .label--chart {
-      width: 80%;
+      width: 83%;
     }
     .pie-chart {
       .chart-container {
@@ -84,9 +99,15 @@
   }
   .home__header-split--right {
     margin-top: 12em;
+    @include media(medium-down) {
+      margin-top: 2em;
+    }
   }
   .home__header-split--left__content {
     padding: 9.8em 4em 0 0;
+    @include media(medium-down) {
+      padding: 5.5em 0 0;
+    }
   }
   .header--type {
     color: #fff;
@@ -106,6 +127,12 @@
   .article-metadata__item {
     float: left;
     width: 40%;
+    @include media(medium-down) {
+      width: 100%;
+      &:first-of-type {
+        margin-bottom: 2em;
+      }
+    }
   }
   ul {
     -webkit-column-count: 2; /* Chrome, Safari, Opera */
@@ -136,10 +163,21 @@
       color: #fff;
       float: left;
       width: 30%;
-      margin-right: 2rem;
       padding: 2rem 2.2rem 3rem 2.2rem;
       border: 2px solid #fff;
       min-height: 16em;
+      &:first-of-type {
+        margin-right: 2rem;
+      }
+      @include media(medium-down) {
+        width: 38%;
+      }
+      @include media(small-down) {
+        width: 78%;
+        &:first-of-type {
+          margin-bottom: 2em;
+        }
+      }
       .link__underline--dark, .link__underline {
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         display: inline;
@@ -178,9 +216,26 @@
       float: left;
       width: 28%;
       margin-right: 5%;
+      @include media(medium-down) {
+        width: 45%;
+        margin-bottom: 3em;
+        &:nth-of-type(3) {
+          clear: left;
+        }
+      }
+      @include media(small-down) {
+        width: 100%;
+      }
       .article-card__body--related {
         min-height: 7.5em;
         position: relative;
+        @include media(medium-down) {
+          min-height: 0;
+          margin-bottom: .5em;
+        }
+      }
+      &:last-of-type {
+        margin-bottom: 0em;
       }
       .article-card__header--related {
         margin: 0 0 .5em;

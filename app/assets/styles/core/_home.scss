@@ -3,7 +3,7 @@
     background-color: $medium-blue;
     position: relative;
     @extend .clearfix;
-    height: 500px;
+    min-height: 500px;
   }
 }
 
@@ -21,11 +21,25 @@
     background: $darkest-blue;
     height: 100%;
     width: 50em;
+    @include media(medium-down) {
+      background: transparent;
+    }
+  }
+  @include media(medium-down) {
+    width: 100%;
+    position: relative;
+    background-color: transparent;
   }
 }
 
 .home__header-split--left__content {
-  padding: 7em 6em 0 0;
+  padding: 7em 6em 5em 0;
+  @include media(medium-down) {
+    padding: 7em 6em 3em 0;
+  }
+  @include media(small-down) {
+    padding: 7em 0 2em;
+  }
 }
 
 .home__header-split--right {
@@ -36,6 +50,17 @@
   a {
     min-width: 9em;
     margin-bottom: 1em;
+  }
+  @include media(medium-down) {
+    position: relative;
+    width: 100%;
+    margin-top: 0;
+    a {
+      min-width: 4em;
+      &:first-of-type {
+        margin-right: 1em;
+      }
+    }
   }
 }
 
@@ -48,6 +73,13 @@
   .featured-project__item--body {
     float: left;
     width: 82%;
+  }
+  @include media(medium-down) {
+    width: 100%;
+    &:first-of-type {
+      margin-right: 0;
+      margin-bottom: 3em;
+    }
   }
 }
 

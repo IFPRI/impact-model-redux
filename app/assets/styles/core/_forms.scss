@@ -19,6 +19,12 @@ select {
 
 .select--wrapper {
   position: relative;
+  display: block;
+  float: left;
+  width: 40%;
+  @include media(small-down) {
+    width: 80%;
+  }
   &:after {
     content: '';
     background-image: url(../graphics/collecticons/chevron-down.svg);
