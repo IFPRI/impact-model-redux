@@ -12,7 +12,7 @@ import queryDatabase from '../utils/query-database'
 import { toTitleCase, formatNumber } from '../utils/format'
 
 // Constants
-import { nineColorPalette, oneColorPalette } from '../constants'
+import { sixColorPalette, oneColorPalette } from '../constants'
 
 // Data
 import translation from '../../data/translation'
@@ -51,10 +51,26 @@ export class Chart extends React.Component {
         },
         scales: {
           yAxes: [{
-            ticks: {}
+            gridLines: {
+              drawOnChartArea: false,
+              drawTicks: true,
+              tickMarkLength: 8
+            },
+            ticks: {
+              fontColor: '#9E9E9E',
+              fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+            }
           }],
           xAxes: [{
-            ticks: {}
+            gridLines: {
+              drawOnChartArea: false,
+              drawTicks: true,
+              tickMarkLength: 8
+            },
+            ticks: {
+              fontColor: '#9E9E9E',
+              fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+            }
           }]
         }
       },
@@ -62,7 +78,7 @@ export class Chart extends React.Component {
         labels: [],
         datasets: [{
           data: [],
-          backgroundColor: nineColorPalette
+          backgroundColor: sixColorPalette
         }]
       }
     }
@@ -70,11 +86,13 @@ export class Chart extends React.Component {
     if (chartType === 'bar') {
       chart.options.responsive = true
       chart.options.maintainAspectRatio = false
+      chart.data.datasets[0].backgroundColor = oneColorPalette
       chart.options.scales.yAxes[0].ticks.userCallback = (value) => formatNumber(value)
       chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')}}
     }
 
     if (chartType === 'horizontalBar') {
+      chart.data.datasets[0].backgroundColor = oneColorPalette
       chart.options.scales.xAxes[0].ticks.userCallback = (value) => formatNumber(value)
       chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'xLabel')}}
     }
@@ -84,7 +102,9 @@ export class Chart extends React.Component {
       chart.options.maintainAspectRatio = false
       chart.data.datasets[0].fill = false
       chart.data.datasets[0].borderColor = oneColorPalette
-      chart.data.datasets[0].borderWidth = 5
+      chart.data.datasets[0].borderWidth = 4
+      chart.data.datasets[0].pointBackgroundColor = '#fff'
+      chart.data.datasets[0].pointBorderWidth = 2
       chart.options.scales.yAxes[0].ticks.userCallback = (value) => formatNumber(value)
       chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')}}
     }
@@ -93,6 +113,7 @@ export class Chart extends React.Component {
     if (isPieChart) {
       delete chart.options.scales
       chart.options.maintainAspectRatio = true
+      chart.options.cutoutPercentage = 80
       chart.options.legend = {display: true, position: 'bottom'}
     }
 
@@ -152,7 +173,7 @@ export class Chart extends React.Component {
         <div className='chart-container'>
           <canvas id={name} className='chart'></canvas>
         </div>
-        <div className='chart-dropdown'>
+        <div className='chart-dropdown select--wrapper'>
           <label>Filter:</label>
           <select className={`${name}-dropdown`} defaultValue={activeQuery} onChange={this.updateQuery}>
             {this.dropdownValues.map((value, i) => {
