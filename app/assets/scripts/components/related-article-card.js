@@ -26,7 +26,7 @@ export class RelatedArticleCard extends React.Component {
         </div>
         <ul className='article-card__tags'>
           {article.tags.map(tag => {
-            return <li key={tag}><a onClick={this.goToTag.bind(this, tag)} href=''>{toTitleCase(tag)}</a></li>
+            return <li key={tag}><a className='link-block link__underline' onClick={this.goToTag.bind(this, tag)} href=''>{toTitleCase(tag)}</a></li>
           })}
         </ul>
       </li>

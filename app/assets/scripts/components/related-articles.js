@@ -12,9 +12,9 @@ export class RelatedArticles extends React.Component {
 
     return (
       <section className={c((cardType === 'project' ? 'page__project-articles-list' : 'page__related-articles-list'), 'section__padding')}>
-        <div className='row'>
+        <div className='row row--shortened'>
           <h4 className='header--large section__header'>{this.props.title || 'Related Articles'}</h4>
-          <ul>
+          <ul className='related-articles'>
             {articles.map(article => {
               return (
                 <RelatedArticleCard
