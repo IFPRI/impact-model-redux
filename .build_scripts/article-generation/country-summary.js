@@ -118,10 +118,10 @@ fixed:
 |---|---|---|---|---|
 | ${translation.translate(subcontinent)} | Population (million) | ${results[0]} | ${results[1]} | ${results[2]} |
 |  | GDP (billion $US) | ${results[3]} | ${results[4]} | ${results[5]} |
-|  | Per capita GDP ($US) |
+|  | Per capita GDP ($US) | ${(1000 * Number(results[3]) / Number(results[0])).toFixed(2)} | ${(1000 * Number(results[4]) / Number(results[1])).toFixed(2)} | ${(1000 * Number(results[5]) / Number(results[2])).toFixed(2)} |
 | ${translation.translate(region)} | Population (million) | ${results[6]} | ${results[7]} | ${results[8]} |
 |  | GDP (billion $US) | ${results[9]} | ${results[10]} | ${results[11]} |
-|  | Per capita GDP ($US) |`
+|  | Per capita GDP ($US) | ${(1000 * Number(results[9]) / Number(results[6])).toFixed(2)}| ${(1000 * Number(results[10]) / Number(results[7])).toFixed(2)}| ${(1000 * Number(results[11]) / Number(results[8])).toFixed(2)}|`
 
     var article = `Summary of IMPACT model outputs for ${name}\n\n${outputFigures}${foodSecurityFigures}${table}`
 

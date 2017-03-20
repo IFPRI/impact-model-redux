@@ -18,9 +18,11 @@ function generateArticle (commodity, group) {
   var name = translation.translate(commodity)
   var fileName = name.replace(/ /g, '-').toLowerCase()
   var title = `${name} Summary`
+  // qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
   var figure = `\`\`\`chart
 mark: line
 title: ${name} Impact Parameters over time
+width: 50%
 encoding:
   x:
     type: nominal
@@ -32,19 +34,38 @@ fixed:
   commodity: ${commodity}
 dropdown:
   field: impactparameter
-  values: qdxagg, qnxagg
+  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+\`\`\``
+
+  var figureTwo = `\`\`\`chart
+mark: bar
+title: Change in ${name} Impact Parameters from 2015 - 2050 (%)
+width: 50%
+encoding:
+  x:
+    type: nominal
+    field: impactparameter
+  y:
+    type: quantitative
+    field: Val
+fixed:
+  commodity: ${commodity}
+  impactparameter: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+change: true
 \`\`\``
 
   var map = `\`\`\`map
-title: Change in ${name} Demand from 2015 - 2050 (%)
+title: Change in ${name} IMPACT Parameters from 2015 - 2050 (%)
 aggregation: country
 fixed:
-  impactparameter: qdxagg
   commodity: ${commodity}
+dropdown:
+  field: impactparameter
+  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
 change: percentage
 \`\`\``
 
-  var article = `Summary of IMPACT model outputs for ${name.toLowerCase()}\n\n${figure}\n\n${map}`
+  var article = `Summary of IMPACT model outputs for ${name.toLowerCase()}\n\n${figure}\n\n${figureTwo}\n\n${map}`
 
   var scenarioString = scenarios.map(s => ` - ${s}`).join('\n')
   var tagString = tags.map(t => ` - ${t}`).join('\n')
