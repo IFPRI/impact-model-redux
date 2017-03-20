@@ -43,7 +43,7 @@ tags:
 ${tagString}
 ---
 ${article}`
-
+  console.log(`writing ${fileName}.md`)
   fs.writeFileSync(`./app/assets/data/articles/${fileName}.md`, output)
 }
 
