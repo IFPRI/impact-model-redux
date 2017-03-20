@@ -135,7 +135,7 @@
     .article-card--project {
       color: #fff;
       float: left;
-      width: 27%;
+      width: 30%;
       margin-right: 2rem;
       padding: 2rem 2.2rem 3rem 2.2rem;
       border: 2px solid #fff;
@@ -164,7 +164,7 @@
       width: 28%;
       margin-right: 5%;
       .article-card__body--related {
-        min-height: 8.5em;
+        min-height: 10em;
         position: relative;
       }
       .article-card__header--related {
@@ -177,6 +177,16 @@
         color: $light-grey;
         font-size: .86em;
         font-style: italic;
+        li {
+          display: inline-block;
+          margin-right: .5em;
+          &:after {
+            content: ',';
+          }
+          &:last-of-type:after {
+            content: '';
+          }
+        }
       }
 
       &:last-child {
