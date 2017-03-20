@@ -11,6 +11,7 @@ import { Router, Route, IndexRoute, hashHistory, applyRouterMiddleware } from 'r
 import config from './config'
 import reducer from './reducers'
 
+
 const logger = createLogger({
   level: 'info',
   collapsed: true,

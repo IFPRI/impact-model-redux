@@ -173,13 +173,15 @@ export class Chart extends React.Component {
         <div className='chart-container'>
           <canvas id={name} className='chart'></canvas>
         </div>
-        <div className='chart-dropdown select--wrapper'>
+        <div className='chart-dropdown'>
           <label>Filter:</label>
-          <select className={`${name}-dropdown`} defaultValue={activeQuery} onChange={this.updateQuery}>
-            {this.dropdownValues.map((value, i) => {
-              return <option value={value} key={`${name}-${i}`}>{translation[value]}</option>
-            })}
-          </select>
+          <div className='select--wrapper'>
+            <select className={`${name}-dropdown`} defaultValue={activeQuery} onChange={this.updateQuery}>
+              {this.dropdownValues.map((value, i) => {
+                return <option value={value} key={`${name}-${i}`}>{translation[value]}</option>
+              })}
+            </select>
+          </div>
         </div>
       </div>
     )

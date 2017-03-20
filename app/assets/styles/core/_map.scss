@@ -17,4 +17,7 @@ figcaption {
   font-weight: $base-font-light;
   margin-bottom: 2em;
   width: 70%;
+  @include media(small-down) {
+    width: 100%;
+  }
 }

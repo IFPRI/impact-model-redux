@@ -26,26 +26,38 @@
       font-size: .86em;
       label {
         margin-right: .5em;
+        float: left;
+        margin-top: .5em;
       }
       select {
-        width: 80%;
+        width: 100%;
+        display: block;
       }
       &:after {
         top: 2.4em;
         right: 1.2em;
+      }
+      .select--wrapper {
+        width: 80%;
+      }
+      @include media(small-down) {
+        width: 70%;
       }
     }
     .map-dropdown {
       padding-top: 0;
       padding-bottom: 2em;
       margin: 0;
-      width: 20%;
+      width: 30%;
       &:after {
         top: .8em;
       }
+      @include media(small-down) {
+        width: 70%;
+      }
     }
     .label--chart {
-      width: 80%;
+      width: 83%;
     }
     .pie-chart {
       .chart-container {
