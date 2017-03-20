@@ -16,6 +16,44 @@ function generateArticle (scenario) {
   var fileName = name.replace(/ /g, '-').toLowerCase()
   var title = `${name} Summary`
 
+  var figure = `\`\`\`chart
+mark: bar
+title: Change in ${name} Impact Parameters per Commodity Group from 2015 - 2050 (%)
+width: 100%
+encoding:
+  x:
+    type: nominal
+    field: impactparameter
+  y:
+    type: quantitative
+    field: Val
+fixed:
+  impactparameter: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+dropdown:
+  field: agg_commodity
+  values: ${_.uniq(_.values(commodities)).join(',')}
+change: true
+\`\`\``
+
+  var figureTwo = `\`\`\`chart
+mark: bar
+title: Change in ${name} Impact Parameters from 2015 - 2050 (%)
+width: 100%
+encoding:
+  x:
+    type: nominal
+    field: agg_commodity
+  y:
+    type: quantitative
+    field: Val
+fixed:
+  agg_commodity: ${_.uniq(_.values(commodities)).join(',')}
+dropdown:
+  field: impactparameter
+  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+change: true
+\`\`\``
+
   var map = `\`\`\`map
 title: Change in ${name} IMPACT Parameters from 2015 - 2050 (%)
 dropdownCommodityGroup:
@@ -27,7 +65,7 @@ dropdownParameter:
 change: percentage
 \`\`\``
 
-  var article = `Summary of IMPACT model outputs for ${name}\n\n${map}`
+  var article = `Summary of IMPACT model outputs for ${name}\n\n${figure}\n\n${figureTwo}\n\n${map}`
 
   var scenarioString = [scenario].map(s => ` - ${s}`).join('\n')
   var tagString = tags.map(t => ` - ${t}`).join('\n')
