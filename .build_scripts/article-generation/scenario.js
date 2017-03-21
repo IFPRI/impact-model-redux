@@ -19,7 +19,7 @@ function generateArticle (scenario) {
   var figure = `\`\`\`chart
 mark: bar
 title: Change in ${name} Impact Parameters per Commodity Group from 2015 - 2050 (%)
-width: 100%
+width: 70%
 encoding:
   x:
     type: nominal
@@ -38,7 +38,7 @@ change: true
   var figureTwo = `\`\`\`chart
 mark: bar
 title: Change in ${name} Impact Parameters from 2015 - 2050 (%)
-width: 100%
+width: 70%
 encoding:
   x:
     type: nominal
