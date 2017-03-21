@@ -22,7 +22,7 @@ function generateArticle (commodity, group) {
   var figure = `\`\`\`chart
 mark: line
 title: ${name} Impact Parameters over time
-width: 50%
+width: 37%
 encoding:
   x:
     type: nominal
@@ -40,7 +40,7 @@ dropdown:
   var figureTwo = `\`\`\`chart
 mark: bar
 title: Change in ${name} Impact Parameters from 2015 - 2050 (%)
-width: 50%
+width: 37%
 encoding:
   x:
     type: nominal
@@ -56,12 +56,12 @@ change: true
 
   var map = `\`\`\`map
 title: Change in ${name} IMPACT Parameters from 2015 - 2050 (%)
-fixed:
-  commodity: ${commodity}
 dropdown:
   field: impactparameter
   values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
 change: percentage
+fixed:
+  commodity: ${commodity}
 \`\`\``
 
   var article = `Summary of IMPACT model outputs for ${name.toLowerCase()}\n\n${figure}\n\n${figureTwo}\n\n${map}`

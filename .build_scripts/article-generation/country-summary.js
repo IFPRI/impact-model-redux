@@ -30,7 +30,7 @@ function generateArticle (region, subcontinent, continent, callback) {
     return `\`\`\`chart
 mark: bar
 title: ${name} - ${translation.translate(param)}
-width: 33%
+width: 37%
 encoding:
   x:
     type: nominal
@@ -52,7 +52,7 @@ dropdown:
     return `\`\`\`chart
 mark: bar
 title: ${name} - ${translation.translate(param)}
-width: 33%
+width: 37%
 encoding:
   x:
     type: nominal
@@ -123,7 +123,7 @@ fixed:
 |  | GDP (billion $US) | ${results[9]} | ${results[10]} | ${results[11]} |
 |  | Per capita GDP ($US) | ${(1000 * Number(results[9]) / Number(results[6])).toFixed(2)}| ${(1000 * Number(results[10]) / Number(results[7])).toFixed(2)}| ${(1000 * Number(results[11]) / Number(results[8])).toFixed(2)}|`
 
-    var article = `Summary of IMPACT model outputs for ${name}\n\n${outputFigures}${foodSecurityFigures}${table}`
+    var article = `# Overview \n\n${outputFigures}# Food security\n\n${foodSecurityFigures}${table}`
 
     var scenarioString = scenarios.map(s => ` - ${s}`).join('\n')
     var tagString = tags.map(t => ` - ${t}`).join('\n')
