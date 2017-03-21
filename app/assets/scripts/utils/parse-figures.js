@@ -19,10 +19,10 @@ export const setupRenderer = (dispatch) => {
     })
     if (lang === 'chart') {
       dispatch(updateChart(data, id))
-      return `<div style="width:${data.width}" class="${id} figure-container"></div>`
+      return `<div style="width:${data.width}" class="${id} figure-container chart-figure"></div>`
     } else if (lang === 'map') {
       dispatch(updateMap(data, id))
-      return `<div class="${id} figure-container"></div>`
+      return `<div class="${id} figure-container map-figure"></div>`
     }
   }
   return renderer
