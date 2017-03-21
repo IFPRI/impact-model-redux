@@ -7,16 +7,32 @@
       width: 90%;
     }
   }
+  table {
+    td {
+      padding: .8em .5em .8em 0;
+      text-align: left;
+      &:first-of-type {
+        font-weight: $base-font-bold;
+        color: $black;
+      }
+    }
+    th {
+      text-align: left;
+      font-weight: $base-font-bold;
+      color: $black;
+      padding: .5em .5em .5em 0;
+    }
+  }
 }
 
 .page__article {
   .figure-container {
     padding: 0;
-    margin: 3em 0;
+    margin: 0 0 3em;
     display: inline-block;
-    vertical-align: bottom;
+    vertical-align: top;
     @extend .clearfix;
-    .chart {
+        .chart {
       float: left !important;
     }
     .chart-dropdown, .map-dropdown {
@@ -82,6 +98,21 @@
         height: 10rem;
         min-width: 15rem;
         max-width: 40rem;
+      }
+    }
+  }
+  .chart-figure {
+    background-color: #fff;
+    border: 1px solid darken($lightest-grey, 5%);
+    padding: 3.3% 3.6%;
+    margin-right: 5%;
+    &:last-of-type {
+      margin-bottom: 6em;
+    }
+    .chart-dropdown {
+      width: 80%;
+      .select--wrapper {
+        width: 60%;
       }
     }
   }
