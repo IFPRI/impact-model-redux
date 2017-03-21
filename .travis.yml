@@ -22,14 +22,9 @@ cache:
 before_install:
 - chmod +x ./.build_scripts/deploy.sh
 - chmod +x ./.build_scripts/lint.sh
-- chmod +x ./.build_scripts/article-metadata.js
-- chmod +x ./.build_scripts/article-generation/commodity-summary.js
-- chmod +x ./.build_scripts/article-generation/country-summary.js
-- chmod u+x .build_scripts/article-generation/scenario.js
 
 before_script:
 - ./.build_scripts/lint.sh
-- npm run generate
 - npm test
 
 script:
