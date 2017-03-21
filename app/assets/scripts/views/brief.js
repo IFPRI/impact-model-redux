@@ -127,7 +127,7 @@ export class Brief extends React.Component {
            </section>
         }
         <RelatedArticles
-          type='scenario'
+          type='brief'
           cardType='project'
           title={`Other Briefs in ${translate(metadata.project)}`}
           articles={findProjectArticles(metadata, articles, metadata.project, 2)}
