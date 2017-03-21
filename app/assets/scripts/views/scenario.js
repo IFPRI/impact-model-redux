@@ -125,7 +125,7 @@ export class Scenario extends React.Component {
            </section>
         }
         <RelatedArticles
-          type='project'
+          type='scenario'
           cardType='project'
           title={`Other Scenarios in ${translate(metadata.project)}`}
           articles={findProjectArticles(metadata, articles, metadata.project, 2)}
