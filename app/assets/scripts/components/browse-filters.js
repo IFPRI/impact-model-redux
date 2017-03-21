@@ -56,7 +56,7 @@ export class BrowseFilters extends React.Component {
       // generate list of tags
       this.filters.push({
         name: 'Tags',
-        list: filterCategories.tags,
+        list: filterCategories.tags.map(translate),
         type: 'autocomplete'
       })
     }
