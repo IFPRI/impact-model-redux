@@ -50,6 +50,7 @@
   a {
     min-width: 9em;
     margin-bottom: 1em;
+    display: inline-block;
   }
   @include media(medium-down) {
     position: relative;
