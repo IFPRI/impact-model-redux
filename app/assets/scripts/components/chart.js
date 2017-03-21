@@ -48,7 +48,9 @@ export class Chart extends React.Component {
             },
             ticks: {
               fontColor: '#9E9E9E',
-              fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+              fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              beginAtZero: false,
+              autoSkipPadding: 10
             }
           }],
           xAxes: [{
@@ -59,7 +61,9 @@ export class Chart extends React.Component {
             },
             ticks: {
               fontColor: '#9E9E9E',
-              fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+              fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              beginAtZero: false,
+              autoSkipPadding: 10
             }
           }]
         }

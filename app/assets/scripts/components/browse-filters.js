@@ -57,7 +57,7 @@ export class BrowseFilters extends React.Component {
       this.filters.push({
         name: 'Tags',
         list: filterCategories.tags,
-        type: 'checkbox'
+        type: 'autocomplete'
       })
     }
     // generate list of projects

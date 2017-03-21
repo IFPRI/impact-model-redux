@@ -22,7 +22,7 @@ function generateArticle (commodity, group) {
   var figure = `\`\`\`chart
 mark: line
 title: ${name} Impact Parameters over time
-width: 50%
+width: 38%
 encoding:
   x:
     type: nominal
@@ -40,7 +40,7 @@ dropdown:
   var figureTwo = `\`\`\`chart
 mark: bar
 title: Change in ${name} Impact Parameters from 2015 - 2050 (%)
-width: 50%
+width: 38%
 encoding:
   x:
     type: nominal
