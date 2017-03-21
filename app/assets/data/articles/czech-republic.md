@@ -1,6 +1,6 @@
 ---
 title: Czech Republic Summary
-date: 3/20/2017
+date: 3/21/2017
 type: brief
 briefType: country-summary
 project: 'baseline'
@@ -20,12 +20,12 @@ tags:
  - europe
  - baseline
 ---
-Summary of IMPACT model outputs for Czech Republic
+# Overview 
 
 ```chart
 mark: bar
 title: Czech Republic - Total Demand
-width: 33%
+width: 37%
 encoding:
   x:
     type: nominal
@@ -45,7 +45,7 @@ dropdown:
 ```chart
 mark: bar
 title: Czech Republic - Commodity Supply
-width: 33%
+width: 37%
 encoding:
   x:
     type: nominal
@@ -65,7 +65,7 @@ dropdown:
 ```chart
 mark: bar
 title: Czech Republic - Net Trade
-width: 33%
+width: 37%
 encoding:
   x:
     type: nominal
@@ -82,10 +82,12 @@ dropdown:
   values: animal_products,cereals,fruits_vegetables,oils_seeds,food_oils,oil_meals,other,pulses,roots_tubers,sugar
 ```
 
+# Food security
+
 ```chart
 mark: bar
 title: Czech Republic - Population at Risk of Hunger
-width: 33%
+width: 37%
 encoding:
   x:
     type: nominal
@@ -102,7 +104,7 @@ fixed:
 ```chart
 mark: bar
 title: Czech Republic - Food Availability
-width: 33%
+width: 37%
 encoding:
   x:
     type: nominal
@@ -119,7 +121,7 @@ fixed:
 ```chart
 mark: bar
 title: Czech Republic - Total Malnourished Children
-width: 33%
+width: 37%
 encoding:
   x:
     type: nominal

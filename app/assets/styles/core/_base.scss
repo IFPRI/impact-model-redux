@@ -105,6 +105,7 @@ a, a:visited {
   @extend .clearfix;
   .split__internal--left {
     width: 57%;
+    max-width: 665px;
     @include media(medium-down) {
       width: 100%;
     }

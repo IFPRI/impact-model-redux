@@ -34,7 +34,7 @@
  * http://jeet.gs/
  */
 
- @import "core/collecticons";
+ @import "components/collecticons";
 
  /**
   * Icon font from Collecticons, designed by Development Seed
@@ -77,17 +77,17 @@
 
 @import "core/base";
 @import "core/home";
-@import "core/page-header";
-@import "core/page-footer";
+@import "components/page-header";
+@import "components/page-footer";
 @import "core/browse";
 @import "core/type";
-@import "core/buttons";
+@import "components/buttons";
 @import "core/article";
 @import "core/about";
 @import "core/contact";
 @import "core/utils";
-@import "core/forms";
-@import "core/map";
+@import "components/forms";
+@import "components/map";
 @import "core/uhoh";
-@import "core/loading";
+@import "components/loading";
 @import "core/tables";

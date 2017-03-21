@@ -1,6 +1,6 @@
 ---
 title: SSP2_MIROC Summary
-date: 3/20/2017
+date: 3/21/2017
 type: scenario
 project: 'baseline'
 scenarios:
@@ -14,7 +14,7 @@ Summary of IMPACT model outputs for SSP2_MIROC
 ```chart
 mark: bar
 title: Change in SSP2_MIROC Impact Parameters per Commodity Group from 2015 - 2050 (%)
-width: 100%
+width: 70%
 encoding:
   x:
     type: nominal
@@ -33,7 +33,7 @@ change: true
 ```chart
 mark: bar
 title: Change in SSP2_MIROC Impact Parameters from 2015 - 2050 (%)
-width: 100%
+width: 70%
 encoding:
   x:
     type: nominal
