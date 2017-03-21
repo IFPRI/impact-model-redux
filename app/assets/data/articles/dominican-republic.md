@@ -1,0 +1,143 @@
+---
+title: Dominican Republic Summary
+date: 3/20/2017
+type: brief
+briefType: country-summary
+project: 'baseline'
+locations:
+  - dom
+  - caribbean
+  - americas
+scenarios:
+ - SSP2_GFDL
+ - SSP2_HGEM
+ - SSP2_MIROC
+ - SSP2_IPSL
+ - SSP2_NOCC
+tags:
+ - dom
+ - caribbean
+ - americas
+ - baseline
+---
+Summary of IMPACT model outputs for Dominican Republic
+
+```chart
+mark: bar
+title: Dominican Republic - Total Demand
+width: 33%
+encoding:
+  x:
+    type: nominal
+    field: year
+  y:
+    type: quantitative
+    field: Val
+fixed:
+  region: dom
+  impactparameter: qdxagg
+  year: 2015,2030,2050
+dropdown:
+  field: agg_commodity
+  values: animal_products,cereals,fruits_vegetables,oils_seeds,food_oils,oil_meals,other,pulses,roots_tubers,sugar
+```
+
+```chart
+mark: bar
+title: Dominican Republic - Commodity Supply
+width: 33%
+encoding:
+  x:
+    type: nominal
+    field: year
+  y:
+    type: quantitative
+    field: Val
+fixed:
+  region: dom
+  impactparameter: qsupxagg
+  year: 2015,2030,2050
+dropdown:
+  field: agg_commodity
+  values: animal_products,cereals,fruits_vegetables,oils_seeds,food_oils,oil_meals,other,pulses,roots_tubers,sugar
+```
+
+```chart
+mark: bar
+title: Dominican Republic - Net Trade
+width: 33%
+encoding:
+  x:
+    type: nominal
+    field: year
+  y:
+    type: quantitative
+    field: Val
+fixed:
+  region: dom
+  impactparameter: qnxagg
+  year: 2015,2030,2050
+dropdown:
+  field: agg_commodity
+  values: animal_products,cereals,fruits_vegetables,oils_seeds,food_oils,oil_meals,other,pulses,roots_tubers,sugar
+```
+
+```chart
+mark: bar
+title: Dominican Republic - Population at Risk of Hunger
+width: 33%
+encoding:
+  x:
+    type: nominal
+    field: year
+  y:
+    type: quantitative
+    field: Val
+fixed:
+  region: dom
+  impactparameter: populationatriskxagg
+  year: 2015,2030,2050
+```
+
+```chart
+mark: bar
+title: Dominican Republic - Food Availability
+width: 33%
+encoding:
+  x:
+    type: nominal
+    field: year
+  y:
+    type: quantitative
+    field: Val
+fixed:
+  region: dom
+  impactparameter: foodavailxagg
+  year: 2015,2030,2050
+```
+
+```chart
+mark: bar
+title: Dominican Republic - Total Malnourished Children
+width: 33%
+encoding:
+  x:
+    type: nominal
+    field: year
+  y:
+    type: quantitative
+    field: Val
+fixed:
+  region: dom
+  impactparameter: totalmalnourishedxagg
+  year: 2015,2030,2050
+```
+
+|   |   | 2015 | 2030 | 2050 |
+|---|---|---|---|---|
+| Caribbean | Population (million) | 42.28 | 44.64 | 44.48 |
+|  | GDP (billion $US) | 337.48 | 508.02 | 797.66 |
+|  | Per capita GDP ($US) | 7982.02 | 11380.38 | 17933.00 |
+| Dominican Republic | Population (million) | 10.52 | 12.01 | 13.13 |
+|  | GDP (billion $US) | 103.97 | 181.03 | 309.05 |
+|  | Per capita GDP ($US) | 9883.08| 15073.27| 23537.70|

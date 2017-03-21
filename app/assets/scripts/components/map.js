@@ -239,8 +239,8 @@ export class MapComponent extends React.Component {
         <h2 className='label--map'>{data.title}</h2>
         <figcaption>The map shows change in key output parameters from across geographies. Use dropdown menus to select desired commodity (or group) and parameters to display. Toggle buttons at top right allow different geographic aggregations. Hover over countries or regions to observe the actual results.</figcaption>
         <div className='map-container'>
-          <div ref={(a) => { this.mapRef = a }} id='world-map'></div>
           {Dropdowns}
+          <div ref={(a) => { this.mapRef = a }} id='world-map'></div>
         </div>
       </figure>
     )
