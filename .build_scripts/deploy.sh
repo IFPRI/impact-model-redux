@@ -6,6 +6,7 @@ cd dist
 git init
 git config user.name "Travis-CI"
 git config user.email "travis@somewhere.com"
+touch .nojekyll
 git add .
 git commit -m "CI deploy to gh-pages"
 git push --force --quiet "https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git" master:gh-pages
