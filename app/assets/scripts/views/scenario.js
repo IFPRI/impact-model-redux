@@ -68,18 +68,34 @@ export class Scenario extends React.Component {
 
   render () {
     const { articles, metadata } = this.props
+    const { locations, resources, author } = metadata
     const date = moment(metadata.date, 'M/D/YYYY').format('MMMM Do, YYYY')
 
-    let locations = metadata.locations
-    locations = locations
-      ? locations.length > 1 ? locations.map((loc) => <li key={loc}>{translate(loc)}</li>) : <li>{translate(locations)}</li>
-      : ''
+    const Locations = locations
+    ? <div className='article-metadata__item'>
+      <span className='article-metadata__header'>Locations:</span>
+      <ul>{locations.length > 1 ? locations.map((loc) => <li key={loc}>{translate(loc)}</li>) : <li>{translate(locations)}</li>}</ul>
+    </div>
+    : ''
 
-    let resources = metadata.resources
-    resources = resources
-      ? resources.length > 1 ? resources.map((res) => <li key={res}><a target="_blank" href={res}>{res}</a></li>) : <li><a target="_blank" href={resources}>{resources}</a></li>
-      : ''
+    const Resources = resources
+    ? <div className='article-metadata__item'>
+      <span className='article-metadata__header'>Resources:</span>
+      <ul>{resources.length > 1 ? resources.map((res) => <li key={res}><a target="_blank" href={res}>{res}</a></li>) : <li><a target="_blank" href={resources}>{resources}</a></li>}</ul>
+    </div>
+    : ''
 
+    const AuthorAndDate = author
+    ? <dl className='article-byline header__metadata header__descriptions'>
+      <dt className='visually-hidden'>Date</dt>
+      <dd>{date}</dd>
+      <dt className='visually-hidden'>Author</dt>
+      <dd>{metadata.author}</dd>
+    </dl>
+    : <dl className='article-byline header__metadata header__descriptions'>
+      <dt className='visually-hidden'>Date</dt>
+      <dd>{date}</dd>
+    </dl>
     return (
       <section className='page__article'>
         <section className='header__internal'>
@@ -87,12 +103,7 @@ export class Scenario extends React.Component {
             <div className='home__header-split--left split__internal--left'>
               <div className='home__header-split--left__content'>
                 <h2 className='header--xxlarge with-metadata'>{metadata.title}</h2>
-                <dl className='article-byline header__metadata header__descriptions'>
-                  <dt className='visually-hidden'>Date</dt>
-                  <dd>{date}</dd>
-                  <dt className='visually-hidden'>Author</dt>
-                  <dd>{metadata.author}</dd>
-                </dl>
+                {AuthorAndDate}
               </div>
             </div>
             <div className='home__header-split--right'>
@@ -106,14 +117,8 @@ export class Scenario extends React.Component {
          : <section className='section__internal'>
              <div className='row row--shortened'>
                <div className='article-metadata'>
-                  <div className='article-metadata__item'>
-                    <span className='article-metadata__header'>Locations:</span>
-                    <ul>{locations}</ul>
-                  </div>
-                  <div className='article-metadata__item'>
-                    <span className='article-metadata__header'>Resources:</span>
-                    <ul>{resources}</ul>
-                  </div>
+                  {Locations}
+                  {Resources}
                </div>
                <div className='article--content' dangerouslySetInnerHTML={{__html: this.props.article}}></div>
              </div>
