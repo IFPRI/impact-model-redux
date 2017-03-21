@@ -32,17 +32,7 @@
     display: inline-block;
     vertical-align: top;
     @extend .clearfix;
-    background-color: #fff;
-    border: 1px solid darken($lightest-grey, 5%);
-    padding: 3.3% 3.6%;
-    margin-right: 5%;
-    &:nth-of-type(odd) {
-      
-    }
-    &:last-of-type {
-      margin-bottom: 6em;
-    }
-    .chart {
+        .chart {
       float: left !important;
     }
     .chart-dropdown, .map-dropdown {
@@ -108,6 +98,21 @@
         height: 10rem;
         min-width: 15rem;
         max-width: 40rem;
+      }
+    }
+  }
+  .chart-figure {
+    background-color: #fff;
+    border: 1px solid darken($lightest-grey, 5%);
+    padding: 3.3% 3.6%;
+    margin-right: 5%;
+    &:last-of-type {
+      margin-bottom: 6em;
+    }
+    .chart-dropdown {
+      width: 80%;
+      .select--wrapper {
+        width: 60%;
       }
     }
   }

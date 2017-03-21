@@ -47,10 +47,10 @@ export class Chart extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
-              fontColor: '#9E9E9E',
-              fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif",
               beginAtZero: false,
-              autoSkipPadding: 10
+              padding: 5,
+              fontColor: '#9E9E9E',
+              fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif"
             }
           }],
           xAxes: [{
@@ -63,7 +63,7 @@ export class Chart extends React.Component {
               fontColor: '#9E9E9E',
               fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif",
               beginAtZero: false,
-              autoSkipPadding: 10
+              padding: 5
             }
           }]
         }
@@ -80,13 +80,13 @@ export class Chart extends React.Component {
     if (chartType === 'bar') {
       chart.options.responsive = true
       chart.options.maintainAspectRatio = false
-      chart.data.datasets[0].backgroundColor = oneColorPalette
+      chart.data.datasets[0].backgroundColor = '#83C61A'
       chart.options.scales.yAxes[0].ticks.userCallback = (value) => formatNumber(value)
       chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')}}
     }
 
     if (chartType === 'horizontalBar') {
-      chart.data.datasets[0].backgroundColor = oneColorPalette
+      chart.data.datasets[0].backgroundColor = '#83C61A'
       chart.options.scales.xAxes[0].ticks.userCallback = (value) => formatNumber(value)
       chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'xLabel')}}
     }
