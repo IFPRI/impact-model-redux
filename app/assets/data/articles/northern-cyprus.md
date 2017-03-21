@@ -1,6 +1,6 @@
 ---
 title: Northern Cyprus Summary
-date: 3/20/2017
+date: 3/21/2017
 type: brief
 briefType: country-summary
 project: 'baseline'
@@ -20,12 +20,12 @@ tags:
  - 
  - baseline
 ---
-Summary of IMPACT model outputs for Northern Cyprus
+# Overview 
 
 ```chart
 mark: bar
 title: Northern Cyprus - Total Demand
-width: 33%
+width: 37%
 encoding:
   x:
     type: nominal
@@ -45,7 +45,7 @@ dropdown:
 ```chart
 mark: bar
 title: Northern Cyprus - Commodity Supply
-width: 33%
+width: 37%
 encoding:
   x:
     type: nominal
@@ -65,7 +65,7 @@ dropdown:
 ```chart
 mark: bar
 title: Northern Cyprus - Net Trade
-width: 33%
+width: 37%
 encoding:
   x:
     type: nominal
@@ -82,10 +82,12 @@ dropdown:
   values: animal_products,cereals,fruits_vegetables,oils_seeds,food_oils,oil_meals,other,pulses,roots_tubers,sugar
 ```
 
+# Food security
+
 ```chart
 mark: bar
 title: Northern Cyprus - Population at Risk of Hunger
-width: 33%
+width: 37%
 encoding:
   x:
     type: nominal
@@ -102,7 +104,7 @@ fixed:
 ```chart
 mark: bar
 title: Northern Cyprus - Food Availability
-width: 33%
+width: 37%
 encoding:
   x:
     type: nominal
@@ -119,7 +121,7 @@ fixed:
 ```chart
 mark: bar
 title: Northern Cyprus - Total Malnourished Children
-width: 33%
+width: 37%
 encoding:
   x:
     type: nominal
