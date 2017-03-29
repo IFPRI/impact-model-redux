@@ -5,8 +5,13 @@ import _ from 'lodash'
 
 import config from '../config'
 
-export const queryDatabase = (data, callback) => {
-  // grab the important field names
+const queryDatabase = (data, sources) => {
+  if (sources.length) {
+    return Promise.all(sources.map((source) => performQuery(data, source)))
+  }
+}
+
+const performQuery = (data, sourceID) => {
   const groups = String(data.encoding.x.field).split(',').map(a => a.trim())
   let group
   if (groups.length === 1) {
@@ -39,7 +44,7 @@ export const queryDatabase = (data, callback) => {
   let val = data.encoding.y.field
   // request the data and parse the response for our graph format
   const postData = JSON.stringify(sqltoes({select: [`sum(${val})`], where: where, groupBy: groupBy}))
-  return fetch(config.dbUrl, {
+  return fetch(`${config.dbUrl}/${sourceID.toLowerCase()}/_search?search_type=count`, {
     method: 'post',
     body: postData})
   .then((resp) => resp.json())
@@ -60,15 +65,15 @@ export const queryDatabase = (data, callback) => {
         return parseDataObject(obj, group, val, {}, change)
       }))
     }
-
-    callback(Object.assign(queryData, data.fixed, {groupBy: groupBy[0]}))
+    return Object.assign(queryData, data.fixed, {groupBy: groupBy[0], source: sourceID})
   })
 }
 
 const parseDataObject = (obj, group, val, otherKeys, change) => {
   var nextGroup = Object.keys(obj).find(a => a.match('group_by'))
   // we may have other groupings to parse through
-  if (nextGroup) {
+  // data curruption may cause less than 2 buckets
+  if (nextGroup && obj[nextGroup].buckets.length > 1) {
     // special parsing for change by year
     if (nextGroup === 'group_by_year' && change) {
       return Object.assign({}, {

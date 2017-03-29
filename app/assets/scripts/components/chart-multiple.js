@@ -30,7 +30,8 @@ export class Chart extends React.Component {
 
   initializeChart () {
     const { name, data } = this.props
-    const chartType = data.mark
+    // const chartType = data.mark
+    const chartType = 'line-area'
 
     let chart = {
       type: chartType,
@@ -77,21 +78,7 @@ export class Chart extends React.Component {
       }
     }
 
-    if (chartType === 'bar') {
-      chart.options.responsive = true
-      chart.options.maintainAspectRatio = false
-      chart.data.datasets[0].backgroundColor = '#83C61A'
-      chart.options.scales.yAxes[0].ticks.userCallback = (value) => formatNumber(value)
-      chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')}}
-    }
-
-    if (chartType === 'horizontalBar') {
-      chart.data.datasets[0].backgroundColor = '#83C61A'
-      chart.options.scales.xAxes[0].ticks.userCallback = (value) => formatNumber(value)
-      chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'xLabel')}}
-    }
-
-    if (chartType === 'line') {
+    if (chartType === 'line-area') {
       chart.options.responsive = true
       chart.options.maintainAspectRatio = false
       chart.data.datasets[0].fill = false
@@ -103,39 +90,29 @@ export class Chart extends React.Component {
       chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')}}
     }
 
-    const isPieChart = chartType === 'pie' || chartType === 'doughnut'
-    if (isPieChart) {
-      delete chart.options.scales
-      chart.options.maintainAspectRatio = true
-      chart.options.cutoutPercentage = 80
-      chart.options.legend = {display: true, position: 'bottom'}
-    }
-
-    const aggregation = data.encoding.x.field
-    queryDatabase(data, (chartData) => {
-      _.forEach(chartData.values, (item) => {
-        chart.data.labels.push(translate(item[aggregation]))
-        chart.data.datasets[0].data.push(item.Val)
+    if (data['chart-type'] === 'line-area') {
+      const aggregation = data.encoding.x.field
+      queryDatabase(data, this.props.scenarios)
+      .then((chartData) => {
+        chartData.forEach((dataset, i) => {
+          chart.data.datasets.push({data: []})
+          _.forEach(chartData.values, (item) => {
+            chart.data.labels.push(translate(item[aggregation]))
+            chart.data.datasets[i].data.push(item.Val)
+          })
+        })
       })
-      if (isPieChart || chartType === 'polarArea') {
-        chart.options.tooltips = {callbacks: {label: (tooltipItem, data) => {
-          const label = chart.data.labels[tooltipItem.index]
-          const datasetLabel = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]
-          return ` ${label}: ${formatNumber(datasetLabel)}`
-        }}}
-      }
-
       this.chart = new ChartJS(
         document.getElementById(name).getContext('2d'),
         chart
       )
-    })
+    }
   }
 
   updateQuery (newData) {
     const chart = []
-    queryDatabase(newData, (chartData) => {
-      console.log(newData)
+    queryDatabase(newData, this.props.scenarios)
+    .then((chartData) => {
       _.forEach(chartData.values, (item) => {
         chart.push(item.Val)
       })
@@ -194,6 +171,7 @@ export class Chart extends React.Component {
 Chart.propTypes = {
   name: React.PropTypes.string,
   data: React.PropTypes.object,
+  scenarios: React.PropTypes.array,
   updateChart: React.PropTypes.func
 }
 
