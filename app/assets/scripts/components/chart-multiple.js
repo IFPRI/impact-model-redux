@@ -238,6 +238,19 @@ export class Chart extends React.Component {
     })
   }
 
+  updateQuery (newData) {
+    const chart = []
+    queryDatabase(newData, this.props.scenarios)
+    .then((chartData) => {
+      this.chart.data.datasets[0].width = this.getStripeWidth(chartData)
+      _.forEach(chartData[0].values, (item) => {
+        chart.push(item.Val)
+      })
+      this.chart.data.datasets[0].data = chart
+      this.chart.update()
+    })
+  }
+
   getStripeWidth (chartData) {
     let positionValues = []
     for (let i = 0; i < chartData[0].values.length; i++) {
@@ -246,19 +259,8 @@ export class Chart extends React.Component {
       }))
     }
     positionValues = positionValues.filter((value) => value)
-    return positionValues.map((values) => _.max(values) + _.min(values))
-  }
-
-  updateQuery (newData) {
-    const chart = []
-    queryDatabase(newData, this.props.scenarios)
-    .then((chartData) => {
-      _.forEach(chartData.values, (item) => {
-        chart.push(item.Val)
-      })
-      this.chart.data.datasets[0].data = chart
-      this.chart.update()
-    })
+    return positionValues.map((values) => _.max(values) - _.min(values))
+    // return positionValues.reduce((a, m, i, p) => a + m / p.length)
   }
 
   handleDropdown (e) {
