@@ -25,13 +25,100 @@ export class Chart extends React.Component {
   }
 
   componentDidMount () {
+    ChartJS.defaults.stripe = ChartJS.helpers.clone(ChartJS.defaults.line)
+    ChartJS.controllers.stripe = ChartJS.controllers.line.extend({
+      draw: function (ease) {
+        console.log(this, arguments)
+        var result = ChartJS.controllers.line.prototype.draw.apply(this, arguments)
+
+        // don't render the stripes till we've finished animating
+        if (!this.rendered && ease !== 1) {
+          return
+        }
+        this.rendered = true
+
+        var helpers = ChartJS.helpers
+        var meta = this.getMeta()
+        var yScale = this.getScaleForId(meta.yAxisID)
+        var yScaleZeroPixel = yScale.getPixelForValue(0)
+        var widths = this.getDataset().width
+        var ctx = this.chart.chart.ctx
+
+        ctx.save()
+        ctx.fillStyle = this.getDataset().backgroundColor
+        ctx.lineWidth = 1
+        ctx.beginPath()
+
+        // initialize the data and bezier control points for the top of the stripe
+        helpers.each(meta.data, function (point, index) {
+          point._view.y += (yScale.getPixelForValue(widths[index]) - yScaleZeroPixel)
+        })
+        ChartJS.controllers.line.prototype.updateBezierControlPoints.apply(this)
+
+        // draw the top of the stripe
+        helpers.each(meta.data, function (point, index) {
+          if (index === 0) {
+            ctx.moveTo(point._view.x, point._view.y)
+          } else {
+            var previous = helpers.previousItem(meta.data, index)
+            var next = helpers.nextItem(meta.data, index)
+
+            ChartJS.elements.Line.prototype.lineToNextPoint.apply({
+              _chart: {
+                ctx: ctx
+              }
+            }, [previous, point, next, null, null])
+          }
+        })
+
+        // revert the data for the top of the stripe
+        // initialize the data and bezier control points for the bottom of the stripe
+        helpers.each(meta.data, function (point, index) {
+          point._view.y -= 2 * (yScale.getPixelForValue(widths[index]) - yScaleZeroPixel)
+        })
+        // we are drawing the points in the reverse direction
+        meta.data.reverse()
+        ChartJS.controllers.line.prototype.updateBezierControlPoints.apply(this)
+
+        // draw the bottom of the stripe
+        helpers.each(meta.data, function (point, index) {
+          if (index === 0) {
+            ctx.lineTo(point._view.x, point._view.y)
+          } else {
+            var previous = helpers.previousItem(meta.data, index)
+            var next = helpers.nextItem(meta.data, index)
+
+            ChartJS.elements.Line.prototype.lineToNextPoint.apply({
+              _chart: {
+                ctx: ctx
+              }
+            }, [previous, point, next, null, null])
+          }
+        })
+
+        // revert the data for the bottom of the stripe
+        meta.data.reverse()
+        helpers.each(meta.data, function (point, index) {
+          point._view.y += (yScale.getPixelForValue(widths[index]) - yScaleZeroPixel)
+        })
+        ChartJS.controllers.line.prototype.updateBezierControlPoints.apply(this)
+
+        ctx.stroke()
+        ctx.closePath()
+        ctx.fill()
+        ctx.restore()
+
+        return result
+      }
+    })
+
     this.initializeChart()
   }
 
   initializeChart () {
     const { name, data } = this.props
     // const chartType = data.mark
-    const chartType = 'line-area'
+    const chartType = 'stripe'
 
     let chart = {
       type: chartType,
@@ -78,7 +165,7 @@ export class Chart extends React.Component {
       }
     }
 
-    if (chartType === 'line-area') {
+    if (chartType === 'line' || chartType === 'stripe') {
       chart.options.responsive = true
       chart.options.maintainAspectRatio = false
       chart.data.datasets[0].fill = false
@@ -90,23 +177,32 @@ export class Chart extends React.Component {
       chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')}}
     }
 
-    if (data['chart-type'] === 'line-area') {
-      const aggregation = data.encoding.x.field
-      queryDatabase(data, this.props.scenarios)
-      .then((chartData) => {
-        chartData.forEach((dataset, i) => {
-          chart.data.datasets.push({data: []})
-          _.forEach(chartData.values, (item) => {
-            chart.data.labels.push(translate(item[aggregation]))
-            chart.data.datasets[i].data.push(item.Val)
-          })
-        })
+    const aggregation = data.encoding.x.field
+    queryDatabase(data, this.props.scenarios)
+    .then((chartData) => {
+      chart.data.datasets[0].width = this.getStripeWidth(chartData)
+      _.forEach(chartData[0].values, (item) => {
+        chart.data.labels.push(translate(item[aggregation]))
+        chart.data.datasets[0].data.push(item.Val)
       })
       this.chart = new ChartJS(
         document.getElementById(name).getContext('2d'),
         chart
       )
+    })
+  }
+
+  getStripeWidth (chartData) {
+    const positionValues = []
+    for (let i = 0; i < chartData[0].values.length; i++) {
+      positionValues.push(chartData.map((dataset) => {
+        return dataset.values[i]
+      }))
     }
+    const width = positionValues.map((values) => {
+      Math.max(values) + Math.min(values)
+    })
+    return width
   }
 
   updateQuery (newData) {

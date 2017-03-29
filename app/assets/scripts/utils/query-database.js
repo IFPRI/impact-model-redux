@@ -6,7 +6,7 @@ import _ from 'lodash'
 import config from '../config'
 
 const queryDatabase = (data, sources) => {
-  if (sources.length) {
+  if (sources.length && sources.constructor === Array) {
     return Promise.all(sources.map((source) => performQuery(data, source)))
   }
 }

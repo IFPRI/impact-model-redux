@@ -48,15 +48,6 @@ export class Brief extends React.Component {
     })
   }
 
-  addMultisourceCharts (charts, scenarios) {
-    _.forEach(charts, (data, name) => {
-      const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
-      if (placeholder) {
-        ReactDOM.render(<Chart name={name} data={data} updateChart={this.updateChart}/>, placeholder)
-      }
-    })
-  }
-
   addMaps (maps) {
     _.forEach(maps, (data, name) => {
       const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
