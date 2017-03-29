@@ -28,7 +28,7 @@ export class Chart extends React.Component {
     ChartJS.defaults.stripe = ChartJS.helpers.clone(ChartJS.defaults.line)
     ChartJS.controllers.stripe = ChartJS.controllers.line.extend({
       draw: function (ease) {
-        var result = ChartJS.controllers.line.prototype.draw.apply(this, arguments)
+        const result = ChartJS.controllers.line.prototype.draw.apply(this, arguments)
 
         // don't render the stripes till we've finished animating
         if (!this.rendered && ease !== 1) {
@@ -36,12 +36,12 @@ export class Chart extends React.Component {
         }
         this.rendered = true
 
-        var helpers = ChartJS.helpers
-        var meta = this.getMeta()
-        var yScale = this.getScaleForId(meta.yAxisID)
-        var yScaleZeroPixel = yScale.getPixelForValue(0)
-        var widths = this.getDataset().width
-        var ctx = this.chart.chart.ctx
+        const helpers = ChartJS.helpers
+        const meta = this.getMeta()
+        const yScale = this.getScaleForId(meta.yAxisID)
+        const yScaleZeroPixel = yScale.getPixelForValue(0)
+        const widths = this.getDataset().width
+        const ctx = this.chart.chart.ctx
 
         ctx.save()
         ctx.fillStyle = this.getDataset().backgroundColor
@@ -49,18 +49,18 @@ export class Chart extends React.Component {
         ctx.beginPath()
 
         // initialize the data and bezier control points for the top of the stripe
-        helpers.each(meta.data, function (point, index) {
+        helpers.each(meta.data, (point, index) => {
           point._view.y += (yScale.getPixelForValue(widths[index]) - yScaleZeroPixel)
         })
         ChartJS.controllers.line.prototype.updateBezierControlPoints.apply(this)
 
         // draw the top of the stripe
-        helpers.each(meta.data, function (point, index) {
+        helpers.each(meta.data, (point, index) => {
           if (index === 0) {
             ctx.moveTo(point._view.x, point._view.y)
           } else {
-            var previous = helpers.previousItem(meta.data, index)
-            var next = helpers.nextItem(meta.data, index)
+            const previous = helpers.previousItem(meta.data, index)
+            const next = helpers.nextItem(meta.data, index)
 
             ChartJS.elements.Line.prototype.lineToNextPoint.apply({
               _chart: {
@@ -72,7 +72,7 @@ export class Chart extends React.Component {
 
         // revert the data for the top of the stripe
         // initialize the data and bezier control points for the bottom of the stripe
-        helpers.each(meta.data, function (point, index) {
+        helpers.each(meta.data, (point, index) => {
           point._view.y -= 2 * (yScale.getPixelForValue(widths[index]) - yScaleZeroPixel)
         })
         // we are drawing the points in the reverse direction
@@ -80,12 +80,12 @@ export class Chart extends React.Component {
         ChartJS.controllers.line.prototype.updateBezierControlPoints.apply(this)
 
         // draw the bottom of the stripe
-        helpers.each(meta.data, function (point, index) {
+        helpers.each(meta.data, (point, index) => {
           if (index === 0) {
             ctx.lineTo(point._view.x, point._view.y)
           } else {
-            var previous = helpers.previousItem(meta.data, index)
-            var next = helpers.nextItem(meta.data, index)
+            const previous = helpers.previousItem(meta.data, index)
+            const next = helpers.nextItem(meta.data, index)
 
             ChartJS.elements.Line.prototype.lineToNextPoint.apply({
               _chart: {
@@ -97,7 +97,7 @@ export class Chart extends React.Component {
 
         // revert the data for the bottom of the stripe
         meta.data.reverse()
-        helpers.each(meta.data, function (point, index) {
+        helpers.each(meta.data, (point, index) => {
           point._view.y += (yScale.getPixelForValue(widths[index]) - yScaleZeroPixel)
         })
         ChartJS.controllers.line.prototype.updateBezierControlPoints.apply(this)
@@ -115,52 +115,6 @@ export class Chart extends React.Component {
   }
 
   initializeChart () {
-//     var config = {
-  //   type: 'stripe',
-  //   data: {
-  //     labels: ["January", "February", "March", "April", "May", "June", "July"],
-  //     datasets: [{
-  //       label: "My First dataset",
-  //       fill: false,
-  //       data: [65, 20, 80, 81, 56, 85, 40],
-  //       width: [12, 4, 5, 13, 12, 2, 19],
-  //       borderColor: "rgba(75,192,192,1)",
-  //       backgroundColor: "rgba(75,192,192,0.4)",
-  //       pointRadius: 0
-  //     }, {
-  //       label: "My Second dataset",
-  //       fill: false,
-  //       data: [80, 81, 56, 85, 40, 65, 20],
-  //       width: [400, 5, 13, 12, 2, 19, 12],
-  //       borderColor: "rgba(192,75,192,1)",
-  //       backgroundColor: "rgba(192,75,192,0.4)",
-  //       pointRadius: 0
-  //     }, {
-  //       label: "My Third dataset",
-  //       fill: false,
-  //       data: [81, 56, 85, 40, 65, 20, 80],
-  //       width: [5, 13, 12, 2, 19, 12, 4],
-  //       borderColor: "rgba(192,102,75,1)",
-  //       backgroundColor: "rgba(192,192,75,0.4)",
-  //       pointRadius: 0
-  //     }]
-  //   },
-  //   options: {
-  //     scales: {
-  //       yAxes: [{
-  //         ticks: {
-  //           min: 0,
-  //           max: 120
-  //         }
-  //       }]
-  //     }
-  //   }
-  // };
-  //
-  // var ctx = document.getElementById(name).getContext("2d");
-  // console.log()
-  // new ChartJS(ctx, config);
-
     const { name, data } = this.props
     // const chartType = data.mark
     const chartType = 'stripe'
@@ -169,6 +123,8 @@ export class Chart extends React.Component {
       type: chartType,
       options: {
         responsive: true,
+        animation: {
+        },
         legend: {
           display: false
         },
@@ -213,6 +169,7 @@ export class Chart extends React.Component {
     if (chartType === 'line' || chartType === 'stripe') {
       chart.options.responsive = true
       chart.options.maintainAspectRatio = false
+      chart.options.animation.duration = 50
       chart.data.datasets[0].fill = false
       chart.data.datasets[0].borderColor = oneColorPalette
       chart.data.datasets[0].backgroundColor = 'rgba(0, 255, 0, 0.3)'
