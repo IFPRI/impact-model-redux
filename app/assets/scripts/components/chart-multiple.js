@@ -28,7 +28,6 @@ export class Chart extends React.Component {
     ChartJS.defaults.stripe = ChartJS.helpers.clone(ChartJS.defaults.line)
     ChartJS.controllers.stripe = ChartJS.controllers.line.extend({
       draw: function (ease) {
-        console.log(this, arguments)
         var result = ChartJS.controllers.line.prototype.draw.apply(this, arguments)
 
         // don't render the stripes till we've finished animating
@@ -116,6 +115,52 @@ export class Chart extends React.Component {
   }
 
   initializeChart () {
+//     var config = {
+  //   type: 'stripe',
+  //   data: {
+  //     labels: ["January", "February", "March", "April", "May", "June", "July"],
+  //     datasets: [{
+  //       label: "My First dataset",
+  //       fill: false,
+  //       data: [65, 20, 80, 81, 56, 85, 40],
+  //       width: [12, 4, 5, 13, 12, 2, 19],
+  //       borderColor: "rgba(75,192,192,1)",
+  //       backgroundColor: "rgba(75,192,192,0.4)",
+  //       pointRadius: 0
+  //     }, {
+  //       label: "My Second dataset",
+  //       fill: false,
+  //       data: [80, 81, 56, 85, 40, 65, 20],
+  //       width: [400, 5, 13, 12, 2, 19, 12],
+  //       borderColor: "rgba(192,75,192,1)",
+  //       backgroundColor: "rgba(192,75,192,0.4)",
+  //       pointRadius: 0
+  //     }, {
+  //       label: "My Third dataset",
+  //       fill: false,
+  //       data: [81, 56, 85, 40, 65, 20, 80],
+  //       width: [5, 13, 12, 2, 19, 12, 4],
+  //       borderColor: "rgba(192,102,75,1)",
+  //       backgroundColor: "rgba(192,192,75,0.4)",
+  //       pointRadius: 0
+  //     }]
+  //   },
+  //   options: {
+  //     scales: {
+  //       yAxes: [{
+  //         ticks: {
+  //           min: 0,
+  //           max: 120
+  //         }
+  //       }]
+  //     }
+  //   }
+  // };
+  //
+  // var ctx = document.getElementById(name).getContext("2d");
+  // console.log()
+  // new ChartJS(ctx, config);
+
     const { name, data } = this.props
     // const chartType = data.mark
     const chartType = 'stripe'
@@ -170,6 +215,7 @@ export class Chart extends React.Component {
       chart.options.maintainAspectRatio = false
       chart.data.datasets[0].fill = false
       chart.data.datasets[0].borderColor = oneColorPalette
+      chart.data.datasets[0].backgroundColor = 'rgba(0, 255, 0, 0.3)'
       chart.data.datasets[0].borderWidth = 4
       chart.data.datasets[0].pointBackgroundColor = '#fff'
       chart.data.datasets[0].pointBorderWidth = 2
@@ -193,16 +239,14 @@ export class Chart extends React.Component {
   }
 
   getStripeWidth (chartData) {
-    const positionValues = []
+    let positionValues = []
     for (let i = 0; i < chartData[0].values.length; i++) {
       positionValues.push(chartData.map((dataset) => {
-        return dataset.values[i]
+        return dataset.values[i] ? dataset.values[i].Val : null
       }))
     }
-    const width = positionValues.map((values) => {
-      Math.max(values) + Math.min(values)
-    })
-    return width
+    positionValues = positionValues.filter((value) => value)
+    return positionValues.map((values) => _.max(values) + _.min(values))
   }
 
   updateQuery (newData) {
