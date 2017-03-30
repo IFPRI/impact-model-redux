@@ -12,7 +12,7 @@ import { formatNumber } from '../utils/format'
 import { translate } from '../utils/translation'
 
 // Constants
-import { sixColorPalette, oneColorPalette } from '../constants'
+import { oneColorPalette, stripeChartFill } from '../constants'
 
 export class Chart extends React.Component {
   constructor (props, context) {
@@ -29,7 +29,6 @@ export class Chart extends React.Component {
       draw: function (ease) {
         const result = ChartJS.controllers.line.prototype.draw.apply(this, arguments)
 
-        // don't render the stripes till we've finished animating
         if (!this.rendered && ease !== 1) {
           return
         }
@@ -114,18 +113,21 @@ export class Chart extends React.Component {
   }
 
   initializeChart () {
+    console.log()
     const { name, data } = this.props
-    // const chartType = data.mark
-    const chartType = 'stripe'
-
     let chart = {
-      type: chartType,
+      type: 'stripe',
       options: {
-        responsive: true,
-        animation: {
+        responsive: false,
+        maintainAspectRatio: false,
+        tooltips: {
+          userCallback: (value) => formatNumber(value)
         },
         legend: {
           display: false
+        },
+        animation: {
+          duration: 50
         },
         scales: {
           yAxes: [{
@@ -135,6 +137,7 @@ export class Chart extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
+              userCallback: (value) => formatNumber(value),
               beginAtZero: false,
               padding: 5,
               fontColor: '#9E9E9E',
@@ -160,33 +163,25 @@ export class Chart extends React.Component {
         labels: [],
         datasets: [{
           data: [],
-          backgroundColor: sixColorPalette
+          fill: false,
+          borderColor: oneColorPalette,
+          backgroundColor: stripeChartFill,
+          borderWidth: 4,
+          pointBackgroundColor: '#fff',
+          pointBorderWidth: 2
         }]
       }
-    }
-
-    if (chartType === 'line' || chartType === 'stripe') {
-      chart.options.responsive = true
-      chart.options.maintainAspectRatio = false
-      chart.options.animation.duration = 50
-      chart.data.datasets[0].fill = false
-      chart.data.datasets[0].borderColor = oneColorPalette
-      chart.data.datasets[0].backgroundColor = 'rgba(0, 255, 0, 0.3)'
-      chart.data.datasets[0].borderWidth = 4
-      chart.data.datasets[0].pointBackgroundColor = '#fff'
-      chart.data.datasets[0].pointBorderWidth = 2
-      chart.options.scales.yAxes[0].ticks.userCallback = (value) => formatNumber(value)
-      chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')}}
     }
 
     const aggregation = data.encoding.x.field
     queryDatabase(data)
     .then((chartData) => {
       // Calculate area dimensions
+      console.log(chartData)
       chart.data.datasets[0].width = this.getStripeWidth(chartData)
 
       // Currently pretending there is only one primary line per article,
-      // though simulated articles include all
+      // though the simulated articles currently include all scenarios
       const primaryLine = _.find(chartData, {'source': this.props.scenarios[0]})
       _.forEach(primaryLine.values, (item) => {
         chart.data.labels.push(translate(item[aggregation]))
