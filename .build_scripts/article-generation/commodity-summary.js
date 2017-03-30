@@ -54,7 +54,7 @@ fixed:
 change: true
 \`\`\``
 
-var figureThree = `\`\`\`chart
+  var figureThree = `\`\`\`chart
 mark: stripe
 title: ${name} Impact Parameters over time
 width: 50%
@@ -70,7 +70,7 @@ commodity: ${commodity}
 dropdown:
 field: impactparameter
 values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
-scenarios: ssp2_GFDL, ssp2_hgem
+scenarios: ssp2_gfdl, ssp2_hgem
 \`\`\``
 
   var map = `\`\`\`map
