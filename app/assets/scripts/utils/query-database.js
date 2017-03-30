@@ -90,7 +90,7 @@ const parseDataObject = (obj, group, val, otherKeys, change) => {
           [group]: obj.key
         }, otherKeys)
       } else {
-        return Object.assign({}, {[val]: 1, [group]: obj.key}, otherKeys)
+        return {}
       }
     } else {
     // normal procedure
