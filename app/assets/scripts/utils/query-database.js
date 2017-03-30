@@ -78,17 +78,20 @@ const performQuery = (data, sourceID) => {
 const parseDataObject = (obj, group, val, otherKeys, change) => {
   var nextGroup = Object.keys(obj).find(a => a.match('group_by'))
   // we may have other groupings to parse through
-  // data curruption may cause less than 2 buckets
-  if (nextGroup && obj[nextGroup].buckets.length > 1) {
+  if (nextGroup) {
     // special parsing for change by year
     if (nextGroup === 'group_by_year' && change) {
-      return Object.assign({}, {
-        // assumes later value in bucket 1 and early value in bucket 0
-        // divide by earlier value if we want a percentage
-        [val]: (obj[nextGroup].buckets[1][`sum_${val}`].value - obj[nextGroup].buckets[0][`sum_${val}`].value) /
-          (_.includes(['percentage', 'percent', '%', 'p'], change) ? obj[nextGroup].buckets[0][`sum_${val}`].value : 1),
-        [group]: obj.key
-      }, otherKeys)
+      if (obj[nextGroup].buckets[1]) {
+        return Object.assign({}, {
+          // assumes later value in bucket 1 and early value in bucket 0
+          // divide by earlier value if we want a percentage
+          [val]: (obj[nextGroup].buckets[1][`sum_${val}`].value - obj[nextGroup].buckets[0][`sum_${val}`].value) /
+            (_.includes(['percentage', 'percent', '%', 'p'], change) ? obj[nextGroup].buckets[0][`sum_${val}`].value : 1),
+          [group]: obj.key
+        }, otherKeys)
+      } else {
+        return Object.assign({}, {[val]: 1, [group]: obj.key}, otherKeys)
+      }
     } else {
     // normal procedure
       return obj[nextGroup].buckets.map(a => {

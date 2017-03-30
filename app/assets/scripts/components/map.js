@@ -12,6 +12,8 @@ import { translate } from '../utils/translation'
 import locationAggregation from '../../data/aggregate-region'
 import world from '../../data/geo/world.json'
 
+import { defaultMapScenario } from '../constants'
+
 const yellow = '#E2C117'
 const green = '#83C61A'
 
@@ -48,7 +50,7 @@ export class MapComponent extends React.Component {
 
     this.mapTip = tip()
       .offset(d => {
-            // this will have to be custom/manually adjusted to account for countries with unusual bounding boxes, like CHM or USA
+        // this will have to be custom/manually adjusted to account for countries with unusual bounding boxes, like CHM or USA
         switch (d.id) {
           case 'rus':
             return [0, 0]
@@ -100,9 +102,10 @@ export class MapComponent extends React.Component {
         y: { type: 'quantitative', field: 'Val' }
       }
     })
-    queryDatabase(mapQuery)
+    queryDatabase(mapQuery, defaultMapScenario)
     .then((mapData) => {
-      this.updateMap(mapData)
+      // unlike charts, assumes a single scenario query
+      this.updateMap(mapData[0])
     })
   }
 

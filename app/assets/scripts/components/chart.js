@@ -112,7 +112,7 @@ export class Chart extends React.Component {
     }
 
     const aggregation = data.encoding.x.field
-    queryDatabase(data, defaultScenario)
+    queryDatabase(data, ['ssp2_gfdl'])
     .then((chartData) => {
       _.forEach(chartData[0].values, (item) => {
         chart.data.labels.push(translate(item[aggregation]))
