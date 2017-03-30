@@ -1,6 +1,6 @@
 ---
 title: Total Other Oils Summary
-date: 3/21/2017
+date: 3/30/2017
 type: brief
 briefType: commodity-summary
 project: 'baseline'
@@ -52,6 +52,25 @@ fixed:
   commodity: tool
   impactparameter: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
 change: true
+```
+
+```chart
+mark: stripe
+title: Total Other Oils Impact Parameters over time
+width: 50%
+encoding:
+x:
+  type: nominal
+  field: year
+y:
+  type: quantitative
+  field: Val
+fixed:
+commodity: tool
+dropdown:
+field: impactparameter
+values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+scenarios: ssp2_GFDL, ssp2_hgem
 ```
 
 ```map

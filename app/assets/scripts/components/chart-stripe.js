@@ -113,7 +113,6 @@ export class Chart extends React.Component {
   }
 
   initializeChart () {
-    console.log()
     const { name, data } = this.props
     let chart = {
       type: 'stripe',
@@ -177,7 +176,6 @@ export class Chart extends React.Component {
     queryDatabase(data)
     .then((chartData) => {
       // Calculate area dimensions
-      console.log(chartData)
       chart.data.datasets[0].width = this.getStripeWidth(chartData)
 
       // Currently pretending there is only one primary line per article,

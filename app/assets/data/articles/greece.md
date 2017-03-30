@@ -1,13 +1,13 @@
 ---
-title: Ghana Summary
+title: Greece Summary
 date: 3/30/2017
 type: brief
 briefType: country-summary
 project: 'baseline'
 locations:
-  - gha
-  - western_africa
-  - africa
+  - grc
+  - southern_europe
+  - europe
 scenarios:
  - SSP2_GFDL
  - SSP2_HGEM
@@ -15,16 +15,16 @@ scenarios:
  - SSP2_IPSL
  - SSP2_NOCC
 tags:
- - gha
- - western_africa
- - africa
+ - grc
+ - southern_europe
+ - europe
  - baseline
 ---
 # Overview 
 
 ```chart
 mark: bar
-title: Ghana - Total Demand
+title: Greece - Total Demand
 width: 37%
 encoding:
   x:
@@ -34,7 +34,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: gha
+  region: grc
   impactparameter: qdxagg
   year: 2015,2030,2050
 dropdown:
@@ -44,7 +44,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Ghana - Commodity Supply
+title: Greece - Commodity Supply
 width: 37%
 encoding:
   x:
@@ -54,7 +54,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: gha
+  region: grc
   impactparameter: qsupxagg
   year: 2015,2030,2050
 dropdown:
@@ -64,7 +64,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Ghana - Net Trade
+title: Greece - Net Trade
 width: 37%
 encoding:
   x:
@@ -74,7 +74,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: gha
+  region: grc
   impactparameter: qnxagg
   year: 2015,2030,2050
 dropdown:
@@ -86,7 +86,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Ghana - Population at Risk of Hunger
+title: Greece - Population at Risk of Hunger
 width: 37%
 encoding:
   x:
@@ -96,14 +96,14 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: gha
+  region: grc
   impactparameter: populationatriskxagg
   year: 2015,2030,2050
 ```
 
 ```chart
 mark: bar
-title: Ghana - Food Availability
+title: Greece - Food Availability
 width: 37%
 encoding:
   x:
@@ -113,14 +113,14 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: gha
+  region: grc
   impactparameter: foodavailxagg
   year: 2015,2030,2050
 ```
 
 ```chart
 mark: bar
-title: Ghana - Total Malnourished Children
+title: Greece - Total Malnourished Children
 width: 37%
 encoding:
   x:
@@ -130,16 +130,16 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: gha
+  region: grc
   impactparameter: totalmalnourishedxagg
   year: 2015,2030,2050
 ```
 
 |   |   | 2015 | 2030 | 2050 |
 |---|---|---|---|---|
-| Western Africa | Population (million) | 343.37 | 478.64 | 677.85 |
-|  | GDP (billion $US) | 708.31 | 1858.76 | 5834.85 |
-|  | Per capita GDP ($US) | 2062.82 | 3883.42 | 8607.88 |
-| Ghana | Population (million) | 27.25 | 35.93 | 46.38 |
-|  | GDP (billion $US) | 55.80 | 146.22 | 414.35 |
-|  | Per capita GDP ($US) | 2047.71| 4069.58| 8933.81|
+| Southern Europe | Population (million) | 157.91 | 160.99 | 162.67 |
+|  | GDP (billion $US) | 3786.56 | 4683.70 | 6170.36 |
+|  | Per capita GDP ($US) | 23979.23 | 29093.11 | 37931.76 |
+| Greece | Population (million) | 11.45 | 11.38 | 11.25 |
+|  | GDP (billion $US) | 256.69 | 350.34 | 496.95 |
+|  | Per capita GDP ($US) | 22418.34| 30785.59| 44173.33|

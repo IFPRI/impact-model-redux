@@ -54,6 +54,25 @@ fixed:
 change: true
 \`\`\``
 
+var figureThree = `\`\`\`chart
+mark: stripe
+title: ${name} Impact Parameters over time
+width: 50%
+encoding:
+x:
+  type: nominal
+  field: year
+y:
+  type: quantitative
+  field: Val
+fixed:
+commodity: ${commodity}
+dropdown:
+field: impactparameter
+values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+scenarios: ssp2_GFDL, ssp2_hgem
+\`\`\``
+
   var map = `\`\`\`map
 title: Change in ${name} IMPACT Parameters from 2015 - 2050 (%)
 dropdown:
@@ -64,7 +83,7 @@ fixed:
   commodity: ${commodity}
 \`\`\``
 
-  var article = `Summary of IMPACT model outputs for ${name.toLowerCase()}\n\n${figure}\n\n${figureTwo}\n\n${map}`
+  var article = `Summary of IMPACT model outputs for ${name.toLowerCase()}\n\n${figure}\n\n${figureTwo}\n\n${figureThree}\n\n${map}`
 
   var scenarioString = scenarios.map(s => ` - ${s}`).join('\n')
   var tagString = tags.map(t => ` - ${t}`).join('\n')
