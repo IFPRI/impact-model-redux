@@ -100,7 +100,8 @@ export class MapComponent extends React.Component {
         y: { type: 'quantitative', field: 'Val' }
       }
     })
-    queryDatabase(mapQuery, (mapData) => {
+    queryDatabase(mapQuery)
+    .then((mapData) => {
       this.updateMap(mapData)
     })
   }

@@ -1,6 +1,5 @@
 'use strict'
 import React from 'react'
-import classNames from 'classnames'
 import _ from 'lodash'
 if (typeof window === 'undefined') global.window = {}
 const ChartJS = require('chart.js')
@@ -181,13 +180,19 @@ export class Chart extends React.Component {
     }
 
     const aggregation = data.encoding.x.field
-    queryDatabase(data, this.props.scenarios)
+    queryDatabase(data)
     .then((chartData) => {
+      // Calculate area dimensions
       chart.data.datasets[0].width = this.getStripeWidth(chartData)
-      _.forEach(chartData[0].values, (item) => {
+
+      // Currently pretending there is only one primary line per article,
+      // though simulated articles include all
+      const primaryLine = _.find(chartData, {'source': this.props.scenarios[0]})
+      _.forEach(primaryLine.values, (item) => {
         chart.data.labels.push(translate(item[aggregation]))
         chart.data.datasets[0].data.push(item.Val)
       })
+
       this.chart = new ChartJS(
         document.getElementById(name).getContext('2d'),
         chart
@@ -217,7 +222,6 @@ export class Chart extends React.Component {
     }
     positionValues = positionValues.filter((value) => value)
     return positionValues.map((values) => _.max(values) - _.min(values))
-    // return positionValues.reduce((a, m, i, p) => a + m / p.length)
   }
 
   handleDropdown (e) {
@@ -231,14 +235,6 @@ export class Chart extends React.Component {
 
   render () {
     const { name, data } = this.props
-    const chartType = data.mark
-
-    const chartClass = classNames(
-      'figure', {
-        'bar-chart': chartType === 'bar' || chartType === 'horizontalBar',
-        'pie-chart': chartType === 'pie' || chartType === 'doughnut' || chartType === 'polarArea',
-        'line-chart': chartType === 'line'
-      })
 
     const Dropdowns = Object.keys(this.props.data)
       .filter(key => key.match(/dropdown/))
@@ -256,7 +252,7 @@ export class Chart extends React.Component {
       })
 
     return (
-      <div className={chartClass}>
+      <div className='figure stripe-chart'>
         <h5 className='label--chart'>{data.title}</h5>
         <div className='chart-container'>
           <canvas id={name} className='chart'></canvas>

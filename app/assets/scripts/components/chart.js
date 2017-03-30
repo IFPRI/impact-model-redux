@@ -13,7 +13,7 @@ import { formatNumber } from '../utils/format'
 import { translate } from '../utils/translation'
 
 // Constants
-import { sixColorPalette, oneColorPalette } from '../constants'
+import { defaultScenario, sixColorPalette, oneColorPalette } from '../constants'
 
 export class Chart extends React.Component {
   constructor (props, context) {
@@ -112,8 +112,9 @@ export class Chart extends React.Component {
     }
 
     const aggregation = data.encoding.x.field
-    queryDatabase(data, (chartData) => {
-      _.forEach(chartData.values, (item) => {
+    queryDatabase(data, defaultScenario)
+    .then((chartData) => {
+      _.forEach(chartData[0].values, (item) => {
         chart.data.labels.push(translate(item[aggregation]))
         chart.data.datasets[0].data.push(item.Val)
       })
@@ -134,9 +135,9 @@ export class Chart extends React.Component {
 
   updateQuery (newData) {
     const chart = []
-    queryDatabase(newData, (chartData) => {
-      console.log(newData)
-      _.forEach(chartData.values, (item) => {
+    queryDatabase(newData, defaultScenario)
+    .then((chartData) => {
+      _.forEach(chartData[0].values, (item) => {
         chart.push(item.Val)
       })
       this.chart.data.datasets[0].data = chart
