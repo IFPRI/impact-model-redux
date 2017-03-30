@@ -13,6 +13,7 @@ export const setupRenderer = (dispatch) => {
     const id = `fig-${md5(data.title).slice(0, 12)}`
     // convert dropdown values from string to array
     Object.keys(data).forEach(dataKey => {
+      console.log(data)
       if (dataKey.match(/dropdown/)) {
         data[dataKey].values = data[dataKey].values.split(',').map(a => a.trim())
       }

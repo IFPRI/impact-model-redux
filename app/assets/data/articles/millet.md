@@ -70,7 +70,7 @@ commodity: mill
 dropdown:
 field: impactparameter
 values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
-scenarios: ssp2_GFDL, ssp2_hgem
+scenarios: ssp2_gfdl, ssp2_hgem
 ```
 
 ```map

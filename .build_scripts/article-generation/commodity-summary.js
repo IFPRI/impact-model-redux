@@ -67,10 +67,10 @@ y:
   field: Val
 fixed:
 commodity: ${commodity}
+scenarios: ssp2_gfdl, ssp2_hgem
 dropdown:
 field: impactparameter
 values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
-scenarios: ssp2_gfdl, ssp2_hgem
 \`\`\``
 
   var map = `\`\`\`map
@@ -84,7 +84,6 @@ fixed:
 \`\`\``
 
   var article = `Summary of IMPACT model outputs for ${name.toLowerCase()}\n\n${figure}\n\n${figureTwo}\n\n${figureThree}\n\n${map}`
-
   var scenarioString = scenarios.map(s => ` - ${s}`).join('\n')
   var tagString = tags.map(t => ` - ${t}`).join('\n')
 
