@@ -1,9 +1,10 @@
 'use strict'
 
 import { UPDATE_SELECTED_PROJECT } from '../actions'
+import filterCategories from '../../data/filter-categories'
 
 export const initialState = {
-  selectedProject: null
+  selectedProject: filterCategories.projects[0]
 }
 
 export default (state = initialState, action) => {

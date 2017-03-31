@@ -24,6 +24,7 @@ export class Home extends React.Component {
   }
 
   render () {
+    const { selectedProject, briefs, router, dispatch } = this.props
     return (
       <section className='page__home'>
         <header className='home__header'>
@@ -43,17 +44,18 @@ export class Home extends React.Component {
         <FeaturedProjects
           projects={filterCategories.projects.slice(0, 2)}
           updateArticleFilters={this.updateArticleFilters}
-          router={this.props.router}
-          dispatch={this.props.dispatch}
-          selectedProject={this.props.selectedProject}
+          router={router}
+          dispatch={dispatch}
+          selectedProject={selectedProject}
           />
         <RelatedArticles
           title='Recently Added Briefs'
           cardType='related'
           type='brief'
-          articles={this.props.briefs.sort((a, b) => b.date - a.date).slice(0, 3)}
+          // all briefs within a project, sorted by date
+          articles={briefs.filter(b => (selectedProject) ? b.project === selectedProject : true).sort((a, b) => b.date - a.date).slice(0, 3)}
           updateArticleFilters={this.updateArticleFilters}
-          router={this.props.router}
+          router={router}
           >
           <Link className='button button--main button--more-information' to={'/briefs'}>View All Briefs</Link>
         </RelatedArticles>

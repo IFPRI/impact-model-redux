@@ -19,9 +19,8 @@ class FeaturedProjects extends React.Component {
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et dui gravida, posuere diam id, congue augue. Pellentesque nec purus ex.</p>
           </header>
           <ul>
-            {projects.map((project, i) => {
-              // either the selected project or the first
-              const selected = (selectedProject) ? project === selectedProject : i === 0
+            {projects.map(project => {
+              const selected = project === selectedProject
               return (
                 <ProjectCard
                   project={project}
