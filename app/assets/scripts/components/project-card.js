@@ -8,12 +8,14 @@ class ProjectCard extends React.Component {
 
   goToScenarios (project, e) {
     e.preventDefault()
+    e.stopPropagation()
     this.props.updateArticleFilters([project])
     this.props.router.push(`/scenarios`)
   }
 
   goToBriefs (project, e) {
     e.preventDefault()
+    e.stopPropagation()
     this.props.updateArticleFilters([project])
     this.props.router.push(`/briefs`)
   }

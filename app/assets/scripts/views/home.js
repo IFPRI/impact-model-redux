@@ -74,7 +74,7 @@ const mapStateToProps = (state) => {
     briefs: state.article.briefs,
     scenarios: state.article.scenarios,
     projects: state.articles,
-    selectedProject: state.home
+    selectedProject: state.home.selectedProject
   }
 }
 export default connect(mapStateToProps)(Home)

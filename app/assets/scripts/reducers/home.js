@@ -1,6 +1,6 @@
 'use strict'
 
-import { UPDATE_SELECTED_PROJECT } from './actions'
+import { UPDATE_SELECTED_PROJECT } from '../actions'
 
 export const initialState = {
   selectedProject: null
