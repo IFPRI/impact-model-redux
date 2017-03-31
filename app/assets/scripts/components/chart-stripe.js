@@ -123,10 +123,13 @@ export class Chart extends React.Component {
         maintainAspectRatio: false,
         tooltips: {
           enabled: true,
-          userCallback: (value) => formatNumber(value)
+          callbacks: {
+            label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')
+          }
         },
         legend: {
-          display: false
+          display: true,
+          position: top
         },
         animation: {
           duration: 50
