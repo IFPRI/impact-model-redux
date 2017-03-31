@@ -114,9 +114,9 @@ export class Chart extends React.Component {
   }
 
   initializeChart () {
-    let { name, data } = this.props
+    const { name, data } = this.props
 
-    let chart = {
+    const chart = {
       type: 'stripe',
       options: {
         responsive: false,
@@ -180,8 +180,9 @@ export class Chart extends React.Component {
           borderWidth: 4,
           pointBackgroundColor: '#fff',
           pointBorderWidth: 2,
-          pointHitRadius: 5,
-          pointRadius: 5
+          pointHitRadius: 6,
+          pointRadius: 5,
+          pointHoverRadius: 6
         })
         const lineColor = sixColorPalette[i] || sixColorPalette[(Math.floor(Math.random() * 5))]
         chart.data.datasets[i].borderColor = lineColor
@@ -224,14 +225,27 @@ export class Chart extends React.Component {
   }
 
   updateQuery (newData) {
-    const chart = []
-    queryDatabase(newData, this.props.scenarios)
+    // copy original to minimize restyling
+    const nextData = Object.assign({}, this.chart.data.datasets)
+    const data = this.props.data
+    const scenarios = data.scenarios
+    queryDatabase(newData)
     .then((chartData) => {
-      this.chart.data.datasets[0].width = this.getStripeWidth(chartData)
-      _.forEach(chartData[0].values, (item) => {
-        chart.push(item.Val)
+      _.forEach(nextData, (dataset) => {
+        dataset.data = []
       })
-      this.chart.data.datasets[0].data = chart
+
+      scenarios.forEach((scenario, i) => {
+        const primaryLine = _.find(chartData, {'source': data.scenarios[i]})
+        _.forEach(primaryLine.values, (item) => {
+          nextData[i].data.push(item.Val)
+        })
+      })
+
+      const stripe = this.getStripeParams(chartData)
+      nextData[scenarios.length].width = stripe.width
+      nextData[scenarios.length].data = stripe.centerline
+
       this.chart.update()
     })
   }
