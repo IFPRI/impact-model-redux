@@ -29,16 +29,10 @@ export class Home extends React.Component {
       <section className='page__home'>
         <header className='home__header'>
           <div className='row row--shortened'>
-            <div className='home__header-split--left'>
-              <div className='home__header-split--left__content'>
-                <h2 className='header--xxxlarge'>Answering Questions About Our World’s Food Supply</h2>
-                <p className='header__descriptions'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet ligula aliquam. Lorem ipsum dolor sit amet, consectetur elit.</p>
-              </div>
-            </div>
-            <div className='home__header-split--right'>
-              <Link className='button button--outline' to={'/about'}>Learn More</Link>
-              <Link className='button button--outline' to={'/briefs'}>View Briefs</Link>
-            </div>
+            <h2 className='header--xxxlarge'>Answering Questions About Our World’s Food Supply</h2>
+            <p className='header__descriptions'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet ligula aliquam. Lorem ipsum dolor sit amet, consectetur elit.</p>
+            <Link className='button button--outline' to={'/about'}>Learn More</Link>
+            <Link className='button button--outline' to={'/briefs'}>View Briefs</Link>
           </div>
         </header>
         <FeaturedProjects
