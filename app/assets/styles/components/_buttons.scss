@@ -21,6 +21,18 @@ button {
   }
 }
 
+.home__header {
+  .button {
+    border: 2px solid $darkest-grey;
+    margin-top: 3em;
+    color: $darkest-grey;
+    margin-right: 1.5em;
+    &:hover {
+      color: $darkest-grey;
+    }
+  }
+}
+
 .button--main {
   background-color: $base-green;
   border: 2px solid $base-green;

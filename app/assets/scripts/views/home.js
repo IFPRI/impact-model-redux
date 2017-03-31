@@ -24,34 +24,32 @@ export class Home extends React.Component {
   }
 
   render () {
+    const { selectedProject, briefs, router, dispatch } = this.props
     return (
       <section className='page__home'>
         <header className='home__header'>
           <div className='row row--shortened'>
-            <div className='home__header-split--left'>
-              <div className='home__header-split--left__content'>
-                <h2 className='header--xxxlarge'>Answering Questions About Our World’s Food Supply</h2>
-                <p className='header__descriptions'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet ligula aliquam. Lorem ipsum dolor sit amet, consectetur elit.</p>
-              </div>
-            </div>
-            <div className='home__header-split--right'>
-              <Link className='button button--outline' to={'/about'}>Learn More</Link>
-              <Link className='button button--outline' to={'/briefs'}>View Briefs</Link>
-            </div>
+            <h2 className='header--xxxlarge'>Answering Questions About Our World’s Food Supply</h2>
+            <p className='header__descriptions'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet ligula aliquam. Lorem ipsum dolor sit amet, consectetur elit.</p>
+            <Link className='button button--outline' to={'/about'}>Learn More</Link>
+            <Link className='button button--outline' to={'/briefs'}>View Briefs</Link>
           </div>
         </header>
         <FeaturedProjects
           projects={filterCategories.projects.slice(0, 2)}
           updateArticleFilters={this.updateArticleFilters}
-          router={this.props.router}
+          router={router}
+          dispatch={dispatch}
+          selectedProject={selectedProject}
           />
         <RelatedArticles
           title='Recently Added Briefs'
           cardType='related'
           type='brief'
-          articles={this.props.briefs.sort((a, b) => b.date - a.date).slice(0, 3)}
+          // all briefs within a project, sorted by date
+          articles={briefs.filter(b => (selectedProject) ? b.project === selectedProject : true).sort((a, b) => b.date - a.date).slice(0, 3)}
           updateArticleFilters={this.updateArticleFilters}
-          router={this.props.router}
+          router={router}
           >
           <Link className='button button--main button--more-information' to={'/briefs'}>View All Briefs</Link>
         </RelatedArticles>
@@ -63,14 +61,16 @@ export class Home extends React.Component {
 Home.propTypes = {
   briefs: React.PropTypes.array,
   dispatch: React.PropTypes.func,
-  router: React.PropTypes.object
+  router: React.PropTypes.object,
+  selectedProject: React.PropTypes.string
 }
 
 const mapStateToProps = (state) => {
   return {
     briefs: state.article.briefs,
     scenarios: state.article.scenarios,
-    projects: state.articles
+    projects: state.articles,
+    selectedProject: state.home.selectedProject
   }
 }
 export default connect(mapStateToProps)(Home)

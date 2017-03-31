@@ -12,6 +12,7 @@ export const UPDATE_ARTICLE_LOADING = 'UPDATE_ARTICLE_LOADING'
 export const UPDATE_ARTICLE = 'UPDATE_ARTICLE'
 export const UPDATE_CHART = 'UPDATE_CHART'
 export const UPDATE_MAP = 'UPDATE_MAP'
+export const UPDATE_SELECTED_PROJECT = 'UPDATE_SELECTED_PROJECT'
 
 export const updateArticles = (articles) => {
   return { type: UPDATE_ARTICLES, data: articles }
@@ -61,3 +62,7 @@ export const fetchArticle = (url) => {
   }
 }
 // />
+
+export const updateSelectedProject = proj => {
+  return { type: UPDATE_SELECTED_PROJECT, data: proj }
+}
