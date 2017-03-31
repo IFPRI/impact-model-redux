@@ -12,7 +12,7 @@ import { translate } from '../utils/translation'
 import locationAggregation from '../../data/aggregate-region'
 import world from '../../data/geo/world.json'
 
-import { defaultScenario } from '../constants'
+const DEFAULT_SCENARIO = ['SSP2_GFDL']
 
 const yellow = '#E2C117'
 const green = '#83C61A'
@@ -102,7 +102,7 @@ export class MapComponent extends React.Component {
         y: { type: 'quantitative', field: 'Val' }
       }
     })
-    queryDatabase(mapQuery, defaultScenario)
+    queryDatabase(mapQuery, DEFAULT_SCENARIO)
     .then((mapData) => {
       // unlike charts, assumes a single scenario query
       this.updateMap(mapData[0])

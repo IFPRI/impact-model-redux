@@ -174,8 +174,6 @@ export class Chart extends React.Component {
     const scenarios = data.scenarios
     queryDatabase(data, scenarios)
     .then((chartData) => {
-      const stripe = this.getStripeParams(chartData)
-
       scenarios.forEach((scenario, i) => {
         chart.data.datasets.push({
           data: [],
@@ -207,6 +205,7 @@ export class Chart extends React.Component {
         pointHitRadius: 0,
         label: 'stripe'
       })
+      const stripe = this.getStripeParams(chartData)
       chart.data.datasets[scenarios.length].width = stripe.width
       chart.data.datasets[scenarios.length].data = stripe.centerline
 
@@ -215,7 +214,7 @@ export class Chart extends React.Component {
         chart
       )
 
-      // hack to enable tooltips
+      // hack to disable tooltips over the area centerline
       const originalGetElementAtEvent = this.chart.getElementAtEvent
       this.chart.getElementAtEvent = function () {
         return originalGetElementAtEvent.apply(this, arguments).filter((e) => {
@@ -232,7 +231,7 @@ export class Chart extends React.Component {
     const nextData = Object.assign({}, this.chart.data.datasets)
     const data = this.props.data
     const scenarios = data.scenarios
-    queryDatabase(newData)
+    queryDatabase(newData, scenarios)
     .then((chartData) => {
       _.forEach(nextData, (dataset) => {
         dataset.data = []
