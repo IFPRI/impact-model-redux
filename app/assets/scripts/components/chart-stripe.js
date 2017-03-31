@@ -12,7 +12,7 @@ import { formatNumber } from '../utils/format'
 import { translate } from '../utils/translation'
 
 // Constants
-import { oneColorPalette, stripeChartFill } from '../constants'
+import { oneColorPalette, sixColorPalette, stripeChartFill } from '../constants'
 
 export class Chart extends React.Component {
   constructor (props, context) {
@@ -113,13 +113,15 @@ export class Chart extends React.Component {
   }
 
   initializeChart () {
-    const { name, data } = this.props
+    let { name, data } = this.props
+
     let chart = {
       type: 'stripe',
       options: {
         responsive: false,
         maintainAspectRatio: false,
         tooltips: {
+          enabled: true,
           userCallback: (value) => formatNumber(value)
         },
         legend: {
@@ -160,36 +162,117 @@ export class Chart extends React.Component {
       },
       data: {
         labels: [],
-        datasets: [{
-          data: [],
-          fill: false,
-          borderColor: oneColorPalette,
-          backgroundColor: stripeChartFill,
-          borderWidth: 4,
-          pointBackgroundColor: '#fff',
-          pointBorderWidth: 2
-        }]
+        datasets: []
       }
     }
 
     const aggregation = data.encoding.x.field
     queryDatabase(data)
     .then((chartData) => {
-      // Calculate area dimensions
-      chart.data.datasets[0].width = this.getStripeWidth(chartData)
+      const scenarios = data.scenarios
+      const stripe = this.getStripeParams(chartData)
+      console.log(chartData)
+      chart.data.datasets.push({
+        fill: false,
+        backgroundColor: stripeChartFill,
+        borderColor: 'rgba(0, 0, 0, 0)',
+        pointRadius: 0,
+        pointHitRadius: 0
+      })
+      chart.data.datasets[0].width = stripe.width
+      chart.data.datasets[0].data = stripe.centerline
 
+      scenarios.forEach((scenario, i) => {
+        chart.data.datasets.push({
+          data: [],
+          fill: false,
+          borderWidth: 4,
+          pointBackgroundColor: '#fff',
+          pointBorderWidth: 2,
+          width: []
+        })
+        const lineColor = sixColorPalette[i] || sixColorPalette[(Math.floor(Math.random() * 5))]
+        chart.data.datasets[i + 1].borderColor = lineColor
+        const primaryLine = _.find(chartData, {'source': data.scenarios[i]})
+        _.forEach(primaryLine.values, (item) => {
+          if (i === 0) {
+            chart.data.labels.push(translate(item[aggregation]))
+          }
+          chart.data.datasets[i + 1].data.push(item.Val)
+        })
+      })
+      console.log(chart)
+      // Calculate area dimensions
       // Currently pretending there is only one primary line per article,
       // though the simulated articles currently include all scenarios
-      const primaryLine = _.find(chartData, {'source': this.props.scenarios[0]})
-      _.forEach(primaryLine.values, (item) => {
-        chart.data.labels.push(translate(item[aggregation]))
-        chart.data.datasets[0].data.push(item.Val)
-      })
+      // for (let i = 0; i < data.scenarios.length; i++) {
+      //   console.log(chartData)
+        // if (i === 0) {
+        //   chart.data.datasets[0].width = this.getStripeWidth(chartData)
+        // }
 
-      this.chart = new ChartJS(
-        document.getElementById(name).getContext('2d'),
-        chart
-      )
+      //   chart.data.datasets.push({
+      //     data: [],
+      //     fill: false,
+      //     borderColor: oneColorPalette,
+      //     backgroundColor: stripeChartFill,
+      //     borderWidth: 4,
+      //     pointBackgroundColor: '#fff',
+      //     pointBorderWidth: 2
+      //   })
+      //   // chart.data.datasets.push(JSON.parse(JSON.stringify(styleTemplate)))
+      //   // chart.data.datasets.push({data: []})
+      //   const primaryLine = _.find(chartData, {'source': data.scenarios[i]})
+      //   // data.scenarios.forEach((scenario, i) => {
+      //     // chart.data.datasets.push({data: []})
+      //     // const primaryLine = _.find(chartData, {'source': scenario})
+      //     _.forEach(primaryLine.values, (item) => {
+      //       if (i === 0) {
+      //         chart.data.datasets[0].width = this.getStripeWidth(chartData)
+      //         chart.data.labels.push(translate(item[aggregation]))
+      //       }
+      //       // console.log(i, primaryLine.values)
+      //       // if (i === 0) {
+      //       //   chart.data.labels.push(translate(item[aggregation]))
+      //       // }
+      //       // console.log(item.Val)
+      //
+      //     })
+      //   // })
+      // }
+      // console.log(chart)
+
+      // for (let line = 0; line < 4; line++) {
+      //   const y = [];
+      //   chart.datasets.push({}); //create a new line dataset
+      //   const dataset = chart.datasets[line]
+      //   dataset.data = []; //contains the 'Y; axis data
+      //   // for (x = 0; x < 10; x++) {
+      //   const primaryLine = _.find(chartData, {'source': data.scenarios[line]})
+      //   primaryLine.forEach()
+      //       y.push(line + x); //push some data aka generate 4 distinct separate lines
+      //       if (line === 0)
+      //           lineChartData.labels.push(x); //adds x axis labels
+      //     // } //for x
+      //
+      //     lineChartData.datasets[line].data = y; //send new line data to dataset
+      // } // for line
+
+
+      // data.scenarios.forEach((scenario, i) => {
+      //   chart.data.datasets.push({data: []})
+      //   const primaryLine = _.find(chartData, {'source': scenario})
+      //   _.forEach(primaryLine.values, (item) => {
+      //     console.log(item)
+      //     chart.data.labels.push(translate(item[aggregation]))
+      //     chart.data.datasets[i].data.push(item.Val)
+      //   })
+      // })
+
+        this.chart = new ChartJS(
+          document.getElementById(name).getContext('2d'),
+          chart
+        )
     })
   }
 
@@ -206,7 +289,7 @@ export class Chart extends React.Component {
     })
   }
 
-  getStripeWidth (chartData) {
+  getStripeParams (chartData) {
     let positionValues = []
     for (let i = 0; i < chartData[0].values.length; i++) {
       positionValues.push(chartData.map((dataset) => {
@@ -214,7 +297,14 @@ export class Chart extends React.Component {
       }))
     }
     positionValues = positionValues.filter((value) => value)
-    return positionValues.map((values) => _.max(values) - _.min(values))
+    const lineWidth = positionValues.map((values) => _.max(values) - _.min(values))
+    const centerline = positionValues.map((group) => {
+      return group.reduce((a, b) => a + b) / group.length
+    })
+    return {
+      width: lineWidth,
+      centerline: centerline
+    }
   }
 
   handleDropdown (e) {

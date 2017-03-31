@@ -59,18 +59,18 @@ mark: stripe
 title: Sorghum Impact Parameters over time
 width: 50%
 encoding:
-x:
-  type: nominal
-  field: year
-y:
-  type: quantitative
-  field: Val
+  x:
+    type: nominal
+    field: year
+  y:
+    type: quantitative
+    field: Val
 fixed:
-commodity: sorg
-dropdown:
-field: impactparameter
-values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+  commodity: sorg
 scenarios: ssp2_gfdl, ssp2_hgem
+dropdown:
+  field: impactparameter
+  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
 ```
 
 ```map

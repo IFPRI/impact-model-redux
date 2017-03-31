@@ -59,18 +59,18 @@ mark: stripe
 title: Maize Impact Parameters over time
 width: 50%
 encoding:
-x:
-  type: nominal
-  field: year
-y:
-  type: quantitative
-  field: Val
+  x:
+    type: nominal
+    field: year
+  y:
+    type: quantitative
+    field: Val
 fixed:
-commodity: maiz
-dropdown:
-field: impactparameter
-values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+  commodity: maiz
 scenarios: ssp2_gfdl, ssp2_hgem
+dropdown:
+  field: impactparameter
+  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
 ```
 
 ```map
