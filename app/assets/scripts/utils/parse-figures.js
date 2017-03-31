@@ -8,6 +8,9 @@ import { updateChart, updateMap } from '../actions'
 
 export const setupRenderer = (dispatch) => {
   const renderer = new marked.Renderer()
+  renderer.table = (header, body) => {
+    return `<div class="table-wrapper"><table><thead>${header}</thead><tbody>${body}</tbody></table></div>`
+  }
   renderer.code = (code, lang, escaped) => {
     const data = yaml.load(code)
     const id = `fig-${md5(data.title).slice(0, 12)}`
