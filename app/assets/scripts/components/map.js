@@ -103,7 +103,6 @@ export class MapComponent extends React.Component {
       }
     })
     queryDatabase(mapQuery, defaultScenario)
-    console.log(this.props)
     .then((mapData) => {
       // unlike charts, assumes a single scenario query
       this.updateMap(mapData[0])
