@@ -168,9 +168,9 @@ export class Chart extends React.Component {
     }
 
     const aggregation = data.encoding.x.field
-    queryDatabase(data)
+    const scenarios = data.scenarios
+    queryDatabase(data, scenarios)
     .then((chartData) => {
-      const scenarios = data.scenarios
       const stripe = this.getStripeParams(chartData)
 
       scenarios.forEach((scenario, i) => {

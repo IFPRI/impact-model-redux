@@ -13,7 +13,7 @@ import { formatNumber } from '../utils/format'
 import { translate } from '../utils/translation'
 
 // Constants
-import { defaultScenario, sixColorPalette, oneColorPalette } from '../constants'
+import { sixColorPalette, oneColorPalette } from '../constants'
 
 export class Chart extends React.Component {
   constructor (props, context) {
@@ -135,7 +135,7 @@ export class Chart extends React.Component {
 
   updateQuery (newData) {
     const chart = []
-    queryDatabase(newData, defaultScenario)
+    queryDatabase(newData, newData.scenario)
     .then((chartData) => {
       _.forEach(chartData[0].values, (item) => {
         chart.push(item.Val)

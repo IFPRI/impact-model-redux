@@ -5,15 +5,9 @@ import _ from 'lodash'
 
 import config from '../config'
 
-import { allScenarios } from '../constants'
-
-// Return data for all scenarios by default, or a specific set of scenarios
-// if a scenario array is passed
 const queryDatabase = (data, sources) => {
   if (sources && sources.length && sources.constructor === Array) {
     return Promise.all(sources.map((source) => performQuery(data, source)))
-  } else {
-    return Promise.all(allScenarios.map((scenario) => performQuery(data, scenario)))
   }
 }
 

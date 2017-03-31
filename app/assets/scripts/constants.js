@@ -25,7 +25,3 @@ export const greenGradientPalette = (steps) => chroma.scale(['#00ff00', '#ccffcc
 export const blueGradientPalette = (steps) => chroma.scale(['#007acc', '#b3e0ff']).colors(steps)
 
 export const greyGradientPalette = (steps) => chroma.scale(['#4d4d4d', '#cccccc']).colors(steps)
-
-export const allScenarios = ['SSP2_GFDL', 'SSP2_HGEM', 'SSP2_MIROC', 'SSP2_IPSL', 'SSP2_NOCC']
-
-export const defaultScenario = ['SSP2_GFDL']
