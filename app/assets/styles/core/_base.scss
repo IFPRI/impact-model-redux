@@ -103,6 +103,9 @@ a, a:visited {
   background-color: $medium-blue;
   position: relative;
   @extend .clearfix;
+  h2 {
+    color: #fff;
+  }
   .split__internal--left {
     width: 57%;
     max-width: 665px;
@@ -114,9 +117,6 @@ a, a:visited {
 
 .header__internal, .home__header {
   margin-bottom: 4em;
-  h2 {
-    color: #fff;
-  }
   .header__metadata {
     font-size: .86em;
   }
