@@ -44,6 +44,8 @@ export class Home extends React.Component {
           projects={filterCategories.projects.slice(0, 2)}
           updateArticleFilters={this.updateArticleFilters}
           router={this.props.router}
+          dispatch={this.props.dispatch}
+          selectedProject={this.props.selectedProject}
           />
         <RelatedArticles
           title='Recently Added Briefs'
@@ -63,14 +65,16 @@ export class Home extends React.Component {
 Home.propTypes = {
   briefs: React.PropTypes.array,
   dispatch: React.PropTypes.func,
-  router: React.PropTypes.object
+  router: React.PropTypes.object,
+  selectedProject: React.PropTypes.string
 }
 
 const mapStateToProps = (state) => {
   return {
     briefs: state.article.briefs,
     scenarios: state.article.scenarios,
-    projects: state.articles
+    projects: state.articles,
+    selectedProject: state.home
   }
 }
 export default connect(mapStateToProps)(Home)

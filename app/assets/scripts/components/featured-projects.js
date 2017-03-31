@@ -1,12 +1,14 @@
 'use strict'
 import React from 'react'
 
+import { updateSelectedProject } from '../actions'
+
 // Components
 import ProjectCard from './project-card'
 
 class FeaturedProjects extends React.Component {
   render () {
-    let { projects } = this.props
+    let { projects, selectedProject, router, dispatch, updateArticleFilters } = this.props
     projects = projects || []
 
     return (
@@ -17,7 +19,20 @@ class FeaturedProjects extends React.Component {
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et dui gravida, posuere diam id, congue augue. Pellentesque nec purus ex.</p>
           </header>
           <ul>
-            {projects.map(project => <ProjectCard project={project} key={project} router={this.props.router} updateArticleFilters={this.props.updateArticleFilters}/>)}
+            {projects.map((project, i) => {
+              // either the selected project or the first
+              const selected = (selectedProject) ? project === selectedProject : i === 0
+              return (
+                <ProjectCard
+                  project={project}
+                  key={project}
+                  router={router}
+                  onClick={dispatch.bind(this, updateSelectedProject(project))}
+                  updateArticleFilters={updateArticleFilters}
+                  selected={selected}
+                  />
+              )
+            })}
           </ul>
         </div>
       </section>
@@ -29,7 +44,9 @@ class FeaturedProjects extends React.Component {
 FeaturedProjects.propTypes = {
   projects: React.PropTypes.array,
   router: React.PropTypes.object,
-  updateArticleFilters: React.PropTypes.func
+  updateArticleFilters: React.PropTypes.func,
+  dispatch: React.PropTypes.func,
+  selectedProject: React.PropTypes.string
 }
 
 export default FeaturedProjects
