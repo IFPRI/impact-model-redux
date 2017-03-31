@@ -7,6 +7,10 @@ import { updateSelectedProject } from '../actions'
 import ProjectCard from './project-card'
 
 class FeaturedProjects extends React.Component {
+  componentDidMount () {
+    this.props.dispatch(updateSelectedProject(this.props.projects[0], this.ul.offsetTop))
+  }
+
   render () {
     let { projects, selectedProject, router, dispatch, updateArticleFilters } = this.props
     projects = projects || []
@@ -19,7 +23,7 @@ class FeaturedProjects extends React.Component {
             <p className='header__descriptions'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et dui gravida, posuere diam id, congue augue. Pellentesque nec purus ex.</p>
           </header>
           <div className='content-internal'>
-            <ul>
+            <ul ref={(node) => (this.ul = node)}>
               {projects.map(project => {
                 const selected = project === selectedProject
                 return (
@@ -27,7 +31,7 @@ class FeaturedProjects extends React.Component {
                     project={project}
                     key={project}
                     router={router}
-                    onClick={dispatch.bind(this, updateSelectedProject(project))}
+                    updateSelectedProject={(project, height) => dispatch(updateSelectedProject(project, height))}
                     updateArticleFilters={updateArticleFilters}
                     selected={selected}
                     />

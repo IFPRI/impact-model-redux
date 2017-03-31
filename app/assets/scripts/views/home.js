@@ -24,7 +24,7 @@ export class Home extends React.Component {
   }
 
   render () {
-    const { selectedProject, briefs, router, dispatch } = this.props
+    const { selectedProject, selectedProjectHeight, briefs, router, dispatch } = this.props
     return (
       <section className='page__home'>
         <header className='home__header'>
@@ -44,7 +44,7 @@ export class Home extends React.Component {
               dispatch={dispatch}
               selectedProject={selectedProject}
               />
-            <div className='split--right'>
+            <div className='split--right' style={{paddingTop: selectedProjectHeight}}>
               <RelatedArticles
                 title='Recently Added Briefs'
                 cardType='related-frontpage'
@@ -88,7 +88,8 @@ Home.propTypes = {
   briefs: React.PropTypes.array,
   dispatch: React.PropTypes.func,
   router: React.PropTypes.object,
-  selectedProject: React.PropTypes.string
+  selectedProject: React.PropTypes.string,
+  selectedProjectHeight: React.PropTypes.number
 }
 
 const mapStateToProps = (state) => {
@@ -96,7 +97,8 @@ const mapStateToProps = (state) => {
     briefs: state.article.briefs,
     scenarios: state.article.scenarios,
     projects: state.articles,
-    selectedProject: state.home.selectedProject
+    selectedProject: state.home.selectedProject,
+    selectedProjectHeight: state.home.selectedProjectHeight
   }
 }
 export default connect(mapStateToProps)(Home)

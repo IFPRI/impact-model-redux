@@ -20,11 +20,15 @@ class ProjectCard extends React.Component {
     this.props.router.push(`/briefs`)
   }
 
+  updateSelectedProjectWrapper (e) {
+    this.props.updateSelectedProject(this.props.project, e.currentTarget.offsetTop)
+  }
+
   render () {
-    const { project, onClick, selected } = this.props
+    const { project, selected } = this.props
 
     return (
-      <li onClick={onClick} className={c('featured-project__item featured-project__item--settings', { selected })}>
+      <li onClick={this.updateSelectedProjectWrapper.bind(this)} className={c('featured-project__item featured-project__item--settings', { selected })}>
         <div className='featured-project__item--body'>
           <h4 className='header--large'>{translate(project)}</h4>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a molestie sapien. Sed ac nunc vel risus luctus suscipit ut ut dolor. Etiam sit amet elit volutpat, tempus nisl non, sem. Etiam sit amet elit volutpat, tempus nisl non…</p>
@@ -40,7 +44,7 @@ class ProjectCard extends React.Component {
 ProjectCard.propTypes = {
   project: React.PropTypes.string,
   router: React.PropTypes.object,
-  onClick: React.PropTypes.func,
+  updateSelectedProject: React.PropTypes.func,
   updateArticleFilters: React.PropTypes.func,
   selected: React.PropTypes.bool
 }
