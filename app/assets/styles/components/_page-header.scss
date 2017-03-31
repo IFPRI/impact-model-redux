@@ -21,17 +21,18 @@
       height: 2.5em;
       top: 4.5em;
       left: 0;
-      border-bottom: 1px solid lighten($light-grey, 25%);
-      overflow-y: hidden;
+      border-bottom: 1px solid #fff;
       -webkit-transition: all 0.3s;
       -moz-transition: all 0.3s;
       transition: all 0.3s;
     }
     a:hover:before {
       top: 0em;
+      border-bottom: 1px solid lighten($light-grey, 25%);
     }
     .active a:before {
       top: 0em;
+      border-bottom: 1px solid $light-grey;
     }
     ul {
       @include media(medium-down) {

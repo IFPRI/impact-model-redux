@@ -1,9 +1,14 @@
 .page__home {
   .home__header {
-    background-color: $medium-blue;
-    position: relative;
     @extend .clearfix;
     min-height: 500px;
+    width: 80%;
+    position: relative;
+    .row {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 }
 
