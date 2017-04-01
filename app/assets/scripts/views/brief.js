@@ -13,6 +13,7 @@ import { fetchArticle, updateArticleFilters, updateChart } from '../actions'
 // Components
 import RelatedArticles from '../components/related-articles'
 import Chart from '../components/chart'
+import ChartStripe from '../components/chart-stripe'
 import MapComponent from '../components/map'
 import Loading from '../components/loading'
 
@@ -30,15 +31,19 @@ export class Brief extends React.Component {
   }
 
   componentDidUpdate () {
-    this.addCharts(this.props.charts)
+    this.addCharts(this.props.charts, this.props.metadata.scenarios)
     this.addMaps(this.props.maps)
   }
 
-  addCharts (charts) {
+  addCharts (charts, scenarios) {
     _.forEach(charts, (data, name) => {
       const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
       if (placeholder) {
-        ReactDOM.render(<Chart name={name} data={data} updateChart={this.updateChart}/>, placeholder)
+        if (data.mark === 'stripe') {
+          ReactDOM.render(<ChartStripe name={name} data={data} scenarios={scenarios} updateChart={this.updateChart}/>, placeholder)
+        } else {
+          ReactDOM.render(<Chart name={name} data={data} scenario={scenarios} updateChart={this.updateChart}/>, placeholder)
+        }
       }
     })
   }

@@ -12,6 +12,8 @@ import { translate } from '../utils/translation'
 import locationAggregation from '../../data/aggregate-region'
 import world from '../../data/geo/world.json'
 
+const DEFAULT_SCENARIO = ['SSP2_GFDL']
+
 const yellow = '#E2C117'
 const green = '#83C61A'
 
@@ -48,7 +50,7 @@ export class MapComponent extends React.Component {
 
     this.mapTip = tip()
       .offset(d => {
-            // this will have to be custom/manually adjusted to account for countries with unusual bounding boxes, like CHM or USA
+        // this will have to be custom/manually adjusted to account for countries with unusual bounding boxes, like CHM or USA
         switch (d.id) {
           case 'rus':
             return [0, 0]
@@ -100,8 +102,10 @@ export class MapComponent extends React.Component {
         y: { type: 'quantitative', field: 'Val' }
       }
     })
-    queryDatabase(mapQuery, (mapData) => {
-      this.updateMap(mapData)
+    queryDatabase(mapQuery, DEFAULT_SCENARIO)
+    .then((mapData) => {
+      // unlike charts, assumes a single scenario query
+      this.updateMap(mapData[0])
     })
   }
 
@@ -238,8 +242,8 @@ export class MapComponent extends React.Component {
       <figure className='map'>
         <h2 className='label--map'>{data.title}</h2>
         <figcaption>The map shows change in key output parameters from across geographies. Use dropdown menus to select desired commodity (or group) and parameters to display. Toggle buttons at top right allow different geographic aggregations. Hover over countries or regions to observe the actual results.</figcaption>
+        {Dropdowns}
         <div className='map-container'>
-          {Dropdowns}
           <div ref={(a) => { this.mapRef = a }} id='world-map'></div>
         </div>
       </figure>

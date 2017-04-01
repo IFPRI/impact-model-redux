@@ -1,6 +1,6 @@
 ---
 title: Uganda Summary
-date: 3/21/2017
+date: 4/1/2017
 type: brief
 briefType: country-summary
 project: 'baseline'

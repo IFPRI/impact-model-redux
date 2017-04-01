@@ -1,6 +1,6 @@
 ---
 title: Sweet Potatoes Summary
-date: 3/21/2017
+date: 4/1/2017
 type: brief
 briefType: commodity-summary
 project: 'baseline'
@@ -52,6 +52,25 @@ fixed:
   commodity: swpt
   impactparameter: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
 change: true
+```
+
+```chart
+mark: stripe
+title: Sweet Potatoes Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
+width: 37%
+encoding:
+  x:
+    type: nominal
+    field: year
+  y:
+    type: quantitative
+    field: Val
+fixed:
+  commodity: swpt
+scenarios: ssp2_gfdl, ssp2_hgem
+dropdown:
+  field: impactparameter
+  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
 ```
 
 ```map
