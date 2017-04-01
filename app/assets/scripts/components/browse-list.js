@@ -5,7 +5,7 @@ import c from 'classnames'
 import _ from 'lodash'
 
 // Actions
-import { updateArticleFilters, updateArticleSorting, updateArticlePage } from '../actions'
+import { updateArticleFilters, updateArticlePage } from '../actions'
 
 // Components
 import ListArticleCard from './list-article-card.js'
@@ -23,14 +23,12 @@ const locationAgg = _.values(locationAggregation)
 export class BrowseList extends React.Component {
   constructor (props, context) {
     super(props, context)
-    this.handleSortingUpdate = this.handleSortingUpdate.bind(this)
     this.clearFilters = this.clearFilters.bind(this)
     this.removeOneFilter = this.removeOneFilter.bind(this)
   }
 
   componentWillUnmount () {
     this.props.dispatch(updateArticleFilters([]))
-    this.props.dispatch(updateArticleSorting('recency'))
   }
 
   componentWillReceiveProps (nextProps) {
@@ -45,18 +43,14 @@ export class BrowseList extends React.Component {
     this.props.dispatch(updateArticlePage(page))
   }
 
-  handleSortingUpdate (event) {
-    this.props.dispatch(updateArticleSorting(event.target.value))
-  }
-
-  sortArticles (articles, articleSorting) {
-    switch (articleSorting) {
-      case 'recency':
-        return articles.sort((a, b) => new Date(b.date) - new Date(a.date))
-      case 'relevance':
-        return articles.sort((a, b) => b.matches - a.matches)
+  sortArticles (articles, articleFilters) {
+    const sortedArticles = articles.slice(0)
+    if (articleFilters.length) {
+      articles.sort((a, b) => b.matches - a.matches)
+    } else {
+      articles.sort((a, b) => new Date(b.date) - new Date(a.date))
     }
-    return articles
+    return sortedArticles
   }
 
   filterArticles (articles, articleFilters) {
@@ -93,8 +87,8 @@ export class BrowseList extends React.Component {
   }
 
   render () {
-    const { articlePage, articleFilters, articleSorting, path } = this.props
-    let articles = this.sortArticles(this.filterArticles(this.props.articles, articleFilters), articleSorting)
+    const { articlePage, articleFilters, path } = this.props
+    let articles = this.sortArticles(this.filterArticles(this.props.articles, articleFilters), articleFilters)
     const articleCount = articles.length
     articles = articles.slice(articleBrowsePageLength * articlePage, articleBrowsePageLength * articlePage + articleBrowsePageLength)
 
@@ -124,12 +118,6 @@ export class BrowseList extends React.Component {
       <section className='browse__article-list'>
         <header className='article-list__header'>
           <h5 className='header--small'>Results <span className='result-count'>({articleCount})</span></h5>
-          <div className='select--wrapper'>
-            <select onChange={this.handleSortingUpdate} className='article-list__sort-menu' selected={articleSorting}>
-              <option value='recency'>Recent Updates</option>
-              <option value='relevance'>Relevance</option>
-            </select>
-          </div>
           {articleFilters.length ? <div className='filter__selects'>
             <ul>
               {articleFilters.map(filter => {
@@ -179,7 +167,6 @@ BrowseList.propTypes = {
   dispatch: React.PropTypes.func,
   articles: React.PropTypes.array,
   articleFilters: React.PropTypes.array,
-  articleSorting: React.PropTypes.oneOf(['recency', 'relevance']),
   articlePage: React.PropTypes.number,
   path: React.PropTypes.string
 }
