@@ -1,6 +1,6 @@
 ---
 title: Plantains Summary
-date: 3/30/2017
+date: 4/1/2017
 type: brief
 briefType: commodity-summary
 project: 'baseline'
@@ -56,8 +56,8 @@ change: true
 
 ```chart
 mark: stripe
-title: Plantains Impact Parameters over time
-width: 50%
+title: Plantains Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
+width: 37%
 encoding:
   x:
     type: nominal
@@ -67,7 +67,7 @@ encoding:
     field: Val
 fixed:
   commodity: plnt
-scenarios: SSP2_NOCC, ssp2_hgem
+scenarios: ssp2_gfdl, ssp2_hgem
 dropdown:
   field: impactparameter
   values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg

@@ -1,6 +1,6 @@
 ---
 title: Sunflower Meal Summary
-date: 3/30/2017
+date: 4/1/2017
 type: brief
 briefType: commodity-summary
 project: 'baseline'
@@ -56,8 +56,8 @@ change: true
 
 ```chart
 mark: stripe
-title: Sunflower Meal Impact Parameters over time
-width: 50%
+title: Sunflower Meal Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
+width: 37%
 encoding:
   x:
     type: nominal

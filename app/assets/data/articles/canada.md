@@ -1,6 +1,6 @@
 ---
 title: Canada Summary
-date: 3/30/2017
+date: 4/1/2017
 type: brief
 briefType: country-summary
 project: 'baseline'

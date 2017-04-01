@@ -1,13 +1,13 @@
 ---
-title: Somalia Summary
+title: Austria Summary
 date: 4/1/2017
 type: brief
 briefType: country-summary
 project: 'baseline'
 locations:
-  - som
-  - eastern_africa
-  - africa
+  - aut
+  - western_europe
+  - europe
 scenarios:
  - SSP2_GFDL
  - SSP2_HGEM
@@ -15,16 +15,16 @@ scenarios:
  - SSP2_IPSL
  - SSP2_NOCC
 tags:
- - som
- - eastern_africa
- - africa
+ - aut
+ - western_europe
+ - europe
  - baseline
 ---
 # Overview 
 
 ```chart
 mark: bar
-title: Somalia - Total Demand
+title: Austria - Total Demand
 width: 37%
 encoding:
   x:
@@ -34,7 +34,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: som
+  region: aut
   impactparameter: qdxagg
   year: 2015,2030,2050
 dropdown:
@@ -44,7 +44,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Somalia - Commodity Supply
+title: Austria - Commodity Supply
 width: 37%
 encoding:
   x:
@@ -54,7 +54,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: som
+  region: aut
   impactparameter: qsupxagg
   year: 2015,2030,2050
 dropdown:
@@ -64,7 +64,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Somalia - Net Trade
+title: Austria - Net Trade
 width: 37%
 encoding:
   x:
@@ -74,7 +74,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: som
+  region: aut
   impactparameter: qnxagg
   year: 2015,2030,2050
 dropdown:
@@ -86,7 +86,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Somalia - Population at Risk of Hunger
+title: Austria - Population at Risk of Hunger
 width: 37%
 encoding:
   x:
@@ -96,14 +96,14 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: som
+  region: aut
   impactparameter: populationatriskxagg
   year: 2015,2030,2050
 ```
 
 ```chart
 mark: bar
-title: Somalia - Food Availability
+title: Austria - Food Availability
 width: 37%
 encoding:
   x:
@@ -113,14 +113,14 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: som
+  region: aut
   impactparameter: foodavailxagg
   year: 2015,2030,2050
 ```
 
 ```chart
 mark: bar
-title: Somalia - Total Malnourished Children
+title: Austria - Total Malnourished Children
 width: 37%
 encoding:
   x:
@@ -130,16 +130,16 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: som
+  region: aut
   impactparameter: totalmalnourishedxagg
   year: 2015,2030,2050
 ```
 
 |   |   | 2015 | 2030 | 2050 |
 |---|---|---|---|---|
-| Eastern Africa | Population (million) | 362.55 | 498.36 | 672.50 |
-|  | GDP (billion $US) | 435.91 | 1137.44 | 3739.42 |
-|  | Per capita GDP ($US) | 1202.34 | 2282.37 | 5560.48 |
-| Somalia | Population (million) | 10.29 | 13.18 | 16.16 |
-|  | GDP (billion $US) | 0.36 | 1.01 | 4.30 |
-|  | Per capita GDP ($US) | 34.99| 76.63| 266.09|
+| Western Europe | Population (million) | 192.46 | 200.24 | 206.61 |
+|  | GDP (billion $US) | 6769.83 | 8397.11 | 11291.38 |
+|  | Per capita GDP ($US) | 35175.26 | 41935.23 | 54650.69 |
+| Austria | Population (million) | 8.56 | 8.95 | 9.21 |
+|  | GDP (billion $US) | 330.50 | 418.80 | 561.29 |
+|  | Per capita GDP ($US) | 38609.81| 46793.30| 60943.54|

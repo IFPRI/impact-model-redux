@@ -56,8 +56,8 @@ change: true
 
   var figureThree = `\`\`\`chart
 mark: stripe
-title: ${name} Impact Parameters over time
-width: 50%
+title: ${name} Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
+width: 37%
 encoding:
   x:
     type: nominal
