@@ -16,11 +16,11 @@ class FeaturedProjects extends React.Component {
     projects = projects || []
 
     return (
-      <div className='home__header-split--left split__internal--left section__padding'>
+      <div className='home__header-split--left split__internal--left section__padding--lg'>
         <div className='split-content'>
           <header className='header-internal'>
             <h3 className='header--xlarge with-description'>Featured Projects</h3>
-            <p className='header__descriptions'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et dui gravida, posuere diam id, congue augue. Pellentesque nec purus ex.</p>
+            <p className='internal__descriptions'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et dui gravida, posuere diam id, congue augue. Pellentesque nec purus ex.</p>
           </header>
           <div className='content-internal'>
             <ul ref={(node) => (this.ul = node)}>

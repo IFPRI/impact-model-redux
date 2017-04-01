@@ -46,7 +46,7 @@ export class Home extends React.Component {
               />
             <div className='split--right' style={{paddingTop: selectedProjectHeight}}>
               <RelatedArticles
-                title='Recently Added Briefs'
+                title='Recently Added Project Briefs'
                 cardType='related-frontpage'
                 type='brief'
                 // all briefs within a project, sorted by date
@@ -69,12 +69,12 @@ export class Home extends React.Component {
               <li className='card--large'>
                 <h4 className='header--large'>Download the IMPACT Data</h4>
                 <p>Get access to the data we use to run each of our models.</p>
-                <Link className='button button--main' to={'/about'}>Learn More</Link>
+                <Link className='button button--main button--more-information' to={'/about'}>Learn More</Link>
               </li>
               <li className='card--large'>
                 <h4 className='header--large'>Contact Us</h4>
                 <p>Want more custom analysis? Reach out to us with your needs and we’ll get back to you as soon as we can. </p>
-                <Link className='button button--main' to={'/about'}>Contact Us</Link>
+                <Link className='button button--main button--more-information' to={'/about'}>Contact Us</Link>
               </li>
             </ul>
           </div>

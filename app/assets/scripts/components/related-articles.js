@@ -11,22 +11,24 @@ export class RelatedArticles extends React.Component {
     articles = articles || []
 
     return (
-      <div className='content-internal'>
-        <h4 className='header--large section__header'>{this.props.title || 'Related Articles'}</h4>
-        <ul className='related-articles'>
-          {articles.map(article => {
-            return (
-              <RelatedArticleCard
-                type={this.props.type}
-                cardType={cardType}
-                article={article}
-                key={`article-${article.id}`}
-                router={this.props.router}
-                updateArticleFilters={this.props.updateArticleFilters}
-                />
-            )
-          })}
-        </ul>
+      <div>
+        <div className='content-internal'>
+          <h4 className='header--large section__header'>{this.props.title || 'Related Articles'}</h4>
+          <ul className='related-articles'>
+            {articles.map(article => {
+              return (
+                <RelatedArticleCard
+                  type={this.props.type}
+                  cardType={cardType}
+                  article={article}
+                  key={`article-${article.id}`}
+                  router={this.props.router}
+                  updateArticleFilters={this.props.updateArticleFilters}
+                  />
+              )
+            })}
+          </ul>
+        </div>
         {this.props.children}
       </div>
     )
