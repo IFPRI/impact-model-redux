@@ -5,8 +5,8 @@ export class About extends React.Component {
   render () {
     return (
       <section className='page__about'>
-        <header className='header__internal--secondary'>
-          <div className='row row--short'>
+        <header className='header__internal header__internal--sm'>
+          <div className='row row--short browse__header-text'>
             <h2 className='header--xxlarge with-metadata'>About</h2>
           </div>
         </header>

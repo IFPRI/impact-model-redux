@@ -139,11 +139,9 @@ a, a:visited {
   }
 }
 
-.header__internal--secondary {
-  margin: 8em 0 3em;
-  p {
-    width: 80%;
-  }
+.header__internal--sm {
+  height: 240px;
+  margin-bottom: 3em;
 }
 
 .header__internal, .home__header {
