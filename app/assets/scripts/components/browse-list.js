@@ -16,10 +16,6 @@ import { articleBrowsePageLength } from '../constants.js'
 // Utils
 import { translate } from '../utils/translation'
 
-// Data
-import locationAggregation from '../../data/aggregate-region'
-const locationAgg = _.values(locationAggregation)
-
 export class BrowseList extends React.Component {
   constructor (props, context) {
     super(props, context)
@@ -61,11 +57,6 @@ export class BrowseList extends React.Component {
           article.tags,
           article.commodities,
           article.locations,
-          // return all matches on aggregated regions
-          _.flatten((article.locations || [])
-            .map(l => locationAgg.find(b => b.region === l || b.subcontinent === l))
-            .filter(Boolean)
-            .map(l => _.values(l))),
           article.project
         ).filter(Boolean)
         const matches = _.intersection(metadata, articleFilters).length
