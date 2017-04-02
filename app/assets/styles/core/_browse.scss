@@ -150,7 +150,7 @@
     padding: 3em 3em;
     height: 100%;
     overflow-y: hidden;
-    /*display: none;*/
+    display: none;
   }
   .header--small {
     margin-bottom: 1em;
@@ -279,5 +279,15 @@
     display: block;
     @extend .clearfix;
     h4 { color: $medium-blue; }
+  }
+}
+
+.article-list__header {
+  .filter__mobile {
+    display: none;
+    float: right;
+    @include media(medium-down) {
+      display: inline-block;
+    }
   }
 }
