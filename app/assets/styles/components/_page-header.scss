@@ -47,6 +47,9 @@
         a:before {
           border-bottom: 0;
         }
+        a:hover:before {
+          border-bottom: 0;
+        }
         li {
           display: block;
           padding: .9em .8em;
@@ -61,9 +64,14 @@
       }
     }
     @include media(medium-down) {
-      /*display: none;*/
+      display: none;
       position: relative;
       float: none;
+    }
+  }
+  nav.active {
+    @include media(medium-down) {
+      display: block;
     }
   }
 
