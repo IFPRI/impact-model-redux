@@ -12,7 +12,8 @@ import {
   UPDATE_ARTICLE_LOADING,
   UPDATE_ARTICLE,
   UPDATE_CHART,
-  UPDATE_MAP
+  UPDATE_MAP,
+  UPDATE_MOBILE_FILTERS
 } from '../actions'
 
 export const initialState = {
@@ -24,7 +25,8 @@ export const initialState = {
   articleLoading: false,
   article: '',
   charts: {},
-  maps: {}
+  maps: {},
+  mobileFiltersOpen: false
 }
 
 export default (state = initialState, action) => {
@@ -54,6 +56,8 @@ export default (state = initialState, action) => {
     case UPDATE_MAP:
       set(state, `maps.${action.id}`, action.data)
       break
+    case UPDATE_MOBILE_FILTERS:
+      set(state, 'mobileFiltersOpen', action.data)
   }
   return state
 }
