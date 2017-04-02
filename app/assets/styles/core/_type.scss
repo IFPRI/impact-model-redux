@@ -93,6 +93,9 @@ h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, 
   .internal__descriptions {
     color: darken($lightest-grey, 10%);
   }
+  .internal__descriptions {
+    width: 95%;
+  }
 }
 
 .metadata-italic {

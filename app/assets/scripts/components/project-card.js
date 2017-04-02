@@ -32,8 +32,10 @@ class ProjectCard extends React.Component {
         <div className='featured-project__item--body'>
           <h4 className='header--large'>{translate(project)}</h4>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a molestie sapien. Sed ac nunc vel risus luctus suscipit ut ut dolor. Etiam sit amet elit volutpat, tempus nisl non, sem. Etiam sit amet elit volutpat, tempus nisl non…</p>
-          <a href="" className='link-block link__underline' onClick={this.goToScenarios.bind(this, project)}>View All Related Scenarios</a>
-          <a href="" className='link-block link__underline' onClick={this.goToBriefs.bind(this, project)}>View All Related Briefs</a>
+          <ul className='more-information--sm'>
+            <li><a href="" className='link-block--sm link__underline' onClick={this.goToScenarios.bind(this, project)}>View All Related Scenarios</a></li>
+            <li><a href="" className='link-block--sm link__underline' onClick={this.goToBriefs.bind(this, project)}>View All Related Briefs</a></li>
+          </ul>
         </div>
       </li>
     )
