@@ -130,7 +130,7 @@ export class BrowseList extends React.Component {
               <option value='relevance'>Relevance</option>
             </select>
           </div>
-          <div className='filter__selects'>
+          {articleFilters.length ? <div className='filter__selects'>
             <ul>
               {articleFilters.map(filter => {
                 return (
@@ -145,7 +145,7 @@ export class BrowseList extends React.Component {
               })}
               <li className='clear-filters'>{ClearFilters}</li>
             </ul>
-          </div>
+          </div> : ''}
         </header>
         {articles.map((article, i) => {
           return (
