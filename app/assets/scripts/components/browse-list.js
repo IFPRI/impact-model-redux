@@ -46,9 +46,9 @@ export class BrowseList extends React.Component {
   sortArticles (articles, articleFilters) {
     const sortedArticles = articles.slice(0)
     if (articleFilters.length) {
-      articles.sort((a, b) => b.matches - a.matches)
+      sortedArticles.sort((a, b) => b.matches - a.matches)
     } else {
-      articles.sort((a, b) => new Date(b.date) - new Date(a.date))
+      sortedArticles.sort((a, b) => new Date(b.date) - new Date(a.date))
     }
     return sortedArticles
   }
