@@ -1,6 +1,6 @@
 ---
 title: Sheep and Goats Summary
-date: 4/1/2017
+date: 4/2/2017
 type: brief
 briefType: commodity-summary
 project: 'baseline'
