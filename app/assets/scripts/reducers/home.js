@@ -1,16 +1,16 @@
 'use strict'
 
 import { UPDATE_SELECTED_PROJECT } from '../actions'
-import filterCategories from '../../data/filter-categories'
 
 export const initialState = {
-  selectedProject: filterCategories.projects[0]
+  selectedProject: null,
+  selectedProjectHeight: 0
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_SELECTED_PROJECT:
-      return { selectedProject: action.data }
+      return { selectedProject: action.project, selectedProjectHeight: action.height }
     default:
       return state
   }

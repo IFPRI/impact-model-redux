@@ -7,5 +7,5 @@ import FeaturedProjects from '../../app/assets/scripts/components/featured-proje
 test('project-articles test', t => {
   const component = shallow(<FeaturedProjects projects={[]} />)
 
-  t.truthy(component.hasClass('section__internal'))
+  t.truthy(component.hasClass('split__internal--left'))
 })

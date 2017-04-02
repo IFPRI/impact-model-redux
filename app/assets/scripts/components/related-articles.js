@@ -1,6 +1,5 @@
 'use strict'
 import React from 'react'
-import c from 'classnames'
 
 // Components
 import RelatedArticleCard from './related-article-card'
@@ -11,8 +10,8 @@ export class RelatedArticles extends React.Component {
     articles = articles || []
 
     return (
-      <section className={c((cardType === 'project' ? 'page__project-articles-list' : 'page__related-articles-list'), 'section__padding')}>
-        <div className='row row--shortened'>
+      <div>
+        <div className='content-internal'>
           <h4 className='header--large section__header'>{this.props.title || 'Related Articles'}</h4>
           <ul className='related-articles'>
             {articles.map(article => {
@@ -28,9 +27,9 @@ export class RelatedArticles extends React.Component {
               )
             })}
           </ul>
-          {this.props.children}
         </div>
-      </section>
+        {this.props.children}
+      </div>
     )
   }
 }

@@ -80,6 +80,24 @@ h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, 
   font-size: .852em;
 }
 
+.section--blue {
+  h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+  }
+  .content-internal {
+    p {
+      color: darken($lightest-grey, 8%);
+      font-weight: $base-font-light;
+    }
+  }
+  .internal__descriptions {
+    color: darken($lightest-grey, 10%);
+  }
+  .internal__descriptions {
+    width: 95%;
+  }
+}
+
 .metadata-italic {
   color: $light-grey;
   font-size: .86em;
@@ -92,4 +110,8 @@ dt {
 
 .section__header {
   margin-bottom: .8em;
+}
+
+.internal__descriptions {
+  width: 80%;
 }

@@ -137,21 +137,29 @@ export class Brief extends React.Component {
              </div>
            </section>
         }
-        <RelatedArticles
-          type='brief'
-          cardType='project'
-          title={`Other Briefs in ${translate(metadata.project)}`}
-          articles={findProjectArticles(metadata, articles, metadata.project, 2)}
-          router={this.props.router}
-          updateArticleFilters={this.updateArticleFilters}
-          />
-        <RelatedArticles
-          type='brief'
-          cardType='related'
-          articles={findRelatedArticles(metadata, articles, 3)}
-          router={this.props.router}
-          updateArticleFilters={this.updateArticleFilters}
-          />
+        <section className='page__project-articles-list section__padding'>
+          <div className='row row--shortened'>
+            <RelatedArticles
+              type='brief'
+              cardType='project'
+              title={`Other Briefs in ${translate(metadata.project)}`}
+              articles={findProjectArticles(metadata, articles, metadata.project, 2)}
+              router={this.props.router}
+              updateArticleFilters={this.updateArticleFilters}
+              />
+          </div>
+        </section>
+        <section className='page__related-articles-list section__padding'>
+          <div className='row row--shortened'>
+            <RelatedArticles
+              type='brief'
+              cardType='related'
+              articles={findRelatedArticles(metadata, articles, 3)}
+              router={this.props.router}
+              updateArticleFilters={this.updateArticleFilters}
+              />
+          </div>
+        </section>
       </section>
     )
   }
