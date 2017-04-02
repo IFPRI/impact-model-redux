@@ -1,6 +1,5 @@
 'use strict'
 import React from 'react'
-import c from 'classnames'
 
 // Components
 import RelatedArticleCard from './related-article-card'

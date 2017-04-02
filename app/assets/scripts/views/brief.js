@@ -6,7 +6,6 @@ import moment from 'moment'
 import { Link } from 'react-router'
 import _ from 'lodash'
 import md5 from 'browser-md5'
-import c from 'classnames'
 
 // Actions
 import { fetchArticle, updateArticleFilters, updateChart } from '../actions'
