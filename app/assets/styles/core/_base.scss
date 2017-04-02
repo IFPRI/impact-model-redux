@@ -33,8 +33,6 @@ p {
 
 .row {
   @extend .clearfix;
-  margin-left: auto;
-  margin-right: auto;
   max-width: 1280px;
   padding: 0 64px;
   display: block;
@@ -46,6 +44,10 @@ p {
 
 .row--shortened {
   max-width: 980px;
+}
+
+.row--short {
+  max-width: 800px;
 }
 
 a, a:visited {
@@ -141,6 +143,11 @@ a, a:visited {
   }
 }
 
+.header__internal--sm {
+  height: 240px;
+  margin-bottom: 3em;
+}
+
 .header__internal, .home__header {
   margin-bottom: 4em;
   .header__metadata {
@@ -207,4 +214,19 @@ dt {
   width: 36%;
   float: left;
   margin-right: 4em;
+}
+
+.content--secondary {
+  p {
+    margin-bottom: 2em;
+  }
+  ul {
+    margin-bottom: 3em;
+    li {
+      list-style-type: circle;
+      margin-left: 5em;
+      width: 80%;
+      margin-bottom: 1em;
+    }
+  }
 }
