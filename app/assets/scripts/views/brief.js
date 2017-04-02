@@ -13,6 +13,7 @@ import { fetchArticle, updateArticleFilters, updateChart } from '../actions'
 // Components
 import RelatedArticles from '../components/related-articles'
 import Chart from '../components/chart'
+import ChartStripe from '../components/chart-stripe'
 import MapComponent from '../components/map'
 import Loading from '../components/loading'
 
@@ -30,15 +31,19 @@ export class Brief extends React.Component {
   }
 
   componentDidUpdate () {
-    this.addCharts(this.props.charts)
+    this.addCharts(this.props.charts, this.props.metadata.scenarios)
     this.addMaps(this.props.maps)
   }
 
-  addCharts (charts) {
+  addCharts (charts, scenarios) {
     _.forEach(charts, (data, name) => {
       const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
       if (placeholder) {
-        ReactDOM.render(<Chart name={name} data={data} updateChart={this.updateChart}/>, placeholder)
+        if (data.mark === 'stripe') {
+          ReactDOM.render(<ChartStripe name={name} data={data} scenarios={scenarios} updateChart={this.updateChart}/>, placeholder)
+        } else {
+          ReactDOM.render(<Chart name={name} data={data} scenario={scenarios} updateChart={this.updateChart}/>, placeholder)
+        }
       }
     })
   }
@@ -60,6 +65,12 @@ export class Brief extends React.Component {
     this.props.dispatch(updateChart(data, id))
   }
 
+  locationLink (location, e) {
+    e.preventDefault()
+    this.props.dispatch(updateArticleFilters([location]))
+    this.props.router.push(`/briefs`)
+  }
+
   componentWillReceiveProps (nextProps) {
     if (this.props.params.id !== nextProps.params.id) {
       nextProps.dispatch(fetchArticle(nextProps.metadata.url))
@@ -74,14 +85,14 @@ export class Brief extends React.Component {
     const Locations = locations
     ? <div className='article-metadata__item'>
       <span className='article-metadata__header'>Locations:</span>
-      <ul>{locations.length > 1 ? locations.map((loc) => <li key={loc}>{translate(loc)}</li>) : <li>{translate(locations)}</li>}</ul>
+      <ul>{locations.length > 1 ? locations.map(loc => <li key={loc}><a href="" onClick={this.locationLink.bind(this, loc)}>{translate(loc)}</a></li>) : <li><a href="" onClick={this.locationLink.bind(this, locations)}>{translate(locations)}</a></li>}</ul>
     </div>
     : ''
 
     const Resources = resources
     ? <div className='article-metadata__item'>
       <span className='article-metadata__header'>Resources:</span>
-      <ul>{resources.length > 1 ? resources.map((res) => <li key={res}><a target="_blank" href={res}>{res}</a></li>) : <li><a target="_blank" href={resources}>{resources}</a></li>}</ul>
+      <ul>{resources.length > 1 ? resources.map(res => <li key={res}><a target="_blank" href={res}>{res}</a></li>) : <li><a target="_blank" href={resources}>{resources}</a></li>}</ul>
     </div>
     : ''
 
@@ -126,21 +137,29 @@ export class Brief extends React.Component {
              </div>
            </section>
         }
-        <RelatedArticles
-          type='brief'
-          cardType='project'
-          title={`Other Briefs in ${translate(metadata.project)}`}
-          articles={findProjectArticles(metadata, articles, metadata.project, 2)}
-          router={this.props.router}
-          updateArticleFilters={this.updateArticleFilters}
-          />
-        <RelatedArticles
-          type='brief'
-          cardType='related'
-          articles={findRelatedArticles(metadata, articles, 3)}
-          router={this.props.router}
-          updateArticleFilters={this.updateArticleFilters}
-          />
+        <section className='page__project-articles-list section__padding'>
+          <div className='row row--shortened'>
+            <RelatedArticles
+              type='brief'
+              cardType='project'
+              title={`Other Briefs in ${translate(metadata.project)}`}
+              articles={findProjectArticles(metadata, articles, metadata.project, 2)}
+              router={this.props.router}
+              updateArticleFilters={this.updateArticleFilters}
+              />
+          </div>
+        </section>
+        <section className='page__related-articles-list section__padding'>
+          <div className='row row--shortened'>
+            <RelatedArticles
+              type='brief'
+              cardType='related'
+              articles={findRelatedArticles(metadata, articles, 3)}
+              router={this.props.router}
+              updateArticleFilters={this.updateArticleFilters}
+              />
+          </div>
+        </section>
       </section>
     )
   }

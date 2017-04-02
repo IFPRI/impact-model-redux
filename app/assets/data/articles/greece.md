@@ -1,13 +1,13 @@
 ---
-title: Afghanistan Summary
-date: 3/21/2017
+title: Greece Summary
+date: 4/1/2017
 type: brief
 briefType: country-summary
-project: 'usaid'
+project: 'baseline'
 locations:
-  - afg
-  - southern_asia
-  - asia
+  - grc
+  - southern_europe
+  - europe
 scenarios:
  - SSP2_GFDL
  - SSP2_HGEM
@@ -15,16 +15,16 @@ scenarios:
  - SSP2_IPSL
  - SSP2_NOCC
 tags:
- - afg
- - southern_asia
- - asia
- - usaid
+ - grc
+ - southern_europe
+ - europe
+ - baseline
 ---
-# Overview
+# Overview 
 
 ```chart
 mark: bar
-title: Afghanistan - Total Demand
+title: Greece - Total Demand
 width: 37%
 encoding:
   x:
@@ -34,7 +34,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: afg
+  region: grc
   impactparameter: qdxagg
   year: 2015,2030,2050
 dropdown:
@@ -44,7 +44,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Afghanistan - Commodity Supply
+title: Greece - Commodity Supply
 width: 37%
 encoding:
   x:
@@ -54,7 +54,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: afg
+  region: grc
   impactparameter: qsupxagg
   year: 2015,2030,2050
 dropdown:
@@ -64,7 +64,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Afghanistan - Net Trade
+title: Greece - Net Trade
 width: 37%
 encoding:
   x:
@@ -74,7 +74,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: afg
+  region: grc
   impactparameter: qnxagg
   year: 2015,2030,2050
 dropdown:
@@ -86,7 +86,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Afghanistan - Population at Risk of Hunger
+title: Greece - Population at Risk of Hunger
 width: 37%
 encoding:
   x:
@@ -96,14 +96,14 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: afg
+  region: grc
   impactparameter: populationatriskxagg
   year: 2015,2030,2050
 ```
 
 ```chart
 mark: bar
-title: Afghanistan - Food Availability
+title: Greece - Food Availability
 width: 37%
 encoding:
   x:
@@ -113,14 +113,14 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: afg
+  region: grc
   impactparameter: foodavailxagg
   year: 2015,2030,2050
 ```
 
 ```chart
 mark: bar
-title: Afghanistan - Total Malnourished Children
+title: Greece - Total Malnourished Children
 width: 37%
 encoding:
   x:
@@ -130,16 +130,16 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: afg
+  region: grc
   impactparameter: totalmalnourishedxagg
   year: 2015,2030,2050
 ```
 
 |   |   | 2015 | 2030 | 2050 |
 |---|---|---|---|---|
-| Southern Asia | Population (million) | 1828.35 | 2159.00 | 2471.15 |
-|  | GDP (billion $US) | 6916.97 | 15816.93 | 35256.55 |
-|  | Per capita GDP ($US) | 3783.18 | 7326.04 | 14267.26 |
-| Afghanistan | Population (million) | 35.75 | 51.69 | 75.16 |
-|  | GDP (billion $US) | 48.19 | 101.90 | 314.37 |
-|  | Per capita GDP ($US) | 1347.97| 1971.37| 4182.68|
+| Southern Europe | Population (million) | 157.91 | 160.99 | 162.67 |
+|  | GDP (billion $US) | 3786.56 | 4683.70 | 6170.36 |
+|  | Per capita GDP ($US) | 23979.23 | 29093.11 | 37931.76 |
+| Greece | Population (million) | 11.45 | 11.38 | 11.25 |
+|  | GDP (billion $US) | 256.69 | 350.34 | 496.95 |
+|  | Per capita GDP ($US) | 22418.34| 30785.59| 44173.33|

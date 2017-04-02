@@ -1,6 +1,6 @@
 ---
 title: Soybeans Summary
-date: 3/21/2017
+date: 4/1/2017
 type: brief
 briefType: commodity-summary
 project: 'baseline'
@@ -52,6 +52,25 @@ fixed:
   commodity: soyb
   impactparameter: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
 change: true
+```
+
+```chart
+mark: stripe
+title: Soybeans Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
+width: 37%
+encoding:
+  x:
+    type: nominal
+    field: year
+  y:
+    type: quantitative
+    field: Val
+fixed:
+  commodity: soyb
+scenarios: ssp2_gfdl, ssp2_hgem
+dropdown:
+  field: impactparameter
+  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
 ```
 
 ```map
