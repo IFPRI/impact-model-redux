@@ -78,6 +78,10 @@ a, a:visited {
   }
 }
 
+.section--grey {
+  background-color: darken($background-grey, 2%);
+}
+
 .link__underline {
   border-bottom: 1px solid lighten($base-purple, 50%);
   display: inline-block;
@@ -200,7 +204,7 @@ dt {
 }
 
 .card--large {
-  width: 30%;
+  width: 36%;
   float: left;
   margin-right: 4em;
 }
