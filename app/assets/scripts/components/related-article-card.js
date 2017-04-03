@@ -32,7 +32,7 @@ export class RelatedArticleCard extends React.Component {
           </div>
         </header>
         <div className={`article-card__body--${cardType}`}>
-          <p>{`${cutAtWord(article.preview, 190)}`}</p>
+          {(briefType === 'custom') ? <p>{`${cutAtWord(article.preview, 190)}`}</p> : ''}
         </div>
         <ul className='article-card__tags link-block'>
           {tags.map(tag => {
