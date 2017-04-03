@@ -83,27 +83,28 @@ export class ChartGroupedBar extends React.Component {
     queryDatabase(data, data.scenarios)
     .then((chartData) => {
       const records = {}
-      chartData.forEach((result, i) => {
-        chart.data.labels.push(result.source)
-        // structure data as "group: key: value"
-        result.values.forEach((record) => {
+      chartData.forEach((data, i) => {
+        chart.data.labels.push(data.source)
+        // build data structure...
+        data.values.forEach((record) => {
           if (i === 0) {
-            chart.data.datasets.push({backgroundColor: sixColorPalette})
+            chart.data.datasets.push({})
           }
-          const name = translate(record.impactparameter)
-          if (!records[name]) {
-            records[name] = []
+          const label = translate(record.impactparameter)
+          if (!records[label]) {
+            records[label] = []
           }
-          records[name].push(record.Val)
+          records[label].push(record.Val)
         })
       })
+      // ...then apply to chart
       let i = 0
       _.forEach(records, (value, key) => {
         chart.data.datasets[i].label = key
+        chart.data.datasets[i].backgroundColor = sixColorPalette[i]
         chart.data.datasets[i].data = value
         i++
       })
-      console.log(chart)
       this.chart = new ChartJS(
         document.getElementById(name).getContext('2d'),
         chart
@@ -129,30 +130,8 @@ export class ChartGroupedBar extends React.Component {
         })
       })
 
-      const stripe = this.getStripeParams(chartData)
-      nextData[scenarios.length].width = stripe.width
-      nextData[scenarios.length].data = stripe.centerline
-
       this.chart.update()
     })
-  }
-
-  getStripeParams (chartData) {
-    let positionValues = []
-    for (let i = 0; i < chartData[0].values.length; i++) {
-      positionValues.push(chartData.map((dataset) => {
-        return dataset.values[i] ? dataset.values[i].Val : null
-      }))
-    }
-    positionValues = positionValues.filter((value) => value)
-    const lineWidth = positionValues.map((values) => _.max(values) - _.min(values))
-    const centerline = positionValues.map((group) => {
-      return group.reduce((a, b) => a + b) / group.length
-    })
-    return {
-      width: lineWidth,
-      centerline: centerline
-    }
   }
 
   handleDropdown (e) {
