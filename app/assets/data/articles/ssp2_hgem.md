@@ -1,6 +1,6 @@
 ---
 title: SSP2_HGEM Summary
-date: 4/2/2017
+date: 4/3/2017
 type: scenario
 project: 'baseline'
 scenarios:
@@ -51,7 +51,7 @@ change: true
 
 ```chart
 mark: grouped-bar
-title: Change in SSP2_HGEM Impact Parameters per Commodity Group (%) from 2015 - 2050 (SSP2_HGEM vs. SSP2_HGEM)
+title: Change in SSP2_HGEM Impact Parameters per Commodity Group (%) from 2015 - 2050 (SSP2_HGEM vs. SSP2_MIROC)
 width: 70%
 encoding:
   x:
@@ -60,7 +60,7 @@ encoding:
   y:
     type: quantitative
     field: Val
-scenarios: SSP2_HGEM, SSP2_HGEM
+scenarios: SSP2_HGEM, SSP2_MIROC
 fixed:
   impactparameter: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
 dropdown:

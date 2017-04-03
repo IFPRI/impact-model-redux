@@ -115,3 +115,10 @@ dt {
 .internal__descriptions {
   width: 80%;
 }
+
+.secondary--content {
+  p {
+    font-size: .86em;
+    color: $grey;
+  }
+}

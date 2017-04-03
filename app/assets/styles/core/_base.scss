@@ -80,6 +80,10 @@ a, a:visited {
   }
 }
 
+.section--grey {
+  background-color: darken($background-grey, 2%);
+}
+
 .link__underline {
   border-bottom: 1px solid lighten($base-purple, 50%);
   display: inline-block;
@@ -115,7 +119,7 @@ a, a:visited {
 }
 
 .section__padding {
-  padding: 4em 0 7em;
+  padding: 5.5em 0 6.4em;
 }
 
 .section__padding--lg {
@@ -175,11 +179,6 @@ section {
   }
 }
 
-.section__internal {
-  padding-bottom: 5em;
-  @extend .clearfix;
-}
-
 .browse__header-text {
   margin-top: 10em;
   width: 60%;
@@ -207,7 +206,7 @@ dt {
 }
 
 .card--large {
-  width: 30%;
+  width: 36%;
   float: left;
   margin-right: 4em;
 }

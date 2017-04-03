@@ -1,6 +1,6 @@
 ---
 title: SSP2_MIROC Summary
-date: 4/2/2017
+date: 4/3/2017
 type: scenario
 project: 'baseline'
 scenarios:
@@ -51,7 +51,7 @@ change: true
 
 ```chart
 mark: grouped-bar
-title: Change in SSP2_MIROC Impact Parameters per Commodity Group (%) from 2015 - 2050 (SSP2_MIROC vs. SSP2_MIROC)
+title: Change in SSP2_MIROC Impact Parameters per Commodity Group (%) from 2015 - 2050 (SSP2_MIROC vs. SSP2_HGEM)
 width: 70%
 encoding:
   x:
@@ -60,7 +60,7 @@ encoding:
   y:
     type: quantitative
     field: Val
-scenarios: SSP2_MIROC, SSP2_MIROC
+scenarios: SSP2_MIROC, SSP2_HGEM
 fixed:
   impactparameter: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
 dropdown:

@@ -106,7 +106,9 @@ ${article}`
 }
 
 _.forEach(commodities, (group, commodity) => {
-  generateArticle(commodity, group)
+  if (['bana', 'barl', 'whea', 'beef', 'eggs', 'lamb', 'milk', 'bean', 'vege', 'teas'].includes(commodity)) {
+    generateArticle(commodity, group)
+  }
 })
 
 console.log('Simulated articles saved to ./app/assets/data/articles')
