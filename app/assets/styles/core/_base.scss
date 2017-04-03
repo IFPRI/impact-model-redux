@@ -119,7 +119,7 @@ a, a:visited {
 }
 
 .section__padding {
-  padding: 4em 0 7em;
+  padding: 5.5em 0 6.4em;
 }
 
 .section__padding--lg {
@@ -177,11 +177,6 @@ section {
     font-size: 1.1em;
     width: 83%;
   }
-}
-
-.section__internal {
-  padding-bottom: 5em;
-  @extend .clearfix;
 }
 
 .browse__header-text {

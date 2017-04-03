@@ -137,7 +137,7 @@ export class Brief extends React.Component {
              </div>
            </section>
         }
-        <section className='page__project-articles-list section__padding'>
+        <section className='page__project-articles-list section__padding section--blue'>
           <div className='row row--shortened'>
             <RelatedArticles
               type='brief'
@@ -149,7 +149,7 @@ export class Brief extends React.Component {
               />
           </div>
         </section>
-        <section className='page__related-articles-list section__padding'>
+        <section className='page__related-articles-list section__padding section--blue'>
           <div className='row row--shortened'>
             <RelatedArticles
               type='brief'
@@ -158,6 +158,16 @@ export class Brief extends React.Component {
               router={this.props.router}
               updateArticleFilters={this.updateArticleFilters}
               />
+          </div>
+        </section>
+        <section className='section__internal section__padding section--grey'>
+          <div className='row'>
+            <header className='header-internal'>
+              <h3 className='header--large with-description'>How to Get More Information</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et dui gravida, posuere diam id, congue augue. Pellentesque nec purus ex.</p>
+            </header>
+            <Link className='button button--main button--small button-group' to={'/about'}>Download Our Data</Link>
+            <Link className='button button--main button--small' to={'/about'}>Contact Us</Link>
           </div>
         </section>
       </section>
