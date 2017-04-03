@@ -323,3 +323,12 @@
     }
   }
 }
+
+.filter__buttons--mobile {
+  display: block;
+  @include media(medium-down) {
+    display: block;
+    z-index: 6;
+    min-height: 100px;
+  }
+}
