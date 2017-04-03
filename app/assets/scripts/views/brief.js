@@ -84,7 +84,7 @@ export class Brief extends React.Component {
 
     const Locations = locations
     ? <div className='article-metadata__item'>
-      <span className='article-metadata__header'>Locations:</span>
+      <span className='article-metadata__header'>Related Locations:</span>
       <ul>{locations.length > 1 ? locations.map(loc => <li key={loc}><a href="" onClick={this.locationLink.bind(this, loc)}>{translate(loc)}</a></li>) : <li><a href="" onClick={this.locationLink.bind(this, locations)}>{translate(locations)}</a></li>}</ul>
     </div>
     : ''
@@ -130,10 +130,18 @@ export class Brief extends React.Component {
          : <section className='section__internal'>
              <div className='row row--shortened'>
                <div className='article-metadata'>
-               {Locations}
-               {Resources}
+                 {Locations}
+                 {Resources}
+                 <div className='article-metadata__item'>
+                  <span className='article-metadata__header'>Related Scenarios:</span>
+                  <ul>{metadata.scenarios.map(s => <li key={s}>{s}</li>)}</ul>
+                </div>
                </div>
-               <div className='article--content' dangerouslySetInnerHTML={{__html: this.props.article}}></div>
+               <div className='article--content' dangerouslySetInnerHTML={{__html: this.props.article}}>
+               </div>
+               <div className='tags'>
+                {metadata.tags.join(', ')}
+              </div>
              </div>
            </section>
         }
