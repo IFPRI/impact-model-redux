@@ -114,7 +114,7 @@ export class Scenario extends React.Component {
         </section>
         {this.props.articleLoading
          ? <Loading />
-         : <section className='section__internal'>
+         : <section className='section__internal section__padding'>
              <div className='row row--shortened'>
                <div className='article-metadata'>
                   {Locations}
@@ -124,7 +124,7 @@ export class Scenario extends React.Component {
              </div>
            </section>
         }
-        <section className='page__project-articles-list section__padding section--blue'>
+        <section className='page__project-articles-list section__padding page__articles-list section--blue'>
           <div className='row row--shortened'>
             <RelatedArticles
               type='scenario'
@@ -136,7 +136,7 @@ export class Scenario extends React.Component {
               />
           </div>
         </section>
-        <section className='page__related-articles-list section__padding section--blue'>
+        <section className='page__related-articles-list section__padding page__articles-list section--blue'>
           <div className='row row--shortened'>
             <RelatedArticles
               type='scenario'

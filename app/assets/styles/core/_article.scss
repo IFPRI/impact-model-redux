@@ -180,14 +180,22 @@
   margin-right: .8em;
 }
 
-.page__project-articles-list {
-  float: left;
-  background-color: $light-blue;
-  .section__header {
-    color: #fff;
+.page__articles-list {
+  .link-block {
+    margin-top: 2em;
   }
+  .article-card__header--project, .article-card__header--related {
+    margin-bottom: 1em;
+  }
+}
+
+.article-card__header--related-frontpage {
+  margin-bottom: 1em;
+}
+
+.page__project-articles-list {
+  background-color: $light-blue;
   .article-card--project {
-    color: #fff;
     float: left;
     width: 30%;
     padding: 2rem 2.2rem 3rem 2.2rem;
@@ -213,20 +221,6 @@
           margin-bottom: 2em;
         }
       }
-      .link__underline--dark, .link__underline {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        display: inline;
-        &:hover {
-          text-decoration: none;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.6);
-        }
-      }
-      .link__underline {
-        display: inline-block;
-        &:after {
-          margin-right: .5em;
-        }
-      }
     }
     .link__underline--dark, .link__underline {
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -243,22 +237,11 @@
         margin-right: .5em;
       }
     }
-    p, li {
-      font-weight: 200;
-      line-height: 1.5rem;
-    }
-    a {
-      color: #fff;
-    }
-    .article-card__header--project {
-      margin-bottom: 1em;
-    }
   }
 }
 
 .page__related-articles-list {
-  float: left;
-  background-color: darken($lightest-grey, 3%);
+  background-color: $medium-blue;
   .article-card--related {
     float: left;
     width: 28%;
@@ -273,31 +256,11 @@
     @include media(small-down) {
       width: 100%;
     }
-    .article-card__body--related {
-      min-height: 7.5em;
-      position: relative;
-      @include media(medium-down) {
-        min-height: 0;
-        margin-bottom: .5em;
-      }
-    }
     &:last-of-type {
       margin-bottom: 0em;
     }
-    .article-card__header--related {
-      margin: 0 0 .5em;
-      a, a:visited {
-        color: lighten($darkest-grey, 8%);
-      }
-    }
-
     &:last-child {
       margin-right: 0;
-    }
-    p {
-      font-weight: 200;
-      font-size: 0.75rem;
-      line-height: 1.5rem;
     }
   }
   .label--chart {
@@ -314,6 +277,7 @@
   li {
     display: inline-block;
     margin-right: .5em;
+    margin-bottom: .5em;
     &:after {
       content: ',';
     }
