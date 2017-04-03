@@ -106,15 +106,21 @@
   }
 }
 
+.table-wrapper {
+  background-color: #fff;
+  border: 1px solid darken($lightest-grey, 5%);
+  padding: 4.5% 5%;
+}
+
 .article-byline {
   dd {
     line-height: 1.2em;
     display: inline-block;
     list-style-type: none;
-    &:first-of-type {
-      border-right: 1px solid black;
-      margin-right: 1em;
-      padding-right: 1em;
+    &:nth-of-type(even) {
+      border-left: 1px solid black;
+      margin-left: 1em;
+      padding-left: 1em;
     }
   }
 }
