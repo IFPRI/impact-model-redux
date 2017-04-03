@@ -53,7 +53,7 @@ export class ListArticleCard extends React.Component {
           <div className='article-list-card__header'>
             <h4 className='header--small with-metadata'>{article.title}</h4>
             <span className='metadata-italic'>{(type === 'brief' ? `${translate(briefType)}   |   ` : '') + date}</span>
-            <p className='article-list-card__body'>{`${cutAtWord(article.preview, 190)}`}</p>
+            {(briefType === 'custom') ? <p className='article-list-card__body'>{`${cutAtWord(article.preview, 190)}`}</p> : ''}
           </div>
           <div className='article-list-card__meta'>
             {CardMeta}
