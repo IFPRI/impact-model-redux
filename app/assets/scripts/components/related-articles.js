@@ -12,7 +12,7 @@ export class RelatedArticles extends React.Component {
     return (
       <div>
         <div className='content-internal'>
-          <h4 className='header--large section__header'>{this.props.title || 'Related Articles'}</h4>
+          <h4 className='header--large section__header'>{this.props.title || 'Related Briefs'}</h4>
           <ul className='related-articles'>
             {articles.map(article => {
               return (
