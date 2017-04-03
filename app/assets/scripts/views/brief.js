@@ -13,6 +13,7 @@ import { fetchArticle, updateArticleFilters, updateChart } from '../actions'
 // Components
 import RelatedArticles from '../components/related-articles'
 import Chart from '../components/chart'
+import ChartStripe from '../components/chart-stripe'
 import MapComponent from '../components/map'
 import Loading from '../components/loading'
 
@@ -30,15 +31,19 @@ export class Brief extends React.Component {
   }
 
   componentDidUpdate () {
-    this.addCharts(this.props.charts)
+    this.addCharts(this.props.charts, this.props.metadata.scenarios)
     this.addMaps(this.props.maps)
   }
 
-  addCharts (charts) {
+  addCharts (charts, scenarios) {
     _.forEach(charts, (data, name) => {
       const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
       if (placeholder) {
-        ReactDOM.render(<Chart name={name} data={data} updateChart={this.updateChart}/>, placeholder)
+        if (data.mark === 'stripe') {
+          ReactDOM.render(<ChartStripe name={name} data={data} scenarios={scenarios} updateChart={this.updateChart}/>, placeholder)
+        } else {
+          ReactDOM.render(<Chart name={name} data={data} scenario={scenarios} updateChart={this.updateChart}/>, placeholder)
+        }
       }
     })
   }
@@ -132,21 +137,29 @@ export class Brief extends React.Component {
              </div>
            </section>
         }
-        <RelatedArticles
-          type='brief'
-          cardType='project'
-          title={`Other Briefs in ${translate(metadata.project)}`}
-          articles={findProjectArticles(metadata, articles, metadata.project, 2)}
-          router={this.props.router}
-          updateArticleFilters={this.updateArticleFilters}
-          />
-        <RelatedArticles
-          type='brief'
-          cardType='related'
-          articles={findRelatedArticles(metadata, articles, 3)}
-          router={this.props.router}
-          updateArticleFilters={this.updateArticleFilters}
-          />
+        <section className='page__project-articles-list section__padding'>
+          <div className='row row--shortened'>
+            <RelatedArticles
+              type='brief'
+              cardType='project'
+              title={`Other Briefs in ${translate(metadata.project)}`}
+              articles={findProjectArticles(metadata, articles, metadata.project, 2)}
+              router={this.props.router}
+              updateArticleFilters={this.updateArticleFilters}
+              />
+          </div>
+        </section>
+        <section className='page__related-articles-list section__padding'>
+          <div className='row row--shortened'>
+            <RelatedArticles
+              type='brief'
+              cardType='related'
+              articles={findRelatedArticles(metadata, articles, 3)}
+              router={this.props.router}
+              updateArticleFilters={this.updateArticleFilters}
+              />
+          </div>
+        </section>
       </section>
     )
   }

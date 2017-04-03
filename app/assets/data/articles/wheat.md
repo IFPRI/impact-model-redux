@@ -54,6 +54,25 @@ fixed:
 change: true
 ```
 
+```chart
+mark: stripe
+title: Wheat Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
+width: 37%
+encoding:
+  x:
+    type: nominal
+    field: year
+  y:
+    type: quantitative
+    field: Val
+fixed:
+  commodity: whea
+scenarios: ssp2_gfdl, ssp2_hgem
+dropdown:
+  field: impactparameter
+  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+```
+
 ```map
 title: Change in Wheat IMPACT Parameters from 2015 - 2050 (%)
 dropdown:
