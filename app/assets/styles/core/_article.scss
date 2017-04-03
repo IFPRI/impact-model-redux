@@ -180,13 +180,8 @@
 }
 
 .page__project-articles-list {
-  float: left;
   background-color: $light-blue;
-  .section__header {
-    color: #fff;
-  }
   .article-card--project {
-    color: #fff;
     float: left;
     width: 30%;
     padding: 2rem 2.2rem 3rem 2.2rem;
@@ -265,8 +260,9 @@
 }
 
 .page__related-articles-list {
-  float: left;
-  background-color: darken($lightest-grey, 3%);
+  background-color: $medium-blue;
+  @extend .clearfix;
+  display: block;
   .article-card--related {
     float: left;
     width: 28%;
@@ -294,9 +290,6 @@
     }
     .article-card__header--related {
       margin: 0 0 .5em;
-      a, a:visited {
-        color: lighten($darkest-grey, 8%);
-      }
     }
 
     &:last-child {

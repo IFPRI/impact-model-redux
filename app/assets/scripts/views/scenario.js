@@ -124,21 +124,39 @@ export class Scenario extends React.Component {
              </div>
            </section>
         }
-        <RelatedArticles
-          type='scenario'
-          cardType='project'
-          title={`Other Scenarios in ${translate(metadata.project)}`}
-          articles={findProjectArticles(metadata, articles, metadata.project, 2)}
-          router={this.props.router}
-          updateArticleFilters={this.updateArticleFilters}
-          />
-        <RelatedArticles
-          type='scenario'
-          cardType='related'
-          articles={findRelatedArticles(metadata, articles, 3)}
-          router={this.props.router}
-          updateArticleFilters={this.updateArticleFilters}
-          />
+        <section className='page__project-articles-list section__padding section--blue'>
+          <div className='row row--shortened'>
+            <RelatedArticles
+              type='scenario'
+              cardType='project'
+              title={`Other Scenarios in ${translate(metadata.project)}`}
+              articles={findProjectArticles(metadata, articles, metadata.project, 2)}
+              router={this.props.router}
+              updateArticleFilters={this.updateArticleFilters}
+              />
+          </div>
+        </section>
+        <section className='page__related-articles-list section__padding section--blue'>
+          <div className='row row--shortened'>
+            <RelatedArticles
+              type='scenario'
+              cardType='related'
+              articles={findRelatedArticles(metadata, articles, 3)}
+              router={this.props.router}
+              updateArticleFilters={this.updateArticleFilters}
+              />
+          </div>
+        </section>
+        <section className='section__internal section__padding section--grey'>
+          <div className='row'>
+            <header className='header-internal'>
+              <h3 className='header--large with-description'>How to Get More Information</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et dui gravida, posuere diam id, congue augue. Pellentesque nec purus ex.</p>
+            </header>
+            <Link className='button button--main button--small button-group' to={'/about'}>Download Our Data</Link>
+            <Link className='button button--main button--small' to={'/about'}>Contact Us</Link>
+          </div>
+        </section>
       </section>
     )
   }
