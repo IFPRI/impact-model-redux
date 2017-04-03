@@ -12,7 +12,7 @@ import { formatNumber } from '../utils/format'
 import { translate } from '../utils/translation'
 
 // Constants
-import { sixColorPalette, stripeChartFill } from '../constants'
+import { sixColorPalette } from '../constants'
 
 export class ChartGroupedBar extends React.Component {
   constructor (props, context) {
@@ -34,7 +34,7 @@ export class ChartGroupedBar extends React.Component {
       type: 'bar',
       options: {
         responsive: true,
-        // todo: determine why this option currently sets the chart height to 0
+        // todo: determine why "maintainAspectRatio: false" currently sets the chart height to 0
         // maintainAspectRatio: false,
         legend: {
           display: false
@@ -76,25 +76,32 @@ export class ChartGroupedBar extends React.Component {
       },
       data: {
         labels: [],
-        datasets: [{
-          data: [1, 2, 3],
-          backgroundColor: sixColorPalette
-        }]
+        datasets: []
       }
     }
 
     queryDatabase(data, data.scenarios)
     .then((chartData) => {
-      chartData.forEach((item, i) => {
-        chart.data.labels.push(item.source)
-        chart.data.datasets.push({
-          data: [],
-          backgroundColor: sixColorPalette[i] || sixColorPalette[(Math.floor(Math.random() * 5))]
+      const records = {}
+      chartData.forEach((result, i) => {
+        chart.data.labels.push(result.source)
+        // structure data as "group: key: value"
+        result.values.forEach((record) => {
+          if (i === 0) {
+            chart.data.datasets.push({backgroundColor: sixColorPalette})
+          }
+          const name = translate(record.impactparameter)
+          if (!records[name]) {
+            records[name] = []
+          }
+          records[name].push(record.Val)
         })
-        item.values.forEach((record) => {
-          chart.data.datasets[i].data.push({label: translate(record.impactparameter)})
-          chart.data.datasets[i].data.push(record.Val)
-        })
+      })
+      let i = 0
+      _.forEach(records, (value, key) => {
+        chart.data.datasets[i].label = key
+        chart.data.datasets[i].data = value
+        i++
       })
       console.log(chart)
       this.chart = new ChartJS(
