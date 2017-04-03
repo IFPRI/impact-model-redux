@@ -65,9 +65,9 @@ export class Brief extends React.Component {
     this.props.dispatch(updateChart(data, id))
   }
 
-  locationLink (location, e) {
+  filteredLink (filter, e) {
     e.preventDefault()
-    this.props.dispatch(updateArticleFilters([location]))
+    this.props.dispatch(updateArticleFilters([filter]))
     this.props.router.push(`/briefs`)
   }
 
@@ -79,19 +79,26 @@ export class Brief extends React.Component {
 
   render () {
     const { articles, metadata } = this.props
-    const { locations, resources, author } = metadata
+    const { locations, scenarios, resources, author, tags } = metadata
     const date = moment(metadata.date, 'M/D/YYYY').format('MMMM Do, YYYY')
 
     const Locations = locations
     ? <div className='article-metadata__item'>
-      <span className='article-metadata__header'>Locations:</span>
-      <ul>{locations.length > 1 ? locations.map(loc => <li key={loc}><a href="" onClick={this.locationLink.bind(this, loc)}>{translate(loc)}</a></li>) : <li><a href="" onClick={this.locationLink.bind(this, locations)}>{translate(locations)}</a></li>}</ul>
+      <span className='article-metadata__header'>Related Locations:</span>
+      <ul>{locations.length > 1 ? locations.map(loc => <li key={loc}><a className='link__underline' href="" onClick={this.filteredLink.bind(this, loc)}>{translate(loc)}</a></li>) : <li><a href="" onClick={this.filteredLink.bind(this, locations)}>{translate(locations)}</a></li>}</ul>
+    </div>
+    : ''
+
+    const Scenarios = scenarios
+    ? <div className='article-metadata__item'>
+      <span className='article-metadata__header'>Related Scenarios:</span>
+      <ul>{scenarios.length > 1 ? scenarios.map(s => <li key={s}><a className='link__underline' href={`/#/scenarios/${s.toLowerCase()}-summary`}>{translate(s)}</a></li>) : <li><a href={`/#/scenarios/${scenarios.toLowerCase()}-summary`}>{translate(scenarios)}</a></li>}</ul>
     </div>
     : ''
 
     const Resources = resources
     ? <div className='article-metadata__item'>
-      <span className='article-metadata__header'>Resources:</span>
+      <span className='article-metadata__header'>Related Resources:</span>
       <ul>{resources.length > 1 ? resources.map(res => <li key={res}><a target="_blank" href={res}>{res}</a></li>) : <li><a target="_blank" href={resources}>{resources}</a></li>}</ul>
     </div>
     : ''
@@ -127,17 +134,27 @@ export class Brief extends React.Component {
         </section>
         {this.props.articleLoading
          ? <Loading />
-         : <section className='section__internal'>
+         : <section className='section__internal section__padding'>
              <div className='row row--shortened'>
                <div className='article-metadata'>
-               {Locations}
-               {Resources}
+                 {Locations}
+                 {Scenarios}
+                 {Resources}
                </div>
-               <div className='article--content' dangerouslySetInnerHTML={{__html: this.props.article}}></div>
+               <div className='article--content' dangerouslySetInnerHTML={{__html: this.props.article}}>
+               </div>
+               <div>
+                <ul className='article-card__tags link-block'>
+                  <span className='article-metadata__header'>Tags:</span>
+                  {(tags || []).map(tag => {
+                    return <li key={tag}><a className='link__underline' onClick={this.filteredLink.bind(this, tag)} href=''>{translate(tag)}</a></li>
+                  })}
+                </ul>
+              </div>
              </div>
            </section>
         }
-        <section className='page__project-articles-list section__padding section--blue'>
+        <section className='page__project-articles-list page__articles-list section__padding section--blue'>
           <div className='row row--shortened'>
             <RelatedArticles
               type='brief'
@@ -149,7 +166,7 @@ export class Brief extends React.Component {
               />
           </div>
         </section>
-        <section className='page__related-articles-list section__padding section--blue'>
+        <section className='page__related-articles-list page__articles-list section__padding section--blue'>
           <div className='row row--shortened'>
             <RelatedArticles
               type='brief'

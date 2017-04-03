@@ -10,7 +10,7 @@ export class About extends React.Component {
             <h2 className='header--xxlarge with-metadata'>About</h2>
           </div>
         </header>
-        <section className='section__internal'>
+        <section className='section__internal section__padding'>
           <div className='row row--short content--secondary'>
             <h3 className='header--xlarge'>Why this tool?</h3>
             <p>The IMPACT web tool is a fully interactive online tool designed to highlight and make public the results of simulations performed with the IMPACT model and carried out through various projects. The tool offers:</p>

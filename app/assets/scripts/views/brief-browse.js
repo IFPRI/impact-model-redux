@@ -18,7 +18,7 @@ export class BriefBrowse extends React.Component {
             </div>
           </div>
         </header>
-        <section>
+        <section className='section__padding'>
           <div className='row'>
             <BrowseFilters
               dispatch={this.props.dispatch}
