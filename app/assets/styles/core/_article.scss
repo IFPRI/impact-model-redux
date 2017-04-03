@@ -226,12 +226,6 @@
           margin-right: .5em;
         }
       }
-      .metadata-italic {
-        color: darken($lightest-grey, 10%);
-        margin-bottom: 1.5em;
-        display: block;
-        margin-top: .2rem;
-      }
     }
     .link__underline--dark, .link__underline {
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -250,9 +244,7 @@
     }
     .metadata-italic {
       color: darken($lightest-grey, 10%);
-      margin-bottom: 1.5em;
-      display: block;
-      margin-top: .2rem;
+      margin-bottom: em;
     }
     p, li {
       font-weight: 200;
@@ -260,6 +252,9 @@
     }
     a {
       color: #fff;
+    }
+    .article-card__header--project {
+      margin-bottom: 1em;
     }
   }
 }
@@ -327,6 +322,16 @@
     }
     &:last-of-type:after {
       content: '';
+    }
+  }
+}
+
+.card__metadata {
+  span {
+    &:nth-of-type(even) {
+      border-left: 1px solid $light-grey;
+      margin-left: 1em;
+      padding-left: 1em;
     }
   }
 }

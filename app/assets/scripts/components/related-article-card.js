@@ -23,9 +23,13 @@ export class RelatedArticleCard extends React.Component {
     return (
       <li className={`article-card--${cardType}`}>
         <header className={`article-card__header--${cardType}`}>
-          <h5 className='header--small'>
+          <h5 className='header--small with-metadata'>
             <Link className='link__underline--dark' to={`/${article.type}s/${article.id}`}>{article.title}</Link>
           </h5>
+          <div className='card__metadata'>
+            <span className='metadata-italic'>{`${translate(briefType)}`}</span>
+            <span className='metadata-italic'>{`${date}`}</span>
+          </div>
         </header>
         <div className={`article-card__body--${cardType}`}>
           <p>{`${cutAtWord(article.preview, 190)}`}</p>
@@ -35,7 +39,6 @@ export class RelatedArticleCard extends React.Component {
             return <li key={tag}><a className='link__underline' onClick={this.goToTag.bind(this, tag)} href=''>{translate(tag)}</a></li>
           })}
         </ul>
-        <span className='metadata-italic'>{`${translate(briefType)}   |   ${date}`}</span>
       </li>
     )
   }
