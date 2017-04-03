@@ -79,3 +79,48 @@ button {
 .button-group {
   margin-right: 2em;
 }
+
+// share button
+.share--container {
+  float: left;
+  width: 17rem;
+  .form__input-group {
+    float: left;
+    margin: 0.5rem 0 0 0.25rem;
+    padding: 0.75rem;
+    background-color: $background-grey;
+    border: 1px solid $light-grey;
+  }
+  input[type='text'] {
+    width: 17rem;
+    padding: 0.5rem;
+    border: 1px solid $light-grey;
+  }
+  .button--modal {
+    background: white;
+    width: 100rem;
+  }
+  button {
+    &.button--outline {
+      background-color: $medium-blue;
+      &:hover {
+        color: $medium-blue;
+        background-color: #fff;
+      }
+      margin-top: 0.5rem;
+      float: left;
+      clear: left;
+    }
+    .button--internal {
+      background-color: $light-grey;
+    }
+    &.modal__button-dismiss {
+      float: left;
+      clear: left;
+      margin-top: 0.5rem;
+      background-color: $light-grey;
+      color: #fff;
+      border: 1px solid #fff;
+    }
+  }
+}
