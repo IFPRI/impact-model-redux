@@ -151,7 +151,10 @@
     height: 100%;
     overflow-y: hidden;
     display: none;
-    &.active { display: block; }
+    &.active { 
+      display: block;
+      overflow-y: scroll;
+    }
   }
   .header--small {
     margin-bottom: 1em;
