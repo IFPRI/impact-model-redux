@@ -149,8 +149,11 @@ export class BrowseFilters extends React.Component {
               generateAccordionItems={this.generateAccordionItems}
             />
           })}
+          <div className='filter__buttons--mobile'>
+            <a className='button button--main button--small button-group' onClick={this.handleMobileFilter} href=''>Submit</a>
+            <a className='button button--negative button-outline button--small' onClick={this.handleMobileFilter} href=''>Cancel</a>
+          </div>
         </form>
-        <a className='button button--main' onClick={this.handleMobileFilter} href='#'>Close</a>
       </div>
     )
   }

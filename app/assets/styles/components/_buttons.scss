@@ -57,11 +57,20 @@ button {
   padding: .4em 2.3em .3em;
 }
 
+.button--negative, .button--negative:visited {
+  border: 1px solid $grey;
+  color: $grey;
+}
+
 .button--more-information {
   margin-top: 3em;
   @include media(medium-down) {
     margin-top: 1em;
   }
+}
+
+.button--more-information--sm {
+  margin-top: 2em;
 }
 
 .more-information--sm {
@@ -70,4 +79,8 @@ button {
 
 .button--download {
   padding: .7em 2.35em;
+}
+
+.button-group {
+  margin-right: 2em;
 }

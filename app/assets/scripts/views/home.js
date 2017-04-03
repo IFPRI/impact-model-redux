@@ -59,22 +59,22 @@ export class Home extends React.Component {
             </div>
           </div>
         </section>
-        <section className='section__internal section__padding'>
+        <section className='section__internal section__padding section--grey'>
           <div className='row'>
             <header className='header-internal'>
-              <h3 className='header--xlarge with-description'>How to Get More Information</h3>
+              <h3 className='header--large with-description'>How to Get More Information</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et dui gravida, posuere diam id, congue augue. Pellentesque nec purus ex.</p>
             </header>
-            <ul>
+            <ul className='secondary--content'>
               <li className='card--large'>
-                <h4 className='header--large'>Download the IMPACT Data</h4>
-                <p>Get access to the data we use to run each of our models.</p>
-                <Link className='button button--main button--more-information' to={'/about'}>Learn More</Link>
+                <h4 className='header--small'>Contact Us</h4>
+                <p>Want more custom analysis? Reach out to us with your needs and we’ll get back to you soon. </p>
+                <Link className='button button--main button--more-information--sm button--small' to={'/about'}>Contact Us</Link>
               </li>
               <li className='card--large'>
-                <h4 className='header--large'>Contact Us</h4>
-                <p>Want more custom analysis? Reach out to us with your needs and we’ll get back to you as soon as we can. </p>
-                <Link className='button button--main button--more-information' to={'/about'}>Contact Us</Link>
+                <h4 className='header--small'>Download the IMPACT Data</h4>
+                <p>Get access to the data we use to run each of our models at our dataverse.</p>
+                <Link className='button button--main button--more-information--sm button--small' to={'/about'}>Learn More</Link>
               </li>
             </ul>
           </div>
