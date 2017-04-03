@@ -1,6 +1,7 @@
 'use strict'
 import React from 'react'
 import { Link } from 'react-router'
+import moment from 'moment'
 
 // Utils
 import { cutAtWord } from '../utils/format'
@@ -16,6 +17,8 @@ export class RelatedArticleCard extends React.Component {
   render () {
     const { article, cardType } = this.props
     const tags = article.tags || []
+    const date = moment(article.date, 'MM/DD/YYYY').format('MMMM D, YYYY')
+    const briefType = article.briefType
 
     return (
       <li className={`article-card--${cardType}`}>
@@ -32,6 +35,7 @@ export class RelatedArticleCard extends React.Component {
             return <li key={tag}><a className='link__underline' onClick={this.goToTag.bind(this, tag)} href=''>{translate(tag)}</a></li>
           })}
         </ul>
+        <span className='metadata-italic'>{`${translate(briefType)}   |   ${date}`}</span>
       </li>
     )
   }
