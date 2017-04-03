@@ -65,9 +65,9 @@ export class Brief extends React.Component {
     this.props.dispatch(updateChart(data, id))
   }
 
-  locationLink (location, e) {
+  filteredLink (filter, e) {
     e.preventDefault()
-    this.props.dispatch(updateArticleFilters([location]))
+    this.props.dispatch(updateArticleFilters([filter]))
     this.props.router.push(`/briefs`)
   }
 
@@ -79,13 +79,20 @@ export class Brief extends React.Component {
 
   render () {
     const { articles, metadata } = this.props
-    const { locations, resources, author } = metadata
+    const { locations, scenarios, resources, author, tags } = metadata
     const date = moment(metadata.date, 'M/D/YYYY').format('MMMM Do, YYYY')
 
     const Locations = locations
     ? <div className='article-metadata__item'>
       <span className='article-metadata__header'>Related Locations:</span>
-      <ul>{locations.length > 1 ? locations.map(loc => <li key={loc}><a href="" onClick={this.locationLink.bind(this, loc)}>{translate(loc)}</a></li>) : <li><a href="" onClick={this.locationLink.bind(this, locations)}>{translate(locations)}</a></li>}</ul>
+      <ul>{locations.length > 1 ? locations.map(loc => <li key={loc}><a href="" onClick={this.filteredLink.bind(this, loc)}>{translate(loc)}</a></li>) : <li><a href="" onClick={this.filteredLink.bind(this, locations)}>{translate(locations)}</a></li>}</ul>
+    </div>
+    : ''
+
+    const Scenarios = scenarios
+    ? <div className='article-metadata__item'>
+      <span className='article-metadata__header'>Related Scenarios:</span>
+      <ul>{scenarios.length > 1 ? scenarios.map(s => <li key={s}><a href={`/#/scenarios/${s.toLowerCase()}-summary`}>{translate(s)}</a></li>) : <li><a href={`/#/scenarios/${scenarios.toLowerCase()}-summary`}>{translate(scenarios)}</a></li>}</ul>
     </div>
     : ''
 
@@ -132,15 +139,14 @@ export class Brief extends React.Component {
                <div className='article-metadata'>
                  {Locations}
                  {Resources}
-                 <div className='article-metadata__item'>
-                  <span className='article-metadata__header'>Related Scenarios:</span>
-                  <ul>{metadata.scenarios.map(s => <li key={s}>{s}</li>)}</ul>
-                </div>
+                 {Scenarios}
                </div>
                <div className='article--content' dangerouslySetInnerHTML={{__html: this.props.article}}>
                </div>
                <div className='tags'>
-                {metadata.tags.join(', ')}
+                 {tags.map(tag => {
+                   return <li key={tag}><a className='link__underline' onClick={this.filteredLink.bind(this, tag)} href=''>{translate(tag)}</a></li>
+                 })}
               </div>
              </div>
            </section>
