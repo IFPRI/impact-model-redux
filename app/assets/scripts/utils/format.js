@@ -17,6 +17,7 @@ const toTitleCase = (str) => {
 
 const formatNumber = (number, label) => {
   if (label) number = number[label]
+  if (number < 0.01) return number.toFixed(6).toLocaleString()
   if (number < 1) return number.toFixed(4).toLocaleString()
   if (number < 99) return number.toFixed(2).toLocaleString()
   return Math.round(number).toLocaleString()
