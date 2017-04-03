@@ -20,9 +20,14 @@ const formatNumber = (number, label) => {
   return Math.round(number).toLocaleString()
 }
 
+const formatScenario = (scenario) => {
+  return scenario.replace('_', '-').toUpperCase()
+}
+
 module.exports = {
   cutAtWord,
   commaSeparate,
   toTitleCase,
-  formatNumber
+  formatNumber,
+  formatScenario
 }

@@ -8,7 +8,7 @@ const ChartJS = require('chart.js')
 import queryDatabase from '../utils/query-database'
 
 // Utils
-import { formatNumber } from '../utils/format'
+import { formatNumber, formatScenario } from '../utils/format'
 import { translate } from '../utils/translation'
 
 // Constants
@@ -37,7 +37,7 @@ export class ChartGroupedBar extends React.Component {
         // todo: determine why "maintainAspectRatio: false" currently sets the chart height to 0
         // maintainAspectRatio: false,
         legend: {
-          display: false
+          position: 'bottom'
         },
         tooltips: {
           callbacks: {
@@ -84,7 +84,7 @@ export class ChartGroupedBar extends React.Component {
     .then((chartData) => {
       const records = {}
       chartData.forEach((data, i) => {
-        chart.data.labels.push(data.source)
+        chart.data.labels.push(formatScenario(data.source))
         // build data structure...
         data.values.forEach((record) => {
           if (i === 0) {
