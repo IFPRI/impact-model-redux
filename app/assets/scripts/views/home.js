@@ -62,7 +62,7 @@ export class Home extends React.Component {
         <section className='section__internal section__padding section--grey'>
           <div className='row'>
             <header className='header-internal'>
-              <h3 className='header--large with-description'>How to Get More Information</h3>
+              <h3 className='header--xlarge with-description'>How to Get More Information</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et dui gravida, posuere diam id, congue augue. Pellentesque nec purus ex.</p>
             </header>
             <ul className='secondary--content'>
