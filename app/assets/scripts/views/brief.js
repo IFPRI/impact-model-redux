@@ -85,20 +85,20 @@ export class Brief extends React.Component {
     const Locations = locations
     ? <div className='article-metadata__item'>
       <span className='article-metadata__header'>Related Locations:</span>
-      <ul>{locations.length > 1 ? locations.map(loc => <li key={loc}><a href="" onClick={this.filteredLink.bind(this, loc)}>{translate(loc)}</a></li>) : <li><a href="" onClick={this.filteredLink.bind(this, locations)}>{translate(locations)}</a></li>}</ul>
+      <ul>{locations.length > 1 ? locations.map(loc => <li key={loc}><a className='link__underline' href="" onClick={this.filteredLink.bind(this, loc)}>{translate(loc)}</a></li>) : <li><a href="" onClick={this.filteredLink.bind(this, locations)}>{translate(locations)}</a></li>}</ul>
     </div>
     : ''
 
     const Scenarios = scenarios
     ? <div className='article-metadata__item'>
       <span className='article-metadata__header'>Related Scenarios:</span>
-      <ul>{scenarios.length > 1 ? scenarios.map(s => <li key={s}><a href={`/#/scenarios/${s.toLowerCase()}-summary`}>{translate(s)}</a></li>) : <li><a href={`/#/scenarios/${scenarios.toLowerCase()}-summary`}>{translate(scenarios)}</a></li>}</ul>
+      <ul>{scenarios.length > 1 ? scenarios.map(s => <li key={s}><a className='link__underline' href={`/#/scenarios/${s.toLowerCase()}-summary`}>{translate(s)}</a></li>) : <li><a href={`/#/scenarios/${scenarios.toLowerCase()}-summary`}>{translate(scenarios)}</a></li>}</ul>
     </div>
     : ''
 
     const Resources = resources
     ? <div className='article-metadata__item'>
-      <span className='article-metadata__header'>Resources:</span>
+      <span className='article-metadata__header'>Related Resources:</span>
       <ul>{resources.length > 1 ? resources.map(res => <li key={res}><a target="_blank" href={res}>{res}</a></li>) : <li><a target="_blank" href={resources}>{resources}</a></li>}</ul>
     </div>
     : ''
@@ -138,15 +138,18 @@ export class Brief extends React.Component {
              <div className='row row--shortened'>
                <div className='article-metadata'>
                  {Locations}
-                 {Resources}
                  {Scenarios}
+                 {Resources}
                </div>
                <div className='article--content' dangerouslySetInnerHTML={{__html: this.props.article}}>
                </div>
-               <div className='tags'>
-                 {tags.map(tag => {
-                   return <li key={tag}><a className='link__underline' onClick={this.filteredLink.bind(this, tag)} href=''>{translate(tag)}</a></li>
-                 })}
+               <div>
+                <ul className='article-card__tags link-block'>
+                  <span className='article-metadata__header'>Tags:</span>
+                  {tags.map(tag => {
+                    return <li key={tag}><a className='link__underline' onClick={this.filteredLink.bind(this, tag)} href=''>{translate(tag)}</a></li>
+                  })}
+                </ul>
               </div>
              </div>
            </section>
