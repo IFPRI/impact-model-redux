@@ -1,5 +1,6 @@
 button {
   border: none;
+  background: transparent;
 }
 
 .button, .button:visited {
@@ -47,6 +48,7 @@ button {
 .button--outline {
   border: 2px solid #fff;
   color: #fff;
+  background-color: transparent;
   &:hover {
     background-color: #fff;
     color: $medium-blue;
@@ -54,7 +56,12 @@ button {
 }
 
 .button--small {
-  padding: .4em 2.3em .3em;
+  padding: .3em 2.3em .3em;
+}
+
+.button--xsmall {
+  padding: .3em 1em .3em;
+  font-size: .8em;
 }
 
 .button--more-information {
@@ -82,45 +89,56 @@ button {
 
 // share button
 .share--container {
-  float: left;
+  position: relative;
   width: 17rem;
   .form__input-group {
-    float: left;
+    top: 3.2em;
+    position: absolute;
     margin: 0.5rem 0 0 0.25rem;
-    padding: 0.75rem;
+    padding: 1rem;
     background-color: $background-grey;
-    border: 1px solid $light-grey;
+    border: 1px solid lighten($light-grey, 28%);
+    -moz-box-shadow: 0 1px 8px rgba(0, 0, 0, .2);
+    -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, .2);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, .2);
   }
-  input[type='text'] {
-    width: 17rem;
-    padding: 0.5rem;
-    border: 1px solid $light-grey;
+  input {
+    width: 49%;
+    float: left;
+    font-size: .86em;
+  }
+  .form__input-group-button {
+    float: left;
+    .button {
+      &:hover {
+        border-radius: 0em;
+      }
+    }
   }
   .button--modal {
     background: white;
     width: 100rem;
   }
-  button {
-    &.button--outline {
-      background-color: $medium-blue;
-      &:hover {
-        color: $medium-blue;
-        background-color: #fff;
-      }
-      margin-top: 0.5rem;
-      float: left;
-      clear: left;
-    }
-    .button--internal {
-      background-color: $light-grey;
-    }
-    &.modal__button-dismiss {
-      float: left;
-      clear: left;
-      margin-top: 0.5rem;
-      background-color: $light-grey;
-      color: #fff;
-      border: 1px solid #fff;
-    }
+}
+
+.modal__button-dismiss {
+  display: block;
+  text-align: right;
+  float: right;
+  margin-top: -1em;
+  min-width: auto;
+  color: $base-purple;
+  font-size: .86em;
+  width: 100%;
+  margin-bottom: .5em;
+  min-width: 9em;
+  &:before {
+    background-image: url(../graphics/collecticons/xmark.svg);
+    content: '';
+    width: 8px;
+    height: 8px;
+    background-size: 8px 8px;
+    display: inline-block;
+    margin-right: .5em;
   }
 }

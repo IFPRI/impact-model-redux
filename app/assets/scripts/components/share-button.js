@@ -43,17 +43,17 @@ export class ShareButton extends React.Component {
     const openClass = this.state.isOpen ? ' drop__content--open' : ''
     return (
       <div className='share--container'>
-        <button className='button button--outline' onClick={this.show}>Share</button>
+        <button className='button button--outline button--share' onClick={this.show}>Share</button>
         {this.state.isOpen &&
           <div className={openClass}>
             <div className='form__input-group'>
+              <button className='modal__button-dismiss' onClick={this.close}>Close</button>
               <input id='share-url-field' readOnly type='text' className='form__control form__control--medium' value={url.resolve(baseUrl, '#' + this.props.path)}/>
               <span className='form__input-group-button'>
-                <button type='submit' className='button button--outline button--internal' data-clipboard-target='#share-url-field' id='share-url-button'>
+                <button type='submit' className='button button--main button--xsmall' data-clipboard-target='#share-url-field' id='share-url-button'>
                   <span>Copy Link</span>
                 </button>
               </span>
-              <button className='modal__button-dismiss' title='close' onClick={this.close}>Close</button>
             </div>
         </div>}
       </div>
