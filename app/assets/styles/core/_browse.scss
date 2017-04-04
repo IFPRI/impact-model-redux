@@ -141,18 +141,24 @@
   width: 18%;
   margin-right: 5%;
   @include media(medium-down) {
+    z-index: 3;
     position: fixed;
     background-color: #fff;
     width: auto;
-    z-index: 3;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     padding: 3em 3em;
     height: 100%;
+    width: auto;
     overflow-y: hidden;
-    /*display: none;*/
+    display: none;
+    margin-right: 0;
+    &.active { 
+      display: block;
+      overflow-y: scroll;
+    }
   }
   .header--small {
     margin-bottom: 1em;
@@ -282,4 +288,18 @@
     @extend .clearfix;
     h4 { color: $medium-blue; }
   }
+}
+
+.article-list__header {
+  .filter__mobile {
+    display: none;
+    float: right;
+    @include media(medium-down) {
+      display: inline-block;
+    }
+  }
+}
+
+.mobile-filters-open {
+  position: fixed;
 }

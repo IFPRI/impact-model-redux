@@ -13,6 +13,7 @@ export const UPDATE_CHART = 'UPDATE_CHART'
 export const UPDATE_MAP = 'UPDATE_MAP'
 export const UPDATE_SELECTED_PROJECT = 'UPDATE_SELECTED_PROJECT'
 export const UPDATE_SELECTED_PROJECT_HEIGHT = 'UPDATE_SELECTED_PROJECT_HEIGHT'
+export const UPDATE_MOBILE_FILTERS = 'UPDATE_MOBILE_FILTERS'
 
 export const updateArticles = (articles) => {
   return { type: UPDATE_ARTICLES, data: articles }
@@ -61,4 +62,8 @@ export const fetchArticle = (url) => {
 
 export const updateSelectedProject = (project, height) => {
   return { type: UPDATE_SELECTED_PROJECT, project, height }
+}
+
+export const updateMobileFilters = open => {
+  return { type: UPDATE_MOBILE_FILTERS, data: open }
 }
