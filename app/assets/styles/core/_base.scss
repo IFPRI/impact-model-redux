@@ -217,6 +217,12 @@ dt {
   width: 36%;
   float: left;
   margin-right: 4em;
+  @include media(small-down) {
+    width: 100%;
+    &:first-of-type {
+      margin-bottom: 2.5em;
+    }
+  }
 }
 
 .content--secondary {

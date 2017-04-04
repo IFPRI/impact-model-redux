@@ -33,7 +33,11 @@
     .active a:before {
       top: 0em;
       border-bottom: 1px solid $light-grey;
+      @include media(medium-down) {
+        border-bottom: 0;
+      }
     }
+
     ul {
       @include media(medium-down) {
         position: absolute;
