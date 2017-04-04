@@ -47,6 +47,12 @@ h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, 
 .header--xlarge { 
   font-size: 2.571em;
   font-weight: $header-light;
+  @include media(medium-down) {
+    font-size: 2.4em;
+  }
+  @include media(small-down) {
+    font-size: 2.2em;
+  }
 }
 
 .header--large {
@@ -56,7 +62,7 @@ h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, 
   @include media(medium-down) {
     font-size: 2em;
   }
-  @include media(small-up) {
+  @include media(small-down) {
     font-size: 1.8em;
   }
 }
@@ -64,11 +70,20 @@ h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, 
 .header--medium, .article--content h1 {
   font-size: 2em;
   font-weight: $header-light;
+  @include media(medium-down) {
+    font-size: 1.8em;
+  }
+  @include media(small-down) {
+    font-size: 1.5em;
+  }
 }
 
 .header--small, .article--content h2 {
   font-size: 1.45em;
   font-weight: $header-bold;
+  @include media(medium-down) {
+    font-size: 1.2em;
+  }
 }
 
 .header--xsmall, .article--content h3 {

@@ -206,6 +206,10 @@
     }
     @include media(medium-down) {
       width: 38%;
+      min-height: auto;
+      &:first-of-type {
+        margin-bottom: 2em;
+      }
     }
     @include media(small-down) {
       width: 78%;
@@ -217,9 +221,6 @@
       }
       @include media(small-down) {
         width: 78%;
-        &:first-of-type {
-          margin-bottom: 2em;
-        }
       }
     }
     .link__underline--dark, .link__underline {
