@@ -14,6 +14,7 @@ import { translate } from '../utils/translation'
 
 // Constants
 import { sixColorPalette, oneColorPalette } from '../constants'
+const DEFAULT_SCENARIO = ['SSP2_GFDL']
 
 export class Chart extends React.Component {
   constructor (props, context) {
@@ -112,7 +113,8 @@ export class Chart extends React.Component {
     }
 
     const aggregation = data.encoding.x.field
-    queryDatabase(data, ['ssp2_gfdl'])
+    const scenarios = data.scenarios || DEFAULT_SCENARIO
+    queryDatabase(data, scenarios)
     .then((chartData) => {
       _.forEach(chartData[0].values, (item) => {
         chart.data.labels.push(translate(item[aggregation]))
@@ -135,7 +137,8 @@ export class Chart extends React.Component {
 
   updateQuery (newData) {
     const chart = []
-    queryDatabase(newData, newData.scenario)
+    const scenarios = newData.scenarios || DEFAULT_SCENARIO
+    queryDatabase(newData, scenarios)
     .then((chartData) => {
       _.forEach(chartData[0].values, (item) => {
         chart.push(item.Val)
