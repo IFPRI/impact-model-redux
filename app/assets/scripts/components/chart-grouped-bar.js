@@ -82,29 +82,21 @@ export class ChartGroupedBar extends React.Component {
 
     queryDatabase(data, data.scenarios)
     .then((chartData) => {
-      const records = {}
       chartData.forEach((data, i) => {
-        const source = formatScenario(data.source)
         // build data structure...
+        chart.data.datasets.push({})
         data.values.forEach((record) => {
           const label = translate(record.impactparameter)
           if (i === 0) {
             chart.data.labels.push(label)
           }
-          if (!records[source]) {
-            records[source] = {}
+          chart.data.datasets[i].label = formatScenario(data.source)
+          chart.data.datasets[i].backgroundColor = sixColorPalette[i]
+          if (!chart.data.datasets[i].data) {
+            chart.data.datasets[i].data = []
           }
-          records[source][label] = record.Val
+          chart.data.datasets[i].data.push(record.Val)
         })
-      })
-      // ...then apply to chart
-      let i = 0
-      _.forEach(records, (sourceData, sourceName) => {
-        chart.data.datasets.push({})
-        chart.data.datasets[i].label = sourceName
-        chart.data.datasets[i].backgroundColor = sixColorPalette[i]
-        chart.data.datasets[i].data = _.values(sourceData)
-        i++
       })
       this.chart = new ChartJS(
         document.getElementById(name).getContext('2d'),
