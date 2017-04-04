@@ -11,7 +11,7 @@ const dispatch = sinon.spy()
 const metadata = { url: 'testurl' }
 
 test('scenario test', t => {
-  const component = shallow(<Scenario articles={articles} params={pathname} dispatch={dispatch} metadata={metadata} />)
+  const component = shallow(<Scenario articles={articles} params={pathname} dispatch={dispatch} metadata={metadata} location={pathname} />)
 
   t.truthy(component.hasClass('page__article'))
 })

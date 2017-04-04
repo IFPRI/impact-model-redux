@@ -15,6 +15,7 @@ import RelatedArticles from '../components/related-articles'
 import Chart from '../components/chart'
 import ChartGroupedBar from '../components/chart-grouped-bar'
 import MapComponent from '../components/map'
+import Share from '../components/share-button'
 import Loading from '../components/loading'
 
 // Utils
@@ -113,7 +114,7 @@ export class Scenario extends React.Component {
             </div>
             <div className='home__header-split--right'>
               <Link to={'/'} className='button button--outline button--download'>Download Report</Link>
-              <Link to={'/'} className='button button--outline'>Share</Link>
+              <Share path={this.props.location.pathname} />
             </div>
           </div>
         </section>
@@ -177,7 +178,8 @@ Scenario.propTypes = {
   maps: React.PropTypes.object,
   params: React.PropTypes.object,
   router: React.PropTypes.object,
-  metadata: React.PropTypes.object
+  metadata: React.PropTypes.object,
+  location: React.PropTypes.object
 }
 
 const mapStateToProps = (state, props) => {
