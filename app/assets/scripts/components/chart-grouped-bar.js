@@ -84,25 +84,26 @@ export class ChartGroupedBar extends React.Component {
     .then((chartData) => {
       const records = {}
       chartData.forEach((data, i) => {
-        chart.data.labels.push(formatScenario(data.source))
+        const source = formatScenario(data.source)
         // build data structure...
         data.values.forEach((record) => {
-          if (i === 0) {
-            chart.data.datasets.push({})
-          }
           const label = translate(record.impactparameter)
-          if (!records[label]) {
-            records[label] = []
+          if (i === 0) {
+            chart.data.labels.push(label)
           }
-          records[label].push(record.Val)
+          if (!records[source]) {
+            records[source] = {}
+          }
+          records[source][label] = record.Val
         })
       })
       // ...then apply to chart
       let i = 0
-      _.forEach(records, (value, key) => {
-        chart.data.datasets[i].label = key
+      _.forEach(records, (sourceData, sourceName) => {
+        chart.data.datasets.push({})
+        chart.data.datasets[i].label = sourceName
         chart.data.datasets[i].backgroundColor = sixColorPalette[i]
-        chart.data.datasets[i].data = value
+        chart.data.datasets[i].data = _.values(sourceData)
         i++
       })
       this.chart = new ChartJS(
