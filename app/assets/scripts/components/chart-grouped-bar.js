@@ -83,7 +83,6 @@ export class ChartGroupedBar extends React.Component {
     queryDatabase(data, data.scenarios)
     .then((chartData) => {
       chartData.forEach((data, i) => {
-        // build data structure...
         chart.data.datasets.push({})
         data.values.forEach((record) => {
           const label = translate(record.impactparameter)
@@ -108,28 +107,25 @@ export class ChartGroupedBar extends React.Component {
   updateQuery (newData) {
     const data = this.props.data
     const scenarios = data.scenarios
+
     queryDatabase(newData, scenarios)
     .then((chartData) => {
-      // build the data structure
-      const records = {}
+      this.chart.data.datasets = []
+      this.chart.data.labels = []
       chartData.forEach((data, i) => {
+        this.chart.data.datasets.push({})
         data.values.forEach((record) => {
           const label = translate(record.impactparameter)
-          if (!records[label]) {
-            records[label] = []
+          if (i === 0) {
+            this.chart.data.labels.push(label)
           }
-          records[label].push(record.Val)
+          this.chart.data.datasets[i].label = formatScenario(data.source)
+          this.chart.data.datasets[i].backgroundColor = sixColorPalette[i]
+          if (!this.chart.data.datasets[i].data) {
+            this.chart.data.datasets[i].data = []
+          }
+          this.chart.data.datasets[i].data.push(record.Val)
         })
-      })
-      // clear the previous datasets and populate the chart
-      this.chart.data.datasets = []
-      let i = 0
-      _.forEach(records, (value, key) => {
-        this.chart.data.datasets.push({})
-        this.chart.data.datasets[i].label = key
-        this.chart.data.datasets[i].backgroundColor = sixColorPalette[i]
-        this.chart.data.datasets[i].data = value
-        i++
       })
 
       this.chart.update()
