@@ -77,6 +77,12 @@ a, a:visited {
         border-bottom: 1px solid rgba(255, 255, 255, 0.6);
       }
     }
+    .article-card__tags {
+      a, a:visited {
+        color: darken($lightest-grey, 5%);
+
+      }
+    }
   }
 }
 
@@ -145,14 +151,16 @@ a, a:visited {
 
 .header__internal--sm {
   height: 240px;
-  margin-bottom: 3em;
 }
 
 .header__internal, .home__header {
-  margin-bottom: 4em;
   .header__metadata {
     font-size: .86em;
   }
+}
+
+.home__header {
+  margin-bottom: 3em;
 }
 
 .header__descriptions {

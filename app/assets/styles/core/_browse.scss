@@ -74,6 +74,7 @@
   .country-summary, .commodity-summary {
     border: 1px solid lighten($light-grey, 15%);
     background-color: rgba(255, 255, 255, 0.3);
+
     .article-list-card__meta {
       border-top: 0;
       padding: .5em 3.8em 2.7em;
@@ -83,6 +84,7 @@
     }
     .article-list-card__header {
       padding: 2.2em 3.2em .5em;
+      min-height: 0;
       @include media(small-down) {
         padding: 2em 1.8em 1.5em;
       }
@@ -139,18 +141,24 @@
   width: 18%;
   margin-right: 5%;
   @include media(medium-down) {
+    z-index: 3;
     position: fixed;
     background-color: #fff;
     width: auto;
-    z-index: 3;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     padding: 3em 3em;
     height: 100%;
+    width: auto;
     overflow-y: hidden;
-    /*display: none;*/
+    display: none;
+    margin-right: 0;
+    &.active { 
+      display: block;
+      overflow-y: scroll;
+    }
   }
   .header--small {
     margin-bottom: 1em;
@@ -280,4 +288,18 @@
     @extend .clearfix;
     h4 { color: $medium-blue; }
   }
+}
+
+.article-list__header {
+  .filter__mobile {
+    display: none;
+    float: right;
+    @include media(medium-down) {
+      display: inline-block;
+    }
+  }
+}
+
+.mobile-filters-open {
+  position: fixed;
 }

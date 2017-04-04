@@ -135,7 +135,7 @@ export class Brief extends React.Component {
         </section>
         {this.props.articleLoading
          ? <Loading />
-         : <section className='section__internal'>
+         : <section className='section__internal section__padding'>
              <div className='row row--shortened'>
                <div className='article-metadata'>
                  {Locations}
@@ -155,7 +155,7 @@ export class Brief extends React.Component {
              </div>
            </section>
         }
-        <section className='page__project-articles-list section__padding section--blue'>
+        <section className='page__project-articles-list page__articles-list section__padding section--blue'>
           <div className='row row--shortened'>
             <RelatedArticles
               type='brief'
@@ -167,7 +167,7 @@ export class Brief extends React.Component {
               />
           </div>
         </section>
-        <section className='page__related-articles-list section__padding section--blue'>
+        <section className='page__related-articles-list page__articles-list section__padding section--blue'>
           <div className='row row--shortened'>
             <RelatedArticles
               type='brief'

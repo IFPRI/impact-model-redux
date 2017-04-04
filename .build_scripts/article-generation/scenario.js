@@ -54,6 +54,27 @@ dropdown:
 change: true
 \`\`\``
 
+  var chartComparison = baselineScenarios[Math.floor(Math.random() * (baselineScenarios.length - 1))]
+  var figureThree = `\`\`\`chart
+mark: grouped-bar
+title: Change in ${name} Impact Parameters per Commodity Group (%) from 2015 - 2050 (${scenario} vs. ${chartComparison})
+width: 70%
+encoding:
+  x:
+    type: nominal
+    field: impactparameter
+  y:
+    type: quantitative
+    field: Val
+scenarios: ${scenario}, ${chartComparison}
+fixed:
+  impactparameter: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+dropdown:
+  field: agg_commodity
+  values: ${_.uniq(_.values(commodities)).join(',')}
+change: true
+\`\`\``
+
   var map = `\`\`\`map
 title: Change in ${name} IMPACT Parameters from 2015 - 2050 (%)
 dropdownCommodityGroup:
@@ -65,7 +86,7 @@ dropdownParameter:
 change: percentage
 \`\`\``
 
-  var article = `Summary of IMPACT model outputs for ${name}\n\n${figure}\n\n${figureTwo}\n\n${map}`
+  var article = `Summary of IMPACT model outputs for ${name}\n\n${figure}\n\n${figureTwo}\n\n${figureThree}\n\n${map}`
 
   var scenarioString = [scenario].map(s => ` - ${s}`).join('\n')
   var tagString = tags.map(t => ` - ${t}`).join('\n')

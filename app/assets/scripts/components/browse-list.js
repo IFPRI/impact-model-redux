@@ -5,7 +5,7 @@ import c from 'classnames'
 import _ from 'lodash'
 
 // Actions
-import { updateArticleFilters, updateArticlePage } from '../actions'
+import { updateArticleFilters, updateArticlePage, updateMobileFilters } from '../actions'
 
 // Components
 import ListArticleCard from './list-article-card.js'
@@ -21,6 +21,7 @@ export class BrowseList extends React.Component {
     super(props, context)
     this.clearFilters = this.clearFilters.bind(this)
     this.removeOneFilter = this.removeOneFilter.bind(this)
+    this.handleMobileFilter = this.handleMobileFilter.bind(this)
   }
 
   componentWillUnmount () {
@@ -77,6 +78,11 @@ export class BrowseList extends React.Component {
     this.props.dispatch(updateArticleFilters(this.props.articleFilters.filter(f => f !== toRemove)))
   }
 
+  handleMobileFilter (e) {
+    e.preventDefault()
+    this.props.dispatch(updateMobileFilters(true))
+  }
+
   render () {
     const { articlePage, articleFilters, path } = this.props
     let articles = this.sortArticles(this.filterArticles(this.props.articles, articleFilters), articleFilters)
@@ -109,6 +115,7 @@ export class BrowseList extends React.Component {
       <section className='browse__article-list'>
         <header className='article-list__header'>
           <h5 className='header--small'>Results <span className='result-count'>({articleCount})</span></h5>
+          <a className='button button--main filter__mobile' onClick={this.handleMobileFilter} href='#'>Filter</a>
           {articleFilters.length ? <div className='filter__selects'>
             <ul>
               {articleFilters.map(filter => {

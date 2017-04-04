@@ -64,6 +64,11 @@ button {
   font-size: .8em;
 }
 
+.button--negative, .button--negative:visited {
+  border: 1px solid $grey;
+  color: $grey;
+}
+
 .button--more-information {
   margin-top: 3em;
   @include media(medium-down) {

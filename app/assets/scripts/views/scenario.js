@@ -13,6 +13,7 @@ import { fetchArticle, updateArticleFilters, updateChart } from '../actions'
 // Components
 import RelatedArticles from '../components/related-articles'
 import Chart from '../components/chart'
+import ChartGroupedBar from '../components/chart-grouped-bar'
 import MapComponent from '../components/map'
 import Share from '../components/share-button'
 import Loading from '../components/loading'
@@ -31,15 +32,19 @@ export class Scenario extends React.Component {
   }
 
   componentDidUpdate () {
-    this.addCharts(this.props.charts)
+    this.addCharts(this.props.charts, this.props.metadata.scenarios)
     this.addMaps(this.props.maps)
   }
 
-  addCharts (charts) {
+  addCharts (charts, scenarios) {
     _.forEach(charts, (data, name) => {
       const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
       if (placeholder) {
-        ReactDOM.render(<Chart name={name} data={data} updateChart={this.updateChart} />, placeholder)
+        if (data.mark === 'grouped-bar') {
+          ReactDOM.render(<ChartGroupedBar name={name} data={data} scenarios={scenarios} updateChart={this.updateChart}/>, placeholder)
+        } else {
+          ReactDOM.render(<Chart name={name} data={data} scenarios={scenarios} updateChart={this.updateChart} />, placeholder)
+        }
       }
     })
   }
@@ -115,7 +120,7 @@ export class Scenario extends React.Component {
         </section>
         {this.props.articleLoading
          ? <Loading />
-         : <section className='section__internal'>
+         : <section className='section__internal section__padding'>
              <div className='row row--shortened'>
                <div className='article-metadata'>
                   {Locations}
@@ -125,7 +130,7 @@ export class Scenario extends React.Component {
              </div>
            </section>
         }
-        <section className='page__project-articles-list section__padding section--blue'>
+        <section className='page__project-articles-list section__padding page__articles-list section--blue'>
           <div className='row row--shortened'>
             <RelatedArticles
               type='scenario'
@@ -137,7 +142,7 @@ export class Scenario extends React.Component {
               />
           </div>
         </section>
-        <section className='page__related-articles-list section__padding section--blue'>
+        <section className='page__related-articles-list section__padding page__articles-list section--blue'>
           <div className='row row--shortened'>
             <RelatedArticles
               type='scenario'

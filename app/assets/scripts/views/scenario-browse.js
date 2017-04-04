@@ -18,12 +18,13 @@ export class ScenarioBrowse extends React.Component {
             </div>
           </div>
         </header>
-        <section>
+        <section className='section__padding'>
           <div className='row'>
             <BrowseFilters
               dispatch={this.props.dispatch}
               articleFilters={this.props.articleFilters}
               type='scenario'
+              mobileFiltersOpen={this.props.mobileFiltersOpen}
             />
             <BrowseList
               dispatch={this.props.dispatch}
@@ -47,7 +48,8 @@ ScenarioBrowse.propTypes = {
   articleFilters: React.PropTypes.array,
   articleSorting: React.PropTypes.oneOf(['recency', 'relevance']),
   articlePage: React.PropTypes.number,
-  route: React.PropTypes.object
+  route: React.PropTypes.object,
+  mobileFiltersOpen: React.PropTypes.bool
 }
 
 // /////////////////////////////////////////////////////////////////// //
@@ -59,7 +61,8 @@ const mapStateToProps = (state) => {
     articles: state.article.scenarios,
     articleFilters: state.article.articleFilters,
     articleSorting: state.article.articleSorting,
-    articlePage: state.article.articlePage
+    articlePage: state.article.articlePage,
+    mobileFiltersOpen: state.article.mobileFiltersOpen
   }
 }
 
