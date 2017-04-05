@@ -2,9 +2,10 @@
 import React from 'react'
 import { Panel } from 'rc-collapse'
 import _ from 'lodash'
+import c from 'classnames'
 
 // Actions
-import { updateArticleFilters } from '../actions'
+import { updateArticleFilters, updateMobileFilters } from '../actions'
 
 // Utils
 import { translate, invertCommodities } from '../utils/translation'
@@ -69,6 +70,7 @@ export class BrowseFilters extends React.Component {
 
     this.handleFilterSelection = this.handleFilterSelection.bind(this)
     this.generateAccordionItems = this.generateAccordionItems.bind(this)
+    this.handleMobileFilter = this.handleMobileFilter.bind(this)
   }
 
   handleFilterSelection (checked, subtype) {
@@ -125,10 +127,15 @@ export class BrowseFilters extends React.Component {
     })
   }
 
+  handleMobileFilter (e) {
+    e.preventDefault()
+    this.props.dispatch(updateMobileFilters(false))
+  }
+
   render () {
     const accordion = this.state.accordion
     return (
-      <div className='browse__filters'>
+      <div className={c('browse__filters', {active: this.props.mobileFiltersOpen})}>
         <h5 className='header--small'>Filter</h5>
         <form className='filters__form'>
           {this.filters.map(filter => {
@@ -142,6 +149,9 @@ export class BrowseFilters extends React.Component {
               generateAccordionItems={this.generateAccordionItems}
             />
           })}
+          <div className='filter__buttons--mobile'>
+            <a className='button button--main button--small' onClick={this.handleMobileFilter} href=''>Close</a>
+          </div>
         </form>
       </div>
     )
@@ -152,7 +162,8 @@ export class BrowseFilters extends React.Component {
 BrowseFilters.propTypes = {
   dispatch: React.PropTypes.func,
   articleFilters: React.PropTypes.array,
-  type: React.PropTypes.string
+  type: React.PropTypes.string,
+  mobileFiltersOpen: React.PropTypes.bool
 }
 
 export default BrowseFilters

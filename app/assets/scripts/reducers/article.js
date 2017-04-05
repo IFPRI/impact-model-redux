@@ -7,24 +7,24 @@ articles.forEach(article => { article.date = moment(article.date, 'MM/DD/YYYY') 
 import {
   UPDATE_ARTICLES,
   UPDATE_ARTICLE_FILTERS,
-  UPDATE_ARTICLE_SORTING,
   UPDATE_ARTICLE_PAGE,
   UPDATE_ARTICLE_LOADING,
   UPDATE_ARTICLE,
   UPDATE_CHART,
-  UPDATE_MAP
+  UPDATE_MAP,
+  UPDATE_MOBILE_FILTERS
 } from '../actions'
 
 export const initialState = {
   briefs: articles.filter((article) => article.type === 'brief'),
   scenarios: articles.filter((article) => article.type === 'scenario'),
   articleFilters: [],
-  articleSorting: 'recency',
   articlePage: 0,
   articleLoading: false,
   article: '',
   charts: {},
-  maps: {}
+  maps: {},
+  mobileFiltersOpen: false
 }
 
 export default (state = initialState, action) => {
@@ -35,9 +35,6 @@ export default (state = initialState, action) => {
       break
     case UPDATE_ARTICLE_FILTERS:
       set(state, 'articleFilters', action.data)
-      break
-    case UPDATE_ARTICLE_SORTING:
-      set(state, 'articleSorting', action.data)
       break
     case UPDATE_ARTICLE_PAGE:
       set(state, 'articlePage', action.data)
@@ -54,6 +51,8 @@ export default (state = initialState, action) => {
     case UPDATE_MAP:
       set(state, `maps.${action.id}`, action.data)
       break
+    case UPDATE_MOBILE_FILTERS:
+      set(state, 'mobileFiltersOpen', action.data)
   }
   return state
 }

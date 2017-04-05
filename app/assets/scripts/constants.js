@@ -9,11 +9,15 @@ export const sixColorPalette = [
   '#BDD05E', // (light green)
   '#E2C117', // (yellow)
   '#C6881A', // (orange)
-  '#B55215' // (red)
+  '#B55215'  // (red)
 ]
 
 export const oneColorPalette = [
   '#83C61A'
+]
+
+export const stripeChartFill = [
+  'rgba(0, 255, 0, 0.3)'
 ]
 
 export const greenGradientPalette = (steps) => chroma.scale(['#00ff00', '#ccffcc']).colors(steps)

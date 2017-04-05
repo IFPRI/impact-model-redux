@@ -1,6 +1,5 @@
 'use strict'
 import React from 'react'
-import classNames from 'classnames'
 import _ from 'lodash'
 if (typeof window === 'undefined') global.window = {}
 const ChartJS = require('chart.js')
@@ -9,14 +8,13 @@ const ChartJS = require('chart.js')
 import queryDatabase from '../utils/query-database'
 
 // Utils
-import { formatNumber } from '../utils/format'
+import { formatNumber, formatScenario } from '../utils/format'
 import { translate } from '../utils/translation'
 
 // Constants
-import { sixColorPalette, oneColorPalette } from '../constants'
-const DEFAULT_SCENARIO = ['SSP2_GFDL']
+import { sixColorPalette } from '../constants'
 
-export class Chart extends React.Component {
+export class ChartGroupedBar extends React.Component {
   constructor (props, context) {
     super(props, context)
 
@@ -31,14 +29,20 @@ export class Chart extends React.Component {
 
   initializeChart () {
     const { name, data } = this.props
-    const chartType = data.mark
 
-    let chart = {
-      type: chartType,
+    const chart = {
+      type: 'bar',
       options: {
         responsive: true,
+        // todo: determine why "maintainAspectRatio: false" currently sets the chart height to 0
+        // maintainAspectRatio: false,
         legend: {
-          display: false
+          position: 'bottom'
+        },
+        tooltips: {
+          callbacks: {
+            label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')
+          }
         },
         scales: {
           yAxes: [{
@@ -48,6 +52,7 @@ export class Chart extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
+              userCallback: (value) => formatNumber(value),
               beginAtZero: false,
               padding: 5,
               fontColor: '#9E9E9E',
@@ -71,63 +76,27 @@ export class Chart extends React.Component {
       },
       data: {
         labels: [],
-        datasets: [{
-          data: [],
-          backgroundColor: sixColorPalette
-        }]
+        datasets: []
       }
     }
 
-    if (chartType === 'bar') {
-      chart.options.responsive = true
-      chart.options.maintainAspectRatio = false
-      chart.data.datasets[0].backgroundColor = '#83C61A'
-      chart.options.scales.yAxes[0].ticks.userCallback = (value) => formatNumber(value)
-      chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')}}
-    }
-
-    if (chartType === 'horizontalBar') {
-      chart.data.datasets[0].backgroundColor = '#83C61A'
-      chart.options.scales.xAxes[0].ticks.userCallback = (value) => formatNumber(value)
-      chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'xLabel')}}
-    }
-
-    if (chartType === 'line') {
-      chart.options.responsive = true
-      chart.options.maintainAspectRatio = false
-      chart.data.datasets[0].fill = false
-      chart.data.datasets[0].borderColor = oneColorPalette
-      chart.data.datasets[0].borderWidth = 4
-      chart.data.datasets[0].pointBackgroundColor = '#fff'
-      chart.data.datasets[0].pointBorderWidth = 2
-      chart.options.scales.yAxes[0].ticks.userCallback = (value) => formatNumber(value)
-      chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')}}
-    }
-
-    const isPieChart = chartType === 'pie' || chartType === 'doughnut'
-    if (isPieChart) {
-      delete chart.options.scales
-      chart.options.maintainAspectRatio = true
-      chart.options.cutoutPercentage = 80
-      chart.options.legend = {display: true, position: 'bottom'}
-    }
-
-    const aggregation = data.encoding.x.field
-    const scenarios = data.scenarios || DEFAULT_SCENARIO
-    queryDatabase(data, scenarios)
+    queryDatabase(data, data.scenarios)
     .then((chartData) => {
-      _.forEach(chartData[0].values, (item) => {
-        chart.data.labels.push(translate(item[aggregation]))
-        chart.data.datasets[0].data.push(item.Val)
+      chartData.forEach((data, i) => {
+        chart.data.datasets.push({})
+        data.values.forEach((record) => {
+          const label = translate(record.impactparameter)
+          if (i === 0) {
+            chart.data.labels.push(label)
+          }
+          chart.data.datasets[i].label = formatScenario(data.source)
+          chart.data.datasets[i].backgroundColor = sixColorPalette[i]
+          if (!chart.data.datasets[i].data) {
+            chart.data.datasets[i].data = []
+          }
+          chart.data.datasets[i].data.push(record.Val)
+        })
       })
-      if (isPieChart || chartType === 'polarArea') {
-        chart.options.tooltips = {callbacks: {label: (tooltipItem, data) => {
-          const label = chart.data.labels[tooltipItem.index]
-          const datasetLabel = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]
-          return ` ${label}: ${formatNumber(datasetLabel)}`
-        }}}
-      }
-
       this.chart = new ChartJS(
         document.getElementById(name).getContext('2d'),
         chart
@@ -136,14 +105,29 @@ export class Chart extends React.Component {
   }
 
   updateQuery (newData) {
-    const chart = []
-    const scenarios = newData.scenarios || DEFAULT_SCENARIO
+    const data = this.props.data
+    const scenarios = data.scenarios
+
     queryDatabase(newData, scenarios)
     .then((chartData) => {
-      _.forEach(chartData[0].values, (item) => {
-        chart.push(item.Val)
+      this.chart.data.datasets = []
+      this.chart.data.labels = []
+      chartData.forEach((data, i) => {
+        this.chart.data.datasets.push({})
+        data.values.forEach((record) => {
+          const label = translate(record.impactparameter)
+          if (i === 0) {
+            this.chart.data.labels.push(label)
+          }
+          this.chart.data.datasets[i].label = formatScenario(data.source)
+          this.chart.data.datasets[i].backgroundColor = sixColorPalette[i]
+          if (!this.chart.data.datasets[i].data) {
+            this.chart.data.datasets[i].data = []
+          }
+          this.chart.data.datasets[i].data.push(record.Val)
+        })
       })
-      this.chart.data.datasets[0].data = chart
+
       this.chart.update()
     })
   }
@@ -159,14 +143,6 @@ export class Chart extends React.Component {
 
   render () {
     const { name, data } = this.props
-    const chartType = data.mark
-
-    const chartClass = classNames(
-      'figure', {
-        'bar-chart': chartType === 'bar' || chartType === 'horizontalBar',
-        'pie-chart': chartType === 'pie' || chartType === 'doughnut' || chartType === 'polarArea',
-        'line-chart': chartType === 'line'
-      })
 
     const Dropdowns = Object.keys(this.props.data)
       .filter(key => key.match(/dropdown/))
@@ -184,7 +160,7 @@ export class Chart extends React.Component {
       })
 
     return (
-      <div className={chartClass}>
+      <div className='figure stripe-chart'>
         <h5 className='label--chart'>{data.title}</h5>
         <div className='chart-container'>
           <canvas id={name} className='chart'></canvas>
@@ -195,10 +171,11 @@ export class Chart extends React.Component {
   }
 }
 
-Chart.propTypes = {
+ChartGroupedBar.propTypes = {
   name: React.PropTypes.string,
   data: React.PropTypes.object,
+  scenarios: React.PropTypes.array,
   updateChart: React.PropTypes.func
 }
 
-export default Chart
+export default ChartGroupedBar

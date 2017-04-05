@@ -13,7 +13,9 @@ import { fetchArticle, updateArticleFilters, updateChart } from '../actions'
 // Components
 import RelatedArticles from '../components/related-articles'
 import Chart from '../components/chart'
+import ChartStripe from '../components/chart-stripe'
 import MapComponent from '../components/map'
+import Share from '../components/share-button'
 import Loading from '../components/loading'
 
 // Utils
@@ -30,15 +32,19 @@ export class Brief extends React.Component {
   }
 
   componentDidUpdate () {
-    this.addCharts(this.props.charts)
+    this.addCharts(this.props.charts, this.props.metadata.scenarios)
     this.addMaps(this.props.maps)
   }
 
-  addCharts (charts) {
+  addCharts (charts, scenarios) {
     _.forEach(charts, (data, name) => {
       const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
       if (placeholder) {
-        ReactDOM.render(<Chart name={name} data={data} updateChart={this.updateChart}/>, placeholder)
+        if (data.mark === 'stripe') {
+          ReactDOM.render(<ChartStripe name={name} data={data} scenarios={scenarios} updateChart={this.updateChart}/>, placeholder)
+        } else {
+          ReactDOM.render(<Chart name={name} data={data} scenario={scenarios} updateChart={this.updateChart}/>, placeholder)
+        }
       }
     })
   }
@@ -60,6 +66,12 @@ export class Brief extends React.Component {
     this.props.dispatch(updateChart(data, id))
   }
 
+  filteredLink (filter, e) {
+    e.preventDefault()
+    this.props.dispatch(updateArticleFilters([filter]))
+    this.props.router.push(`/briefs`)
+  }
+
   componentWillReceiveProps (nextProps) {
     if (this.props.params.id !== nextProps.params.id) {
       nextProps.dispatch(fetchArticle(nextProps.metadata.url))
@@ -68,20 +80,27 @@ export class Brief extends React.Component {
 
   render () {
     const { articles, metadata } = this.props
-    const { locations, resources, author } = metadata
+    const { locations, scenarios, resources, author, tags } = metadata
     const date = moment(metadata.date, 'M/D/YYYY').format('MMMM Do, YYYY')
 
     const Locations = locations
     ? <div className='article-metadata__item'>
-      <span className='article-metadata__header'>Locations:</span>
-      <ul>{locations.length > 1 ? locations.map((loc) => <li key={loc}>{translate(loc)}</li>) : <li>{translate(locations)}</li>}</ul>
+      <span className='article-metadata__header'>Related Locations:</span>
+      <ul>{locations.length > 1 ? locations.map(loc => <li key={loc}><a className='link__underline' href="" onClick={this.filteredLink.bind(this, loc)}>{translate(loc)}</a></li>) : <li><a href="" onClick={this.filteredLink.bind(this, locations)}>{translate(locations)}</a></li>}</ul>
+    </div>
+    : ''
+
+    const Scenarios = scenarios
+    ? <div className='article-metadata__item'>
+      <span className='article-metadata__header'>Related Scenarios:</span>
+      <ul>{scenarios.length > 1 ? scenarios.map(s => <li key={s}><a className='link__underline' href={`/#/scenarios/${s.toLowerCase()}-summary`}>{translate(s)}</a></li>) : <li><a href={`/#/scenarios/${scenarios.toLowerCase()}-summary`}>{translate(scenarios)}</a></li>}</ul>
     </div>
     : ''
 
     const Resources = resources
     ? <div className='article-metadata__item'>
-      <span className='article-metadata__header'>Resources:</span>
-      <ul>{resources.length > 1 ? resources.map((res) => <li key={res}><a target="_blank" href={res}>{res}</a></li>) : <li><a target="_blank" href={resources}>{resources}</a></li>}</ul>
+      <span className='article-metadata__header'>Related Resources:</span>
+      <ul>{resources.length > 1 ? resources.map(res => <li key={res}><a target="_blank" href={res}>{res}</a></li>) : <li><a target="_blank" href={resources}>{resources}</a></li>}</ul>
     </div>
     : ''
 
@@ -110,37 +129,65 @@ export class Brief extends React.Component {
             </div>
             <div className='home__header-split--right'>
               <Link to={'/'} className='button button--outline button--download'>Download Report</Link>
-              <Link to={'/'} className='button button--outline'>Share</Link>
+              <Share path={this.props.location.pathname} />
             </div>
           </div>
         </section>
         {this.props.articleLoading
          ? <Loading />
-         : <section className='section__internal'>
+         : <section className='section__internal section__padding'>
              <div className='row row--shortened'>
                <div className='article-metadata'>
-               {Locations}
-               {Resources}
+                 {Locations}
+                 {Scenarios}
+                 {Resources}
                </div>
-               <div className='article--content' dangerouslySetInnerHTML={{__html: this.props.article}}></div>
+               <div className='article--content' dangerouslySetInnerHTML={{__html: this.props.article}}>
+               </div>
+               <div>
+                <ul className='article-card__tags link-block'>
+                  <span className='article-metadata__header'>Tags:</span>
+                  {(tags || []).map(tag => {
+                    return <li key={tag}><a className='link__underline' onClick={this.filteredLink.bind(this, tag)} href=''>{translate(tag)}</a></li>
+                  })}
+                </ul>
+              </div>
              </div>
            </section>
         }
-        <RelatedArticles
-          type='brief'
-          cardType='project'
-          title={`Other Briefs in ${translate(metadata.project)}`}
-          articles={findProjectArticles(metadata, articles, metadata.project, 2)}
-          router={this.props.router}
-          updateArticleFilters={this.updateArticleFilters}
-          />
-        <RelatedArticles
-          type='brief'
-          cardType='related'
-          articles={findRelatedArticles(metadata, articles, 3)}
-          router={this.props.router}
-          updateArticleFilters={this.updateArticleFilters}
-          />
+        <section className='page__project-articles-list page__articles-list section__padding section--blue'>
+          <div className='row row--shortened'>
+            <RelatedArticles
+              type='brief'
+              cardType='project'
+              title={`Other Briefs in ${translate(metadata.project)}`}
+              articles={findProjectArticles(metadata, articles, metadata.project, 2)}
+              router={this.props.router}
+              updateArticleFilters={this.updateArticleFilters}
+              />
+          </div>
+        </section>
+        <section className='page__related-articles-list page__articles-list section__padding section--blue'>
+          <div className='row row--shortened'>
+            <RelatedArticles
+              type='brief'
+              cardType='related'
+              articles={findRelatedArticles(metadata, articles, 3)}
+              router={this.props.router}
+              updateArticleFilters={this.updateArticleFilters}
+              />
+          </div>
+        </section>
+        <section className='section__internal section__padding section--grey'>
+          <div className='row'>
+            <header className='header-internal'>
+              <h3 className='header--large with-description'>How to Get More Information</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et dui gravida, posuere diam id, congue augue. Pellentesque nec purus ex.</p>
+            </header>
+            <Link className='button button--main button--small button-group' to={'/about'}>Download Our Data</Link>
+            <Link className='button button--main button--small' to={'/about'}>Contact Us</Link>
+          </div>
+        </section>
       </section>
     )
   }
@@ -156,7 +203,8 @@ Brief.propTypes = {
   maps: React.PropTypes.object,
   params: React.PropTypes.object,
   router: React.PropTypes.object,
-  metadata: React.PropTypes.object
+  metadata: React.PropTypes.object,
+  location: React.PropTypes.object
 }
 
 const mapStateToProps = (state, props) => {

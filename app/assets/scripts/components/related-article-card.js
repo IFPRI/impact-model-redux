@@ -1,6 +1,7 @@
 'use strict'
 import React from 'react'
 import { Link } from 'react-router'
+import moment from 'moment'
 
 // Utils
 import { cutAtWord } from '../utils/format'
@@ -16,16 +17,22 @@ export class RelatedArticleCard extends React.Component {
   render () {
     const { article, cardType } = this.props
     const tags = article.tags || []
+    const date = moment(article.date, 'MM/DD/YYYY').format('MMMM D, YYYY')
+    const briefType = article.briefType
 
     return (
       <li className={`article-card--${cardType}`}>
         <header className={`article-card__header--${cardType}`}>
-          <h5 className='header--small'>
+          <h5 className='header--small with-metadata'>
             <Link className='link__underline--dark' to={`/${article.type}s/${article.id}`}>{article.title}</Link>
           </h5>
+          <div className='card__metadata'>
+            <span className='metadata-italic'>{`${translate(briefType)}`}</span>
+            <span className='metadata-italic'>{`${date}`}</span>
+          </div>
         </header>
         <div className={`article-card__body--${cardType}`}>
-          <p>{`${cutAtWord(article.preview, 190)}`}</p>
+          {(briefType === 'custom') ? <p>{`${cutAtWord(article.preview, 190)}`}</p> : ''}
         </div>
         <ul className='article-card__tags link-block'>
           {tags.map(tag => {

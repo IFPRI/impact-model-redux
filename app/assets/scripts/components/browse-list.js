@@ -5,7 +5,7 @@ import c from 'classnames'
 import _ from 'lodash'
 
 // Actions
-import { updateArticleFilters, updateArticleSorting, updateArticlePage } from '../actions'
+import { updateArticleFilters, updateArticlePage, updateMobileFilters } from '../actions'
 
 // Components
 import ListArticleCard from './list-article-card.js'
@@ -16,21 +16,16 @@ import { articleBrowsePageLength } from '../constants.js'
 // Utils
 import { translate } from '../utils/translation'
 
-// Data
-import locationAggregation from '../../data/aggregate-region'
-const locationAgg = _.values(locationAggregation)
-
 export class BrowseList extends React.Component {
   constructor (props, context) {
     super(props, context)
-    this.handleSortingUpdate = this.handleSortingUpdate.bind(this)
     this.clearFilters = this.clearFilters.bind(this)
     this.removeOneFilter = this.removeOneFilter.bind(this)
+    this.handleMobileFilter = this.handleMobileFilter.bind(this)
   }
 
   componentWillUnmount () {
     this.props.dispatch(updateArticleFilters([]))
-    this.props.dispatch(updateArticleSorting('recency'))
   }
 
   componentWillReceiveProps (nextProps) {
@@ -45,18 +40,14 @@ export class BrowseList extends React.Component {
     this.props.dispatch(updateArticlePage(page))
   }
 
-  handleSortingUpdate (event) {
-    this.props.dispatch(updateArticleSorting(event.target.value))
-  }
-
-  sortArticles (articles, articleSorting) {
-    switch (articleSorting) {
-      case 'recency':
-        return articles.sort((a, b) => new Date(b.date) - new Date(a.date))
-      case 'relevance':
-        return articles.sort((a, b) => b.matches - a.matches)
+  sortArticles (articles, articleFilters) {
+    const sortedArticles = articles.slice(0)
+    if (articleFilters.length) {
+      sortedArticles.sort((a, b) => b.matches - a.matches)
+    } else {
+      sortedArticles.sort((a, b) => new Date(b.date) - new Date(a.date))
     }
-    return articles
+    return sortedArticles
   }
 
   filterArticles (articles, articleFilters) {
@@ -67,11 +58,6 @@ export class BrowseList extends React.Component {
           article.tags,
           article.commodities,
           article.locations,
-          // return all matches on aggregated regions
-          _.flatten((article.locations || [])
-            .map(l => locationAgg.find(b => b.region === l || b.subcontinent === l))
-            .filter(Boolean)
-            .map(l => _.values(l))),
           article.project
         ).filter(Boolean)
         const matches = _.intersection(metadata, articleFilters).length
@@ -92,9 +78,14 @@ export class BrowseList extends React.Component {
     this.props.dispatch(updateArticleFilters(this.props.articleFilters.filter(f => f !== toRemove)))
   }
 
+  handleMobileFilter (e) {
+    e.preventDefault()
+    this.props.dispatch(updateMobileFilters(true))
+  }
+
   render () {
-    const { articlePage, articleFilters, articleSorting, path } = this.props
-    let articles = this.sortArticles(this.filterArticles(this.props.articles, articleFilters), articleSorting)
+    const { articlePage, articleFilters, path } = this.props
+    let articles = this.sortArticles(this.filterArticles(this.props.articles, articleFilters), articleFilters)
     const articleCount = articles.length
     articles = articles.slice(articleBrowsePageLength * articlePage, articleBrowsePageLength * articlePage + articleBrowsePageLength)
 
@@ -124,13 +115,8 @@ export class BrowseList extends React.Component {
       <section className='browse__article-list'>
         <header className='article-list__header'>
           <h5 className='header--small'>Results <span className='result-count'>({articleCount})</span></h5>
-          <div className='select--wrapper'>
-            <select onChange={this.handleSortingUpdate} className='article-list__sort-menu' selected={articleSorting}>
-              <option value='recency'>Recent Updates</option>
-              <option value='relevance'>Relevance</option>
-            </select>
-          </div>
-          <div className='filter__selects'>
+          <a className='button button--main filter__mobile' onClick={this.handleMobileFilter} href='#'>Filter</a>
+          {articleFilters.length ? <div className='filter__selects'>
             <ul>
               {articleFilters.map(filter => {
                 return (
@@ -145,7 +131,7 @@ export class BrowseList extends React.Component {
               })}
               <li className='clear-filters'>{ClearFilters}</li>
             </ul>
-          </div>
+          </div> : ''}
         </header>
         {articles.map((article, i) => {
           return (
@@ -179,7 +165,6 @@ BrowseList.propTypes = {
   dispatch: React.PropTypes.func,
   articles: React.PropTypes.array,
   articleFilters: React.PropTypes.array,
-  articleSorting: React.PropTypes.oneOf(['recency', 'relevance']),
   articlePage: React.PropTypes.number,
   path: React.PropTypes.string
 }

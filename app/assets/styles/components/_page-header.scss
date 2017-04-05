@@ -21,18 +21,23 @@
       height: 2.5em;
       top: 4.5em;
       left: 0;
-      border-bottom: 1px solid lighten($light-grey, 25%);
-      overflow-y: hidden;
+      border-bottom: 1px solid $background-grey;
       -webkit-transition: all 0.3s;
       -moz-transition: all 0.3s;
       transition: all 0.3s;
     }
     a:hover:before {
       top: 0em;
+      border-bottom: 1px solid lighten($light-grey, 25%);
     }
     .active a:before {
       top: 0em;
+      border-bottom: 1px solid $light-grey;
+      @include media(medium-down) {
+        border-bottom: 0;
+      }
     }
+
     ul {
       @include media(medium-down) {
         position: absolute;
@@ -44,6 +49,9 @@
         box-shadow: 0px 4px 8px rgba(0, 0, 0, .1);
         border: 1px solid darken($lightest-grey, 5%);
         a:before {
+          border-bottom: 0;
+        }
+        a:hover:before {
           border-bottom: 0;
         }
         li {
@@ -60,9 +68,14 @@
       }
     }
     @include media(medium-down) {
-      /*display: none;*/
+      display: none;
       position: relative;
       float: none;
+    }
+  }
+  nav.active {
+    @include media(medium-down) {
+      display: block;
     }
   }
 

@@ -1,6 +1,6 @@
 ---
 title: SSP2_HGEM Summary
-date: 3/21/2017
+date: 4/3/2017
 type: scenario
 project: 'baseline'
 scenarios:
@@ -46,6 +46,26 @@ fixed:
 dropdown:
   field: impactparameter
   values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+change: true
+```
+
+```chart
+mark: grouped-bar
+title: Change in SSP2_HGEM Impact Parameters per Commodity Group (%) from 2015 - 2050 (SSP2_HGEM vs. SSP2_MIROC)
+width: 70%
+encoding:
+  x:
+    type: nominal
+    field: impactparameter
+  y:
+    type: quantitative
+    field: Val
+scenarios: SSP2_HGEM, SSP2_MIROC
+fixed:
+  impactparameter: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+dropdown:
+  field: agg_commodity
+  values: animal_products,cereals,fruits_vegetables,oils_seeds,food_oils,oil_meals,other,pulses,roots_tubers,sugar
 change: true
 ```
 

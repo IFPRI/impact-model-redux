@@ -151,9 +151,11 @@ ${article}`
 }
 
 _.forEach(regions, r => {
-  q.defer(cb => {
-    generateArticle(r.region, r.subcontinent, r.continent, cb)
-  })
+  if (['bra', 'chm', 'zaf', 'zmb', 'zwe', 'arg', 'rus', 'ken', 'gha', 'nga'].includes(r.region)) {
+    q.defer(cb => {
+      generateArticle(r.region, r.subcontinent, r.continent, cb)
+    })
+  }
 })
 
 q.awaitAll(function (err, results) {

@@ -13,7 +13,9 @@ import { fetchArticle, updateArticleFilters, updateChart } from '../actions'
 // Components
 import RelatedArticles from '../components/related-articles'
 import Chart from '../components/chart'
+import ChartGroupedBar from '../components/chart-grouped-bar'
 import MapComponent from '../components/map'
+import Share from '../components/share-button'
 import Loading from '../components/loading'
 
 // Utils
@@ -30,15 +32,19 @@ export class Scenario extends React.Component {
   }
 
   componentDidUpdate () {
-    this.addCharts(this.props.charts)
+    this.addCharts(this.props.charts, this.props.metadata.scenarios)
     this.addMaps(this.props.maps)
   }
 
-  addCharts (charts) {
+  addCharts (charts, scenarios) {
     _.forEach(charts, (data, name) => {
       const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
       if (placeholder) {
-        ReactDOM.render(<Chart name={name} data={data} updateChart={this.updateChart} />, placeholder)
+        if (data.mark === 'grouped-bar') {
+          ReactDOM.render(<ChartGroupedBar name={name} data={data} scenarios={scenarios} updateChart={this.updateChart}/>, placeholder)
+        } else {
+          ReactDOM.render(<Chart name={name} data={data} scenarios={scenarios} updateChart={this.updateChart} />, placeholder)
+        }
       }
     })
   }
@@ -108,13 +114,13 @@ export class Scenario extends React.Component {
             </div>
             <div className='home__header-split--right'>
               <Link to={'/'} className='button button--outline button--download'>Download Report</Link>
-              <Link to={'/'} className='button button--outline'>Share</Link>
+              <Share path={this.props.location.pathname} />
             </div>
           </div>
         </section>
         {this.props.articleLoading
          ? <Loading />
-         : <section className='section__internal'>
+         : <section className='section__internal section__padding'>
              <div className='row row--shortened'>
                <div className='article-metadata'>
                   {Locations}
@@ -124,21 +130,39 @@ export class Scenario extends React.Component {
              </div>
            </section>
         }
-        <RelatedArticles
-          type='scenario'
-          cardType='project'
-          title={`Other Scenarios in ${translate(metadata.project)}`}
-          articles={findProjectArticles(metadata, articles, metadata.project, 2)}
-          router={this.props.router}
-          updateArticleFilters={this.updateArticleFilters}
-          />
-        <RelatedArticles
-          type='scenario'
-          cardType='related'
-          articles={findRelatedArticles(metadata, articles, 3)}
-          router={this.props.router}
-          updateArticleFilters={this.updateArticleFilters}
-          />
+        <section className='page__project-articles-list section__padding page__articles-list section--blue'>
+          <div className='row row--shortened'>
+            <RelatedArticles
+              type='scenario'
+              cardType='project'
+              title={`Other Scenarios in ${translate(metadata.project)}`}
+              articles={findProjectArticles(metadata, articles, metadata.project, 2)}
+              router={this.props.router}
+              updateArticleFilters={this.updateArticleFilters}
+              />
+          </div>
+        </section>
+        <section className='page__related-articles-list section__padding page__articles-list section--blue'>
+          <div className='row row--shortened'>
+            <RelatedArticles
+              type='scenario'
+              cardType='related'
+              articles={findRelatedArticles(metadata, articles, 3)}
+              router={this.props.router}
+              updateArticleFilters={this.updateArticleFilters}
+              />
+          </div>
+        </section>
+        <section className='section__internal section__padding section--grey'>
+          <div className='row'>
+            <header className='header-internal'>
+              <h3 className='header--large with-description'>How to Get More Information</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et dui gravida, posuere diam id, congue augue. Pellentesque nec purus ex.</p>
+            </header>
+            <Link className='button button--main button--small button-group' to={'/about'}>Download Our Data</Link>
+            <Link className='button button--main button--small' to={'/about'}>Contact Us</Link>
+          </div>
+        </section>
       </section>
     )
   }
@@ -154,7 +178,8 @@ Scenario.propTypes = {
   maps: React.PropTypes.object,
   params: React.PropTypes.object,
   router: React.PropTypes.object,
-  metadata: React.PropTypes.object
+  metadata: React.PropTypes.object,
+  location: React.PropTypes.object
 }
 
 const mapStateToProps = (state, props) => {

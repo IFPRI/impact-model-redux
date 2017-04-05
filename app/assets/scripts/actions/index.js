@@ -6,12 +6,14 @@ import { setupRenderer } from '../utils/parse-figures'
 
 export const UPDATE_ARTICLES = 'UPDATE_ARTICLES'
 export const UPDATE_ARTICLE_FILTERS = 'UPDATE_ARTICLE_FILTERS'
-export const UPDATE_ARTICLE_SORTING = 'UPDATE_ARTICLE_SORTING'
 export const UPDATE_ARTICLE_PAGE = 'UPDATE_ARTICLE_PAGE'
 export const UPDATE_ARTICLE_LOADING = 'UPDATE_ARTICLE_LOADING'
 export const UPDATE_ARTICLE = 'UPDATE_ARTICLE'
 export const UPDATE_CHART = 'UPDATE_CHART'
 export const UPDATE_MAP = 'UPDATE_MAP'
+export const UPDATE_SELECTED_PROJECT = 'UPDATE_SELECTED_PROJECT'
+export const UPDATE_SELECTED_PROJECT_HEIGHT = 'UPDATE_SELECTED_PROJECT_HEIGHT'
+export const UPDATE_MOBILE_FILTERS = 'UPDATE_MOBILE_FILTERS'
 
 export const updateArticles = (articles) => {
   return { type: UPDATE_ARTICLES, data: articles }
@@ -19,10 +21,6 @@ export const updateArticles = (articles) => {
 
 export const updateArticleFilters = (articleFilters) => {
   return { type: UPDATE_ARTICLE_FILTERS, data: articleFilters }
-}
-
-export const updateArticleSorting = (articleSorting) => {
-  return { type: UPDATE_ARTICLE_SORTING, data: articleSorting }
 }
 
 export const updateArticlePage = (articlePage) => {
@@ -61,3 +59,11 @@ export const fetchArticle = (url) => {
   }
 }
 // />
+
+export const updateSelectedProject = (project, height) => {
+  return { type: UPDATE_SELECTED_PROJECT, project, height }
+}
+
+export const updateMobileFilters = open => {
+  return { type: UPDATE_MOBILE_FILTERS, data: open }
+}
