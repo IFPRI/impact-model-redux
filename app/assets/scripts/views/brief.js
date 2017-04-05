@@ -19,7 +19,6 @@ import Share from '../components/share-button'
 import Loading from '../components/loading'
 
 // Utils
-import { toTitleCase } from '../utils/format'
 import { translate } from '../utils/translation'
 import { findRelatedArticles, findProjectArticles } from '../utils/related'
 
