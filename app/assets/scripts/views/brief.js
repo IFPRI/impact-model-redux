@@ -148,6 +148,12 @@ export class Brief extends React.Component {
          : <section className='section__internal section__padding'>
              <div className='row row--shortened'>
                <div className='article-metadata'>
+                  <div className='article-metadata__item'>
+                    <span className='article-metadata__header'>Project:</span>
+                    <ul>
+                      <li>{toTitleCase(metadata.project)}</li>
+                    </ul>
+                  </div>
                  {Locations}
                  {Scenarios}
                  {Resources}

@@ -151,8 +151,9 @@
   margin-bottom: 3.5em;
   @extend .clearfix;
   .article-metadata__item {
+    margin-bottom: 1em;
     float: left;
-    width: 40%;
+    width: 30%;
     @include media(medium-down) {
       width: 100%;
       &:first-of-type {
