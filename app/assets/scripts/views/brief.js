@@ -125,7 +125,6 @@ export class Brief extends React.Component {
               <div className='home__header-split--left__content'>
                 <span className='header--type'>{translate(metadata.briefType)}</span>
                 <h2 className='header--xxlarge with-metadata'>{metadata.title}</h2>
-                <h3 className='header--large'>{toTitleCase(metadata.project)}</h3>
                 {AuthorAndDate}
               </div>
             </div>
@@ -140,6 +139,12 @@ export class Brief extends React.Component {
          : <section className='section__internal section__padding'>
              <div className='row row--shortened'>
                <div className='article-metadata'>
+                  <div className='article-metadata__item'>
+                    <span className='article-metadata__header'>Project:</span>
+                    <ul>
+                      <li>{toTitleCase(metadata.project)}</li>
+                    </ul>
+                  </div>
                  {Locations}
                  {Scenarios}
                  {Resources}
