@@ -59,6 +59,12 @@ export class Brief extends React.Component {
     })
   }
 
+  goToTag (tag, e) {
+    e.preventDefault()
+    this.updateArticleFilters([tag])
+    this.props.router.push(`/briefs`)
+  }
+
   updateArticleFilters (filters) {
     this.props.dispatch(updateArticleFilters(filters))
   }
@@ -125,7 +131,9 @@ export class Brief extends React.Component {
               <div className='home__header-split--left__content'>
                 <span className='header--type'>{translate(metadata.briefType)}</span>
                 <h2 className='header--xxlarge with-metadata'>{metadata.title}</h2>
-                <h3 className='header--large'>{toTitleCase(metadata.project)}</h3>
+                <a className='link__underline' onClick={this.goToTag.bind(this, metadata.project)} href=''>
+                  <h3 className='header--large'>{translate(metadata.project)}</h3>
+                </a>
                 {AuthorAndDate}
               </div>
             </div>
