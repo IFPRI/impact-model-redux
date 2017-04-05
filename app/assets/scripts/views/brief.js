@@ -131,7 +131,7 @@ export class Brief extends React.Component {
               <div className='home__header-split--left__content'>
                 <span className='header--type'>{translate(metadata.briefType)}</span>
                 <h2 className='header--xxlarge with-metadata'>{metadata.title}</h2>
-                <a className='link__underline' onClick={this.goToTag.bind(this, metadata.project)} href=''>
+                <a onClick={this.goToTag.bind(this, metadata.project)} href=''>
                   <h3 className='header--large'>{translate(metadata.project)}</h3>
                 </a>
                 {AuthorAndDate}
