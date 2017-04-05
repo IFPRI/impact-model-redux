@@ -1,0 +1,61 @@
+html, body, main {
+  margin: 0;
+  padding: 0;
+  min-height:100%;
+  height:100%;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+
+body {
+  color: #676767;
+  font-size: 1rem;
+  font-family: "Nunito", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #FAFAFA;
+}
+
+p {
+  line-height: 1.8em;
+  font-weight: 300;
+}
+
+.header {
+  width: 100%;
+  height: 3.5rem;
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid lightgrey;
+  h1 {
+    font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #414141;
+    font-size: 1.75rem;
+    font-weight: 800;
+  }
+  h2 {
+    font-size: 1rem;
+    font-size: 400;
+  }
+}
+
+#markdown-input {
+  padding: 2rem;
+  float: left;
+  position: absolute;
+  width: 25rem;
+  top: 5.5rem;
+  bottom: 0;
+  left: 0;
+}
+
+#figure-output {
+  background: grey;
+  padding: 2rem;
+  overflow: hidden;
+  position: absolute;
+  top: 5.5rem;
+  bottom: 0;
+  left: 29rem;
+  right: 0;
+  border-right: 1px solid lightgrey;;
+}
