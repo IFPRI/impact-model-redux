@@ -58,6 +58,12 @@ export class Brief extends React.Component {
     })
   }
 
+  goToTag (tag, e) {
+    e.preventDefault()
+    this.updateArticleFilters([tag])
+    this.props.router.push(`/briefs`)
+  }
+
   updateArticleFilters (filters) {
     this.props.dispatch(updateArticleFilters(filters))
   }
@@ -138,6 +144,12 @@ export class Brief extends React.Component {
          : <section className='section__internal section__padding'>
              <div className='row row--shortened'>
                <div className='article-metadata'>
+                  <div className='article-metadata__item'>
+                    <span className='article-metadata__header'>Project:</span>
+                    <ul>
+                      <li><a className='link__underline' onClick={this.goToTag.bind(this, metadata.project)} href=''>{translate(metadata.project)}</a></li>
+                    </ul>
+                  </div>
                  {Locations}
                  {Scenarios}
                  {Resources}
