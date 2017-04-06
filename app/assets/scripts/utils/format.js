@@ -29,9 +29,14 @@ const formatNumber = (number, label) => {
   return Number(number).toLocaleString()
 }
 
+const formatScenario = (scenario) => {
+  return scenario.replace('_', '-').toUpperCase()
+}
+
 module.exports = {
   cutAtWord,
   commaSeparate,
   toTitleCase,
-  formatNumber
+  formatNumber,
+  formatScenario
 }
