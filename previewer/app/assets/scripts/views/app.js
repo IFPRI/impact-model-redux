@@ -1,33 +1,53 @@
 'use strict'
 import React from 'react'
-import marked from 'marked'
-import fm from 'front-matter'
+import ReactDOM from 'react-dom'
+import { connect } from 'react-redux'
+import md5 from 'browser-md5'
+import _ from 'lodash'
 
-// Utils
-// import { setupRenderer } from '../utils/parse-figures'
+import { parseText, updateChart } from '../actions'
 
 // Constants
 import { defaultText } from '../constants'
 
 // Components
-// import Chart from '../components/chart'
+import Chart from '../components/chart'
 // import ChartStripe from '../components/chart-stripe'
 
 export class App extends React.Component {
   constructor (props, context) {
     super(props, context)
+    this.updateChart = this.updateChart.bind(this)
     this.handleTextUpdate = this.handleTextUpdate.bind(this)
     this.state = {
-      inputText: defaultText,
-      placeholder: ''
+      inputText: defaultText
     }
   }
 
+  componentDidUpdate () {
+    this.addCharts(this.props.charts, [])
+  }
+
+  addCharts (charts) {
+    _.forEach(charts, (data, name) => {
+      const scenarios = ['SSP2_GFDL', 'SSP2_HGEM']
+      const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
+      if (placeholder) {
+        if (data.mark === 'stripe') {
+          ReactDOM.render(<ChartStripe name={name} data={data} scenarios={scenarios} updateChart={this.updateChart}/>, placeholder)
+        } else {
+          ReactDOM.render(<Chart name={name} data={data} scenario={scenarios} updateChart={this.updateChart}/>, placeholder)
+        }
+      }
+    })
+  }
+
+  updateChart (data, id) {
+    this.props.dispatch(updateChart(data, id))
+  }
+
   handleTextUpdate (evt) {
-    // const renderer = setupRenderer()
-    const input = evt.target.value
-    const figureData = marked(fm(input).body)
-    this.setState({placeholder: figureData})
+    this.props.dispatch(parseText(evt.target.value))
   }
 
   render () {
@@ -39,11 +59,25 @@ export class App extends React.Component {
         </section>
         <section className='body'>
           <textarea id='markdown-input' defaultValue={this.state.inputText} onInput={this.handleTextUpdate}></textarea>
-          <section id='figure-output' dangerouslySetInnerHTML={{__html: this.state.placeholder}}></section>
+          <section id='figure-output' dangerouslySetInnerHTML={{__html: this.props.text}}></section>
       </section>
       </div>
     )
   }
 }
 
-export default App
+App.propTypes = {
+  dispatch: React.PropTypes.func,
+  text: React.PropTypes.string,
+  charts: React.PropTypes.object
+}
+
+function mapStateToProps (state) {
+  return {
+    text: state.preview.text,
+    charts: state.preview.charts,
+    maps: state.preview.maps
+  }
+}
+
+export default connect(mapStateToProps)(App)

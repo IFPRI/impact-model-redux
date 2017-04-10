@@ -3,7 +3,10 @@ import marked from 'marked'
 import yaml from 'js-yaml'
 import md5 from 'browser-md5'
 
-export const setupRenderer = () => {
+// Actions
+import { updateChart } from '../actions'
+
+export const setupRenderer = (dispatch) => {
   const renderer = new marked.Renderer()
   renderer.table = (header, body) => {
     return `<div class="table-wrapper"><table><thead>${header}</thead><tbody>${body}</tbody></table></div>`
@@ -21,6 +24,7 @@ export const setupRenderer = () => {
       }
     })
     if (lang === 'chart') {
+      dispatch(updateChart(data, id))
       return `<div style="width:${data.width}" class="${id} figure-container chart-figure"></div>`
     }
   }
