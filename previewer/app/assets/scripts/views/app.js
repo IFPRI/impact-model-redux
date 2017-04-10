@@ -28,6 +28,10 @@ export class App extends React.Component {
     this.addCharts(this.props.charts, [])
   }
 
+  componentDidMount () {
+    this.props.dispatch(parseText(document.querySelector('#markdown-input').value))
+  }
+
   addCharts (charts) {
     _.forEach(charts, (data, name) => {
       const scenarios = ['SSP2_GFDL', 'SSP2_HGEM']
