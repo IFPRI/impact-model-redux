@@ -1,5 +1,5 @@
-'use strict';
+'use strict'
 
 export default {
   environment: 'staging'
-};
+}
