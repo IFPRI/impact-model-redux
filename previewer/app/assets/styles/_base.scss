@@ -1,30 +1,20 @@
-html, body, main {
-  margin: 0;
-  padding: 0;
-  min-height:100%;
-  height:100%;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  color: #333;
-}
-
 body {
-  color: #676767;
+  color: #333;
   font-size: 1rem;
   font-family: "Nunito", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
 }
 
 p {
-  line-height: 1.8em;
   font-weight: 300;
+  line-height: 1.8em;
 }
 
 .header {
   width: 24rem;
   height: 4rem;
-  border-bottom: 1px solid #cccccc;
   color: #414141;
+  border-bottom: 1px solid #ccc;
   h1 {
     float: left;
     margin: 1rem 0.25rem 0 1.5rem;
@@ -33,58 +23,100 @@ p {
     font-weight: 800;
   }
   h2 {
-    margin-top: 2rem;
     float: left;
+    margin-top: 2rem;
     font-size: 1rem;
-    font-size: 400;
   }
 }
 
-#markdown-input {
-  padding: 2rem;
-  float: left;
+.markdown-input {
   position: absolute;
+  float: left;
   width: 20rem;
   top: 5.5rem;
   bottom: 0;
   left: 0;
+  padding: 2rem;
 }
 
-#figure-output {
-  background-color: #f2f2f2;
+.figure-output {
   position: absolute;
   top: 0rem;
   bottom: 0;
   left: 24rem;
   right: 0;
   padding: 2rem;
+  background-color: #f2f2f2;
   border-left: 1px solid #cccccc;
   h5 {
+    margin-bottom: 2rem;
     font-size: 1.75rem;
     text-align: center;
-    margin-bottom: 2rem;
   }
 }
 
 .chart-figure {
   width: calc(100% - 2rem);
-  box-sizing: border-box;
-  display: inline-block;
-  background-color: #ffffff;
-  padding: 2rem;
   margin: 1rem;
+  padding: 2rem;
+  display: inline-block;
+  box-sizing: border-box;
+  background-color: #fff;
   border-radius: 0.5rem;
   box-shadow: 0 0 10px #777;
 }
 
-
-
 .chart-dropdown {
-  text-align: center;
-  font-size: 0.8rem;
   margin-top: 1rem;
+  font-size: 0.8rem;
+  text-align: center;
   label {
     display: inline-block;
     font-weight: 800;
+  }
+}
+
+.error-background {
+  position: absolute;
+  top: 0rem;
+  bottom: 0;
+  left: 24rem;
+  right: 0;
+  padding: 2rem;
+  background-color: #000;
+  border-left: 1px solid #ccc;
+  z-index: 1;
+  opacity: 0.75;
+}
+
+.error-message {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 30rem;
+  height: 10rem;
+  margin: -5rem 0 0 -15rem;
+  padding: 2rem;
+  z-index: 2;
+  border: 5px solid #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #333;
+  opacity: 0.75;
+  background: repeating-linear-gradient(
+    45deg,
+    #000,
+    #000 20px,
+    #111 20px,
+    #111 40px
+  );
+  h1 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #f00;
+    text-align: center;
+  }
+  p {
+    color: #fff;
   }
 }

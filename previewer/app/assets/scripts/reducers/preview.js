@@ -3,12 +3,14 @@ import { set } from 'object-path'
 
 import {
   UPDATE_TEXT,
-  UPDATE_CHART
+  UPDATE_CHART,
+  UPDATE_ERROR
 } from '../actions'
 
 export const initialState = {
   text: '',
-  charts: {}
+  charts: {},
+  error: ''
 }
 
 export default (state = initialState, action) => {
@@ -19,6 +21,9 @@ export default (state = initialState, action) => {
       break
     case UPDATE_CHART:
       set(state, `charts.${action.id}`, action.data)
+      break
+    case UPDATE_ERROR:
+      set(state, 'error', action.data.split('^')[0])
       break
   }
   return state

@@ -29,7 +29,7 @@ export class App extends React.Component {
   }
 
   componentDidMount () {
-    this.props.dispatch(parseText(document.querySelector('#markdown-input').value))
+    this.props.dispatch(parseText(document.querySelector('.markdown-input').value))
   }
 
   addCharts (charts) {
@@ -62,8 +62,19 @@ export class App extends React.Component {
           <h2>Figure Previewer</h2>
         </section>
         <section className='body'>
-          <textarea id='markdown-input' defaultValue={this.state.inputText} onInput={this.handleTextUpdate}></textarea>
-          <section id='figure-output' dangerouslySetInnerHTML={{__html: this.props.text}}></section>
+          <textarea className='markdown-input' defaultValue={this.state.inputText} onInput={this.handleTextUpdate}></textarea>
+          {this.props.error.length
+            ? (
+            <div>
+              <div className='error-message'>
+                <h1>SYNTAX ERROR:</h1>
+                <p>{this.props.error}</p>
+              </div>
+              <div className='error-background'></div>
+            </div>
+            )
+            : ''}
+          <section className='figure-output' dangerouslySetInnerHTML={{__html: this.props.text}}></section>
       </section>
       </div>
     )
@@ -73,14 +84,16 @@ export class App extends React.Component {
 App.propTypes = {
   dispatch: React.PropTypes.func,
   text: React.PropTypes.string,
-  charts: React.PropTypes.object
+  charts: React.PropTypes.object,
+  error: React.PropTypes.string
 }
 
 function mapStateToProps (state) {
   return {
     text: state.preview.text,
     charts: state.preview.charts,
-    maps: state.preview.maps
+    maps: state.preview.maps,
+    error: state.preview.error
   }
 }
 
