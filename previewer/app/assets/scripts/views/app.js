@@ -11,6 +11,7 @@ import { parseText, updateChart } from '../actions'
 import { defaultText } from '../constants'
 
 // Components
+import ErrorModal from '../components/error-modal'
 import Chart from '../components/chart'
 // import ChartStripe from '../components/chart-stripe'
 
@@ -55,27 +56,28 @@ export class App extends React.Component {
   }
 
   render () {
+    const lines = this.props.text.split('\n')
     return (
       <div>
-        <section className='header'>
-          <h1>IFPRI IMPACT</h1>
-          <h2>Figure Previewer</h2>
+        <section className='control-module'>
+          <header className='header'>
+            <h1>IFPRI IMPACT</h1>
+            <h2>Figure Previewer</h2>
+          </header>
+          <div className='line-numbers'>
+            {lines.map((line, i) => <span key={`line-number-${i}`} />)}
+          </div>
+          <textarea
+            className='markdown-input'
+            style={{height: `${1.25 * lines.length + 1.25}rem`}}
+            defaultValue={this.state.inputText}
+            onInput={this.handleTextUpdate}>
+          </textarea>
         </section>
-        <section className='body'>
-          <textarea className='markdown-input' defaultValue={this.state.inputText} onInput={this.handleTextUpdate}></textarea>
-          {this.props.error.length
-            ? (
-            <div>
-              <div className='error-message'>
-                <h1>SYNTAX ERROR:</h1>
-                <p>{this.props.error}</p>
-              </div>
-              <div className='error-background'></div>
-            </div>
-            )
-            : ''}
-          <section className='figure-output' dangerouslySetInnerHTML={{__html: this.props.text}}></section>
-      </section>
+        {this.props.error.length
+          ? <ErrorModal error={this.props.error} />
+          : ''}
+        <section className='figure-output' dangerouslySetInnerHTML={{__html: this.props.html}}></section>
       </div>
     )
   }
@@ -84,6 +86,7 @@ export class App extends React.Component {
 App.propTypes = {
   dispatch: React.PropTypes.func,
   text: React.PropTypes.string,
+  html: React.PropTypes.string,
   charts: React.PropTypes.object,
   error: React.PropTypes.string
 }
@@ -91,6 +94,7 @@ App.propTypes = {
 function mapStateToProps (state) {
   return {
     text: state.preview.text,
+    html: state.preview.html,
     charts: state.preview.charts,
     maps: state.preview.maps,
     error: state.preview.error

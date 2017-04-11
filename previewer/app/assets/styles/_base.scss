@@ -1,8 +1,8 @@
 body {
+  background-color: #eee;
   color: #333;
   font-size: 1rem;
   font-family: "Nunito", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #fafafa;
 }
 
 p {
@@ -10,44 +10,12 @@ p {
   line-height: 1.8em;
 }
 
-.header {
-  width: 24rem;
-  height: 4rem;
-  color: #414141;
-  border-bottom: 1px solid #ccc;
-  h1 {
-    float: left;
-    margin: 1rem 0.25rem 0 1.5rem;
-    font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 1.75rem;
-    font-weight: 800;
-  }
-  h2 {
-    float: left;
-    margin-top: 2rem;
-    font-size: 1rem;
-  }
-}
-
-.markdown-input {
-  position: absolute;
-  float: left;
-  width: 20rem;
-  top: 5.5rem;
-  bottom: 0;
-  left: 0;
-  padding: 2rem;
-}
-
 .figure-output {
   position: absolute;
   top: 0rem;
   bottom: 0;
-  left: 24rem;
+  left: 25rem;
   right: 0;
-  padding: 2rem;
-  background-color: #f2f2f2;
-  border-left: 1px solid #cccccc;
   h5 {
     margin-bottom: 2rem;
     font-size: 1.75rem;
@@ -62,8 +30,7 @@ p {
   display: inline-block;
   box-sizing: border-box;
   background-color: #fff;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 10px #777;
+  border: 1px solid #bbb;
 }
 
 .chart-dropdown {
@@ -80,11 +47,10 @@ p {
   position: absolute;
   top: 0rem;
   bottom: 0;
-  left: 24rem;
+  left: 25rem;
   right: 0;
   padding: 2rem;
   background-color: #000;
-  border-left: 1px solid #ccc;
   z-index: 1;
   opacity: 0.75;
 }
@@ -93,9 +59,8 @@ p {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 30rem;
-  height: 10rem;
-  margin: -5rem 0 0 -15rem;
+  width: 20rem;
+  margin-top: -10rem;
   padding: 2rem;
   z-index: 2;
   border: 5px solid #fff;
@@ -118,5 +83,62 @@ p {
   }
   p {
     color: #fff;
+  }
+}
+
+.control-module {
+  float: left;
+  background-color: #fff;
+  margin: 1rem;
+  border: 1px solid #bbb;
+  .header {
+    width: 24rem;
+    height: 4rem;
+    background-color: #ddd;
+    color: #444;
+    border-bottom: 1px solid #bbb;
+    h1 {
+      float: left;
+      margin: 1rem 0.25rem 0 1.5rem;
+      font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 1.75rem;
+      font-weight: 800;
+    }
+    h2 {
+      float: left;
+      margin-top: 2rem;
+      font-size: 1rem;
+    }
+  }
+  .markdown-input {
+    min-height: 15rem;
+    width: 20rem;
+    padding: 1.5rem 1rem 0 1rem;
+    font-family: monospace;
+    line-height: 1.25rem;
+    resize: none;
+  }
+  .line-numbers {
+    float: left;
+    margin-top: 1.5rem;
+    position: relative;
+    font-family: monospace;
+    background-color: #fff;
+    border-radius: .25em;
+    counter-reset: line;
+    span {
+      display: block;
+      line-height: 1.25rem;
+      &:before {
+        counter-increment: line;
+        content: counter(line);
+        display: inline-block;
+        border-right: 1px solid #ddd;
+        padding: 0 .5em;
+        width: 1rem;
+        color: #888;
+        text-align: right;
+      }
+    }
   }
 }
