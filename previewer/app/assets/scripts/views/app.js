@@ -21,9 +21,6 @@ export class App extends React.Component {
     super(props, context)
     this.updateChart = this.updateChart.bind(this)
     this.handleTextUpdate = this.handleTextUpdate.bind(this)
-    this.state = {
-      inputText: defaultText
-    }
   }
 
   componentDidUpdate () {
@@ -39,7 +36,7 @@ export class App extends React.Component {
       const scenarios = ['SSP2_GFDL', 'SSP2_HGEM']
       const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
       if (placeholder) {
-        if (data.mark === 'stripe' || data.mark ==='line') {
+        if (data.mark === 'stripe' || data.mark === 'line') {
           ReactDOM.render(<ChartLine name={name} data={data} scenarios={scenarios} updateChart={this.updateChart}/>, placeholder)
         } else if (data.mark === 'grouped-bar') {
           ReactDOM.render(<ChartGroupedBar name={name} data={data} scenarios={scenarios} updateChart={this.updateChart}/>, placeholder)
@@ -73,7 +70,7 @@ export class App extends React.Component {
           <textarea
             className='markdown-input'
             style={{height: `${1.25 * lines.length + 1.25}rem`}}
-            defaultValue={this.state.inputText}
+            defaultValue={defaultText}
             onInput={this.handleTextUpdate}>
           </textarea>
         </section>

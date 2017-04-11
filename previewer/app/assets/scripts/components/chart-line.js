@@ -33,7 +33,7 @@ export class Chart extends React.Component {
         const widths = this.getDataset().width
 
         const isStripe = this.getDataset().label === 'stripe'
-        if (!isStripe || !widths || !this.rendered) {
+        if (!isStripe || !widths) {
           return
         }
         this.rendered = true
@@ -117,7 +117,6 @@ export class Chart extends React.Component {
 
   initializeChart () {
     const { name, data } = this.props
-
     let chart = {
       type: data.mark,
       options: {
@@ -187,6 +186,7 @@ export class Chart extends React.Component {
           pointRadius: 5,
           pointHoverRadius: 6
         })
+
         const lineColor = scenarios.length === 1
           ? oneColorPalette
           : sixColorPalette[i] || sixColorPalette[(Math.floor(Math.random() * 5))]
