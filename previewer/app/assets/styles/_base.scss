@@ -18,7 +18,7 @@ p {
   right: 0;
   h5 {
     margin-bottom: 2rem;
-    font-size: 1.75rem;
+    font-size: 1.25rem;
     text-align: center;
   }
 }
@@ -116,6 +116,7 @@ p {
     padding: 1.5rem 1rem 0 1rem;
     font-family: monospace;
     line-height: 1.25rem;
+    white-space: nowrap;
     resize: none;
   }
   .line-numbers {

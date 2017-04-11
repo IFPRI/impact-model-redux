@@ -26,22 +26,22 @@ export const blueGradientPalette = (steps) => chroma.scale(['#007acc', '#b3e0ff'
 
 export const greyGradientPalette = (steps) => chroma.scale(['#4d4d4d', '#cccccc']).colors(steps)
 
-export const defaultText = `\`\`\`chart
-mark: bar
-title: chart
+export const defaultText = `\`\`\chart
+mark: grouped-bar
+title: Change in SSP2_GFDL Impact Parameters per Commodity Group (%) from 2015 - 2050 (SSP2_GFDL vs. SSP2_GFDL)
+width: 70%
 encoding:
   x:
     type: nominal
-    field: agg_continent
+    field: impactparameter
   y:
     type: quantitative
     field: Val
+scenarios: SSP2_GFDL, SSP2_GFDL
 fixed:
-  year: 2010
-  impactparameter: qdxagg
-  agg_commodity: cereals
+  impactparameter: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
 dropdown:
-  field: commodity
-  values: maiz, barl
-
+  field: agg_commodity
+  values: animal_products,cereals,fruits_vegetables,oils_seeds,food_oils,oil_meals,other,pulses,roots_tubers,sugar
+change: true
 \`\`\``

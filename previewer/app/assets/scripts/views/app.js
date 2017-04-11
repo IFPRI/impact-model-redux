@@ -13,7 +13,8 @@ import { defaultText } from '../constants'
 // Components
 import ErrorModal from '../components/error-modal'
 import Chart from '../components/chart'
-// import ChartStripe from '../components/chart-stripe'
+import ChartLine from '../components/chart-line'
+import ChartGroupedBar from '../components/chart-grouped-bar'
 
 export class App extends React.Component {
   constructor (props, context) {
@@ -38,8 +39,10 @@ export class App extends React.Component {
       const scenarios = ['SSP2_GFDL', 'SSP2_HGEM']
       const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
       if (placeholder) {
-        if (data.mark === 'stripe') {
-          ReactDOM.render(<ChartStripe name={name} data={data} scenarios={scenarios} updateChart={this.updateChart}/>, placeholder)
+        if (data.mark === 'stripe' || data.mark ==='line') {
+          ReactDOM.render(<ChartLine name={name} data={data} scenarios={scenarios} updateChart={this.updateChart}/>, placeholder)
+        } else if (data.mark === 'grouped-bar') {
+          ReactDOM.render(<ChartGroupedBar name={name} data={data} scenarios={scenarios} updateChart={this.updateChart}/>, placeholder)
         } else {
           ReactDOM.render(<Chart name={name} data={data} scenario={scenarios} updateChart={this.updateChart}/>, placeholder)
         }
