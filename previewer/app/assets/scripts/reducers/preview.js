@@ -28,7 +28,7 @@ export default (state = initialState, action) => {
       set(state, `charts.${action.id}`, action.data)
       break
     case UPDATE_ERROR:
-      set(state, 'error', action.data.split('^')[0])
+      set(state, 'error', action.data)
       break
   }
   return state

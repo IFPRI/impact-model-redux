@@ -27,6 +27,7 @@ export const setupRenderer = (dispatch) => {
       dispatch(updateChart(data, id))
       return `<div style="width:calc(${data.width} - 2rem" class="${id} figure-container chart-figure"></div>`
     }
+    return ''
   }
   return renderer
 }

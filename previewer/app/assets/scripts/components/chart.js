@@ -7,11 +7,12 @@ if (typeof window === 'undefined') global.window = {}
 const ChartJS = require('chart.js')
 
 // Actions
-import queryDatabase from '../utils/query-database'
+import { updateError } from '../actions'
 
 // Utils
 import { formatNumber } from '../utils/format'
 import { translate } from '../utils/translation'
+import queryDatabase from '../utils/query-database'
 
 // Constants
 import { sixColorPalette, oneColorPalette } from '../constants'
@@ -109,8 +110,10 @@ export class Chart extends React.Component {
     if (isPieChart) {
       delete chart.options.scales
       chart.options.maintainAspectRatio = true
-      chart.options.cutoutPercentage = 80
       chart.options.legend = {display: true, position: 'bottom'}
+    }
+    if (chartType === 'doughnut') {
+      chart.options.cutoutPercentage = 80
     }
 
     const aggregation = data.encoding.x.field
@@ -128,11 +131,14 @@ export class Chart extends React.Component {
           return ` ${label}: ${formatNumber(datasetLabel)}`
         }}}
       }
-
-      this.chart = new ChartJS(
-        document.getElementById(name).getContext('2d'),
-        chart
-      )
+      try {
+        this.chart = new ChartJS(
+          document.getElementById(name).getContext('2d'),
+          chart
+        )
+      } catch (err) {
+        this.props.dispatch(updateError(err))
+      }
     })
   }
 
@@ -197,6 +203,7 @@ export class Chart extends React.Component {
 }
 
 Chart.propTypes = {
+  dispatch: PropTypes.func,
   name: PropTypes.string,
   data: PropTypes.object,
   updateChart: PropTypes.func

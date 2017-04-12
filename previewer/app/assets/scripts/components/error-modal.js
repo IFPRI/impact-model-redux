@@ -5,6 +5,7 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
 export class ErrorModal extends React.Component {
   render () {
+    const error = this.props.error.split('^') ? this.props.error.split('^')[0] : this.props.error
     return (
         <div>
           <CSSTransitionGroup
@@ -15,7 +16,7 @@ export class ErrorModal extends React.Component {
             transitionLeave={false}>
             <div className='error-message'>
               <h1>SYNTAX ERROR:</h1>
-              <p>{this.props.error}</p>
+              <p>{error}</p>
             </div>
           </CSSTransitionGroup>
           <div className='error-background'></div>

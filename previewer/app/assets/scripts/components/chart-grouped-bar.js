@@ -6,11 +6,12 @@ if (typeof window === 'undefined') global.window = {}
 const ChartJS = require('chart.js')
 
 // Actions
-import queryDatabase from '../utils/query-database'
+import { updateError } from '../actions'
 
 // Utils
 import { formatNumber, formatScenario } from '../utils/format'
 import { translate } from '../utils/translation'
+import queryDatabase from '../utils/query-database'
 
 // Constants
 import { sixColorPalette } from '../constants'
@@ -99,10 +100,14 @@ export class ChartGroupedBar extends React.Component {
           chart.data.datasets[i].data.push(record.Val)
         })
       })
-      this.chart = new ChartJS(
-        document.getElementById(name).getContext('2d'),
-        chart
-      )
+      try {
+        this.chart = new ChartJS(
+          document.getElementById(name).getContext('2d'),
+          chart
+        )
+      } catch (err) {
+        this.props.dispatch(updateError(err))
+      }
     })
   }
 
@@ -174,6 +179,7 @@ export class ChartGroupedBar extends React.Component {
 }
 
 ChartGroupedBar.propTypes = {
+  dispatch: PropTypes.func,
   name: PropTypes.string,
   data: PropTypes.object,
   scenarios: PropTypes.array,

@@ -38,11 +38,26 @@ export class App extends React.Component {
       const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
       if (placeholder) {
         if (data.mark === 'stripe' || data.mark === 'line') {
-          ReactDOM.render(<ChartLine name={name} data={data} scenarios={scenarios} updateChart={this.updateChart}/>, placeholder)
+          ReactDOM.render(<ChartLine
+            name={name}
+            data={data}
+            scenarios={scenarios}
+            updateChart={this.updateChart}
+            dispatch={this.props.dispatch}/>, placeholder)
         } else if (data.mark === 'grouped-bar') {
-          ReactDOM.render(<ChartGroupedBar name={name} data={data} scenarios={scenarios} updateChart={this.updateChart}/>, placeholder)
+          ReactDOM.render(<ChartGroupedBar
+            name={name}
+            data={data}
+            scenarios={scenarios}
+            updateChart={this.updateChart}
+            dispatch={this.props.dispatch}/>, placeholder)
         } else {
-          ReactDOM.render(<Chart name={name} data={data} scenario={scenarios} updateChart={this.updateChart}/>, placeholder)
+          ReactDOM.render(<Chart
+            name={name}
+            data={data}
+            scenario={scenarios}
+            updateChart={this.updateChart}
+            dispatch={this.props.dispatch}/>, placeholder)
         }
       }
     })

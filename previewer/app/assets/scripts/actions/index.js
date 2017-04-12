@@ -21,6 +21,7 @@ export const updateChart = (chartMarkup, id) => {
 }
 
 export const updateError = (error) => {
+  error = error.message || error
   return { type: UPDATE_ERROR, data: error }
 }
 

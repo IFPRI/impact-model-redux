@@ -8,11 +8,12 @@ if (typeof window === 'undefined') global.window = {}
 const ChartJS = require('chart.js')
 
 // Actions
-import queryDatabase from '../utils/query-database'
+import { updateError } from '../actions'
 
 // Utils
 import { formatNumber } from '../utils/format'
 import { translate } from '../utils/translation'
+import queryDatabase from '../utils/query-database'
 
 // Constants
 import { oneColorPalette, sixColorPalette, stripeChartFill } from '../constants'
@@ -206,10 +207,14 @@ export class ChartLine extends React.Component {
         chart = this.addStripe(chart, chartData, scenarios)
       }
 
-      this.chart = new ChartJS(
-        document.getElementById(name).getContext('2d'),
-        chart
-      )
+      try {
+        this.chart = new ChartJS(
+          document.getElementById(name).getContext('2d'),
+          chart
+        )
+      } catch (err) {
+        this.props.dispatch(updateError(err))
+      }
 
       // for stripe chart type, disable tooltips over the area's centerline
       const originalGetElementAtEvent = this.chart.getElementAtEvent
@@ -342,6 +347,7 @@ export class ChartLine extends React.Component {
 }
 
 ChartLine.propTypes = {
+  dispatch: PropTypes.func,
   name: PropTypes.string,
   data: PropTypes.object,
   scenarios: PropTypes.array,
