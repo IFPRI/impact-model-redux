@@ -9,7 +9,7 @@ import {
 } from '../actions'
 
 export const initialState = {
-  text: '',
+  text: 'test',
   html: '',
   charts: {},
   error: ''

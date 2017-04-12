@@ -54,7 +54,7 @@ export class ChartGroupedBar extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
-              userCallback: (value) => formatNumber(value),
+              userCallback: (value) => isNaN(value) ? value : formatNumber(value),
               beginAtZero: false,
               padding: 5,
               fontColor: '#9E9E9E',
@@ -68,10 +68,11 @@ export class ChartGroupedBar extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
+              userCallback: (value) => isNaN(value) ? value : formatNumber(value),
+              min: 0,
+              padding: 5,
               fontColor: '#9E9E9E',
-              fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif",
-              beginAtZero: false,
-              padding: 5
+              fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif"
             }
           }]
         }

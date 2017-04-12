@@ -29,21 +29,52 @@ export const greyGradientPalette = (steps) => chroma.scale(['#4d4d4d', '#cccccc'
 export const chartTypes = ['bar', 'horizontal-bar', 'grouped-bar', 'line', 'stripe', 'pie', 'doughnut', 'polarArea']
 export const multiChartTypes = ['grouped-bar', 'line', 'stripe']
 
-export const defaultText = `\`\`\`chart
-mark: stripe
-title: Beans Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
+export const exampleCharts = [
+  { type: 'bar',
+    displayName: 'Bar',
+    description: 'Examine a singular data source',
+    markup: `\`\`\`chart
+mark: bar
+title: Change in SSP2_IPSL Impact Parameters per Commodity Group from 2015 - 2050 (%)
 width: 100%
+scenarios: ssp2_ipsl
 encoding:
   x:
     type: nominal
-    field: year
+    field: impactparameter
   y:
     type: quantitative
     field: Val
 fixed:
-  commodity: bean
-scenarios: ssp2_gfdl, ssp2_hgem
+  impactparameter: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
 dropdown:
-  field: impactparameter
-  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+  field: agg_commodity
+  values: cereals,animal_products,fruits_vegetables,oils_seeds,food_oils,oil_meals,other,pulses,roots_tubers,sugar
+change: true
 \`\`\``
+  }, { type: 'line',
+       description: 'Use to compare multiple data sources',
+       displayName: 'Line',
+       markup: ''
+  }, { type: 'groupedBar',
+       displayName: 'Grouped Bar',
+       description: 'Use to compare multiple scenarios',
+       markup: ''
+  }, { type: 'stripe',
+       displayName: 'Stripe',
+       description: "Compare multiple scenarios as lines, with an area representative of all scenarios' range",
+       markup: ''
+  }, { type: 'pie',
+       displayName: 'Pie',
+       description: 'Pie',
+       markup: ''
+  }, { type: 'doughnut',
+       displayName: 'Doughnut',
+       description: 'Doughnut',
+       markup: ''
+  }, { type: 'horizontalBar',
+       displayName: 'Horizontal Bar',
+       description: 'Horizontal Bar',
+       markup: ''
+  }
+]

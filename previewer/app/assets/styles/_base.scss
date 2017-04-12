@@ -18,8 +18,8 @@ p {
   right: 0;
   margin: 1rem;
   h5 {
-    margin-bottom: 2rem;
-    font-size: 1.25rem;
+    margin: 0 4rem 1rem 4rem;
+    font-size: 1rem;
     text-align: center;
   }
 }
@@ -27,11 +27,16 @@ p {
 .chart-figure {
   width: calc(100% - 2rem);
   margin: 1rem;
-  padding: 2rem;
+  padding: 1rem;
   display: inline-block;
   box-sizing: border-box;
   background-color: #fff;
   border: 1px solid #bbb;
+  min-height: 15rem;
+}
+
+.chart-container {
+  min-height: 15rem;
 }
 
 .chart-dropdown {
@@ -101,15 +106,14 @@ p {
 
 .control-module {
   float: left;
+  width: 24rem;
   background-color: #fff;
   margin: 1rem;
-  border: 1px solid #bbb;
+  border: 1px solid #999;
   .header {
-    width: 24rem;
     height: 4rem;
     background-color: #ddd;
     color: #444;
-    border-bottom: 1px solid #bbb;
     h1 {
       float: left;
       margin: 1rem 0.25rem 0 1.5rem;
@@ -121,6 +125,24 @@ p {
       float: left;
       margin-top: 2rem;
       font-size: 1rem;
+    }
+  }
+  .buttons {
+    float: left;
+    padding-bottom: 0.5rem;
+    background-color: #555;
+    text-align: center;
+    border-bottom: 2px solid #333;
+    h3 {
+      margin-bottom: 0.5rem;
+      padding: 0.5rem 0;
+      text-transform: uppercase;
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background-color: $darkest-blue;
+      border-top: 1px solid #333;
+      border-bottom: 1px solid #333;
     }
   }
   .markdown-input {

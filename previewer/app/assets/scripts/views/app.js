@@ -6,10 +6,10 @@ import { connect } from 'react-redux'
 import md5 from 'browser-md5'
 import _ from 'lodash'
 
-import { parseText, updateChart, updateError } from '../actions'
+import { parseText, updateText, updateChart, updateError } from '../actions'
 
 // Constants
-import { defaultText, chartTypes, multiChartTypes } from '../constants'
+import { exampleCharts, chartTypes, multiChartTypes } from '../constants'
 
 // Components
 import ErrorModal from '../components/error-modal'
@@ -21,7 +21,8 @@ export class App extends React.Component {
   constructor (props, context) {
     super(props, context)
     this.updateChart = this.updateChart.bind(this)
-    this.handleTextUpdate = this.handleTextUpdate.bind(this)
+    this.handleTextInput = this.handleTextInput.bind(this)
+    this.updateExample = this.updateExample.bind(this)
   }
 
   componentDidUpdate () {
@@ -66,31 +67,6 @@ export class App extends React.Component {
               dispatch={this.props.dispatch}/>, placeholder)
           }
         }
-      // const scenarios = data.scenarios
-      // const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
-      // if (placeholder) {
-      //   if (type === 'stripe' || type === 'line') {
-      //     ReactDOM.render(<ChartLine
-      //       name={name}
-      //       data={data}
-      //       scenarios={scenarios}
-      //       updateChart={this.updateChart}
-      //       dispatch={this.props.dispatch}/>, placeholder)
-      //   } else if (data.mark === 'grouped-bar') {
-      //     ReactDOM.render(<ChartGroupedBar
-      //       name={name}
-      //       data={data}
-      //       scenarios={scenarios}
-      //       updateChart={this.updateChart}
-      //       dispatch={this.props.dispatch}/>, placeholder)
-      //   } else {
-      //     ReactDOM.render(<Chart
-      //       name={name}
-      //       data={data}
-      //       scenario={scenarios}
-      //       updateChart={this.updateChart}
-      //       dispatch={this.props.dispatch}/>, placeholder)
-      //   }
       }
     })
   }
@@ -99,8 +75,13 @@ export class App extends React.Component {
     this.props.dispatch(updateChart(data, id))
   }
 
-  handleTextUpdate (evt) {
+  handleTextInput (evt) {
     this.props.dispatch(parseText(evt.target.value))
+  }
+
+  updateExample (evt) {
+    this.props.dispatch(updateText(`${this.props.text}\n\n${evt.target.value}`))
+    console.log(this.props.text)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -113,6 +94,19 @@ export class App extends React.Component {
 
   render () {
     const lines = this.props.text.split('\n')
+
+    const Buttons = exampleCharts.map((example) => {
+      return (
+        <button
+          className='button button--outline button--xsmall'
+          key={`button-${example.type}`}
+          value={example.markup}
+          onClick={this.updateExample}>
+            {example.displayName}
+        </button>
+      )
+    })
+
     return (
       <div>
         <section className='control-module'>
@@ -120,14 +114,18 @@ export class App extends React.Component {
             <h1>IFPRI IMPACT</h1>
             <h2>Figure Previewer</h2>
           </header>
+          <div className='buttons'>
+            <h3>Add Example Markup:</h3>
+            {Buttons}
+          </div>
           <div className='line-numbers'>
             {lines.map((line, i) => <span key={`line-number-${i}`} />)}
           </div>
           <textarea
             className='markdown-input'
             style={{height: `${1.25 * lines.length + 1.25}rem`}}
-            defaultValue={defaultText}
-            onChange={this.handleTextUpdate}>
+            value={this.props.text}
+            onChange={this.handleTextInput}>
           </textarea>
         </section>
         {this.errorModal}

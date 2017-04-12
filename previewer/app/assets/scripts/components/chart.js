@@ -63,10 +63,10 @@ export class Chart extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
-              fontColor: '#9E9E9E',
-              fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif",
               beginAtZero: false,
-              padding: 5
+              padding: 5,
+              fontColor: '#9E9E9E',
+              fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif"
             }
           }]
         }
@@ -89,15 +89,17 @@ export class Chart extends React.Component {
       chart.options.responsive = true
       chart.options.maintainAspectRatio = false
       chart.data.datasets[0].backgroundColor = '#83C61A'
-      chart.options.scales.yAxes[0].ticks.userCallback = (value) => formatNumber(value)
-      chart.options.scales.xAxes[0].ticks.userCallback = (value) => formatNumber(value)
+      chart.options.scales.yAxes[0].ticks.userCallback = (value) => isNaN(value) ? value : formatNumber(value)
+      chart.options.scales.yAxes[0].ticks.min = 0
+      chart.options.scales.xAxes[0].ticks.userCallback = (value) => isNaN(value) ? value : formatNumber(value)
       chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')}}
     }
 
     if (chartType === 'horizontalBar') {
       chart.data.datasets[0].backgroundColor = '#83C61A'
-      chart.options.scales.xAxes[0].ticks.userCallback = (value) => formatNumber(value)
-      chart.options.scales.yAxes[0].ticks.userCallback = (value) => formatNumber(value)
+      chart.options.scales.xAxes[0].ticks.userCallback = (value) => isNaN(value) ? value : formatNumber(value)
+      chart.options.scales.yAxes[0].ticks.userCallback = (value) => isNaN(value) ? value : formatNumber(value)
+      chart.options.scales.yAxes[0].ticks.min = 0
       chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'xLabel')}}
     }
 
@@ -115,10 +117,16 @@ export class Chart extends React.Component {
     queryDatabase(data, scenarios)
     .then((chartData) => {
       chart.data.datasets[0].label = data.scenarios
-      _.forEach(chartData[0].values, (item) => {
-        chart.data.labels.push(translate(item[aggregation]))
-        chart.data.datasets[0].data.push(item.Val)
-      })
+      // sort data alphabetically by label
+      const dataset = chartData[0].values.map((item) => {
+        return {
+          data: item.Val,
+          label: translate(item[aggregation]) || item[aggregation]
+        }
+      }).sort((a, b) => a.label > b.label)
+      chart.data.datasets[0].data = dataset.map((item) => item.data)
+      chart.data.labels = dataset.map((item) => item.label)
+
       if (isPieChart || chartType === 'polarArea') {
         chart.options.tooltips = {callbacks: {label: (tooltipItem, data) => {
           const label = chart.data.labels[tooltipItem.index]
@@ -138,14 +146,18 @@ export class Chart extends React.Component {
   }
 
   updateQuery (newData) {
-    const chart = []
+    const aggregation = newData.encoding.x.field
     const scenarios = newData.scenarios || DEFAULT_SCENARIO
     queryDatabase(newData, scenarios)
     .then((chartData) => {
-      _.forEach(chartData[0].values, (item) => {
-        chart.push(item.Val)
-      })
-      this.chart.data.datasets[0].data = chart
+      const chart = chartData[0].values.map((item) => {
+        return {
+          data: item.Val,
+          label: translate(item[aggregation]) || item[aggregation]
+        }
+      }).sort((a, b) => a.label > b.label)
+      this.chart.data.datasets[0].data = chart.map((item) => item.data)
+      this.chart.data.labels = chart.map((item) => item.label)
       this.chart.update()
     })
   }
