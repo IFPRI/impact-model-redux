@@ -67,6 +67,7 @@ p {
   border-radius: 10px;
   box-shadow: 0 0 10px #333;
   opacity: 0.75;
+  overflow: hidden;
   background: repeating-linear-gradient(
     45deg,
     #000,
@@ -84,6 +85,22 @@ p {
   p {
     color: #fff;
   }
+}
+
+.fast-transition-appear {
+  opacity: 0.01;
+}
+.fast-transition-appear.fast-transition-appear-active {
+  opacity: 0.75;
+  transition: opacity .2s ease-in;
+}
+
+.slow-transition-appear {
+  opacity: 0.01;
+}
+.slow-transition-appear.slow-transition-appear-active {
+  opacity: 1;
+  transition: opacity .4s ease-in;
 }
 
 .control-module {

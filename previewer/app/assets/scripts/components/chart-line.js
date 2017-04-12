@@ -1,6 +1,7 @@
 'use strict'
 import React from 'react'
 import PropTypes from 'prop-types'
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import classNames from 'classnames'
 import _ from 'lodash'
 if (typeof window === 'undefined') global.window = {}
@@ -322,13 +323,20 @@ export class ChartLine extends React.Component {
       })
 
     return (
-      <div className={chartClass}>
-        <h5 className='label--chart'>{data.title}</h5>
-        <div className='chart-container'>
-          <canvas id={name} className='chart'></canvas>
+      <CSSTransitionGroup
+        transitionName='slow-transition'
+        transitionAppear={true}
+        transitionAppearTimeout={500}
+        transitionEnter={false}
+        transitionLeave={false}>
+        <div className={chartClass}>
+          <h5 className='label--chart'>{data.title}</h5>
+          <div className='chart-container'>
+            <canvas id={name} className='chart'></canvas>
+          </div>
+          {Dropdowns}
         </div>
-        {Dropdowns}
-      </div>
+      </CSSTransitionGroup>
     )
   }
 }
