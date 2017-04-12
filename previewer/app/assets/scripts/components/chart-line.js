@@ -1,5 +1,6 @@
 'use strict'
 import React from 'react'
+import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import _ from 'lodash'
 if (typeof window === 'undefined') global.window = {}
@@ -16,7 +17,7 @@ import { translate } from '../utils/translation'
 import { oneColorPalette, sixColorPalette, stripeChartFill } from '../constants'
 const DEFAULT_SCENARIO = ['SSP2_GFDL']
 
-export class Chart extends React.Component {
+export class ChartLine extends React.Component {
   constructor (props, context) {
     super(props, context)
 
@@ -332,11 +333,11 @@ export class Chart extends React.Component {
   }
 }
 
-Chart.propTypes = {
-  name: React.PropTypes.string,
-  data: React.PropTypes.object,
-  scenarios: React.PropTypes.array,
-  updateChart: React.PropTypes.func
+ChartLine.propTypes = {
+  name: PropTypes.string,
+  data: PropTypes.object,
+  scenarios: PropTypes.array,
+  updateChart: PropTypes.func
 }
 
-export default Chart
+export default ChartLine

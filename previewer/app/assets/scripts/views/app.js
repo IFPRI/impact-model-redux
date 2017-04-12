@@ -1,6 +1,7 @@
 'use strict'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import md5 from 'browser-md5'
 import _ from 'lodash'
@@ -84,11 +85,11 @@ export class App extends React.Component {
 }
 
 App.propTypes = {
-  dispatch: React.PropTypes.func,
-  text: React.PropTypes.string,
-  html: React.PropTypes.string,
-  charts: React.PropTypes.object,
-  error: React.PropTypes.string
+  dispatch: PropTypes.func,
+  text: PropTypes.string,
+  html: PropTypes.string,
+  charts: PropTypes.object,
+  error: PropTypes.string
 }
 
 function mapStateToProps (state) {

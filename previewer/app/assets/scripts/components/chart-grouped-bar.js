@@ -1,5 +1,6 @@
 'use strict'
 import React from 'react'
+import PropTypes from 'prop-types'
 import _ from 'lodash'
 if (typeof window === 'undefined') global.window = {}
 const ChartJS = require('chart.js')
@@ -172,10 +173,10 @@ export class ChartGroupedBar extends React.Component {
 }
 
 ChartGroupedBar.propTypes = {
-  name: React.PropTypes.string,
-  data: React.PropTypes.object,
-  scenarios: React.PropTypes.array,
-  updateChart: React.PropTypes.func
+  name: PropTypes.string,
+  data: PropTypes.object,
+  scenarios: PropTypes.array,
+  updateChart: PropTypes.func
 }
 
 export default ChartGroupedBar

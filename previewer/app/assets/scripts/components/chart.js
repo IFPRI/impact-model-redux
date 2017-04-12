@@ -1,5 +1,6 @@
 'use strict'
 import React from 'react'
+import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import _ from 'lodash'
 if (typeof window === 'undefined') global.window = {}
@@ -196,9 +197,9 @@ export class Chart extends React.Component {
 }
 
 Chart.propTypes = {
-  name: React.PropTypes.string,
-  data: React.PropTypes.object,
-  updateChart: React.PropTypes.func
+  name: PropTypes.string,
+  data: PropTypes.object,
+  updateChart: PropTypes.func
 }
 
 export default Chart

@@ -1,5 +1,6 @@
 'use strict'
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export class ErrorModal extends React.Component {
   render () {
@@ -16,7 +17,7 @@ export class ErrorModal extends React.Component {
 }
 
 ErrorModal.propTypes = {
-  error: React.PropTypes.string
+  error: PropTypes.string
 }
 
 export default ErrorModal
