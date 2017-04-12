@@ -15,7 +15,7 @@ import { translate } from '../utils/translation'
 import queryDatabase from '../utils/query-database'
 
 // Constants
-import { sixColorPalette, oneColorPalette } from '../constants'
+import { sixColorPalette } from '../constants'
 const DEFAULT_SCENARIO = ['SSP2_GFDL']
 
 export class Chart extends React.Component {
@@ -80,37 +80,31 @@ export class Chart extends React.Component {
       }
     }
 
+    if (data.legend) {
+      chart.options.legend.display = true
+      chart.options.legend.position = data.legend
+    }
+
     if (chartType === 'bar') {
       chart.options.responsive = true
       chart.options.maintainAspectRatio = false
       chart.data.datasets[0].backgroundColor = '#83C61A'
       chart.options.scales.yAxes[0].ticks.userCallback = (value) => formatNumber(value)
+      chart.options.scales.xAxes[0].ticks.userCallback = (value) => formatNumber(value)
       chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')}}
     }
 
     if (chartType === 'horizontalBar') {
       chart.data.datasets[0].backgroundColor = '#83C61A'
       chart.options.scales.xAxes[0].ticks.userCallback = (value) => formatNumber(value)
-      chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'xLabel')}}
-    }
-
-    if (chartType === 'line') {
-      chart.options.responsive = true
-      chart.options.maintainAspectRatio = false
-      chart.data.datasets[0].fill = false
-      chart.data.datasets[0].borderColor = oneColorPalette
-      chart.data.datasets[0].borderWidth = 4
-      chart.data.datasets[0].pointBackgroundColor = '#fff'
-      chart.data.datasets[0].pointBorderWidth = 2
       chart.options.scales.yAxes[0].ticks.userCallback = (value) => formatNumber(value)
-      chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')}}
+      chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'xLabel')}}
     }
 
     const isPieChart = chartType === 'pie' || chartType === 'doughnut'
     if (isPieChart) {
       delete chart.options.scales
       chart.options.maintainAspectRatio = true
-      chart.options.legend = {display: true, position: 'bottom'}
     }
     if (chartType === 'doughnut') {
       chart.options.cutoutPercentage = 80
@@ -120,6 +114,7 @@ export class Chart extends React.Component {
     const scenarios = data.scenarios || DEFAULT_SCENARIO
     queryDatabase(data, scenarios)
     .then((chartData) => {
+      chart.data.datasets[0].label = data.scenarios
       _.forEach(chartData[0].values, (item) => {
         chart.data.labels.push(translate(item[aggregation]))
         chart.data.datasets[0].data.push(item.Val)
@@ -171,8 +166,7 @@ export class Chart extends React.Component {
     const chartClass = classNames(
       'figure', {
         'bar-chart': chartType === 'bar' || chartType === 'horizontalBar',
-        'pie-chart': chartType === 'pie' || chartType === 'doughnut' || chartType === 'polarArea',
-        'line-chart': chartType === 'line'
+        'pie-chart': chartType === 'pie' || chartType === 'doughnut' || chartType === 'polarArea'
       })
 
     const Dropdowns = Object.keys(this.props.data)
@@ -189,7 +183,6 @@ export class Chart extends React.Component {
           </div>
         </div>
       })
-
     return (
       <div className={chartClass}>
         <h5 className='label--chart'>{data.title}</h5>

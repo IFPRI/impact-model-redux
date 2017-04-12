@@ -12,7 +12,7 @@ const logger = createLogger({
   level: 'info',
   collapsed: true,
   predicate: (getState, action) => {
-    return (config.environment !== 'production')
+    return (config.environment !== 'productio')
   }
 })
 

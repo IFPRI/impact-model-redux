@@ -39,7 +39,7 @@ export class ChartGroupedBar extends React.Component {
         // todo: determine why "maintainAspectRatio: false" currently sets the chart height to 0
         // maintainAspectRatio: false,
         legend: {
-          position: 'bottom'
+          display: false
         },
         tooltips: {
           callbacks: {
@@ -80,6 +80,11 @@ export class ChartGroupedBar extends React.Component {
         labels: [],
         datasets: []
       }
+    }
+
+    if (data.legend) {
+      chart.options.legend.display = true
+      chart.options.legend.position = data.legend
     }
 
     const aggregation = data.encoding.x.field

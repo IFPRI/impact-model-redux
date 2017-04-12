@@ -16,6 +16,7 @@ p {
   bottom: 0;
   left: 25rem;
   right: 0;
+  margin: 1rem;
   h5 {
     margin-bottom: 2rem;
     font-size: 1.25rem;
@@ -47,7 +48,7 @@ p {
   position: absolute;
   top: 0rem;
   bottom: 0;
-  left: 25rem;
+  left: 26rem;
   right: 0;
   padding: 2rem;
   background-color: #000;
@@ -62,19 +63,12 @@ p {
   width: 20rem;
   margin-top: -10rem;
   padding: 2rem;
+  background-color: #000;
   z-index: 2;
   border: 5px solid #fff;
   border-radius: 10px;
   box-shadow: 0 0 10px #333;
   opacity: 0.75;
-  overflow: hidden;
-  background: repeating-linear-gradient(
-    45deg,
-    #000,
-    #000 20px,
-    #111 20px,
-    #111 40px
-  );
   h1 {
     margin-bottom: 1rem;
     font-size: 2rem;
@@ -84,6 +78,8 @@ p {
   }
   p {
     color: #fff;
+    line-height: 1.5em;
+    font-weight: 400;
   }
 }
 

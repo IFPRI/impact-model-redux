@@ -6,10 +6,10 @@ import { connect } from 'react-redux'
 import md5 from 'browser-md5'
 import _ from 'lodash'
 
-import { parseText, updateChart } from '../actions'
+import { parseText, updateChart, updateError } from '../actions'
 
 // Constants
-import { defaultText } from '../constants'
+import { defaultText, chartTypes, multiChartTypes } from '../constants'
 
 // Components
 import ErrorModal from '../components/error-modal'
@@ -34,31 +34,63 @@ export class App extends React.Component {
 
   addCharts (charts) {
     _.forEach(charts, (data, name) => {
+      const type = data.mark
       const scenarios = data.scenarios
-      const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
-      if (placeholder) {
-        if (data.mark === 'stripe' || data.mark === 'line') {
-          ReactDOM.render(<ChartLine
-            name={name}
-            data={data}
-            scenarios={scenarios}
-            updateChart={this.updateChart}
-            dispatch={this.props.dispatch}/>, placeholder)
-        } else if (data.mark === 'grouped-bar') {
-          ReactDOM.render(<ChartGroupedBar
-            name={name}
-            data={data}
-            scenarios={scenarios}
-            updateChart={this.updateChart}
-            dispatch={this.props.dispatch}/>, placeholder)
-        } else {
-          ReactDOM.render(<Chart
-            name={name}
-            data={data}
-            scenario={scenarios}
-            updateChart={this.updateChart}
-            dispatch={this.props.dispatch}/>, placeholder)
+      if (!chartTypes.includes(type)) {
+        this.props.dispatch(updateError(`"${type}" is not a valid chart type.`))
+      } else if (!multiChartTypes.includes(type) && scenarios.length > 1) {
+        this.props.dispatch(updateError(`"${data.mark}" chart type cannot compare multiple scenarios. Use "line" or "grouped-bar" chart types to compare scenarios, or "stripe" to draw a line chart including an area range.`))
+      } else {
+        const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
+        if (placeholder) {
+          if (type === 'stripe' || type === 'line') {
+            ReactDOM.render(<ChartLine
+              name={name}
+              data={data}
+              scenarios={scenarios}
+              updateChart={this.updateChart}
+              dispatch={this.props.dispatch}/>, placeholder)
+          } else if (data.mark === 'grouped-bar') {
+            ReactDOM.render(<ChartGroupedBar
+              name={name}
+              data={data}
+              scenarios={scenarios}
+              updateChart={this.updateChart}
+              dispatch={this.props.dispatch}/>, placeholder)
+          } else {
+            ReactDOM.render(<Chart
+              name={name}
+              data={data}
+              scenario={scenarios}
+              updateChart={this.updateChart}
+              dispatch={this.props.dispatch}/>, placeholder)
+          }
         }
+      // const scenarios = data.scenarios
+      // const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
+      // if (placeholder) {
+      //   if (type === 'stripe' || type === 'line') {
+      //     ReactDOM.render(<ChartLine
+      //       name={name}
+      //       data={data}
+      //       scenarios={scenarios}
+      //       updateChart={this.updateChart}
+      //       dispatch={this.props.dispatch}/>, placeholder)
+      //   } else if (data.mark === 'grouped-bar') {
+      //     ReactDOM.render(<ChartGroupedBar
+      //       name={name}
+      //       data={data}
+      //       scenarios={scenarios}
+      //       updateChart={this.updateChart}
+      //       dispatch={this.props.dispatch}/>, placeholder)
+      //   } else {
+      //     ReactDOM.render(<Chart
+      //       name={name}
+      //       data={data}
+      //       scenario={scenarios}
+      //       updateChart={this.updateChart}
+      //       dispatch={this.props.dispatch}/>, placeholder)
+      //   }
       }
     })
   }
@@ -69,6 +101,14 @@ export class App extends React.Component {
 
   handleTextUpdate (evt) {
     this.props.dispatch(parseText(evt.target.value))
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.error.length) {
+      this.errorModal = <ErrorModal error={nextProps.error} />
+    } else {
+      this.errorModal = ''
+    }
   }
 
   render () {
@@ -87,12 +127,10 @@ export class App extends React.Component {
             className='markdown-input'
             style={{height: `${1.25 * lines.length + 1.25}rem`}}
             defaultValue={defaultText}
-            onInput={this.handleTextUpdate}>
+            onChange={this.handleTextUpdate}>
           </textarea>
         </section>
-        {this.props.error.length
-          ? <ErrorModal error={this.props.error} />
-          : ''}
+        {this.errorModal}
         <section className='figure-output' dangerouslySetInnerHTML={{__html: this.props.html}}></section>
       </div>
     )

@@ -26,6 +26,9 @@ export const blueGradientPalette = (steps) => chroma.scale(['#007acc', '#b3e0ff'
 
 export const greyGradientPalette = (steps) => chroma.scale(['#4d4d4d', '#cccccc']).colors(steps)
 
+export const chartTypes = ['bar', 'horizontal-bar', 'grouped-bar', 'line', 'stripe', 'pie', 'doughnut', 'polarArea']
+export const multiChartTypes = ['grouped-bar', 'line', 'stripe']
+
 export const defaultText = `\`\`\`chart
 mark: stripe
 title: Beans Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)

@@ -35,7 +35,7 @@ export class ChartLine extends React.Component {
         const result = ChartJS.controllers.line.prototype.draw.apply(this, arguments)
         const widths = this.getDataset().width
 
-        const isStripe = this.getDataset().label === 'stripe'
+        const isStripe = this.getDataset().lineType === 'stripe'
         if (!isStripe || !widths) {
           return
         }
@@ -132,8 +132,7 @@ export class ChartLine extends React.Component {
           }
         },
         legend: {
-          display: true,
-          position: top
+          display: false
         },
         animation: {
           duration: 50
@@ -174,6 +173,11 @@ export class ChartLine extends React.Component {
       }
     }
 
+    if (data.legend) {
+      chart.options.legend.display = true
+      chart.options.legend.position = data.legend
+    }
+
     const aggregation = data.encoding.x.field
     const scenarios = data.scenarios || DEFAULT_SCENARIO
     queryDatabase(data, scenarios)
@@ -181,6 +185,7 @@ export class ChartLine extends React.Component {
       scenarios.forEach((scenario, i) => {
         chart.data.datasets.push({
           data: [],
+          label: scenario,
           fill: false,
           borderWidth: 4,
           pointBackgroundColor: '#fff',
@@ -264,7 +269,8 @@ export class ChartLine extends React.Component {
       pointRadius: 0,
       pointHoverBackgroundColor: 'rgba(0, 0, 0, 0)',
       pointHitRadius: 0,
-      label: 'stripe'
+      label: 'Range, All Scenarios',
+      lineType: 'stripe'
     })
     const stripe = this.getStripeParams(chartData)
     chart.data.datasets[scenarios.length].width = stripe.width

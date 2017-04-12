@@ -6,7 +6,7 @@ import { setupRenderer } from '../utils/parse-figures'
 export const UPDATE_TEXT = 'UPDATE_TEXT'
 export const UPDATE_HTML = 'UPDATE_HTML'
 export const UPDATE_CHART = 'UPDATE_CHART'
-export const UPDATE_ERROR = 'UPDATE_ERRROR'
+export const UPDATE_ERROR = 'UPDATE_ERROR'
 
 export const updateText = (text) => {
   return { type: UPDATE_TEXT, data: text }
