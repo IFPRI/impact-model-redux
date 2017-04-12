@@ -34,7 +34,7 @@ export class App extends React.Component {
 
   addCharts (charts) {
     _.forEach(charts, (data, name) => {
-      const scenarios = ['SSP2_GFDL', 'SSP2_HGEM']
+      const scenarios = data.scenarios
       const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
       if (placeholder) {
         if (data.mark === 'stripe' || data.mark === 'line') {

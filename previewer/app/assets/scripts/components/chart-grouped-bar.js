@@ -81,12 +81,13 @@ export class ChartGroupedBar extends React.Component {
       }
     }
 
+    const aggregation = data.encoding.x.field
     queryDatabase(data, data.scenarios)
     .then((chartData) => {
       chartData.forEach((data, i) => {
         chart.data.datasets.push({})
         data.values.forEach((record) => {
-          const label = translate(record.impactparameter)
+          const label = translate(record[aggregation] || record[aggregation])
           if (i === 0) {
             chart.data.labels.push(label)
           }
@@ -108,7 +109,7 @@ export class ChartGroupedBar extends React.Component {
   updateQuery (newData) {
     const data = this.props.data
     const scenarios = data.scenarios
-
+    const aggregation = data.encoding.x.field
     queryDatabase(newData, scenarios)
     .then((chartData) => {
       this.chart.data.datasets = []
@@ -116,7 +117,7 @@ export class ChartGroupedBar extends React.Component {
       chartData.forEach((data, i) => {
         this.chart.data.datasets.push({})
         data.values.forEach((record) => {
-          const label = translate(record.impactparameter)
+          const label = translate(record[aggregation] || record[aggregation])
           if (i === 0) {
             this.chart.data.labels.push(label)
           }

@@ -196,7 +196,7 @@ export class ChartLine extends React.Component {
         const primaryLine = _.find(chartData, {'source': scenarios[i]})
         _.forEach(primaryLine.values, (item) => {
           if (i === 0) {
-            chart.data.labels.push(translate(item[aggregation]))
+            chart.data.labels.push(translate(item[aggregation]) || item[aggregation])
           }
           chart.data.datasets[i].data.push(item.Val)
         })
