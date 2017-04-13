@@ -131,8 +131,8 @@ dropdown:
     markup: `\`\`\`chart
 mark: pie
 title: Change in SSP2_MIROC Impact Parameters from 2015 - 2050 (%)
-width: 32rem
-legend: right
+width: 100%
+legend: bottom
 scenarios: ssp2_miroc
 encoding:
   x:

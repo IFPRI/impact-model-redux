@@ -9,7 +9,14 @@ import {
 } from '../actions'
 
 export const initialState = {
-  text: '# IFPRI IMPACT Model - Syntax Playground\nThis previewer is connected to the same database that drives the IFPRI IMPACT Model publishing system.\nUse the code widget to test the syntax used to develop data-driven article figures.',
+  text: `# IFPRI IMPACT Model - Syntax Playground
+This previewer is connected to the same database that drives the IFPRI IMPACT Model publishing system.
+Use the code widget to test the syntax used to develop data-driven figures.
+
+In addition to the attributes used to query the database, user-defined parameters include:
+- __height__ - number with %, px, or rem - defaults to __225px__
+- __width__ - number with %, px, or rem - defaults to __100%__
+- __legend__ - top, bottom, left, right, or omitted for none - defaults to __none__`,
   html: '',
   charts: {},
   error: ''

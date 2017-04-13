@@ -117,7 +117,7 @@ export class App extends React.Component {
             <h2>Figure Previewer</h2>
           </header>
           <div className='buttons'>
-            <h3>Add Example Markup:</h3>
+            <h3>Add example markup:</h3>
             <ReactTooltip />
             {Buttons}
           </div>

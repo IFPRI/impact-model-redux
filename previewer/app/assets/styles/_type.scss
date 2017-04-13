@@ -1,0 +1,73 @@
+body {
+  color: $dark-grey;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+  font-family: $base-font-family;
+  background-color: $background-grey;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $header-family;
+  color: $header-color;
+  margin-bottom: .5em;
+}
+
+p {
+  line-height: 1.8em;
+  margin-bottom: 2em;
+  font-weight: $base-font-light;
+}
+
+ul {
+  margin-bottom: 3em;
+  li {
+    list-style-type: circle;
+    margin-left: 5em;
+    width: 80%;
+    margin-bottom: 1em;
+  }
+}
+h1 {
+   font-size: 2.571em;
+   font-weight: $header-light;
+   @include media(medium-down) {
+     font-size: 2.4em;
+   }
+   @include media(small-down) {
+     font-size: 2.2em;
+   }
+}
+h2 {
+  font-size: 2.28em;
+  font-weight: $header-light;
+  line-height: 1.3em;
+  @include media(medium-down) {
+    font-size: 2em;
+  }
+  @include media(small-down) {
+    font-size: 1.8em;
+  }
+}
+h3 {
+  font-size: 2em;
+  font-weight: $header-light;
+  @include media(medium-down) {
+    font-size: 1.8em;
+  }
+  @include media(small-down) {
+    font-size: 1.5em;
+  }
+}
+h4 {
+  font-size: 1.45em;
+  font-weight: $header-bold;
+  @include media(medium-down) {
+    font-size: 1.2em;
+  }
+}
+h5 {
+  font-size: 1.28em;
+}
+h6 {
+  font-size: 1rem;
+}
