@@ -101,7 +101,7 @@ export class App extends React.Component {
         <button
           className='button button--outline button--xsmall'
           key={`button-${example.type}`}
-          value={example.markup}
+          value={`\n\n### ${example.displayName}\n\n${example.description}\n\n${example.markup}`}
           onClick={this.updateExample}>
             {example.displayName}
         </button>

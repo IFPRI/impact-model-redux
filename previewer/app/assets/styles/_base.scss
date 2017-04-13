@@ -5,9 +5,36 @@ body {
   font-family: "Nunito", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  margin: 1rem 0 0.5rem 0;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+h4 {
+  font-size: 1.1rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+h6 {
+  font-size: 0.9rem;
+}
+
 p {
-  font-weight: 300;
-  line-height: 1.8em;
+  margin: 0.5rem 0;
 }
 
 .figure-output {
@@ -31,12 +58,11 @@ p {
   display: inline-block;
   box-sizing: border-box;
   background-color: #fff;
-  border: 1px solid #bbb;
-  min-height: 15rem;
+  box-shadow: 0 0 5px #888;
 }
 
 .chart-container {
-  min-height: 15rem;
+  height: 15rem;
 }
 
 .chart-dropdown {
@@ -109,7 +135,7 @@ p {
   width: 24rem;
   background-color: #fff;
   margin: 1rem;
-  border: 1px solid #999;
+  box-shadow: 0 0 5px #888;
   .header {
     height: 4rem;
     background-color: #ddd;
@@ -132,7 +158,6 @@ p {
     padding-bottom: 0.5rem;
     background-color: #555;
     text-align: center;
-    border-bottom: 2px solid #333;
     h3 {
       margin-bottom: 0.5rem;
       padding: 0.5rem 0;
@@ -141,8 +166,8 @@ p {
       font-size: 0.8rem;
       font-weight: 600;
       background-color: $darkest-blue;
-      border-top: 1px solid #333;
-      border-bottom: 1px solid #333;
+      border-top: 1px solid #888;
+      border-bottom: 1px solid #555;
     }
   }
   .markdown-input {
@@ -162,6 +187,7 @@ p {
     background-color: #fff;
     border-radius: .25em;
     counter-reset: line;
+    box-shadow: 3px 3px 3px #ccc;
     span {
       display: block;
       line-height: 1.25rem;
@@ -172,6 +198,7 @@ p {
         border-right: 1px solid #ddd;
         padding: 0 .5em;
         width: 1rem;
+        background-color: #eee;
         color: #888;
         text-align: right;
       }

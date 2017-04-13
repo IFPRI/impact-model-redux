@@ -59,7 +59,7 @@ dropdown:
   values: cereals, animal_products, fruits_vegetables, oils_seeds, food_oils, oil_meals, other, pulses, roots_tubers, sugar
 change: true\`\`\``
   }, { type: 'line',
-       description: 'Use to compare multiple data sources',
+       description: 'Compare values from multiple scenarios',
        displayName: 'Line',
        markup: `\`\`\`chart
 mark: line
@@ -81,7 +81,7 @@ dropdown:
   values: qnxagg, qdxagg, yldxagg, areaxagg, pwxagg, qsupxagg\`\`\``
   }, { type: 'groupedBar',
        displayName: 'Grouped Bar',
-       description: 'Use to compare multiple scenarios',
+       description: 'Compare values from multiple scenarios',
        markup: `\`\`\`chart
 mark: grouped-bar
 title: Rice Impact Parameters over time (SSP2_GFDL/SSP2_HGEM/SSP2_MIROC)
@@ -106,7 +106,7 @@ dropdown:
        markup: `\`\`\`chart
 mark: stripe
 title: Maiz Impact Parameters over time (SSP2_GFDL, SSP2_IPSL/SSP2_HGEM/SSP2_MIROC)
-width: 100%
+width: 40rem
 legend: bottom
 encoding:
   x:
@@ -123,7 +123,7 @@ dropdown:
   values: pwxagg, qnxagg, areaxagg, qdxagg, yldxagg, qsupxagg\`\`\``
   }, { type: 'pie',
        displayName: 'Pie',
-       description: 'Pie',
+       description: 'Compare relative parameter values',
        markup: `\`\`\`chart
 mark: pie
 title: Change in SSP2_MIROC Impact Parameters from 2015 - 2050 (%)
@@ -145,7 +145,7 @@ dropdown:
   change: true\`\`\``
   }, { type: 'doughnut',
        displayName: 'Doughnut',
-       description: 'Doughnut',
+       description: 'Compare relative parameter values',
        markup: `\`\`\`chart
 mark: doughnut
 title: Change in SSP2_HGEM Impact Parameters from 2015 - 2050 (%)
@@ -167,7 +167,7 @@ dropdown:
   change: true\`\`\``
   }, { type: 'horizontalBar',
        displayName: 'Horizontal Bar',
-       description: 'Horizontal Bar',
+       description: 'Use vertical space to compare more parameter values',
        markup: `\`\`\`chart
 mark: horizontalBar
 title: Change in SSP2_GFDL Impact Parameters from 2015 - 2050 (%)
