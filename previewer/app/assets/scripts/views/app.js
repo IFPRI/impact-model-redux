@@ -3,6 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import ReactTooltip from 'react-tooltip'
 import md5 from 'browser-md5'
 import _ from 'lodash'
 
@@ -100,6 +101,7 @@ export class App extends React.Component {
         <button
           className='button button--outline button--xsmall'
           key={`button-${example.type}`}
+          data-tip={example.description}
           value={`\n### ${example.displayName}\n${example.description}\n${example.markup}`}
           onClick={this.updateExample}>
             {example.displayName}
@@ -116,6 +118,7 @@ export class App extends React.Component {
           </header>
           <div className='buttons'>
             <h3>Add Example Markup:</h3>
+            <ReactTooltip />
             {Buttons}
           </div>
           <div className='line-numbers'>
