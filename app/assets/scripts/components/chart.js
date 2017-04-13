@@ -6,9 +6,6 @@ import _ from 'lodash'
 if (typeof window === 'undefined') global.window = {}
 const ChartJS = require('chart.js')
 
-// Actions
-import { updateError } from '../actions'
-
 // Utils
 import { formatNumber } from '../utils/format'
 import { translate } from '../utils/translation'
@@ -90,7 +87,6 @@ export class Chart extends React.Component {
       chart.options.maintainAspectRatio = false
       chart.data.datasets[0].backgroundColor = '#83C61A'
       chart.options.scales.yAxes[0].ticks.userCallback = (value) => isNaN(value) ? value : formatNumber(value)
-      chart.options.scales.yAxes[0].ticks.min = 0
       chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')}}
     }
 
@@ -98,7 +94,6 @@ export class Chart extends React.Component {
       chart.data.datasets[0].backgroundColor = '#83C61A'
       chart.options.maintainAspectRatio = false
       chart.options.scales.yAxes[0].ticks.userCallback = (value) => isNaN(value) ? value : formatNumber(value)
-      chart.options.scales.xAxes[0].ticks.min = 0
       chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'xLabel')}}
     }
 
@@ -133,14 +128,10 @@ export class Chart extends React.Component {
           return ` ${label}: ${formatNumber(datasetLabel)}`
         }}}
       }
-      try {
-        this.chart = new ChartJS(
-          document.getElementById(name).getContext('2d'),
-          chart
-        )
-      } catch (err) {
-        this.props.dispatch(updateError(err))
-      }
+      this.chart = new ChartJS(
+        document.getElementById(name).getContext('2d'),
+        chart
+      )
     })
   }
 
@@ -159,6 +150,7 @@ export class Chart extends React.Component {
       this.chart.data.labels = chart.map((item) => item.label)
       this.chart.update()
     })
+    console.log(this.chart)
   }
 
   handleDropdown (e) {

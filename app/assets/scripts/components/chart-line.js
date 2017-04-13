@@ -6,9 +6,6 @@ import _ from 'lodash'
 if (typeof window === 'undefined') global.window = {}
 const ChartJS = require('chart.js')
 
-// Actions
-import { updateError } from '../actions'
-
 // Utils
 import { formatNumber } from '../utils/format'
 import { translate } from '../utils/translation'
@@ -212,14 +209,10 @@ export class ChartLine extends React.Component {
         chart = this.addStripe(chart, chartData, scenarios)
       }
 
-      try {
-        this.chart = new ChartJS(
-          document.getElementById(name).getContext('2d'),
-          chart
-        )
-      } catch (err) {
-        this.props.dispatch(updateError(err))
-      }
+      this.chart = new ChartJS(
+        document.getElementById(name).getContext('2d'),
+        chart
+      )
 
       // for stripe chart type, disable tooltips over the area's centerline
       const originalGetElementAtEvent = this.chart.getElementAtEvent
