@@ -16,7 +16,7 @@ import { translate } from '../utils/translation'
 import queryDatabase from '../utils/query-database'
 
 // Constants
-import { oneColorPalette, sixColorPalette, stripeChartFill } from '../constants'
+import { oneColorPalette, fourteenColorPalette, stripeChartFill } from '../constants'
 const DEFAULT_SCENARIO = ['SSP2_GFDL']
 
 export class ChartLine extends React.Component {
@@ -135,7 +135,7 @@ export class ChartLine extends React.Component {
           display: false
         },
         animation: {
-          duration: 50
+          duration: data.mark === 'stripe' ? 250 : 500
         },
         scales: {
           yAxes: [{
@@ -198,7 +198,7 @@ export class ChartLine extends React.Component {
 
         const lineColor = scenarios.length === 1
           ? oneColorPalette
-          : sixColorPalette[i] || sixColorPalette[(Math.floor(Math.random() * 5))]
+          : fourteenColorPalette[i] || fourteenColorPalette[(Math.floor(Math.random() * 13))]
         chart.data.datasets[i].borderColor = lineColor
         const primaryLine = _.find(chartData, {'source': scenarios[i]})
         _.forEach(primaryLine.values, (item) => {

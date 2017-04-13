@@ -14,7 +14,7 @@ import { translate } from '../utils/translation'
 import queryDatabase from '../utils/query-database'
 
 // Constants
-import { sixColorPalette } from '../constants'
+import { fourteenColorPalette } from '../constants'
 
 export class ChartGroupedBar extends React.Component {
   constructor (props, context) {
@@ -36,8 +36,7 @@ export class ChartGroupedBar extends React.Component {
       type: 'bar',
       options: {
         responsive: true,
-        // todo: determine why "maintainAspectRatio: false" currently sets the chart height to 0
-        // maintainAspectRatio: false,
+        maintainAspectRatio: false,
         legend: {
           display: false
         },
@@ -68,7 +67,6 @@ export class ChartGroupedBar extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
-              userCallback: (value) => isNaN(value) ? value : formatNumber(value),
               min: 0,
               padding: 5,
               fontColor: '#9E9E9E',
@@ -99,7 +97,7 @@ export class ChartGroupedBar extends React.Component {
             chart.data.labels.push(label)
           }
           chart.data.datasets[i].label = formatScenario(data.source)
-          chart.data.datasets[i].backgroundColor = sixColorPalette[i]
+          chart.data.datasets[i].backgroundColor = fourteenColorPalette[i]
           if (!chart.data.datasets[i].data) {
             chart.data.datasets[i].data = []
           }
@@ -133,7 +131,7 @@ export class ChartGroupedBar extends React.Component {
             this.chart.data.labels.push(label)
           }
           this.chart.data.datasets[i].label = formatScenario(data.source)
-          this.chart.data.datasets[i].backgroundColor = sixColorPalette[i]
+          this.chart.data.datasets[i].backgroundColor = fourteenColorPalette[i]
           if (!this.chart.data.datasets[i].data) {
             this.chart.data.datasets[i].data = []
           }

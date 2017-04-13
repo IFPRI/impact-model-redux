@@ -15,7 +15,7 @@ import { translate } from '../utils/translation'
 import queryDatabase from '../utils/query-database'
 
 // Constants
-import { sixColorPalette } from '../constants'
+import { fourteenColorPalette } from '../constants'
 const DEFAULT_SCENARIO = ['SSP2_GFDL']
 
 export class Chart extends React.Component {
@@ -75,7 +75,7 @@ export class Chart extends React.Component {
         labels: [],
         datasets: [{
           data: [],
-          backgroundColor: sixColorPalette
+          backgroundColor: fourteenColorPalette
         }]
       }
     }
@@ -91,15 +91,14 @@ export class Chart extends React.Component {
       chart.data.datasets[0].backgroundColor = '#83C61A'
       chart.options.scales.yAxes[0].ticks.userCallback = (value) => isNaN(value) ? value : formatNumber(value)
       chart.options.scales.yAxes[0].ticks.min = 0
-      chart.options.scales.xAxes[0].ticks.userCallback = (value) => isNaN(value) ? value : formatNumber(value)
       chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')}}
     }
 
     if (chartType === 'horizontalBar') {
       chart.data.datasets[0].backgroundColor = '#83C61A'
-      chart.options.scales.xAxes[0].ticks.userCallback = (value) => isNaN(value) ? value : formatNumber(value)
+      chart.options.maintainAspectRatio = false
       chart.options.scales.yAxes[0].ticks.userCallback = (value) => isNaN(value) ? value : formatNumber(value)
-      chart.options.scales.yAxes[0].ticks.min = 0
+      chart.options.scales.xAxes[0].ticks.min = 0
       chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'xLabel')}}
     }
 
@@ -109,7 +108,7 @@ export class Chart extends React.Component {
       chart.options.maintainAspectRatio = true
     }
     if (chartType === 'doughnut') {
-      chart.options.cutoutPercentage = 80
+      chart.options.cutoutPercentage = 60
     }
 
     const aggregation = data.encoding.x.field
