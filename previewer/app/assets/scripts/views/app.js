@@ -80,7 +80,7 @@ export class App extends React.Component {
   }
 
   updateExample (evt) {
-    const newText = `${this.props.text}\n\n${evt.target.value}`
+    const newText = `${this.props.text}\n${evt.target.value}`
     this.props.dispatch(updateText(newText))
     this.props.dispatch(parseText(newText))
   }
@@ -95,13 +95,12 @@ export class App extends React.Component {
 
   render () {
     const lines = this.props.text.split('\n')
-
     const Buttons = exampleCharts.map((example) => {
       return (
         <button
           className='button button--outline button--xsmall'
           key={`button-${example.type}`}
-          value={`\n\n### ${example.displayName}\n\n${example.description}\n\n${example.markup}`}
+          value={`\n### ${example.displayName}\n${example.description}\n${example.markup}`}
           onClick={this.updateExample}>
             {example.displayName}
         </button>
@@ -130,7 +129,10 @@ export class App extends React.Component {
           </textarea>
         </section>
         {this.errorModal}
-        <section className='figure-output' dangerouslySetInnerHTML={{__html: this.props.html}}></section>
+        <section
+          className='figure-output'
+          dangerouslySetInnerHTML={{__html: this.props.html}}>
+        </section>
       </div>
     )
   }

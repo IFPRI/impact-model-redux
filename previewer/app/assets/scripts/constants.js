@@ -58,10 +58,11 @@ dropdown:
   field: agg_commodity
   values: cereals, animal_products, fruits_vegetables, oils_seeds, food_oils, oil_meals, other, pulses, roots_tubers, sugar
 change: true\`\`\``
-  }, { type: 'line',
-       description: 'Compare values from multiple scenarios',
-       displayName: 'Line',
-       markup: `\`\`\`chart
+  }, {
+    type: 'line',
+    description: 'Compare values from multiple scenarios',
+    displayName: 'Line',
+    markup: `\`\`\`chart
 mark: line
 title: Wheat Impact Parameters over time (SSP2_NOCC/SSP2_GFDL/SSP2_IPSL)
 width: 100%
@@ -79,10 +80,11 @@ scenarios: ssp2_gfdl, ssp2_hgem, ssp2_ipsl
 dropdown:
   field: impactparameter
   values: qnxagg, qdxagg, yldxagg, areaxagg, pwxagg, qsupxagg\`\`\``
-  }, { type: 'groupedBar',
-       displayName: 'Grouped Bar',
-       description: 'Compare values from multiple scenarios',
-       markup: `\`\`\`chart
+  }, {
+    type: 'groupedBar',
+    displayName: 'Grouped Bar',
+    description: 'Compare values from multiple scenarios',
+    markup: `\`\`\`chart
 mark: grouped-bar
 title: Rice Impact Parameters over time (SSP2_GFDL/SSP2_HGEM/SSP2_MIROC)
 width: 100%
@@ -100,10 +102,11 @@ scenarios: ssp2_gfdl, ssp2_hgem, ssp2_miroc
 dropdown:
   field: impactparameter
   values: qnxagg, qdxagg, yldxagg, areaxagg, pwxagg, qsupxagg\`\`\``
-  }, { type: 'stripe',
-       displayName: 'Stripe',
-       description: "Compare multiple scenarios as lines, with an area representative of all scenarios' range",
-       markup: `\`\`\`chart
+  }, {
+    type: 'stripe',
+    displayName: 'Stripe',
+    description: "Compare multiple scenarios as lines, with an area representative of all scenarios' range",
+    markup: `\`\`\`chart
 mark: stripe
 title: Maiz Impact Parameters over time (SSP2_GFDL, SSP2_IPSL/SSP2_HGEM/SSP2_MIROC)
 width: 40rem
@@ -121,10 +124,11 @@ scenarios: ssp2_gfdl, ssp2_ipsl, ssp2_hgem, ssp2_miroc
 dropdown:
   field: impactparameter
   values: pwxagg, qnxagg, areaxagg, qdxagg, yldxagg, qsupxagg\`\`\``
-  }, { type: 'pie',
-       displayName: 'Pie',
-       description: 'Compare relative parameter values',
-       markup: `\`\`\`chart
+  }, {
+    type: 'pie',
+    displayName: 'Pie',
+    description: 'Compare relative parameter values',
+    markup: `\`\`\`chart
 mark: pie
 title: Change in SSP2_MIROC Impact Parameters from 2015 - 2050 (%)
 width: 32rem
@@ -143,10 +147,11 @@ dropdown:
   field: impactparameter
   values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
   change: true\`\`\``
-  }, { type: 'doughnut',
-       displayName: 'Doughnut',
-       description: 'Compare relative parameter values',
-       markup: `\`\`\`chart
+  }, {
+    type: 'doughnut',
+    displayName: 'Doughnut',
+    description: 'Compare relative parameter values',
+    markup: `\`\`\`chart
 mark: doughnut
 title: Change in SSP2_HGEM Impact Parameters from 2015 - 2050 (%)
 width: 32rem
@@ -165,10 +170,11 @@ dropdown:
   field: impactparameter
   values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
   change: true\`\`\``
-  }, { type: 'horizontalBar',
-       displayName: 'Horizontal Bar',
-       description: 'Use vertical space to compare more parameter values',
-       markup: `\`\`\`chart
+  }, {
+    type: 'horizontalBar',
+    displayName: 'Horizontal Bar',
+    description: 'Use vertical space to compare more parameter values',
+    markup: `\`\`\`chart
 mark: horizontalBar
 title: Change in SSP2_GFDL Impact Parameters from 2015 - 2050 (%)
 width: 100%

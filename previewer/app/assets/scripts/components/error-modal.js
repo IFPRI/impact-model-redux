@@ -6,6 +6,8 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 export class ErrorModal extends React.Component {
   render () {
     const error = this.props.error.split('^') ? this.props.error.split('^')[0] : this.props.error
+    const height = document.querySelector('.figure-output').scrollHeight
+    console.log(height)
     return (
         <div>
           <CSSTransitionGroup
@@ -19,7 +21,7 @@ export class ErrorModal extends React.Component {
               <p>{error}</p>
             </div>
           </CSSTransitionGroup>
-          <div className='error-background'></div>
+          <div className='error-background' style={{height: `${height}px`}}></div>
         </div>
     )
   }

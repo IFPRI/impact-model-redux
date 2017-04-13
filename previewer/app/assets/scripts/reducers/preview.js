@@ -9,7 +9,7 @@ import {
 } from '../actions'
 
 export const initialState = {
-  text: '# IFPRI IMPACT Model Syntax Playground\n\nThis previewer is connected to the same database that drives the IFPRI IMPACT Model publishing system.\n\nUse the code window to test the syntax used to develop data-driven article figures.',
+  text: '# IFPRI IMPACT Model - Syntax Playground\nThis previewer is connected to the same database that drives the IFPRI IMPACT Model publishing system.\nUse the code widget to test the syntax used to develop data-driven article figures.',
   html: '',
   charts: {},
   error: ''
