@@ -49,13 +49,30 @@ fixed:
   impactparameter: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
 dropdown:
   field: agg_commodity
-  values: cereals,animal_products,fruits_vegetables,oils_seeds,food_oils,oil_meals,other,pulses,roots_tubers,sugar
+  values: cereals ,animal_products, fruits_vegetables, oils_seeds, food_oils, oil_meals, other, pulses, roots_tubers, sugar
 change: true
 \`\`\``
   }, { type: 'line',
        description: 'Use to compare multiple data sources',
        displayName: 'Line',
-       markup: ''
+       markup: `\`\`\`chart
+mark: line
+title: Maiz Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
+width: 100%
+encoding:
+  x:
+    type: nominal
+    field: year
+  y:
+    type: quantitative
+    field: Val
+fixed:
+  commodity: maiz
+scenarios: ssp2_gfdl, ssp2_hgem
+dropdown:
+  field: impactparameter
+  values: qnxagg, qdxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+\`\`\``
   }, { type: 'groupedBar',
        displayName: 'Grouped Bar',
        description: 'Use to compare multiple scenarios',
@@ -63,7 +80,24 @@ change: true
   }, { type: 'stripe',
        displayName: 'Stripe',
        description: "Compare multiple scenarios as lines, with an area representative of all scenarios' range",
-       markup: ''
+       markup: `\`\`\`chart
+mark: stripe
+title: Beans Impact Parameters over time (SSP2_IPSL/SSP2_HGEM/SSP2_MIROC)
+width: 100%
+encoding:
+  x:
+    type: nominal
+    field: year
+  y:
+    type: quantitative
+    field: Val
+fixed:
+  commodity: bean
+scenarios: ssp2_ipsl, ssp2_hgem, ssp2_miroc
+dropdown:
+  field: impactparameter
+  values: pwxagg, qnxagg, qdxagg, yldxagg, areaxagg, qsupxagg
+ \`\`\``
   }, { type: 'pie',
        displayName: 'Pie',
        description: 'Pie',

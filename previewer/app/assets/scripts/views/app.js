@@ -80,8 +80,9 @@ export class App extends React.Component {
   }
 
   updateExample (evt) {
-    this.props.dispatch(updateText(`${this.props.text}\n\n${evt.target.value}`))
-    console.log(this.props.text)
+    const newText = `${this.props.text}\n\n${evt.target.value}`
+    this.props.dispatch(updateText(newText))
+    this.props.dispatch(parseText(newText))
   }
 
   componentWillReceiveProps (nextProps) {
