@@ -34,6 +34,7 @@ export class Chart extends React.Component {
   initializeChart () {
     const { name, data } = this.props
     const chartType = data.mark
+    const aggregation = data.encoding.x.field
 
     let chart = {
       type: chartType,
@@ -89,7 +90,7 @@ export class Chart extends React.Component {
       chart.options.responsive = true
       chart.options.maintainAspectRatio = false
       chart.data.datasets[0].backgroundColor = '#83C61A'
-      chart.options.scales.yAxes[0].ticks.userCallback = (value) => isNaN(value) ? value : formatNumber(value)
+      chart.options.scales.yAxes[0].ticks.userCallback = (value) => isNaN(value) || aggregation === 'year' ? value : formatNumber(value)
       chart.options.scales.yAxes[0].ticks.min = 0
       chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')}}
     }
@@ -97,7 +98,7 @@ export class Chart extends React.Component {
     if (chartType === 'horizontalBar') {
       chart.data.datasets[0].backgroundColor = '#83C61A'
       chart.options.maintainAspectRatio = false
-      chart.options.scales.yAxes[0].ticks.userCallback = (value) => isNaN(value) ? value : formatNumber(value)
+      chart.options.scales.yAxes[0].ticks.userCallback = (value) => isNaN(value) || aggregation === 'year' ? value : formatNumber(value)
       chart.options.scales.xAxes[0].ticks.min = 0
       chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'xLabel')}}
     }
@@ -111,7 +112,6 @@ export class Chart extends React.Component {
       chart.options.cutoutPercentage = 60
     }
 
-    const aggregation = data.encoding.x.field
     const scenarios = data.scenarios || DEFAULT_SCENARIO
     queryDatabase(data, scenarios)
     .then((chartData) => {

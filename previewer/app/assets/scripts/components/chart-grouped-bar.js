@@ -31,6 +31,7 @@ export class ChartGroupedBar extends React.Component {
 
   initializeChart () {
     const { name, data } = this.props
+    const aggregation = data.encoding.x.field
 
     const chart = {
       type: 'bar',
@@ -53,7 +54,7 @@ export class ChartGroupedBar extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
-              userCallback: (value) => isNaN(value) ? value : formatNumber(value),
+              userCallback: (value) => isNaN(value) || aggregation === 'year' ? value : formatNumber(value),
               beginAtZero: false,
               padding: 5,
               fontColor: '#9E9E9E',
@@ -86,7 +87,6 @@ export class ChartGroupedBar extends React.Component {
       chart.options.legend.position = data.legend
     }
 
-    const aggregation = data.encoding.x.field
     queryDatabase(data, data.scenarios)
     .then((chartData) => {
       chartData.forEach((data, i) => {

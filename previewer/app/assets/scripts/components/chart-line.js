@@ -120,6 +120,8 @@ export class ChartLine extends React.Component {
 
   initializeChart () {
     const { name, data } = this.props
+    const aggregation = data.encoding.x.field
+
     let chart = {
       type: data.mark,
       options: {
@@ -145,7 +147,7 @@ export class ChartLine extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
-              userCallback: (value) => isNaN(value) ? value : formatNumber(value),
+              userCallback: (value) => isNaN(value) || aggregation === 'year' ? value : formatNumber(value),
               beginAtZero: false,
               padding: 5,
               fontColor: '#9E9E9E',
@@ -159,7 +161,7 @@ export class ChartLine extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
-              userCallback: (value) => isNaN(value) ? value : formatNumber(value),
+              userCallback: (value) => isNaN(value) || aggregation === 'year' ? value : formatNumber(value),
               beginAtZero: false,
               padding: 5,
               fontColor: '#9E9E9E',
@@ -179,7 +181,6 @@ export class ChartLine extends React.Component {
       chart.options.legend.position = data.legend
     }
 
-    const aggregation = data.encoding.x.field
     const scenarios = data.scenarios || DEFAULT_SCENARIO
     queryDatabase(data, scenarios)
     .then((chartData) => {
