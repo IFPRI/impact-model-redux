@@ -13,7 +13,8 @@ import { fetchArticle, updateArticleFilters, updateChart } from '../actions'
 // Components
 import RelatedArticles from '../components/related-articles'
 import Chart from '../components/chart'
-import ChartStripe from '../components/chart-stripe'
+import ChartLine from '../components/chart-line'
+import ChartGroupedBar from '../components/chart-grouped-bar'
 import MapComponent from '../components/map'
 import Share from '../components/share-button'
 import Loading from '../components/loading'
@@ -36,14 +37,33 @@ export class Brief extends React.Component {
     this.addMaps(this.props.maps)
   }
 
-  addCharts (charts, scenarios) {
+  addCharts (charts) {
     _.forEach(charts, (data, name) => {
+      const type = data.mark
+      const scenarios = data.scenarios
       const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
       if (placeholder) {
-        if (data.mark === 'stripe') {
-          ReactDOM.render(<ChartStripe name={name} data={data} scenarios={scenarios} updateChart={this.updateChart}/>, placeholder)
+        if (type === 'stripe' || type === 'line') {
+          ReactDOM.render(<ChartLine
+            name={name}
+            data={data}
+            scenarios={scenarios}
+            updateChart={this.updateChart}
+            dispatch={this.props.dispatch}/>, placeholder)
+        } else if (data.mark === 'grouped-bar') {
+          ReactDOM.render(<ChartGroupedBar
+            name={name}
+            data={data}
+            scenarios={scenarios}
+            updateChart={this.updateChart}
+            dispatch={this.props.dispatch}/>, placeholder)
         } else {
-          ReactDOM.render(<Chart name={name} data={data} scenario={scenarios} updateChart={this.updateChart}/>, placeholder)
+          ReactDOM.render(<Chart
+            name={name}
+            data={data}
+            scenario={scenarios}
+            updateChart={this.updateChart}
+            dispatch={this.props.dispatch}/>, placeholder)
         }
       }
     })

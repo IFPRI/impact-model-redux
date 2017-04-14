@@ -1,20 +1,21 @@
 'use strict'
 import React from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
 import _ from 'lodash'
 if (typeof window === 'undefined') global.window = {}
 const ChartJS = require('chart.js')
 
-// Actions
-import queryDatabase from '../utils/query-database'
-
 // Utils
 import { formatNumber } from '../utils/format'
 import { translate } from '../utils/translation'
+import queryDatabase from '../utils/query-database'
 
 // Constants
-import { sixColorPalette, stripeChartFill } from '../constants'
+import { oneColorPalette, fourteenColorPalette, stripeChartFill } from '../constants'
+const DEFAULT_SCENARIO = ['SSP2_GFDL']
 
-export class Chart extends React.Component {
+export class ChartLine extends React.Component {
   constructor (props, context) {
     super(props, context)
 
@@ -30,8 +31,8 @@ export class Chart extends React.Component {
         const result = ChartJS.controllers.line.prototype.draw.apply(this, arguments)
         const widths = this.getDataset().width
 
-        const isStripe = this.getDataset().label === 'stripe'
-        if (!isStripe || !widths || !this.rendered && ease !== 1) {
+        const isStripe = this.getDataset().lineType === 'stripe'
+        if (!isStripe || !widths) {
           return
         }
         this.rendered = true
@@ -115,11 +116,12 @@ export class Chart extends React.Component {
 
   initializeChart () {
     const { name, data } = this.props
+    const aggregation = data.encoding.x.field
 
-    const chart = {
-      type: 'stripe',
+    let chart = {
+      type: data.mark,
       options: {
-        responsive: false,
+        responsive: true,
         maintainAspectRatio: false,
         tooltips: {
           enabled: true,
@@ -128,11 +130,10 @@ export class Chart extends React.Component {
           }
         },
         legend: {
-          display: true,
-          position: top
+          display: false
         },
         animation: {
-          duration: 50
+          duration: data.mark === 'stripe' ? 250 : 500
         },
         scales: {
           yAxes: [{
@@ -142,7 +143,7 @@ export class Chart extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
-              userCallback: (value) => formatNumber(value),
+              userCallback: (value) => isNaN(value) || aggregation === 'year' ? value : formatNumber(value),
               beginAtZero: false,
               padding: 5,
               fontColor: '#9E9E9E',
@@ -156,10 +157,11 @@ export class Chart extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
-              fontColor: '#9E9E9E',
-              fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              userCallback: (value) => isNaN(value) || aggregation === 'year' ? value : formatNumber(value),
               beginAtZero: false,
-              padding: 5
+              padding: 5,
+              fontColor: '#9E9E9E',
+              fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif"
             }
           }]
         }
@@ -170,13 +172,18 @@ export class Chart extends React.Component {
       }
     }
 
-    const aggregation = data.encoding.x.field
-    const scenarios = data.scenarios
+    if (data.legend) {
+      chart.options.legend.display = true
+      chart.options.legend.position = data.legend
+    }
+
+    const scenarios = data.scenarios || DEFAULT_SCENARIO
     queryDatabase(data, scenarios)
     .then((chartData) => {
       scenarios.forEach((scenario, i) => {
         chart.data.datasets.push({
           data: [],
+          label: scenario,
           fill: false,
           borderWidth: 4,
           pointBackgroundColor: '#fff',
@@ -185,40 +192,34 @@ export class Chart extends React.Component {
           pointRadius: 5,
           pointHoverRadius: 6
         })
-        const lineColor = sixColorPalette[i] || sixColorPalette[(Math.floor(Math.random() * 5))]
+
+        const lineColor = scenarios.length === 1
+          ? oneColorPalette
+          : fourteenColorPalette[i] || fourteenColorPalette[(Math.floor(Math.random() * 13))]
         chart.data.datasets[i].borderColor = lineColor
-        const primaryLine = _.find(chartData, {'source': data.scenarios[i]})
+        const primaryLine = _.find(chartData, {'source': scenarios[i]})
         _.forEach(primaryLine.values, (item) => {
           if (i === 0) {
-            chart.data.labels.push(translate(item[aggregation]))
+            chart.data.labels.push(translate(item[aggregation]) || item[aggregation])
           }
           chart.data.datasets[i].data.push(item.Val)
         })
       })
 
-      chart.data.datasets.push({
-        fill: false,
-        backgroundColor: stripeChartFill,
-        borderColor: 'rgba(0, 0, 0, 0)',
-        pointRadius: 0,
-        pointHoverBackgroundColor: 'rgba(0, 0, 0, 0)',
-        pointHitRadius: 0,
-        label: 'stripe'
-      })
-      const stripe = this.getStripeParams(chartData)
-      chart.data.datasets[scenarios.length].width = stripe.width
-      chart.data.datasets[scenarios.length].data = stripe.centerline
+      if (data.mark === 'stripe') {
+        chart = this.addStripe(chart, chartData, scenarios)
+      }
 
       this.chart = new ChartJS(
         document.getElementById(name).getContext('2d'),
         chart
       )
 
-      // hack to disable tooltips over the area centerline
+      // for stripe chart type, disable tooltips over the area's centerline
       const originalGetElementAtEvent = this.chart.getElementAtEvent
       this.chart.getElementAtEvent = function () {
         return originalGetElementAtEvent.apply(this, arguments).filter((e) => {
-          if (e._datasetIndex === 0 || e._datasetIndex === 1) {
+          if (e._datasetIndex !== chartData.length) {
             return true
           }
         })
@@ -230,7 +231,7 @@ export class Chart extends React.Component {
     // copy original to minimize restyling
     const nextData = Object.assign({}, this.chart.data.datasets)
     const data = this.props.data
-    const scenarios = data.scenarios
+    const scenarios = data.scenarios || DEFAULT_SCENARIO
     queryDatabase(newData, scenarios)
     .then((chartData) => {
       _.forEach(nextData, (dataset) => {
@@ -238,18 +239,38 @@ export class Chart extends React.Component {
       })
 
       scenarios.forEach((scenario, i) => {
-        const primaryLine = _.find(chartData, {'source': data.scenarios[i]})
+        const primaryLine = _.find(chartData, {'source': scenarios[i]})
         _.forEach(primaryLine.values, (item) => {
           nextData[i].data.push(item.Val)
         })
       })
 
-      const stripe = this.getStripeParams(chartData)
-      nextData[scenarios.length].width = stripe.width
-      nextData[scenarios.length].data = stripe.centerline
+      if (newData.mark === 'stripe') {
+        const stripe = this.getStripeParams(chartData)
+        nextData[scenarios.length].width = stripe.width
+        nextData[scenarios.length].data = stripe.centerline
+      }
 
       this.chart.update()
     })
+  }
+
+  addStripe (chart, chartData, scenarios) {
+    chart.data.datasets.push({
+      fill: false,
+      backgroundColor: stripeChartFill,
+      borderColor: 'rgba(0, 0, 0, 0)',
+      pointRadius: 0,
+      pointHoverBackgroundColor: 'rgba(0, 0, 0, 0)',
+      pointHitRadius: 0,
+      label: 'Range, All Scenarios',
+      lineType: 'stripe'
+    })
+    const stripe = this.getStripeParams(chartData)
+    chart.data.datasets[scenarios.length].width = stripe.width
+    chart.data.datasets[scenarios.length].data = stripe.centerline
+
+    return chart
   }
 
   getStripeParams (chartData) {
@@ -281,24 +302,33 @@ export class Chart extends React.Component {
 
   render () {
     const { name, data } = this.props
+    const chartType = data.mark
 
     const Dropdowns = Object.keys(this.props.data)
       .filter(key => key.match(/dropdown/))
       .map(key => {
-        return <div key={key} className='chart-dropdown'>
-          <label>{translate(this.props.data[key].field)}:</label>
-          <div className='select--wrapper'>
-            <select id={key} className={`${name}`} defaultValue={this.props.data[key].values[0]} onChange={this.handleDropdown}>
-              {this.props.data[key].values.map((value, i) => {
-                return <option value={value} key={`${name}-${key}-${i}`}>{translate(value)}</option>
-              })}
-            </select>
+        return (
+          <div key={key} className='chart-dropdown'>
+            <label>{translate(this.props.data[key].field)}:</label>
+            <div className='select--wrapper'>
+              <select id={key} className={`${name}`} defaultValue={this.props.data[key].values[0]} onChange={this.handleDropdown}>
+                {this.props.data[key].values.map((value, i) => {
+                  return <option value={value} key={`${name}-${key}-${i}`}>{translate(value)}</option>
+                })}
+              </select>
+            </div>
           </div>
-        </div>
+        )
+      })
+
+    const chartClass = classNames(
+      'figure', {
+        'line-chart': chartType === 'line',
+        'stripe-chart': chartType === 'stripe'
       })
 
     return (
-      <div className='figure stripe-chart'>
+      <div className={chartClass}>
         <h5 className='label--chart'>{data.title}</h5>
         <div className='chart-container'>
           <canvas id={name} className='chart'></canvas>
@@ -309,11 +339,12 @@ export class Chart extends React.Component {
   }
 }
 
-Chart.propTypes = {
-  name: React.PropTypes.string,
-  data: React.PropTypes.object,
-  scenarios: React.PropTypes.array,
-  updateChart: React.PropTypes.func
+ChartLine.propTypes = {
+  dispatch: PropTypes.func,
+  name: PropTypes.string,
+  data: PropTypes.object,
+  scenarios: PropTypes.array,
+  updateChart: PropTypes.func
 }
 
-export default Chart
+export default ChartLine
