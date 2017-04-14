@@ -38,7 +38,7 @@ export class App extends React.Component {
   }
 
   componentDidMount () {
-    this.props.dispatch(parsePreviewerText(document.querySelector('.markdown-input').value))
+    this.props.dispatch(parsePreviewerText(document.querySelector('.control-module__markdown-input').value))
   }
 
   addCharts (charts) {
@@ -118,37 +118,42 @@ export class App extends React.Component {
 
     return (
       <section className='page__previewer'>
-        <div className='row'>
-          <section className='section__internal section__padding'>
-            <div className='previewer__split-left'>
-              <section className='previewer__control-module'>
-                <header className='header'>
-                  <h1>IFPRI IMPACT</h1>
-                  <h2>Figure Previewer</h2>
-                </header>
-                <div className='buttons'>
-                  <h3>Add example markup:</h3>
-                  <ReactTooltip />
-                  {Buttons}
-                </div>
-                <div className='line-numbers'>
-                  {lines.map((line, i) => <span key={`line-number-${i}`} />)}
-                </div>
-                <textarea
-                  className='markdown-input'
-                  style={{height: `${1.25 * lines.length + 1.25}rem`}}
-                  value={this.props.text}
-                  onChange={this.handleTextInput}>
-                </textarea>
-              </section>
+          <header className='header__internal header__internal--sm'>
+            <div className='row row--short browse__header-text'>
+              <h2 className='header--xxlarge with-metadata'>Syntax Playground</h2>
             </div>
-            {this.errorModal}
-            <div className='previewer__split--right'>
-            <section className='previewer__figure-output'
-              dangerouslySetInnerHTML={{__html: this.props.html}}>
+          </header>
+          <div className='row'>
+            <section className='section__internal section__padding'>
+              <div className='previewer__split-left'>
+                <section className='previewer__control-module'>
+                  <header className='control-module__header'>
+                    <h1>IFPRI IMPACT</h1>
+                    <h2>Figure Previewer</h2>
+                  </header>
+                  <div className='control-module__buttons'>
+                    <h3>Add example markup:</h3>
+                    <ReactTooltip />
+                    {Buttons}
+                  </div>
+                  <div className='control-module__line-numbers'>
+                    {lines.map((line, i) => <span key={`line-number-${i}`} />)}
+                  </div>
+                  <textarea
+                    className='control-module__markdown-input'
+                    style={{height: `${1.25 * lines.length + 1.25}rem`}}
+                    value={this.props.text}
+                    onChange={this.handleTextInput}>
+                  </textarea>
+                </section>
+              </div>
+              <div className='previewer__split--right'>
+                {this.errorModal}
+                <section className='previewer__output'
+                  dangerouslySetInnerHTML={{__html: this.props.html}}>
+                </section>
+              </div>
             </section>
-            </div>
-          </section>
         </div>
       </section>
     )
