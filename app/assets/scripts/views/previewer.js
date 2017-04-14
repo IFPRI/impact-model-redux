@@ -52,12 +52,14 @@ export class App extends React.Component {
       } else {
         const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
         if (placeholder) {
+          console.log(this.props)
           if (type === 'stripe' || type === 'line') {
             ReactDOM.render(<ChartLine
               name={name}
               data={data}
               scenarios={scenarios}
               updatePreviewerChart={this.updatePreviewerChart}
+              previewer={true}
               dispatch={this.props.dispatch}/>, placeholder)
           } else if (data.mark === 'grouped-bar') {
             ReactDOM.render(<ChartGroupedBar
@@ -65,6 +67,7 @@ export class App extends React.Component {
               data={data}
               scenarios={scenarios}
               updatePreviewerChart={this.updatePreviewerChart}
+              previewer={true}
               dispatch={this.props.dispatch}/>, placeholder)
           } else {
             ReactDOM.render(<Chart
@@ -72,6 +75,7 @@ export class App extends React.Component {
               data={data}
               scenario={scenarios}
               updatePreviewerChart={this.updatePreviewerChart}
+              previewer={true}
               dispatch={this.props.dispatch}/>, placeholder)
           }
         }

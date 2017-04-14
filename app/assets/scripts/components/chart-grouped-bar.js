@@ -5,6 +5,9 @@ import _ from 'lodash'
 if (typeof window === 'undefined') global.window = {}
 const ChartJS = require('chart.js')
 
+// Actions
+import { updateError } from '../actions'
+
 // Utils
 import { formatNumber, formatScenario } from '../utils/format'
 import { translate } from '../utils/translation'
@@ -101,10 +104,21 @@ export class ChartGroupedBar extends React.Component {
           chart.data.datasets[i].data.push(record.Val)
         })
       })
-      this.chart = new ChartJS(
-        document.getElementById(name).getContext('2d'),
-        chart
-      )
+      if (this.props.previewer) {
+        try {
+          this.chart = new ChartJS(
+            document.getElementById(name).getContext('2d'),
+            chart
+          )
+        } catch (err) {
+          this.props.dispatch(updateError(err))
+        }
+      } else {
+        this.chart = new ChartJS(
+          document.getElementById(name).getContext('2d'),
+          chart
+        )
+      }
     })
   }
 
@@ -177,6 +191,7 @@ export class ChartGroupedBar extends React.Component {
 
 ChartGroupedBar.propTypes = {
   dispatch: PropTypes.func,
+  previewer: PropTypes.bool,
   name: PropTypes.string,
   data: PropTypes.object,
   scenarios: PropTypes.array,

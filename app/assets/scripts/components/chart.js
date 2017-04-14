@@ -6,6 +6,9 @@ import _ from 'lodash'
 if (typeof window === 'undefined') global.window = {}
 const ChartJS = require('chart.js')
 
+// Actions
+import { updateError } from '../actions'
+
 // Utils
 import { formatNumber } from '../utils/format'
 import { translate } from '../utils/translation'
@@ -128,10 +131,21 @@ export class Chart extends React.Component {
           return ` ${label}: ${formatNumber(datasetLabel)}`
         }}}
       }
-      this.chart = new ChartJS(
-        document.getElementById(name).getContext('2d'),
-        chart
-      )
+      if (this.props.previewer) {
+        try {
+          this.chart = new ChartJS(
+            document.getElementById(name).getContext('2d'),
+            chart
+          )
+        } catch (err) {
+          this.props.dispatch(updateError(err))
+        }
+      } else {
+        this.chart = new ChartJS(
+          document.getElementById(name).getContext('2d'),
+          chart
+        )
+      }
     })
   }
 
@@ -199,6 +213,7 @@ export class Chart extends React.Component {
 
 Chart.propTypes = {
   dispatch: PropTypes.func,
+  previewer: PropTypes.bool,
   name: PropTypes.string,
   data: PropTypes.object,
   updateChart: PropTypes.func

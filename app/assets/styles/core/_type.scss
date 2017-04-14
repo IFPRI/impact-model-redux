@@ -150,11 +150,19 @@ dt {
   }
 
   ul {
+    list-style: none;
     margin-bottom: 1rem;
     li {
-      list-style-type: circle;
-      margin-left: 3rem;
-      width: 80%;
+      list-style: none;
+      margin-left: 1rem;
+      strong {
+        font-weight: 800;
+      }
+      &::before {
+        content: '• ';
+        margin-right: 0.5rem;
+        color: $darkest-blue;;
+      }
     }
   }
 

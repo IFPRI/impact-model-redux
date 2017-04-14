@@ -49,7 +49,8 @@ export class Brief extends React.Component {
             data={data}
             scenarios={scenarios}
             updateChart={this.updateChart}
-            dispatch={this.props.dispatch}/>, placeholder)
+            dispatch={this.props.dispatch}
+            url={this.props}/>, placeholder)
         } else if (data.mark === 'grouped-bar') {
           ReactDOM.render(<ChartGroupedBar
             name={name}
@@ -63,7 +64,8 @@ export class Brief extends React.Component {
             data={data}
             scenario={scenarios}
             updateChart={this.updateChart}
-            dispatch={this.props.dispatch}/>, placeholder)
+            dispatch={this.props.dispatch}
+            />, placeholder)
         }
       }
     })
