@@ -147,3 +147,38 @@ button {
     margin-right: .5em;
   }
 }
+
+button {
+  border: none;
+  background: transparent;
+}
+
+.button, .button:visited {
+  font-family: $header-family;
+  font-weight: $header-black;
+  text-transform: uppercase;
+  color: #fff;
+  padding: .7em 3em;
+  display: inline-block;
+  text-align: center;
+  transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  &:hover {
+    border-radius: 2em;
+  }
+  @include media(medium-down) {
+    font-size: .86em;
+  }
+}
+
+.previewer__control-module {
+  .button--control-palette {
+    @extend .button--outline;
+    border: none;
+  }
+  .button--xsmall {
+    padding: .3em 0.6em .3em;
+    font-size: .8em;
+  }
+}
