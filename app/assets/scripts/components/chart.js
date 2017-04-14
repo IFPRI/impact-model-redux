@@ -150,7 +150,6 @@ export class Chart extends React.Component {
       this.chart.data.labels = chart.map((item) => item.label)
       this.chart.update()
     })
-    console.log(this.chart)
   }
 
   handleDropdown (e) {

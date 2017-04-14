@@ -173,7 +173,6 @@ function mapStateToProps (state) {
     text: state.previewer.text,
     html: state.previewer.html,
     charts: state.previewer.charts,
-    maps: state.previewer.maps,
     error: state.previewer.error
   }
 }

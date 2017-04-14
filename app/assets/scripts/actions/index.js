@@ -95,7 +95,7 @@ export const updatePreviewerError = (error) => {
 export const parsePreviewerText = (text) => {
   return (dispatch) => {
     dispatch(updatePreviewerText(text))
-    const renderer = setupRenderer(dispatch)
+    const renderer = setupRenderer(dispatch, true)
     try {
       text = marked(fm(text).body, {renderer: renderer})
       dispatch(updatePreviewerHTML(text))

@@ -48,22 +48,6 @@
         }
       }
     }
-
-    .fast-transition-appear {
-      opacity: 0.01;
-    }
-    .fast-transition-appear.fast-transition-appear-active {
-      opacity: 0.75;
-      transition: opacity .2s ease-in;
-    }
-
-    .slow-transition-appear {
-      opacity: 0.01;
-    }
-    .slow-transition-appear.slow-transition-appear-active {
-      opacity: 1;
-      transition: opacity .4s ease-in;
-    }
   }
 
   .previewer__control-module {
@@ -73,7 +57,7 @@
       color: #444;
       h1 {
         float: left;
-        margin: 0.8rem 0 0 5rem;
+        margin: 0.8rem 0 0 4rem;
         font-size: 1.75rem;
         font-weight: 800;
       }
@@ -184,5 +168,21 @@
     background-color: #000;
     z-index: 1;
     opacity: 0.75;
+  }
+
+  .fast-transition-appear {
+    opacity: 0.01;
+  }
+  .fast-transition-appear.fast-transition-appear-active {
+    opacity: 0.75;
+    transition: opacity .2s ease-in;
+  }
+
+  .slow-transition-appear {
+    opacity: 0.01;
+  }
+  .slow-transition-appear.slow-transition-appear-active {
+    opacity: 1;
+    transition: opacity .4s ease-in;
   }
 }
