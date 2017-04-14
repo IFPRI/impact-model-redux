@@ -76,6 +76,9 @@
       background-color: $dark-grey;
       text-align: center;
       border-bottom: 2px solid $darkest-grey;
+      button {
+        font-weight: 400;
+      }
       h3 {
         letter-spacing: 0.1rem;
         margin-bottom: 0.5rem;

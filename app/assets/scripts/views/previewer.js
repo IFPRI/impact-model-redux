@@ -52,7 +52,6 @@ export class App extends React.Component {
       } else {
         const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
         if (placeholder) {
-          console.log(this.props)
           if (type === 'stripe' || type === 'line') {
             ReactDOM.render(<ChartLine
               name={name}
