@@ -42,7 +42,7 @@ export class App extends React.Component {
   }
 
   addCharts (charts) {
-    _.forEach(charts, (data, name) => {
+    charts.forEach((data, name) => {
       const type = data.mark
       const scenarios = data.scenarios
       if (!chartTypes.includes(type)) {
@@ -87,16 +87,19 @@ export class App extends React.Component {
   }
 
   handleTextInput (evt) {
-    this.props.dispatch(parsePreviewerText(evt.target.value))
+    this.props.dispatch(parsePreviewerText(evt.target.value, this.props.charts))
   }
 
   updateExample (evt) {
     const newText = `${this.props.text}\n${evt.target.value}`
     this.props.dispatch(updatePreviewerText(newText))
-    this.props.dispatch(parsePreviewerText(newText))
+    this.props.dispatch(parsePreviewerText(newText, this.props.charts))
   }
 
   componentWillReceiveProps (nextProps) {
+    const charts = nextProps.charts
+    const error = nextProps.error
+    console.log(error)
     if (nextProps.error.length) {
       this.errorModal = <ErrorModal error={nextProps.error} />
     } else {
@@ -167,7 +170,7 @@ App.propTypes = {
   dispatch: PropTypes.func,
   text: PropTypes.string,
   html: PropTypes.string,
-  charts: PropTypes.object,
+  charts: PropTypes.array,
   error: PropTypes.string
 }
 

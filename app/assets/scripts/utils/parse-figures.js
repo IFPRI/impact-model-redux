@@ -6,7 +6,7 @@ import md5 from 'browser-md5'
 // Actions
 import { updateChart, updatePreviewerChart, updateMap } from '../actions'
 
-export const setupRenderer = (dispatch, previewer) => {
+export const setupRenderer = (dispatch, previewer, charts) => {
   const renderer = new marked.Renderer()
   renderer.table = (header, body) => {
     return `<div class="table-wrapper"><table><thead>${header}</thead><tbody>${body}</tbody></table></div>`
@@ -24,10 +24,14 @@ export const setupRenderer = (dispatch, previewer) => {
       }
     })
 
+    // console.log(renderer)
+
     if (previewer) {
       if (lang === 'chart') {
+        data.id = id
+        data.lineLength = code.split('\n').length
         dispatch(updatePreviewerChart(data, id))
-        return `<div style="width:calc(${data.width} - 2rem" class="${id} figure-container chart-figure"></div>`
+        return `<div style="width:calc(${data.width} - 2rem)" class="${id} figure-container chart-figure"></div>`
       }
       return ''
     }
