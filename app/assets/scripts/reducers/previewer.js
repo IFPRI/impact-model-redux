@@ -17,7 +17,7 @@ In addition to the attributes used to query the database, user-defined parameter
 - __width__ - number with %, px, or rem - defaults to __100%__
 - __legend__ - top, bottom, left, right, or omitted for none - defaults to __none__`,
   html: '',
-  charts: [],
+  charts: {},
   error: ''
 }
 

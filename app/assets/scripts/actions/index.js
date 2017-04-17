@@ -92,10 +92,10 @@ export const updatePreviewerError = (error) => {
   return { type: UPDATE_PREVIEWER_ERROR, data: error }
 }
 
-export const parsePreviewerText = (text, charts) => {
+export const parsePreviewerText = (text) => {
   return (dispatch) => {
     dispatch(updatePreviewerText(text))
-    const renderer = setupRenderer(dispatch, true, charts)
+    const renderer = setupRenderer(dispatch, true)
     try {
       const html = marked(fm(text).body, {renderer: renderer})
       dispatch(updatePreviewerHTML(html))
