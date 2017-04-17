@@ -119,8 +119,6 @@ export class ChartLine extends React.Component {
 
   initializeChart () {
     const { name, data } = this.props
-    const aggregation = data.encoding.x.field
-
     let chart = {
       type: data.mark,
       options: {
@@ -146,7 +144,7 @@ export class ChartLine extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
-              userCallback: (value) => isNaN(value) || aggregation === 'year' ? value : formatNumber(value),
+              userCallback: (value) => isNaN(value) || data.encoding.y.field === 'year' ? value : formatNumber(value),
               beginAtZero: false,
               padding: 5,
               fontColor: '#9E9E9E',
@@ -160,7 +158,7 @@ export class ChartLine extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
-              userCallback: (value) => isNaN(value) || aggregation === 'year' ? value : formatNumber(value),
+              userCallback: (value) => isNaN(value) || data.encoding.x.field === 'year' ? value : formatNumber(value),
               beginAtZero: false,
               padding: 5,
               fontColor: '#9E9E9E',
@@ -200,6 +198,7 @@ export class ChartLine extends React.Component {
           ? oneColorPalette
           : fourteenColorPalette[i] || fourteenColorPalette[(Math.floor(Math.random() * 13))]
         chart.data.datasets[i].borderColor = lineColor
+        const aggregation = data.encoding.x.field
         const primaryLine = _.find(chartData, {'source': scenarios[i]})
         _.forEach(primaryLine.values, (item) => {
           if (i === 0) {
@@ -310,7 +309,7 @@ export class ChartLine extends React.Component {
     const dropdown = e.target.id
     const newData = _.cloneDeep(this.props.data)
     newData[dropdown].values = [valueToFront, ...this.props.data[dropdown].values.filter(a => a !== valueToFront)]
-    this.props.updateChart(newData, this.props.name)
+    this.props.updatePreviewerChart(newData, this.props.name)
     this.updateQuery(newData)
   }
 
@@ -358,7 +357,7 @@ ChartLine.propTypes = {
   previewer: PropTypes.bool,
   name: PropTypes.string,
   data: PropTypes.object,
-  updateChart: PropTypes.func
+  updatePreviewerChart: PropTypes.func
 }
 
 export default ChartLine

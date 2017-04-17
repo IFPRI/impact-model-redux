@@ -89,14 +89,16 @@ export class Chart extends React.Component {
       chart.options.responsive = true
       chart.options.maintainAspectRatio = false
       chart.data.datasets[0].backgroundColor = '#83C61A'
-      chart.options.scales.yAxes[0].ticks.userCallback = (value) => isNaN(value) ? value : formatNumber(value)
+      chart.options.scales.yAxes[0].ticks.userCallback = (value) => isNaN(value) || data.encoding.y.field === 'year' ? value : formatNumber(value)
+      chart.options.scales.xAxes[0].ticks.userCallback = (value) => isNaN(value) || data.encoding.x.field === 'year' ? value : formatNumber(value)
       chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')}}
     }
 
     if (chartType === 'horizontalBar') {
       chart.data.datasets[0].backgroundColor = '#83C61A'
       chart.options.maintainAspectRatio = false
-      chart.options.scales.yAxes[0].ticks.userCallback = (value) => isNaN(value) ? value : formatNumber(value)
+      chart.options.scales.yAxes[0].ticks.userCallback = (value) => isNaN(value) || data.encoding.y.field === 'year' ? value : formatNumber(value)
+      chart.options.scales.xAxes[0].ticks.userCallback = (value) => isNaN(value) || data.encoding.x.field === 'year' ? value : formatNumber(value)
       chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'xLabel')}}
     }
 
@@ -171,7 +173,7 @@ export class Chart extends React.Component {
     const dropdown = e.target.id
     const newData = _.cloneDeep(this.props.data)
     newData[dropdown].values = [valueToFront, ...this.props.data[dropdown].values.filter(a => a !== valueToFront)]
-    this.props.updateChart(newData, this.props.name)
+    this.props.updatePreviewerChart(newData, this.props.name)
     this.updateQuery(newData)
   }
 
@@ -216,7 +218,7 @@ Chart.propTypes = {
   previewer: PropTypes.bool,
   name: PropTypes.string,
   data: PropTypes.object,
-  updateChart: PropTypes.func
+  updatePreviewerChart: PropTypes.func
 }
 
 export default Chart

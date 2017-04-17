@@ -53,7 +53,7 @@ export class ChartGroupedBar extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
-              userCallback: (value) => isNaN(value) ? value : formatNumber(value),
+              userCallback: (value) => isNaN(value) || data.encoding.y.field === 'year' ? value : formatNumber(value),
               beginAtZero: false,
               padding: 5,
               fontColor: '#9E9E9E',
@@ -155,7 +155,7 @@ export class ChartGroupedBar extends React.Component {
     const dropdown = e.target.id
     const newData = _.cloneDeep(this.props.data)
     newData[dropdown].values = [valueToFront, ...this.props.data[dropdown].values.filter(a => a !== valueToFront)]
-    this.props.updateChart(newData, this.props.name)
+    this.props.updatePreviewerChart(newData, this.props.name)
     this.updateQuery(newData)
   }
 
@@ -195,7 +195,7 @@ ChartGroupedBar.propTypes = {
   name: PropTypes.string,
   data: PropTypes.object,
   scenarios: PropTypes.array,
-  updateChart: PropTypes.func
+  updatePreviewerChart: PropTypes.func
 }
 
 export default ChartGroupedBar
