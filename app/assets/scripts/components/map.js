@@ -40,12 +40,13 @@ export class MapComponent extends React.Component {
   initializeMap () {
     const containerWidth = this.mapRef.getBoundingClientRect().width
     const mapWidth = containerWidth
-    const mapHeight = containerWidth / 2
+    const mapHeight = containerWidth / 2.4 // 2 gets us to plate carree, 2.4 cuts off antartica
 
     const baseProjectionScale = 152.63
     var projection = geoEquirectangular()
       .scale(baseProjectionScale / (960 / containerWidth))
       .translate([containerWidth / 2, containerWidth / 4])
+      .rotate([-11, 0, 0])
 
     var mapPath = geoPath(projection)
 
