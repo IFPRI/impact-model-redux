@@ -50,7 +50,7 @@ export class App extends React.Component {
       } else if (!multiChartTypes.includes(type) && scenarios.length > 1) {
         this.props.dispatch(updatePreviewerError(`"${data.mark}" chart type cannot compare multiple scenarios. Use "line" or "grouped-bar" chart types to compare scenarios, or "stripe" to draw a line chart including an area range.`))
       } else {
-        const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
+        const placeholder = document.querySelector(`.${data.id}`)
         if (placeholder) {
           if (type === 'stripe' || type === 'line') {
             ReactDOM.render(<ChartLine

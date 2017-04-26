@@ -13,7 +13,8 @@ export const setupRenderer = (dispatch, previewer) => {
   }
   renderer.code = (code, lang, escaped) => {
     const data = yaml.load(code)
-    const id = `fig-${md5(data.title).slice(0, 12)}`
+    const id = `fig-${Math.random().toString(36).substring(7)}`
+    data.id = id
     // convert dropdown values from string to array
     Object.keys(data).forEach(dataKey => {
       if (dataKey.match(/scenarios/)) {
@@ -24,20 +25,22 @@ export const setupRenderer = (dispatch, previewer) => {
       }
     })
 
-    if (previewer) {
-      if (lang === 'chart') {
-        dispatch(updatePreviewerChart(data, id))
-        return `<div style="width:calc(${data.width} - 2rem)" class="${id} figure-container chart-figure"></div>`
-      }
-      return ''
-    }
-
     if (lang === 'chart') {
-      dispatch(updateChart(data, id))
-      return `<div style="width:${data.width}" class="${id} figure-container chart-figure"></div>`
-    } else if (lang === 'map') {
-      dispatch(updateMap(data, id))
-      return `<div class="${id} figure-container map-figure"></div>`
+      if (previewer) {
+        if (lang === 'chart') {
+          dispatch(updatePreviewerChart(data, id))
+          return `<div style="width:calc(${data.width} - 2rem)" class="${id} figure-container chart-figure"></div>`
+        }
+        return ''
+      }
+
+      if (!previewer) {
+        dispatch(updateChart(data, id))
+        return `<div style="width:${data.width}" class="${id} figure-container chart-figure"></div>`
+      } else if (lang === 'map') {
+        dispatch(updateMap(data, id))
+        return `<div class="${id} figure-container map-figure"></div>`
+      }
     }
   }
   return renderer
