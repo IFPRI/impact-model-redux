@@ -70,7 +70,7 @@ export class Scenario extends React.Component {
 
   addMaps (maps) {
     _.forEach(maps, (data, name) => {
-      const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
+      const placeholder = document.querySelector(`.${data.id}`)
       if (placeholder) {
         ReactDOM.render(<MapComponent name={name} data={data} />, placeholder)
       }
