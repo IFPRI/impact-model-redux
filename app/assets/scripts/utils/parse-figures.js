@@ -1,7 +1,6 @@
 'use strict'
 import marked from 'marked'
 import yaml from 'js-yaml'
-import md5 from 'browser-md5'
 
 // Actions
 import { updateChart, updatePreviewerChart, updateMap } from '../actions'

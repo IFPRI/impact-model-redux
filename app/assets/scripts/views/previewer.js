@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import ReactTooltip from 'react-tooltip'
-import md5 from 'browser-md5'
 import _ from 'lodash'
 
 import {

@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import moment from 'moment'
 import { Link } from 'react-router'
 import _ from 'lodash'
-import md5 from 'browser-md5'
 
 // Actions
 import { fetchArticle, updateArticleFilters, updateChart } from '../actions'
@@ -41,7 +40,7 @@ export class Brief extends React.Component {
     _.forEach(charts, (data, name) => {
       const type = data.mark
       const scenarios = data.scenarios
-      const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
+      const placeholder = document.querySelector(`.${data.id}`)
       if (placeholder) {
         if (type === 'stripe' || type === 'line') {
           ReactDOM.render(<ChartLine
