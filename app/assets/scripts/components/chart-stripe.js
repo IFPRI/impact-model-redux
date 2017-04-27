@@ -156,6 +156,7 @@ export class Chart extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
+              autoSkip: false,
               fontColor: '#9E9E9E',
               fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif",
               beginAtZero: false,
