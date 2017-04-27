@@ -9,7 +9,7 @@ import {
 } from '../actions'
 
 export const initialState = {
-  text: `# IFPRI IMPACT Model - Syntax Playground
+  text: `## IFPRI IMPACT Model - Syntax Playground
 This previewer is connected to the same database that drives the IFPRI IMPACT Model publishing system.
 Use the code widget to test the syntax used to develop data-driven figures.
 

@@ -18,7 +18,7 @@
     float: left;
     width: 28rem;
     background-color: #fff;
-    border: 1px solid $grey;
+    border: 1px solid darken($grey, 20%);
     box-shadow: 0 0 10px $dark-grey;
     @include media(medium-down) {
       width: 100%;
@@ -48,10 +48,17 @@
       width: 100%;
       padding-bottom: 0.5rem;
       background-color: $dark-grey;
+      font-weight: 400;
       text-align: center;
-      border-bottom: 2px solid $darkest-grey;
+      border-bottom: 1px solid darken($darkest-grey, 20%);
       button {
         font-weight: 400;
+        @include media(medium-down) {
+          font-size: 0.8rem;
+        }
+        @include media(small-down) {
+          font-size: 0.625rem;
+        }
       }
       h3 {
         letter-spacing: 0.1rem;
@@ -63,8 +70,8 @@
         background-color: $darkest-blue;
         border-left: $darkest-grey;
         border-right: $darkest-grey;
-        border-top: 2px solid darken($darkest-blue, 20%);
-        border-bottom: 2px solid darken($darkest-blue, 20%);
+        border-top: 1px solid darken($darkest-blue, 20%);
+        border-bottom: 1px solid darken($darkest-blue, 25%);
       }
     }
 
@@ -110,9 +117,16 @@
 
   .previewer__output {
     margin: 0 1.5rem 0 1.5rem;
+    overflow: hidden;
+    @include media(medium-down) {
+      width: calc(100% - 1.5rem);
+      margin: 1.5rem;
+      box-sizing: border-box;
+    }
     .chart-figure {
       margin: 0 2rem 2rem 0;
       padding: 1rem;
+      float: left;
       display: inline-block;
       box-sizing: border-box;
       background-color: #fff;
@@ -141,10 +155,10 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 20rem;
+    width: calc(90% - 5rem);
     min-height: 8rem;
     margin-top: -2.5rem;
-    margin-left: -10rem;
+    margin-left: calc(-45% + 1rem);
     padding: 2rem;
     background-color: #000;
     z-index: 2;
@@ -175,6 +189,9 @@
     background-color: #000;
     z-index: 1;
     opacity: 0.75;
+    @include media(medium-down) {
+      width: 100%;
+    }
   }
 
   .fast-transition-appear {
