@@ -211,21 +211,13 @@ export class ChartLine extends React.Component {
       if (data.mark === 'stripe') {
         chart = this.addStripe(chart, chartData, scenarios)
       }
-
-      if (this.props.previewer) {
-        try {
-          this.chart = new ChartJS(
-            document.getElementById(name).getContext('2d'),
-            chart
-          )
-        } catch (err) {
-          this.props.dispatch(updateError(err))
-        }
-      } else {
+      try {
         this.chart = new ChartJS(
           document.getElementById(name).getContext('2d'),
           chart
         )
+      } catch (err) {
+        this.props.dispatch(updateError(err))
       }
 
       // for stripe chart type, disable tooltips over the area's centerline
@@ -354,7 +346,6 @@ export class ChartLine extends React.Component {
 
 ChartLine.propTypes = {
   dispatch: PropTypes.func,
-  previewer: PropTypes.bool,
   name: PropTypes.string,
   data: PropTypes.object,
   updatePreviewerChart: PropTypes.func

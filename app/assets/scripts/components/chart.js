@@ -133,20 +133,13 @@ export class Chart extends React.Component {
           return ` ${label}: ${formatNumber(datasetLabel)}`
         }}}
       }
-      if (this.props.previewer) {
-        try {
-          this.chart = new ChartJS(
-            document.getElementById(name).getContext('2d'),
-            chart
-          )
-        } catch (err) {
-          this.props.dispatch(updateError(err))
-        }
-      } else {
+      try {
         this.chart = new ChartJS(
           document.getElementById(name).getContext('2d'),
           chart
         )
+      } catch (err) {
+        this.props.dispatch(updateError(err))
       }
     })
   }
@@ -215,7 +208,6 @@ export class Chart extends React.Component {
 
 Chart.propTypes = {
   dispatch: PropTypes.func,
-  previewer: PropTypes.bool,
   name: PropTypes.string,
   data: PropTypes.object,
   updatePreviewerChart: PropTypes.func

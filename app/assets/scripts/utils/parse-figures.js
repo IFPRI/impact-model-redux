@@ -25,13 +25,13 @@ export const setupRenderer = (dispatch, previewer) => {
         }
       })
 
-      if (lang === 'chart') {
-        if (previewer) {
-          dispatch(updatePreviewerChart(data, id))
-          return `<div style="width:calc(${data.width} - 2rem)" class="${id} figure-container chart-figure"></div>`
-        }
+      if (previewer && lang === 'chart') {
+        dispatch(updatePreviewerChart(data, id))
+        return `<div style="width:calc(${data.width} - 2rem)" class="${id} figure-container chart-figure"></div>`
+      }
 
-        if (!previewer) {
+      if (!previewer) {
+        if (lang === 'chart') {
           dispatch(updateChart(data, id))
           return `<div style="width:${data.width}" class="${id} figure-container chart-figure"></div>`
         } else if (lang === 'map') {

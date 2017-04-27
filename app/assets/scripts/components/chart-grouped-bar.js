@@ -104,20 +104,13 @@ export class ChartGroupedBar extends React.Component {
           chart.data.datasets[i].data.push(record.Val)
         })
       })
-      if (this.props.previewer) {
-        try {
-          this.chart = new ChartJS(
-            document.getElementById(name).getContext('2d'),
-            chart
-          )
-        } catch (err) {
-          this.props.dispatch(updateError(err))
-        }
-      } else {
+      try {
         this.chart = new ChartJS(
           document.getElementById(name).getContext('2d'),
           chart
         )
+      } catch (err) {
+        this.props.dispatch(updateError(err))
       }
     })
   }
@@ -191,7 +184,6 @@ export class ChartGroupedBar extends React.Component {
 
 ChartGroupedBar.propTypes = {
   dispatch: PropTypes.func,
-  previewer: PropTypes.bool,
   name: PropTypes.string,
   data: PropTypes.object,
   scenarios: PropTypes.array,
