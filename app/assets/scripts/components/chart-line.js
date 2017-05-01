@@ -159,10 +159,11 @@ export class ChartLine extends React.Component {
             },
             ticks: {
               userCallback: (value) => isNaN(value) || data.encoding.x.field === 'year' ? value : formatNumber(value),
-              beginAtZero: false,
-              padding: 5,
+              autoSkip: false,
               fontColor: '#9E9E9E',
-              fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+              fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              beginAtZero: false,
+              padding: 5
             }
           }]
         }

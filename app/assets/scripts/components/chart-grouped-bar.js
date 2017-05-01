@@ -67,6 +67,7 @@ export class ChartGroupedBar extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
+              autoSkip: false,
               min: 0,
               padding: 5,
               fontColor: '#9E9E9E',

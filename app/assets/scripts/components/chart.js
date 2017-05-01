@@ -63,6 +63,7 @@ export class Chart extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
+              autoSkip: false,
               beginAtZero: false,
               padding: 5,
               fontColor: '#9E9E9E',
