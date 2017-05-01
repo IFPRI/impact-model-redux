@@ -11,6 +11,10 @@ import { Router, Route, IndexRoute, hashHistory, applyRouterMiddleware } from 'r
 import config from './config'
 import reducer from './reducers'
 
+// Additional Internet Explorer/ Safari shims
+import valuesShim from 'object.values'
+if (!Object.values) valuesShim.shim()
+
 const logger = createLogger({
   level: 'info',
   collapsed: true,
