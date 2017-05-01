@@ -14,6 +14,10 @@ export const UPDATE_MAP = 'UPDATE_MAP'
 export const UPDATE_SELECTED_PROJECT = 'UPDATE_SELECTED_PROJECT'
 export const UPDATE_SELECTED_PROJECT_HEIGHT = 'UPDATE_SELECTED_PROJECT_HEIGHT'
 export const UPDATE_MOBILE_FILTERS = 'UPDATE_MOBILE_FILTERS'
+export const UPDATE_PREVIEWER_TEXT = 'UPDATE_PREVIEWER_TEXT'
+export const UPDATE_PREVIEWER_HTML = 'UPDATE_PREVIEWER_HTML'
+export const UPDATE_PREVIEWER_CHART = 'UPDATE_PREVIEWER_CHART'
+export const UPDATE_PREVIEWER_ERROR = 'UPDATE_PREVIEWER_ERROR'
 
 export const updateArticles = (articles) => {
   return { type: UPDATE_ARTICLES, data: articles }
@@ -66,4 +70,38 @@ export const updateSelectedProject = (project, height) => {
 
 export const updateMobileFilters = open => {
   return { type: UPDATE_MOBILE_FILTERS, data: open }
+}
+
+/* ---------------------------
+// Previewer actions
+// ------- */
+export const updatePreviewerText = (text) => {
+  return { type: UPDATE_PREVIEWER_TEXT, data: text }
+}
+
+export const updatePreviewerHTML = (text) => {
+  return { type: UPDATE_PREVIEWER_HTML, data: text }
+}
+
+export const updatePreviewerChart = (chartMarkup, id) => {
+  return { type: UPDATE_PREVIEWER_CHART, data: chartMarkup, id }
+}
+
+export const updatePreviewerError = (error) => {
+  error = error.message || error
+  return { type: UPDATE_PREVIEWER_ERROR, data: error }
+}
+
+export const parsePreviewerText = (text) => {
+  return (dispatch) => {
+    dispatch(updatePreviewerText(text))
+    const renderer = setupRenderer(dispatch, true)
+    try {
+      const html = marked(fm(text).body, {renderer: renderer})
+      dispatch(updatePreviewerHTML(html))
+      dispatch(updatePreviewerError(''))
+    } catch (err) {
+      dispatch(updatePreviewerError(err.message))
+    }
+  }
 }

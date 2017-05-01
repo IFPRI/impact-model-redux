@@ -67,7 +67,9 @@
   .bar-chart {
     .chart-container {
       height: 15rem;
+      width: 100%;
       min-width: 20rem;
+      float: left;
     }
   }
   .line-chart {
@@ -76,9 +78,20 @@
       height: 10rem;
       min-width: 15rem;
       max-width: 40rem;
+      float: left;
+    }
+  }
+  .stripe-chart {
+    .chart-container {
+      width: 90%;
+      height: 10rem;
+      min-width: 15rem;
+      max-width: 40rem;
+      float: left;
     }
   }
 }
+
 .map-figure {
   .map-dropdown {
     padding-top: 0;

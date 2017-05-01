@@ -38,6 +38,7 @@ import BriefBrowse from './views/brief-browse'
 import Brief from './views/brief'
 import ScenarioBrowse from './views/scenario-browse'
 import Scenario from './views/scenario'
+import Previewer from './views/previewer'
 import UhOh from './views/uhoh'
 
 render((
@@ -50,6 +51,7 @@ render((
         <Route path='scenarios' component={ScenarioBrowse} />
         <Route path='briefs/:id' component={Brief} />
         <Route path='scenarios/:id' component={Scenario} />
+        <Route path='previewer' component={Previewer} />
         <IndexRoute component={Home} pageClass='page--homepage' />
         <Route path='*' component={UhOh} />
       </Route>
