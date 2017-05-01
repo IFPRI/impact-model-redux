@@ -17,6 +17,7 @@ import ChartGroupedBar from '../components/chart-grouped-bar'
 import MapComponent from '../components/map'
 import Share from '../components/share-button'
 import Loading from '../components/loading'
+import UhOh from './uhoh'
 
 // Utils
 import { translate } from '../utils/translation'
@@ -28,12 +29,17 @@ export class Brief extends React.Component {
 
     this.updateArticleFilters = this.updateArticleFilters.bind(this)
     this.updateChart = this.updateChart.bind(this)
-    props.dispatch(fetchArticle(this.props.metadata.url))
+
+    if (this.props.metadata) {
+      props.dispatch(fetchArticle(this.props.metadata.url))
+    }
   }
 
   componentDidUpdate () {
-    this.addCharts(this.props.charts, this.props.metadata.scenarios)
-    this.addMaps(this.props.maps)
+    if (this.props.metadata) {
+      this.addCharts(this.props.charts, this.props.metadata.scenarios)
+      this.addMaps(this.props.maps)
+    }
   }
 
   addCharts (charts) {
@@ -100,12 +106,16 @@ export class Brief extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (this.props.params.id !== nextProps.params.id) {
+    if (nextProps.metdata && this.props.params.id !== nextProps.params.id) {
       nextProps.dispatch(fetchArticle(nextProps.metadata.url))
     }
   }
 
   render () {
+    if (!this.props.metadata) {
+      return <UhOh />
+    }
+
     const { articles, metadata } = this.props
     const { locations, scenarios, resources, author, tags } = metadata
     const date = moment(metadata.date, 'M/D/YYYY').format('MMMM Do, YYYY')
