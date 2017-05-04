@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import moment from 'moment'
 import { Link } from 'react-router'
 import _ from 'lodash'
-import md5 from 'browser-md5'
 
 // Actions
 import { fetchArticle, updateArticleFilters, updateChart } from '../actions'
@@ -13,10 +12,12 @@ import { fetchArticle, updateArticleFilters, updateChart } from '../actions'
 // Components
 import RelatedArticles from '../components/related-articles'
 import Chart from '../components/chart'
-import ChartStripe from '../components/chart-stripe'
+import ChartLine from '../components/chart-line'
+import ChartGroupedBar from '../components/chart-grouped-bar'
 import MapComponent from '../components/map'
 import Share from '../components/share-button'
 import Loading from '../components/loading'
+import UhOh from './uhoh'
 
 // Utils
 import { translate } from '../utils/translation'
@@ -28,22 +29,48 @@ export class Brief extends React.Component {
 
     this.updateArticleFilters = this.updateArticleFilters.bind(this)
     this.updateChart = this.updateChart.bind(this)
-    props.dispatch(fetchArticle(this.props.metadata.url))
+
+    if (this.props.metadata) {
+      props.dispatch(fetchArticle(this.props.metadata.url))
+    }
   }
 
   componentDidUpdate () {
-    this.addCharts(this.props.charts, this.props.metadata.scenarios)
-    this.addMaps(this.props.maps)
+    if (this.props.metadata) {
+      this.addCharts(this.props.charts, this.props.metadata.scenarios)
+      this.addMaps(this.props.maps)
+    }
   }
 
-  addCharts (charts, scenarios) {
+  addCharts (charts) {
     _.forEach(charts, (data, name) => {
-      const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
+      const type = data.mark
+      const scenarios = data.scenarios
+      const placeholder = document.querySelector(`.${data.id}`)
       if (placeholder) {
-        if (data.mark === 'stripe') {
-          ReactDOM.render(<ChartStripe name={name} data={data} scenarios={scenarios} updateChart={this.updateChart}/>, placeholder)
+        if (type === 'stripe' || type === 'line') {
+          ReactDOM.render(<ChartLine
+            name={name}
+            data={data}
+            scenarios={scenarios}
+            updateChart={this.updateChart}
+            dispatch={this.props.dispatch}
+            url={this.props}/>, placeholder)
+        } else if (data.mark === 'grouped-bar') {
+          ReactDOM.render(<ChartGroupedBar
+            name={name}
+            data={data}
+            scenarios={scenarios}
+            updateChart={this.updateChart}
+            dispatch={this.props.dispatch}/>, placeholder)
         } else {
-          ReactDOM.render(<Chart name={name} data={data} scenario={scenarios} updateChart={this.updateChart}/>, placeholder)
+          ReactDOM.render(<Chart
+            name={name}
+            data={data}
+            scenario={scenarios}
+            updateChart={this.updateChart}
+            dispatch={this.props.dispatch}
+            />, placeholder)
         }
       }
     })
@@ -51,11 +78,17 @@ export class Brief extends React.Component {
 
   addMaps (maps) {
     _.forEach(maps, (data, name) => {
-      const placeholder = document.querySelector('.fig-' + md5(data.title).slice(0, 12))
+      const placeholder = document.querySelector(`.${data.id}`)
       if (placeholder) {
         ReactDOM.render(<MapComponent name={name} data={data} />, placeholder)
       }
     })
+  }
+
+  goToTag (tag, e) {
+    e.preventDefault()
+    this.updateArticleFilters([tag])
+    this.props.router.push(`/briefs`)
   }
 
   updateArticleFilters (filters) {
@@ -73,12 +106,16 @@ export class Brief extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (this.props.params.id !== nextProps.params.id) {
+    if (nextProps.metdata && this.props.params.id !== nextProps.params.id) {
       nextProps.dispatch(fetchArticle(nextProps.metadata.url))
     }
   }
 
   render () {
+    if (!this.props.metadata) {
+      return <UhOh />
+    }
+
     const { articles, metadata } = this.props
     const { locations, scenarios, resources, author, tags } = metadata
     const date = moment(metadata.date, 'M/D/YYYY').format('MMMM Do, YYYY')
@@ -138,6 +175,12 @@ export class Brief extends React.Component {
          : <section className='section__internal section__padding'>
              <div className='row row--shortened'>
                <div className='article-metadata'>
+                  <div className='article-metadata__item'>
+                    <span className='article-metadata__header'>Project:</span>
+                    <ul>
+                      <li><a className='link__underline' onClick={this.goToTag.bind(this, metadata.project)} href=''>{translate(metadata.project)}</a></li>
+                    </ul>
+                  </div>
                  {Locations}
                  {Scenarios}
                  {Resources}

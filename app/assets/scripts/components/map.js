@@ -7,6 +7,7 @@ import _ from 'lodash'
 import { feature, merge } from 'topojson-client'
 import { body as tip } from '@redsift/d3-rs-tip'
 
+import MapAggregationDropdown from './map-aggregation-dropdown'
 import queryDatabase from '../utils/query-database'
 import { translate } from '../utils/translation'
 import locationAggregation from '../../data/aggregate-region'
@@ -20,12 +21,16 @@ const green = '#83C61A'
 export class MapComponent extends React.Component {
   constructor (props, context) {
     super(props, context)
+    this.state = {
+      mapAggregation: 'region'
+    }
 
     this.initializeChart = this.initializeMap.bind(this)
     this.queryMapData = this.queryMapData.bind(this)
     this.drawMap = this.drawMap.bind(this)
     this.updateMap = this.updateMap.bind(this)
     this.handleDropdown = this.handleDropdown.bind(this)
+    this.handleMapAggregation = this.handleMapAggregation.bind(this)
   }
 
   componentDidMount () {
@@ -35,12 +40,13 @@ export class MapComponent extends React.Component {
   initializeMap () {
     const containerWidth = this.mapRef.getBoundingClientRect().width
     const mapWidth = containerWidth
-    const mapHeight = containerWidth / 2
+    const mapHeight = containerWidth / 2.4 // 2 gets us to plate carree, 2.4 cuts off antartica
 
     const baseProjectionScale = 152.63
     var projection = geoEquirectangular()
       .scale(baseProjectionScale / (960 / containerWidth))
       .translate([containerWidth / 2, containerWidth / 4])
+      .rotate([-11, 0, 0])
 
     var mapPath = geoPath(projection)
 
@@ -95,10 +101,10 @@ export class MapComponent extends React.Component {
     this.queryMapData(this.props.data)
   }
 
-  queryMapData (newData) {
+  queryMapData (newData, aggregation) {
     const mapQuery = Object.assign({}, newData, {
       encoding: {
-        x: { type: 'nominal', field: 'region' },
+        x: { type: 'nominal', field: aggregation || this.state.mapAggregation },
         y: { type: 'quantitative', field: 'Val' }
       }
     })
@@ -162,12 +168,12 @@ export class MapComponent extends React.Component {
           val: x.Val
         }
       }
-      obj['geometry']['coordinates'] = merge(this.world, _.filter(this.world.objects.natural_earth_50m.geometries, function (y) {
+      obj['geometry']['coordinates'] = merge(this.world, _.filter(this.world.objects.natural_earth_50m.geometries, y => {
         return _.includes(_.map(y.properties, function (z) {
           return z.replace(/ /g, '_').toLowerCase()
-        }), x.region)
+        }), x[this.state.mapAggregation])
       }))['coordinates']
-      obj['id'] = x.region
+      obj['id'] = x[this.state.mapAggregation]
       obj['type'] = 'Feature'
       return obj
     })
@@ -220,6 +226,11 @@ export class MapComponent extends React.Component {
     this.queryMapData(newData)
   }
 
+  handleMapAggregation (e) {
+    this.setState({ mapAggregation: e.target.value })
+    this.queryMapData(this.props.data, e.target.value)
+  }
+
   render () {
     const { data, name } = this.props
 
@@ -242,7 +253,7 @@ export class MapComponent extends React.Component {
       <figure className='map'>
         <h2 className='label--map'>{data.title}</h2>
         <figcaption>The map shows change in key output parameters from across geographies. Use dropdown menus to select desired commodity (or group) and parameters to display. Toggle buttons at top right allow different geographic aggregations. Hover over countries or regions to observe the actual results.</figcaption>
-        {Dropdowns}
+        {Dropdowns}<MapAggregationDropdown onChange={this.handleMapAggregation}/>
         <div className='map-container'>
           <div ref={(a) => { this.mapRef = a }} id='world-map'></div>
         </div>

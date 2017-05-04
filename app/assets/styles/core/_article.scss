@@ -67,7 +67,9 @@
   .bar-chart {
     .chart-container {
       height: 15rem;
+      width: 100%;
       min-width: 20rem;
+      float: left;
     }
   }
   .line-chart {
@@ -76,15 +78,26 @@
       height: 10rem;
       min-width: 15rem;
       max-width: 40rem;
+      float: left;
+    }
+  }
+  .stripe-chart {
+    .chart-container {
+      width: 90%;
+      height: 10rem;
+      min-width: 15rem;
+      max-width: 40rem;
+      float: left;
     }
   }
 }
+
 .map-figure {
   .map-dropdown {
     padding-top: 0;
     padding-bottom: 2em;
     margin: 0;
-    width: 40%;
+    width: 33%;
     float: left;
     clear: none;
   }
@@ -151,8 +164,9 @@
   margin-bottom: 3.5em;
   @extend .clearfix;
   .article-metadata__item {
+    margin-bottom: 1em;
     float: left;
-    width: 40%;
+    width: 30%;
     @include media(medium-down) {
       width: 100%;
       &:first-of-type {

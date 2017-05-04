@@ -16,8 +16,17 @@ const toTitleCase = (str) => {
 }
 
 const formatNumber = (number, label) => {
-  if (label) return Math.round(number[label]).toLocaleString()
-  return Math.round(number).toLocaleString()
+  if (label) number = number[label]
+  const isNegative = number < 0
+  number = Math.abs(number)
+  if (number) {
+    if (number < 0.01) number = number.toFixed(6)
+    if (number < 1 && number >= 0.01) number = number.toFixed(4)
+    if (number < 100 && number >= 1) number = number.toFixed(2)
+    if (number >= 100) number = Math.round(number)
+    if (isNegative) number = -number
+  }
+  return Number(number).toLocaleString()
 }
 
 const formatScenario = (scenario) => {

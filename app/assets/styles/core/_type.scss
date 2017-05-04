@@ -32,7 +32,7 @@ h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, 
   }
 }
 
-.header--xxlarge { 
+.header--xxlarge {
   font-size: 3.56em;
   font-weight: $header-light;
   line-height: 1.1em;
@@ -44,7 +44,7 @@ h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, 
   }
 }
 
-.header--xlarge { 
+.header--xlarge {
   font-size: 2.571em;
   font-weight: $header-light;
   @include media(medium-down) {
@@ -135,5 +135,80 @@ dt {
   p {
     font-size: .86em;
     color: $grey;
+  }
+}
+
+.previewer__output {
+  h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1rem;
+  }
+
+  p {
+    line-height: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: $base-font-light;
+  }
+
+  ul {
+    list-style: none;
+    margin-bottom: 1rem;
+    li {
+      list-style: none;
+      margin-left: 1rem;
+      strong {
+        font-weight: 800;
+      }
+      &::before {
+        content: '• ';
+        margin-right: 0.5rem;
+        color: $darkest-blue;;
+      }
+    }
+  }
+
+  h1 {
+     font-size: 2.571em;
+     font-weight: $header-light;
+     @include media(medium-down) {
+       font-size: 2.4em;
+     }
+     @include media(small-down) {
+       font-size: 2.2em;
+     }
+  }
+  h2 {
+    font-size: 2.28em;
+    font-weight: $header-light;
+    line-height: 1.3em;
+    @include media(medium-down) {
+      font-size: 2em;
+    }
+    @include media(small-down) {
+      font-size: 1.8em;
+    }
+
+  }
+  h3 {
+    font-size: 2em;
+    font-weight: $header-light;
+    @include media(medium-down) {
+      font-size: 1.8em;
+    }
+    @include media(small-down) {
+      font-size: 1.5em;
+    }
+  }
+  h4 {
+    font-size: 1.45em;
+    font-weight: $header-bold;
+    @include media(medium-down) {
+      font-size: 1.2em;
+    }
+  }
+  h5 {
+    font-size: 1.28em;
+  }
+  h6 {
+    font-size: 1rem;
   }
 }
