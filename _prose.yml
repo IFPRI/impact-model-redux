@@ -1,9 +1,5 @@
 metadata:
   app/assets/data/articles:
-    title:
-      element: text
-      label: Title of the article
-      type: text
     date:
       element: text
       label: Date of the article
