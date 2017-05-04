@@ -10,7 +10,7 @@ metadata:
       help: formatted as MM/DD/YYYY
       placeholder: 04/03/2017
       type: text
-    type: brief
+    type:
       element: select
       label: Type of Article
       help: Either Brief or Summary
