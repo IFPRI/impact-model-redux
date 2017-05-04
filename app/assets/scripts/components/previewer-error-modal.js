@@ -16,7 +16,7 @@ export class ErrorModal extends React.Component {
           transitionEnter={false}
           transitionLeave={false}>
           <div className='output__error-message'>
-            <h1>SYNTAX ERROR:</h1>
+            <h1>Syntax Error:</h1>
             <p>{error}</p>
           </div>
         </CSSTransitionGroup>
