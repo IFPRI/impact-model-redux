@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 import c from 'classnames'
 
 // Utils
-import { commaSeparate, cutAtWord } from '../utils/format'
+import { commaSeparate } from '../utils/format'
 import { translate } from '../utils/translation'
 
 export class ListArticleCard extends React.Component {
@@ -53,7 +53,7 @@ export class ListArticleCard extends React.Component {
           <div className='article-list-card__header'>
             <h4 className='header--small with-metadata'>{article.title}</h4>
             <span className='metadata-italic'>{(type === 'brief' ? `${translate(briefType)}   |   ` : '') + date}</span>
-            {(briefType === 'custom') ? <p className='article-list-card__body'>{`${cutAtWord(article.preview, 190)}`}</p> : ''}
+            {(briefType === 'custom') ? <p className='article-list-card__body'>{article.subtitle}</p> : ''}
           </div>
           <div className='article-list-card__meta'>
             {CardMeta}
