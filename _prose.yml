@@ -1,6 +1,10 @@
 prose:
   metadata:
     app/assets/data/articles:
+      - name: title
+        field:
+          element: text
+          label: Article Title
       - name: date
         field:
           element: text
