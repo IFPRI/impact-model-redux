@@ -1,6 +1,10 @@
 prose:
   metadata:
     app/assets/data/articles:
+      - name: title
+        field:
+          element: text
+          label: Article Title
       - name: date
         field:
           element: text
@@ -11,12 +15,12 @@ prose:
         field:
           element: select
           label: Type of Article
-          help: Either Brief or Summary
+          help: Either Brief or Scenario
           options:
             - name: 'Brief'
               value: 'brief'
-            - name: 'Summary'
-              value: 'summary'
+            - name: 'Scenario'
+              value: 'scenario'
       - name: briefType
         field:
           element: select
