@@ -161,6 +161,7 @@ export class Brief extends React.Component {
               <div className='home__header-split--left__content'>
                 <span className='header--type'>{translate(metadata.briefType)}</span>
                 <h2 className='header--xxlarge with-metadata'>{metadata.title}</h2>
+                <h4 className='header--medium'>{metadata.subtitle}</h4>
                 {AuthorAndDate}
               </div>
             </div>
