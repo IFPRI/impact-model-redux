@@ -1,0 +1,48 @@
+metadata:
+  articles:
+    title:
+      element: text
+      label: Title of the article
+      type: text
+    date:
+      element: text
+      label: Date of the article
+      help: formatted as MM/DD/YYYY
+      placeholder: 04/03/2017
+      type: text
+    type: brief
+      element: select
+      label: Type of Article
+      help: Either Brief or Summary
+      options:
+        - name: 'Brief'
+          value: 'brief'
+        - name: 'Summary'
+          value: 'summary'
+    briefType:
+      element: select
+      label: Type of Brief
+      help: Either Custom, Country Summary, or Commodity Summary
+      options:
+         - name: 'Custom'
+           value: 'brief'
+         - name: 'Country Summary'
+           value: 'country-summary'
+         - name: 'Commodity Summary'
+           value: 'commodity-summary'
+    project:
+      element: text
+      label: Project name
+      type: text
+    locations:
+      element: multiselect
+      label: Locations
+      alterable: true
+    scenarios:
+      element: multiselect
+      label: Scenarios
+      alterable: true
+    tags:
+      element: multiselect
+      label: Tags
+      alterable: true
