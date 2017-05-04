@@ -39,6 +39,11 @@ prose:
           element: multiselect
           label: Locations
           alterable: true
+      - name: commodities
+        field:
+          element: multiselect
+          label: Commodities
+          alterable: true
       - name: scenarios
         field:
           element: multiselect
