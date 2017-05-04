@@ -1,5 +1,5 @@
 metadata:
-  articles:
+  app/assets/data/articles:
     title:
       element: text
       label: Title of the article
