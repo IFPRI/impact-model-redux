@@ -123,21 +123,21 @@ export class Brief extends React.Component {
     const Locations = locations
     ? <div className='article-metadata__item'>
       <span className='article-metadata__header'>Related Locations:</span>
-      <ul>{locations.length > 1 ? locations.map(loc => <li key={loc}><a className='link__underline' href="" onClick={this.filteredLink.bind(this, loc)}>{translate(loc)}</a></li>) : <li><a href="" onClick={this.filteredLink.bind(this, locations)}>{translate(locations)}</a></li>}</ul>
+      <ul>{locations.map(loc => <li key={loc}><a className='link__underline' href="" onClick={this.filteredLink.bind(this, loc)}>{translate(loc)}</a></li>)}</ul>
     </div>
     : ''
 
     const Scenarios = scenarios
     ? <div className='article-metadata__item'>
       <span className='article-metadata__header'>Related Scenarios:</span>
-      <ul>{scenarios.length > 1 ? scenarios.map(s => <li key={s}><a className='link__underline' href={`/#/scenarios/${s.toLowerCase()}-summary`}>{translate(s)}</a></li>) : <li><a href={`/#/scenarios/${scenarios.toLowerCase()}-summary`}>{translate(scenarios)}</a></li>}</ul>
+      <ul>{scenarios.map(s => <li key={s}><a className='link__underline' href={`/#/scenarios/${s.toLowerCase()}-summary`}>{translate(s)}</a></li>)}</ul>
     </div>
     : ''
 
     const Resources = resources
     ? <div className='article-metadata__item'>
       <span className='article-metadata__header'>Related Resources:</span>
-      <ul>{resources.length > 1 ? resources.map(res => <li key={res}><a target="_blank" href={res}>{res}</a></li>) : <li><a target="_blank" href={resources}>{resources}</a></li>}</ul>
+      <ul>{resources.map(res => <li key={res}><a target="_blank" href={res}>{res}</a></li>)}</ul>
     </div>
     : ''
 

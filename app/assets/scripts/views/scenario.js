@@ -108,14 +108,14 @@ export class Scenario extends React.Component {
     const Locations = locations
     ? <div className='article-metadata__item'>
       <span className='article-metadata__header'>Locations:</span>
-      <ul>{locations.length > 1 ? locations.map((loc) => <li key={loc}>{translate(loc)}</li>) : <li>{translate(locations)}</li>}</ul>
+      <ul>{locations.map((loc) => <li key={loc}>{translate(loc)}</li>)}</ul>
     </div>
     : ''
 
     const Resources = resources
     ? <div className='article-metadata__item'>
       <span className='article-metadata__header'>Resources:</span>
-      <ul>{resources.length > 1 ? resources.map((res) => <li key={res}><a target="_blank" href={res}>{res}</a></li>) : <li><a target="_blank" href={resources}>{resources}</a></li>}</ul>
+      <ul>{resources.map((res) => <li key={res}><a target="_blank" href={res}>{res}</a></li>)}</ul>
     </div>
     : ''
 

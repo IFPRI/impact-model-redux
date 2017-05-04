@@ -12,7 +12,7 @@ export class ListArticleCard extends React.Component {
 
   toDictionaryDefintionArray (array) {
     return array && array.length
-      ? <dd>{array.length > 1 ? commaSeparate(array.map((a) => translate(a))) : translate(array[0])}</dd>
+      ? <dd>{commaSeparate(array.map((a) => translate(a)))}</dd>
       : ''
   }
 
