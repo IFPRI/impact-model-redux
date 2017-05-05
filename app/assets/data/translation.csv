@@ -1,0 +1,418 @@
+afg,Afghanistan
+ago,Angola
+alb,Albania
+arg,Argentina
+arm,Armenia
+aus,Australia
+aut,Austria
+aze,Azerbaijan
+animal_products,Animal Products
+anmlnumxagg,Animal Numbers
+anmlyldxagg,Animal Yield
+areaxagg,Area
+australia_and_new_zealand,Australia and New Zealand
+bdi,Burundi
+ben,Benin
+bfa,Burkina Faso
+bgd,Bangladesh
+bgr,Bulgaria
+blr,Belarus
+blt,Baltic States
+blx,Belgium-Luxembourg
+blz,Belize
+bol,Bolivia
+bra,Brazil
+btn,Bhutan
+bwa,Botswana
+caf,Central African Republic
+can,Canada
+chl,Chile
+chm,China
+chp,Switzerland plus
+civ,Ivory Coast
+cmr,Cameroon
+cod,Democratic Republic of the Congo
+cog,Republic of the Congo
+col,Colombia
+crb,Other Caribbean
+cri,Costa Rica
+cub,Cuba
+cyp,Cyprus
+cze,Czech Republic
+caribbean,Caribbean
+central_america,Central America
+central_asia,Central Asia
+cereals,Cereals
+deu,Germany
+dji,Djibouti
+dnk,Denmark
+dom,Dominican Republic
+dza,Algeria
+ecu,Ecuador
+egy,Egypt
+eri,Eritrea
+eth,Ethiopia
+eastern_africa,Eastern Africa
+eastern_asia,Eastern Asia
+eastern_europe,Eastern Europe
+fji,Fiji
+fnp,Finland Plus
+frp,France plus
+foodavailxagg,Food Availability
+food_oils,Food Oils
+fruits_vegetables,Fruits and Vegetables
+gab,Gabon
+gdpxagg,Income
+geo,Georgia
+gha,Ghana
+gin,Guinea
+gmb,Gambia
+gnb,Guinea Bissau
+gnq,Equatorial Guinea
+grc,Greece
+grl,Denmark
+gsa,Guyanas South America
+gtm,Guatemala
+hnd,Honduras
+hrv,Croatia
+hti,Haiti
+hun,Hungary
+idn,Indonesia
+ind,India
+irl,Ireland
+irn,Iran
+irq,Iraq
+isl,Iceland
+isr,Israel
+itp,Italy plus
+jam,Jamaica
+jor,Jordan
+jpn,Japan
+kaz,Kazakhstan
+ken,Kenya
+kgz,Kyrgyzstan
+khm,Cambodia
+kor,South Korea
+lao,Laos
+lbn,Lebanon
+lbr,Liberia
+lby,Libya
+lka,Sri Lanka
+lso,Lesotho
+mda,Moldova
+mdg,Madagascar
+mex,Mexico
+mli,Mali
+mmr,Myanmar
+mng,Mongolia
+mor,Morocco
+moz,Mozambique
+mrt,Mauritania
+mwi,Malawi
+mys,Malaysia
+melanesia,Melanesia
+middle_africa,Middle Africa
+nam,Namibia
+ner,Niger
+nga,Nigeria
+nic,Nicaragua
+nld,Netherlands
+nor,Norway
+npl,Nepal
+nzl,New Zealand
+northern_africa,Northern Africa
+northern_america,Northern America
+northern_europe,Northern Europe
+oao,Other Atlantic Ocean
+obn,Other Balkans
+oio,Other Indian Ocean
+opo,Other Pacific Ocean
+osa,Other Southeast Asia
+oil_meals,Oil Meals
+oils,Oils
+oils_seeds,Oil Seeds
+other,Other
+pak,Pakistan
+pan,Panama
+per,Peru
+phl,Philippines
+png,Papua New Guinea
+pol,Poland
+ppxagg,Producer Prices
+prk,North Korea
+prt,Portugal
+pry,Paraguay
+pse,Occupied Palestinian Territory
+pwxagg,World Prices
+percapkcalxagg,Per Capita Calories
+polynesia,Polynesia
+popxagg,Population
+pulses,Pulses
+qdxagg,Total Demand
+qfxagg,Household Demand
+qlxagg,Livestock Feed Demand
+qnxagg,Net Trade
+qsupxagg,Commodity Supply
+rap,Rest of Arab Peninsula
+rou,Romania
+rus,Russia
+rwa,Rwanda
+roots_tubers,Roots and Tubers
+sau,Saudi Arabia
+sdn,Sudan
+sen,Senegal
+slb,Solomon Islands
+sle,Sierra Leone
+slv,El Salvador
+som,Somalia
+spp,Spain plus
+ssd,South Sudan
+svk,Slovakia
+svn,Slovenia
+swe,Sweden
+swz,Swaziland
+syr,Syria
+south_america,South America
+south_eastern_asia,South Eastern Asia
+southern_africa,Southern Africa
+southern_asia,Southern Asia
+southern_europe,Southern Europe
+sugar,Sugar
+tareaxagg,Total Area
+tcd,Chad
+tgo,Togo
+tha,Thailand
+tjk,Tajikistan
+tkm,Turkmenistan
+tls,East Timor
+tun,Tunisia
+tur,Turkey
+tyldxagg,Total Yield
+tza,United Republic of Tanzania
+uga,Uganda
+ukp,Great Britain plus
+ukr,Ukraine
+ury,Uruguay
+usa,United States of America
+uzb,Uzbekistan
+ven,Venezuela
+vnm,Vietnam
+vut,Vanuatu
+western_africa,Western Africa
+western_asia,Western Asia
+western_europe,Western Europe
+yem,Yemen
+yldxagg,Yield
+zaf,South Africa
+zmb,Zambia
+zwe,Zimbabwe
+africa,Africa
+americas,Americas
+antartic_region,Antartic Region
+asia,Asia
+bana,Bananas
+barl,Barley
+baseline,IMPACT Baseline
+bean,Beans
+beef,Cattle
+cafe,Coffee
+cass,Cassava and Other Roots & Tubers
+chkp,Chickpeas
+coco,Cocoa
+cott,Cotton
+cowp,Cowpeas
+eggs,Eggs
+europe,Europe
+fodr,Fodders
+gdml,Groundnut Meal
+gdol,Groundnut Oil
+global-futures,Global Futures
+grnd,Groundnuts
+grss,Grass
+impactparameter,Impact Parameter
+lamb,Sheep and Goats
+lent,Lentils
+maiz,Maize
+milk,Dairy
+mill,Millet
+oceania,Oceania
+ocer,Other Cereals
+opul,Other Pulses
+orat,Other Roots & Tubers
+othr,Other Crops
+palm,Oil Palm Fruit
+pcgdpxagg,Per Capita Income
+pigp,Pigeonpeas
+pkml,Palm Kernal Meal
+pkol,Palm Kernal Oil
+pkrl,Palm Kernal
+plnt,Plantains
+plol,Palm Oil
+populationatriskxagg,Population at Risk of Hunger
+pork,Pigs
+pota,Potato
+poul,Poultry
+pstr,Pasture
+qeshxagg ,Export Share of Production
+qmshxagg,Import Share of Demand
+qnsh1xagg ,Net Trade Share of Demand
+rice,Rice
+rpml,Rapeseed Meal
+rpol,Rapeseed Oil
+rpsd,Rapeseed
+sbml,Soybean Meal
+sbol,Soybean Oil
+sfml,Sunflower Meal
+sfol,Sunflower Oil
+snfl,Sunflower Seeds
+sorg,Sorghum
+soyb,Soybeans
+ssp2_gfdl,SSP2-GFDL
+ssp2_hgem,SSP2-HGEM
+ssp2_ipsl,SSP2-IPSL
+ssp2_miroc,SSP2-MIROC
+ssp2_nocc,SSP2-NoCC
+subf,(Sub)-Tropical Fruits
+sugb,Sugarbeet
+sugc,Sugarcane
+sugr,Refined Sugar
+swpt,Sweet Potatoes
+teas,Tea
+temf,Temperate Fruits
+tols,Total Other Oilseeds
+toml,Total Other Oilseed Meal
+tool,Total Other Oils
+totalmalnourishedxagg,Total Malnourished Children
+vege,Vegetables
+whea,Wheat
+yams,Yams
+giwd_s_cty,Groundwater
+totalsupply_cty,Total Water Supply
+wcd_s_cty,Water Demand
+wci_s_cty,Water Irrigation
+wcl_s_cty,Water Rainfed
+abw,Netherlands
+aia,United Kingdom
+ald,Finland
+and,Andorra
+are,United Arab Emirates
+asm,United States of America
+ata,Antarctica
+atc,Australia
+atf,France
+atg,Antigua and Barbuda
+bel,Belgium
+bhr,Bahrain
+bhs,The Bahamas
+bih,Bosnia and Herzegovina
+blm,France
+bmu,United Kingdom
+brb,Barbados
+brn,Brunei
+che,Switzerland
+clp,France
+cnm,Cyprus No Mans Area
+cok,New Zealand
+com,Comoros
+cpv,Cape Verde
+csi,Australia
+cuw,Netherlands
+cym,United Kingdom
+cyn,Northern Cyprus
+dma,Dominica
+esb,United Kingdom
+esp,Spain
+est,Estonia
+fin,Finland
+flk,United Kingdom
+fra,France
+fro,Denmark
+fsm,Federated States of Micronesia
+gaz,Palestine
+gbr,United Kingdom
+ggy,United Kingdom
+gib,United Kingdom
+grd,Grenada
+gum,United States of America
+guy,Guyana
+hkg,China
+hmd,Australia
+imn,United Kingdom
+ioa,Australia
+iot,United Kingdom
+ita,Italy
+jey,United Kingdom
+kab,Kazakhstan
+kas,Kashmir
+kir,Kiribati
+kna,Saint Kitts and Nevis
+knm,Korea No Mans Area
+kos,Kosovo
+kwt,Kuwait
+lca,Saint Lucia
+lie,Liechtenstein
+ltu,Lithuania
+lux,Luxembourg
+lva,Latvia
+mac,China
+maf,France
+mar,Morocco
+mco,Monaco
+mdv,Maldives
+mhl,Marshall Islands
+mkd,Macedonia
+mlt,Malta
+mne,Montenegro
+mnp,United States of America
+msr,United Kingdom
+mus,Mauritius
+ncl,France
+nfk,Australia
+niu,New Zealand
+nru,Nauru
+omn,Oman
+pcn,United Kingdom
+plw,Palau
+pri,United States of America
+pyf,France
+qat,Qatar
+sah,Western Sahara
+sds,South Sudan
+sgp,Singapore
+sgs,United Kingdom
+shn,United Kingdom
+smr,San Marino
+sol,Somaliland
+spm,France
+srb,Republic of Serbia
+stp,Sao Tome and Principe
+sur,Suriname
+sxm,Netherlands
+syc,Seychelles
+tca,United Kingdom
+ton,Tonga
+tto,Trinidad and Tobago
+tuv,Tuvalu
+twn,Taiwan
+umi,United States of America
+usg,Cuba
+vat,Vatican
+vct,Saint Vincent and the Grenadines
+vgb,United Kingdom
+vir,United States of America
+web,Palestine
+wlf,France
+wsb,United Kingdom
+wsm,Samoa
+agg_continent,continent
+agg_subcontinent,sub-continent
+custom,Custom
+country-summary,Country Summary
+commodity-summary,Commodity Summary
+agg_commodity,Commodity Group
+SSP2_GFDL,SSP2_GFDL
+SSP2_HGEM,SSP2_HGEM
+SSP2_MIROC,SSP2_MIROC
+SSP2_IPSL,SSP2_IPSL
+SSP2_NOCC,SSP2_NOCC
+Val,Value
