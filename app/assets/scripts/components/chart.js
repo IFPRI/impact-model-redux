@@ -112,6 +112,18 @@ export class Chart extends React.Component {
       chart.options.cutoutPercentage = 60
     }
 
+    const axes = ['x', 'y']
+    axes.forEach((axis) => {
+      if (data.encoding[axis].field !== 'Val' && !isPieChart) {
+        chart.options.scales[axis + 'Axes'][0].scaleLabel = {
+          display: true,
+          labelString: translate(data.encoding.x.field),
+          fontColor: '#9E9E9E',
+          fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+        }
+      }
+    })
+
     const aggregation = data.encoding.x.field
     const scenarios = data.scenarios || DEFAULT_SCENARIO
     queryDatabase(data, scenarios)
