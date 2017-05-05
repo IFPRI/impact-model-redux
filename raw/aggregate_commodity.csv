@@ -1,0 +1,61 @@
+Group,Commodity
+Animal Products,beef
+Animal Products,eggs
+Animal Products,lamb
+Animal Products,milk
+Animal Products,pork
+Animal Products,poul
+Cereals,maiz
+Cereals,barl
+Cereals,mill
+Cereals,ocer
+Cereals,rice
+Cereals,sorg
+Cereals,whea
+Fruits Vegetables,bana
+Fruits Vegetables,plnt
+Fruits Vegetables,subf
+Fruits Vegetables,temf
+Fruits Vegetables,vege
+Oils Seeds,grnd
+Food Oils,gdol
+Oil Meals,gdml
+Oils Seeds,palm
+Food Oils,plol
+Oils Seeds,pkrl
+Food Oils,pkol
+Oil Meals,pkml
+Oils Seeds,rpsd
+Food Oils,rpol
+Oil Meals,rpml
+Oils Seeds,soyb
+Food Oils,sbol
+Oil Meals,sbml
+Oils Seeds,snfl
+Food Oils,sfol
+Oil Meals,sfml
+Oils Seeds,tols
+Food Oils,tool
+Oil Meals,toml
+Other,cafe
+Other,coco
+Other,cott
+Other,fodr
+Other,othr
+Other,pstr
+Other,grss
+Other,teas
+Pulses,bean
+Pulses,chkp
+Pulses,cowp
+Pulses,lent
+Pulses,opul
+Pulses,pigp
+Roots Tubers,cass
+Roots Tubers,orat
+Roots Tubers,pota
+Roots Tubers,swpt
+Roots Tubers,yams
+Sugar,sugb
+Sugar,sugc
+Sugar,sugr
