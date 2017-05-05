@@ -56,21 +56,21 @@ export class App extends React.Component {
               name={name}
               data={data}
               scenarios={scenarios}
-              updatePreviewerChart={this.updatePreviewerChart}
+              updateChart={this.updatePreviewerChart}
               dispatch={this.props.dispatch}/>, placeholder)
           } else if (data.mark === 'grouped-bar') {
             ReactDOM.render(<ChartGroupedBar
               name={name}
               data={data}
               scenarios={scenarios}
-              updatePreviewerChart={this.updatePreviewerChart}
+              updateChart={this.updatePreviewerChart}
               dispatch={this.props.dispatch}/>, placeholder)
           } else {
             ReactDOM.render(<Chart
               name={name}
               data={data}
               scenario={scenarios}
-              updatePreviewerChart={this.updatePreviewerChart}
+              updateChart={this.updatePreviewerChart}
               dispatch={this.props.dispatch}/>, placeholder)
           }
         }

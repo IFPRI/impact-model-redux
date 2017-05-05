@@ -167,7 +167,7 @@ export class Chart extends React.Component {
     const dropdown = e.target.id
     const newData = _.cloneDeep(this.props.data)
     newData[dropdown].values = [valueToFront, ...this.props.data[dropdown].values.filter(a => a !== valueToFront)]
-    this.props.updatePreviewerChart(newData, this.props.name)
+    this.props.updateChart(newData, this.props.name)
     this.updateQuery(newData)
   }
 
@@ -211,7 +211,7 @@ Chart.propTypes = {
   dispatch: PropTypes.func,
   name: PropTypes.string,
   data: PropTypes.object,
-  updatePreviewerChart: PropTypes.func
+  updateChart: PropTypes.func
 }
 
 export default Chart

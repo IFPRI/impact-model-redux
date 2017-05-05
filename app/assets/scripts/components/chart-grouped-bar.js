@@ -149,7 +149,7 @@ export class ChartGroupedBar extends React.Component {
     const dropdown = e.target.id
     const newData = _.cloneDeep(this.props.data)
     newData[dropdown].values = [valueToFront, ...this.props.data[dropdown].values.filter(a => a !== valueToFront)]
-    this.props.updatePreviewerChart(newData, this.props.name)
+    this.props.updateChart(newData, this.props.name)
     this.updateQuery(newData)
   }
 
@@ -188,7 +188,7 @@ ChartGroupedBar.propTypes = {
   name: PropTypes.string,
   data: PropTypes.object,
   scenarios: PropTypes.array,
-  updatePreviewerChart: PropTypes.func
+  updateChart: PropTypes.func
 }
 
 export default ChartGroupedBar
