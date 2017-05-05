@@ -1,6 +1,6 @@
-ifpri-impact-redux
+IFPRI IMPACT Model website
 
-A narrative-driven site for sharing the results of IFPRI Impact model runs, which seek to consider the long term challenges facing policymakers in reducing hunger, and poverty in a sustainable fashion.
+A narrative-driven site for sharing the results of IFPRI IMPACT model runs, which seek to consider the long term challenges facing policymakers in reducing hunger and poverty in a sustainable fashion.
 
 ## Development environment
 To set up the development environment for this website, you'll need to install the following on your system:
