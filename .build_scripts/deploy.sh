@@ -12,6 +12,7 @@ SHA=`git rev-parse --verify HEAD`
 git init
 git config user.name "Travis-CI"
 git config user.email "travis@example.com"
+touch .nojekyll
 git add .
 git commit -m "CI deploy to master ${SHA}"
 git show-ref
