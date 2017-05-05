@@ -3,6 +3,7 @@ from elasticsearch.exceptions import ConnectionError, TransportError
 import sys
 import argparse
 
+
 class Deletor(object):
 
     def __init__(self, url, index, username, password):
@@ -14,11 +15,11 @@ class Deletor(object):
                                 connection_class=RequestsHttpConnection)
 
     def delete(self, type):
-        ## make sure index exists
+        # make sure index exists
         indice = client.IndicesClient(self.es)
         try:
             if indice.exists(self.es_main_index):
-            ## if type is 'all' delete everything
+                # if type is 'all' delete everything
                 if type == 'all':
                     try:
                         indice.delete(index=self.es_main_index)
@@ -26,8 +27,8 @@ class Deletor(object):
                         return True
                     except ConnectionError:
                         print('There was a connection error. Check your Elastic' +
-                        ' Search setting and make sure Elastic Search is' +
-                        'running.')
+                              ' Search setting and make sure Elastic Search is' +
+                              'running.')
                         return False
                 elif type:
                     try:
@@ -37,8 +38,8 @@ class Deletor(object):
                             return True
                     except ConnectionError:
                         print('There was a connection error. Check your Elastic' +
-                        ' Search setting and make sure Elastic Search is' +
-                        'running.')
+                              ' Search setting and make sure Elastic Search is' +
+                              'running.')
                         return False
         except TransportError:
             print('Incorrect username or password')
@@ -56,10 +57,10 @@ if __name__ == "__main__":
     to_delete = args.scenario or args.delete_all
 
     d = Deletor(
-    'https://82e66fb22a73abdaa81040f2abdc298f-us-east-1.foundcluster.com:9243/',
-    'ifpri',
-    args.username,
-    args.password
+        'https://ad21a5a8cb0789e9b73c2142d3c83e43.us-east-1.aws.found.io:9243/',
+        'ifpri',
+        args.username,
+        args.password
     )
 
     d.delete(to_delete)
