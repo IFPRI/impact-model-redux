@@ -49,7 +49,7 @@ export class BrowseFilters extends React.Component {
       // generate list of regions
       this.filters.push({
         name: 'Locations',
-        list: _.uniq(_.flatten(Object.values(locationAggregation).map(loc => Object.values(loc)))
+        list: _.uniq(_.flatten(_.values(locationAggregation).map(loc => _.values(loc)))
           .filter(Boolean).map(translate)).sort(),
         type: 'autocomplete'
       })
