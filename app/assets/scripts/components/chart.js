@@ -16,7 +16,6 @@ import queryDatabase from '../utils/query-database'
 
 // Constants
 import { fourteenColorPalette } from '../constants'
-const DEFAULT_SCENARIO = ['SSP2_GFDL']
 
 export class Chart extends React.Component {
   constructor (props, context) {
@@ -125,12 +124,10 @@ export class Chart extends React.Component {
     })
 
     const aggregation = data.encoding.x.field
-    const scenarios = data.scenarios || DEFAULT_SCENARIO
-    queryDatabase(data, scenarios)
+    queryDatabase(data)
     .then((chartData) => {
-      chart.data.datasets[0].label = data.scenarios
       // sort data alphabetically by label
-      const dataset = chartData[0].values.map((item) => {
+      const dataset = chartData.values.map((item) => {
         return {
           data: item.Val,
           label: translate(item[aggregation]) || item[aggregation]
@@ -159,10 +156,9 @@ export class Chart extends React.Component {
 
   updateQuery (newData) {
     const aggregation = newData.encoding.x.field
-    const scenarios = newData.scenarios || DEFAULT_SCENARIO
-    queryDatabase(newData, scenarios)
+    queryDatabase(newData)
     .then((chartData) => {
-      const chart = chartData[0].values.map((item) => {
+      const chart = chartData.values.map((item) => {
         return {
           data: item.Val,
           label: translate(item[aggregation]) || item[aggregation]

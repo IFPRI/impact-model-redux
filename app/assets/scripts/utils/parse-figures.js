@@ -17,9 +17,6 @@ export const setupRenderer = (dispatch, previewer) => {
       data.id = id
       // convert dropdown values from string to array
       Object.keys(data).forEach(dataKey => {
-        if (dataKey.match(/scenarios/)) {
-          data[dataKey] = data[dataKey].split(',').map(a => a.trim().toUpperCase())
-        }
         if (dataKey.match(/dropdown/)) {
           data[dataKey].values = data[dataKey].values.split(',').map(a => a.trim())
         }
