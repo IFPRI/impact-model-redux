@@ -44,7 +44,7 @@ const performQuery = (data, sourceID) => {
   let val = data.encoding.y.field
   // request the data and parse the response for our graph format
   const postData = JSON.stringify(sqltoes({select: [`sum(${val})`], where: where, groupBy: groupBy}))
-  return fetch(`${config.dbUrl}/${sourceID.toLowerCase()}/_search?search_type=count`, {
+  return fetch(`${config.dbUrl}/${sourceID.toLowerCase()}/_search`, {
     method: 'post',
     body: postData})
   .then((resp) => resp.json())
