@@ -115,7 +115,6 @@ export class ChartGroupedBar extends React.Component {
       }
 
       series.forEach((serie, i) => {
-        console.log(serie);
         chart.data.datasets.push({
           data: [],
           label: serie[0][secondaryGrouping]
@@ -142,26 +141,25 @@ export class ChartGroupedBar extends React.Component {
   }
 
   updateQuery (newData) {
-    const data = this.props.data
-    const scenarios = data.scenarios
-    const aggregation = data.encoding.x.field
-    queryDatabase(newData, scenarios)
+    const series = []
+    queryDatabase(newData)
     .then((chartData) => {
-      this.chart.data.datasets = []
-      this.chart.data.labels = []
-      chartData.forEach((data, i) => {
-        this.chart.data.datasets.push({})
-        data.values.forEach((record) => {
-          const label = translate(record[aggregation] || record[aggregation])
-          if (i === 0) {
-            this.chart.data.labels.push(label)
-          }
-          this.chart.data.datasets[i].label = formatScenario(data.source)
-          this.chart.data.datasets[i].backgroundColor = fourteenColorPalette[i]
-          if (!this.chart.data.datasets[i].data) {
-            this.chart.data.datasets[i].data = []
-          }
-          this.chart.data.datasets[i].data.push(record.Val)
+      const secondaryGrouping = chartData.secondaryGrouping
+      if (secondaryGrouping) {
+        const seriesValues = _.uniq(chartData.values.map(v => v[secondaryGrouping]))
+        seriesValues.forEach(sv => {
+          series.push(chartData.values.filter(v => v[secondaryGrouping] === sv))
+        })
+      } else {
+        // with no series, don't use a legend
+        series.push(chartData.values)
+        this.chart.options.legend.display = true
+      }
+
+      series.forEach((serie, i) => {
+        this.chart.data.datasets[i].data = []
+        _.forEach(serie, item => {
+          this.chart.data.datasets[i].data.push(item.Val)
         })
       })
 
