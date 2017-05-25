@@ -118,11 +118,16 @@ export class ChartLine extends React.Component {
         series.push(chartData.values)
         chart.options.legend.display = true
       }
+      // order according to shown
+      const isSerieShown = serie => {
+        return data.mark !== 'stripe' ||
+        (data.series && data.series.shown &&
+        data.series.shown.includes(serie[0][secondaryGrouping]))
+      }
+      series.sort((a, b) => isSerieShown(a) ? -1 : 1)
 
       series.forEach((serie, i) => {
         // determines if the line is shown
-        const shown = (data.mark === 'stripe' && data.series && data.series.shown &&
-            data.series.shown.includes(serie[0][secondaryGrouping]))
         chart.data.datasets.push({
           data: [],
           label: translate(serie[0][secondaryGrouping]) || serie[0][secondaryGrouping],
@@ -140,7 +145,7 @@ export class ChartLine extends React.Component {
         chart.data.datasets[i].borderColor = lineColor
 
         // hide non-selected series for stripe
-        if (!shown) {
+        if (!isSerieShown(serie)) {
           chart.data.datasets[i].borderColor = 'rgba(0, 0, 0, 0)'
           chart.data.datasets[i].pointBackgroundColor = 'rgba(0, 0, 0, 0)'
         }
