@@ -113,3 +113,4 @@ tmp
 .tmp
 dist
 .nyc_output
+raw/scenarios
