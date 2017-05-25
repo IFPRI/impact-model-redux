@@ -127,64 +127,14 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: maiz
-  _type: ssp2_gfdl
-dropdown:
-  field: impactparameter
-  values: qfxagg, qdxagg\`\`\``
-  }, {
-    type: 'pie',
-    displayName: 'Pie',
-    description: 'Compare relative parameter values',
-    markup: `\`\`\`chart
-mark: pie
-title: Example Pie Chart
-width: 45rem
-legend: bottom
-encoding:
-  x:
-    type: nominal
-    field: agg_commodity
-  y:
-    type: quantitative
-    field: Val
-fixed:
-  agg_commodity: cer, amt, f&v, ols, oil, mls, other, pul, r&t, sgr
-  _type: ssp2_gfdl
+  commodity: cer-maize
 dropdown:
   field: impactparameter
   values: qfxagg, qdxagg
-change:
-  field: year
-  values: 2015, 2050
-  type: percent\`\`\``
-  }, {
-    type: 'doughnut',
-    displayName: 'Doughnut',
-    description: 'Compare relative parameter values',
-    markup: `\`\`\`chart
-mark: doughnut
-title: Example Doughnut Chart
-width: 32rem
-legend: left
-encoding:
-  x:
-    type: nominal
-    field: agg_commodity
-  y:
-    type: quantitative
-    field: Val
-fixed:
-  agg_commodity: cer, amt, f&v, ols, oil, mls, other, pul, r&t, sgr
-  _type: ssp2_gfdl
-dropdown:
-  field: impactparameter
-  values: qfxagg, qdxagg
-change:
-  field: year
-  values: 2015, 2050
-  type: percent\`\`\``
-
+series:
+  field: _type
+  values: ssp2_gfdl, ssp2_hgem
+  \`\`\``
   }, {
     type: 'horizontalBar',
     displayName: 'Horizontal Bar',

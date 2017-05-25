@@ -7,7 +7,7 @@ if (typeof window === 'undefined') global.window = {}
 const ChartJS = require('chart.js')
 
 // Actions
-import { updateError } from '../actions'
+import { updatePreviewerError } from '../actions'
 
 // Utils
 import { formatNumber } from '../utils/format'
@@ -27,92 +27,13 @@ export class ChartLine extends React.Component {
   }
 
   componentDidMount () {
-    ChartJS.defaults.stripe = ChartJS.helpers.clone(ChartJS.defaults.line)
-    ChartJS.controllers.stripe = ChartJS.controllers.line.extend({
-      draw: function (ease) {
-        const result = ChartJS.controllers.line.prototype.draw.apply(this, arguments)
-        const widths = this.getDataset().width
-
-        const isStripe = this.getDataset().lineType === 'stripe'
-        if (!isStripe || !widths) {
-          return
-        }
-        this.rendered = true
-
-        const helpers = ChartJS.helpers
-        const meta = this.getMeta()
-        const yScale = this.getScaleForId(meta.yAxisID)
-        const yScaleZeroPixel = yScale.getPixelForValue(0)
-        const ctx = this.chart.chart.ctx
-
-        ctx.save()
-        ctx.fillStyle = this.getDataset().backgroundColor
-        ctx.lineWidth = 1
-        ctx.beginPath()
-
-        // initialize the data and bezier control points for the top of the stripe
-        helpers.each(meta.data, (point, index) => {
-          point._view.y += (yScale.getPixelForValue(widths[index]) - yScaleZeroPixel)
-        })
-        ChartJS.controllers.line.prototype.updateBezierControlPoints.apply(this)
-
-        // draw the top of the stripe
-        helpers.each(meta.data, (point, index) => {
-          if (index === 0) {
-            ctx.moveTo(point._view.x, point._view.y)
-          } else {
-            const previous = helpers.previousItem(meta.data, index)
-            const next = helpers.nextItem(meta.data, index)
-
-            ctx.lineTo(
-              ctx, previous, next, null)
-          }
-        })
-
-        // revert the data for the top of the stripe
-        // initialize the data and bezier control points for the bottom of the stripe
-        helpers.each(meta.data, (point, index) => {
-          point._view.y -= 2 * (yScale.getPixelForValue(widths[index]) - yScaleZeroPixel)
-        })
-        // we are drawing the points in the reverse direction
-        meta.data.reverse()
-        ChartJS.controllers.line.prototype.updateBezierControlPoints.apply(this)
-
-        // draw the bottom of the stripe
-        helpers.each(meta.data, (point, index) => {
-          if (index === 0) {
-            ctx.lineTo(point._view.x, point._view.y)
-          } else {
-            const previous = helpers.previousItem(meta.data, index)
-            const next = helpers.nextItem(meta.data, index)
-
-            ctx.lineTo(ctx, previous, next, null)
-          }
-        })
-
-        // revert the data for the bottom of the stripe
-        meta.data.reverse()
-        helpers.each(meta.data, (point, index) => {
-          point._view.y += (yScale.getPixelForValue(widths[index]) - yScaleZeroPixel)
-        })
-        ChartJS.controllers.line.prototype.updateBezierControlPoints.apply(this)
-
-        ctx.stroke()
-        ctx.closePath()
-        ctx.fill()
-        ctx.restore()
-
-        return result
-      }
-    })
-
     this.initializeChart()
   }
 
   initializeChart () {
     const { name, data } = this.props
     let chart = {
-      type: data.mark,
+      type: 'line',
       options: {
         responsive: true,
         maintainAspectRatio: false,
@@ -201,8 +122,9 @@ export class ChartLine extends React.Component {
       series.forEach((serie, i) => {
         chart.data.datasets.push({
           data: [],
-          label: serie[0][secondaryGrouping],
-          fill: false,
+          label: translate(serie[0][secondaryGrouping]) || serie[0][secondaryGrouping],
+          fill: data.mark === 'stripe' ? i + 1 : false,
+          backgroundColor: stripeChartFill,
           borderWidth: 4,
           pointBackgroundColor: '#fff',
           pointBorderWidth: 2,
@@ -213,6 +135,12 @@ export class ChartLine extends React.Component {
 
         const lineColor = series.length === 1 ? oneColorPalette : fourteenColorPalette[i % 14]
         chart.data.datasets[i].borderColor = lineColor
+
+        // hide non-selected (not first) series for stripe
+        if (data.mark === 'stripe' && i !== 0) {
+          chart.data.datasets[i].borderColor = 'rgba(0, 0, 0, 0)'
+          chart.data.datasets[i].pointBackgroundColor = 'rgba(0, 0, 0, 0)'
+        }
         const aggregation = data.encoding.x.field
         _.forEach(serie, item => {
           if (i === 0) {
@@ -221,27 +149,13 @@ export class ChartLine extends React.Component {
           chart.data.datasets[i].data.push(item.Val)
         })
       })
-
-      if (data.mark === 'stripe') {
-        chart = this.addStripe(chart, chartData)
-      }
       try {
         this.chart = new ChartJS(
           document.getElementById(name).getContext('2d'),
           chart
         )
       } catch (err) {
-        this.props.dispatch(updateError(err))
-      }
-
-      // for stripe chart type, disable tooltips over the area's centerline
-      const originalGetElementAtEvent = this.chart.getElementAtEvent
-      this.chart.getElementAtEvent = function () {
-        return originalGetElementAtEvent.apply(this, arguments).filter((e) => {
-          if (e._datasetIndex !== chartData.length) {
-            return true
-          }
-        })
+        this.props.dispatch(updatePreviewerError(err))
       }
     })
   }
@@ -269,50 +183,8 @@ export class ChartLine extends React.Component {
         })
       })
 
-      if (newData.mark === 'stripe') {
-        const stripe = this.getStripeParams(chartData)
-        nextData[scenarios.length].width = stripe.width
-        nextData[scenarios.length].data = stripe.centerline
-      }
-
       this.chart.update()
     })
-  }
-
-  addStripe (chart, chartData, scenarios) {
-    chart.data.datasets.push({
-      fill: false,
-      backgroundColor: stripeChartFill,
-      borderColor: 'rgba(0, 0, 0, 0)',
-      pointRadius: 0,
-      pointHoverBackgroundColor: 'rgba(0, 0, 0, 0)',
-      pointHitRadius: 0,
-      label: 'Range, All Scenarios',
-      lineType: 'stripe'
-    })
-    const stripe = this.getStripeParams(chartData)
-    chart.data.datasets[scenarios.length].width = stripe.width
-    chart.data.datasets[scenarios.length].data = stripe.centerline
-
-    return chart
-  }
-
-  getStripeParams (chartData) {
-    let positionValues = []
-    for (let i = 0; i < chartData[0].values.length; i++) {
-      positionValues.push(chartData.map((dataset) => {
-        return dataset.values[i] ? dataset.values[i].Val : null
-      }))
-    }
-    positionValues = positionValues.filter((value) => value)
-    const lineWidth = positionValues.map((values) => _.max(values) - _.min(values))
-    const centerline = positionValues.map((group) => {
-      return group.reduce((a, b) => a + b) / group.length
-    })
-    return {
-      width: lineWidth,
-      centerline: centerline
-    }
   }
 
   handleDropdown (e) {
