@@ -30,7 +30,7 @@ with open('file_scenario.csv', 'rU') as pt:
 
 # create aggregation/mapping files
 agg_map = {}
-with open('aggregate_commodity.csv', 'rb') as f:
+with open('aggregate_commodity.csv', 'rU') as f:
     freader = csv.reader(f)
     for row in freader:
         agg_map[row[1]] = row[0]
@@ -40,8 +40,8 @@ sc_map = {}
 with open('aggregate_region.csv', 'rU') as c:
     creader = csv.reader(c)
     for row in creader:
-        c_map[row[1]] = row[2]
-        sc_map[row[1]] = row[3]
+        c_map[row[0]] = row[1]
+        sc_map[row[0]] = row[2]
 
 
 print 'creating ' + str(len(all_files)) + ' files'
@@ -55,12 +55,17 @@ for file in all_files:
         for row in creader:
             data.append(row)
     for d in data:
+        # for impactparameter, anything after the first space is removed
         d[0] = re.sub(' .*', '', d[0])
-        d[2] = d[2][1::]
+
+        # if we have a matching commodity, insert the commodity aggregation
+        # substitute underscores for spaces
         if d[2] in agg_map:
             d.append(re.sub(' ', '_', agg_map[d[2]]))
         else:
             d.append('')
+        # if we have a matching region, insert the continent and subcontinent
+        # sbustitute underscores for spaces and dashes
         if d[3] in c_map:
             d.append(re.sub(' |-', '_', c_map[d[3]]))
             d.append(re.sub(' |-', '_', sc_map[d[3]]))
@@ -73,6 +78,7 @@ for file in all_files:
         # eliminate column 1 (scenario) since it is already the file name
         d.pop(1)
 
+    # insert header row
     data.insert(0, ['impactparameter', 'commodity', 'region', 'year', 'Val',
                     'agg_commodity', 'agg_continent', 'agg_subcontinent'])
 
