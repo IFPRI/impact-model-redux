@@ -120,10 +120,13 @@ export class ChartLine extends React.Component {
       }
 
       series.forEach((serie, i) => {
+        // determines if the line is shown
+        const shown = (data.mark === 'stripe' && data.series && data.series.shown &&
+            data.series.shown.includes(serie[0][secondaryGrouping]))
         chart.data.datasets.push({
           data: [],
           label: translate(serie[0][secondaryGrouping]) || serie[0][secondaryGrouping],
-          fill: data.mark === 'stripe' ? i + 1 : false,
+          fill: (data.mark === 'stripe' && i > 0) ? '-1' : false,
           backgroundColor: stripeChartFill,
           borderWidth: 4,
           pointBackgroundColor: '#fff',
@@ -136,8 +139,8 @@ export class ChartLine extends React.Component {
         const lineColor = series.length === 1 ? oneColorPalette : fourteenColorPalette[i % 14]
         chart.data.datasets[i].borderColor = lineColor
 
-        // hide non-selected (not first) series for stripe
-        if (data.mark === 'stripe' && i !== 0) {
+        // hide non-selected series for stripe
+        if (!shown) {
           chart.data.datasets[i].borderColor = 'rgba(0, 0, 0, 0)'
           chart.data.datasets[i].pointBackgroundColor = 'rgba(0, 0, 0, 0)'
         }
