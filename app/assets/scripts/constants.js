@@ -57,7 +57,10 @@ fixed:
 dropdown:
   field: agg_commodity
   values: cereals, animal_products, fruits_vegetables, oils_seeds, food_oils, oil_meals, other, pulses, roots_tubers, sugar
-change: true\`\`\``
+change:
+  field: year
+  values: 2015, 2050
+  type: percent\`\`\``
   }, {
     type: 'line',
     description: 'Compare values from multiple scenarios',
@@ -146,7 +149,10 @@ fixed:
 dropdown:
   field: impactparameter
   values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
-  change: true\`\`\``
+change:
+  field: year
+  values: 2015, 2050
+  type: percent\`\`\``
   }, {
     type: 'doughnut',
     displayName: 'Doughnut',
@@ -169,7 +175,10 @@ fixed:
 dropdown:
   field: impactparameter
   values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
-  change: true\`\`\``
+change:
+  field: year
+  values: 2015, 2050
+  type: percent\`\`\``
   }, {
     type: 'horizontalBar',
     displayName: 'Horizontal Bar',
@@ -191,6 +200,9 @@ fixed:
 dropdown:
   field: impactparameter
   values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
-change: true\`\`\``
+change:
+  field: year
+  values: 2015, 2050
+  type: percent\`\`\``
   }
 ]
