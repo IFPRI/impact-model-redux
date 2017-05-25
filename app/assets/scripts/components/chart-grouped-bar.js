@@ -9,7 +9,7 @@ const ChartJS = require('chart.js')
 import { updateError } from '../actions'
 
 // Utils
-import { formatNumber, formatScenario } from '../utils/format'
+import { formatNumber } from '../utils/format'
 import { translate } from '../utils/translation'
 import queryDatabase from '../utils/query-database'
 
