@@ -34,11 +34,11 @@ const performQuery = (data, sourceID) => {
   // group by for sql statement, add series if necessary
   const groupBy = [group]
 
-  // switch for getting change in var from 2015 - 2050
+  // switch for getting change in var between two values
   const change = data.change
   if (change) {
-    groupBy.push('year')
-    where.push('year in 2015,2050')
+    groupBy.push(change.field)
+    where.push(`${change.field} in ${change.values}`)
   }
 
   let val = data.encoding.y.field
@@ -73,14 +73,14 @@ const parseDataObject = (obj, group, val, otherKeys, change) => {
   var nextGroup = Object.keys(obj).find(a => a.match('group_by'))
   // we may have other groupings to parse through
   if (nextGroup) {
-    // special parsing for change by year
-    if (nextGroup === 'group_by_year' && change) {
+    // special parsing for change by variables
+    if (nextGroup === `group_by_${change.field}` && change) {
       if (obj[nextGroup].buckets[1]) {
         return Object.assign({}, {
           // assumes later value in bucket 1 and early value in bucket 0
           // divide by earlier value if we want a percentage
           [val]: (obj[nextGroup].buckets[1][`sum_${val}`].value - obj[nextGroup].buckets[0][`sum_${val}`].value) /
-            (_.includes(['percentage', 'percent', '%', 'p'], change) ? obj[nextGroup].buckets[0][`sum_${val}`].value : 1),
+            (_.includes(['percentage', 'percent', '%', 'p'], change.type) ? obj[nextGroup].buckets[0][`sum_${val}`].value : 1),
           [group]: obj.key
         }, otherKeys)
       } else {
