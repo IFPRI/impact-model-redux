@@ -16,7 +16,6 @@ import queryDatabase from '../utils/query-database'
 
 // Constants
 import { oneColorPalette, fourteenColorPalette, stripeChartFill } from '../constants'
-const DEFAULT_SCENARIO = ['SSP2_GFDL']
 
 export class ChartLine extends React.Component {
   constructor (props, context) {
@@ -184,13 +183,25 @@ export class ChartLine extends React.Component {
       chart.options.legend.position = data.legend
     }
 
-    const scenarios = data.scenarios || DEFAULT_SCENARIO
-    queryDatabase(data, scenarios)
+    const series = []
+    queryDatabase(data)
     .then((chartData) => {
-      scenarios.forEach((scenario, i) => {
+      const secondaryGrouping = chartData.secondaryGrouping
+      if (secondaryGrouping) {
+        const seriesValues = _.uniq(chartData.values.map(v => v[secondaryGrouping]))
+        seriesValues.forEach(sv => {
+          series.push(chartData.values.filter(v => v[secondaryGrouping] === sv))
+        })
+      } else {
+        // with no series, don't use a legend
+        series.push(chartData.values)
+        chart.options.legend.display = true
+      }
+
+      series.forEach((serie, i) => {
         chart.data.datasets.push({
           data: [],
-          label: scenario,
+          label: serie[0][secondaryGrouping],
           fill: false,
           borderWidth: 4,
           pointBackgroundColor: '#fff',
@@ -200,13 +211,10 @@ export class ChartLine extends React.Component {
           pointHoverRadius: 6
         })
 
-        const lineColor = scenarios.length === 1
-          ? oneColorPalette
-          : fourteenColorPalette[i] || fourteenColorPalette[(Math.floor(Math.random() * 13))]
+        const lineColor = series.length === 1 ? oneColorPalette : fourteenColorPalette[i % 14]
         chart.data.datasets[i].borderColor = lineColor
         const aggregation = data.encoding.x.field
-        const primaryLine = _.find(chartData, {'source': scenarios[i]})
-        _.forEach(primaryLine.values, (item) => {
+        _.forEach(serie, item => {
           if (i === 0) {
             chart.data.labels.push(translate(item[aggregation]) || item[aggregation])
           }
@@ -215,7 +223,7 @@ export class ChartLine extends React.Component {
       })
 
       if (data.mark === 'stripe') {
-        chart = this.addStripe(chart, chartData, scenarios)
+        chart = this.addStripe(chart, chartData)
       }
       try {
         this.chart = new ChartJS(
@@ -239,20 +247,25 @@ export class ChartLine extends React.Component {
   }
 
   updateQuery (newData) {
-    // copy original to minimize restyling
-    const nextData = Object.assign({}, this.chart.data.datasets)
-    const data = this.props.data
-    const scenarios = data.scenarios || DEFAULT_SCENARIO
-    queryDatabase(newData, scenarios)
+    const series = []
+    queryDatabase(newData)
     .then((chartData) => {
-      _.forEach(nextData, (dataset) => {
-        dataset.data = []
-      })
+      const secondaryGrouping = chartData.secondaryGrouping
+      if (secondaryGrouping) {
+        const seriesValues = _.uniq(chartData.values.map(v => v[secondaryGrouping]))
+        seriesValues.forEach(sv => {
+          series.push(chartData.values.filter(v => v[secondaryGrouping] === sv))
+        })
+      } else {
+        // with no series, don't use a legend
+        series.push(chartData.values)
+        this.chart.options.legend.display = true
+      }
 
-      scenarios.forEach((scenario, i) => {
-        const primaryLine = _.find(chartData, {'source': scenarios[i]})
-        _.forEach(primaryLine.values, (item) => {
-          nextData[i].data.push(item.Val)
+      series.forEach((serie, i) => {
+        this.chart.data.datasets[i].data = []
+        _.forEach(serie, item => {
+          this.chart.data.datasets[i].data.push(item.Val)
         })
       })
 

@@ -53,7 +53,7 @@ export class App extends React.Component {
               data={data}
               updateChart={this.updatePreviewerChart}
               dispatch={this.props.dispatch}/>, placeholder)
-          } else if (data.mark === 'grouped-bar') {
+          } else if (type === 'grouped-bar') {
             ReactDOM.render(<ChartGroupedBar
               name={name}
               data={data}

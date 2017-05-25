@@ -15,9 +15,9 @@ export const setupRenderer = (dispatch, previewer) => {
       const data = yaml.load(code)
       const id = `fig-${Math.random().toString(36).substring(7)}`
       data.id = id
-      // convert dropdown values from string to array
+      // convert dropdown & series values from string to array
       Object.keys(data).forEach(dataKey => {
-        if (dataKey.match(/dropdown/)) {
+        if (dataKey.match(/dropdown/) || dataKey === 'series') {
           data[dataKey].values = data[dataKey].values.split(',').map(a => a.trim())
         }
       })

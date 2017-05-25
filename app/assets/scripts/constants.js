@@ -52,11 +52,11 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  impactparameter: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+  impactparameter: qdxagg, qfxagg
   _type: ssp2_gfdl
 dropdown:
   field: agg_commodity
-  values: cereals, animal_products, fruits_vegetables, oils_seeds, food_oils, oil_meals, other, pulses, roots_tubers, sugar
+  values: cer, amt, f&v, ols, oil, mls, other, pul, r&t, sgr
 change:
   field: year
   values: 2015, 2050
@@ -78,11 +78,13 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: whea
-  _type: ssp2_gfdl
+  commodity: cer-rice
 dropdown:
   field: impactparameter
-  values: qnxagg, qdxagg, yldxagg, areaxagg, pwxagg, qsupxagg\`\`\``
+  values: qfxagg, qdxagg
+series:
+  field: _type
+  values: ssp2_gfdl, ssp2_hgem\`\`\``
   }, {
     type: 'groupedBar',
     displayName: 'Grouped Bar',
@@ -100,11 +102,11 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: rice
+  commodity: cer-rice
   _type: ssp2_gfdl
 dropdown:
   field: impactparameter
-  values: qnxagg, qdxagg, yldxagg, areaxagg, pwxagg, qsupxagg\`\`\``
+  values: qfxagg, qdxagg\`\`\``
   }, {
     type: 'stripe',
     displayName: 'Stripe',
@@ -126,7 +128,7 @@ fixed:
   _type: ssp2_gfdl
 dropdown:
   field: impactparameter
-  values: pwxagg, qnxagg, areaxagg, qdxagg, yldxagg, qsupxagg\`\`\``
+  values: qfxagg, qdxagg\`\`\``
   }, {
     type: 'pie',
     displayName: 'Pie',
@@ -144,11 +146,11 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  agg_commodity: cereals, oils_seeds, animal_products, fruits_vegetables, other, sugar, food_oils, roots_tubers, oil_meals, pulses
+  agg_commodity: cer, amt, f&v, ols, oil, mls, other, pul, r&t, sgr
   _type: ssp2_gfdl
 dropdown:
   field: impactparameter
-  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+  values: qfxagg, qdxagg
 change:
   field: year
   values: 2015, 2050
@@ -170,11 +172,11 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  agg_commodity: oils_seeds, roots_tubers, cereals, fruits_vegetables, animal_products, sugar, food_oils, other, oil_meals, pulses
+  agg_commodity: cer, amt, f&v, ols, oil, mls, other, pul, r&t, sgr
   _type: ssp2_gfdl
 dropdown:
   field: impactparameter
-  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+  values: qfxagg, qdxagg
 change:
   field: year
   values: 2015, 2050
@@ -196,11 +198,11 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  agg_commodity: animal_products, cereals, fruits_vegetables, oils_seeds, food_oils, oil_meals, other, pulses, roots_tubers, sugar
+  agg_commodity: cer, amt, f&v, ols, oil, mls, other, pul, r&t, sgr
   _type: ssp2_gfdl
 dropdown:
   field: impactparameter
-  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+  values: qfxagg, qdxagg
 change:
   field: year
   values: 2015, 2050

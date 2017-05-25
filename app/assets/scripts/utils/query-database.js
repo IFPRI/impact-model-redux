@@ -28,9 +28,16 @@ const queryDatabase = (data) => {
   // group by for sql statement, add series if necessary
   const groupBy = [group]
 
+  // add series grouping
+  const series = data.series
+  if (data.series) {
+    groupBy.push(series.field)
+    where.push(`${series.field} in ${series.values}`)
+  }
+
   // switch for getting change in var between two values
   const change = data.change
-  if (change) {
+  if (change && change.field && change.values) {
     groupBy.push(change.field)
     where.push(`${change.field} in ${change.values}`)
   }
@@ -59,7 +66,12 @@ const queryDatabase = (data) => {
         return parseDataObject(obj, group, val, {}, change)
       }))
     }
-    return Object.assign(queryData, data.fixed, {groupBy: groupBy[0]})
+    return Object.assign(
+      queryData,
+      data.fixed,
+      { groupBy: groupBy[0] },
+      { secondaryGrouping: series ? groupBy[1] : null }
+    )
   })
 }
 
@@ -68,7 +80,7 @@ const parseDataObject = (obj, group, val, otherKeys, change) => {
   // we may have other groupings to parse through
   if (nextGroup) {
     // special parsing for change by variables
-    if (nextGroup === `group_by_${change.field}` && change) {
+    if (change && nextGroup === `group_by_${change.field}`) {
       if (obj[nextGroup].buckets[1]) {
         return Object.assign({}, {
           // assumes later value in bucket 1 and early value in bucket 0
