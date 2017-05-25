@@ -5,13 +5,7 @@ import _ from 'lodash'
 
 import config from '../config'
 
-const queryDatabase = (data, sources) => {
-  if (sources && sources.length && sources.constructor === Array) {
-    return Promise.all(sources.map((source) => performQuery(data, source)))
-  }
-}
-
-const performQuery = (data, sourceID) => {
+const queryDatabase = (data) => {
   const groups = String(data.encoding.x.field).split(',').map(a => a.trim())
   let group
   if (groups.length === 1) {
@@ -44,7 +38,7 @@ const performQuery = (data, sourceID) => {
   let val = data.encoding.y.field
   // request the data and parse the response for our graph format
   const postData = JSON.stringify(sqltoes({select: [`sum(${val})`], where: where, groupBy: groupBy}))
-  return fetch(`${config.dbUrl}/${sourceID.toLowerCase()}/_search`, {
+  return fetch(`${config.dbUrl}/_search`, {
     method: 'post',
     body: postData})
   .then((resp) => resp.json())
@@ -65,7 +59,7 @@ const performQuery = (data, sourceID) => {
         return parseDataObject(obj, group, val, {}, change)
       }))
     }
-    return Object.assign(queryData, data.fixed, {groupBy: groupBy[0], source: sourceID})
+    return Object.assign(queryData, data.fixed, {groupBy: groupBy[0]})
   })
 }
 
