@@ -103,10 +103,13 @@ encoding:
     field: Val
 fixed:
   commodity: cer-rice
-  _type: ssp2_gfdl
 dropdown:
   field: impactparameter
-  values: qfxagg, qdxagg\`\`\``
+  values: qfxagg, qdxagg
+series:
+  field: _type
+  values: ssp2_gfdl, ssp2_hgem
+  \`\`\``
   }, {
     type: 'stripe',
     displayName: 'Stripe',
