@@ -19,13 +19,9 @@ export const fourteenColorPalette = [
   '#39CCCC'  // (teal)
 ]
 
-export const oneColorPalette = [
-  '#83C61A'
-]
+export const oneColorPalette = ['#83C61A']
 
-export const stripeChartFill = [
-  'rgba(0, 255, 0, 0.3)'
-]
+export const stripeChartFill = ['#b2ffb2']
 
 export const greenGradientPalette = (steps) => chroma.scale(['#00ff00', '#ccffcc']).colors(steps)
 
@@ -39,7 +35,7 @@ export const multiChartTypes = ['grouped-bar', 'line', 'stripe']
 export const examplePreviewerCharts = [
   { type: 'bar',
     displayName: 'Bar',
-    description: 'Examine a singular data source',
+    description: '',
     markup: `\`\`\`chart
 mark: bar
 title: Example Bar Chart
@@ -63,8 +59,8 @@ change:
   type: percent\`\`\``
   }, {
     type: 'line',
-    description: 'Compare values from multiple scenarios',
     displayName: 'Line',
+    description: '',
     markup: `\`\`\`chart
 mark: line
 title: Example Line Chart
@@ -88,7 +84,7 @@ series:
   }, {
     type: 'groupedBar',
     displayName: 'Grouped Bar',
-    description: 'Compare values from multiple scenarios',
+    description: '',
     markup: `\`\`\`chart
 mark: grouped-bar
 title: Example Grouped Bar Chart
@@ -113,7 +109,7 @@ series:
   }, {
     type: 'stripe',
     displayName: 'Stripe',
-    description: "Compare multiple scenarios as lines, with an area representative of all scenarios' range",
+    description: "Compare multiple values as lines, with an area representative of all values range",
     markup: `\`\`\`chart
 mark: stripe
 title: Example Stripe Chart

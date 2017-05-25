@@ -19,6 +19,7 @@ export const setupRenderer = (dispatch, previewer) => {
       Object.keys(data).forEach(dataKey => {
         if (dataKey.match(/dropdown/) || dataKey === 'series') {
           data[dataKey].values = data[dataKey].values.split(',').map(a => a.trim())
+          if (data[dataKey].shown) data[dataKey].shown = data[dataKey].shown.split(',').map(a => a.trim())
         }
       })
 
