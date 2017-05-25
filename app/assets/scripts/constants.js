@@ -109,7 +109,7 @@ series:
   }, {
     type: 'stripe',
     displayName: 'Stripe',
-    description: "Compare multiple values as lines, with an area representative of all values range",
+    description: 'Compare multiple values as lines, with an area representative of all values range',
     markup: `\`\`\`chart
 mark: stripe
 title: Example Stripe Chart
