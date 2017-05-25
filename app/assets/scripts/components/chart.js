@@ -7,7 +7,7 @@ if (typeof window === 'undefined') global.window = {}
 const ChartJS = require('chart.js')
 
 // Actions
-import { updateError } from '../actions'
+import { updatePreviewerError } from '../actions'
 
 // Utils
 import { formatNumber } from '../utils/format'
@@ -149,7 +149,7 @@ export class Chart extends React.Component {
           chart
         )
       } catch (err) {
-        this.props.dispatch(updateError(err))
+        this.props.dispatch(updatePreviewerError(err))
       }
     })
   }
