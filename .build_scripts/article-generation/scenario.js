@@ -60,7 +60,7 @@ change:
   type: percent
 \`\`\``
 
-  var chartComparison = baselineScenarios[Math.floor(Math.random() * (baselineScenarios.length - 1))]
+  var chartComparison = baselineScenarios[(baselineScenarios.indexOf(scenario) + 1) % baselineScenarios.length]
   var figureThree = `\`\`\`chart
 mark: grouped-bar
 title: Change in ${name} Impact Parameters per Commodity Group (%) from 2015 - 2050 (${scenario} vs. ${chartComparison})
