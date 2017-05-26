@@ -40,8 +40,8 @@ sc_map = {}
 with open('aggregate_region.csv', 'rU') as c:
     creader = csv.reader(c)
     for row in creader:
-        c_map[row[0]] = row[1]
-        sc_map[row[0]] = row[2]
+        c_map[row[1]] = row[2]
+        sc_map[row[1]] = row[3]
 
 
 print 'creating ' + str(len(all_files)) + ' files'
