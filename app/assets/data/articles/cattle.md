@@ -1,11 +1,11 @@
 ---
 title: Cattle Summary
-date: 4/3/2017
+date: 5/26/2017
 type: brief
 briefType: commodity-summary
 project: 'baseline'
 commodities:
-  - beef
+  - amt-beef
 scenarios:
  - SSP2_GFDL
  - SSP2_HGEM
@@ -13,8 +13,8 @@ scenarios:
  - SSP2_IPSL
  - SSP2_NOCC
 tags:
- - beef
- - animal_products
+ - amt-beef
+ - amt
  - baseline
 ---
 Summary of IMPACT model outputs for cattle
@@ -31,10 +31,10 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: beef
+  commodity: amt-beef
 dropdown:
   field: impactparameter
-  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+  values: qdxagg, qfxagg
 ```
 
 ```chart
@@ -49,9 +49,12 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: beef
-  impactparameter: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
-change: true
+  commodity: amt-beef
+  impactparameter: qdxagg, qfxagg
+change:
+  field: year
+  values: 2015, 2050
+  type: percent
 ```
 
 ```chart
@@ -66,19 +69,25 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: beef
-scenarios: ssp2_gfdl, ssp2_hgem
+  commodity: amt-beef
 dropdown:
   field: impactparameter
-  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+  values: qdxagg, qfxagg
+series:
+  field: _type
+  values: ssp2_gfdl, ssp2_hgem, ssp2_ipsl, ssp2_miroc, ssp2_nocc
+  shown: ssp2_gfdl, ssp2_hgem
 ```
 
 ```map
 title: Change in Cattle IMPACT Parameters from 2015 - 2050 (%)
 dropdown:
   field: impactparameter
-  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
-change: percentage
+  values: qdxagg, qfxagg
+change:
+  field: year
+  values: 2015, 2050
+  type: percent
 fixed:
-  commodity: beef
+  commodity: amt-beef
 ```

@@ -1,11 +1,11 @@
 ---
 title: Brazil Summary
-date: 4/3/2017
+date: 5/26/2017
 type: brief
 briefType: country-summary
 project: 'baseline'
 locations:
-  - bra
+  - lac-brazil
   - south_america
   - americas
 scenarios:
@@ -15,7 +15,7 @@ scenarios:
  - SSP2_IPSL
  - SSP2_NOCC
 tags:
- - bra
+ - lac-brazil
  - south_america
  - americas
  - baseline
@@ -34,17 +34,17 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: bra
+  region: lac-brazil
   impactparameter: qdxagg
   year: 2015,2030,2050
 dropdown:
   field: agg_commodity
-  values: animal_products,cereals,fruits_vegetables,oils_seeds,food_oils,oil_meals,other,pulses,roots_tubers,sugar
+  values: amt,aot,cer,r&t,pul,f&v,sgc,sgr,ols,oil,mls,cot,for
 ```
 
 ```chart
 mark: bar
-title: Brazil - Commodity Supply
+title: Brazil - Household Demand
 width: 37%
 encoding:
   x:
@@ -54,86 +54,15 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: bra
-  impactparameter: qsupxagg
+  region: lac-brazil
+  impactparameter: qfxagg
   year: 2015,2030,2050
 dropdown:
   field: agg_commodity
-  values: animal_products,cereals,fruits_vegetables,oils_seeds,food_oils,oil_meals,other,pulses,roots_tubers,sugar
+  values: amt,aot,cer,r&t,pul,f&v,sgc,sgr,ols,oil,mls,cot,for
 ```
 
-```chart
-mark: bar
-title: Brazil - Net Trade
-width: 37%
-encoding:
-  x:
-    type: nominal
-    field: year
-  y:
-    type: quantitative
-    field: Val
-fixed:
-  region: bra
-  impactparameter: qnxagg
-  year: 2015,2030,2050
-dropdown:
-  field: agg_commodity
-  values: animal_products,cereals,fruits_vegetables,oils_seeds,food_oils,oil_meals,other,pulses,roots_tubers,sugar
-```
 
-# Food security
-
-```chart
-mark: bar
-title: Brazil - Population at Risk of Hunger
-width: 37%
-encoding:
-  x:
-    type: nominal
-    field: year
-  y:
-    type: quantitative
-    field: Val
-fixed:
-  region: bra
-  impactparameter: populationatriskxagg
-  year: 2015,2030,2050
-```
-
-```chart
-mark: bar
-title: Brazil - Food Availability
-width: 37%
-encoding:
-  x:
-    type: nominal
-    field: year
-  y:
-    type: quantitative
-    field: Val
-fixed:
-  region: bra
-  impactparameter: foodavailxagg
-  year: 2015,2030,2050
-```
-
-```chart
-mark: bar
-title: Brazil - Total Malnourished Children
-width: 37%
-encoding:
-  x:
-    type: nominal
-    field: year
-  y:
-    type: quantitative
-    field: Val
-fixed:
-  region: bra
-  impactparameter: totalmalnourishedxagg
-  year: 2015,2030,2050
-```
 
 |   |   | 2015 | 2030 | 2050 |
 |---|---|---|---|---|

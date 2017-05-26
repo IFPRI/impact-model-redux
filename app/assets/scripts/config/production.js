@@ -1,6 +1,6 @@
 'use strict'
 module.exports = {
   environment: 'production',
-  dbUrl: 'https://82e66fb22a73abdaa81040f2abdc298f-us-east-1.foundcluster.com:9243/ifpri',
+  dbUrl: 'https://ad21a5a8cb0789e9b73c2142d3c83e43.us-east-1.aws.found.io:9243/ifpri',
   baseUrl: 'https://ifpri.github.io/impact-model-redux'
 }

@@ -18,9 +18,9 @@
   "scripts": {
     "postinstall": "[ -f app/assets/scripts/config/local.js ] || echo 'module.exports = {}' > app/assets/scripts/config/local.js",
     "serve": "gulp collecticons && DS_ENV=development NODE_ENV=development gulp serve",
-    "build": "node .build_scripts/article-metadata.js && gulp collecticons && DS_ENV=production NODE_ENV=production gulp",
+    "build": "node .build_scripts/convert-csv.js && node .build_scripts/article-metadata.js && gulp collecticons && DS_ENV=production NODE_ENV=production gulp",
     "lint": "eslint app/assets/scripts/ --ext .js",
-    "test": "DS_ENV=testing nyc ava test -c 4",
+    "test": "node .build_scripts/convert-csv.js && DS_ENV=testing nyc ava test -c 4",
     "report": "nyc report",
     "generate": ".build_scripts/generate.sh"
   },
@@ -112,7 +112,7 @@
   },
   "dependencies": {
     "@redsift/d3-rs-tip": "^0.3.3",
-    "chart.js": "2.1.6",
+    "chart.js": "^2.6.0",
     "chroma-js": "^1.2.2",
     "classnames": "^2.2.5",
     "clipboard": "^1.6.1",

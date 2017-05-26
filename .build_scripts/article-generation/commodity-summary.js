@@ -34,7 +34,7 @@ fixed:
   commodity: ${commodity}
 dropdown:
   field: impactparameter
-  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+  values: qdxagg, qfxagg
 \`\`\``
 
   var figureTwo = `\`\`\`chart
@@ -50,8 +50,11 @@ encoding:
     field: Val
 fixed:
   commodity: ${commodity}
-  impactparameter: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
-change: true
+  impactparameter: qdxagg, qfxagg
+change:
+  field: year
+  values: 2015, 2050
+  type: percent
 \`\`\``
 
   var figureThree = `\`\`\`chart
@@ -67,18 +70,24 @@ encoding:
     field: Val
 fixed:
   commodity: ${commodity}
-scenarios: ssp2_gfdl, ssp2_hgem
 dropdown:
   field: impactparameter
-  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+  values: qdxagg, qfxagg
+series:
+  field: _type
+  values: ssp2_gfdl, ssp2_hgem, ssp2_ipsl, ssp2_miroc, ssp2_nocc
+  shown: ssp2_gfdl, ssp2_hgem
 \`\`\``
 
   var map = `\`\`\`map
 title: Change in ${name} IMPACT Parameters from 2015 - 2050 (%)
 dropdown:
   field: impactparameter
-  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
-change: percentage
+  values: qdxagg, qfxagg
+change:
+  field: year
+  values: 2015, 2050
+  type: percent
 fixed:
   commodity: ${commodity}
 \`\`\``
@@ -106,7 +115,7 @@ ${article}`
 }
 
 _.forEach(commodities, (group, commodity) => {
-  if (['bana', 'barl', 'whea', 'beef', 'eggs', 'lamb', 'milk', 'bean', 'vege', 'teas'].includes(commodity)) {
+  if (['f&v-banana', 'cer-barley', 'cer-wheat', 'amt-beef', 'aot-eggs', 'amt-lamb', 'cot-coffee', 'pul-beans', 'f&v-vegetables', 'cot-tea'].includes(commodity)) {
     generateArticle(commodity, group)
   }
 })

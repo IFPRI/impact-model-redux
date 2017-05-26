@@ -1,11 +1,11 @@
 ---
 title: China Summary
-date: 4/3/2017
+date: 5/26/2017
 type: brief
 briefType: country-summary
 project: 'baseline'
 locations:
-  - chm
+  - eap-china
   - eastern_asia
   - asia
 scenarios:
@@ -15,7 +15,7 @@ scenarios:
  - SSP2_IPSL
  - SSP2_NOCC
 tags:
- - chm
+ - eap-china
  - eastern_asia
  - asia
  - baseline
@@ -34,17 +34,17 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: chm
+  region: eap-china
   impactparameter: qdxagg
   year: 2015,2030,2050
 dropdown:
   field: agg_commodity
-  values: animal_products,cereals,fruits_vegetables,oils_seeds,food_oils,oil_meals,other,pulses,roots_tubers,sugar
+  values: amt,aot,cer,r&t,pul,f&v,sgc,sgr,ols,oil,mls,cot,for
 ```
 
 ```chart
 mark: bar
-title: China - Commodity Supply
+title: China - Household Demand
 width: 37%
 encoding:
   x:
@@ -54,86 +54,15 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: chm
-  impactparameter: qsupxagg
+  region: eap-china
+  impactparameter: qfxagg
   year: 2015,2030,2050
 dropdown:
   field: agg_commodity
-  values: animal_products,cereals,fruits_vegetables,oils_seeds,food_oils,oil_meals,other,pulses,roots_tubers,sugar
+  values: amt,aot,cer,r&t,pul,f&v,sgc,sgr,ols,oil,mls,cot,for
 ```
 
-```chart
-mark: bar
-title: China - Net Trade
-width: 37%
-encoding:
-  x:
-    type: nominal
-    field: year
-  y:
-    type: quantitative
-    field: Val
-fixed:
-  region: chm
-  impactparameter: qnxagg
-  year: 2015,2030,2050
-dropdown:
-  field: agg_commodity
-  values: animal_products,cereals,fruits_vegetables,oils_seeds,food_oils,oil_meals,other,pulses,roots_tubers,sugar
-```
 
-# Food security
-
-```chart
-mark: bar
-title: China - Population at Risk of Hunger
-width: 37%
-encoding:
-  x:
-    type: nominal
-    field: year
-  y:
-    type: quantitative
-    field: Val
-fixed:
-  region: chm
-  impactparameter: populationatriskxagg
-  year: 2015,2030,2050
-```
-
-```chart
-mark: bar
-title: China - Food Availability
-width: 37%
-encoding:
-  x:
-    type: nominal
-    field: year
-  y:
-    type: quantitative
-    field: Val
-fixed:
-  region: chm
-  impactparameter: foodavailxagg
-  year: 2015,2030,2050
-```
-
-```chart
-mark: bar
-title: China - Total Malnourished Children
-width: 37%
-encoding:
-  x:
-    type: nominal
-    field: year
-  y:
-    type: quantitative
-    field: Val
-fixed:
-  region: chm
-  impactparameter: totalmalnourishedxagg
-  year: 2015,2030,2050
-```
 
 |   |   | 2015 | 2030 | 2050 |
 |---|---|---|---|---|

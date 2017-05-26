@@ -28,11 +28,14 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  impactparameter: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+  impactparameter: qdxagg, qfxagg
 dropdown:
   field: agg_commodity
   values: ${_.uniq(_.values(commodities)).join(',')}
-change: true
+change:
+  field: year
+  values: 2015, 2050
+  type: percent
 \`\`\``
 
   var figureTwo = `\`\`\`chart
@@ -50,8 +53,11 @@ fixed:
   agg_commodity: ${_.uniq(_.values(commodities)).join(',')}
 dropdown:
   field: impactparameter
-  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
-change: true
+  values: qdxagg, qfxagg
+change:
+  field: year
+  values: 2015, 2050
+  type: percent
 \`\`\``
 
   var chartComparison = baselineScenarios[Math.floor(Math.random() * (baselineScenarios.length - 1))]
@@ -66,13 +72,18 @@ encoding:
   y:
     type: quantitative
     field: Val
-scenarios: ${scenario}, ${chartComparison}
 fixed:
-  impactparameter: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+  impactparameter: qdxagg, qfxagg
 dropdown:
   field: agg_commodity
   values: ${_.uniq(_.values(commodities)).join(',')}
-change: true
+series:
+  field: _type
+  values: ${scenario.toLowerCase()}, ${chartComparison.toLowerCase()}
+change:
+  field: year
+  values: 2015, 2050
+  type: percent
 \`\`\``
 
   var map = `\`\`\`map
@@ -82,8 +93,11 @@ dropdownCommodityGroup:
   values: ${_.uniq(_.values(commodities)).join(',')}
 dropdownParameter:
   field: impactparameter
-  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
-change: percentage
+  values: qdxagg, qfxagg,
+change:
+  field: year
+  values: 2015, 2050
+  type: percent
 \`\`\``
 
   var article = `Summary of IMPACT model outputs for ${name}\n\n${figure}\n\n${figureTwo}\n\n${figureThree}\n\n${map}`
@@ -95,6 +109,7 @@ change: percentage
 title: ${title}
 date: ${date}
 type: ${articleType}
+briefType: scenario
 project: 'baseline'
 scenarios:
 ${scenarioString}

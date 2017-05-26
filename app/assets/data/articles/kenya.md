@@ -1,11 +1,11 @@
 ---
 title: Kenya Summary
-date: 4/3/2017
+date: 5/26/2017
 type: brief
 briefType: country-summary
 project: 'baseline'
 locations:
-  - ken
+  - ssa-kenya
   - eastern_africa
   - africa
 scenarios:
@@ -15,7 +15,7 @@ scenarios:
  - SSP2_IPSL
  - SSP2_NOCC
 tags:
- - ken
+ - ssa-kenya
  - eastern_africa
  - africa
  - baseline
@@ -34,17 +34,17 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: ken
+  region: ssa-kenya
   impactparameter: qdxagg
   year: 2015,2030,2050
 dropdown:
   field: agg_commodity
-  values: animal_products,cereals,fruits_vegetables,oils_seeds,food_oils,oil_meals,other,pulses,roots_tubers,sugar
+  values: amt,aot,cer,r&t,pul,f&v,sgc,sgr,ols,oil,mls,cot,for
 ```
 
 ```chart
 mark: bar
-title: Kenya - Commodity Supply
+title: Kenya - Household Demand
 width: 37%
 encoding:
   x:
@@ -54,92 +54,21 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: ken
-  impactparameter: qsupxagg
+  region: ssa-kenya
+  impactparameter: qfxagg
   year: 2015,2030,2050
 dropdown:
   field: agg_commodity
-  values: animal_products,cereals,fruits_vegetables,oils_seeds,food_oils,oil_meals,other,pulses,roots_tubers,sugar
+  values: amt,aot,cer,r&t,pul,f&v,sgc,sgr,ols,oil,mls,cot,for
 ```
 
-```chart
-mark: bar
-title: Kenya - Net Trade
-width: 37%
-encoding:
-  x:
-    type: nominal
-    field: year
-  y:
-    type: quantitative
-    field: Val
-fixed:
-  region: ken
-  impactparameter: qnxagg
-  year: 2015,2030,2050
-dropdown:
-  field: agg_commodity
-  values: animal_products,cereals,fruits_vegetables,oils_seeds,food_oils,oil_meals,other,pulses,roots_tubers,sugar
-```
 
-# Food security
-
-```chart
-mark: bar
-title: Kenya - Population at Risk of Hunger
-width: 37%
-encoding:
-  x:
-    type: nominal
-    field: year
-  y:
-    type: quantitative
-    field: Val
-fixed:
-  region: ken
-  impactparameter: populationatriskxagg
-  year: 2015,2030,2050
-```
-
-```chart
-mark: bar
-title: Kenya - Food Availability
-width: 37%
-encoding:
-  x:
-    type: nominal
-    field: year
-  y:
-    type: quantitative
-    field: Val
-fixed:
-  region: ken
-  impactparameter: foodavailxagg
-  year: 2015,2030,2050
-```
-
-```chart
-mark: bar
-title: Kenya - Total Malnourished Children
-width: 37%
-encoding:
-  x:
-    type: nominal
-    field: year
-  y:
-    type: quantitative
-    field: Val
-fixed:
-  region: ken
-  impactparameter: totalmalnourishedxagg
-  year: 2015,2030,2050
-```
 
 |   |   | 2015 | 2030 | 2050 |
 |---|---|---|---|---|
 | Eastern Africa | Population (million) | 362.55 | 498.36 | 672.50 |
-|  | GDP (billion $US) | 435.91 | 1137.44 | 3739.42 |
-|  | Per capita GDP ($US) | 1202.34 | 2282.37 | 5560.48 |
+|  | GDP (billion $US) | 435.87 | 1137.31 | 3738.87 |
+|  | Per capita GDP ($US) | 1202.23 | 2282.11 | 5559.66 |
 | Kenya | Population (million) | 45.57 | 60.59 | 78.06 |
 |  | GDP (billion $US) | 77.36 | 180.06 | 509.87 |
 |  | Per capita GDP ($US) | 1697.61| 2971.78| 6531.77|

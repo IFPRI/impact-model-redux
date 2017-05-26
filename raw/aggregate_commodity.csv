@@ -1,0 +1,143 @@
+Group,Commodity
+AMT,AMT-Beef
+AMT,AMT-Pork
+AMT,AMT-Lamb
+AMT,AMT-Poultry
+AOT,AOT-Eggs
+AOT,AOT-Dairy
+CER,CER-Barley
+CER,CER-Maize
+CER,CER-Millet
+CER,CER-Rice
+CER,CER-Rice
+CER,CER-Rice
+CER,CER-Sorghum
+CER,CER-Wheat
+CER,CER-Other Cereals
+R&T,R&T-Cassava
+R&T,R&T-Potato
+R&T,R&T-Sweet Potato
+R&T,R&T-Yams
+R&T,R&T-Other Roots
+PUL,PUL-Beans
+PUL,PUL-Chickpeas
+PUL,PUL-Cowpeas
+PUL,PUL-Lentils
+PUL,PUL-Pigeonpeas
+PUL,PUL-Other Pulses
+F&V,F&V-Banana
+F&V,F&V-Plantain
+F&V,F&V-Tropical Fruit
+F&V,F&V-Temperate Fruit
+F&V,F&V-Vegetables
+SGC,SGC-Sugarcane
+SGC,SGC-Sugar beet
+SGR,SGR-Sugar
+SGR,SGR-Sugar
+SGR,SGR-Sugar
+OLS,OLS-Groundnut
+OLS,OLS-Groundnut
+OIL,OIL-Groundnut Oil
+MLS,MLS-Groundnut meal
+OLS,OLS-Rapeseed
+OLS,OLS-Rapeseed
+OIL,OIL-Rapeseed Oil
+MLS,MLS-Rapeseed Meal
+OLS,OLS-Soybean
+OLS,OLS-Soybean
+OIL,OIL-Soybean Oil
+MLS,MLS-Soybean Meal
+OLS,OLS-Sunflower
+OLS,OLS-Sunflower
+OIL,OIL-Sunflower Oil
+MLS,MLS-Sunflower Meal
+OLS,OLS-Palm Fruit
+OIL,OIL-Palm Fruit Oil
+OLS,OLS-Palm Kernel
+OIL,OIL-Palm Kernel Oil
+MLS,MLS-Palm Kernel Meal
+OLS,OLS-Other Oilseeds
+OLS,OLS-Other Oilseeds
+OIL,OIL-Other Oils
+MLS,MLS-Other meals
+OIL,OIL-Groundnut Oil
+OIL,OIL-Rapeseed Oil
+OIL,OIL-Soybean Oil
+OIL,OIL-Sunflower Oil
+OIL,OIL-Other Oils
+OIL,OIL-Groundnut Oil
+OIL,OIL-Rapeseed Oil
+OIL,OIL-Soybean Oil
+OIL,OIL-Sunflower Oil
+OIL,OIL-Other Oils
+COT,COT-Cacao
+COT,COT-Coffee
+COT,COT-Cotton
+COT,COT-Tea
+COT,COT-Other
+FOR,FOR-Fodders
+FOR,FOR-Grass
+AMT,AMT-Beef
+AMT,AMT-Pork
+AMT,AMT-Lamb
+AMT,AMT-Poultry
+AOT,AOT-Eggs
+AOT,AOT-Dairy
+CER,CER-Barley
+CER,CER-Maize
+CER,CER-Millet
+CER,CER-Rice
+CER,CER-Sorghum
+CER,CER-Wheat
+CER,CER-Other Cereals
+R&T,R&T-Cassava
+R&T,R&T-Potato
+R&T,R&T-Sweet Potato
+R&T,R&T-Yams
+R&T,R&T-Other Roots
+PUL,PUL-Beans
+PUL,PUL-Chickpeas
+PUL,PUL-Cowpeas
+PUL,PUL-Lentils
+PUL,PUL-Pigeonpeas
+PUL,PUL-Other Pulses
+F&V,F&V-Banana
+F&V,F&V-Plantain
+F&V,F&V-Tropical Fruit
+F&V,F&V-Temperate Fruit
+F&V,F&V-Vegetables
+SGC,SGC-Sugarcane
+SGC,SGC-Sugar beet
+SGR,SGR-Sugar
+OLS,OLS-Groundnut
+OLS,OLS-Groundnut
+OIL,OIL-Groundnut Oil
+MLS,MLS-Groundnut meal
+OLS,OLS-Rapeseed
+OLS,OLS-Rapeseed
+OIL,OIL-Rapeseed Oil
+MLS,MLS-Rapeseed Meal
+OLS,OLS-Soybean
+OLS,OLS-Soybean
+OIL,OIL-Soybean Oil
+MLS,MLS-Soybean Meal
+OLS,OLS-Sunflower
+OLS,OLS-Sunflower
+OIL,OIL-Sunflower Oil
+MLS,MLS-Sunflower Meal
+OLS,OLS-Palm Fruit
+OIL,OIL-Palm Fruit Oil
+OLS,OLS-Palm Kernel
+OIL,OIL-Palm Kernel Oil
+MLS,MLS-Palm Kernel Meal
+OLS,OLS-Other Oilseeds
+OLS,OLS-Other Oilseeds
+OIL,OIL-Other Oils
+MLS,MLS-Other meals
+COT,COT-Cacao
+COT,COT-Coffee
+COT,COT-Cotton
+COT,COT-Tea
+COT,COT-Other
+FOR,FOR-Fodders
+FOR,FOR-Grass

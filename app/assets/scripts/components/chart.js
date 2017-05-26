@@ -7,7 +7,7 @@ if (typeof window === 'undefined') global.window = {}
 const ChartJS = require('chart.js')
 
 // Actions
-import { updateError } from '../actions'
+import { updatePreviewerError } from '../actions'
 
 // Utils
 import { formatNumber } from '../utils/format'
@@ -16,7 +16,6 @@ import queryDatabase from '../utils/query-database'
 
 // Constants
 import { fourteenColorPalette } from '../constants'
-const DEFAULT_SCENARIO = ['SSP2_GFDL']
 
 export class Chart extends React.Component {
   constructor (props, context) {
@@ -112,13 +111,23 @@ export class Chart extends React.Component {
       chart.options.cutoutPercentage = 60
     }
 
+    const axes = ['x', 'y']
+    axes.forEach((axis) => {
+      if (data.encoding[axis].field !== 'Val' && !isPieChart) {
+        chart.options.scales[axis + 'Axes'][0].scaleLabel = {
+          display: true,
+          labelString: translate(data.encoding.x.field),
+          fontColor: '#9E9E9E',
+          fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+        }
+      }
+    })
+
     const aggregation = data.encoding.x.field
-    const scenarios = data.scenarios || DEFAULT_SCENARIO
-    queryDatabase(data, scenarios)
+    queryDatabase(data)
     .then((chartData) => {
-      chart.data.datasets[0].label = data.scenarios
       // sort data alphabetically by label
-      const dataset = chartData[0].values.map((item) => {
+      const dataset = chartData.values.map((item) => {
         return {
           data: item.Val,
           label: translate(item[aggregation]) || item[aggregation]
@@ -140,17 +149,16 @@ export class Chart extends React.Component {
           chart
         )
       } catch (err) {
-        this.props.dispatch(updateError(err))
+        this.props.dispatch(updatePreviewerError(err))
       }
     })
   }
 
   updateQuery (newData) {
     const aggregation = newData.encoding.x.field
-    const scenarios = newData.scenarios || DEFAULT_SCENARIO
-    queryDatabase(newData, scenarios)
+    queryDatabase(newData)
     .then((chartData) => {
-      const chart = chartData[0].values.map((item) => {
+      const chart = chartData.values.map((item) => {
         return {
           data: item.Val,
           label: translate(item[aggregation]) || item[aggregation]
@@ -167,7 +175,7 @@ export class Chart extends React.Component {
     const dropdown = e.target.id
     const newData = _.cloneDeep(this.props.data)
     newData[dropdown].values = [valueToFront, ...this.props.data[dropdown].values.filter(a => a !== valueToFront)]
-    this.props.updatePreviewerChart(newData, this.props.name)
+    this.props.updateChart(newData, this.props.name)
     this.updateQuery(newData)
   }
 
@@ -211,7 +219,7 @@ Chart.propTypes = {
   dispatch: PropTypes.func,
   name: PropTypes.string,
   data: PropTypes.object,
-  updatePreviewerChart: PropTypes.func
+  updateChart: PropTypes.func
 }
 
 export default Chart

@@ -38,6 +38,7 @@
 ################################################
 
 app/assets/scripts/config/local.js
+app/assets/data/translation.json
 app/assets/styles/core/_collecticons.scss
 
 ################################################
@@ -112,3 +113,4 @@ tmp
 .tmp
 dist
 .nyc_output
+raw/scenarios

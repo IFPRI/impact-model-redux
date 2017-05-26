@@ -1,0 +1,269 @@
+sas-afghanistan,Afghanistan
+ssa-angola,Angola
+eur-albania,Albania
+lac-argentina,Argentina
+fsu-armenia,Armenia
+eap-australia,Australia
+eur-austria,Austria
+fsu-azerbaijan,Azerbaijan
+f&v-banana,Bananas
+cer-barley,Barley
+ssa-burundi,Burundi
+pul-beans,Beans
+pul-beans,Beans
+amt-beef,Cattle
+ssa-benin,Benin
+ssa-burkina_faso,Burkina Faso
+sas-bangladesh,Bangladesh
+eur-bulgaria,Bulgaria
+fsu-belarus,Belarus
+eur-baltic_states,Baltic States
+eur-belgium-luxembourg,Belgium-Luxembourg
+lac-belize,Belize
+lac-bolivia,Bolivia
+lac-brazil,Brazil
+sas-bhutan,Bhutan
+ssa-botswana,Botswana
+ssa-central_african_rep.,Central African Republic
+cot-coffee,Coffee
+nam-canada,Canada
+r&t-cassava,Cassava and Other Roots & Tubers
+pul-chickpeas,Chickpeas
+lac-chile,Chile
+eap-china,China
+eur-switzerland,Switzerland plus
+ssa-ivory_coast,Ivory Coast
+ssa-cameroon,Cameroon
+cot-cacao,Cocoa
+cot-cacao,Cocoa
+ssa-drc,Democratic Republic of the Congo
+ssa-congo,Republic of the Congo
+lac-colombia,Colombia
+cot-cotton,Cotton
+pul-cowpeas,Cowpeas
+lac-other_caribbean,Other Caribbean
+lac-costa_rica,Costa Rica
+lac-cuba,Cuba
+eur-cyprus,Cyprus
+eur-czech_republic,Czech Republic
+eur-germany,Germany
+ssa-djibouti,Djibouti
+eur-denmark,Denmark
+lac-dominican_republic,Dominican Republic
+men-algeria,Algeria
+lac-ecuador,Ecuador
+aot-eggs,Eggs
+aot-eggs,Eggs
+men-egypt,Egypt
+ssa-eritrea,Eritrea
+ssa-ethiopia,Ethiopia
+eap-fiji,Fiji
+eur-finland,Finland Plus
+for-fodders,Fodders
+eur-france,France plus
+ssa-gabon,Gabon
+mls-groundnut_meal,Groundnut Meal
+oil-groundnut_oil,Groundnut Oil
+fsu-georgia,Georgia
+ssa-ghana,Ghana
+ssa-guinea,Guinea
+ssa-gambia,Gambia
+ssa-guinea-bissau,Guinea Bissau
+ssa-equatorial_guinea,Equatorial Guinea
+eur-greece,Greece
+nam-greenland,Denmark
+ols-groundnut,Groundnuts
+for-grass,Grass
+lac-guyanas,Guyanas South America
+lac-guatemala,Guatemala
+lac-honduras,Honduras
+eur-croatia,Croatia
+lac-haiti,Haiti
+eur-hungary,Hungary
+eap-indonesia,Indonesia
+sas-india,India
+eur-ireland,Ireland
+men-iran,Iran
+men-iraq,Iraq
+eur-iceland,Iceland
+men-israel,Israel
+eur-italy,Italy plus
+lac-jamaica,Jamaica
+men-jordan,Jordan
+eap-japan,Japan
+fsu-kazakhstan,Kazakhstan
+ssa-kenya,Kenya
+fsu-kyrgyzstan,Kyrgyzstan
+eap-cambodia,Cambodia
+eap-south_korea,South Korea
+amt-lamb,Sheep and Goats
+eap-laos,Laos
+men-lebanon,Lebanon
+ssa-liberia,Liberia
+men-libya,Libya
+pul-lentils,Lentils
+sas-sri_lanka,Sri Lanka
+ssa-lesotho,Lesotho
+cer-maize,Maize
+fsu-moldova,Moldova
+ssa-madagascar,Madagascar
+lac-mexico,Mexico
+aot-dairy,Dairy
+cer-millet,Millet
+ssa-mali,Mali
+eap-myanmar,Myanmar
+eap-mongolia,Mongolia
+men-morocco,Morocco
+ssa-mozambique,Mozambique
+men-mauritania,Mauritania
+ssa-malawi,Malawi
+eap-malaysia,Malaysia
+ssa-namibia,Namibia
+ssa-niger,Niger
+ssa-nigeria,Nigeria
+lac-nicaragua,Nicaragua
+eur-netherlands,Netherlands
+eur-norway,Norway
+sas-nepal,Nepal
+eap-new_zealand,New Zealand
+ssa-other_atlantic,Other Atlantic Ocean
+eur-other_balkans,Other Balkans
+cer-other_cereals,Other Cereals
+eap-other_indian_ocean,Other Indian Ocean
+eap-other_pacific_ocean,Other Pacific Ocean
+pul-other_pulses,Other Pulses
+r&t-other_roots,Other Roots & Tubers
+eap-other_southeast_asia,Other Southeast Asia
+cot-other,Other Crops
+sas-pakistan,Pakistan
+ols-palm_fruit,Oil Palm Fruit
+lac-panama,Panama
+lac-peru,Peru
+eap-philippines,Philippines
+pul-pigeonpeas,Pigeonpeas
+mls-palm_kernel_meal,Palm Kernal Meal
+oil-palm_kernel_oil,Palm Kernal Oil
+ols-palm_kernel,Palm Kernal
+f&v-plantain,Plantains
+oil-palm_fruit_oil,Palm Oil
+eap-papua_new_guinea,Papua New Guinea
+eur-poland,Poland
+popxagg,Population
+amt-pork,Pigs
+amt-pork,Pigs
+r&t-potato,Potato
+amt-poultry,Poultry
+eap-north_korea,North Korea
+eur-portugal,Portugal
+lac-paraguay,Paraguay
+men-palestine,Occupied Palestinian Territory
+for-grass,Pasture
+qdxagg,Total Demand
+qfxagg,Household Demand
+men-rest_of_arabia,Rest of Arab Peninsula
+cer-rice,Rice
+eur-romania,Romania
+mls-rapeseed_meal,Rapeseed Meal
+oil-rapeseed_oil,Rapeseed Oil
+ols-rapeseed,Rapeseed
+fsu-russia,Russia
+ssa-rwanda,Rwanda
+men-saudi_arabia,Saudi Arabia
+mls-soybean_meal,Soybean Meal
+oil-soybean_oil,Soybean Oil
+ssa-sudan,Sudan
+ssa-senegal,Senegal
+mls-sunflower_meal,Sunflower Meal
+mls-sunflower_meal,Sunflower Meal
+oil-sunflower_oil,Sunflower Oil
+eap-solomon_islands,Solomon Islands
+ssa-sierra_leon,Sierra Leone
+lac-el_salvador,El Salvador
+ols-sunflower,Sunflower Seeds
+ssa-somalia,Somalia
+cer-sorghum,Sorghum
+ols-soybean,Soybeans
+eur-spain,Spain plus
+ssp2_gfdl,SSP2_GFDL
+ssp2_hgem,SSP2_HGEM
+ssp2_ipsl,SSP2_IPSL
+ssp2_miroc,SSP2_MIROC
+ssp2_nocc,SSP2_NOCC
+f&v-tropical_fruit,(Sub)-Tropical Fruits
+sgc-sugar_beet,Sugarbeet
+sgc-sugarcane,Sugarcane
+sgr-sugar,Refined Sugar
+eur-slovakia,Slovakia
+eur-slovenia,Slovenia
+eur-sweden,Sweden
+r&t-sweet_potato,Sweet Potatoes
+ssa-swaziland,Swaziland
+men-syria,Syria
+ssa-chad,Chad
+cot-tea,Tea
+f&v-temperate_fruit,Temperate Fruits
+f&v-temperate_fruit,Temperate Fruits
+ssa-togo,Togo
+eap-thailand,Thailand
+fsu-tajikistan,Tajikistan
+fsu-turkmenistan,Turkmenistan
+eap-timor_l'este,East Timor
+ols-other_oilseeds,Total Other Oilseeds
+mls-other_meals,Total Other Oilseed Meal
+oil-other_oils,Total Other Oils
+men-tunisia,Tunisia
+men-turkey,Turkey
+ssa-tanzania,United Republic of Tanzania
+ssa-uganda,Uganda
+eur-uk,Great Britain plus
+fsu-ukraine,Ukraine
+lac-uruguay,Uruguay
+nam-usa,United States of America
+fsu-uzbekistan,Uzbekistan
+f&v-vegetables,Vegetables
+f&v-vegetables,Vegetables
+lac-venezuela,Venezuela
+eap-vietnam,Vietnam
+eap-vanuatu,Vanuatu
+cer-wheat,Wheat
+r&t-yams,Yams
+men-yemen,Yemen
+ssa-south_africa,South Africa
+ssa-zambia,Zambia
+ssa-zimbabwe,Zimbabwe
+australia_and_New_Zealand,Australia and New Zealand,
+caribbean,Caribbean,
+central_america,Central America,
+central_asia,Central Asia,
+eastern_africa,Eastern Africa
+eastern_asia,Eastern Asia,
+eastern_europe,Eastern Europe,
+melanesia,Melanesia,
+middle_africa,Middle Africa,
+northern_africa,Northern Africa,
+northern_america,Northern America,
+northern_europe,Northern Europe,
+south_america,South America,
+south-eastern_Asia,South-Eastern Asia,
+southern_africa,Southern Africa,
+southern_asia,Southern Asia,
+southern_europe,Southern Europe,
+western_africa,Western Africa
+western_asia,Western Asia,
+western_europe,Western Europe
+amt,Meat
+aot,Dairy
+cer,Cereals
+cot,Other Crops
+f&v,Fruits & Vegetables
+mls,Other Meals
+oil,Processed Oils
+ols,Oil Seeds
+pul,Pulses
+r&t,Roots & Tubers
+sgc,Sugar Crops
+sgr,Sugar
+impactparameter,IMPACT Parameter
+commodity-summary,Commodity Summary
+custom,Custom Brief
+country-summary,Country Summary

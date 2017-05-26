@@ -7,7 +7,7 @@ if (typeof window === 'undefined') global.window = {}
 const ChartJS = require('chart.js')
 
 // Actions
-import { updateError } from '../actions'
+import { updatePreviewerError } from '../actions'
 
 // Utils
 import { formatNumber } from '../utils/format'
@@ -16,7 +16,6 @@ import queryDatabase from '../utils/query-database'
 
 // Constants
 import { oneColorPalette, fourteenColorPalette, stripeChartFill } from '../constants'
-const DEFAULT_SCENARIO = ['SSP2_GFDL']
 
 export class ChartLine extends React.Component {
   constructor (props, context) {
@@ -28,99 +27,13 @@ export class ChartLine extends React.Component {
   }
 
   componentDidMount () {
-    ChartJS.defaults.stripe = ChartJS.helpers.clone(ChartJS.defaults.line)
-    ChartJS.controllers.stripe = ChartJS.controllers.line.extend({
-      draw: function (ease) {
-        const result = ChartJS.controllers.line.prototype.draw.apply(this, arguments)
-        const widths = this.getDataset().width
-
-        const isStripe = this.getDataset().lineType === 'stripe'
-        if (!isStripe || !widths) {
-          return
-        }
-        this.rendered = true
-
-        const helpers = ChartJS.helpers
-        const meta = this.getMeta()
-        const yScale = this.getScaleForId(meta.yAxisID)
-        const yScaleZeroPixel = yScale.getPixelForValue(0)
-        const ctx = this.chart.chart.ctx
-
-        ctx.save()
-        ctx.fillStyle = this.getDataset().backgroundColor
-        ctx.lineWidth = 1
-        ctx.beginPath()
-
-        // initialize the data and bezier control points for the top of the stripe
-        helpers.each(meta.data, (point, index) => {
-          point._view.y += (yScale.getPixelForValue(widths[index]) - yScaleZeroPixel)
-        })
-        ChartJS.controllers.line.prototype.updateBezierControlPoints.apply(this)
-
-        // draw the top of the stripe
-        helpers.each(meta.data, (point, index) => {
-          if (index === 0) {
-            ctx.moveTo(point._view.x, point._view.y)
-          } else {
-            const previous = helpers.previousItem(meta.data, index)
-            const next = helpers.nextItem(meta.data, index)
-
-            ChartJS.elements.Line.prototype.lineToNextPoint.apply({
-              _chart: {
-                ctx: ctx
-              }
-            }, [previous, point, next, null, null])
-          }
-        })
-
-        // revert the data for the top of the stripe
-        // initialize the data and bezier control points for the bottom of the stripe
-        helpers.each(meta.data, (point, index) => {
-          point._view.y -= 2 * (yScale.getPixelForValue(widths[index]) - yScaleZeroPixel)
-        })
-        // we are drawing the points in the reverse direction
-        meta.data.reverse()
-        ChartJS.controllers.line.prototype.updateBezierControlPoints.apply(this)
-
-        // draw the bottom of the stripe
-        helpers.each(meta.data, (point, index) => {
-          if (index === 0) {
-            ctx.lineTo(point._view.x, point._view.y)
-          } else {
-            const previous = helpers.previousItem(meta.data, index)
-            const next = helpers.nextItem(meta.data, index)
-
-            ChartJS.elements.Line.prototype.lineToNextPoint.apply({
-              _chart: {
-                ctx: ctx
-              }
-            }, [previous, point, next, null, null])
-          }
-        })
-
-        // revert the data for the bottom of the stripe
-        meta.data.reverse()
-        helpers.each(meta.data, (point, index) => {
-          point._view.y += (yScale.getPixelForValue(widths[index]) - yScaleZeroPixel)
-        })
-        ChartJS.controllers.line.prototype.updateBezierControlPoints.apply(this)
-
-        ctx.stroke()
-        ctx.closePath()
-        ctx.fill()
-        ctx.restore()
-
-        return result
-      }
-    })
-
     this.initializeChart()
   }
 
   initializeChart () {
     const { name, data } = this.props
     let chart = {
-      type: data.mark,
+      type: 'line',
       options: {
         responsive: true,
         maintainAspectRatio: false,
@@ -174,19 +87,52 @@ export class ChartLine extends React.Component {
       }
     }
 
+    const axes = ['x', 'y']
+    axes.forEach((axis) => {
+      if (data.encoding[axis].field !== 'Val') {
+        chart.options.scales[axis + 'Axes'][0].scaleLabel = {
+          display: true,
+          labelString: translate(data.encoding.x.field),
+          fontColor: '#9E9E9E',
+          fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+        }
+      }
+    })
+
     if (data.legend) {
       chart.options.legend.display = true
       chart.options.legend.position = data.legend
     }
 
-    const scenarios = data.scenarios || DEFAULT_SCENARIO
-    queryDatabase(data, scenarios)
+    const series = []
+    queryDatabase(data)
     .then((chartData) => {
-      scenarios.forEach((scenario, i) => {
+      const secondaryGrouping = chartData.secondaryGrouping
+      if (secondaryGrouping) {
+        const seriesValues = _.uniq(chartData.values.map(v => v[secondaryGrouping]))
+        seriesValues.forEach(sv => {
+          series.push(chartData.values.filter(v => v[secondaryGrouping] === sv))
+        })
+      } else {
+        // with no series, don't use a legend
+        series.push(chartData.values)
+        chart.options.legend.display = false
+      }
+      // order according to shown
+      const isSerieShown = serie => {
+        return data.mark !== 'stripe' ||
+        (data.series && data.series.shown &&
+        data.series.shown.includes(serie[0][secondaryGrouping]))
+      }
+      series.sort((a, b) => isSerieShown(a) ? -1 : 1)
+
+      series.forEach((serie, i) => {
+        // determines if the line is shown
         chart.data.datasets.push({
           data: [],
-          label: scenario,
-          fill: false,
+          label: translate(serie[0][secondaryGrouping]) || serie[0][secondaryGrouping],
+          fill: (data.mark === 'stripe' && i > 0) ? '-1' : false,
+          backgroundColor: stripeChartFill,
           borderWidth: 4,
           pointBackgroundColor: '#fff',
           pointBorderWidth: 2,
@@ -195,106 +141,58 @@ export class ChartLine extends React.Component {
           pointHoverRadius: 6
         })
 
-        const lineColor = scenarios.length === 1
-          ? oneColorPalette
-          : fourteenColorPalette[i] || fourteenColorPalette[(Math.floor(Math.random() * 13))]
+        const lineColor = series.length === 1 ? oneColorPalette : fourteenColorPalette[i % 14]
         chart.data.datasets[i].borderColor = lineColor
+
+        // hide non-selected series for stripe
+        if (!isSerieShown(serie)) {
+          chart.data.datasets[i].borderColor = 'rgba(0, 0, 0, 0)'
+          chart.data.datasets[i].pointBackgroundColor = 'rgba(0, 0, 0, 0)'
+        }
         const aggregation = data.encoding.x.field
-        const primaryLine = _.find(chartData, {'source': scenarios[i]})
-        _.forEach(primaryLine.values, (item) => {
+        _.forEach(serie, item => {
           if (i === 0) {
             chart.data.labels.push(translate(item[aggregation]) || item[aggregation])
           }
           chart.data.datasets[i].data.push(item.Val)
         })
       })
-
-      if (data.mark === 'stripe') {
-        chart = this.addStripe(chart, chartData, scenarios)
-      }
       try {
         this.chart = new ChartJS(
           document.getElementById(name).getContext('2d'),
           chart
         )
       } catch (err) {
-        this.props.dispatch(updateError(err))
-      }
-
-      // for stripe chart type, disable tooltips over the area's centerline
-      const originalGetElementAtEvent = this.chart.getElementAtEvent
-      this.chart.getElementAtEvent = function () {
-        return originalGetElementAtEvent.apply(this, arguments).filter((e) => {
-          if (e._datasetIndex !== chartData.length) {
-            return true
-          }
-        })
+        this.props.dispatch(updatePreviewerError(err))
       }
     })
   }
 
   updateQuery (newData) {
-    // copy original to minimize restyling
-    const nextData = Object.assign({}, this.chart.data.datasets)
-    const data = this.props.data
-    const scenarios = data.scenarios || DEFAULT_SCENARIO
-    queryDatabase(newData, scenarios)
+    const series = []
+    queryDatabase(newData)
     .then((chartData) => {
-      _.forEach(nextData, (dataset) => {
-        dataset.data = []
-      })
+      const secondaryGrouping = chartData.secondaryGrouping
+      if (secondaryGrouping) {
+        const seriesValues = _.uniq(chartData.values.map(v => v[secondaryGrouping]))
+        seriesValues.forEach(sv => {
+          series.push(chartData.values.filter(v => v[secondaryGrouping] === sv))
+        })
+      } else {
+        // with no series, don't use a legend
+        series.push(chartData.values)
+        this.chart.options.legend.display = true
+      }
 
-      scenarios.forEach((scenario, i) => {
-        const primaryLine = _.find(chartData, {'source': scenarios[i]})
-        _.forEach(primaryLine.values, (item) => {
-          nextData[i].data.push(item.Val)
+      series.forEach((serie, i) => {
+        this.chart.data.datasets[i].data = []
+        _.forEach(serie, item => {
+          this.chart.data.datasets[i].data.push(item.Val)
         })
       })
 
-      if (newData.mark === 'stripe') {
-        const stripe = this.getStripeParams(chartData)
-        nextData[scenarios.length].width = stripe.width
-        nextData[scenarios.length].data = stripe.centerline
-      }
-
       this.chart.update()
     })
-  }
-
-  addStripe (chart, chartData, scenarios) {
-    chart.data.datasets.push({
-      fill: false,
-      backgroundColor: stripeChartFill,
-      borderColor: 'rgba(0, 0, 0, 0)',
-      pointRadius: 0,
-      pointHoverBackgroundColor: 'rgba(0, 0, 0, 0)',
-      pointHitRadius: 0,
-      label: 'Range, All Scenarios',
-      lineType: 'stripe'
-    })
-    const stripe = this.getStripeParams(chartData)
-    chart.data.datasets[scenarios.length].width = stripe.width
-    chart.data.datasets[scenarios.length].data = stripe.centerline
-
-    return chart
-  }
-
-  getStripeParams (chartData) {
-    let positionValues = []
-    for (let i = 0; i < chartData[0].values.length; i++) {
-      positionValues.push(chartData.map((dataset) => {
-        return dataset.values[i] ? dataset.values[i].Val : null
-      }))
-    }
-    positionValues = positionValues.filter((value) => value)
-    const lineWidth = positionValues.map((values) => _.max(values) - _.min(values))
-    const centerline = positionValues.map((group) => {
-      return group.reduce((a, b) => a + b) / group.length
-    })
-    return {
-      width: lineWidth,
-      centerline: centerline
-    }
   }
 
   handleDropdown (e) {
@@ -302,7 +200,7 @@ export class ChartLine extends React.Component {
     const dropdown = e.target.id
     const newData = _.cloneDeep(this.props.data)
     newData[dropdown].values = [valueToFront, ...this.props.data[dropdown].values.filter(a => a !== valueToFront)]
-    this.props.updatePreviewerChart(newData, this.props.name)
+    this.props.updateChart(newData, this.props.name)
     this.updateQuery(newData)
   }
 
@@ -349,7 +247,7 @@ ChartLine.propTypes = {
   dispatch: PropTypes.func,
   name: PropTypes.string,
   data: PropTypes.object,
-  updatePreviewerChart: PropTypes.func
+  updateChart: PropTypes.func
 }
 
 export default ChartLine

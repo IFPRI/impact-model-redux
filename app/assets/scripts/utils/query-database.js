@@ -5,13 +5,7 @@ import _ from 'lodash'
 
 import config from '../config'
 
-const queryDatabase = (data, sources) => {
-  if (sources && sources.length && sources.constructor === Array) {
-    return Promise.all(sources.map((source) => performQuery(data, source)))
-  }
-}
-
-const performQuery = (data, sourceID) => {
+const queryDatabase = (data) => {
   const groups = String(data.encoding.x.field).split(',').map(a => a.trim())
   let group
   if (groups.length === 1) {
@@ -34,17 +28,24 @@ const performQuery = (data, sourceID) => {
   // group by for sql statement, add series if necessary
   const groupBy = [group]
 
-  // switch for getting change in var from 2015 - 2050
+  // add series grouping
+  const series = data.series
+  if (data.series) {
+    groupBy.push(series.field)
+    where.push(`${series.field} in ${series.values}`)
+  }
+
+  // switch for getting change in var between two values
   const change = data.change
-  if (change) {
-    groupBy.push('year')
-    where.push('year in 2015,2050')
+  if (change && change.field && change.values) {
+    groupBy.push(change.field)
+    where.push(`${change.field} in ${change.values}`)
   }
 
   let val = data.encoding.y.field
   // request the data and parse the response for our graph format
   const postData = JSON.stringify(sqltoes({select: [`sum(${val})`], where: where, groupBy: groupBy}))
-  return fetch(`${config.dbUrl}/${sourceID.toLowerCase()}/_search?search_type=count`, {
+  return fetch(`${config.dbUrl}/_search`, {
     method: 'post',
     body: postData})
   .then((resp) => resp.json())
@@ -65,7 +66,12 @@ const performQuery = (data, sourceID) => {
         return parseDataObject(obj, group, val, {}, change)
       }))
     }
-    return Object.assign(queryData, data.fixed, {groupBy: groupBy[0], source: sourceID})
+    return Object.assign(
+      queryData,
+      data.fixed,
+      { groupBy: groupBy[0] },
+      { secondaryGrouping: series ? groupBy[1] : null }
+    )
   })
 }
 
@@ -73,14 +79,14 @@ const parseDataObject = (obj, group, val, otherKeys, change) => {
   var nextGroup = Object.keys(obj).find(a => a.match('group_by'))
   // we may have other groupings to parse through
   if (nextGroup) {
-    // special parsing for change by year
-    if (nextGroup === 'group_by_year' && change) {
+    // special parsing for change by variables
+    if (change && nextGroup === `group_by_${change.field}`) {
       if (obj[nextGroup].buckets[1]) {
         return Object.assign({}, {
           // assumes later value in bucket 1 and early value in bucket 0
           // divide by earlier value if we want a percentage
           [val]: (obj[nextGroup].buckets[1][`sum_${val}`].value - obj[nextGroup].buckets[0][`sum_${val}`].value) /
-            (_.includes(['percentage', 'percent', '%', 'p'], change) ? obj[nextGroup].buckets[0][`sum_${val}`].value : 1),
+            (_.includes(['percentage', 'percent', '%', 'p'], change.type) ? obj[nextGroup].buckets[0][`sum_${val}`].value : 1),
           [group]: obj.key
         }, otherKeys)
       } else {

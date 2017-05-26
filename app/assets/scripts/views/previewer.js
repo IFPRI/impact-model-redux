@@ -15,8 +15,7 @@ import {
 // Constants
 import {
   examplePreviewerCharts,
-  chartTypes,
-  multiChartTypes } from '../constants'
+  chartTypes } from '../constants'
 
 // Components
 import ErrorModal from '../components/previewer-error-modal'
@@ -43,11 +42,8 @@ export class App extends React.Component {
   addCharts (charts) {
     _.forEach(charts, (data, name) => {
       const type = data.mark
-      const scenarios = data.scenarios
       if (!chartTypes.includes(type)) {
         this.props.dispatch(updatePreviewerError(`"${type}" is not a valid chart type.`))
-      } else if (!multiChartTypes.includes(type) && scenarios.length > 1) {
-        this.props.dispatch(updatePreviewerError(`"${data.mark}" chart type cannot compare multiple scenarios. Use "line" or "grouped-bar" chart types to compare scenarios, or "stripe" to draw a line chart including an area range.`))
       } else {
         const placeholder = document.querySelector(`.${data.id}`)
         if (placeholder) {
@@ -55,22 +51,19 @@ export class App extends React.Component {
             ReactDOM.render(<ChartLine
               name={name}
               data={data}
-              scenarios={scenarios}
-              updatePreviewerChart={this.updatePreviewerChart}
+              updateChart={this.updatePreviewerChart}
               dispatch={this.props.dispatch}/>, placeholder)
-          } else if (data.mark === 'grouped-bar') {
+          } else if (type === 'grouped-bar') {
             ReactDOM.render(<ChartGroupedBar
               name={name}
               data={data}
-              scenarios={scenarios}
-              updatePreviewerChart={this.updatePreviewerChart}
+              updateChart={this.updatePreviewerChart}
               dispatch={this.props.dispatch}/>, placeholder)
           } else {
             ReactDOM.render(<Chart
               name={name}
               data={data}
-              scenario={scenarios}
-              updatePreviewerChart={this.updatePreviewerChart}
+              updateChart={this.updatePreviewerChart}
               dispatch={this.props.dispatch}/>, placeholder)
           }
         }
