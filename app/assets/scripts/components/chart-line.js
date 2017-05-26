@@ -116,7 +116,7 @@ export class ChartLine extends React.Component {
       } else {
         // with no series, don't use a legend
         series.push(chartData.values)
-        chart.options.legend.display = true
+        chart.options.legend.display = false
       }
       // order according to shown
       const isSerieShown = serie => {

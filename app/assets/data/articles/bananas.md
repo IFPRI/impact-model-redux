@@ -31,10 +31,10 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: bana
+  commodity: f&v-banana
 dropdown:
   field: impactparameter
-  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+  values: qdxagg, qfxagg
 ```
 
 ```chart
@@ -49,9 +49,12 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: bana
-  impactparameter: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
-change: true
+  commodity: f&v-banana
+  impactparameter: qdxagg, qfxagg
+change:
+  field: year
+  values: 2015, 2050
+  type: percent
 ```
 
 ```chart
@@ -66,19 +69,25 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: bana
-scenarios: ssp2_gfdl, ssp2_hgem
+  commodity: f&v-banana
 dropdown:
   field: impactparameter
-  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+  values: qdxagg, qfxagg
+series:
+  field: _type
+  values: ssp2_gfdl, ssp2_hgem, ssp2_ipsl, ssp2_miroc, ssp2_nocc
+  shown: ssp2_gfdl, ssp2_hgem
 ```
 
 ```map
 title: Change in Bananas IMPACT Parameters from 2015 - 2050 (%)
 dropdown:
   field: impactparameter
-  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
-change: percentage
+  values: qdxagg, qfxagg
+change:
+  field: year
+  values: 2015, 2050
+  type: percent
 fixed:
-  commodity: bana
+  commodity: f&v-banana
 ```
