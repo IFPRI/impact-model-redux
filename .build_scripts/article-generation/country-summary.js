@@ -86,7 +86,10 @@ dropdown:
       })
       .then((resp) => resp.json())
       .then((resp) => cb(null, _.get(resp.aggregations, wherePath).sum_Val.value.toFixed(2)))
-      .catch(err => callback(null, err))
+      .catch(err => {
+        console.warn(err)
+        callback(null, err)
+      })
     })
   })
 

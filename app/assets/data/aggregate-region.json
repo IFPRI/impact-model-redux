@@ -2,202 +2,202 @@
   "afg": {
     "region": "sas-afghanistan",
     "continent": "asia",
-    "subcontinent": "southern asia"
+    "subcontinent": "southern_asia"
   },
   "ago": {
     "region": "ssa-angola",
     "continent": "africa",
-    "subcontinent": "middle africa"
+    "subcontinent": "middle_africa"
   },
   "alb": {
     "region": "eur-albania",
     "continent": "europe",
-    "subcontinent": "southern europe"
+    "subcontinent": "southern_europe"
   },
   "arg": {
     "region": "lac-argentina",
     "continent": "americas",
-    "subcontinent": "south america"
+    "subcontinent": "south_america"
   },
   "arm": {
     "region": "fsu-armenia",
     "continent": "asia",
-    "subcontinent": "western asia"
+    "subcontinent": "western_asia"
   },
   "aus": {
     "region": "eap-australia",
     "continent": "oceania",
-    "subcontinent": "australia and new zealand"
+    "subcontinent": "australia_and_new_zealand"
   },
   "aut": {
     "region": "eur-austria",
     "continent": "europe",
-    "subcontinent": "western europe"
+    "subcontinent": "western_europe"
   },
   "aze": {
     "region": "fsu-azerbaijan",
     "continent": "asia",
-    "subcontinent": "western asia"
+    "subcontinent": "western_asia"
   },
   "bdi": {
     "region": "ssa-burundi",
     "continent": "africa",
-    "subcontinent": "eastern africa"
+    "subcontinent": "eastern_africa"
   },
   "ben": {
     "region": "ssa-benin",
     "continent": "africa",
-    "subcontinent": "western africa"
+    "subcontinent": "western_africa"
   },
   "bfa": {
-    "region": "ssa-burkina faso",
+    "region": "ssa-burkina_faso",
     "continent": "africa",
-    "subcontinent": "western africa"
+    "subcontinent": "western_africa"
   },
   "bgd": {
     "region": "sas-bangladesh",
     "continent": "asia",
-    "subcontinent": "southern asia"
+    "subcontinent": "southern_asia"
   },
   "bgr": {
     "region": "eur-bulgaria",
     "continent": "europe",
-    "subcontinent": "eastern europe"
+    "subcontinent": "eastern_europe"
   },
   "blr": {
     "region": "fsu-belarus",
     "continent": "europe",
-    "subcontinent": "eastern europe"
+    "subcontinent": "eastern_europe"
   },
   "ltu": {
-    "region": "eur-baltic states",
+    "region": "eur-baltic_states",
     "continent": "europe",
-    "subcontinent": "northern europe"
+    "subcontinent": "northern_europe"
   },
   "est": {
-    "region": "eur-baltic states",
+    "region": "eur-baltic_states",
     "continent": "europe",
-    "subcontinent": "northern europe"
+    "subcontinent": "northern_europe"
   },
   "lva": {
-    "region": "eur-baltic states",
+    "region": "eur-baltic_states",
     "continent": "europe",
-    "subcontinent": "northern europe"
+    "subcontinent": "northern_europe"
   },
   "bel": {
     "region": "eur-belgium-luxembourg",
     "continent": "europe",
-    "subcontinent": "western europe"
+    "subcontinent": "western_europe"
   },
   "lux": {
     "region": "eur-belgium-luxembourg",
     "continent": "europe",
-    "subcontinent": "western europe"
+    "subcontinent": "western_europe"
   },
   "blz": {
     "region": "lac-belize",
     "continent": "americas",
-    "subcontinent": "central america"
+    "subcontinent": "central_america"
   },
   "bol": {
     "region": "lac-bolivia",
     "continent": "americas",
-    "subcontinent": "south america"
+    "subcontinent": "south_america"
   },
   "bra": {
     "region": "lac-brazil",
     "continent": "americas",
-    "subcontinent": "south america"
+    "subcontinent": "south_america"
   },
   "btn": {
     "region": "sas-bhutan",
     "continent": "asia",
-    "subcontinent": "southern asia"
+    "subcontinent": "southern_asia"
   },
   "bwa": {
     "region": "ssa-botswana",
     "continent": "africa",
-    "subcontinent": "southern africa"
+    "subcontinent": "southern_africa"
   },
   "caf": {
-    "region": "ssa-central african rep.",
+    "region": "ssa-central_african_rep.",
     "continent": "africa",
-    "subcontinent": "middle africa"
+    "subcontinent": "middle_africa"
   },
   "can": {
     "region": "nam-canada",
     "continent": "americas",
-    "subcontinent": "northern america"
+    "subcontinent": "northern_america"
   },
   "chl": {
     "region": "lac-chile",
     "continent": "americas",
-    "subcontinent": "south america"
+    "subcontinent": "south_america"
   },
   "chn": {
     "region": "eap-china",
     "continent": "asia",
-    "subcontinent": "eastern asia"
+    "subcontinent": "eastern_asia"
   },
   "hkg": {
     "region": "eap-china",
     "continent": "asia",
-    "subcontinent": "eastern asia"
+    "subcontinent": "eastern_asia"
   },
   "mac": {
     "region": "eap-china",
     "continent": "asia",
-    "subcontinent": "eastern asia"
+    "subcontinent": "eastern_asia"
   },
   "twn": {
     "region": "eap-china",
     "continent": "asia",
-    "subcontinent": "eastern asia"
+    "subcontinent": "eastern_asia"
   },
   "lie": {
     "region": "eur-switzerland",
     "continent": "europe",
-    "subcontinent": "western europe"
+    "subcontinent": "western_europe"
   },
   "che": {
     "region": "eur-switzerland",
     "continent": "europe",
-    "subcontinent": "western europe"
+    "subcontinent": "western_europe"
   },
   "civ": {
-    "region": "ssa-ivory coast",
+    "region": "ssa-ivory_coast",
     "continent": "africa",
-    "subcontinent": "western africa"
+    "subcontinent": "western_africa"
   },
   "cmr": {
     "region": "ssa-cameroon",
     "continent": "africa",
-    "subcontinent": "middle africa"
+    "subcontinent": "middle_africa"
   },
   "cod": {
     "region": "ssa-drc",
     "continent": "africa",
-    "subcontinent": "middle africa"
+    "subcontinent": "middle_africa"
   },
   "cog": {
     "region": "ssa-congo",
     "continent": "africa",
-    "subcontinent": "middle africa"
+    "subcontinent": "middle_africa"
   },
   "col": {
     "region": "lac-colombia",
     "continent": "americas",
-    "subcontinent": "south america"
+    "subcontinent": "south_america"
   },
   "blm": {
-    "region": "lac-other caribbean",
+    "region": "lac-other_caribbean",
     "continent": "americas",
     "subcontinent": "caribbean"
   },
   "cri": {
-    "region": "lac-costa rica",
+    "region": "lac-costa_rica",
     "continent": "americas",
-    "subcontinent": "central america"
+    "subcontinent": "central_america"
   },
   "cub": {
     "region": "lac-cuba",
@@ -207,57 +207,57 @@
   "cyp": {
     "region": "eur-cyprus",
     "continent": "asia",
-    "subcontinent": "western asia"
+    "subcontinent": "western_asia"
   },
   "cze": {
-    "region": "eur-czech republic",
+    "region": "eur-czech_republic",
     "continent": "europe",
-    "subcontinent": "eastern europe"
+    "subcontinent": "eastern_europe"
   },
   "deu": {
     "region": "eur-germany",
     "continent": "europe",
-    "subcontinent": "western europe"
+    "subcontinent": "western_europe"
   },
   "dji": {
     "region": "ssa-djibouti",
     "continent": "africa",
-    "subcontinent": "eastern africa"
+    "subcontinent": "eastern_africa"
   },
   "dnk": {
     "region": "eur-denmark",
     "continent": "europe",
-    "subcontinent": "northern europe"
+    "subcontinent": "northern_europe"
   },
   "dom": {
-    "region": "lac-dominican republic",
+    "region": "lac-dominican_republic",
     "continent": "americas",
     "subcontinent": "caribbean"
   },
   "dza": {
     "region": "men-algeria",
     "continent": "africa",
-    "subcontinent": "northern africa"
+    "subcontinent": "northern_africa"
   },
   "ecu": {
     "region": "lac-ecuador",
     "continent": "americas",
-    "subcontinent": "south america"
+    "subcontinent": "south_america"
   },
   "egy": {
     "region": "men-egypt",
     "continent": "africa",
-    "subcontinent": "northern africa"
+    "subcontinent": "northern_africa"
   },
   "eri": {
     "region": "ssa-eritrea",
     "continent": "africa",
-    "subcontinent": "eastern africa"
+    "subcontinent": "eastern_africa"
   },
   "eth": {
     "region": "ssa-ethiopia",
     "continent": "africa",
-    "subcontinent": "eastern africa"
+    "subcontinent": "eastern_africa"
   },
   "fji": {
     "region": "eap-fiji",
@@ -267,97 +267,97 @@
   "fin": {
     "region": "eur-finland",
     "continent": "europe",
-    "subcontinent": "northern europe"
+    "subcontinent": "northern_europe"
   },
   "ald": {
     "region": "eur-finland",
     "continent": "europe",
-    "subcontinent": "northern europe"
+    "subcontinent": "northern_europe"
   },
   "fra": {
     "region": "eur-france",
     "continent": "europe",
-    "subcontinent": "western europe"
+    "subcontinent": "western_europe"
   },
   "mco": {
     "region": "eur-france",
     "continent": "europe",
-    "subcontinent": "western europe"
+    "subcontinent": "western_europe"
   },
   "gab": {
     "region": "ssa-gabon",
     "continent": "africa",
-    "subcontinent": "middle africa"
+    "subcontinent": "middle_africa"
   },
   "geo": {
     "region": "fsu-georgia",
     "continent": "asia",
-    "subcontinent": "western asia"
+    "subcontinent": "western_asia"
   },
   "gha": {
     "region": "ssa-ghana",
     "continent": "africa",
-    "subcontinent": "western africa"
+    "subcontinent": "western_africa"
   },
   "gin": {
     "region": "ssa-guinea",
     "continent": "africa",
-    "subcontinent": "western africa"
+    "subcontinent": "western_africa"
   },
   "gmb": {
     "region": "ssa-gambia",
     "continent": "africa",
-    "subcontinent": "western africa"
+    "subcontinent": "western_africa"
   },
   "gnb": {
     "region": "ssa-guinea-bissau",
     "continent": "africa",
-    "subcontinent": "western africa"
+    "subcontinent": "western_africa"
   },
   "gnq": {
-    "region": "ssa-equatorial guinea",
+    "region": "ssa-equatorial_guinea",
     "continent": "africa",
-    "subcontinent": "middle africa"
+    "subcontinent": "middle_africa"
   },
   "grc": {
     "region": "eur-greece",
     "continent": "europe",
-    "subcontinent": "southern europe"
+    "subcontinent": "southern_europe"
   },
   "grl": {
     "region": "nam-greenland",
     "continent": "americas",
-    "subcontinent": "northern america"
+    "subcontinent": "northern_america"
   },
   "sur": {
     "region": "lac-guyanas",
     "continent": "americas",
-    "subcontinent": "south america"
+    "subcontinent": "south_america"
   },
   "guy": {
     "region": "lac-guyanas",
     "continent": "americas",
-    "subcontinent": "south america"
+    "subcontinent": "south_america"
   },
   "fgy": {
     "region": "lac-guyanas",
     "continent": "americas",
-    "subcontinent": "south america"
+    "subcontinent": "south_america"
   },
   "gtm": {
     "region": "lac-guatemala",
     "continent": "americas",
-    "subcontinent": "central america"
+    "subcontinent": "central_america"
   },
   "hnd": {
     "region": "lac-honduras",
     "continent": "americas",
-    "subcontinent": "central america"
+    "subcontinent": "central_america"
   },
   "hrv": {
     "region": "eur-croatia",
     "continent": "europe",
-    "subcontinent": "southern europe"
+    "subcontinent": "southern_europe"
   },
   "hti": {
     "region": "lac-haiti",
@@ -367,62 +367,62 @@
   "hun": {
     "region": "eur-hungary",
     "continent": "europe",
-    "subcontinent": "eastern europe"
+    "subcontinent": "eastern_europe"
   },
   "idn": {
     "region": "eap-indonesia",
     "continent": "asia",
-    "subcontinent": "south eastern asia"
+    "subcontinent": "south_eastern_asia"
   },
   "ind": {
     "region": "sas-india",
     "continent": "asia",
-    "subcontinent": "southern asia"
+    "subcontinent": "southern_asia"
   },
   "irl": {
     "region": "eur-ireland",
     "continent": "europe",
-    "subcontinent": "northern europe"
+    "subcontinent": "northern_europe"
   },
   "irn": {
     "region": "men-iran",
     "continent": "asia",
-    "subcontinent": "southern asia"
+    "subcontinent": "southern_asia"
   },
   "irq": {
     "region": "men-iraq",
     "continent": "asia",
-    "subcontinent": "western asia"
+    "subcontinent": "western_asia"
   },
   "isl": {
     "region": "eur-iceland",
     "continent": "europe",
-    "subcontinent": "northern europe"
+    "subcontinent": "northern_europe"
   },
   "isr": {
     "region": "men-israel",
     "continent": "asia",
-    "subcontinent": "western asia"
+    "subcontinent": "western_asia"
   },
   "smr": {
     "region": "eur-italy",
     "continent": "europe",
-    "subcontinent": "southern europe"
+    "subcontinent": "southern_europe"
   },
   "vat": {
     "region": "eur-italy",
     "continent": "europe",
-    "subcontinent": "southern europe"
+    "subcontinent": "southern_europe"
   },
   "ita": {
     "region": "eur-italy",
     "continent": "europe",
-    "subcontinent": "southern europe"
+    "subcontinent": "southern_europe"
   },
   "mlt": {
     "region": "eur-italy",
     "continent": "europe",
-    "subcontinent": "southern europe"
+    "subcontinent": "southern_europe"
   },
   "jam": {
     "region": "lac-jamaica",
@@ -432,477 +432,477 @@
   "jor": {
     "region": "men-jordan",
     "continent": "asia",
-    "subcontinent": "western asia"
+    "subcontinent": "western_asia"
   },
   "jpn": {
     "region": "eap-japan",
     "continent": "asia",
-    "subcontinent": "eastern asia"
+    "subcontinent": "eastern_asia"
   },
   "kaz": {
     "region": "fsu-kazakhstan",
     "continent": "asia",
-    "subcontinent": "central asia"
+    "subcontinent": "central_asia"
   },
   "ken": {
     "region": "ssa-kenya",
     "continent": "africa",
-    "subcontinent": "eastern africa"
+    "subcontinent": "eastern_africa"
   },
   "kgz": {
     "region": "fsu-kyrgyzstan",
     "continent": "asia",
-    "subcontinent": "central asia"
+    "subcontinent": "central_asia"
   },
   "khm": {
     "region": "eap-cambodia",
     "continent": "asia",
-    "subcontinent": "south eastern asia"
+    "subcontinent": "south_eastern_asia"
   },
   "kor": {
-    "region": "eap-south korea",
+    "region": "eap-south_korea",
     "continent": "asia",
-    "subcontinent": "eastern asia"
+    "subcontinent": "eastern_asia"
   },
   "lao": {
     "region": "eap-laos",
     "continent": "asia",
-    "subcontinent": "south eastern asia"
+    "subcontinent": "south_eastern_asia"
   },
   "lbn": {
     "region": "men-lebanon",
     "continent": "asia",
-    "subcontinent": "western asia"
+    "subcontinent": "western_asia"
   },
   "lbr": {
     "region": "ssa-liberia",
     "continent": "africa",
-    "subcontinent": "western africa"
+    "subcontinent": "western_africa"
   },
   "lby": {
     "region": "men-libya",
     "continent": "africa",
-    "subcontinent": "northern africa"
+    "subcontinent": "northern_africa"
   },
   "lka": {
-    "region": "sas-sri lanka",
+    "region": "sas-sri_lanka",
     "continent": "asia",
-    "subcontinent": "southern asia"
+    "subcontinent": "southern_asia"
   },
   "lso": {
     "region": "ssa-lesotho",
     "continent": "africa",
-    "subcontinent": "southern africa"
+    "subcontinent": "southern_africa"
   },
   "mda": {
     "region": "fsu-moldova",
     "continent": "europe",
-    "subcontinent": "eastern europe"
+    "subcontinent": "eastern_europe"
   },
   "mdg": {
     "region": "ssa-madagascar",
     "continent": "africa",
-    "subcontinent": "eastern africa"
+    "subcontinent": "eastern_africa"
   },
   "mex": {
     "region": "lac-mexico",
     "continent": "americas",
-    "subcontinent": "central america"
+    "subcontinent": "central_america"
   },
   "mli": {
     "region": "ssa-mali",
     "continent": "africa",
-    "subcontinent": "western africa"
+    "subcontinent": "western_africa"
   },
   "mmr": {
     "region": "eap-myanmar",
     "continent": "asia",
-    "subcontinent": "south eastern asia"
+    "subcontinent": "south_eastern_asia"
   },
   "mng": {
     "region": "eap-mongolia",
     "continent": "asia",
-    "subcontinent": "eastern asia"
+    "subcontinent": "eastern_asia"
   },
   "mar": {
     "region": "men-morocco",
     "continent": "africa",
-    "subcontinent": "northern africa"
+    "subcontinent": "northern_africa"
   },
   "sah": {
     "region": "men-morocco",
     "continent": "africa",
-    "subcontinent": "northern africa"
+    "subcontinent": "northern_africa"
   },
   "moz": {
     "region": "ssa-mozambique",
     "continent": "africa",
-    "subcontinent": "eastern africa"
+    "subcontinent": "eastern_africa"
   },
   "mrt": {
     "region": "men-mauritania",
     "continent": "africa",
-    "subcontinent": "western africa"
+    "subcontinent": "western_africa"
   },
   "mwi": {
     "region": "ssa-malawi",
     "continent": "africa",
-    "subcontinent": "eastern africa"
+    "subcontinent": "eastern_africa"
   },
   "mys": {
     "region": "eap-malaysia",
     "continent": "asia",
-    "subcontinent": "south eastern asia"
+    "subcontinent": "south_eastern_asia"
   },
   "nam": {
     "region": "ssa-namibia",
     "continent": "africa",
-    "subcontinent": "southern africa"
+    "subcontinent": "southern_africa"
   },
   "ner": {
     "region": "ssa-niger",
     "continent": "africa",
-    "subcontinent": "western africa"
+    "subcontinent": "western_africa"
   },
   "nga": {
     "region": "ssa-nigeria",
     "continent": "africa",
-    "subcontinent": "western africa"
+    "subcontinent": "western_africa"
   },
   "nic": {
     "region": "lac-nicaragua",
     "continent": "americas",
-    "subcontinent": "central america"
+    "subcontinent": "central_america"
   },
   "nld": {
     "region": "eur-netherlands",
     "continent": "europe",
-    "subcontinent": "western europe"
+    "subcontinent": "western_europe"
   },
   "nor": {
     "region": "eur-norway",
     "continent": "europe",
-    "subcontinent": "northern europe"
+    "subcontinent": "northern_europe"
   },
   "npl": {
     "region": "sas-nepal",
     "continent": "asia",
-    "subcontinent": "southern asia"
+    "subcontinent": "southern_asia"
   },
   "nzl": {
-    "region": "eap-new zealand",
+    "region": "eap-new_zealand",
     "continent": "oceania",
-    "subcontinent": "australia and new zealand"
+    "subcontinent": "australia_and_new_zealand"
   },
   "cpv": {
-    "region": "ssa-other atlantic",
+    "region": "ssa-other_atlantic",
     "continent": "europe",
-    "subcontinent": "western europe"
+    "subcontinent": "western_europe"
   },
   "mkd": {
-    "region": "eur-other balkans",
+    "region": "eur-other_balkans",
     "continent": "europe",
-    "subcontinent": "southern europe"
+    "subcontinent": "southern_europe"
   },
   "kos": {
-    "region": "eur-other balkans",
+    "region": "eur-other_balkans",
     "continent": "europe",
-    "subcontinent": "southern europe"
+    "subcontinent": "southern_europe"
   },
   "mne": {
-    "region": "eur-other balkans",
+    "region": "eur-other_balkans",
     "continent": "europe",
-    "subcontinent": "southern europe"
+    "subcontinent": "southern_europe"
   },
   "bih": {
-    "region": "eur-other balkans",
+    "region": "eur-other_balkans",
     "continent": "europe",
-    "subcontinent": "southern europe"
+    "subcontinent": "southern_europe"
   },
   "srb": {
-    "region": "eur-other balkans",
+    "region": "eur-other_balkans",
     "continent": "europe",
-    "subcontinent": "southern europe"
+    "subcontinent": "southern_europe"
   },
   "syc": {
-    "region": "eap-other indian ocean",
+    "region": "eap-other_indian_ocean",
     "continent": "asia",
-    "subcontinent": "southern asia"
+    "subcontinent": "southern_asia"
   },
   "wlf": {
-    "region": "eap-other pacific ocean",
+    "region": "eap-other_pacific_ocean",
     "continent": "oceania",
     "subcontinent": "polynesia"
   },
   "sgp": {
-    "region": "eap-other southeast asia",
+    "region": "eap-other_southeast_asia",
     "continent": "asia",
-    "subcontinent": "south eastern asia"
+    "subcontinent": "south_eastern_asia"
   },
   "brn": {
-    "region": "eap-other southeast asia",
+    "region": "eap-other_southeast_asia",
     "continent": "asia",
-    "subcontinent": "south eastern asia"
+    "subcontinent": "south_eastern_asia"
   },
   "pak": {
     "region": "sas-pakistan",
     "continent": "asia",
-    "subcontinent": "southern asia"
+    "subcontinent": "southern_asia"
   },
   "pan": {
     "region": "lac-panama",
     "continent": "americas",
-    "subcontinent": "central america"
+    "subcontinent": "central_america"
   },
   "per": {
     "region": "lac-peru",
     "continent": "americas",
-    "subcontinent": "south america"
+    "subcontinent": "south_america"
   },
   "phl": {
     "region": "eap-philippines",
     "continent": "asia",
-    "subcontinent": "south eastern asia"
+    "subcontinent": "south_eastern_asia"
   },
   "png": {
-    "region": "eap-papua new guinea",
+    "region": "eap-papua_new_guinea",
     "continent": "oceania",
     "subcontinent": "melanesia"
   },
   "pol": {
     "region": "eur-poland",
     "continent": "europe",
-    "subcontinent": "eastern europe"
+    "subcontinent": "eastern_europe"
   },
   "prk": {
-    "region": "eap-north korea",
+    "region": "eap-north_korea",
     "continent": "asia",
-    "subcontinent": "eastern asia"
+    "subcontinent": "eastern_asia"
   },
   "prt": {
     "region": "eur-portugal",
     "continent": "europe",
-    "subcontinent": "southern europe"
+    "subcontinent": "southern_europe"
   },
   "pry": {
     "region": "lac-paraguay",
     "continent": "americas",
-    "subcontinent": "south america"
+    "subcontinent": "south_america"
   },
   "gaz": {
     "region": "men-palestine",
     "continent": "asia",
-    "subcontinent": "western asia"
+    "subcontinent": "western_asia"
   },
   "web": {
     "region": "men-palestine",
     "continent": "asia",
-    "subcontinent": "western asia"
+    "subcontinent": "western_asia"
   },
   "omn": {
-    "region": "men-rest of arabia",
+    "region": "men-rest_of_arabia",
     "continent": "asia",
-    "subcontinent": "western asia"
+    "subcontinent": "western_asia"
   },
   "are": {
-    "region": "men-rest of arabia",
+    "region": "men-rest_of_arabia",
     "continent": "asia",
-    "subcontinent": "western asia"
+    "subcontinent": "western_asia"
   },
   "bhr": {
-    "region": "men-rest of arabia",
+    "region": "men-rest_of_arabia",
     "continent": "asia",
-    "subcontinent": "western asia"
+    "subcontinent": "western_asia"
   },
   "kwt": {
-    "region": "men-rest of arabia",
+    "region": "men-rest_of_arabia",
     "continent": "asia",
-    "subcontinent": "western asia"
+    "subcontinent": "western_asia"
   },
   "qat": {
-    "region": "men-rest of arabia",
+    "region": "men-rest_of_arabia",
     "continent": "asia",
-    "subcontinent": "western asia"
+    "subcontinent": "western_asia"
   },
   "rou": {
     "region": "eur-romania",
     "continent": "europe",
-    "subcontinent": "eastern europe"
+    "subcontinent": "eastern_europe"
   },
   "rus": {
     "region": "fsu-russia",
     "continent": "europe",
-    "subcontinent": "eastern europe"
+    "subcontinent": "eastern_europe"
   },
   "rwa": {
     "region": "ssa-rwanda",
     "continent": "africa",
-    "subcontinent": "eastern africa"
+    "subcontinent": "eastern_africa"
   },
   "sau": {
-    "region": "men-saudi arabia",
+    "region": "men-saudi_arabia",
     "continent": "asia",
-    "subcontinent": "western asia"
+    "subcontinent": "western_asia"
   },
   "sds": {
     "region": "ssa-sudan",
     "continent": "africa",
-    "subcontinent": "northern africa"
+    "subcontinent": "northern_africa"
   },
   "sdn": {
     "region": "ssa-sudan",
     "continent": "africa",
-    "subcontinent": "northern africa"
+    "subcontinent": "northern_africa"
   },
   "sen": {
     "region": "ssa-senegal",
     "continent": "africa",
-    "subcontinent": "western africa"
+    "subcontinent": "western_africa"
   },
   "slb": {
-    "region": "eap-solomon islands",
+    "region": "eap-solomon_islands",
     "continent": "oceania",
     "subcontinent": "melanesia"
   },
   "sle": {
-    "region": "ssa-sierra leon",
+    "region": "ssa-sierra_leon",
     "continent": "africa",
-    "subcontinent": "western africa"
+    "subcontinent": "western_africa"
   },
   "slv": {
-    "region": "lac-el salvador",
+    "region": "lac-el_salvador",
     "continent": "americas",
-    "subcontinent": "central america"
+    "subcontinent": "central_america"
   },
   "som": {
     "region": "ssa-somalia",
     "continent": "africa",
-    "subcontinent": "eastern africa"
+    "subcontinent": "eastern_africa"
   },
   "sol": {
     "region": "ssa-somalia",
     "continent": "africa",
-    "subcontinent": "eastern africa"
+    "subcontinent": "eastern_africa"
   },
   "and": {
     "region": "eur-spain",
     "continent": "europe",
-    "subcontinent": "southern europe"
+    "subcontinent": "southern_europe"
   },
   "esp": {
     "region": "eur-spain",
     "continent": "europe",
-    "subcontinent": "southern europe"
+    "subcontinent": "southern_europe"
   },
   "svk": {
     "region": "eur-slovakia",
     "continent": "europe",
-    "subcontinent": "eastern europe"
+    "subcontinent": "eastern_europe"
   },
   "svn": {
     "region": "eur-slovenia",
     "continent": "europe",
-    "subcontinent": "southern europe"
+    "subcontinent": "southern_europe"
   },
   "swe": {
     "region": "eur-sweden",
     "continent": "europe",
-    "subcontinent": "northern europe"
+    "subcontinent": "northern_europe"
   },
   "swz": {
     "region": "ssa-swaziland",
     "continent": "africa",
-    "subcontinent": "southern africa"
+    "subcontinent": "southern_africa"
   },
   "syr": {
     "region": "men-syria",
     "continent": "asia",
-    "subcontinent": "western asia"
+    "subcontinent": "western_asia"
   },
   "tcd": {
     "region": "ssa-chad",
     "continent": "africa",
-    "subcontinent": "middle africa"
+    "subcontinent": "middle_africa"
   },
   "tgo": {
     "region": "ssa-togo",
     "continent": "africa",
-    "subcontinent": "western africa"
+    "subcontinent": "western_africa"
   },
   "tha": {
     "region": "eap-thailand",
     "continent": "asia",
-    "subcontinent": "south eastern asia"
+    "subcontinent": "south_eastern_asia"
   },
   "tjk": {
     "region": "fsu-tajikistan",
     "continent": "asia",
-    "subcontinent": "central asia"
+    "subcontinent": "central_asia"
   },
   "tkm": {
     "region": "fsu-turkmenistan",
     "continent": "asia",
-    "subcontinent": "central asia"
+    "subcontinent": "central_asia"
   },
   "tls": {
-    "region": "eap-timor l'este",
+    "region": "eap-timor_l'este",
     "continent": "asia",
-    "subcontinent": "south eastern asia"
+    "subcontinent": "south_eastern_asia"
   },
   "tun": {
     "region": "men-tunisia",
     "continent": "africa",
-    "subcontinent": "northern africa"
+    "subcontinent": "northern_africa"
   },
   "tur": {
     "region": "men-turkey",
     "continent": "asia",
-    "subcontinent": "western asia"
+    "subcontinent": "western_asia"
   },
   "tza": {
     "region": "ssa-tanzania",
     "continent": "africa",
-    "subcontinent": "eastern africa"
+    "subcontinent": "eastern_africa"
   },
   "uga": {
     "region": "ssa-uganda",
     "continent": "africa",
-    "subcontinent": "eastern africa"
+    "subcontinent": "eastern_africa"
   },
   "gbr": {
     "region": "eur-uk",
     "continent": "europe",
-    "subcontinent": "northern europe"
+    "subcontinent": "northern_europe"
   },
   "ukr": {
     "region": "fsu-ukraine",
     "continent": "europe",
-    "subcontinent": "eastern europe"
+    "subcontinent": "eastern_europe"
   },
   "ury": {
     "region": "lac-uruguay",
     "continent": "americas",
-    "subcontinent": "south america"
+    "subcontinent": "south_america"
   },
   "usa": {
     "region": "nam-usa",
     "continent": "americas",
-    "subcontinent": "northern america"
+    "subcontinent": "northern_america"
   },
   "uzb": {
     "region": "fsu-uzbekistan",
     "continent": "asia",
-    "subcontinent": "central asia"
+    "subcontinent": "central_asia"
   },
   "ven": {
     "region": "lac-venezuela",
     "continent": "americas",
-    "subcontinent": "south america"
+    "subcontinent": "south_america"
   },
   "vnm": {
     "region": "eap-vietnam",
     "continent": "asia",
-    "subcontinent": "south eastern asia"
+    "subcontinent": "south_eastern_asia"
   },
   "vut": {
     "region": "eap-vanuatu",
@@ -912,21 +912,21 @@
   "yem": {
     "region": "men-yemen",
     "continent": "asia",
-    "subcontinent": "western asia"
+    "subcontinent": "western_asia"
   },
   "zaf": {
-    "region": "ssa-south africa",
+    "region": "ssa-south_africa",
     "continent": "africa",
-    "subcontinent": "southern africa"
+    "subcontinent": "southern_africa"
   },
   "zmb": {
     "region": "ssa-zambia",
     "continent": "africa",
-    "subcontinent": "eastern africa"
+    "subcontinent": "eastern_africa"
   },
   "zwe": {
     "region": "ssa-zimbabwe",
     "continent": "africa",
-    "subcontinent": "eastern africa"
+    "subcontinent": "eastern_africa"
   }
 }
