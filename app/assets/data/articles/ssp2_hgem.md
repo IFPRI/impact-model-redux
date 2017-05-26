@@ -58,7 +58,7 @@ change:
 
 ```chart
 mark: grouped-bar
-title: Change in SSP2_HGEM Impact Parameters per Commodity Group (%) from 2015 - 2050 (SSP2_HGEM vs. SSP2_HGEM)
+title: Change in SSP2_HGEM Impact Parameters per Commodity Group (%) from 2015 - 2050 (SSP2_HGEM vs. SSP2_MIROC)
 width: 70%
 encoding:
   x:
@@ -74,7 +74,7 @@ dropdown:
   values: amt,aot,cer,r&t,pul,f&v,sgc,sgr,ols,oil,mls,cot,for
 series:
   field: _type
-  values: ssp2_hgem, ssp2_hgem
+  values: ssp2_hgem, ssp2_miroc
 change:
   field: year
   values: 2015, 2050

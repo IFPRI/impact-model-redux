@@ -58,7 +58,7 @@ change:
 
 ```chart
 mark: grouped-bar
-title: Change in SSP2_IPSL Impact Parameters per Commodity Group (%) from 2015 - 2050 (SSP2_IPSL vs. SSP2_IPSL)
+title: Change in SSP2_IPSL Impact Parameters per Commodity Group (%) from 2015 - 2050 (SSP2_IPSL vs. SSP2_NOCC)
 width: 70%
 encoding:
   x:
@@ -74,7 +74,7 @@ dropdown:
   values: amt,aot,cer,r&t,pul,f&v,sgc,sgr,ols,oil,mls,cot,for
 series:
   field: _type
-  values: ssp2_ipsl, ssp2_ipsl
+  values: ssp2_ipsl, ssp2_nocc
 change:
   field: year
   values: 2015, 2050
