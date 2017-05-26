@@ -1,5 +1,5 @@
 ---
-title: F&v Banana Summary
+title: Bananas Summary
 date: 5/26/2017
 type: brief
 briefType: commodity-summary
@@ -17,11 +17,11 @@ tags:
  - f&v
  - baseline
 ---
-Summary of IMPACT model outputs for f&v banana
+Summary of IMPACT model outputs for bananas
 
 ```chart
 mark: line
-title: F&v Banana Impact Parameters over time
+title: Bananas Impact Parameters over time
 width: 37%
 encoding:
   x:
@@ -39,7 +39,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Change in F&v Banana Impact Parameters from 2015 - 2050 (%)
+title: Change in Bananas Impact Parameters from 2015 - 2050 (%)
 width: 37%
 encoding:
   x:
@@ -59,7 +59,7 @@ change:
 
 ```chart
 mark: stripe
-title: F&v Banana Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
+title: Bananas Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
 width: 37%
 encoding:
   x:
@@ -80,7 +80,7 @@ series:
 ```
 
 ```map
-title: Change in F&v Banana IMPACT Parameters from 2015 - 2050 (%)
+title: Change in Bananas IMPACT Parameters from 2015 - 2050 (%)
 dropdown:
   field: impactparameter
   values: qdxagg, qfxagg

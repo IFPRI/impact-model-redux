@@ -1,13 +1,13 @@
 ---
-title: Fsu Russia Summary
+title: China Summary
 date: 5/26/2017
 type: brief
 briefType: country-summary
 project: 'baseline'
 locations:
-  - fsu-russia
-  - eastern_europe
-  - europe
+  - eap-china
+  - eastern_asia
+  - asia
 scenarios:
  - SSP2_GFDL
  - SSP2_HGEM
@@ -15,16 +15,16 @@ scenarios:
  - SSP2_IPSL
  - SSP2_NOCC
 tags:
- - fsu-russia
- - eastern_europe
- - europe
+ - eap-china
+ - eastern_asia
+ - asia
  - baseline
 ---
 # Overview 
 
 ```chart
 mark: bar
-title: Fsu Russia - Total Demand
+title: China - Total Demand
 width: 37%
 encoding:
   x:
@@ -34,7 +34,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: fsu-russia
+  region: eap-china
   impactparameter: qdxagg
   year: 2015,2030,2050
 dropdown:
@@ -44,7 +44,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Fsu Russia - Household Demand
+title: China - Household Demand
 width: 37%
 encoding:
   x:
@@ -54,7 +54,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: fsu-russia
+  region: eap-china
   impactparameter: qfxagg
   year: 2015,2030,2050
 dropdown:
@@ -66,9 +66,9 @@ dropdown:
 
 |   |   | 2015 | 2030 | 2050 |
 |---|---|---|---|---|
-| Eastern Europe | Population (million) | 308.81 | 299.73 | 287.31 |
-|  | GDP (billion $US) | 4784.99 | 7586.89 | 10899.97 |
-|  | Per capita GDP ($US) | 15494.93 | 25312.41 | 37938.01 |
-| Fsu Russia | Population (million) | 142.67 | 139.63 | 136.71 |
-|  | GDP (billion $US) | 2449.87 | 3986.78 | 5655.62 |
-|  | Per capita GDP ($US) | 17171.58| 28552.46| 41369.47|
+| Eastern Asia | Population (million) | 1574.25 | 1588.97 | 1456.71 |
+|  | GDP (billion $US) | 20943.41 | 42887.76 | 62308.75 |
+|  | Per capita GDP ($US) | 13303.74 | 26990.92 | 42773.61 |
+| China | Population (million) | 1371.37 | 1389.58 | 1273.18 |
+|  | GDP (billion $US) | 15159.89 | 35478.14 | 53401.23 |
+|  | Per capita GDP ($US) | 11054.56| 25531.56| 41943.19|

@@ -1,11 +1,11 @@
 ---
-title: Lac Argentina Summary
+title: Brazil Summary
 date: 5/26/2017
 type: brief
 briefType: country-summary
 project: 'baseline'
 locations:
-  - lac-argentina
+  - lac-brazil
   - south_america
   - americas
 scenarios:
@@ -15,7 +15,7 @@ scenarios:
  - SSP2_IPSL
  - SSP2_NOCC
 tags:
- - lac-argentina
+ - lac-brazil
  - south_america
  - americas
  - baseline
@@ -24,7 +24,7 @@ tags:
 
 ```chart
 mark: bar
-title: Lac Argentina - Total Demand
+title: Brazil - Total Demand
 width: 37%
 encoding:
   x:
@@ -34,7 +34,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: lac-argentina
+  region: lac-brazil
   impactparameter: qdxagg
   year: 2015,2030,2050
 dropdown:
@@ -44,7 +44,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Lac Argentina - Household Demand
+title: Brazil - Household Demand
 width: 37%
 encoding:
   x:
@@ -54,7 +54,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: lac-argentina
+  region: lac-brazil
   impactparameter: qfxagg
   year: 2015,2030,2050
 dropdown:
@@ -69,6 +69,6 @@ dropdown:
 | South America | Population (million) | 411.97 | 460.07 | 490.50 |
 |  | GDP (billion $US) | 4813.50 | 8078.48 | 12989.35 |
 |  | Per capita GDP ($US) | 11684.10 | 17559.24 | 26481.86 |
-| Lac Argentina | Population (million) | 42.05 | 46.16 | 49.38 |
-|  | GDP (billion $US) | 719.04 | 1198.22 | 1911.36 |
-|  | Per capita GDP ($US) | 17099.64| 25957.97| 38707.17|
+| Brazil | Population (million) | 203.15 | 222.82 | 231.87 |
+|  | GDP (billion $US) | 2313.37 | 3776.17 | 5613.10 |
+|  | Per capita GDP ($US) | 11387.50| 16947.18| 24207.96|

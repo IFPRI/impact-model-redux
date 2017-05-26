@@ -1,5 +1,5 @@
 ---
-title: Amt Lamb Summary
+title: Sheep and Goats Summary
 date: 5/26/2017
 type: brief
 briefType: commodity-summary
@@ -17,11 +17,11 @@ tags:
  - amt
  - baseline
 ---
-Summary of IMPACT model outputs for amt lamb
+Summary of IMPACT model outputs for sheep and goats
 
 ```chart
 mark: line
-title: Amt Lamb Impact Parameters over time
+title: Sheep and Goats Impact Parameters over time
 width: 37%
 encoding:
   x:
@@ -39,7 +39,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Change in Amt Lamb Impact Parameters from 2015 - 2050 (%)
+title: Change in Sheep and Goats Impact Parameters from 2015 - 2050 (%)
 width: 37%
 encoding:
   x:
@@ -59,7 +59,7 @@ change:
 
 ```chart
 mark: stripe
-title: Amt Lamb Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
+title: Sheep and Goats Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
 width: 37%
 encoding:
   x:
@@ -80,7 +80,7 @@ series:
 ```
 
 ```map
-title: Change in Amt Lamb IMPACT Parameters from 2015 - 2050 (%)
+title: Change in Sheep and Goats IMPACT Parameters from 2015 - 2050 (%)
 dropdown:
   field: impactparameter
   values: qdxagg, qfxagg

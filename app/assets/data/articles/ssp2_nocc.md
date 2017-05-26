@@ -2,6 +2,7 @@
 title: SSP2_NOCC Summary
 date: 5/26/2017
 type: scenario
+briefType: scenario
 project: 'baseline'
 scenarios:
  - SSP2_NOCC
@@ -57,7 +58,7 @@ change:
 
 ```chart
 mark: grouped-bar
-title: Change in SSP2_NOCC Impact Parameters per Commodity Group (%) from 2015 - 2050 (SSP2_NOCC vs. SSP2_IPSL)
+title: Change in SSP2_NOCC Impact Parameters per Commodity Group (%) from 2015 - 2050 (SSP2_NOCC vs. SSP2_HGEM)
 width: 70%
 encoding:
   x:
@@ -73,7 +74,7 @@ dropdown:
   values: amt,aot,cer,r&t,pul,f&v,sgc,sgr,ols,oil,mls,cot,for
 series:
   field: _type
-  values: ssp2_nocc, ssp2_ipsl
+  values: ssp2_nocc, ssp2_hgem
 change:
   field: year
   values: 2015, 2050

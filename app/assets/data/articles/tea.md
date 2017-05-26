@@ -1,11 +1,11 @@
 ---
-title: F&v Vegetables Summary
+title: Tea Summary
 date: 5/26/2017
 type: brief
 briefType: commodity-summary
 project: 'baseline'
 commodities:
-  - f&v-vegetables
+  - cot-tea
 scenarios:
  - SSP2_GFDL
  - SSP2_HGEM
@@ -13,15 +13,15 @@ scenarios:
  - SSP2_IPSL
  - SSP2_NOCC
 tags:
- - f&v-vegetables
- - f&v
+ - cot-tea
+ - cot
  - baseline
 ---
-Summary of IMPACT model outputs for f&v vegetables
+Summary of IMPACT model outputs for tea
 
 ```chart
 mark: line
-title: F&v Vegetables Impact Parameters over time
+title: Tea Impact Parameters over time
 width: 37%
 encoding:
   x:
@@ -31,7 +31,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: f&v-vegetables
+  commodity: cot-tea
 dropdown:
   field: impactparameter
   values: qdxagg, qfxagg
@@ -39,7 +39,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Change in F&v Vegetables Impact Parameters from 2015 - 2050 (%)
+title: Change in Tea Impact Parameters from 2015 - 2050 (%)
 width: 37%
 encoding:
   x:
@@ -49,7 +49,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: f&v-vegetables
+  commodity: cot-tea
   impactparameter: qdxagg, qfxagg
 change:
   field: year
@@ -59,7 +59,7 @@ change:
 
 ```chart
 mark: stripe
-title: F&v Vegetables Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
+title: Tea Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
 width: 37%
 encoding:
   x:
@@ -69,7 +69,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: f&v-vegetables
+  commodity: cot-tea
 dropdown:
   field: impactparameter
   values: qdxagg, qfxagg
@@ -80,7 +80,7 @@ series:
 ```
 
 ```map
-title: Change in F&v Vegetables IMPACT Parameters from 2015 - 2050 (%)
+title: Change in Tea IMPACT Parameters from 2015 - 2050 (%)
 dropdown:
   field: impactparameter
   values: qdxagg, qfxagg
@@ -89,5 +89,5 @@ change:
   values: 2015, 2050
   type: percent
 fixed:
-  commodity: f&v-vegetables
+  commodity: cot-tea
 ```

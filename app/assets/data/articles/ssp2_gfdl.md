@@ -2,6 +2,7 @@
 title: SSP2_GFDL Summary
 date: 5/26/2017
 type: scenario
+briefType: scenario
 project: 'baseline'
 scenarios:
  - SSP2_GFDL

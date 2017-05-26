@@ -1,5 +1,5 @@
 ---
-title: Ssa Ghana Summary
+title: Ghana Summary
 date: 5/26/2017
 type: brief
 briefType: country-summary
@@ -24,7 +24,7 @@ tags:
 
 ```chart
 mark: bar
-title: Ssa Ghana - Total Demand
+title: Ghana - Total Demand
 width: 37%
 encoding:
   x:
@@ -44,7 +44,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Ssa Ghana - Household Demand
+title: Ghana - Household Demand
 width: 37%
 encoding:
   x:
@@ -69,6 +69,6 @@ dropdown:
 | Western Africa | Population (million) | 343.37 | 478.64 | 677.85 |
 |  | GDP (billion $US) | 708.31 | 1858.76 | 5834.85 |
 |  | Per capita GDP ($US) | 2062.82 | 3883.42 | 8607.88 |
-| Ssa Ghana | Population (million) | 27.25 | 35.93 | 46.38 |
+| Ghana | Population (million) | 27.25 | 35.93 | 46.38 |
 |  | GDP (billion $US) | 55.80 | 146.22 | 414.35 |
 |  | Per capita GDP ($US) | 2047.71| 4069.58| 8933.81|

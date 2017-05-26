@@ -1,13 +1,13 @@
 ---
-title: Ssa Zambia Summary
+title: Argentina Summary
 date: 5/26/2017
 type: brief
 briefType: country-summary
 project: 'baseline'
 locations:
-  - ssa-zambia
-  - eastern_africa
-  - africa
+  - lac-argentina
+  - south_america
+  - americas
 scenarios:
  - SSP2_GFDL
  - SSP2_HGEM
@@ -15,16 +15,16 @@ scenarios:
  - SSP2_IPSL
  - SSP2_NOCC
 tags:
- - ssa-zambia
- - eastern_africa
- - africa
+ - lac-argentina
+ - south_america
+ - americas
  - baseline
 ---
 # Overview 
 
 ```chart
 mark: bar
-title: Ssa Zambia - Total Demand
+title: Argentina - Total Demand
 width: 37%
 encoding:
   x:
@@ -34,7 +34,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: ssa-zambia
+  region: lac-argentina
   impactparameter: qdxagg
   year: 2015,2030,2050
 dropdown:
@@ -44,7 +44,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Ssa Zambia - Household Demand
+title: Argentina - Household Demand
 width: 37%
 encoding:
   x:
@@ -54,7 +54,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: ssa-zambia
+  region: lac-argentina
   impactparameter: qfxagg
   year: 2015,2030,2050
 dropdown:
@@ -66,9 +66,9 @@ dropdown:
 
 |   |   | 2015 | 2030 | 2050 |
 |---|---|---|---|---|
-| Eastern Africa | Population (million) | 362.55 | 498.36 | 672.50 |
-|  | GDP (billion $US) | 435.87 | 1137.31 | 3738.87 |
-|  | Per capita GDP ($US) | 1202.23 | 2282.11 | 5559.66 |
-| Ssa Zambia | Population (million) | 14.96 | 21.37 | 30.10 |
-|  | GDP (billion $US) | 25.22 | 69.83 | 236.27 |
-|  | Per capita GDP ($US) | 1685.83| 3267.66| 7849.50|
+| South America | Population (million) | 411.97 | 460.07 | 490.50 |
+|  | GDP (billion $US) | 4813.50 | 8078.48 | 12989.35 |
+|  | Per capita GDP ($US) | 11684.10 | 17559.24 | 26481.86 |
+| Argentina | Population (million) | 42.05 | 46.16 | 49.38 |
+|  | GDP (billion $US) | 719.04 | 1198.22 | 1911.36 |
+|  | Per capita GDP ($US) | 17099.64| 25957.97| 38707.17|

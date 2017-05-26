@@ -109,6 +109,7 @@ change:
 title: ${title}
 date: ${date}
 type: ${articleType}
+briefType: scenario
 project: 'baseline'
 scenarios:
 ${scenarioString}

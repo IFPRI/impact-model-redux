@@ -1,11 +1,11 @@
 ---
-title: Aot Eggs Summary
+title: Cattle Summary
 date: 5/26/2017
 type: brief
 briefType: commodity-summary
 project: 'baseline'
 commodities:
-  - aot-eggs
+  - amt-beef
 scenarios:
  - SSP2_GFDL
  - SSP2_HGEM
@@ -13,15 +13,15 @@ scenarios:
  - SSP2_IPSL
  - SSP2_NOCC
 tags:
- - aot-eggs
- - aot
+ - amt-beef
+ - amt
  - baseline
 ---
-Summary of IMPACT model outputs for aot eggs
+Summary of IMPACT model outputs for cattle
 
 ```chart
 mark: line
-title: Aot Eggs Impact Parameters over time
+title: Cattle Impact Parameters over time
 width: 37%
 encoding:
   x:
@@ -31,7 +31,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: aot-eggs
+  commodity: amt-beef
 dropdown:
   field: impactparameter
   values: qdxagg, qfxagg
@@ -39,7 +39,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Change in Aot Eggs Impact Parameters from 2015 - 2050 (%)
+title: Change in Cattle Impact Parameters from 2015 - 2050 (%)
 width: 37%
 encoding:
   x:
@@ -49,7 +49,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: aot-eggs
+  commodity: amt-beef
   impactparameter: qdxagg, qfxagg
 change:
   field: year
@@ -59,7 +59,7 @@ change:
 
 ```chart
 mark: stripe
-title: Aot Eggs Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
+title: Cattle Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
 width: 37%
 encoding:
   x:
@@ -69,7 +69,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: aot-eggs
+  commodity: amt-beef
 dropdown:
   field: impactparameter
   values: qdxagg, qfxagg
@@ -80,7 +80,7 @@ series:
 ```
 
 ```map
-title: Change in Aot Eggs IMPACT Parameters from 2015 - 2050 (%)
+title: Change in Cattle IMPACT Parameters from 2015 - 2050 (%)
 dropdown:
   field: impactparameter
   values: qdxagg, qfxagg
@@ -89,5 +89,5 @@ change:
   values: 2015, 2050
   type: percent
 fixed:
-  commodity: aot-eggs
+  commodity: amt-beef
 ```

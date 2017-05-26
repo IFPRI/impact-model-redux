@@ -1,5 +1,5 @@
 ---
-title: Cer Wheat Summary
+title: Wheat Summary
 date: 5/26/2017
 type: brief
 briefType: commodity-summary
@@ -17,11 +17,11 @@ tags:
  - cer
  - baseline
 ---
-Summary of IMPACT model outputs for cer wheat
+Summary of IMPACT model outputs for wheat
 
 ```chart
 mark: line
-title: Cer Wheat Impact Parameters over time
+title: Wheat Impact Parameters over time
 width: 37%
 encoding:
   x:
@@ -39,7 +39,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Change in Cer Wheat Impact Parameters from 2015 - 2050 (%)
+title: Change in Wheat Impact Parameters from 2015 - 2050 (%)
 width: 37%
 encoding:
   x:
@@ -59,7 +59,7 @@ change:
 
 ```chart
 mark: stripe
-title: Cer Wheat Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
+title: Wheat Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
 width: 37%
 encoding:
   x:
@@ -80,7 +80,7 @@ series:
 ```
 
 ```map
-title: Change in Cer Wheat IMPACT Parameters from 2015 - 2050 (%)
+title: Change in Wheat IMPACT Parameters from 2015 - 2050 (%)
 dropdown:
   field: impactparameter
   values: qdxagg, qfxagg

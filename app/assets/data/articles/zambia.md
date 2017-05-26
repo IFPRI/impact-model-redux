@@ -1,11 +1,11 @@
 ---
-title: Ssa Kenya Summary
+title: Zambia Summary
 date: 5/26/2017
 type: brief
 briefType: country-summary
 project: 'baseline'
 locations:
-  - ssa-kenya
+  - ssa-zambia
   - eastern_africa
   - africa
 scenarios:
@@ -15,7 +15,7 @@ scenarios:
  - SSP2_IPSL
  - SSP2_NOCC
 tags:
- - ssa-kenya
+ - ssa-zambia
  - eastern_africa
  - africa
  - baseline
@@ -24,7 +24,7 @@ tags:
 
 ```chart
 mark: bar
-title: Ssa Kenya - Total Demand
+title: Zambia - Total Demand
 width: 37%
 encoding:
   x:
@@ -34,7 +34,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: ssa-kenya
+  region: ssa-zambia
   impactparameter: qdxagg
   year: 2015,2030,2050
 dropdown:
@@ -44,7 +44,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Ssa Kenya - Household Demand
+title: Zambia - Household Demand
 width: 37%
 encoding:
   x:
@@ -54,7 +54,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: ssa-kenya
+  region: ssa-zambia
   impactparameter: qfxagg
   year: 2015,2030,2050
 dropdown:
@@ -69,6 +69,6 @@ dropdown:
 | Eastern Africa | Population (million) | 362.55 | 498.36 | 672.50 |
 |  | GDP (billion $US) | 435.87 | 1137.31 | 3738.87 |
 |  | Per capita GDP ($US) | 1202.23 | 2282.11 | 5559.66 |
-| Ssa Kenya | Population (million) | 45.57 | 60.59 | 78.06 |
-|  | GDP (billion $US) | 77.36 | 180.06 | 509.87 |
-|  | Per capita GDP ($US) | 1697.61| 2971.78| 6531.77|
+| Zambia | Population (million) | 14.96 | 21.37 | 30.10 |
+|  | GDP (billion $US) | 25.22 | 69.83 | 236.27 |
+|  | Per capita GDP ($US) | 1685.83| 3267.66| 7849.50|

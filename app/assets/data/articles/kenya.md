@@ -1,12 +1,12 @@
 ---
-title: Ssa Nigeria Summary
+title: Kenya Summary
 date: 5/26/2017
 type: brief
 briefType: country-summary
 project: 'baseline'
 locations:
-  - ssa-nigeria
-  - western_africa
+  - ssa-kenya
+  - eastern_africa
   - africa
 scenarios:
  - SSP2_GFDL
@@ -15,8 +15,8 @@ scenarios:
  - SSP2_IPSL
  - SSP2_NOCC
 tags:
- - ssa-nigeria
- - western_africa
+ - ssa-kenya
+ - eastern_africa
  - africa
  - baseline
 ---
@@ -24,7 +24,7 @@ tags:
 
 ```chart
 mark: bar
-title: Ssa Nigeria - Total Demand
+title: Kenya - Total Demand
 width: 37%
 encoding:
   x:
@@ -34,7 +34,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: ssa-nigeria
+  region: ssa-kenya
   impactparameter: qdxagg
   year: 2015,2030,2050
 dropdown:
@@ -44,7 +44,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Ssa Nigeria - Household Demand
+title: Kenya - Household Demand
 width: 37%
 encoding:
   x:
@@ -54,7 +54,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: ssa-nigeria
+  region: ssa-kenya
   impactparameter: qfxagg
   year: 2015,2030,2050
 dropdown:
@@ -66,9 +66,9 @@ dropdown:
 
 |   |   | 2015 | 2030 | 2050 |
 |---|---|---|---|---|
-| Western Africa | Population (million) | 343.37 | 478.64 | 677.85 |
-|  | GDP (billion $US) | 708.31 | 1858.76 | 5834.85 |
-|  | Per capita GDP ($US) | 2062.82 | 3883.42 | 8607.88 |
-| Ssa Nigeria | Population (million) | 178.84 | 252.72 | 371.70 |
-|  | GDP (billion $US) | 466.27 | 1192.73 | 3701.92 |
-|  | Per capita GDP ($US) | 2607.19| 4719.57| 9959.43|
+| Eastern Africa | Population (million) | 362.55 | 498.36 | 672.50 |
+|  | GDP (billion $US) | 435.87 | 1137.31 | 3738.87 |
+|  | Per capita GDP ($US) | 1202.23 | 2282.11 | 5559.66 |
+| Kenya | Population (million) | 45.57 | 60.59 | 78.06 |
+|  | GDP (billion $US) | 77.36 | 180.06 | 509.87 |
+|  | Per capita GDP ($US) | 1697.61| 2971.78| 6531.77|

@@ -1,12 +1,12 @@
 ---
-title: Ssa Zimbabwe Summary
+title: Nigeria Summary
 date: 5/26/2017
 type: brief
 briefType: country-summary
 project: 'baseline'
 locations:
-  - ssa-zimbabwe
-  - eastern_africa
+  - ssa-nigeria
+  - western_africa
   - africa
 scenarios:
  - SSP2_GFDL
@@ -15,8 +15,8 @@ scenarios:
  - SSP2_IPSL
  - SSP2_NOCC
 tags:
- - ssa-zimbabwe
- - eastern_africa
+ - ssa-nigeria
+ - western_africa
  - africa
  - baseline
 ---
@@ -24,7 +24,7 @@ tags:
 
 ```chart
 mark: bar
-title: Ssa Zimbabwe - Total Demand
+title: Nigeria - Total Demand
 width: 37%
 encoding:
   x:
@@ -34,7 +34,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: ssa-zimbabwe
+  region: ssa-nigeria
   impactparameter: qdxagg
   year: 2015,2030,2050
 dropdown:
@@ -44,7 +44,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Ssa Zimbabwe - Household Demand
+title: Nigeria - Household Demand
 width: 37%
 encoding:
   x:
@@ -54,7 +54,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: ssa-zimbabwe
+  region: ssa-nigeria
   impactparameter: qfxagg
   year: 2015,2030,2050
 dropdown:
@@ -66,9 +66,9 @@ dropdown:
 
 |   |   | 2015 | 2030 | 2050 |
 |---|---|---|---|---|
-| Eastern Africa | Population (million) | 362.55 | 498.36 | 672.50 |
-|  | GDP (billion $US) | 435.87 | 1137.31 | 3738.87 |
-|  | Per capita GDP ($US) | 1202.23 | 2282.11 | 5559.66 |
-| Ssa Zimbabwe | Population (million) | 12.77 | 13.33 | 13.12 |
-|  | GDP (billion $US) | 6.36 | 12.01 | 41.40 |
-|  | Per capita GDP ($US) | 498.04| 900.98| 3155.49|
+| Western Africa | Population (million) | 343.37 | 478.64 | 677.85 |
+|  | GDP (billion $US) | 708.31 | 1858.76 | 5834.85 |
+|  | Per capita GDP ($US) | 2062.82 | 3883.42 | 8607.88 |
+| Nigeria | Population (million) | 178.84 | 252.72 | 371.70 |
+|  | GDP (billion $US) | 466.27 | 1192.73 | 3701.92 |
+|  | Per capita GDP ($US) | 2607.19| 4719.57| 9959.43|

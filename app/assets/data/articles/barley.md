@@ -1,11 +1,11 @@
 ---
-title: Cot Coffee Summary
+title: Barley Summary
 date: 5/26/2017
 type: brief
 briefType: commodity-summary
 project: 'baseline'
 commodities:
-  - cot-coffee
+  - cer-barley
 scenarios:
  - SSP2_GFDL
  - SSP2_HGEM
@@ -13,15 +13,15 @@ scenarios:
  - SSP2_IPSL
  - SSP2_NOCC
 tags:
- - cot-coffee
- - cot
+ - cer-barley
+ - cer
  - baseline
 ---
-Summary of IMPACT model outputs for cot coffee
+Summary of IMPACT model outputs for barley
 
 ```chart
 mark: line
-title: Cot Coffee Impact Parameters over time
+title: Barley Impact Parameters over time
 width: 37%
 encoding:
   x:
@@ -31,7 +31,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: cot-coffee
+  commodity: cer-barley
 dropdown:
   field: impactparameter
   values: qdxagg, qfxagg
@@ -39,7 +39,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Change in Cot Coffee Impact Parameters from 2015 - 2050 (%)
+title: Change in Barley Impact Parameters from 2015 - 2050 (%)
 width: 37%
 encoding:
   x:
@@ -49,7 +49,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: cot-coffee
+  commodity: cer-barley
   impactparameter: qdxagg, qfxagg
 change:
   field: year
@@ -59,7 +59,7 @@ change:
 
 ```chart
 mark: stripe
-title: Cot Coffee Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
+title: Barley Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
 width: 37%
 encoding:
   x:
@@ -69,7 +69,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: cot-coffee
+  commodity: cer-barley
 dropdown:
   field: impactparameter
   values: qdxagg, qfxagg
@@ -80,7 +80,7 @@ series:
 ```
 
 ```map
-title: Change in Cot Coffee IMPACT Parameters from 2015 - 2050 (%)
+title: Change in Barley IMPACT Parameters from 2015 - 2050 (%)
 dropdown:
   field: impactparameter
   values: qdxagg, qfxagg
@@ -89,5 +89,5 @@ change:
   values: 2015, 2050
   type: percent
 fixed:
-  commodity: cot-coffee
+  commodity: cer-barley
 ```

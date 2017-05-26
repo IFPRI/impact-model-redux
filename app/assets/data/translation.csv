@@ -1,418 +1,269 @@
-afg,Afghanistan
-ago,Angola
-alb,Albania
-arg,Argentina
-arm,Armenia
-aus,Australia
-aut,Austria
-aze,Azerbaijan
-animal_products,Animal Products
-anmlnumxagg,Animal Numbers
-anmlyldxagg,Animal Yield
-areaxagg,Area
-australia_and_new_zealand,Australia and New Zealand
-bdi,Burundi
-ben,Benin
-bfa,Burkina Faso
-bgd,Bangladesh
-bgr,Bulgaria
-blr,Belarus
-blt,Baltic States
-blx,Belgium-Luxembourg
-blz,Belize
-bol,Bolivia
-bra,Brazil
-btn,Bhutan
-bwa,Botswana
-caf,Central African Republic
-can,Canada
-chl,Chile
-chm,China
-chp,Switzerland plus
-civ,Ivory Coast
-cmr,Cameroon
-cod,Democratic Republic of the Congo
-cog,Republic of the Congo
-col,Colombia
-crb,Other Caribbean
-cri,Costa Rica
-cub,Cuba
-cyp,Cyprus
-cze,Czech Republic
-caribbean,Caribbean
-central_america,Central America
-central_asia,Central Asia
-cereals,Cereals
-deu,Germany
-dji,Djibouti
-dnk,Denmark
-dom,Dominican Republic
-dza,Algeria
-ecu,Ecuador
-egy,Egypt
-eri,Eritrea
-eth,Ethiopia
-eastern_africa,Eastern Africa
-eastern_asia,Eastern Asia
-eastern_europe,Eastern Europe
-fji,Fiji
-fnp,Finland Plus
-frp,France plus
-foodavailxagg,Food Availability
-food_oils,Food Oils
-fruits_vegetables,Fruits and Vegetables
-gab,Gabon
-gdpxagg,Income
-geo,Georgia
-gha,Ghana
-gin,Guinea
-gmb,Gambia
-gnb,Guinea Bissau
-gnq,Equatorial Guinea
-grc,Greece
-grl,Denmark
-gsa,Guyanas South America
-gtm,Guatemala
-hnd,Honduras
-hrv,Croatia
-hti,Haiti
-hun,Hungary
-idn,Indonesia
-ind,India
-irl,Ireland
-irn,Iran
-irq,Iraq
-isl,Iceland
-isr,Israel
-itp,Italy plus
-jam,Jamaica
-jor,Jordan
-jpn,Japan
-kaz,Kazakhstan
-ken,Kenya
-kgz,Kyrgyzstan
-khm,Cambodia
-kor,South Korea
-lao,Laos
-lbn,Lebanon
-lbr,Liberia
-lby,Libya
-lka,Sri Lanka
-lso,Lesotho
-mda,Moldova
-mdg,Madagascar
-mex,Mexico
-mli,Mali
-mmr,Myanmar
-mng,Mongolia
-mor,Morocco
-moz,Mozambique
-mrt,Mauritania
-mwi,Malawi
-mys,Malaysia
-melanesia,Melanesia
-middle_africa,Middle Africa
-nam,Namibia
-ner,Niger
-nga,Nigeria
-nic,Nicaragua
-nld,Netherlands
-nor,Norway
-npl,Nepal
-nzl,New Zealand
-northern_africa,Northern Africa
-northern_america,Northern America
-northern_europe,Northern Europe
-oao,Other Atlantic Ocean
-obn,Other Balkans
-oio,Other Indian Ocean
-opo,Other Pacific Ocean
-osa,Other Southeast Asia
-oil_meals,Oil Meals
-oils,Oils
-oils_seeds,Oil Seeds
-other,Other
-pak,Pakistan
-pan,Panama
-per,Peru
-phl,Philippines
-png,Papua New Guinea
-pol,Poland
-ppxagg,Producer Prices
-prk,North Korea
-prt,Portugal
-pry,Paraguay
-pse,Occupied Palestinian Territory
-pwxagg,World Prices
-percapkcalxagg,Per Capita Calories
-polynesia,Polynesia
+sas-afghanistan,Afghanistan
+ssa-angola,Angola
+eur-albania,Albania
+lac-argentina,Argentina
+fsu-armenia,Armenia
+eap-australia,Australia
+eur-austria,Austria
+fsu-azerbaijan,Azerbaijan
+f&v-banana,Bananas
+cer-barley,Barley
+ssa-burundi,Burundi
+pul-beans,Beans
+pul-beans,Beans
+amt-beef,Cattle
+ssa-benin,Benin
+ssa-burkina_faso,Burkina Faso
+sas-bangladesh,Bangladesh
+eur-bulgaria,Bulgaria
+fsu-belarus,Belarus
+eur-baltic_states,Baltic States
+eur-belgium-luxembourg,Belgium-Luxembourg
+lac-belize,Belize
+lac-bolivia,Bolivia
+lac-brazil,Brazil
+sas-bhutan,Bhutan
+ssa-botswana,Botswana
+ssa-central_african_rep.,Central African Republic
+cot-coffee,Coffee
+nam-canada,Canada
+r&t-cassava,Cassava and Other Roots & Tubers
+pul-chickpeas,Chickpeas
+lac-chile,Chile
+eap-china,China
+eur-switzerland,Switzerland plus
+ssa-ivory_coast,Ivory Coast
+ssa-cameroon,Cameroon
+cot-cacao,Cocoa
+cot-cacao,Cocoa
+ssa-drc,Democratic Republic of the Congo
+ssa-congo,Republic of the Congo
+lac-colombia,Colombia
+cot-cotton,Cotton
+pul-cowpeas,Cowpeas
+lac-other_caribbean,Other Caribbean
+lac-costa_rica,Costa Rica
+lac-cuba,Cuba
+eur-cyprus,Cyprus
+eur-czech_republic,Czech Republic
+eur-germany,Germany
+ssa-djibouti,Djibouti
+eur-denmark,Denmark
+lac-dominican_republic,Dominican Republic
+men-algeria,Algeria
+lac-ecuador,Ecuador
+aot-eggs,Eggs
+aot-eggs,Eggs
+men-egypt,Egypt
+ssa-eritrea,Eritrea
+ssa-ethiopia,Ethiopia
+eap-fiji,Fiji
+eur-finland,Finland Plus
+for-fodders,Fodders
+eur-france,France plus
+ssa-gabon,Gabon
+mls-groundnut_meal,Groundnut Meal
+oil-groundnut_oil,Groundnut Oil
+fsu-georgia,Georgia
+ssa-ghana,Ghana
+ssa-guinea,Guinea
+ssa-gambia,Gambia
+ssa-guinea-bissau,Guinea Bissau
+ssa-equatorial_guinea,Equatorial Guinea
+eur-greece,Greece
+nam-greenland,Denmark
+ols-groundnut,Groundnuts
+for-grass,Grass
+lac-guyanas,Guyanas South America
+lac-guatemala,Guatemala
+lac-honduras,Honduras
+eur-croatia,Croatia
+lac-haiti,Haiti
+eur-hungary,Hungary
+eap-indonesia,Indonesia
+sas-india,India
+eur-ireland,Ireland
+men-iran,Iran
+men-iraq,Iraq
+eur-iceland,Iceland
+men-israel,Israel
+eur-italy,Italy plus
+lac-jamaica,Jamaica
+men-jordan,Jordan
+eap-japan,Japan
+fsu-kazakhstan,Kazakhstan
+ssa-kenya,Kenya
+fsu-kyrgyzstan,Kyrgyzstan
+eap-cambodia,Cambodia
+eap-south_korea,South Korea
+amt-lamb,Sheep and Goats
+eap-laos,Laos
+men-lebanon,Lebanon
+ssa-liberia,Liberia
+men-libya,Libya
+pul-lentils,Lentils
+sas-sri_lanka,Sri Lanka
+ssa-lesotho,Lesotho
+cer-maize,Maize
+fsu-moldova,Moldova
+ssa-madagascar,Madagascar
+lac-mexico,Mexico
+aot-dairy,Dairy
+cer-millet,Millet
+ssa-mali,Mali
+eap-myanmar,Myanmar
+eap-mongolia,Mongolia
+men-morocco,Morocco
+ssa-mozambique,Mozambique
+men-mauritania,Mauritania
+ssa-malawi,Malawi
+eap-malaysia,Malaysia
+ssa-namibia,Namibia
+ssa-niger,Niger
+ssa-nigeria,Nigeria
+lac-nicaragua,Nicaragua
+eur-netherlands,Netherlands
+eur-norway,Norway
+sas-nepal,Nepal
+eap-new_zealand,New Zealand
+ssa-other_atlantic,Other Atlantic Ocean
+eur-other_balkans,Other Balkans
+cer-other_cereals,Other Cereals
+eap-other_indian_ocean,Other Indian Ocean
+eap-other_pacific_ocean,Other Pacific Ocean
+pul-other_pulses,Other Pulses
+r&t-other_roots,Other Roots & Tubers
+eap-other_southeast_asia,Other Southeast Asia
+cot-other,Other Crops
+sas-pakistan,Pakistan
+ols-palm_fruit,Oil Palm Fruit
+lac-panama,Panama
+lac-peru,Peru
+eap-philippines,Philippines
+pul-pigeonpeas,Pigeonpeas
+mls-palm_kernel_meal,Palm Kernal Meal
+oil-palm_kernel_oil,Palm Kernal Oil
+ols-palm_kernel,Palm Kernal
+f&v-plantain,Plantains
+oil-palm_fruit_oil,Palm Oil
+eap-papua_new_guinea,Papua New Guinea
+eur-poland,Poland
 popxagg,Population
-pulses,Pulses
+amt-pork,Pigs
+amt-pork,Pigs
+r&t-potato,Potato
+amt-poultry,Poultry
+eap-north_korea,North Korea
+eur-portugal,Portugal
+lac-paraguay,Paraguay
+men-palestine,Occupied Palestinian Territory
+for-grass,Pasture
 qdxagg,Total Demand
 qfxagg,Household Demand
-qlxagg,Livestock Feed Demand
-qnxagg,Net Trade
-qsupxagg,Commodity Supply
-rap,Rest of Arab Peninsula
-rou,Romania
-rus,Russia
-rwa,Rwanda
-roots_tubers,Roots and Tubers
-sau,Saudi Arabia
-sdn,Sudan
-sen,Senegal
-slb,Solomon Islands
-sle,Sierra Leone
-slv,El Salvador
-som,Somalia
-spp,Spain plus
-ssd,South Sudan
-svk,Slovakia
-svn,Slovenia
-swe,Sweden
-swz,Swaziland
-syr,Syria
-south_america,South America
-south_eastern_asia,South Eastern Asia
-southern_africa,Southern Africa
-southern_asia,Southern Asia
-southern_europe,Southern Europe
-sugar,Sugar
-tareaxagg,Total Area
-tcd,Chad
-tgo,Togo
-tha,Thailand
-tjk,Tajikistan
-tkm,Turkmenistan
-tls,East Timor
-tun,Tunisia
-tur,Turkey
-tyldxagg,Total Yield
-tza,United Republic of Tanzania
-uga,Uganda
-ukp,Great Britain plus
-ukr,Ukraine
-ury,Uruguay
-usa,United States of America
-uzb,Uzbekistan
-ven,Venezuela
-vnm,Vietnam
-vut,Vanuatu
+men-rest_of_arabia,Rest of Arab Peninsula
+cer-rice,Rice
+eur-romania,Romania
+mls-rapeseed_meal,Rapeseed Meal
+oil-rapeseed_oil,Rapeseed Oil
+ols-rapeseed,Rapeseed
+fsu-russia,Russia
+ssa-rwanda,Rwanda
+men-saudi_arabia,Saudi Arabia
+mls-soybean_meal,Soybean Meal
+oil-soybean_oil,Soybean Oil
+ssa-sudan,Sudan
+ssa-senegal,Senegal
+mls-sunflower_meal,Sunflower Meal
+mls-sunflower_meal,Sunflower Meal
+oil-sunflower_oil,Sunflower Oil
+eap-solomon_islands,Solomon Islands
+ssa-sierra_leon,Sierra Leone
+lac-el_salvador,El Salvador
+ols-sunflower,Sunflower Seeds
+ssa-somalia,Somalia
+cer-sorghum,Sorghum
+ols-soybean,Soybeans
+eur-spain,Spain plus
+ssp2_gfdl,SSP2_GFDL
+ssp2_hgem,SSP2_HGEM
+ssp2_ipsl,SSP2_IPSL
+ssp2_miroc,SSP2_MIROC
+ssp2_nocc,SSP2_NOCC
+f&v-tropical_fruit,(Sub)-Tropical Fruits
+sgc-sugar_beet,Sugarbeet
+sgc-sugarcane,Sugarcane
+sgr-sugar,Refined Sugar
+eur-slovakia,Slovakia
+eur-slovenia,Slovenia
+eur-sweden,Sweden
+r&t-sweet_potato,Sweet Potatoes
+ssa-swaziland,Swaziland
+men-syria,Syria
+ssa-chad,Chad
+cot-tea,Tea
+f&v-temperate_fruit,Temperate Fruits
+f&v-temperate_fruit,Temperate Fruits
+ssa-togo,Togo
+eap-thailand,Thailand
+fsu-tajikistan,Tajikistan
+fsu-turkmenistan,Turkmenistan
+eap-timor_l'este,East Timor
+ols-other_oilseeds,Total Other Oilseeds
+mls-other_meals,Total Other Oilseed Meal
+oil-other_oils,Total Other Oils
+men-tunisia,Tunisia
+men-turkey,Turkey
+ssa-tanzania,United Republic of Tanzania
+ssa-uganda,Uganda
+eur-uk,Great Britain plus
+fsu-ukraine,Ukraine
+lac-uruguay,Uruguay
+nam-usa,United States of America
+fsu-uzbekistan,Uzbekistan
+f&v-vegetables,Vegetables
+f&v-vegetables,Vegetables
+lac-venezuela,Venezuela
+eap-vietnam,Vietnam
+eap-vanuatu,Vanuatu
+cer-wheat,Wheat
+r&t-yams,Yams
+men-yemen,Yemen
+ssa-south_africa,South Africa
+ssa-zambia,Zambia
+ssa-zimbabwe,Zimbabwe
+australia_and_New_Zealand,Australia and New Zealand,
+caribbean,Caribbean,
+central_america,Central America,
+central_asia,Central Asia,
+eastern_africa,Eastern Africa
+eastern_asia,Eastern Asia,
+eastern_europe,Eastern Europe,
+melanesia,Melanesia,
+middle_africa,Middle Africa,
+northern_africa,Northern Africa,
+northern_america,Northern America,
+northern_europe,Northern Europe,
+south_america,South America,
+south-eastern_Asia,South-Eastern Asia,
+southern_africa,Southern Africa,
+southern_asia,Southern Asia,
+southern_europe,Southern Europe,
 western_africa,Western Africa
-western_asia,Western Asia
+western_asia,Western Asia,
 western_europe,Western Europe
-yem,Yemen
-yldxagg,Yield
-zaf,South Africa
-zmb,Zambia
-zwe,Zimbabwe
-africa,Africa
-americas,Americas
-antartic_region,Antartic Region
-asia,Asia
-bana,Bananas
-barl,Barley
-baseline,IMPACT Baseline
-bean,Beans
-beef,Cattle
-cafe,Coffee
-cass,Cassava and Other Roots & Tubers
-chkp,Chickpeas
-coco,Cocoa
-cott,Cotton
-cowp,Cowpeas
-eggs,Eggs
-europe,Europe
-fodr,Fodders
-gdml,Groundnut Meal
-gdol,Groundnut Oil
-global-futures,Global Futures
-grnd,Groundnuts
-grss,Grass
-impactparameter,Impact Parameter
-lamb,Sheep and Goats
-lent,Lentils
-maiz,Maize
-milk,Dairy
-mill,Millet
-oceania,Oceania
-ocer,Other Cereals
-opul,Other Pulses
-orat,Other Roots & Tubers
-othr,Other Crops
-palm,Oil Palm Fruit
-pcgdpxagg,Per Capita Income
-pigp,Pigeonpeas
-pkml,Palm Kernal Meal
-pkol,Palm Kernal Oil
-pkrl,Palm Kernal
-plnt,Plantains
-plol,Palm Oil
-populationatriskxagg,Population at Risk of Hunger
-pork,Pigs
-pota,Potato
-poul,Poultry
-pstr,Pasture
-qeshxagg ,Export Share of Production
-qmshxagg,Import Share of Demand
-qnsh1xagg ,Net Trade Share of Demand
-rice,Rice
-rpml,Rapeseed Meal
-rpol,Rapeseed Oil
-rpsd,Rapeseed
-sbml,Soybean Meal
-sbol,Soybean Oil
-sfml,Sunflower Meal
-sfol,Sunflower Oil
-snfl,Sunflower Seeds
-sorg,Sorghum
-soyb,Soybeans
-ssp2_gfdl,SSP2-GFDL
-ssp2_hgem,SSP2-HGEM
-ssp2_ipsl,SSP2-IPSL
-ssp2_miroc,SSP2-MIROC
-ssp2_nocc,SSP2-NoCC
-subf,(Sub)-Tropical Fruits
-sugb,Sugarbeet
-sugc,Sugarcane
-sugr,Refined Sugar
-swpt,Sweet Potatoes
-teas,Tea
-temf,Temperate Fruits
-tols,Total Other Oilseeds
-toml,Total Other Oilseed Meal
-tool,Total Other Oils
-totalmalnourishedxagg,Total Malnourished Children
-vege,Vegetables
-whea,Wheat
-yams,Yams
-giwd_s_cty,Groundwater
-totalsupply_cty,Total Water Supply
-wcd_s_cty,Water Demand
-wci_s_cty,Water Irrigation
-wcl_s_cty,Water Rainfed
-abw,Netherlands
-aia,United Kingdom
-ald,Finland
-and,Andorra
-are,United Arab Emirates
-asm,United States of America
-ata,Antarctica
-atc,Australia
-atf,France
-atg,Antigua and Barbuda
-bel,Belgium
-bhr,Bahrain
-bhs,The Bahamas
-bih,Bosnia and Herzegovina
-blm,France
-bmu,United Kingdom
-brb,Barbados
-brn,Brunei
-che,Switzerland
-clp,France
-cnm,Cyprus No Mans Area
-cok,New Zealand
-com,Comoros
-cpv,Cape Verde
-csi,Australia
-cuw,Netherlands
-cym,United Kingdom
-cyn,Northern Cyprus
-dma,Dominica
-esb,United Kingdom
-esp,Spain
-est,Estonia
-fin,Finland
-flk,United Kingdom
-fra,France
-fro,Denmark
-fsm,Federated States of Micronesia
-gaz,Palestine
-gbr,United Kingdom
-ggy,United Kingdom
-gib,United Kingdom
-grd,Grenada
-gum,United States of America
-guy,Guyana
-hkg,China
-hmd,Australia
-imn,United Kingdom
-ioa,Australia
-iot,United Kingdom
-ita,Italy
-jey,United Kingdom
-kab,Kazakhstan
-kas,Kashmir
-kir,Kiribati
-kna,Saint Kitts and Nevis
-knm,Korea No Mans Area
-kos,Kosovo
-kwt,Kuwait
-lca,Saint Lucia
-lie,Liechtenstein
-ltu,Lithuania
-lux,Luxembourg
-lva,Latvia
-mac,China
-maf,France
-mar,Morocco
-mco,Monaco
-mdv,Maldives
-mhl,Marshall Islands
-mkd,Macedonia
-mlt,Malta
-mne,Montenegro
-mnp,United States of America
-msr,United Kingdom
-mus,Mauritius
-ncl,France
-nfk,Australia
-niu,New Zealand
-nru,Nauru
-omn,Oman
-pcn,United Kingdom
-plw,Palau
-pri,United States of America
-pyf,France
-qat,Qatar
-sah,Western Sahara
-sds,South Sudan
-sgp,Singapore
-sgs,United Kingdom
-shn,United Kingdom
-smr,San Marino
-sol,Somaliland
-spm,France
-srb,Republic of Serbia
-stp,Sao Tome and Principe
-sur,Suriname
-sxm,Netherlands
-syc,Seychelles
-tca,United Kingdom
-ton,Tonga
-tto,Trinidad and Tobago
-tuv,Tuvalu
-twn,Taiwan
-umi,United States of America
-usg,Cuba
-vat,Vatican
-vct,Saint Vincent and the Grenadines
-vgb,United Kingdom
-vir,United States of America
-web,Palestine
-wlf,France
-wsb,United Kingdom
-wsm,Samoa
-agg_continent,continent
-agg_subcontinent,sub-continent
-custom,Custom
-country-summary,Country Summary
+amt,Meat
+aot,Dairy
+cer,Cereals
+cot,Other Crops
+f&v,Fruits & Vegetables
+mls,Other Meals
+oil,Processed Oils
+ols,Oil Seeds
+pul,Pulses
+r&t,Roots & Tubers
+sgc,Sugar Crops
+sgr,Sugar
+impactparameter,IMPACT Parameter
 commodity-summary,Commodity Summary
-agg_commodity,Commodity Group
-SSP2_GFDL,SSP2_GFDL
-SSP2_HGEM,SSP2_HGEM
-SSP2_MIROC,SSP2_MIROC
-SSP2_IPSL,SSP2_IPSL
-SSP2_NOCC,SSP2_NOCC
-Val,Value
+custom,Custom Brief
+country-summary,Country Summary

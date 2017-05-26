@@ -1,11 +1,11 @@
 ---
-title: Pul Beans Summary
+title: Vegetables Summary
 date: 5/26/2017
 type: brief
 briefType: commodity-summary
 project: 'baseline'
 commodities:
-  - pul-beans
+  - f&v-vegetables
 scenarios:
  - SSP2_GFDL
  - SSP2_HGEM
@@ -13,15 +13,15 @@ scenarios:
  - SSP2_IPSL
  - SSP2_NOCC
 tags:
- - pul-beans
- - pul
+ - f&v-vegetables
+ - f&v
  - baseline
 ---
-Summary of IMPACT model outputs for pul beans
+Summary of IMPACT model outputs for vegetables
 
 ```chart
 mark: line
-title: Pul Beans Impact Parameters over time
+title: Vegetables Impact Parameters over time
 width: 37%
 encoding:
   x:
@@ -31,7 +31,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: pul-beans
+  commodity: f&v-vegetables
 dropdown:
   field: impactparameter
   values: qdxagg, qfxagg
@@ -39,7 +39,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Change in Pul Beans Impact Parameters from 2015 - 2050 (%)
+title: Change in Vegetables Impact Parameters from 2015 - 2050 (%)
 width: 37%
 encoding:
   x:
@@ -49,7 +49,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: pul-beans
+  commodity: f&v-vegetables
   impactparameter: qdxagg, qfxagg
 change:
   field: year
@@ -59,7 +59,7 @@ change:
 
 ```chart
 mark: stripe
-title: Pul Beans Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
+title: Vegetables Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
 width: 37%
 encoding:
   x:
@@ -69,7 +69,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: pul-beans
+  commodity: f&v-vegetables
 dropdown:
   field: impactparameter
   values: qdxagg, qfxagg
@@ -80,7 +80,7 @@ series:
 ```
 
 ```map
-title: Change in Pul Beans IMPACT Parameters from 2015 - 2050 (%)
+title: Change in Vegetables IMPACT Parameters from 2015 - 2050 (%)
 dropdown:
   field: impactparameter
   values: qdxagg, qfxagg
@@ -89,5 +89,5 @@ change:
   values: 2015, 2050
   type: percent
 fixed:
-  commodity: pul-beans
+  commodity: f&v-vegetables
 ```

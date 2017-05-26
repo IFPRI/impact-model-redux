@@ -1,11 +1,11 @@
 ---
-title: Cot Tea Summary
+title: Coffee Summary
 date: 5/26/2017
 type: brief
 briefType: commodity-summary
 project: 'baseline'
 commodities:
-  - cot-tea
+  - cot-coffee
 scenarios:
  - SSP2_GFDL
  - SSP2_HGEM
@@ -13,15 +13,15 @@ scenarios:
  - SSP2_IPSL
  - SSP2_NOCC
 tags:
- - cot-tea
+ - cot-coffee
  - cot
  - baseline
 ---
-Summary of IMPACT model outputs for cot tea
+Summary of IMPACT model outputs for coffee
 
 ```chart
 mark: line
-title: Cot Tea Impact Parameters over time
+title: Coffee Impact Parameters over time
 width: 37%
 encoding:
   x:
@@ -31,7 +31,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: cot-tea
+  commodity: cot-coffee
 dropdown:
   field: impactparameter
   values: qdxagg, qfxagg
@@ -39,7 +39,7 @@ dropdown:
 
 ```chart
 mark: bar
-title: Change in Cot Tea Impact Parameters from 2015 - 2050 (%)
+title: Change in Coffee Impact Parameters from 2015 - 2050 (%)
 width: 37%
 encoding:
   x:
@@ -49,7 +49,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: cot-tea
+  commodity: cot-coffee
   impactparameter: qdxagg, qfxagg
 change:
   field: year
@@ -59,7 +59,7 @@ change:
 
 ```chart
 mark: stripe
-title: Cot Tea Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
+title: Coffee Impact Parameters over time (SSP2_GFDL vs. SSP2_HGEM)
 width: 37%
 encoding:
   x:
@@ -69,7 +69,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  commodity: cot-tea
+  commodity: cot-coffee
 dropdown:
   field: impactparameter
   values: qdxagg, qfxagg
@@ -80,7 +80,7 @@ series:
 ```
 
 ```map
-title: Change in Cot Tea IMPACT Parameters from 2015 - 2050 (%)
+title: Change in Coffee IMPACT Parameters from 2015 - 2050 (%)
 dropdown:
   field: impactparameter
   values: qdxagg, qfxagg
@@ -89,5 +89,5 @@ change:
   values: 2015, 2050
   type: percent
 fixed:
-  commodity: cot-tea
+  commodity: cot-coffee
 ```
