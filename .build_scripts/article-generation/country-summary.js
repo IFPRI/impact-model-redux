@@ -9,7 +9,7 @@ var translation = require('../../app/assets/scripts/utils/translation')
 var regions = require('../../app/assets/data/aggregate-region.json')
 var commodities = require('../../app/assets/data/aggregate-commodity.json')
 
-var baselineScenarios = ['SSP2_GFDL', 'SSP2_HGEM', 'SSP2_MIROC', 'SSP2_IPSL', 'SSP2_NOCC']
+var baselineScenarios = ['ssp2_gfdl', 'ssp2_hgem', 'ssp2_miroc', 'ssp2_ipsl', 'ssp2_nocc']
 var dbUrl = 'https://ad21a5a8cb0789e9b73c2142d3c83e43.us-east-1.aws.found.io:9243/ifpri/ssp2_gfdl/_search'
 var q = queue(2)
 

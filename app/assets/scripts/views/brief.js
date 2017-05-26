@@ -130,7 +130,7 @@ export class Brief extends React.Component {
     const Scenarios = scenarios
     ? <div className='article-metadata__item'>
       <span className='article-metadata__header'>Related Scenarios:</span>
-      <ul>{scenarios.map(s => <li key={s}><Link className='link__underline' to={`/scenarios/${s.toLowerCase()}-summary`}>{translate(s)}</Link></li>)}</ul>
+      <ul>{scenarios.map(s => <li key={s}><Link className='link__underline' to={`/scenarios/${s}-summary`}>{translate(s)}</Link></li>)}</ul>
     </div>
     : ''
 
