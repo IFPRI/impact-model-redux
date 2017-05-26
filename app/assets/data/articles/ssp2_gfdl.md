@@ -57,7 +57,7 @@ change:
 
 ```chart
 mark: grouped-bar
-title: Change in SSP2_GFDL Impact Parameters per Commodity Group (%) from 2015 - 2050 (SSP2_GFDL vs. SSP2_GFDL)
+title: Change in SSP2_GFDL Impact Parameters per Commodity Group (%) from 2015 - 2050 (SSP2_GFDL vs. SSP2_MIROC)
 width: 70%
 encoding:
   x:
@@ -73,7 +73,7 @@ dropdown:
   values: amt,aot,cer,r&t,pul,f&v,sgc,sgr,ols,oil,mls,cot,for
 series:
   field: _type
-  values: SSP2_GFDL, SSP2_GFDL
+  values: ssp2_gfdl, ssp2_miroc
 change:
   field: year
   values: 2015, 2050

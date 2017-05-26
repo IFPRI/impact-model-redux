@@ -73,7 +73,7 @@ dropdown:
   values: amt,aot,cer,r&t,pul,f&v,sgc,sgr,ols,oil,mls,cot,for
 series:
   field: _type
-  values: SSP2_HGEM, SSP2_MIROC
+  values: ssp2_hgem, ssp2_miroc
 change:
   field: year
   values: 2015, 2050

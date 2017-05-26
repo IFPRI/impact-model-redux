@@ -79,7 +79,7 @@ dropdown:
   values: ${_.uniq(_.values(commodities)).join(',')}
 series:
   field: _type
-  values: ${scenario}, ${chartComparison}
+  values: ${scenario.toLowerCase()}, ${chartComparison.toLowerCase()}
 change:
   field: year
   values: 2015, 2050

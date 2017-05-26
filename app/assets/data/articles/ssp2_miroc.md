@@ -73,7 +73,7 @@ dropdown:
   values: amt,aot,cer,r&t,pul,f&v,sgc,sgr,ols,oil,mls,cot,for
 series:
   field: _type
-  values: SSP2_MIROC, SSP2_GFDL
+  values: ssp2_miroc, ssp2_gfdl
 change:
   field: year
   values: 2015, 2050
