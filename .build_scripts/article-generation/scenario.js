@@ -10,7 +10,6 @@ var baselineScenarios = ['ssp2_gfdl', 'ssp2_hgem', 'ssp2_miroc', 'ssp2_ipsl', 's
 function generateArticle (scenario) {
   var date = new Date()
   date = `${date.getMonth() + 1}/${date.getDate()}/${1900 + date.getYear()}`
-  var articleType = 'scenario'
   var tags = [scenario, 'baseline']
 
   var name = translation.translate(scenario)
@@ -112,7 +111,7 @@ change:
   var output = `---
 title: ${title}
 date: ${date}
-type: ${articleType}
+type: scenario
 briefType: scenario
 project: 'baseline'
 scenarios:

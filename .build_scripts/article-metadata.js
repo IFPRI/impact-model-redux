@@ -1,6 +1,7 @@
 var fs = require('fs')
 var glob = require('glob')
 var fm = require('front-matter')
+var _ = require('lodash')
 
 // Extract n characters of preview text, rounded to the closest full word
 const cutAt = (text, characters) => {
@@ -21,6 +22,7 @@ let commodities = []
 let locations = []
 let projects = []
 let tags = []
+let scenarioTags = []
 
 glob('app/assets/data/articles/*.md', (err, files) => {
   if (err) console.warn(err)
@@ -31,6 +33,8 @@ glob('app/assets/data/articles/*.md', (err, files) => {
     locations = locations.concat(metadata.locations)
     projects = projects.concat(metadata.project)
     tags = tags.concat(metadata.tags)
+    if (metadata.type === 'scenario') scenarioTags = scenarioTags.concat(metadata.tags)
+
     return {
       title: metadata.title,
       id: slugify(metadata.title),
@@ -54,10 +58,11 @@ glob('app/assets/data/articles/*.md', (err, files) => {
   })
   fs.writeFile('./app/assets/data/filter-categories.json',
     JSON.stringify({
-      commodities: commodities.filter((value, index, self) => self.indexOf(value) === index && value && value !== 'undefined').sort(),
-      locations: locations.filter((value, index, self) => self.indexOf(value) === index && value && value !== 'undefined').sort(),
-      projects: projects.filter((value, index, self) => self.indexOf(value) === index && value && value !== 'undefined').sort(),
-      tags: tags.filter((value, index, self) => self.indexOf(value) === index && value && value !== 'undefined').sort()
+      commodities: _.uniq(commodities.filter(Boolean)).sort(),
+      locations: _.uniq(locations.filter(Boolean)).sort(),
+      projects: _.uniq(projects.filter(Boolean)).sort(),
+      tags: _.uniq(tags.filter(Boolean)).sort(),
+      scenarioTags: _.uniq(scenarioTags.filter(Boolean)).sort()
     }), (err) => {
       if (err) return err
     })
