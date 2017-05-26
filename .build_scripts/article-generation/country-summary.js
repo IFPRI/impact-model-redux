@@ -10,7 +10,7 @@ var regions = require('../../app/assets/data/aggregate-region.json')
 var commodities = require('../../app/assets/data/aggregate-commodity.json')
 
 var baselineScenarios = ['SSP2_GFDL', 'SSP2_HGEM', 'SSP2_MIROC', 'SSP2_IPSL', 'SSP2_NOCC']
-var dbUrl = 'https://82e66fb22a73abdaa81040f2abdc298f-us-east-1.foundcluster.com:9243/ifpri/ssp2_gfdl/_search?search_type=count'
+var dbUrl = 'https://ad21a5a8cb0789e9b73c2142d3c83e43.us-east-1.aws.found.io:9243/ifpri/ssp2_gfdl/_search'
 var q = queue(2)
 
 function generateArticle (region, subcontinent, continent, callback) {
@@ -48,30 +48,8 @@ dropdown:
 \`\`\``
   }
 
-  function foodSecurity (param) {
-    return `\`\`\`chart
-mark: bar
-title: ${name} - ${translation.translate(param)}
-width: 37%
-encoding:
-  x:
-    type: nominal
-    field: year
-  y:
-    type: quantitative
-    field: Val
-fixed:
-  region: ${region}
-  impactparameter: ${param}
-  year: 2015,2030,2050
-\`\`\``
-  }
-  // qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
-  var outputFigures = ['qdxagg', 'qsupxagg', 'qnxagg']
+  var outputFigures = ['qdxagg', 'qfxagg']
     .map(param => `${outputChart(param)}\n\n`).join('')
-
-  var foodSecurityFigures = ['populationatriskxagg', 'foodavailxagg', 'totalmalnourishedxagg']
-    .map(param => `${foodSecurity(param)}\n\n`).join('')
 
   const neededDataWheres = [
     [`agg_subcontinent = ${subcontinent}`, 'year = 2015', 'impactparameter = popxagg'],
@@ -123,7 +101,7 @@ fixed:
 |  | GDP (billion $US) | ${results[9]} | ${results[10]} | ${results[11]} |
 |  | Per capita GDP ($US) | ${(1000 * Number(results[9]) / Number(results[6])).toFixed(2)}| ${(1000 * Number(results[10]) / Number(results[7])).toFixed(2)}| ${(1000 * Number(results[11]) / Number(results[8])).toFixed(2)}|`
 
-    var article = `# Overview \n\n${outputFigures}# Food security\n\n${foodSecurityFigures}${table}`
+    var article = `# Overview \n\n${outputFigures}\n\n${table}`
 
     var scenarioString = scenarios.map(s => ` - ${s}`).join('\n')
     var tagString = tags.map(t => ` - ${t}`).join('\n')
@@ -151,7 +129,7 @@ ${article}`
 }
 
 _.forEach(regions, r => {
-  if (['bra', 'chm', 'zaf', 'zmb', 'zwe', 'arg', 'rus', 'ken', 'gha', 'nga'].includes(r.region)) {
+  if (['lac-brazil', 'eap-china', 'ssa-south africa', 'ssa-zambia', 'ssa-zimbabwe', 'lac-argentina', 'fsu-russia', 'ssa-kenya', 'ssa-ghana', 'ssa-nigeria'].includes(r.region)) {
     q.defer(cb => {
       generateArticle(r.region, r.subcontinent, r.continent, cb)
     })

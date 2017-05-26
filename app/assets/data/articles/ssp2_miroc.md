@@ -1,6 +1,6 @@
 ---
 title: SSP2_MIROC Summary
-date: 4/3/2017
+date: 5/26/2017
 type: scenario
 project: 'baseline'
 scenarios:
@@ -23,11 +23,14 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  impactparameter: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+  impactparameter: qdxagg, qfxagg
 dropdown:
   field: agg_commodity
-  values: animal_products,cereals,fruits_vegetables,oils_seeds,food_oils,oil_meals,other,pulses,roots_tubers,sugar
-change: true
+  values: amt,aot,cer,r&t,pul,f&v,sgc,sgr,ols,oil,mls,cot,for
+change:
+  field: year
+  values: 2015, 2050
+  type: percent
 ```
 
 ```chart
@@ -42,16 +45,19 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  agg_commodity: animal_products,cereals,fruits_vegetables,oils_seeds,food_oils,oil_meals,other,pulses,roots_tubers,sugar
+  agg_commodity: amt,aot,cer,r&t,pul,f&v,sgc,sgr,ols,oil,mls,cot,for
 dropdown:
   field: impactparameter
-  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
-change: true
+  values: qdxagg, qfxagg
+change:
+  field: year
+  values: 2015, 2050
+  type: percent
 ```
 
 ```chart
 mark: grouped-bar
-title: Change in SSP2_MIROC Impact Parameters per Commodity Group (%) from 2015 - 2050 (SSP2_MIROC vs. SSP2_HGEM)
+title: Change in SSP2_MIROC Impact Parameters per Commodity Group (%) from 2015 - 2050 (SSP2_MIROC vs. SSP2_GFDL)
 width: 70%
 encoding:
   x:
@@ -60,22 +66,30 @@ encoding:
   y:
     type: quantitative
     field: Val
-scenarios: SSP2_MIROC, SSP2_HGEM
 fixed:
-  impactparameter: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
+  impactparameter: qdxagg, qfxagg
 dropdown:
   field: agg_commodity
-  values: animal_products,cereals,fruits_vegetables,oils_seeds,food_oils,oil_meals,other,pulses,roots_tubers,sugar
-change: true
+  values: amt,aot,cer,r&t,pul,f&v,sgc,sgr,ols,oil,mls,cot,for
+series:
+  field: _type
+  values: SSP2_MIROC, SSP2_GFDL
+change:
+  field: year
+  values: 2015, 2050
+  type: percent
 ```
 
 ```map
 title: Change in SSP2_MIROC IMPACT Parameters from 2015 - 2050 (%)
 dropdownCommodityGroup:
   field: agg_commodity
-  values: animal_products,cereals,fruits_vegetables,oils_seeds,food_oils,oil_meals,other,pulses,roots_tubers,sugar
+  values: amt,aot,cer,r&t,pul,f&v,sgc,sgr,ols,oil,mls,cot,for
 dropdownParameter:
   field: impactparameter
-  values: qdxagg, qnxagg, yldxagg, areaxagg, pwxagg, qsupxagg
-change: percentage
+  values: qdxagg, qfxagg,
+change:
+  field: year
+  values: 2015, 2050
+  type: percent
 ```
