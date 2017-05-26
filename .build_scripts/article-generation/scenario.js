@@ -3,8 +3,9 @@ var fs = require('fs')
 var _ = require('lodash')
 
 var commodities = require('../../app/assets/data/aggregate-commodity.json')
+var translation = require('../../app/assets/scripts/utils/translation')
 
-var baselineScenarios = ['SSP2_GFDL', 'SSP2_HGEM', 'SSP2_MIROC', 'SSP2_IPSL', 'SSP2_NOCC']
+var baselineScenarios = ['ssp2_gfdl', 'ssp2_hgem', 'ssp2_miroc', 'ssp2_ipsl', 'ssp2_nocc']
 
 function generateArticle (scenario) {
   var date = new Date()
@@ -12,8 +13,7 @@ function generateArticle (scenario) {
   var articleType = 'scenario'
   var tags = [scenario, 'baseline']
 
-  var name = scenario
-  var fileName = name.replace(/ /g, '-').toLowerCase()
+  var name = translation.translate(scenario)
   var title = `${name} Summary`
 
   var figure = `\`\`\`chart
@@ -29,6 +29,7 @@ encoding:
     field: Val
 fixed:
   impactparameter: qdxagg, qfxagg
+  _type: ${scenario}
 dropdown:
   field: agg_commodity
   values: ${_.uniq(_.values(commodities)).join(',')}
@@ -51,6 +52,7 @@ encoding:
     field: Val
 fixed:
   agg_commodity: ${_.uniq(_.values(commodities)).join(',')}
+  _type: ${scenario}
 dropdown:
   field: impactparameter
   values: qdxagg, qfxagg
@@ -63,7 +65,7 @@ change:
   var chartComparison = baselineScenarios[(baselineScenarios.indexOf(scenario) + 1) % baselineScenarios.length]
   var figureThree = `\`\`\`chart
 mark: grouped-bar
-title: Change in ${name} Impact Parameters per Commodity Group (%) from 2015 - 2050 (${scenario} vs. ${chartComparison})
+title: Change in ${name} Impact Parameters per Commodity Group (%) from 2015 - 2050 (${translation.translate(scenario)} vs. ${translation.translate(chartComparison)})
 width: 70%
 encoding:
   x:
@@ -79,7 +81,7 @@ dropdown:
   values: ${_.uniq(_.values(commodities)).join(',')}
 series:
   field: _type
-  values: ${scenario.toLowerCase()}, ${chartComparison.toLowerCase()}
+  values: ${scenario}, ${chartComparison}
 change:
   field: year
   values: 2015, 2050
@@ -88,12 +90,14 @@ change:
 
   var map = `\`\`\`map
 title: Change in ${name} IMPACT Parameters from 2015 - 2050 (%)
+fixed:
+  _type: ${scenario}
 dropdownCommodityGroup:
   field: agg_commodity
   values: ${_.uniq(_.values(commodities)).join(',')}
 dropdownParameter:
   field: impactparameter
-  values: qdxagg, qfxagg,
+  values: qdxagg, qfxagg
 change:
   field: year
   values: 2015, 2050
@@ -117,8 +121,8 @@ tags:
 ${tagString}
 ---
 ${article}`
-  console.log(`writing ${fileName}.md`)
-  fs.writeFileSync(`./app/assets/data/articles/${fileName}.md`, output)
+  console.log(`writing ${scenario}.md`)
+  fs.writeFileSync(`./app/assets/data/articles/${scenario}.md`, output)
 }
 
 baselineScenarios.forEach(scenario => generateArticle(scenario))

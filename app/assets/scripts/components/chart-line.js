@@ -181,7 +181,7 @@ export class ChartLine extends React.Component {
       } else {
         // with no series, don't use a legend
         series.push(chartData.values)
-        this.chart.options.legend.display = true
+        this.chart.options.legend.display = false
       }
 
       series.forEach((serie, i) => {

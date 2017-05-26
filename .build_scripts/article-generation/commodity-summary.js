@@ -5,7 +5,7 @@ var _ = require('lodash')
 var translation = require('../../app/assets/scripts/utils/translation')
 var commodities = require('../../app/assets/data/aggregate-commodity.json')
 
-var baselineScenarios = ['SSP2_GFDL', 'SSP2_HGEM', 'SSP2_MIROC', 'SSP2_IPSL', 'SSP2_NOCC']
+var baselineScenarios = ['ssp2_gfdl', 'ssp2_hgem', 'ssp2_miroc', 'ssp2_ipsl', 'ssp2_nocc']
 
 function generateArticle (commodity, group) {
   var date = new Date()

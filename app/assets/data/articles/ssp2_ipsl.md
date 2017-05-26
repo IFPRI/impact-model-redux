@@ -5,9 +5,9 @@ type: scenario
 briefType: scenario
 project: 'baseline'
 scenarios:
- - SSP2_IPSL
+ - ssp2_ipsl
 tags:
- - SSP2_IPSL
+ - ssp2_ipsl
  - baseline
 ---
 Summary of IMPACT model outputs for SSP2_IPSL
@@ -25,6 +25,7 @@ encoding:
     field: Val
 fixed:
   impactparameter: qdxagg, qfxagg
+  _type: ssp2_ipsl
 dropdown:
   field: agg_commodity
   values: amt,aot,cer,r&t,pul,f&v,sgc,sgr,ols,oil,mls,cot,for
@@ -47,6 +48,7 @@ encoding:
     field: Val
 fixed:
   agg_commodity: amt,aot,cer,r&t,pul,f&v,sgc,sgr,ols,oil,mls,cot,for
+  _type: ssp2_ipsl
 dropdown:
   field: impactparameter
   values: qdxagg, qfxagg
@@ -83,12 +85,14 @@ change:
 
 ```map
 title: Change in SSP2_IPSL IMPACT Parameters from 2015 - 2050 (%)
+fixed:
+  _type: ssp2_ipsl
 dropdownCommodityGroup:
   field: agg_commodity
   values: amt,aot,cer,r&t,pul,f&v,sgc,sgr,ols,oil,mls,cot,for
 dropdownParameter:
   field: impactparameter
-  values: qdxagg, qfxagg,
+  values: qdxagg, qfxagg
 change:
   field: year
   values: 2015, 2050

@@ -7,11 +7,11 @@ project: 'baseline'
 commodities:
   - amt-lamb
 scenarios:
- - SSP2_GFDL
- - SSP2_HGEM
- - SSP2_MIROC
- - SSP2_IPSL
- - SSP2_NOCC
+ - ssp2_gfdl
+ - ssp2_hgem
+ - ssp2_miroc
+ - ssp2_ipsl
+ - ssp2_nocc
 tags:
  - amt-lamb
  - amt
