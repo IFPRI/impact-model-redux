@@ -303,7 +303,7 @@
 }
 
 .filter__buttons--mobile {
-  display: block;
+  display: none;
   @include media(medium-down) {
     display: block;
     z-index: 6;

@@ -95,7 +95,7 @@ button {
 // share button
 .share--container {
   position: relative;
-  width: 17rem;
+  width: 20rem;
   .form__input-group {
     top: 3.2em;
     position: absolute;
@@ -108,13 +108,15 @@ button {
     box-shadow: 0 1px 8px rgba(0, 0, 0, .2);
   }
   input {
-    width: 49%;
+    width: calc(49% - 1rem);
     float: left;
     font-size: .86em;
   }
   .form__input-group-button {
+    width: calc(49% - 1rem);
     float: left;
     .button {
+      padding: .32em 2em;
       &:hover {
         border-radius: 0em;
       }
