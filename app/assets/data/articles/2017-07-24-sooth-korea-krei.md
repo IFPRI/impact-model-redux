@@ -2,7 +2,7 @@
 type: brief
 briefType: brief
 published: false
-title: Sooth Korea - KREI
+title: South Korea - KREI
 date: 07/24/2017
 project: KREI
 locations:
@@ -39,5 +39,3 @@ We answered these questions using IFPRI’s International Model for Policy Analy
 ## IMPACT model version 3.2.1
 The IMPACT model is a partial equilibrium, multi–commodity, multi-country model which generates projections of global food supply, demand, trade, and prices (link to about page). . IMPACT is designed to allow for analyzing alternative scenarios about how population, income, climate and technologies may change over time. A suite of baseline scenarios provides a reference point to estimate the consequences of changes in a number of inputs and drivers (e.g., changes in yields, population, GDP etc). The current baseline suite of scenarios is built around the SSP2 Shared Socioeconomic Pathway (SSPs) combined with the Representative Concentration Pathways (RCP) 8.5 scenario, and run under five different possible climate change futures.
 SSP2 represents a middle of the road projection for population and GDP. The five climates that are used with SSP2 are NoCC, GFDL, MIROC, IPSL, and HADGEM. NoCC represents the effects of historical climate going into the future. The others represent various Global Circulation Models (GCMs).
-
-
