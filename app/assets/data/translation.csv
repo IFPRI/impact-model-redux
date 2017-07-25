@@ -272,8 +272,9 @@ ssa,Sub-Saharan Africa
 eap,East Asia Pacific
 lac,Latin America & Caribbean
 sas,South Asia
-FSU,Former Soviet Union
-NAM,North America
-MEN,North Africa & Middle East
-EUR,Western Europe
-ECA,Eastern Europe & Central Asia
+fsu,Former Soviet Union
+nam,North America
+men,North Africa & Middle East
+eur,Western Europe
+eca,Eastern Europe & Central Asia
+eap-south_korea,South Korea
