@@ -23,7 +23,8 @@ This Brief shows standard country level results for South Korea, originating fro
 
 ## Source project & acknowledgments
 The simulations were conducted in the context of a joint project between the EPT Department of the International Food Policy Research Institute (IFPRI) and the Korean Rural Economic Institute (KREI). The goal of the project was to explore the possible future effects of climate change on the Korean agriculture sector. 
-Funding for this study was provided by the Korea Rural Economics Institute. Supplementary support was provided by the CGIAR Research Program on Policies, Institutions, and Markets (PIM), the CGIAR Research Program on Climate Change, Agriculture, and Food Security (CCAFS), and the Bill & Melinda Gates Foundation. 
+Funding for this study was provided by the Korea Rural Economics Institute. Supplementary support was provided by the CGIAR Research Program on Policies, Institutions, and Markets (PIM), the CGIAR Research Program on Climate Change, Agriculture, and Food Security (CCAFS), and the Bill & Melinda Gates Foundation.
+[Download the IFPRI discussion paper](http://www.ifpri.org/publication/climate-change-agriculture-and-adaptation-republic-korea-2050-integrated-assessment)
 
 
 ## Context for the project – Background/Introduction
