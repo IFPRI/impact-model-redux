@@ -33,11 +33,9 @@ In the last several decades arable land has been steadily declining, domestic pr
 While indicative of a rapidly growing economy, these trends may expose domestic markets to fluctuations in the global food market and underpin questions about the future of South Korea’s agriculture sector and long-term food security in the region. To inform national agricultural policy, it is important to better understand the possible future trends of domestic food production and dependence on food imports, and assess the prospects for improvements in food security. The analysis becomes all the more urgent when considering the impacts that climate change may have on food and agricultural production in both South Korea and its major trading partners.
 
 In this context, these were the main questions we wanted to ask:
-1. Given the current estimates of population and GDP growth, are the recent area and production trends    highlighted in this introduction likely to continue in the future, even under climate change conditions?
-2. Will climate change affect the overall ability of South Korea to produce food, especially rice, which   still represents the major source of daily calories?;
+1. Given the current estimates of population and GDP growth, are the recent area and production trends highlighted in this introduction likely to continue in the future, even under climate change conditions?
+2. Will climate change affect the overall ability of South Korea to produce food, especially rice, which still represents the major source of daily calories?;
 3. What do these estimates mean from a food security standpoint for South Korea?
-
-
 
 We answered these questions using IFPRI’s International Model for Policy Analysis of Agricultural Commodities and Trade (IMPACT) by simulating future trends of agricultural supply and demand for South Korea and selected regions under three climate change scenarios.
 
