@@ -63,7 +63,7 @@ encoding:
     field: Val
 fixed:
   region: eap-laos 
-  commodity: AllC
+  commodity: cer-rice
 dropdown:
   field: impactparameter
   values: qfxagg, qdxagg
@@ -98,7 +98,7 @@ series:
 ```chart
 mark: bar
 title: Example Bar Chart
-width: 100%
+width: 50%
 encoding:
   x:
     type: nominal
