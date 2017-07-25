@@ -6,11 +6,16 @@ title: South Korea - KREI
 date: 07/24/2017
 project: KREI
 locations:
-  - East Asia
+  - eastern_asia
 commodities:
-  - rice
+  - cer-rice
 scenarios:
-  - SSP2-HGEM
+  - ssp2_hgem
+  - ssp2_nocc
+  - ssp2_gfdl
+tags:
+  - cer-rice
+  - cer
 ---
 ## What is on this brief and how to interpret the results
 This Brief shows standard country level results for South Korea, originating from the IMPACT baseline suite of scenarios 
