@@ -34,11 +34,11 @@ While indicative of a rapidly growing economy, these trends may expose domestic 
 
 In this context, these were the main questions we wanted to ask:
 
-1. Given the current estimates of population and GDP growth, are the recent area and production trends highlighted in this introduction likely to continue in the future, even under climate change conditions?
-
-2. Will climate change affect the overall ability of South Korea to produce food, especially rice, which still represents the major source of daily calories?
-
-3. What do these estimates mean from a food security standpoint for South Korea?
+<ol>
+<li><p>Given the current estimates of population and GDP growth, are the recent area and production trends highlighted in this introduction likely to continue in the future, even under climate change conditions?</p></li>
+<li><p>Will climate change affect the overall ability of South Korea to produce food, especially rice, which still represents the major source of daily calories?</p></li>
+<li><p>What do these estimates mean from a food security standpoint for South Korea?</p></li>
+</ol>
 
 We answered these questions using IFPRI’s International Model for Policy Analysis of Agricultural Commodities and Trade (IMPACT) by simulating future trends of agricultural supply and demand for South Korea and selected regions under three climate change scenarios.
 
