@@ -1,7 +1,7 @@
 ---
 type: brief
 briefType: brief
-published: false
+published: true
 title: South Korea - KREI
 date: 07/24/2017
 project: KREI
