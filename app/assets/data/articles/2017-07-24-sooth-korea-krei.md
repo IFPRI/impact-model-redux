@@ -52,7 +52,7 @@ SSP2 represents a middle of the road projection for population and GDP. The five
 ```chart
 mark: line
 title: Example Line Chart
-width: 100%
+width: 70%
 legend: top
 encoding:
   x:
@@ -76,7 +76,7 @@ series:
 ```chart
 mark: stripe
 title: Example Stripe Chart - Korea Yields
-width: 40rem
+width: 70%
 legend: top
 encoding:
   x:
@@ -98,7 +98,7 @@ series:
 ```chart
 mark: bar
 title: Example Bar Chart
-width: 50%
+width: 70%
 encoding:
   x:
     type: nominal
