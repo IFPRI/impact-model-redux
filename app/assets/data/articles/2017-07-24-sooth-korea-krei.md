@@ -24,6 +24,7 @@ This Brief shows standard country level results for South Korea, originating fro
 ## Source project & acknowledgments##
 The simulations were conducted in the context of a joint project between the EPT Department of the International Food Policy Research Institute (IFPRI) and the Korean Rural Economic Institute (KREI). The goal of the project was to explore the possible future effects of climate change on the Korean agriculture sector. 
 Funding for this study was provided by the Korea Rural Economics Institute. Supplementary support was provided by the CGIAR Research Program on Policies, Institutions, and Markets (PIM), the CGIAR Research Program on Climate Change, Agriculture, and Food Security (CCAFS), and the Bill & Melinda Gates Foundation.
+
 [Download the IFPRI discussion paper](http://www.ifpri.org/publication/climate-change-agriculture-and-adaptation-republic-korea-2050-integrated-assessment)
 
 
@@ -35,11 +36,11 @@ While indicative of a rapidly growing economy, these trends may expose domestic 
 
 In this context, these were the main questions we wanted to ask:
 
-1.Given the current estimates of population and GDP growth, are the recent area and production trends highlighted in this introduction likely to continue in the future, even under climate change conditions?
+1. Given the current estimates of population and GDP growth, are the recent area and production trends 	    	highlighted in this introduction likely to continue in the future, even under climate change conditions?
 
-2.Will climate change affect the overall ability of South Korea to produce food, especially rice, which still represents the major source of daily calories?
+2. Will climate change affect the overall ability of South Korea to produce food, especially rice, which 		still represents the major source of daily calories?
 
-3.What do these estimates means from a food security standpoint for South Korea?
+3. What do these estimates means from a food security standpoint for South Korea?
 
 We answered these questions using IFPRI’s International Model for Policy Analysis of Agricultural Commodities and Trade (IMPACT) by simulating future trends of agricultural supply and demand for South Korea and selected regions under three climate change scenarios.
 
