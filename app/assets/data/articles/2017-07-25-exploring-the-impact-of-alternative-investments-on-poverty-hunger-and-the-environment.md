@@ -1,7 +1,7 @@
 ---
 type: brief
 briefType: brief
-published: false
+published: true
 title: >-
   Exploring the impact of alternative investments on poverty, hunger, and the
   environment
