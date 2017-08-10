@@ -35,14 +35,4 @@ The reference scenario (REF_HGEM) used in this analysis as a reference for compa
 
 The full set of scenarios, including the full range of investment scenarios are summarized in the table below.
 
-test test test test 
-
-let see how fast this can appear 
-
-this is another test 
-![table investments scenarios2](https://user-images.githubusercontent.com/12040069/29122899-ed37a764-7ce1-11e7-85f0-1bbfd5a6cb53.png)
-
-
-
-
 ![table investments scenarios2](https://user-images.githubusercontent.com/12040069/29122899-ed37a764-7ce1-11e7-85f0-1bbfd5a6cb53.png)
