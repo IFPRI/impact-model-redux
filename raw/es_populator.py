@@ -20,6 +20,11 @@ from elasticsearch import Elasticsearch, client, RequestsHttpConnection
 from elasticsearch.exceptions import ConnectionError
 from elasticsearch import helpers
 
+match_all = {
+    "query": {
+        "match_all": {}
+     }
+}
 
 class Populator(object):
 
@@ -34,7 +39,10 @@ class Populator(object):
                                 http_auth=(username, password),
                                 use_ssl=True,
                                 verify_certs=True,
-                                connection_class=RequestsHttpConnection)
+                                connection_class=RequestsHttpConnection,
+                                timeout=30,
+                                max_retries=10,
+                                retry_on_timeout=True)
         self.chunk_size = chunk_size
 
         self.mapping = {
@@ -113,14 +121,17 @@ class Populator(object):
         the type, then start uploading data """
         pass
 
-        indice = client.IndicesClient(self.es)
-        print(self.es_main_index)
-        if indice.exists_type(index=self.es_main_index,
-                              doc_type=self.es_main_type):
-            print('Scenario %s already exists, deleting the current one'
+        count_type = self.es.count(index=self.es_main_index,
+                          doc_type=self.es_main_type,
+                          body=match_all)
+
+        if count_type['count'] > 0:
+            print('Scenario %s already exists, deleting the current one. This can take a bit'
                   % self.es_main_type)
-            indice.delete_mapping(index=self.es_main_index,
-                                  doc_type=self.es_main_type)
+            self.es.delete_by_query(index=self.es_main_index,
+                                  doc_type=self.es_main_type,
+                                  body=match_all,
+                                  conflicts='proceed')
 
             print('Waiting for 10 seconds to ensure the current type is ' +
                   'deleted.')

@@ -72,6 +72,9 @@ for file in all_files:
         else:
             d.append('')
             d.append('')
+        # now that the region is matched; replace spaces with underscores
+        d[3] = re.sub(' ', '_', d[3])
+
         # eliminate column 4 (production type) if it there
         if production_type:
             d.pop(4)
