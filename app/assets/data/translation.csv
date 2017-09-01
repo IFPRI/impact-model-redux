@@ -281,3 +281,21 @@ eap-south_korea,South Korea
 dvg,Developing countries
 dvd,Developed countries
 _type,Scenario
+AnmlNumXAgg,Animal numbers
+AnmlYldXAgg,Animal yield
+GDPXAgg,Income(GDP)
+pcGDPXAgg,Income per capita
+PerCapKCalCXAgg,Kcal. per capita by commodity 
+PerCapKCalXAgg,Kcal. per capita
+PopulationAtRiskXagg,Pop. at risk of hunger
+PopXAgg,Population
+PWXAgg,World prices
+QDXAgg,Total demand
+QFXAgg,Household demand
+QLXAgg,Livestock feed demand
+QNXAgg,Net trade
+QSupXAgg,Production
+ShareAtRiskXagg,Share at risk of hunger
+TAreaXAgg,Total area
+TotalMalnourishedXagg,Undernourished childen(weight for age)
+TYldXAgg,Total yield
