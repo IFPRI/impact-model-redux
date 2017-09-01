@@ -67,10 +67,10 @@ encoding:
     field: Val
 fixed:
   region: eap-laos 
-  commodity: cer-rice
+  commodity: allc
 dropdown:
   field: impactparameter
-  values: qfxagg, qdxagg
+  values: tareaxagg, qsupxagg, qnxagg
 series:
   field: _type
   values: ssp2_nocc, ssp2_gfdl, ssp2_hgem, ssp2_ipsl```
@@ -90,7 +90,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  impactparameter: qfxagg
+  impactparameter: tyldxagg
   region: eap-laos
   commodity: cer-rice
 series:
@@ -98,7 +98,7 @@ series:
   values: ssp2_nocc, ssp2_ipsl, ssp2_gfdl, ssp2_hgem
   ```
 
-### Figure 3. Area, demand Production and Yields for Rice in SK % change 2010 - 2050###
+### Figure 3. Area, Demand, Production and Yields for Rice in SK % change 2010 - 2050###
 ```chart
 mark: bar
 title: Example Bar Chart
@@ -115,7 +115,7 @@ fixed:
   commodity: cer-rice
 dropdown:
   field: impactparameter
-  values: qfxagg, qdxagg
+  values: tareaxagg, qsupxagg, qdxagg, qfxagg,tyldxagg
 series:
   field: _type
   values: ssp2_nocc, ssp2_ipsl, ssp2_gfdl, ssp2_hgem
