@@ -198,7 +198,7 @@ dropdown:
   values: dvd, dvg, eap, eapg, fsu, lac, men, meng, sas, ssa, nam, eur
 change:
   field: _type
-  values: ssp2-hgem2, ssp2-highnars2
+  values: ssp2-hgem2, ssp2-hgem-highnars2
   type: percent
 ```
 
