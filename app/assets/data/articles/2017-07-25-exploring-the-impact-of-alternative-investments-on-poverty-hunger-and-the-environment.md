@@ -108,8 +108,8 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-   impactparameter: tyldxagg
-   commodity: cer 
+   commodiry: cer
+   impactparameter: tyldxagg 
 dropdown:
   field: region
   values: dvd, dvg, eap, eapg, fsu, lac, men, meng, sas, ssa, nam, eur
