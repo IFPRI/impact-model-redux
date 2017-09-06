@@ -36,3 +36,191 @@ The reference scenario (REF_HGEM) used in this analysis as a reference for compa
 The full set of scenarios, including the full range of investment scenarios are summarized in the table below.
 
 ![table investments scenarios2](https://user-images.githubusercontent.com/12040069/29122899-ed37a764-7ce1-11e7-85f0-1bbfd5a6cb53.png)
+
+## Highlights from results & messages of the report##
+
+### Demographic change and economic growth in the group of developing countries will result in significant increases in the demand for food in the coming decades ###
+Under the population and economic growth assumptions used in this analysis (SSP2), global population reaches 9.2 billion by 2050 with an economy of USD230 trillion, for a global average income of USD25,000/capita. In this timeframe, most of the growth in GDP (and also population) occurs in the group of developing countries, although per capita income in this group is expected to remain about half that enjoyed in the group of developed countries.
+
+```chart
+mark: bar
+title: Change in income per capita 2010-2050(%) 
+width: 100%
+encoding:
+  x:
+    type: nominal
+    field: region 
+  y:
+    type: quantitative
+    field: Val
+fixed:
+  impactparameter: pcgdpxagg 
+  region: dvg, dvd 
+dropdown:
+  field: _type
+  values: ssp2-nocc2, ssp2-hgem2
+change:
+  field: year
+  values: 2010, 2050
+  type: percent
+```
+
+### Food and nutrition security are projected to improve over the 2010-2050 period but CC is reducing the gains###
+Between 2010 and 2050, across developing countries, cereal production is expected to increase by 55 percent, meat production by 79 percent, production of fruits and vegetables by 96 percent, oilseeds by 107 percent, pulses by 87 percent, and roots and tubers by 56 percent.
+However, climate change is projected to reduce these gains. Average cereal yields may decrease by 6 – 9 percent relative to the NoCC scenario by 2050. Globally, maize, groundnut, and soybean are particularly affected, with projected reductions of 23, 14, and 12 percent, respectively. And these reduction under climate change affect the majority of world’s regions. 
+
+```chart
+mark: bar
+title: Production will increase but gains are lower under CC
+width: 100%
+encoding:
+  x:
+    type: nominal
+    field: commodity 
+  y:
+    type: quantitative
+    field: Val
+fixed:
+  impactparameter: qsupxagg 
+  commodity: allc, amt, cer, ols, pul, r&t, f&v
+dropdown:
+  field: region 
+  values: dvd, dvg, eap, eapg, fsu, lac, men, meng, sas, ssa
+dropdownnew:
+  field: _type
+  values: ssp2-nocc2, ssp2-hgem2  
+change:
+  field: year
+  values: 2010, 2050
+  type: percent
+```
+
+```chart
+mark: line
+title: Yields of cereals decrease under CC
+width: 100%
+legend: top
+encoding:
+  x:
+    type: nominal
+    field: year
+  y:
+    type: quantitative
+    field: Val
+fixed:
+   commodity: cer
+   impactparameter: tyldxagg 
+dropdown:
+  field: region
+  values: dvd, dvg, eap, eapg, fsu, lac, men, meng, sas, ssa, nam, eur
+series:
+  field: _type
+  values: ssp2-nocc2, ssp2-hgem2
+```
+
+Projected increase in production between 2010 and 2050 and higher calorie availability would lead to a steady decrease in undernourished children as well as in the population at risk of hunger but CC would reduce the gains.
+In 2010, the estimated number of people at risk of hunger was comparable between the South Asia and SSA regions at over 200 million people, but their experiences are projected to differ significantly in the coming decades. By 2050, the population at risk of hunger in the South Asia region is projected to decline by 170 million people, the largest reduction across all regions. By comparison, the population at risk of hunger in SSA is expected to decline by only one third of that amount. 
+
+```chart
+mark: line
+title: Population at risk of hunger 
+width: 100%
+legend: top
+encoding:
+  x:
+    type: nominal
+    field: year
+  y:
+    type: quantitative
+    field: Val
+fixed:
+   impactparameter: populationatriskxagg
+dropdown:
+  field: region
+  values: dvd, dvg, sas, ssa
+series:
+  field: _type
+  values: ssp2-nocc2, ssp2-hgem2
+```	
+```chart
+mark: line
+title: Undernourished children (weight for age) 
+width: 100%
+legend: top
+encoding:
+  x:
+    type: nominal
+    field: year
+  y:
+    type: quantitative
+    field: Val
+fixed:
+   impactparameter: totalmalnourishedxagg
+dropdown:
+  field: region
+  values: dvd, dvg, sas, ssa
+series:
+  field: _type
+  values: ssp2-nocc2, ssp2-hgem2
+```
+### The CGIAR research portfolio can make important differences to sustainable agricultural production systems, food security and nutrition, enhanced by increased investments in NARS agricultural research, improved water management, and infrastructure###
+Additional investments in agricultural R&D across CGIAR and NARS can deliver important achievements for the group of developing countries. For example, the HIGH+NARS scenario, is projected to require an additional USD 3.0 billion per year in investments in developing countries (above the USD 8 billion projected in the reference scenario). By 2050, these additional investments are projected to increase incomes by 4 percent and agricultural production by 8 percent. The improvements in turn may lead to a 20 percent decline in the population at risk of hunger by 2050. These advancements are all relative to a reference scenario under climate change but without these additional investments. 
+
+```map
+title: Change in Production between high-nars and hgem in 2050 (%)
+dropdown:
+  field: commodity
+  values: allc, cer, cer-maize, cer-rice, cer-wheat, r&t, f&v, pul, amt, amt-beef, amt-pork, amt-poultry
+change:
+  field: _type
+  values: ssp2-hgem2, ssp2-hgem-hinars2
+  type: percent
+fixed:
+  impactparameter: qsupxagg
+  year: 2050
+```
+```chart
+mark: bar
+title: Change in food security in 2050 (%) 
+width: 100%
+encoding:
+  x:
+    type: nominal
+    field: impactparameter 
+  y:
+    type: quantitative
+    field: Val
+fixed:
+  impactparameter: percapkcalxagg, totalmalnourishedxagg, populationatriskxagg
+  year: 2050
+dropdown:
+  field: region
+  values: dvd, dvg, eap, eapg, fsu, lac, men, meng, sas, ssa, nam, eur
+change:
+  field: _type
+  values: ssp2-hgem2, ssp2-hgem-highnars2
+  type: percent
+```
+
+```chart
+mark: line
+title: food security indicators
+width: 100%
+legend: top
+encoding:
+  x:
+    type: nominal
+    field: year
+  y:
+    type: quantitative
+    field: Val
+dropdown:
+  field: region
+  values: dvd, dvg, eap, eapg, fsu, lac, men, meng, sas, ssa, nam, eur
+dropdownnew:
+  field: impactparameter
+  values: percapkcalxagg, totalmalnourishedxagg, populationatriskxagg
+series:
+  field: _type
+  values: ssp2-nocc2, ssp2-hgem2, ssp2-hgem-highnars2, ssp2-hgem-hiyld2
+```

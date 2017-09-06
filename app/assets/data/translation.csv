@@ -231,7 +231,7 @@ men-yemen,Yemen
 ssa-south_africa,South Africa
 ssa-zambia,Zambia
 ssa-zimbabwe,Zimbabwe
-australia_and_New_Zealand,Australia and New Zealand,
+australia_and_new_zealand,Australia and New Zealand,
 caribbean,Caribbean,
 central_america,Central America,
 central_asia,Central Asia,
@@ -278,3 +278,45 @@ men,North Africa & Middle East
 eur,Western Europe
 eca,Eastern Europe & Central Asia
 eap-south_korea,South Korea
+dvg,Developing countries
+dvd,Developed countries
+_type,Scenario
+anmlnumxagg,Animal numbers
+anmlyldxagg,Animal yield
+gdpxAgg,Income(GDP)
+pcgdpxagg,Income per capita
+percapkcalcxagg,Kcal. per capita by commodity 
+percapkcalxagg,Kcal. per capita
+populationatriskxagg,Pop. at risk of hunger
+popxagg,Population
+pwxagg,World prices
+qdxagg,Total demand
+qfxagg,Household demand
+qlxagg,Livestock feed demand
+qnxagg,Net trade
+qsupxagg,Production
+shareatriskxagg,Share at risk of hunger
+tareaxagg,Total area
+totalmalnourishedxagg,Undernourished childen(weight for age)
+tyldxagg,Total yield
+africa,Africa
+wld,World
+asia,Asia
+eapg,Eastern Asia(developing countries only)
+fsu,Former Soviet Union
+meng,Middle East & North Africa(developing countries only)
+oceania,Oceania
+ssp2-hgem2,REF-HGEM
+ssp2-hgem-hinars2,HIGH+NARS
+ssp2-hgem-hireff2,HIGH+RE
+ssp2-hgem-hiyld2,HIGH
+ssp2-hgem-irrexp2,IX
+ssp2-hgem-irrexp-wue2,IX+WUE
+ssp2-hgem-loyld2,MED
+ssp2-hgem-mmeff2,RMM
+ssp2-hgem-pangloss2,COMP
+ssp2-hgem-phl-dev2
+ssp2-hgem-regyld2,REGION
+ssp2-hgem-swhc2,ISW
+ssp2-nocc2,REF-NoCC
+allc,All crops
