@@ -61,19 +61,19 @@ for file in all_files:
         # if we have a matching commodity, insert the commodity aggregation
         # substitute underscores for spaces
         if d[2] in agg_map:
-            d.append(re.sub(' ', '_', agg_map[d[2]]))
+            d.append(re.sub(' |-', '_', agg_map[d[2]]))
         else:
             d.append('')
         # if we have a matching region, insert the continent and subcontinent
-        # sbustitute underscores for spaces and dashes
+        # suBstitute underscores for spaces and dashes
         if d[3] in c_map:
             d.append(re.sub(' |-', '_', c_map[d[3]]))
             d.append(re.sub(' |-', '_', sc_map[d[3]]))
         else:
             d.append('')
             d.append('')
-        # now that the region is matched; replace spaces with underscores
-        d[3] = re.sub(' ', '_', d[3])
+        # now that the region is matched; replace spaces and dashes with underscores
+        d[3] = re.sub(' |-', '_', d[3])
 
         # eliminate column 4 (production type) if it there
         if production_type:
