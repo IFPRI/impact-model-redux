@@ -52,6 +52,32 @@ SSP2 represents a middle of the road projection for population and GDP. The five
 
 
 ## Results##
+
+### Figure 1. test CSA###
+```chart
+mark: line
+title: Example Line Chart
+width: 70%
+legend: top
+encoding:
+  x:
+    type: nominal
+    field: year
+  y:
+    type: quantitative
+    field: Val
+fixed:
+  region: sas 
+  commodity: maize
+dropdown:
+  field: impactparameter
+  values: qsupxagg
+series:
+  field: _type
+  values: best_gfdl
+  ```
+
+
 ### Figure 1. agricultural harvested area, production & net imports for all crops in South Korea###
 ```chart
 mark: line
