@@ -74,7 +74,7 @@ dropdown:
   values: qsupxagg
 series:
   field: _type
-  values: best_gfdl
+  values: best-gfdl
   ```
 
 
