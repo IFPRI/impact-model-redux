@@ -72,7 +72,9 @@ for file in all_files:
         else:
             d.append('')
             d.append('')
-        # now that the region is matched; replace spaces and dashes with underscores
+        # now that the region and commodity are matched;
+        # replace spaces and dashes with underscores
+        d[2] = re.sub(' |-', '_', d[2])
         d[3] = re.sub(' |-', '_', d[3])
 
         # eliminate column 4 (production type) if it there
