@@ -44,6 +44,7 @@ glob('app/assets/data/articles/*.md', (err, files) => {
       type: metadata.type,
       briefType: metadata.briefType,
       project: metadata.project,
+      download: metadata.download,
       locations: metadata.locations,
       commodities: metadata.commodities,
       tags: metadata.tags,

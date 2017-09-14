@@ -38,6 +38,11 @@ prose:
           element: text
           label: Project name
           type: text
+      - name: download
+        field:
+          element: text
+          label: Link to Report
+          type: text
       - name: locations
         field:
           element: multiselect

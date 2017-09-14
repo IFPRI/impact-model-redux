@@ -117,7 +117,7 @@ export class Brief extends React.Component {
     }
 
     const { articles, metadata } = this.props
-    const { locations, scenarios, resources, author, tags } = metadata
+    const { download, locations, scenarios, resources, author, tags } = metadata
     const date = moment(metadata.date, 'M/D/YYYY').format('MMMM Do, YYYY')
 
     const Locations = locations
@@ -153,6 +153,10 @@ export class Brief extends React.Component {
       <dd>{date}</dd>
     </dl>
 
+    const Download = download
+    ? <Link to={'/'} className='button button--outline button--download'>Download Report</Link>
+    : ''
+
     return (
       <section className='page__article'>
         <section className='header__internal'>
@@ -166,7 +170,7 @@ export class Brief extends React.Component {
               </div>
             </div>
             <div className='home__header-split--right'>
-              <Link to={'/'} className='button button--outline button--download'>Download Report</Link>
+              {Download}
               <Share path={this.props.location.pathname} />
             </div>
           </div>
