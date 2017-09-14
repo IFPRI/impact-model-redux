@@ -1,6 +1,6 @@
 ---
 type: brief
-briefType: brief
+briefType: custom
 published: true
 title: South Korea - KREI
 date: 07/24/2017
@@ -19,11 +19,11 @@ tags:
   - eastern_asia
 ---
 ## What is on this brief and how to interpret the results##
-This Brief shows standard country level results for South Korea, originating from the IMPACT baseline suite of scenarios 
+This Brief shows standard country level results for South Korea, originating from the IMPACT baseline suite of scenarios
 
 
 ## Source project & acknowledgments##
-The simulations were conducted in the context of a joint project between the EPT Department of the International Food Policy Research Institute (IFPRI) and the Korean Rural Economic Institute (KREI). The goal of the project was to explore the possible future effects of climate change on the Korean agriculture sector. 
+The simulations were conducted in the context of a joint project between the EPT Department of the International Food Policy Research Institute (IFPRI) and the Korean Rural Economic Institute (KREI). The goal of the project was to explore the possible future effects of climate change on the Korean agriculture sector.
 Funding for this study was provided by the Korea Rural Economics Institute. Supplementary support was provided by the CGIAR Research Program on Policies, Institutions, and Markets (PIM), the CGIAR Research Program on Climate Change, Agriculture, and Food Security (CCAFS), and the Bill & Melinda Gates Foundation.
 
 
@@ -31,8 +31,8 @@ Funding for this study was provided by the Korea Rural Economics Institute. Supp
 
 
 ## Context for the project – Background/Introduction##
-South Korea has experienced large changes in the agricultural sector and shifts in diet in recent decades, as the country opened its economy and food market. 
-In the last several decades arable land has been steadily declining, domestic production has decreased by about one third, more animal proteins have been added to the diet, and agricultural imports have grown five-fold. 
+South Korea has experienced large changes in the agricultural sector and shifts in diet in recent decades, as the country opened its economy and food market.
+In the last several decades arable land has been steadily declining, domestic production has decreased by about one third, more animal proteins have been added to the diet, and agricultural imports have grown five-fold.
 
 While indicative of a rapidly growing economy, these trends may expose domestic markets to fluctuations in the global food market and underpin questions about the future of South Korea’s agriculture sector and long-term food security in the region. To inform national agricultural policy, it is important to better understand the possible future trends of domestic food production and dependence on food imports, and assess the prospects for improvements in food security. The analysis becomes all the more urgent when considering the impacts that climate change may have on food and agricultural production in both South Korea and its major trading partners.
 
@@ -67,7 +67,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: sas 
+  region: sas
   commodity: maize
 dropdown:
   field: impactparameter
@@ -92,7 +92,7 @@ encoding:
     type: quantitative
     field: Val
 fixed:
-  region: eap-laos 
+  region: eap-laos
   commodity: allc
 dropdown:
   field: impactparameter

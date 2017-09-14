@@ -28,7 +28,7 @@ prose:
           help: Either Custom, Country Summary, or Commodity Summary
           options:
              - name: 'Custom'
-               value: 'brief'
+               value: 'custom'
              - name: 'Country Summary'
                value: 'country-summary'
              - name: 'Commodity Summary'
