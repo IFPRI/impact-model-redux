@@ -26,8 +26,8 @@ body {
   background-color: $background-grey;
 }
 
-p { 
-  line-height: 1.8em; 
+p {
+  line-height: 1.8em;
   font-weight: $base-font-light;
 }
 
@@ -238,4 +238,9 @@ dt {
       margin-bottom: 1em;
     }
   }
+}
+
+ol {
+  list-style: decimal;
+  margin-left: 1rem;
 }
