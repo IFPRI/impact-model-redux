@@ -17,6 +17,7 @@ tags:
   - cer-rice
   - cer
   - eastern_asia
+download: test-link.html
 ---
 ## What is on this brief and how to interpret the results##
 This Brief shows standard country level results for South Korea, originating from the IMPACT baseline suite of scenarios
