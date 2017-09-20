@@ -153,7 +153,6 @@ export class Brief extends React.Component {
       <dd>{date}</dd>
     </dl>
 
-    console.log(download);
     const Download = download
     ? <Link to={download} className='button button--outline button--download'>Download Report</Link>
     : ''
