@@ -46,6 +46,16 @@ with open('aggregate_region.csv', 'rU') as c:
 
 print 'creating ' + str(len(all_files)) + ' files'
 
+# standard formatter
+def es_format(column):
+    try:
+        # we do this rather than type checking because some numbers are stored as strings
+        float(column)
+        return column
+    except ValueError:
+        return re.sub(' |-', '_', column).lower().strip()
+
+
 # create output files based on mappings and cleaning necessary for elasticsearch
 for file in all_files:
     print 'creating file: ' + file.replace('file_', '')
@@ -54,34 +64,34 @@ for file in all_files:
         creader = csv.reader(csvfile)
         for row in creader:
             data.append(row)
-    for d in data:
-        # for impactparameter, anything after the first space is removed
-        d[0] = re.sub(' .*', '', d[0])
-
+    for row in data:
+        ### first add fields
         # if we have a matching commodity, insert the commodity aggregation
-        # substitute underscores for spaces
-        if d[2] in agg_map:
-            d.append(re.sub(' |-', '_', agg_map[d[2]]))
+        if row[2] in agg_map:
+            row.append(agg_map[row[2]])
         else:
-            d.append('')
+            row.append('')
         # if we have a matching region, insert the continent and subcontinent
-        # suBstitute underscores for spaces and dashes
-        if d[3] in c_map:
-            d.append(re.sub(' |-', '_', c_map[d[3]]))
-            d.append(re.sub(' |-', '_', sc_map[d[3]]))
+        if row[3] in c_map:
+            row.append(c_map[row[3]])
+            row.append(sc_map[row[3]])
         else:
-            d.append('')
-            d.append('')
-        # now that the region and commodity are matched;
-        # replace spaces and dashes with underscores
-        d[2] = re.sub(' |-', '_', d[2])
-        d[3] = re.sub(' |-', '_', d[3])
+            row.append('')
+            row.append('')
 
+        ### now transform the data
+        # for impactparameter, anything after the first space is removed
+        row[0] = re.sub(' .*', '', row[0])
+        # replace spaces and dashes with underscores in all columns
+        for index, col in enumerate(row):
+            row[index] = es_format(col)
+
+        ### then remove fields
         # eliminate column 4 (production type) if it there
         if production_type:
-            d.pop(4)
+            row.pop(4)
         # eliminate column 1 (scenario) since it is already the file name
-        d.pop(1)
+        row.pop(1)
 
     # insert header row
     data.insert(0, ['impactparameter', 'commodity', 'region', 'year', 'Val',

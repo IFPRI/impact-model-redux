@@ -171,16 +171,12 @@ class Populator(object):
             fields = row.split(',')
             obj = {}
             for header in headers:
-                # we call lower-case here because we were originally using
-                # analyzed strings in elasticsearch (and they were
-                # automatically converted). Code was built based on that so it's
-                # easiest to convert for now
                 try:
                     obj[header.replace('\n', '')] = float(fields[
-                        headers.index(header)].replace('\n', '').lower())
+                        headers.index(header)].replace('\n', ''))
                 except ValueError:
                     obj[header.replace('\n', '')] = fields[
-                        headers.index(header)].replace('\n', '').lower()
+                        headers.index(header)].replace('\n', '')
                 # check afterwards to replace empty strings with None (which json.dumps hopefully writes to null)
                 if obj[header.replace('\n', '')] == '':
                     obj[header.replace('\n', '')] = None
