@@ -189,7 +189,7 @@ ssp2_hgem,SSP2_HGEM
 ssp2_ipsl,SSP2_IPSL
 ssp2_miroc,SSP2_MIROC
 ssp2_nocc,SSP2_NOCC
-f&v_tropical_fruit,(Sub)_Tropical Fruits
+f&v_tropical_fruit,(Sub)-Tropical Fruits
 sgc_sugar_beet,Sugarbeet
 sgc_sugarcane,Sugarcane
 sgr_sugar,Refined Sugar
@@ -268,7 +268,7 @@ commodity_summary,Commodity Summary
 custom,Custom Brief
 country_summary,Country Summary
 agg_commodity,Commodity Group
-ssa,Sub_Saharan Africa
+ssa,Sub-Saharan Africa
 eap,East Asia Pacific
 lac,Latin America & Caribbean
 sas,South Asia
@@ -320,3 +320,5 @@ ssp2_hgem_regyld2,REGION
 ssp2_hgem_swhc2,ISW
 ssp2_nocc2,REF_NoCC
 allc,All crops
+commodity-summary,Commodity Summary
+country-summary,Country Summary
