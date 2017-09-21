@@ -25,7 +25,7 @@
     "report": "nyc report",
     "generate": ".build_scripts/generate.sh",
     "aggregate_c": "cat raw/aggregate_commodity.csv | node_modules/.bin/csv2json | awk '{print tolower($0)}' | sed 's/[ |-]/_/g' | jq 'map({ (.commodity): .group }) | add' > app/assets/data/aggregate-commodity.json",
-    "aggregate_r": "cat raw/aggregate_region.csv | node_modules/.bin/csv2json | awk '{print tolower($0)}' | sed 's/[ |-]/_/g' | jq 'map({ (.id): del(.id) }) | add'"
+    "aggregate_r": "cat raw/aggregate_region.csv | node_modules/.bin/csv2json | awk '{print tolower($0)}' | sed 's/[ |-]/_/g' | jq 'map({ (.id): del(.id) }) | add' > app/assets/data/aggregate-region.json"
   },
   "ava": {
     "require": [
