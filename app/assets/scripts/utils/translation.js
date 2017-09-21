@@ -1,29 +1,12 @@
 'use strict'
 const _ = require('lodash')
 
-// Format
-const toTitleCase = require('./format').toTitleCase
-
 // Data
 const translations = require('../../data/translation')
 
-const translate = (str) => translations[str] || defaultTranslate(str)
+const translate = (str) => translations[str] || str
 
-const untranslate = (str) => _.invert(translations)[str] || defaultUntranslate(str)
-
-function defaultTranslate (str) {
-  if (!str) return str
-  if (typeof str !== 'string') str = String(str)
-  return str.split('-')
-    .map(toTitleCase)
-    .join(' ')
-}
-
-function defaultUntranslate (str) {
-  if (!str) return str
-  return str.toLowerCase()
-    .replace(/ /g, '-')
-}
+const untranslate = (str) => _.invert(translations)[str] || str
 
 const invertCommodities = (commodities) => {
   const inverted = {}

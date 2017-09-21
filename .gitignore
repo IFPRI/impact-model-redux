@@ -114,3 +114,5 @@ tmp
 dist
 .nyc_output
 raw/scenarios
+app/assets/data/aggregate-commodity.json
+app/assets/data/filter-categories.json
