@@ -8,13 +8,13 @@ project: KREI
 locations:
   - eastern_asia
 commodities:
-  - cer-rice
+  - cer_rice
 scenarios:
   - ssp2_hgem
   - ssp2_nocc
   - ssp2_gfdl
 tags:
-  - cer-rice
+  - cer_rice
   - cer
   - eastern_asia
 download: test-link.html

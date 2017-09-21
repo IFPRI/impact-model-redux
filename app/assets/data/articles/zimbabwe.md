@@ -5,7 +5,7 @@ type: brief
 briefType: country-summary
 project: 'baseline'
 locations:
-  - ssa-zimbabwe
+  - ssa_zimbabwe
   - eastern_africa
   - africa
 scenarios:
@@ -15,12 +15,12 @@ scenarios:
  - ssp2_ipsl
  - ssp2_nocc
 tags:
- - ssa-zimbabwe
+ - ssa_zimbabwe
  - eastern_africa
  - africa
  - baseline
 ---
-# Overview 
+# Overview
 
 ```chart
 mark: bar

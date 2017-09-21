@@ -5,7 +5,7 @@ type: brief
 briefType: country-summary
 project: 'baseline'
 locations:
-  - fsu-russia
+  - fsu_russia
   - eastern_europe
   - europe
 scenarios:
@@ -15,12 +15,12 @@ scenarios:
  - ssp2_ipsl
  - ssp2_nocc
 tags:
- - fsu-russia
+ - fsu_russia
  - eastern_europe
  - europe
  - baseline
 ---
-# Overview 
+# Overview
 
 ```chart
 mark: bar

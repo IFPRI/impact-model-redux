@@ -5,7 +5,7 @@ type: brief
 briefType: commodity-summary
 project: 'baseline'
 commodities:
-  - f&v-banana
+  - f&v_banana
 scenarios:
  - ssp2_gfdl
  - ssp2_hgem
@@ -13,7 +13,7 @@ scenarios:
  - ssp2_ipsl
  - ssp2_nocc
 tags:
- - f&v-banana
+ - f&v_banana
  - f&v
  - baseline
 ---

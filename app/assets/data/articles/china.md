@@ -5,7 +5,7 @@ type: brief
 briefType: country-summary
 project: 'baseline'
 locations:
-  - eap-china
+  - eap_china
   - eastern_asia
   - asia
 scenarios:
@@ -15,12 +15,12 @@ scenarios:
  - ssp2_ipsl
  - ssp2_nocc
 tags:
- - eap-china
+ - eap_china
  - eastern_asia
  - asia
  - baseline
 ---
-# Overview 
+# Overview
 
 ```chart
 mark: bar

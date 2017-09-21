@@ -5,7 +5,7 @@ type: brief
 briefType: commodity-summary
 project: 'baseline'
 commodities:
-  - cer-barley
+  - cer_barley
 scenarios:
  - ssp2_gfdl
  - ssp2_hgem
@@ -13,7 +13,7 @@ scenarios:
  - ssp2_ipsl
  - ssp2_nocc
 tags:
- - cer-barley
+ - cer_barley
  - cer
  - baseline
 ---

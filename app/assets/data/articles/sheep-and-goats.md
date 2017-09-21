@@ -5,7 +5,7 @@ type: brief
 briefType: commodity-summary
 project: 'baseline'
 commodities:
-  - amt-lamb
+  - amt_lamb
 scenarios:
  - ssp2_gfdl
  - ssp2_hgem
@@ -13,7 +13,7 @@ scenarios:
  - ssp2_ipsl
  - ssp2_nocc
 tags:
- - amt-lamb
+ - amt_lamb
  - amt
  - baseline
 ---

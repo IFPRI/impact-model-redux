@@ -5,7 +5,7 @@ type: brief
 briefType: commodity-summary
 project: 'baseline'
 commodities:
-  - cer-wheat
+  - cer_wheat
 scenarios:
  - ssp2_gfdl
  - ssp2_hgem
@@ -13,7 +13,7 @@ scenarios:
  - ssp2_ipsl
  - ssp2_nocc
 tags:
- - cer-wheat
+ - cer_wheat
  - cer
  - baseline
 ---

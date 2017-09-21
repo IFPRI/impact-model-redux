@@ -5,7 +5,7 @@ type: brief
 briefType: country-summary
 project: 'baseline'
 locations:
-  - lac-argentina
+  - lac_argentina
   - south_america
   - americas
 scenarios:
@@ -15,12 +15,12 @@ scenarios:
  - ssp2_ipsl
  - ssp2_nocc
 tags:
- - lac-argentina
+ - lac_argentina
  - south_america
  - americas
  - baseline
 ---
-# Overview 
+# Overview
 
 ```chart
 mark: bar
