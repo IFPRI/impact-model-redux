@@ -1,236 +1,236 @@
-sas-afghanistan,Afghanistan
-ssa-angola,Angola
-eur-albania,Albania
-lac-argentina,Argentina
-fsu-armenia,Armenia
-eap-australia,Australia
-eur-austria,Austria
-fsu-azerbaijan,Azerbaijan
-f&v-banana,Bananas
-cer-barley,Barley
-ssa-burundi,Burundi
-pul-beans,Beans
-pul-beans,Beans
-amt-beef,Cattle
-ssa-benin,Benin
-ssa-burkina_faso,Burkina Faso
-sas-bangladesh,Bangladesh
-eur-bulgaria,Bulgaria
-fsu-belarus,Belarus
-eur-baltic_states,Baltic States
-eur-belgium-luxembourg,Belgium-Luxembourg
-lac-belize,Belize
-lac-bolivia,Bolivia
-lac-brazil,Brazil
-sas-bhutan,Bhutan
-ssa-botswana,Botswana
-ssa-central_african_rep.,Central African Republic
-cot-coffee,Coffee
-nam-canada,Canada
-r&t-cassava,Cassava and Other Roots & Tubers
-pul-chickpeas,Chickpeas
-lac-chile,Chile
-eap-china,China
-eur-switzerland,Switzerland plus
-ssa-ivory_coast,Ivory Coast
-ssa-cameroon,Cameroon
-cot-cacao,Cocoa
-cot-cacao,Cocoa
-ssa-drc,Democratic Republic of the Congo
-ssa-congo,Republic of the Congo
-lac-colombia,Colombia
-cot-cotton,Cotton
-pul-cowpeas,Cowpeas
-lac-other_caribbean,Other Caribbean
-lac-costa_rica,Costa Rica
-lac-cuba,Cuba
-eur-cyprus,Cyprus
-eur-czech_republic,Czech Republic
-eur-germany,Germany
-ssa-djibouti,Djibouti
-eur-denmark,Denmark
-lac-dominican_republic,Dominican Republic
-men-algeria,Algeria
-lac-ecuador,Ecuador
-aot-eggs,Eggs
-aot-eggs,Eggs
-men-egypt,Egypt
-ssa-eritrea,Eritrea
-ssa-ethiopia,Ethiopia
-eap-fiji,Fiji
-eur-finland,Finland Plus
-for-fodders,Fodders
-eur-france,France plus
-ssa-gabon,Gabon
-mls-groundnut_meal,Groundnut Meal
-oil-groundnut_oil,Groundnut Oil
-fsu-georgia,Georgia
-ssa-ghana,Ghana
-ssa-guinea,Guinea
-ssa-gambia,Gambia
-ssa-guinea-bissau,Guinea Bissau
-ssa-equatorial_guinea,Equatorial Guinea
-eur-greece,Greece
-nam-greenland,Denmark
-ols-groundnut,Groundnuts
-for-grass,Grass
-lac-guyanas,Guyanas South America
-lac-guatemala,Guatemala
-lac-honduras,Honduras
-eur-croatia,Croatia
-lac-haiti,Haiti
-eur-hungary,Hungary
-eap-indonesia,Indonesia
-sas-india,India
-eur-ireland,Ireland
-men-iran,Iran
-men-iraq,Iraq
-eur-iceland,Iceland
-men-israel,Israel
-eur-italy,Italy plus
-lac-jamaica,Jamaica
-men-jordan,Jordan
-eap-japan,Japan
-fsu-kazakhstan,Kazakhstan
-ssa-kenya,Kenya
-fsu-kyrgyzstan,Kyrgyzstan
-eap-cambodia,Cambodia
-eap-south_korea,South Korea
-amt-lamb,Sheep and Goats
-eap-laos,Laos
-men-lebanon,Lebanon
-ssa-liberia,Liberia
-men-libya,Libya
-pul-lentils,Lentils
-sas-sri_lanka,Sri Lanka
-ssa-lesotho,Lesotho
-cer-maize,Maize
-fsu-moldova,Moldova
-ssa-madagascar,Madagascar
-lac-mexico,Mexico
-aot-dairy,Dairy
-cer-millet,Millet
-ssa-mali,Mali
-eap-myanmar,Myanmar
-eap-mongolia,Mongolia
-men-morocco,Morocco
-ssa-mozambique,Mozambique
-men-mauritania,Mauritania
-ssa-malawi,Malawi
-eap-malaysia,Malaysia
-ssa-namibia,Namibia
-ssa-niger,Niger
-ssa-nigeria,Nigeria
-lac-nicaragua,Nicaragua
-eur-netherlands,Netherlands
-eur-norway,Norway
-sas-nepal,Nepal
-eap-new_zealand,New Zealand
-ssa-other_atlantic,Other Atlantic Ocean
-eur-other_balkans,Other Balkans
-cer-other_cereals,Other Cereals
-eap-other_indian_ocean,Other Indian Ocean
-eap-other_pacific_ocean,Other Pacific Ocean
-pul-other_pulses,Other Pulses
-r&t-other_roots,Other Roots & Tubers
-eap-other_southeast_asia,Other Southeast Asia
-cot-other,Other Crops
-sas-pakistan,Pakistan
-ols-palm_fruit,Oil Palm Fruit
-lac-panama,Panama
-lac-peru,Peru
-eap-philippines,Philippines
-pul-pigeonpeas,Pigeonpeas
-mls-palm_kernel_meal,Palm Kernal Meal
-oil-palm_kernel_oil,Palm Kernal Oil
-ols-palm_kernel,Palm Kernal
-f&v-plantain,Plantains
-oil-palm_fruit_oil,Palm Oil
-eap-papua_new_guinea,Papua New Guinea
-eur-poland,Poland
+sas_afghanistan,Afghanistan
+ssa_angola,Angola
+eur_albania,Albania
+lac_argentina,Argentina
+fsu_armenia,Armenia
+eap_australia,Australia
+eur_austria,Austria
+fsu_azerbaijan,Azerbaijan
+f&v_banana,Bananas
+cer_barley,Barley
+ssa_burundi,Burundi
+pul_beans,Beans
+pul_beans,Beans
+amt_beef,Cattle
+ssa_benin,Benin
+ssa_burkina_faso,Burkina Faso
+sas_bangladesh,Bangladesh
+eur_bulgaria,Bulgaria
+fsu_belarus,Belarus
+eur_baltic_states,Baltic States
+eur_belgium_luxembourg,Belgium_Luxembourg
+lac_belize,Belize
+lac_bolivia,Bolivia
+lac_brazil,Brazil
+sas_bhutan,Bhutan
+ssa_botswana,Botswana
+ssa_central_african_rep.,Central African Republic
+cot_coffee,Coffee
+nam_canada,Canada
+r&t_cassava,Cassava and Other Roots & Tubers
+pul_chickpeas,Chickpeas
+lac_chile,Chile
+eap_china,China
+eur_switzerland,Switzerland plus
+ssa_ivory_coast,Ivory Coast
+ssa_cameroon,Cameroon
+cot_cacao,Cocoa
+cot_cacao,Cocoa
+ssa_drc,Democratic Republic of the Congo
+ssa_congo,Republic of the Congo
+lac_colombia,Colombia
+cot_cotton,Cotton
+pul_cowpeas,Cowpeas
+lac_other_caribbean,Other Caribbean
+lac_costa_rica,Costa Rica
+lac_cuba,Cuba
+eur_cyprus,Cyprus
+eur_czech_republic,Czech Republic
+eur_germany,Germany
+ssa_djibouti,Djibouti
+eur_denmark,Denmark
+lac_dominican_republic,Dominican Republic
+men_algeria,Algeria
+lac_ecuador,Ecuador
+aot_eggs,Eggs
+aot_eggs,Eggs
+men_egypt,Egypt
+ssa_eritrea,Eritrea
+ssa_ethiopia,Ethiopia
+eap_fiji,Fiji
+eur_finland,Finland Plus
+for_fodders,Fodders
+eur_france,France plus
+ssa_gabon,Gabon
+mls_groundnut_meal,Groundnut Meal
+oil_groundnut_oil,Groundnut Oil
+fsu_georgia,Georgia
+ssa_ghana,Ghana
+ssa_guinea,Guinea
+ssa_gambia,Gambia
+ssa_guinea_bissau,Guinea Bissau
+ssa_equatorial_guinea,Equatorial Guinea
+eur_greece,Greece
+nam_greenland,Denmark
+ols_groundnut,Groundnuts
+for_grass,Grass
+lac_guyanas,Guyanas South America
+lac_guatemala,Guatemala
+lac_honduras,Honduras
+eur_croatia,Croatia
+lac_haiti,Haiti
+eur_hungary,Hungary
+eap_indonesia,Indonesia
+sas_india,India
+eur_ireland,Ireland
+men_iran,Iran
+men_iraq,Iraq
+eur_iceland,Iceland
+men_israel,Israel
+eur_italy,Italy plus
+lac_jamaica,Jamaica
+men_jordan,Jordan
+eap_japan,Japan
+fsu_kazakhstan,Kazakhstan
+ssa_kenya,Kenya
+fsu_kyrgyzstan,Kyrgyzstan
+eap_cambodia,Cambodia
+eap_south_korea,South Korea
+amt_lamb,Sheep and Goats
+eap_laos,Laos
+men_lebanon,Lebanon
+ssa_liberia,Liberia
+men_libya,Libya
+pul_lentils,Lentils
+sas_sri_lanka,Sri Lanka
+ssa_lesotho,Lesotho
+cer_maize,Maize
+fsu_moldova,Moldova
+ssa_madagascar,Madagascar
+lac_mexico,Mexico
+aot_dairy,Dairy
+cer_millet,Millet
+ssa_mali,Mali
+eap_myanmar,Myanmar
+eap_mongolia,Mongolia
+men_morocco,Morocco
+ssa_mozambique,Mozambique
+men_mauritania,Mauritania
+ssa_malawi,Malawi
+eap_malaysia,Malaysia
+ssa_namibia,Namibia
+ssa_niger,Niger
+ssa_nigeria,Nigeria
+lac_nicaragua,Nicaragua
+eur_netherlands,Netherlands
+eur_norway,Norway
+sas_nepal,Nepal
+eap_new_zealand,New Zealand
+ssa_other_atlantic,Other Atlantic Ocean
+eur_other_balkans,Other Balkans
+cer_other_cereals,Other Cereals
+eap_other_indian_ocean,Other Indian Ocean
+eap_other_pacific_ocean,Other Pacific Ocean
+pul_other_pulses,Other Pulses
+r&t_other_roots,Other Roots & Tubers
+eap_other_southeast_asia,Other Southeast Asia
+cot_other,Other Crops
+sas_pakistan,Pakistan
+ols_palm_fruit,Oil Palm Fruit
+lac_panama,Panama
+lac_peru,Peru
+eap_philippines,Philippines
+pul_pigeonpeas,Pigeonpeas
+mls_palm_kernel_meal,Palm Kernal Meal
+oil_palm_kernel_oil,Palm Kernal Oil
+ols_palm_kernel,Palm Kernal
+f&v_plantain,Plantains
+oil_palm_fruit_oil,Palm Oil
+eap_papua_new_guinea,Papua New Guinea
+eur_poland,Poland
 popxagg,Population
-amt-pork,Pigs
-amt-pork,Pigs
-r&t-potato,Potato
-amt-poultry,Poultry
-eap-north_korea,North Korea
-eur-portugal,Portugal
-lac-paraguay,Paraguay
-men-palestine,Occupied Palestinian Territory
-for-grass,Pasture
+amt_pork,Pigs
+amt_pork,Pigs
+r&t_potato,Potato
+amt_poultry,Poultry
+eap_north_korea,North Korea
+eur_portugal,Portugal
+lac_paraguay,Paraguay
+men_palestine,Occupied Palestinian Territory
+for_grass,Pasture
 qdxagg,Total Demand
 qfxagg,Household Demand
-men-rest_of_arabia,Rest of Arab Peninsula
-cer-rice,Rice
-eur-romania,Romania
-mls-rapeseed_meal,Rapeseed Meal
-oil-rapeseed_oil,Rapeseed Oil
-ols-rapeseed,Rapeseed
-fsu-russia,Russia
-ssa-rwanda,Rwanda
-men-saudi_arabia,Saudi Arabia
-mls-soybean_meal,Soybean Meal
-oil-soybean_oil,Soybean Oil
-ssa-sudan,Sudan
-ssa-senegal,Senegal
-mls-sunflower_meal,Sunflower Meal
-mls-sunflower_meal,Sunflower Meal
-oil-sunflower_oil,Sunflower Oil
-eap-solomon_islands,Solomon Islands
-ssa-sierra_leon,Sierra Leone
-lac-el_salvador,El Salvador
-ols-sunflower,Sunflower Seeds
-ssa-somalia,Somalia
-cer-sorghum,Sorghum
-ols-soybean,Soybeans
-eur-spain,Spain plus
+men_rest_of_arabia,Rest of Arab Peninsula
+cer_rice,Rice
+eur_romania,Romania
+mls_rapeseed_meal,Rapeseed Meal
+oil_rapeseed_oil,Rapeseed Oil
+ols_rapeseed,Rapeseed
+fsu_russia,Russia
+ssa_rwanda,Rwanda
+men_saudi_arabia,Saudi Arabia
+mls_soybean_meal,Soybean Meal
+oil_soybean_oil,Soybean Oil
+ssa_sudan,Sudan
+ssa_senegal,Senegal
+mls_sunflower_meal,Sunflower Meal
+mls_sunflower_meal,Sunflower Meal
+oil_sunflower_oil,Sunflower Oil
+eap_solomon_islands,Solomon Islands
+ssa_sierra_leon,Sierra Leone
+lac_el_salvador,El Salvador
+ols_sunflower,Sunflower Seeds
+ssa_somalia,Somalia
+cer_sorghum,Sorghum
+ols_soybean,Soybeans
+eur_spain,Spain plus
 ssp2_gfdl,SSP2_GFDL
 ssp2_hgem,SSP2_HGEM
 ssp2_ipsl,SSP2_IPSL
 ssp2_miroc,SSP2_MIROC
 ssp2_nocc,SSP2_NOCC
-f&v-tropical_fruit,(Sub)-Tropical Fruits
-sgc-sugar_beet,Sugarbeet
-sgc-sugarcane,Sugarcane
-sgr-sugar,Refined Sugar
-eur-slovakia,Slovakia
-eur-slovenia,Slovenia
-eur-sweden,Sweden
-r&t-sweet_potato,Sweet Potatoes
-ssa-swaziland,Swaziland
-men-syria,Syria
-ssa-chad,Chad
-cot-tea,Tea
-f&v-temperate_fruit,Temperate Fruits
-f&v-temperate_fruit,Temperate Fruits
-ssa-togo,Togo
-eap-thailand,Thailand
-fsu-tajikistan,Tajikistan
-fsu-turkmenistan,Turkmenistan
-eap-timor_l'este,East Timor
-ols-other_oilseeds,Total Other Oilseeds
-mls-other_meals,Total Other Oilseed Meal
-oil-other_oils,Total Other Oils
-men-tunisia,Tunisia
-men-turkey,Turkey
-ssa-tanzania,United Republic of Tanzania
-ssa-uganda,Uganda
-eur-uk,Great Britain plus
-fsu-ukraine,Ukraine
-lac-uruguay,Uruguay
-nam-usa,United States of America
-fsu-uzbekistan,Uzbekistan
-f&v-vegetables,Vegetables
-f&v-vegetables,Vegetables
-lac-venezuela,Venezuela
-eap-vietnam,Vietnam
-eap-vanuatu,Vanuatu
-cer-wheat,Wheat
-r&t-yams,Yams
-men-yemen,Yemen
-ssa-south_africa,South Africa
-ssa-zambia,Zambia
-ssa-zimbabwe,Zimbabwe
+f&v_tropical_fruit,(Sub)_Tropical Fruits
+sgc_sugar_beet,Sugarbeet
+sgc_sugarcane,Sugarcane
+sgr_sugar,Refined Sugar
+eur_slovakia,Slovakia
+eur_slovenia,Slovenia
+eur_sweden,Sweden
+r&t_sweet_potato,Sweet Potatoes
+ssa_swaziland,Swaziland
+men_syria,Syria
+ssa_chad,Chad
+cot_tea,Tea
+f&v_temperate_fruit,Temperate Fruits
+f&v_temperate_fruit,Temperate Fruits
+ssa_togo,Togo
+eap_thailand,Thailand
+fsu_tajikistan,Tajikistan
+fsu_turkmenistan,Turkmenistan
+eap_timor_l'este,East Timor
+ols_other_oilseeds,Total Other Oilseeds
+mls_other_meals,Total Other Oilseed Meal
+oil_other_oils,Total Other Oils
+men_tunisia,Tunisia
+men_turkey,Turkey
+ssa_tanzania,United Republic of Tanzania
+ssa_uganda,Uganda
+eur_uk,Great Britain plus
+fsu_ukraine,Ukraine
+lac_uruguay,Uruguay
+nam_usa,United States of America
+fsu_uzbekistan,Uzbekistan
+f&v_vegetables,Vegetables
+f&v_vegetables,Vegetables
+lac_venezuela,Venezuela
+eap_vietnam,Vietnam
+eap_vanuatu,Vanuatu
+cer_wheat,Wheat
+r&t_yams,Yams
+men_yemen,Yemen
+ssa_south_africa,South Africa
+ssa_zambia,Zambia
+ssa_zimbabwe,Zimbabwe
 australia_and_new_zealand,Australia and New Zealand,
 caribbean,Caribbean,
 central_america,Central America,
@@ -244,7 +244,7 @@ northern_africa,Northern Africa,
 northern_america,Northern America,
 northern_europe,Northern Europe,
 south_america,South America,
-south-eastern_Asia,South-Eastern Asia,
+south_eastern_Asia,South_Eastern Asia,
 southern_africa,Southern Africa,
 southern_asia,Southern Asia,
 southern_europe,Southern Europe,
@@ -264,11 +264,11 @@ r&t,Roots & Tubers
 sgc,Sugar Crops
 sgr,Sugar
 impactparameter,IMPACT Parameter
-commodity-summary,Commodity Summary
+commodity_summary,Commodity Summary
 custom,Custom Brief
-country-summary,Country Summary
+country_summary,Country Summary
 agg_commodity,Commodity Group
-ssa,Sub-Saharan Africa
+ssa,Sub_Saharan Africa
 eap,East Asia Pacific
 lac,Latin America & Caribbean
 sas,South Asia
@@ -277,7 +277,7 @@ nam,North America
 men,North Africa & Middle East
 eur,Western Europe
 eca,Eastern Europe & Central Asia
-eap-south_korea,South Korea
+eap_south_korea,South Korea
 dvg,Developing countries
 dvd,Developed countries
 _type,Scenario
@@ -285,7 +285,7 @@ anmlnumxagg,Animal numbers
 anmlyldxagg,Animal yield
 gdpxAgg,Income(GDP)
 pcgdpxagg,Income per capita
-percapkcalcxagg,Kcal. per capita by commodity 
+percapkcalcxagg,Kcal. per capita by commodity
 percapkcalxagg,Kcal. per capita
 populationatriskxagg,Pop. at risk of hunger
 popxagg,Population
@@ -306,17 +306,17 @@ eapg,Eastern Asia(developing countries only)
 fsu,Former Soviet Union
 meng,Middle East & North Africa(developing countries only)
 oceania,Oceania
-ssp2-hgem2,REF-HGEM
-ssp2-hgem-hinars2,HIGH+NARS
-ssp2-hgem-hireff2,HIGH+RE
-ssp2-hgem-hiyld2,HIGH
-ssp2-hgem-irrexp2,IX
-ssp2-hgem-irrexp-wue2,IX+WUE
-ssp2-hgem-loyld2,MED
-ssp2-hgem-mmeff2,RMM
-ssp2-hgem-pangloss2,COMP
-ssp2-hgem-phl-dev2
-ssp2-hgem-regyld2,REGION
-ssp2-hgem-swhc2,ISW
-ssp2-nocc2,REF-NoCC
+ssp2_hgem2,REF_HGEM
+ssp2_hgem_hinars2,HIGH+NARS
+ssp2_hgem_hireff2,HIGH+RE
+ssp2_hgem_hiyld2,HIGH
+ssp2_hgem_irrexp2,IX
+ssp2_hgem_irrexp_wue2,IX+WUE
+ssp2_hgem_loyld2,MED
+ssp2_hgem_mmeff2,RMM
+ssp2_hgem_pangloss2,COMP
+ssp2_hgem_phl_dev2
+ssp2_hgem_regyld2,REGION
+ssp2_hgem_swhc2,ISW
+ssp2_nocc2,REF_NoCC
 allc,All crops

@@ -26,6 +26,7 @@ before_install:
 before_script:
 - ./.build_scripts/lint.sh
 - npm test
+- npm run aggregate_c
 
 script:
 - npm run build
