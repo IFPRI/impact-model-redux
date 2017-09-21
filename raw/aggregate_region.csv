@@ -1,187 +1,187 @@
-"id","region","continent","subcontinent"
-"AFG","SAS-Afghanistan","Asia","Southern Asia"
-"AGO","SSA-Angola","Africa","Middle Africa"
-"ALB","EUR-Albania","Europe","Southern Europe"
-"ARG","LAC-Argentina","Americas","South America"
-"ARM","FSU-Armenia","Asia","Western Asia"
-"AUS","EAP-Australia","Oceania","Australia and New Zealand"
-"AUT","EUR-Austria","Europe","Western Europe"
-"AZE","FSU-Azerbaijan","Asia","Western Asia"
-"BDI","SSA-Burundi","Africa","Eastern Africa"
-"BEN","SSA-Benin","Africa","Western Africa"
-"BFA","SSA-Burkina Faso","Africa","Western Africa"
-"BGD","SAS-Bangladesh","Asia","Southern Asia"
-"BGR","EUR-Bulgaria","Europe","Eastern Europe"
-"BLR","FSU-Belarus","Europe","Eastern Europe"
-"LTU","EUR-Baltic States","Europe","Northern Europe"
-"EST","EUR-Baltic States","Europe","Northern Europe"
-"LVA","EUR-Baltic States","Europe","Northern Europe"
-"BEL","EUR-Belgium-Luxembourg","Europe","Western Europe"
-"LUX","EUR-Belgium-Luxembourg","Europe","Western Europe"
-"BLZ","LAC-Belize","Americas","Central America"
-"BOL","LAC-Bolivia","Americas","South America"
-"BRA","LAC-Brazil","Americas","South America"
-"BTN","SAS-Bhutan","Asia","Southern Asia"
-"BWA","SSA-Botswana","Africa","Southern Africa"
-"CAF","SSA-Central African Rep.","Africa","Middle Africa"
-"CAN","NAM-Canada","Americas","Northern America"
-"CHL","LAC-Chile","Americas","South America"
-"CHN","EAP-China","Asia","Eastern Asia"
-"HKG","EAP-China","Asia","Eastern Asia"
-"MAC","EAP-China","Asia","Eastern Asia"
-"TWN","EAP-China","Asia","Eastern Asia"
-"LIE","EUR-Switzerland","Europe","Western Europe"
-"CHE","EUR-Switzerland","Europe","Western Europe"
-"CIV","SSA-Ivory Coast","Africa","Western Africa"
-"CMR","SSA-Cameroon","Africa","Middle Africa"
-"COD","SSA-DRC","Africa","Middle Africa"
-"COG","SSA-Congo","Africa","Middle Africa"
-"COL","LAC-Colombia","Americas","South America"
-"BLM","LAC-Other Caribbean","Americas","Caribbean"
-"CRI","LAC-Costa Rica","Americas","Central America"
-"CUB","LAC-Cuba","Americas","Caribbean"
-"CYP","EUR-Cyprus","Asia","Western Asia"
-"CZE","EUR-Czech Republic","Europe","Eastern Europe"
-"DEU","EUR-Germany","Europe","Western Europe"
-"DJI","SSA-Djibouti","Africa","Eastern Africa"
-"DNK","EUR-Denmark","Europe","Northern Europe"
-"DOM","LAC-Dominican Republic","Americas","Caribbean"
-"DZA","MEN-Algeria","Africa","Northern Africa"
-"ECU","LAC-Ecuador","Americas","South America"
-"EGY","MEN-Egypt","Africa","Northern Africa"
-"ERI","SSA-Eritrea","Africa","Eastern Africa"
-"ETH","SSA-Ethiopia","Africa","Eastern Africa"
-"FJI","EAP-Fiji","Oceania","Melanesia"
-"FIN","EUR-Finland","Europe","Northern Europe"
-"ALD","EUR-Finland","Europe","Northern Europe"
-"FRA","EUR-France","Europe","Western Europe"
-"MCO","EUR-France","Europe","Western Europe"
-"GAB","SSA-Gabon","Africa","Middle Africa"
-"GEO","FSU-Georgia","Asia","Western Asia"
-"GHA","SSA-Ghana","Africa","Western Africa"
-"GIN","SSA-Guinea","Africa","Western Africa"
-"GMB","SSA-Gambia","Africa","Western Africa"
-"GNB","SSA-Guinea-Bissau","Africa","Western Africa"
-"GNQ","SSA-Equatorial Guinea","Africa","Middle Africa"
-"GRC","EUR-Greece","Europe","Southern Europe"
-"GRL","NAM-Greenland","Americas","Northern America"
-"SUR","LAC-Guyanas","Americas","South America"
-"GUY","LAC-Guyanas","Americas","South America"
-"FGY","LAC-Guyanas","Americas","South America"
-"GTM","LAC-Guatemala","Americas","Central America"
-"HND","LAC-Honduras","Americas","Central America"
-"HRV","EUR-Croatia","Europe","Southern Europe"
-"HTI","LAC-Haiti","Americas","Caribbean"
-"HUN","EUR-Hungary","Europe","Eastern Europe"
-"IDN","EAP-Indonesia","Asia","South Eastern Asia"
-"IND","SAS-India","Asia","Southern Asia"
-"IRL","EUR-Ireland","Europe","Northern Europe"
-"IRN","MEN-Iran","Asia","Southern Asia"
-"IRQ","MEN-Iraq","Asia","Western Asia"
-"ISL","EUR-Iceland","Europe","Northern Europe"
-"ISR","MEN-Israel","Asia","Western Asia"
-"SMR","EUR-Italy","Europe","Southern Europe"
-"VAT","EUR-Italy","Europe","Southern Europe"
-"ITA","EUR-Italy","Europe","Southern Europe"
-"MLT","EUR-Italy","Europe","Southern Europe"
-"JAM","LAC-Jamaica","Americas","Caribbean"
-"JOR","MEN-Jordan","Asia","Western Asia"
-"JPN","EAP-Japan","Asia","Eastern Asia"
-"KAZ","FSU-Kazakhstan","Asia","Central Asia"
-"KEN","SSA-Kenya","Africa","Eastern Africa"
-"KGZ","FSU-Kyrgyzstan","Asia","Central Asia"
-"KHM","EAP-Cambodia","Asia","South Eastern Asia"
-"KOR","EAP-South Korea","Asia","Eastern Asia"
-"LAO","EAP-Laos","Asia","South Eastern Asia"
-"LBN","MEN-Lebanon","Asia","Western Asia"
-"LBR","SSA-Liberia","Africa","Western Africa"
-"LBY","MEN-Libya","Africa","Northern Africa"
-"LKA","SAS-Sri Lanka","Asia","Southern Asia"
-"LSO","SSA-Lesotho","Africa","Southern Africa"
-"MDA","FSU-Moldova","Europe","Eastern Europe"
-"MDG","SSA-Madagascar","Africa","Eastern Africa"
-"MEX","LAC-Mexico","Americas","Central America"
-"MLI","SSA-Mali","Africa","Western Africa"
-"MMR","EAP-Myanmar","Asia","South Eastern Asia"
-"MNG","EAP-Mongolia","Asia","Eastern Asia"
-"MAR","MEN-Morocco","Africa","Northern Africa"
-"SAH","MEN-Morocco","Africa","Northern Africa"
-"MOZ","SSA-Mozambique","Africa","Eastern Africa"
-"MRT","MEN-Mauritania","Africa","Western Africa"
-"MWI","SSA-Malawi","Africa","Eastern Africa"
-"MYS","EAP-Malaysia","Asia","South Eastern Asia"
-"NAM","SSA-Namibia","Africa","Southern Africa"
-"NER","SSA-Niger","Africa","Western Africa"
-"NGA","SSA-Nigeria","Africa","Western Africa"
-"NIC","LAC-Nicaragua","Americas","Central America"
-"NLD","EUR-Netherlands","Europe","Western Europe"
-"NOR","EUR-Norway","Europe","Northern Europe"
-"NPL","SAS-Nepal","Asia","Southern Asia"
-"NZL","EAP-New Zealand","Oceania","Australia and New Zealand"
-"CPV","SSA-Other Atlantic","Europe","Western Europe"
-"MKD","EUR-Other Balkans","Europe","Southern Europe"
-"KOS","EUR-Other Balkans","Europe","Southern Europe"
-"MNE","EUR-Other Balkans","Europe","Southern Europe"
-"BIH","EUR-Other Balkans","Europe","Southern Europe"
-"SRB","EUR-Other Balkans","Europe","Southern Europe"
-"SYC","EAP-Other Indian Ocean","Asia","Southern Asia"
-"WLF","EAP-Other Pacific Ocean","Oceania","Polynesia"
-"SGP","EAP-Other Southeast Asia","Asia","South Eastern Asia"
-"BRN","EAP-Other Southeast Asia","Asia","South Eastern Asia"
-"PAK","SAS-Pakistan","Asia","Southern Asia"
-"PAN","LAC-Panama","Americas","Central America"
-"PER","LAC-Peru","Americas","South America"
-"PHL","EAP-Philippines","Asia","South Eastern Asia"
-"PNG","EAP-Papua New Guinea","Oceania","Melanesia"
-"POL","EUR-Poland","Europe","Eastern Europe"
-"PRK","EAP-North Korea","Asia","Eastern Asia"
-"PRT","EUR-Portugal","Europe","Southern Europe"
-"PRY","LAC-Paraguay","Americas","South America"
-"GAZ","MEN-Palestine","Asia","Western Asia"
-"WEB","MEN-Palestine","Asia","Western Asia"
-"OMN","MEN-Rest of Arabia","Asia","Western Asia"
-"ARE","MEN-Rest of Arabia","Asia","Western Asia"
-"BHR","MEN-Rest of Arabia","Asia","Western Asia"
-"KWT","MEN-Rest of Arabia","Asia","Western Asia"
-"QAT","MEN-Rest of Arabia","Asia","Western Asia"
-"ROU","EUR-Romania","Europe","Eastern Europe"
-"RUS","FSU-Russia","Europe","Eastern Europe"
-"RWA","SSA-Rwanda","Africa","Eastern Africa"
-"SAU","MEN-Saudi Arabia","Asia","Western Asia"
-"SDS","SSA-Sudan","Africa","Northern Africa"
-"SDN","SSA-Sudan","Africa","Northern Africa"
-"SEN","SSA-Senegal","Africa","Western Africa"
-"SLB","EAP-Solomon Islands","Oceania","Melanesia"
-"SLE","SSA-Sierra Leon","Africa","Western Africa"
-"SLV","LAC-El Salvador","Americas","Central America"
-"SOM","SSA-Somalia","Africa","Eastern Africa"
-"SOL","SSA-Somalia","Africa","Eastern Africa"
-"AND","EUR-Spain","Europe","Southern Europe"
-"ESP","EUR-Spain","Europe","Southern Europe"
-"SVK","EUR-Slovakia","Europe","Eastern Europe"
-"SVN","EUR-Slovenia","Europe","Southern Europe"
-"SWE","EUR-Sweden","Europe","Northern Europe"
-"SWZ","SSA-Swaziland","Africa","Southern Africa"
-"SYR","MEN-Syria","Asia","Western Asia"
-"TCD","SSA-Chad","Africa","Middle Africa"
-"TGO","SSA-Togo","Africa","Western Africa"
-"THA","EAP-Thailand","Asia","South Eastern Asia"
-"TJK","FSU-Tajikistan","Asia","Central Asia"
-"TKM","FSU-Turkmenistan","Asia","Central Asia"
-"TLS","EAP-Timor L'Este","Asia","South Eastern Asia"
-"TUN","MEN-Tunisia","Africa","Northern Africa"
-"TUR","MEN-Turkey","Asia","Western Asia"
-"TZA","SSA-Tanzania","Africa","Eastern Africa"
-"UGA","SSA-Uganda","Africa","Eastern Africa"
-"GBR","EUR-UK","Europe","Northern Europe"
-"UKR","FSU-Ukraine","Europe","Eastern Europe"
-"URY","LAC-Uruguay","Americas","South America"
-"USA","NAM-USA","Americas","Northern America"
-"UZB","FSU-Uzbekistan","Asia","Central Asia"
-"VEN","LAC-Venezuela","Americas","South America"
-"VNM","EAP-Vietnam","Asia","South Eastern Asia"
-"VUT","EAP-Vanuatu","Oceania","Melanesia"
-"YEM","MEN-Yemen","Asia","Western Asia"
-"ZAF","SSA-South Africa","Africa","Southern Africa"
-"ZMB","SSA-Zambia","Africa","Eastern Africa"
-"ZWE","SSA-Zimbabwe","Africa","Eastern Africa"
+id,region,continent,subcontinent
+AFG,SAS-Afghanistan,SAS,Southern Asia
+AGO,SSA-Angola,SSA,Middle Africa
+ALB,EUR-Albania,EUR,Southern Europe
+ALD,EUR-Finland,EUR,Northern Europe
+AND,EUR-Spain,EUR,Southern Europe
+ARE,MEN-Rest of Arabia,MEN,Western Asia
+ARG,LAC-Argentina,LAC,South America
+ARM,FSU-Armenia,FSU,Western Asia
+AUS,EAP-Australia,EAP,Oceania
+AUT,EUR-Austria,EUR,Western Europe
+AZE,FSU-Azerbaijan,FSU,Western Asia
+BDI,SSA-Burundi,SSA,Eastern Africa
+BEL,EUR-Belgium-Luxembourg,EUR,Western Europe
+BEN,SSA-Benin,SSA,Western Africa
+BFA,SSA-Burkina Faso,SSA,Western Africa
+BGD,SAS-Bangladesh,SAS,Southern Asia
+BGR,EUR-Bulgaria,EUR,Eastern Europe
+BHR,MEN-Rest of Arabia,MEN,Western Asia
+BIH,EUR-Other Balkans,EUR,Southern Europe
+BLM,LAC-Other Caribbean,LAC,Caribbean
+BLR,FSU-Belarus,FSU,Eastern Europe
+BLZ,LAC-Belize,LAC,Central America
+BOL,LAC-Bolivia,LAC,South America
+BRA,LAC-Brazil,LAC,South America
+BRN,EAP-Other Southeast Asia,EAP,South Eastern Asia
+BTN,SAS-Bhutan,SAS,Southern Asia
+BWA,SSA-Botswana,SSA,Southern Africa
+CAF,SSA-Central African Rep.,SSA,Middle Africa
+CAN,NAM-Canada,NAM,Northern America
+CHE,EUR-Switzerland,EUR,Western Europe
+CHL,LAC-Chile,LAC,South America
+CHN,EAP-China,EAP,Eastern Asia
+CIV,SSA-Ivory Coast,SSA,Western Africa
+CMR,SSA-Cameroon,SSA,Middle Africa
+COD,SSA-DRC,SSA,Middle Africa
+COG,SSA-Congo,SSA,Middle Africa
+COL,LAC-Colombia,LAC,South America
+CPV,SSA-Other Atlantic,SSA,Western Africa
+CRI,LAC-Costa Rica,LAC,Central America
+CUB,LAC-Cuba,LAC,Caribbean
+CYP,EUR-Cyprus,EUR,Western Asia
+CZE,EUR-Czech Republic,EUR,Eastern Europe
+DEU,EUR-Germany,EUR,Western Europe
+DJI,SSA-Djibouti,SSA,Eastern Africa
+DNK,EUR-Denmark,EUR,Northern Europe
+DOM,LAC-Dominican Republic,LAC,Caribbean
+DZA,MEN-Algeria,MEN,Northern Africa
+ECU,LAC-Ecuador,LAC,South America
+EGY,MEN-Egypt,MEN,Northern Africa
+ERI,SSA-Eritrea,SSA,Eastern Africa
+ESP,EUR-Spain,EUR,Southern Europe
+EST,EUR-Baltic States,EUR,Northern Europe
+ETH,SSA-Ethiopia,SSA,Eastern Africa
+FGY,LAC-Guyanas,LAC,South America
+FIN,EUR-Finland,EUR,Northern Europe
+FJI,EAP-Fiji,EAP,Melanesia
+FRA,EUR-France,EUR,Western Europe
+GAB,SSA-Gabon,SSA,Middle Africa
+GAZ,MEN-Palestine,MEN,Western Asia
+GBR,EUR-UK,EUR,Northern Europe
+GEO,FSU-Georgia,FSU,Western Asia
+GHA,SSA-Ghana,SSA,Western Africa
+GIN,SSA-Guinea,SSA,Western Africa
+GMB,SSA-Gambia,SSA,Western Africa
+GNB,SSA-Guinea-Bissau,SSA,Western Africa
+GNQ,SSA-Equatorial Guinea,SSA,Middle Africa
+GRC,EUR-Greece,EUR,Southern Europe
+GRL,NAM-Greenland,NAM,Northern America
+GTM,LAC-Guatemala,LAC,Central America
+GUY,LAC-Guyanas,LAC,South America
+HKG,EAP-China,EAP,Eastern Asia
+HND,LAC-Honduras,LAC,Central America
+HRV,EUR-Croatia,EUR,Southern Europe
+HTI,LAC-Haiti,LAC,Caribbean
+HUN,EUR-Hungary,EUR,Eastern Europe
+IDN,EAP-Indonesia,EAP,South Eastern Asia
+IND,SAS-India,SAS,Southern Asia
+IRL,EUR-Ireland,EUR,Northern Europe
+IRN,MEN-Iran,MEN,Southern Asia
+IRQ,MEN-Iraq,MEN,Western Asia
+ISL,EUR-Iceland,EUR,Northern Europe
+ISR,MEN-Israel,MEN,Western Asia
+ITA,EUR-Italy,EUR,Southern Europe
+JAM,LAC-Jamaica,LAC,Caribbean
+JOR,MEN-Jordan,MEN,Western Asia
+JPN,EAP-Japan,EAP,Eastern Asia
+KAZ,FSU-Kazakhstan,FSU,Central Asia
+KEN,SSA-Kenya,SSA,Eastern Africa
+KGZ,FSU-Kyrgyzstan,FSU,Central Asia
+KHM,EAP-Cambodia,EAP,South Eastern Asia
+KOR,EAP-South Korea,EAP,Eastern Asia
+KOS,EUR-Other Balkans,EUR,Southern Europe
+KWT,MEN-Rest of Arabia,MEN,Western Asia
+LAO,EAP-Laos,EAP,South Eastern Asia
+LBN,MEN-Lebanon,MEN,Western Asia
+LBR,SSA-Liberia,SSA,Western Africa
+LBY,MEN-Libya,MEN,Northern Africa
+LIE,EUR-Switzerland,EUR,Western Europe
+LKA,SAS-Sri Lanka,SAS,Southern Asia
+LSO,SSA-Lesotho,SSA,Southern Africa
+LTU,EUR-Baltic States,EUR,Northern Europe
+LUX,EUR-Belgium-Luxembourg,EUR,Western Europe
+LVA,EUR-Baltic States,EUR,Northern Europe
+MAC,EAP-China,EAP,Eastern Asia
+MAR,MEN-Morocco,MEN,Northern Africa
+MCO,EUR-France,EUR,Western Europe
+MDA,FSU-Moldova,FSU,Eastern Europe
+MDG,SSA-Madagascar,SSA,Eastern Africa
+MEX,LAC-Mexico,LAC,Central America
+MKD,EUR-Other Balkans,EUR,Southern Europe
+MLI,SSA-Mali,SSA,Western Africa
+MLT,EUR-Italy,EUR,Southern Europe
+MMR,EAP-Myanmar,EAP,South Eastern Asia
+MNE,EUR-Other Balkans,EUR,Southern Europe
+MNG,EAP-Mongolia,EAP,Eastern Asia
+MOZ,SSA-Mozambique,SSA,Eastern Africa
+MRT,MEN-Mauritania,MEN,Western Africa
+MWI,SSA-Malawi,SSA,Eastern Africa
+MYS,EAP-Malaysia,EAP,South Eastern Asia
+NAM,SSA-Namibia,SSA,Southern Africa
+NER,SSA-Niger,SSA,Western Africa
+NGA,SSA-Nigeria,SSA,Western Africa
+NIC,LAC-Nicaragua,LAC,Central America
+NLD,EUR-Netherlands,EUR,Western Europe
+NOR,EUR-Norway,EUR,Northern Europe
+NPL,SAS-Nepal,SAS,Southern Asia
+NZL,EAP-New Zealand,EAP,Oceania
+OMN,MEN-Rest of Arabia,MEN,Western Asia
+PAK,SAS-Pakistan,SAS,Southern Asia
+PAN,LAC-Panama,LAC,Central America
+PER,LAC-Peru,LAC,South America
+PHL,EAP-Philippines,EAP,South Eastern Asia
+PNG,EAP-Papua New Guinea,EAP,Melanesia
+POL,EUR-Poland,EUR,Eastern Europe
+PRK,EAP-North Korea,EAP,Eastern Asia
+PRT,EUR-Portugal,EUR,Southern Europe
+PRY,LAC-Paraguay,LAC,South America
+QAT,MEN-Rest of Arabia,MEN,Western Asia
+ROU,EUR-Romania,EUR,Eastern Europe
+RUS,FSU-Russia,FSU,Eastern Europe
+RWA,SSA-Rwanda,SSA,Eastern Africa
+SAH,MEN-Morocco,MEN,Northern Africa
+SAU,MEN-Saudi Arabia,MEN,Western Asia
+SDN,SSA-Sudan,SSA,Northern Africa
+SDS,SSA-Sudan,SSA,Northern Africa
+SEN,SSA-Senegal,SSA,Western Africa
+SGP,EAP-Other Southeast Asia,EAP,South Eastern Asia
+SLB,EAP-Solomon Islands,EAP,Melanesia
+SLE,SSA-Sierra Leon,SSA,Western Africa
+SLV,LAC-El Salvador,LAC,Central America
+SMR,EUR-Italy,EUR,Southern Europe
+SOL,SSA-Somalia,SSA,Eastern Africa
+SOM,SSA-Somalia,SSA,Eastern Africa
+SRB,EUR-Other Balkans,EUR,Southern Europe
+SUR,LAC-Guyanas,LAC,South America
+SVK,EUR-Slovakia,EUR,Eastern Europe
+SVN,EUR-Slovenia,EUR,Southern Europe
+SWE,EUR-Sweden,EUR,Northern Europe
+SWZ,SSA-Swaziland,SSA,Southern Africa
+SYC,EAP-Other Indian Ocean,EAP,Southern Asia
+SYR,MEN-Syria,MEN,Western Asia
+TCD,SSA-Chad,SSA,Middle Africa
+TGO,SSA-Togo,SSA,Western Africa
+THA,EAP-Thailand,EAP,South Eastern Asia
+TJK,FSU-Tajikistan,FSU,Central Asia
+TKM,FSU-Turkmenistan,FSU,Central Asia
+TLS,EAP-Timor L'Este,EAP,South Eastern Asia
+TUN,MEN-Tunisia,MEN,Northern Africa
+TUR,MEN-Turkey,MEN,Western Asia
+TWN,EAP-China,EAP,Eastern Asia
+TZA,SSA-Tanzania,SSA,Eastern Africa
+UGA,SSA-Uganda,SSA,Eastern Africa
+UKR,FSU-Ukraine,FSU,Eastern Europe
+URY,LAC-Uruguay,LAC,South America
+USA,NAM-USA,NAM,Northern America
+UZB,FSU-Uzbekistan,FSU,Central Asia
+VAT,EUR-Italy,EUR,Southern Europe
+VEN,LAC-Venezuela,LAC,South America
+VNM,EAP-Vietnam,EAP,South Eastern Asia
+VUT,EAP-Vanuatu,EAP,Melanesia
+WEB,MEN-Palestine,MEN,Western Asia
+WLF,EAP-Other Pacific Ocean,EAP,Polynesia
+YEM,MEN-Yemen,MEN,Western Asia
+ZAF,SSA-South Africa,SSA,Southern Africa
+ZMB,SSA-Zambia,SSA,Eastern Africa
+ZWE,SSA-Zimbabwe,SSA,Eastern Africa

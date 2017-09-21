@@ -17,13 +17,15 @@
   "homepage": "https://github.com/developmentseed/ifpri-impact-redux",
   "scripts": {
     "postinstall": "[ -f app/assets/scripts/config/local.js ] || echo 'module.exports = {}' > app/assets/scripts/config/local.js",
-    "serve": "gulp collecticons && DS_ENV=development NODE_ENV=development gulp serve",
-    "build": "node .build_scripts/convert-csv.js && node .build_scripts/article-metadata.js && gulp collecticons && DS_ENV=production NODE_ENV=production gulp",
+    "prep": "node .build_scripts/convert-csv.js && node .build_scripts/article-metadata.js && npm run aggregate_c",
+    "serve": "npm run prep && gulp collecticons && DS_ENV=development NODE_ENV=development gulp serve",
+    "build": "npm run prep && gulp collecticons && DS_ENV=production NODE_ENV=production gulp",
     "lint": "eslint app/assets/scripts/ --ext .js",
     "test": "node .build_scripts/convert-csv.js && DS_ENV=testing nyc ava test -c 4",
     "report": "nyc report",
     "generate": ".build_scripts/generate.sh",
-    "aggregate_c": "cat raw/aggregate_commodity.csv | node_modules/.bin/csv2json | awk '{print tolower($0)}' | sed 's/[ |-]/_/g' | jq 'map({ (.commodity): .group }) | add' > app/assets/data/aggregate-commodity.json"
+    "aggregate_c": "cat raw/aggregate_commodity.csv | node_modules/.bin/csv2json | awk '{print tolower($0)}' | sed 's/[ |-]/_/g' | jq 'map({ (.commodity): .group }) | add' > app/assets/data/aggregate-commodity.json",
+    "aggregate_r": "cat raw/aggregate_region.csv | node_modules/.bin/csv2json | awk '{print tolower($0)}' | sed 's/[ |-]/_/g' | jq 'map({ (.id): del(.id) }) | add'"
   },
   "ava": {
     "require": [
