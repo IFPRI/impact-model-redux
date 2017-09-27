@@ -26,8 +26,8 @@ body {
   background-color: $background-grey;
 }
 
-p { 
-  line-height: 1.8em; 
+p {
+  line-height: 1.8em;
   font-weight: $base-font-light;
 }
 
@@ -133,7 +133,6 @@ a, a:visited {
 }
 
 .header__internal {
-  height: 350px;
   background-color: $medium-blue;
   position: relative;
   @extend .clearfix;
@@ -141,8 +140,11 @@ a, a:visited {
     color: #fff;
   }
   .split__internal--left {
-    width: 57%;
-    max-width: 665px;
+    width: 100%;
+    max-width: 775px;
+    margin-left: -900px;
+    padding-left: 900px;
+    padding-bottom: 3.5em;
     @include media(medium-down) {
       width: 100%;
     }
@@ -190,6 +192,7 @@ section {
 .browse__header-text {
   margin-top: 10em;
   width: 60%;
+  margin-bottom: 3em;
   @include media(medium-down) {
     width: 90%;
   }
