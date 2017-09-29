@@ -17,7 +17,8 @@ tags:
   - cer_rice
   - cer
   - eastern_asia
-download: test-link.html
+download: >-
+  https://www.ifpri.org/publication/climate-change-agriculture-and-adaptation-republic-korea-2050-integrated-assessment
 ---
 ## What is on this brief and how to interpret the results##
 This Brief shows standard country level results for South Korea, originating from the IMPACT baseline suite of scenarios
