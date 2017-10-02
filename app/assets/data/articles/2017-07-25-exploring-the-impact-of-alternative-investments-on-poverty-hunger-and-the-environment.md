@@ -2,7 +2,8 @@
 type: brief
 briefType: custom
 published: true
-title: Exploring the impact of alternative investments on poverty, hunger, and the
+title: >-
+  Exploring the impact of alternative investments on poverty, hunger, and the
   environment
 date: 7/25/2017
 project: USAID
@@ -17,6 +18,7 @@ commodities:
   - cer
 tags:
   - baseline
+  - USAID
 ---
 
 ## what is on this brief and how to interpret the results
