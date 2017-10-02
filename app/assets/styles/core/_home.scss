@@ -17,9 +17,9 @@
 
 .home__header-split--left {
   width: 52%;
-  position: absolute;
   background-color: $darkest-blue;
   height: 100%;
+  float: left;
   &:before {
     content: "";
     position: absolute;
@@ -152,7 +152,7 @@
 
 .selected {
   border: 2px solid #fff;
-  &:hover { 
+  &:hover {
     border: 2px solid #fff;
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
