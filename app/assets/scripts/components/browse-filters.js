@@ -109,7 +109,6 @@ export class BrowseFilters extends React.Component {
             <label>All</label>
           </div>
           {subtypes.map((subtype) => {
-            console.log(translate(subtype));
             // use the id attribute in the case of countries
             if (subtype.id) subtype = subtype.id
             const subChecked = _.includes(this.props.articleFilters, subtype)

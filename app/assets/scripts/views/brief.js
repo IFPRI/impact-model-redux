@@ -154,7 +154,7 @@ export class Brief extends React.Component {
     </dl>
 
     const Download = download
-    ? <Link to={download} className='button button--outline button--download'>Download Report</Link>
+    ? <a href={download} target='_blank' className='button button--outline button--download'>Download Report</a>
     : ''
 
     return (
