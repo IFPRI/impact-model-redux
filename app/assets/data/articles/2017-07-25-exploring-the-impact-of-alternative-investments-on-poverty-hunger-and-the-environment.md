@@ -57,10 +57,10 @@ encoding:
     field: Val
 fixed:
   impactparameter: pcgdpxagg
-  region: dvg, dvd
+  region: nam, ssa
 dropdown:
   field: _type
-  values: ssp2-nocc2, ssp2-hgem2
+  values: ssp2_nocc2, ssp2_hgem2
 change:
   field: year
   values: 2010, 2050
@@ -87,10 +87,10 @@ fixed:
   commodity: allc, amt, cer, ols, pul, r&t, f&v
 dropdown:
   field: region
-  values: dvd, dvg, eap, eapg, fsu, lac, men, meng, sas, ssa
+  values: eap, fsu, lac, men, sas, ssa
 dropdownnew:
   field: _type
-  values: ssp2-nocc2, ssp2-hgem2  
+  values: ssp2_nocc2, ssp2_hgem2  
 change:
   field: year
   values: 2010, 2050
@@ -114,10 +114,10 @@ fixed:
    impactparameter: tyldxagg
 dropdown:
   field: region
-  values: dvd, dvg, eap, eapg, fsu, lac, men, meng, sas, ssa, nam, eur
+  values: eap, fsu, lac, men, sas, ssa, nam, eur
 series:
   field: _type
-  values: ssp2-nocc2, ssp2-hgem2
+  values: ssp2_nocc2, ssp2_hgem2
 ```
 
 Projected increase in production between 2010 and 2050 and higher calorie availability would lead to a steady decrease in undernourished children as well as in the population at risk of hunger but CC would reduce the gains.
@@ -139,10 +139,10 @@ fixed:
    impactparameter: populationatriskxagg
 dropdown:
   field: region
-  values: dvd, dvg, sas, ssa
+  values: sas, ssa
 series:
   field: _type
-  values: ssp2-nocc2, ssp2-hgem2
+  values: ssp2_nocc2, ssp2_hgem2
 ```
 ```chart
 mark: line
@@ -160,10 +160,10 @@ fixed:
    impactparameter: totalmalnourishedxagg
 dropdown:
   field: region
-  values: dvd, dvg, sas, ssa
+  values: sas, ssa
 series:
   field: _type
-  values: ssp2-nocc2, ssp2-hgem2
+  values: ssp2_nocc2, ssp2_hgem2
 ```
 ### The CGIAR research portfolio can make important differences to sustainable agricultural production systems, food security and nutrition, enhanced by increased investments in NARS agricultural research, improved water management, and infrastructure###
 Additional investments in agricultural R&D across CGIAR and NARS can deliver important achievements for the group of developing countries. For example, the HIGH+NARS scenario, is projected to require an additional USD 3.0 billion per year in investments in developing countries (above the USD 8 billion projected in the reference scenario). By 2050, these additional investments are projected to increase incomes by 4 percent and agricultural production by 8 percent. The improvements in turn may lead to a 20 percent decline in the population at risk of hunger by 2050. These advancements are all relative to a reference scenario under climate change but without these additional investments.
@@ -172,10 +172,10 @@ Additional investments in agricultural R&D across CGIAR and NARS can deliver imp
 title: Change in Production between high-nars and hgem in 2050 (%)
 dropdown:
   field: commodity
-  values: allc, cer, cer-maize, cer-rice, cer-wheat, r&t, f&v, pul, amt, amt-beef, amt-pork, amt-poultry
+  values: allc, cer, cer_maize, cer_rice, cer_wheat, r&t, f&v, pul, amt, amt_beef, amt_pork, amt_poultry
 change:
   field: _type
-  values: ssp2-hgem2, ssp2-hgem-hinars2
+  values: ssp2_hgem2, ssp2_hgem_hinars2
   type: percent
 fixed:
   impactparameter: qsupxagg
@@ -197,10 +197,10 @@ fixed:
   year: 2050
 dropdown:
   field: region
-  values: dvd, dvg, eap, eapg, fsu, lac, men, meng, sas, ssa, nam, eur
+  values: eap, fsu, lac, men, sas, ssa, nam, eur
 change:
   field: _type
-  values: ssp2-hgem2, ssp2-hgem-highnars2
+  values: ssp2_hgem2, ssp2_hgem_highnars2
   type: percent
 ```
 
@@ -218,11 +218,11 @@ encoding:
     field: Val
 dropdown:
   field: region
-  values: dvd, dvg, eap, eapg, fsu, lac, men, meng, sas, ssa, nam, eur
+  values: eap, fsu, lac, men, sas, ssa, nam, eur
 dropdownnew:
   field: impactparameter
   values: percapkcalxagg, totalmalnourishedxagg, populationatriskxagg
 series:
   field: _type
-  values: ssp2-nocc2, ssp2-hgem2, ssp2-hgem-highnars2, ssp2-hgem-hiyld2
+  values: ssp2_nocc2, ssp2_hgem2, ssp2_hgem_highnars2, ssp2_hgem_hiyld2
 ```
