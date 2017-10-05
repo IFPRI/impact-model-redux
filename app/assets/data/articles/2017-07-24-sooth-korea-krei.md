@@ -76,7 +76,7 @@ dropdown:
   values: tareaxagg, qsupxagg, qnxagg
 series:
   field: _type
-  values: ssp2_nocc, ssp2_gfdl, ssp2_hgem, ssp2_ipsl```
+  values: ssp2_nocc_sk, ssp2_gfdl_sk, ssp2_hgem_sk, ssp2_ipsl_sk```
 
 
 ### Figure 2. Yield (tons per ha) of rice in South Korea between 2010 and 2050###
@@ -98,7 +98,7 @@ fixed:
   commodity: cer_rice
 series:
   field: _type
-  values: ssp2_nocc, ssp2_ipsl, ssp2_gfdl, ssp2_hgem
+  values: ssp2_nocc_sk, ssp2_ipsl_sk, ssp2_gfdl_sk, ssp2_hgem_sk
   ```
 
 ### Figure 3. Area, Demand, Production and Yields for Rice in SK % change 2010 - 2050###
@@ -118,10 +118,10 @@ fixed:
   commodity: cer_rice
 dropdown:
   field: impactparameter
-  values: tareaxagg,qsupxagg,qdxagg,qfxagg,tyldxagg
+  values: tareaxagg,qsupxagg,qdxagg,tyldxagg
 series:
   field: _type
-  values: ssp2_nocc, ssp2_ipsl, ssp2_gfdl, ssp2_hgem
+  values: ssp2_nocc_sk, ssp2_ipsl_sk, ssp2_gfdl_sk, ssp2_hgem_sk
 change:
   field: year
   values: 2010, 2050
