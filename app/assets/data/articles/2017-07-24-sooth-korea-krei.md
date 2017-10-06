@@ -55,10 +55,10 @@ SSP2 represents a middle of the road projection for population and GDP. The five
 
 ## Results##
 
-### Figure 1. agricultural harvested area, production & net imports for all crops in South Korea###
+### Figure 1. Agricultural harvested area, production & net imports for all crops in South Korea###
 ```chart
 mark: line
-title: Example Line Chart
+title: Trends across time
 width: 70%
 legend: top
 encoding:
@@ -82,7 +82,7 @@ series:
 ### Figure 2. Yield (tons per ha) of rice in South Korea between 2010 and 2050###
 ```chart
 mark: stripe
-title: Example Stripe Chart - Korea Yields
+title: Yields across time
 width: 70%
 legend: top
 encoding:
@@ -101,10 +101,10 @@ series:
   values: ssp2_nocc_sk, ssp2_ipsl_sk, ssp2_gfdl_sk, ssp2_hgem_sk
   ```
 
-### Figure 3. Area, Demand, Production and Yields for Rice in SK % change 2010 - 2050###
+### Figure 3. Area, Demand, Production and Yields for Rice in SK. Percent change 2010 - 2050###
 ```chart
 mark: bar
-title: Example Bar Chart
+title: Percent change between 2010 and 2050
 width: 70%
 encoding:
   x:
