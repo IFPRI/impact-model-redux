@@ -11,7 +11,7 @@ cer_barley,Barley
 ssa_burundi,Burundi
 pul_beans,Beans
 pul_beans,Beans
-amt_beef,Cattle
+amt_beef,Cattle or beef
 ssa_benin,Benin
 ssa_burkina_faso,Burkina Faso
 sas_bangladesh,Bangladesh
@@ -149,8 +149,8 @@ oil_palm_fruit_oil,Palm Oil
 eap_papua_new_guinea,Papua New Guinea
 eur_poland,Poland
 popxagg,Population
-amt_pork,Pigs
-amt_pork,Pigs
+amt_pork,Pigs or pork
+amt_pork,Pigs or pork
 r&t_potato,Potato
 amt_poultry,Poultry
 eap_north_korea,North Korea
