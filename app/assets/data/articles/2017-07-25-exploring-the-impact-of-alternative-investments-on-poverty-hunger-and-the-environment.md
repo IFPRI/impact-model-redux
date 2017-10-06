@@ -54,7 +54,7 @@ encoding:
     field: region
   y:
     type: quantitative
-    field: Val
+    field: val
 fixed:
   impactparameter: pcgdpxagg
   region: nam, ssa
@@ -81,7 +81,7 @@ encoding:
     field: commodity
   y:
     type: quantitative
-    field: Val
+    field: val
 fixed:
   impactparameter: qsupxagg
   commodity: allc, amt, cer, ols, pul, r&t, f&v
@@ -108,7 +108,7 @@ encoding:
     field: year
   y:
     type: quantitative
-    field: Val
+    field: val
 fixed:
    commodity: cer
    impactparameter: tyldxagg
@@ -134,7 +134,7 @@ encoding:
     field: year
   y:
     type: quantitative
-    field: Val
+    field: val
 fixed:
    impactparameter: populationatriskxagg
 dropdown:
@@ -155,7 +155,7 @@ encoding:
     field: year
   y:
     type: quantitative
-    field: Val
+    field: val
 fixed:
    impactparameter: totalmalnourishedxagg
 dropdown:
@@ -191,7 +191,7 @@ encoding:
     field: impactparameter
   y:
     type: quantitative
-    field: Val
+    field: val
 fixed:
   impactparameter: percapkcalxagg, totalmalnourishedxagg, populationatriskxagg
   year: 2050
@@ -215,7 +215,7 @@ encoding:
     field: year
   y:
     type: quantitative
-    field: Val
+    field: val
 dropdown:
   field: region
   values: eap, fsu, lac, men, sas, ssa, nam, eur
