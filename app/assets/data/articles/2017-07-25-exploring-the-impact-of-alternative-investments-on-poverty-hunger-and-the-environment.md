@@ -19,6 +19,7 @@ commodities:
 tags:
   - baseline
   - USAID
+download: 'https://www.ifpri.org/cdmref/p15738coll2/id/131144/filename/131355.pdf'
 ---
 
 ## What is on this brief and how to interpret the results
