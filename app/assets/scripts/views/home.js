@@ -74,7 +74,7 @@ export class Home extends React.Component {
               <li className='card--large'>
                 <h4 className='header--small'>Download the IMPACT Data</h4>
                 <p>Get access to the data we use to run each of our models at our dataverse.</p>
-                <a href='https://dataverse.harvard.edu/dataverse/impact' target='_blank' className='button button--main button--more-information--sm button--small'>Learn More</a>
+                <a href='https://dataverse.harvard.edu/dataverse/impact' target='_blank' className='button button--main button--more-information--sm button--small'>Access Data</a>
               </li>
             </ul>
           </div>
