@@ -188,8 +188,8 @@ export class Scenario extends React.Component {
               <h3 className='header--large with-description'>How to Get More Information</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et dui gravida, posuere diam id, congue augue. Pellentesque nec purus ex.</p>
             </header>
-            <Link className='button button--main button--small button-group' to={'/about'}>Download Our Data</Link>
-            <Link className='button button--main button--small' to={'/about'}>Contact Us</Link>
+            <a href='https://dataverse.harvard.edu/dataverse/impact' target='_blank' className='button button--main button--small button-group'>Download Our Data</a>
+            <Link className='button button--main button--small' to={'/contact'}>Contact Us</Link>
           </div>
         </section>
       </section>
