@@ -23,6 +23,17 @@
       padding: .5em .5em .5em 0;
     }
   }
+  ul, ol {
+    margin-bottom: 3em;
+    font-weight: 300;
+    li {
+      margin-left: 2em;
+      width: 80%;
+      margin-bottom: 1em;
+    }
+  }
+  ul { list-style: circle; }
+  ol { list-style: decimal; }
 }
 
 .figure-container {
