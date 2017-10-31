@@ -15,7 +15,7 @@ import { translate } from '../utils/translation'
 import queryDatabase from '../utils/query-database'
 
 // Constants
-import { oneColorPalette, fourteenColorPalette, stripeChartFill } from '../constants'
+import { oneColorPalette, multiColorPalette, stripeChartFill } from '../constants'
 
 export class ChartLine extends React.Component {
   constructor (props, context) {
@@ -141,7 +141,7 @@ export class ChartLine extends React.Component {
           pointHoverRadius: 6
         })
 
-        const lineColor = series.length === 1 ? oneColorPalette : fourteenColorPalette[i % 14]
+        const lineColor = series.length === 1 ? oneColorPalette : multiColorPalette[i % multiColorPalette.length]
         chart.data.datasets[i].borderColor = lineColor
 
         // hide non-selected series for stripe
