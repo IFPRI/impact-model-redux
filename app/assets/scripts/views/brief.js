@@ -122,7 +122,7 @@ export class Brief extends React.Component {
 
     const Locations = locations
     ? <div className='article-metadata__item'>
-      <span className='article-metadata__header'>Related Locations:</span>
+      <span className='article-metadata__header'>Related Regions:</span>
       <ul>{locations.map(loc => <li key={loc}><a className='link__underline' href="" onClick={this.filteredLink.bind(this, loc)}>{translate(loc)}</a></li>)}</ul>
     </div>
     : ''
