@@ -22,7 +22,7 @@ const formatNumber = (num, label) => {
   if (abs < 100) return num.toFixed(2)
   return Math.round(num).toLocaleString()
 }
-window.formatNumber = formatNumber
+
 const formatScenario = (scenario) => {
   return scenario.replace('_', '-').toUpperCase()
 }
