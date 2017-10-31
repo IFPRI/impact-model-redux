@@ -57,7 +57,7 @@ encoding:
     field: val
 fixed:
   impactparameter: pcgdpxagg
-  continent: nam, ssa
+  agg_continent: nam, ssa
 dropdown:
   field: _type
   values: ssp2_nocc2, ssp2_hgem2
@@ -86,7 +86,7 @@ fixed:
   impactparameter: qsupxagg
   commodity: allc, amt, cer, ols, pul, r&t, f&v
 dropdown:
-  field: continent
+  field: agg_continent
   values: eap, fsu, lac, men, sas, ssa
 dropdownnew:
   field: _type
@@ -113,7 +113,7 @@ fixed:
    commodity: cer
    impactparameter: tyldxagg
 dropdown:
-  field: continent
+  field: agg_continent
   values: eap, fsu, lac, men, sas, ssa, nam, eur
 series:
   field: _type
@@ -138,7 +138,7 @@ encoding:
 fixed:
    impactparameter: populationatriskxagg
 dropdown:
-  field: continent
+  field: agg_continent
   values: sas, ssa
 series:
   field: _type
@@ -196,7 +196,7 @@ fixed:
   impactparameter: percapkcalxagg, totalmalnourishedxagg, populationatriskxagg
   year: 2050
 dropdown:
-  field: region
+  field: agg_continent
   values: eap, fsu, lac, men, sas, ssa, nam, eur
 change:
   field: _type
@@ -217,7 +217,7 @@ encoding:
     type: quantitative
     field: val
 dropdown:
-  field: continent
+  field: agg_continent
   values: eap, fsu, lac, men, sas, ssa, nam, eur
 dropdownnew:
   field: impactparameter
