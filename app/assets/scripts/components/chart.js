@@ -206,7 +206,7 @@ export class Chart extends React.Component {
     return (
       <div className={chartClass}>
         <h5 className='label--chart'>{data.title}</h5>
-        <div className='chart-container'>
+        <div className='chart-container' style={{height: data.height}}>
           <canvas id={name} className='chart'></canvas>
         </div>
         {Dropdowns}
