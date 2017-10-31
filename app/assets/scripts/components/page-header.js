@@ -44,7 +44,8 @@ export class PageHeader extends React.Component {
 
   render () {
     const { page } = this.props
-    const links = ['briefs', 'scenarios', 'about', 'contact']
+    // const links = ['briefs', 'scenarios', 'about', 'contact']
+    const links = ['briefs', 'about', 'contact']
     return (
       <header className='page__header'>
         <div className='row' ref={v => (this.navData = v)}>

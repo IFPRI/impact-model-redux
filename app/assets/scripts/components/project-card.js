@@ -34,7 +34,7 @@ class ProjectCard extends React.Component {
           <h4 className='header--large'>{translate(project)}</h4>
           <p>{projectDescriptions[project] || ''}</p>
           <ul className='more-information--sm'>
-            <li><a href="" className='link-block--sm link__underline' onClick={this.goToScenarios.bind(this, project)}>View All Related Scenarios</a></li>
+            {/* <li><a href="" className='link-block--sm link__underline' onClick={this.goToScenarios.bind(this, project)}>View All Related Scenarios</a></li> */}
             <li><a href="" className='link-block--sm link__underline' onClick={this.goToBriefs.bind(this, project)}>View All Related Briefs</a></li>
           </ul>
         </div>

@@ -117,7 +117,7 @@ export class Brief extends React.Component {
     }
 
     const { articles, metadata } = this.props
-    const { download, locations, scenarios, resources, author, tags } = metadata
+    const { download, locations, resources, author, tags } = metadata
     const date = moment(metadata.date, 'M/D/YYYY').format('MMMM Do, YYYY')
 
     const Locations = locations
@@ -127,12 +127,12 @@ export class Brief extends React.Component {
     </div>
     : ''
 
-    const Scenarios = scenarios
-    ? <div className='article-metadata__item'>
-      <span className='article-metadata__header'>Related Scenarios:</span>
-      <ul>{scenarios.map(s => <li key={s}><Link className='link__underline' to={`/scenarios/${s}-summary`}>{translate(s)}</Link></li>)}</ul>
-    </div>
-    : ''
+    // const Scenarios = scenarios
+    // ? <div className='article-metadata__item'>
+    //   <span className='article-metadata__header'>Related Scenarios:</span>
+    //   <ul>{scenarios.map(s => <li key={s}><Link className='link__underline' to={`/scenarios/${s}-summary`}>{translate(s)}</Link></li>)}</ul>
+    // </div>
+    // : ''
 
     const Resources = resources
     ? <div className='article-metadata__item'>
@@ -187,7 +187,7 @@ export class Brief extends React.Component {
                     </ul>
                   </div>
                  {Locations}
-                 {Scenarios}
+                 {/* Scenarios */}
                  {Resources}
                </div>
                <div className='article--content' dangerouslySetInnerHTML={{__html: this.props.article}}>
