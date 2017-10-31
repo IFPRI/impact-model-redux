@@ -15,20 +15,14 @@ const toTitleCase = (str) => {
   })
 }
 
-const formatNumber = (number, label) => {
-  if (label) number = number[label]
-  const isNegative = number < 0
-  number = Math.abs(number)
-  if (number) {
-    if (number < 0.01) number = number.toFixed(6)
-    if (number < 1 && number >= 0.01) number = number.toFixed(4)
-    if (number < 100 && number >= 1) number = number.toFixed(2)
-    if (number >= 100) number = Math.round(number)
-    if (isNegative) number = -number
-  }
-  return Number(number).toLocaleString()
+const formatNumber = (num, label) => {
+  if (label) num = num[label]
+  const abs = Math.abs(num)
+  if (abs < 1) return `${(num * 100).toFixed(2)} %`
+  if (abs < 100) return num.toFixed(2)
+  return Math.round(num).toLocaleString()
 }
-
+window.formatNumber = formatNumber
 const formatScenario = (scenario) => {
   return scenario.replace('_', '-').toUpperCase()
 }
