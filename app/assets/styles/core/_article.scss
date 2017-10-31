@@ -28,7 +28,7 @@
     font-weight: 300;
     li {
       margin-left: 2em;
-      width: 80%;
+      width: calc(75% - 2em);
       margin-bottom: 1em;
     }
   }
