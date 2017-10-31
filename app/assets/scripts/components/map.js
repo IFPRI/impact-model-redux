@@ -10,6 +10,7 @@ import { body as tip } from '@redsift/d3-rs-tip'
 import MapAggregationDropdown from './map-aggregation-dropdown'
 import queryDatabase from '../utils/query-database'
 import { translate } from '../utils/translation'
+import { formatNumber } from '../utils/format'
 import locationAggregation from '../../data/aggregate-region'
 import world from '../../data/geo/world.json'
 
@@ -56,35 +57,15 @@ export class MapComponent extends React.Component {
 
     this.mapTip = tip()
       .offset(d => {
-        // this will have to be custom/manually adjusted to account for countries with unusual bounding boxes, like CHM or USA
+        // this will have to be custom/manually adjusted to account for countries with unusual bounding boxes, like nam_usa
         switch (d.id) {
-          case 'rus':
-            return [0, 0]
-          case 'can':
-            return [0, 0]
-          case 'usa':
+          case 'nam_usa':
             return [75, -300]
-          case 'chm':
-            return [25, 0]
-          case 'northern_america':
-            return [0, -300]
-          case 'eastern_europe':
-            return [0, 0]
-          case 'northern_europe':
-            return [10, 0]
-          case 'south_eastern_asia':
-            return [10, -30]
-          case 'europe':
-            return [50, 50]
-          case 'oceania':
-            return [20, 350]
-          case 'americas':
-            return [0, -300]
           default:
             return [-10, 0]
         }
       })
-      .html(d => `<strong>${translate(d.id)}</strong><br>Value: ${d.properties.val.toFixed(1)}`)
+      .html(d => `<strong>${translate(d.id)}</strong><br>Value: ${formatNumber(d.properties.val)}`)
 
     this.mapSvg = mapSvg
     this.mapPath = mapPath
