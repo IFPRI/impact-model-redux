@@ -53,14 +53,23 @@ export class BrowseFilters extends React.Component {
         name: 'Regions',
         list: _.uniq(_.flatten(_.values(locationAggregation).map(loc => _.values(loc)))
           .filter(Boolean).map(translate)).sort(),
-        type: 'autocomplete'
+        type: 'autocomplete',
+        placeholder: 'Enter in region or country'
+      })
+      // generate list of tags
+      this.filters.push({
+        name: 'Tags',
+        list: filterCategories.tags.map(translate),
+        type: 'autocomplete',
+        placeholder: 'Enter a tag'
       })
     } else if (props.type === 'scenario') {
       // generate list of tags
       this.filters.push({
         name: 'Tags',
         list: filterCategories.scenarioTags.map(translate),
-        type: 'autocomplete'
+        type: 'autocomplete',
+        placeholder: 'Enter a tag'
       })
     }
     // generate list of projects

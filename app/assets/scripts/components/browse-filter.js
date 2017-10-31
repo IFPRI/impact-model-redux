@@ -21,7 +21,7 @@ class BrowseFilter extends React.Component {
   }
 
   render () {
-    const { name, list, type, accordion } = this.props.filter
+    const { name, list, type, accordion, placeholder } = this.props.filter
     const { handleFilterSelection, onAccordionChange, generateAccordionItems,
       articleFilters } = this.props
     switch (type) {
@@ -57,7 +57,7 @@ class BrowseFilter extends React.Component {
             <Autocomplete
               value={this.state.value}
               wrapperProps={{className: 'autocomplete-wrapper'}}
-              inputProps={{placeholder: 'Enter in region or country'}}
+              inputProps={{placeholder}}
               items={list}
               getItemValue={a => a}
               menuStyle={{}}
