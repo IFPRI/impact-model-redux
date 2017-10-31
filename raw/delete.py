@@ -3,6 +3,11 @@ from elasticsearch.exceptions import ConnectionError, TransportError
 import sys
 import argparse
 
+match_all = {
+    "query": {
+        "match_all": {}
+     }
+}
 
 class Deletor(object):
 
@@ -12,7 +17,11 @@ class Deletor(object):
         self.es = Elasticsearch(self.es_url,
                                 http_auth=(username, password),
                                 use_ssl=True,
-                                connection_class=RequestsHttpConnection)
+                                verify_certs=True,
+                                connection_class=RequestsHttpConnection,
+                                timeout=30,
+                                max_retries=10,
+                                retry_on_timeout=True)
 
     def delete(self, type):
         # make sure index exists
@@ -22,7 +31,9 @@ class Deletor(object):
                 # if type is 'all' delete everything
                 if type == 'all':
                     try:
-                        indice.delete(index=self.es_main_index)
+                        self.es.delete_by_query(index=self.es_main_index,
+                                              body=match_all,
+                                              conflicts='proceed')
                         print('Deleted ' + self.es_main_index)
                         return True
                     except ConnectionError:
@@ -33,7 +44,10 @@ class Deletor(object):
                 elif type:
                     try:
                         if indice.exists_type(index=self.es_main_index, doc_type=type):
-                            indice.delete_mapping(index=self.es_main_index, doc_type=type)
+                            self.es.delete_by_query(index=self.es_main_index,
+                                                  doc_type=type,
+                                                  body=match_all,
+                                                  conflicts='proceed')
                             print('Deleted ' + self.es_main_index + '/' + type)
                             return True
                     except ConnectionError:
