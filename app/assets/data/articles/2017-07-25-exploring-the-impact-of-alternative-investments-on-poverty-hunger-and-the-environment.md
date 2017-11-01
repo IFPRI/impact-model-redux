@@ -183,7 +183,7 @@ fixed:
 ```
 ```chart
 mark: bar
-title: Change in food security in 2050 (%)
+title: Change in food security in 2050(%)
 width: 70%
 encoding:
   x:
@@ -200,7 +200,7 @@ dropdown:
   values: eap, fsu, lac, men, sas, ssa, nam, eur
 change:
   field: _type
-  values: ssp2_hgem2, ssp2_hgem_highnars2
+  values: ssp2_hgem2, ssp2_hgem_hinars2
   type: percent
 ```
 
