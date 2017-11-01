@@ -157,6 +157,22 @@ export class Brief extends React.Component {
     ? <a href={download} target='_blank' className='button button--outline button--download'>Download Report</a>
     : ''
 
+    const projectArticles = findProjectArticles(metadata, articles, metadata.project, 2)
+    const ProjectArticles = projectArticles.length > 0
+    ? <section className='page__project-articles-list page__articles-list section__padding section--blue'>
+        <div className='row row--shortened'>
+          <RelatedArticles
+            type='brief'
+            cardType='project'
+            title={`Other Briefs in ${translate(metadata.project)}`}
+            articles={projectArticles}
+            router={this.props.router}
+            updateArticleFilters={this.updateArticleFilters}
+            />
+        </div>
+      </section>
+    : ''
+
     return (
       <section className='page__article'>
         <section className='header__internal'>
@@ -203,18 +219,7 @@ export class Brief extends React.Component {
              </div>
            </section>
         }
-        <section className='page__project-articles-list page__articles-list section__padding section--blue'>
-          <div className='row row--shortened'>
-            <RelatedArticles
-              type='brief'
-              cardType='project'
-              title={`Other Briefs in ${translate(metadata.project)}`}
-              articles={findProjectArticles(metadata, articles, metadata.project, 2)}
-              router={this.props.router}
-              updateArticleFilters={this.updateArticleFilters}
-              />
-          </div>
-        </section>
+        {ProjectArticles}
         <section className='page__related-articles-list page__articles-list section__padding section--blue'>
           <div className='row row--shortened'>
             <RelatedArticles
