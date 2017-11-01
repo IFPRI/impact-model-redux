@@ -100,7 +100,7 @@ change:
 ```chart
 mark: line
 title: Yields of cereals decrease under CC
-width: 100%
+width: 70%
 legend: top
 encoding:
   x:
@@ -108,7 +108,7 @@ encoding:
     field: year
   y:
     type: quantitative
-    field: val
+    field: Val
 fixed:
    commodity: cer
    impactparameter: tyldxagg
@@ -126,7 +126,7 @@ In 2010, the estimated number of people at risk of hunger was comparable between
 ```chart
 mark: line
 title: Population at risk of hunger
-width: 100%
+width: 70%
 legend: top
 encoding:
   x:
@@ -134,7 +134,7 @@ encoding:
     field: year
   y:
     type: quantitative
-    field: val
+    field: Val
 fixed:
    impactparameter: populationatriskxagg
 dropdown:
@@ -147,7 +147,7 @@ series:
 ```chart
 mark: line
 title: Undernourished children (weight for age)
-width: 100%
+width: 70%
 legend: top
 encoding:
   x:
@@ -155,7 +155,7 @@ encoding:
     field: year
   y:
     type: quantitative
-    field: val
+    field: Val
 fixed:
    impactparameter: totalmalnourishedxagg
 dropdown:
@@ -184,14 +184,14 @@ fixed:
 ```chart
 mark: bar
 title: Change in food security in 2050 (%)
-width: 100%
+width: 70%
 encoding:
   x:
     type: nominal
     field: impactparameter
   y:
     type: quantitative
-    field: val
+    field: Val
 fixed:
   impactparameter: percapkcalxagg, totalmalnourishedxagg, populationatriskxagg
   year: 2050
@@ -207,7 +207,7 @@ change:
 ```chart
 mark: line
 title: food security indicators
-width: 100%
+width: 70%
 legend: top
 encoding:
   x:
@@ -215,7 +215,7 @@ encoding:
     field: year
   y:
     type: quantitative
-    field: val
+    field: Val
 dropdown:
   field: agg_continent
   values: eap, fsu, lac, men, sas, ssa, nam, eur
