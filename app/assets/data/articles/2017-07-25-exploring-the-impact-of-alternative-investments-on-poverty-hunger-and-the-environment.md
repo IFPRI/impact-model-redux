@@ -51,10 +51,10 @@ width: 100%
 encoding:
   x:
     type: nominal
-    field: region
+    field: agg_continent
   y:
     type: quantitative
-    field: val
+    field: Val
 fixed:
   impactparameter: pcgdpxagg
   agg_continent: nam, ssa
