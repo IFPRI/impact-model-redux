@@ -47,14 +47,14 @@ Under the population and economic growth assumptions used in this analysis (SSP2
 ```chart
 mark: bar
 title: Change in income per capita 2010-2050(%)
-width: 100%
+width: 70%
 encoding:
   x:
     type: nominal
-    field: region
+    field: agg_continent
   y:
     type: quantitative
-    field: val
+    field: Val
 fixed:
   impactparameter: pcgdpxagg
   agg_continent: nam, ssa
@@ -74,14 +74,14 @@ However, climate change is projected to reduce these gains. Average cereal yield
 ```chart
 mark: bar
 title: Production will increase but gains are lower under CC
-width: 100%
+width: 70%
 encoding:
   x:
     type: nominal
     field: commodity
   y:
     type: quantitative
-    field: val
+    field: Val
 fixed:
   impactparameter: qsupxagg
   commodity: allc, amt, cer, ols, pul, r&t, f&v
@@ -100,7 +100,7 @@ change:
 ```chart
 mark: line
 title: Yields of cereals decrease under CC
-width: 100%
+width: 70%
 legend: top
 encoding:
   x:
@@ -108,7 +108,7 @@ encoding:
     field: year
   y:
     type: quantitative
-    field: val
+    field: Val
 fixed:
    commodity: cer
    impactparameter: tyldxagg
@@ -126,7 +126,7 @@ In 2010, the estimated number of people at risk of hunger was comparable between
 ```chart
 mark: line
 title: Population at risk of hunger
-width: 100%
+width: 70%
 legend: top
 encoding:
   x:
@@ -134,7 +134,7 @@ encoding:
     field: year
   y:
     type: quantitative
-    field: val
+    field: Val
 fixed:
    impactparameter: populationatriskxagg
 dropdown:
@@ -147,7 +147,7 @@ series:
 ```chart
 mark: line
 title: Undernourished children (weight for age)
-width: 100%
+width: 70%
 legend: top
 encoding:
   x:
@@ -155,7 +155,7 @@ encoding:
     field: year
   y:
     type: quantitative
-    field: val
+    field: Val
 fixed:
    impactparameter: totalmalnourishedxagg
 dropdown:
@@ -183,15 +183,15 @@ fixed:
 ```
 ```chart
 mark: bar
-title: Change in food security in 2050 (%)
-width: 100%
+title: Change in food security in 2050(%)
+width: 70%
 encoding:
   x:
     type: nominal
     field: impactparameter
   y:
     type: quantitative
-    field: val
+    field: Val
 fixed:
   impactparameter: percapkcalxagg, totalmalnourishedxagg, populationatriskxagg
   year: 2050
@@ -200,14 +200,14 @@ dropdown:
   values: eap, fsu, lac, men, sas, ssa, nam, eur
 change:
   field: _type
-  values: ssp2_hgem2, ssp2_hgem_highnars2
+  values: ssp2_hgem2, ssp2_hgem_hinars2
   type: percent
 ```
 
 ```chart
 mark: line
 title: food security indicators
-width: 100%
+width: 70%
 legend: top
 encoding:
   x:
@@ -215,7 +215,7 @@ encoding:
     field: year
   y:
     type: quantitative
-    field: val
+    field: Val
 dropdown:
   field: agg_continent
   values: eap, fsu, lac, men, sas, ssa, nam, eur
@@ -224,5 +224,5 @@ dropdownnew:
   values: percapkcalxagg, totalmalnourishedxagg, populationatriskxagg
 series:
   field: _type
-  values: ssp2_nocc2, ssp2_hgem2, ssp2_hgem_highnars2, ssp2_hgem_hiyld2
+  values: ssp2_nocc2, ssp2_hgem2, ssp2_hgem_hinars2, ssp2_hgem_hiyld2
 ```
