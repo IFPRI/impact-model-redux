@@ -205,17 +205,17 @@ export class Brief extends React.Component {
                  {Locations}
                  {/* Scenarios */}
                  {Resources}
+                 <div>
+                  <ul className='article-card__tags link-block'>
+                    <span className='article-metadata__header'>Tags:</span>
+                    {(tags || []).map(tag => {
+                      return <li key={tag}><a className='link__underline' onClick={this.filteredLink.bind(this, tag)} href=''>{translate(tag)}</a></li>
+                    })}
+                  </ul>
+                </div>
                </div>
                <div className='article--content' dangerouslySetInnerHTML={{__html: this.props.article}}>
                </div>
-               <div>
-                <ul className='article-card__tags link-block'>
-                  <span className='article-metadata__header'>Tags:</span>
-                  {(tags || []).map(tag => {
-                    return <li key={tag}><a className='link__underline' onClick={this.filteredLink.bind(this, tag)} href=''>{translate(tag)}</a></li>
-                  })}
-                </ul>
-              </div>
              </div>
            </section>
         }

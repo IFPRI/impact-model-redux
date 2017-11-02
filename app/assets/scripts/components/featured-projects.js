@@ -2,6 +2,7 @@
 import React from 'react'
 
 import { updateSelectedProject } from '../actions'
+import RelatedArticles from '../components/related-articles'
 
 // Components
 import ProjectCard from './project-card'
@@ -12,14 +13,14 @@ class FeaturedProjects extends React.Component {
   }
 
   render () {
-    let { projects, selectedProject, router, dispatch, updateArticleFilters } = this.props
+    let { projects, selectedProject, router, dispatch, updateArticleFilters, briefs } = this.props
     projects = projects || []
 
     return (
-      <div className='home__header-split--left split__internal--left section__padding--lg'>
+      <div className='section__internal section__padding'>
         <div className='split-content'>
           <header className='header-internal'>
-            <h3 className='header--xlarge with-description'>Featured Projects</h3>
+            <h3 className='header--xlarge with-description'>Featured Briefs</h3>
             <p className='internal__descriptions'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et dui gravida, posuere diam id, congue augue. Pellentesque nec purus ex.</p>
           </header>
           <div className='content-internal'>
