@@ -1,19 +1,12 @@
 'use strict'
 import React from 'react'
 
-import { updateSelectedProject } from '../actions'
-import RelatedArticles from '../components/related-articles'
-
 // Components
 import ProjectCard from './project-card'
 
 class FeaturedProjects extends React.Component {
-  componentDidMount () {
-    this.props.dispatch(updateSelectedProject(this.props.projects[0], this.ul.offsetTop))
-  }
-
   render () {
-    let { projects, selectedProject, router, dispatch, updateArticleFilters, briefs } = this.props
+    let { projects, router, updateArticleFilters, briefs } = this.props
     projects = projects || []
 
     return (
@@ -26,15 +19,13 @@ class FeaturedProjects extends React.Component {
           <div className='content-internal'>
             <ul ref={(node) => (this.ul = node)}>
               {projects.map(project => {
-                const selected = project === selectedProject
                 return (
                   <ProjectCard
                     project={project}
                     key={project}
                     router={router}
-                    updateSelectedProject={(project, height) => dispatch(updateSelectedProject(project, height))}
+                    briefs={briefs}
                     updateArticleFilters={updateArticleFilters}
-                    selected={selected}
                     />
                 )
               })}
@@ -51,8 +42,7 @@ FeaturedProjects.propTypes = {
   projects: React.PropTypes.array,
   router: React.PropTypes.object,
   updateArticleFilters: React.PropTypes.func,
-  dispatch: React.PropTypes.func,
-  selectedProject: React.PropTypes.string
+  briefs: React.PropTypes.array
 }
 
 export default FeaturedProjects

@@ -1,9 +1,9 @@
 'use strict'
 import React from 'react'
-import c from 'classnames'
 
 import projectDescriptions from '../../data/projects.json'
 import { translate } from '../utils/translation'
+import RelatedArticleCard from './related-article-card'
 
 class ProjectCard extends React.Component {
 
@@ -21,55 +21,28 @@ class ProjectCard extends React.Component {
     this.props.router.push(`/briefs`)
   }
 
-  updateSelectedProjectWrapper (e) {
-    this.props.updateSelectedProject(this.props.project, e.currentTarget.offsetTop)
-  }
-
   render () {
-    const { project, selected } = this.props
+    const { project, briefs, router } = this.props
+    const relatedArticles = briefs.filter(b => b.project === project).sort((a, b) => b.date - a.date).slice(0, 2)
 
     return (
-      <li className='featured-project' onClick={this.updateSelectedProjectWrapper.bind(this)}>
+      <li className='featured-project'>
         <div className='featured-project__item--body'>
           <h4 className='header--large with-metadata'>{translate(project)} Project</h4>
           <p>{projectDescriptions[project] || ''}</p>
 
         </div>
         <ul className='related-articles'>
-          <li className='article-card--related-frontpage'>
-            <header className='article-card__header--related-frontpage'>
-              <h5 className='header--small with-metadata'><a className='link__underline--dark' href="#/briefs/south-korea-krei">South Korea - KREI</a></h5>
-              <div className='card__metadata'>
-                <span className='metadata-italic'>Custom Brief</span>
-                <span className='metadata-italic'>July 24, 2017</span>
-              </div>
-            </header>
-            <div className='article-card__body--related-frontpage'>
-              <p>What is on this brief and how to interpret the results## This Brief shows standard country level results for South Korea, originating from the IMPACT baseline suite of scenarios Source...</p>
-            </div>
-            <ul className='article-card__tags link-block'>
-              <li><a className='link__underline' href="">Rice</a></li>
-              <li><a className='link__underline' href="">Cereals</a></li>
-              <li><a className='link__underline' href="">Eastern Asia</a></li>
-            </ul>
-          </li>
-          <li className='article-card--related-frontpage'>
-            <header className='article-card__header--related-frontpage'>
-              <h5 className='header--small with-metadata'><a className='link__underline--dark' href="#/briefs/south-korea-krei">South Korea - KREI</a></h5>
-              <div className='card__metadata'>
-                <span className='metadata-italic'>Custom Brief</span>
-                <span className='metadata-italic'>July 24, 2017</span>
-              </div>
-            </header>
-            <div className='article-card__body--related-frontpage'>
-              <p>What is on this brief and how to interpret the results## This Brief shows standard country level results for South Korea, originating from the IMPACT baseline suite of scenarios Source...</p>
-            </div>
-            <ul className='article-card__tags link-block'>
-              <li><a className='link__underline' href="">Rice</a></li>
-              <li><a className='link__underline' href="">Cereals</a></li>
-              <li><a className='link__underline' href="">Eastern Asia</a></li>
-            </ul>
-          </li>
+          {relatedArticles.map(article => {
+            return <RelatedArticleCard
+              cardType='related-frontpage'
+              type='brief'
+              article={article}
+              key={article.id}
+              updateArticleFilters={this.updateArticleFilters}
+              router={router}
+            />
+          })}
         </ul>
       </li>
     )
@@ -80,9 +53,8 @@ class ProjectCard extends React.Component {
 ProjectCard.propTypes = {
   project: React.PropTypes.string,
   router: React.PropTypes.object,
-  updateSelectedProject: React.PropTypes.func,
   updateArticleFilters: React.PropTypes.func,
-  selected: React.PropTypes.bool
+  briefs: React.PropTypes.array
 }
 
 export default ProjectCard

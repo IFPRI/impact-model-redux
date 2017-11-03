@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 import { updateArticleFilters } from '../actions'
 
 // Components
-import RelatedArticles from '../components/related-articles'
 import FeaturedProjects from '../components/featured-projects'
 
 // Data
@@ -24,7 +23,7 @@ export class Home extends React.Component {
   }
 
   render () {
-    const { selectedProject, selectedProjectHeight, briefs, router, dispatch } = this.props
+    const { briefs, router, dispatch } = this.props
     return (
       <section className='page__home'>
         <header className='home__header'>
@@ -42,20 +41,8 @@ export class Home extends React.Component {
               updateArticleFilters={this.updateArticleFilters}
               router={router}
               dispatch={dispatch}
-              selectedProject={selectedProject}
+              briefs={briefs}
               />
-            <div>
-              <RelatedArticles
-                cardType='related-frontpage'
-                type='brief'
-                // all briefs within a project, sorted by date
-                articles={briefs.filter(b => (selectedProject) ? b.project === selectedProject : true).sort((a, b) => b.date - a.date).slice(0, 3)}
-                updateArticleFilters={this.updateArticleFilters}
-                router={router}
-                >
-                <Link className='button button--outline button--more-information' to={'/briefs'}>View All Briefs</Link>
-              </RelatedArticles>
-            </div>
           </div>
         </section>
         <section className='section__internal section__padding section--grey'>
@@ -86,18 +73,14 @@ export class Home extends React.Component {
 Home.propTypes = {
   briefs: React.PropTypes.array,
   dispatch: React.PropTypes.func,
-  router: React.PropTypes.object,
-  selectedProject: React.PropTypes.string,
-  selectedProjectHeight: React.PropTypes.number
+  router: React.PropTypes.object
 }
 
 const mapStateToProps = (state) => {
   return {
     briefs: state.article.briefs,
     scenarios: state.article.scenarios,
-    projects: state.articles,
-    selectedProject: state.home.selectedProject,
-    selectedProjectHeight: state.home.selectedProjectHeight
+    projects: state.articles
   }
 }
 export default connect(mapStateToProps)(Home)
