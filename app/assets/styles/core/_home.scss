@@ -177,3 +177,22 @@
     padding-top: 1.2em;
   }
 }
+
+.featured-project {
+  @extend .clearfix;
+  &:first-of-type {
+    margin-bottom: 2em;
+  }
+  .related-articles {
+    .article-card--related-frontpage {
+      float: left;
+      width: 35%;
+      &:first-of-type {
+        margin-right: 8em;
+      }
+      @include media(small-down) {
+        width: 100%;
+      }
+    }
+  }
+}
