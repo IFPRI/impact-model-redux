@@ -3,7 +3,7 @@ import React from 'react'
 
 import projectDescriptions from '../../data/projects.json'
 import { translate } from '../utils/translation'
-import RelatedArticleCard from './related-article-card'
+import RelatedArticleCardHome from './related-article-card-home'
 
 class ProjectCard extends React.Component {
 
@@ -23,24 +23,20 @@ class ProjectCard extends React.Component {
 
   render () {
     const { project, briefs, router } = this.props
-    const relatedArticles = briefs.filter(b => b.project === project).sort((a, b) => b.date - a.date).slice(0, 2)
+    const relatedArticles = briefs.filter(b => b.project === project).sort((a, b) => b.date - a.date).slice(0, 1)
 
     return (
       <li className='featured-project'>
-        <div className='featured-project__item--body'>
-          <h4 className='header--large with-metadata'>{translate(project)} Project</h4>
-          <p>{projectDescriptions[project] || ''}</p>
-
-        </div>
         <ul className='related-articles'>
           {relatedArticles.map(article => {
-            return <RelatedArticleCard
+            return <RelatedArticleCardHome
               cardType='related-frontpage'
               type='brief'
               article={article}
               key={article.id}
               updateArticleFilters={this.updateArticleFilters}
               router={router}
+              project={project}
             />
           })}
         </ul>
