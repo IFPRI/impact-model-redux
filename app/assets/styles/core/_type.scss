@@ -70,30 +70,49 @@ h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, 
 .header--medium, .article--content h1 {
   font-size: 2em;
   font-weight: $header-light;
+  margin-top: 2em;
   @include media(medium-down) {
     font-size: 1.8em;
   }
   @include media(small-down) {
     font-size: 1.5em;
   }
+  &:first-of-type {
+    margin-top: 0;
+  }
 }
 
 .header--small, .article--content h2 {
   font-size: 1.45em;
   font-weight: $header-bold;
+  margin-top: 2em;
   @include media(medium-down) {
     font-size: 1.2em;
+  }
+  &:first-of-type {
+    margin-top: 0;
   }
 }
 
 .header--xsmall, .article--content h3 {
   font-size: 1.28em;
+  margin-top: 2em;
+  &:first-of-type {
+    margin-top: 0;
+  }
 }
 
 .sub-description, .article--content h4 {
   color: $grey;
   font-size: .852em;
+  margin-top: 2em;
 }
+
+ .article--content h4 {
+   &:first-of-type {
+     margin-top: 0;
+   }
+ }
 
 .section--blue {
   h1, h2, h3, h4, h5, h6 {
@@ -106,7 +125,7 @@ h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, 
     }
   }
   .internal__descriptions {
-    color: darken($lightest-grey, 10%);
+    //color: darken($lightest-grey, 10%);
   }
   .internal__descriptions {
     width: 95%;

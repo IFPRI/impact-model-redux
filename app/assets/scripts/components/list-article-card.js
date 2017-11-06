@@ -51,8 +51,9 @@ export class ListArticleCard extends React.Component {
       <div className={c('article-list-card', type === 'scenario' ? type : briefType)}>
         <Link className='link-card' to={`/${this.props.path}/${article.id}`}>
           <div className='article-list-card__header'>
-            <h4 className='header--small with-metadata'>{article.title}</h4>
-            <span className='metadata-italic'>{(type === 'brief' ? `${translate(briefType)}   |   ` : '') + date}</span>
+            <span className='header--type'>{(type === 'brief' ? `${translate(briefType)}  ` : '')}</span>
+            <h4 className='header--small'>{article.title}</h4>
+            <span className='metadata-italic'>{date}</span>
             {(briefType === 'custom') ? <p className='article-list-card__body'>{article.subtitle}</p> : ''}
           </div>
           <div className='article-list-card__meta'>

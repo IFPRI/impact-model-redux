@@ -18,7 +18,7 @@ export class PageFooter extends React.Component {
               </div>
               <div style={{position: 'absolute', left: '-5000px'}} aria-hidden='true'><input type='text' name='b_475151f0c86ae50ba567b698a_27d6c404c8' tabIndex='-1' value='' /></div>
             </form>
-            <p>For more information and to contact us please visit <a href='https://www.ifpri.org/program/impact-model' target='_blank'>https://www.ifpri.org/program/impact-model</a></p>
+            <p className='sub-description spacing--top'>For more information and to contact us please visit <a href='https://www.ifpri.org/program/impact-model' target='_blank'>https://www.ifpri.org/program/impact-model</a></p>
           </div>
           <a className='footer__logo' target='_blank' href='http://www.ifpri.org/'>
             <img src='assets/graphics/content/ifpri.png' alt='IFPRI Logo' />

@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 import { updateArticleFilters } from '../actions'
 
 // Components
-import RelatedArticles from '../components/related-articles'
 import FeaturedProjects from '../components/featured-projects'
 
 // Data
@@ -24,7 +23,7 @@ export class Home extends React.Component {
   }
 
   render () {
-    const { selectedProject, selectedProjectHeight, briefs, router, dispatch } = this.props
+    const { briefs, router, dispatch } = this.props
     return (
       <section className='page__home'>
         <header className='home__header'>
@@ -42,21 +41,8 @@ export class Home extends React.Component {
               updateArticleFilters={this.updateArticleFilters}
               router={router}
               dispatch={dispatch}
-              selectedProject={selectedProject}
+              briefs={briefs}
               />
-            <div className='split--right' style={{paddingTop: selectedProjectHeight}}>
-              <RelatedArticles
-                title='Recently Added Project Briefs'
-                cardType='related-frontpage'
-                type='brief'
-                // all briefs within a project, sorted by date
-                articles={briefs.filter(b => (selectedProject) ? b.project === selectedProject : true).sort((a, b) => b.date - a.date).slice(0, 3)}
-                updateArticleFilters={this.updateArticleFilters}
-                router={router}
-                >
-                <Link className='button button--outline button--more-information' to={'/briefs'}>View All Briefs</Link>
-              </RelatedArticles>
-            </div>
           </div>
         </section>
         <section className='section__internal section__padding section--grey'>
@@ -68,12 +54,12 @@ export class Home extends React.Component {
             <ul className='secondary--content'>
               <li className='card--large'>
                 <h4 className='header--small'>Contact Us</h4>
-                <p>Want more custom analysis? Reach out to us with your needs and we’ll get back to you soon. </p>
+                <p className='width--shortened'>Want more custom analysis? Reach out to us with your needs and we’ll get back to you soon. </p>
                 <Link className='button button--main button--more-information--sm button--small' to={'/contact'}>Contact Us</Link>
               </li>
               <li className='card--large'>
                 <h4 className='header--small'>Download the IMPACT Data</h4>
-                <p>Get access to the data we use to run each of our models at our dataverse.</p>
+                <p className='width--shortened'>Get access to the data we use to run each of our models at our dataverse.</p>
                 <a href='https://dataverse.harvard.edu/dataverse/impact' target='_blank' className='button button--main button--more-information--sm button--small'>Access Data</a>
               </li>
             </ul>
@@ -87,18 +73,14 @@ export class Home extends React.Component {
 Home.propTypes = {
   briefs: React.PropTypes.array,
   dispatch: React.PropTypes.func,
-  router: React.PropTypes.object,
-  selectedProject: React.PropTypes.string,
-  selectedProjectHeight: React.PropTypes.number
+  router: React.PropTypes.object
 }
 
 const mapStateToProps = (state) => {
   return {
     briefs: state.article.briefs,
     scenarios: state.article.scenarios,
-    projects: state.articles,
-    selectedProject: state.home.selectedProject,
-    selectedProjectHeight: state.home.selectedProjectHeight
+    projects: state.articles
   }
 }
 export default connect(mapStateToProps)(Home)

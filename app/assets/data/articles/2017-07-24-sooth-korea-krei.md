@@ -20,11 +20,11 @@ tags:
 download: >-
   https://www.ifpri.org/publication/climate-change-agriculture-and-adaptation-republic-korea-2050-integrated-assessment
 ---
-## What is on this brief and how to interpret the results##
+## What is on this brief and how to interpret the results
 This Brief shows standard country level results for South Korea, originating from the IMPACT baseline suite of scenarios
 
 
-## Source project & acknowledgments##
+## Source project & acknowledgments
 The simulations were conducted in the context of a joint project between the EPT Department of the International Food Policy Research Institute (IFPRI) and the Korean Rural Economic Institute (KREI). The goal of the project was to explore the possible future effects of climate change on the Korean agriculture sector.
 Funding for this study was provided by the Korea Rural Economics Institute. Supplementary support was provided by the CGIAR Research Program on Policies, Institutions, and Markets (PIM), the CGIAR Research Program on Climate Change, Agriculture, and Food Security (CCAFS), and the Bill & Melinda Gates Foundation.
 
@@ -32,7 +32,7 @@ Funding for this study was provided by the Korea Rural Economics Institute. Supp
 [Download the IFPRI discussion paper](http://www.ifpri.org/publication/climate-change-agriculture-and-adaptation-republic-korea-2050-integrated-assessment)
 
 
-## Context for the project – Background/Introduction##
+## Context for the project – Background/Introduction
 South Korea has experienced large changes in the agricultural sector and shifts in diet in recent decades, as the country opened its economy and food market.
 In the last several decades arable land has been steadily declining, domestic production has decreased by about one third, more animal proteins have been added to the diet, and agricultural imports have grown five-fold.
 
@@ -48,14 +48,14 @@ In this context, these were the main questions we wanted to ask:
 We answered these questions using IFPRI’s International Model for Policy Analysis of Agricultural Commodities and Trade (IMPACT) by simulating future trends of agricultural supply and demand for South Korea and selected regions under three climate change scenarios.
 
 
-## IMPACT model version 3.2.1##
+## IMPACT model version 3.2.1
 The IMPACT model is a partial equilibrium, multi–commodity, multi-country model which generates projections of global food supply, demand, trade, and prices (link to about page). . IMPACT is designed to allow for analyzing alternative scenarios about how population, income, climate and technologies may change over time. A suite of baseline scenarios provides a reference point to estimate the consequences of changes in a number of inputs and drivers (e.g., changes in yields, population, GDP etc). The current baseline suite of scenarios is built around the SSP2 Shared Socioeconomic Pathway (SSPs) combined with the Representative Concentration Pathways (RCP) 8.5 scenario, and run under five different possible climate change futures.
 SSP2 represents a middle of the road projection for population and GDP. The five climates that are used with SSP2 are NoCC, GFDL, MIROC, IPSL, and HADGEM. NoCC represents the effects of historical climate going into the future. The others represent various Global Circulation Models (GCMs).
 
 
-## Results##
+## Results
 
-### Figure 1. Agricultural harvested area, production & net imports for all crops in South Korea###
+### Figure 1. Agricultural harvested area, production & net imports for all crops in South Korea#
 ```chart
 mark: line
 title: Trends across time
@@ -101,7 +101,7 @@ series:
   values: ssp2_nocc_sk, ssp2_ipsl_sk, ssp2_gfdl_sk, ssp2_hgem_sk
   ```
 
-### Figure 3. Area, Demand, Production and Yields for Rice in SK. Percent change 2010 - 2050###
+### Figure 3. Area, Demand, Production and Yields for Rice in SK. Percent change 2010 - 2050
 ```chart
 mark: bar
 title: Percent change between 2010 and 2050

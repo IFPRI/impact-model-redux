@@ -15,7 +15,7 @@ import { translate } from '../utils/translation'
 import queryDatabase from '../utils/query-database'
 
 // Constants
-import { fourteenColorPalette } from '../constants'
+import { multiColorPaletteSort } from '../constants'
 
 export class Chart extends React.Component {
   constructor (props, context) {
@@ -75,7 +75,7 @@ export class Chart extends React.Component {
         labels: [],
         datasets: [{
           data: [],
-          backgroundColor: fourteenColorPalette
+          backgroundColor: multiColorPaletteSort
         }]
       }
     }

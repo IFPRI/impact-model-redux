@@ -1,9 +1,16 @@
 export const articleBrowsePageLength = 15
 
+
+
 export const multiColorPalette = [
-  '#E58606', '#5D69B1', '#52BCA3', '#99C945',
-  '#CC61B0', '#24796C', '#DAA51B', '#2F8AC4',
-  '#764E9F', '#ED645A', '#CC3A8E', '#A5AA99'
+  '#73AF48', '#1D6996', '#CC503E', '#E17C05',
+  '#5F4690', '#38A6A5', '#0F8554', '#6F4070',
+  '#EDAD08', '#994E95', '#666666', '#94346E'
+]
+export const multiColorPaletteSort = [
+  '#5F4690', '#1D6996', '#38A6A5', '#0F8554',
+  '#73AF48', '#EDAD08', '#E17C05', '#CC503E',
+  '#94346E', '#6F4070', '#994E95', '#666666'
 ]
 
 export const oneColorPalette = ['#83C61A']
