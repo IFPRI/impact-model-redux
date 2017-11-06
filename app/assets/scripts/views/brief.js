@@ -106,7 +106,7 @@ export class Brief extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.metdata && this.props.params.id !== nextProps.params.id) {
+    if (nextProps.metadata && (this.props.params.id !== nextProps.params.id)) {
       nextProps.dispatch(fetchArticle(nextProps.metadata.url))
     }
   }
