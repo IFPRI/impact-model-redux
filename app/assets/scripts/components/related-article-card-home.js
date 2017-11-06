@@ -4,7 +4,6 @@ import { Link } from 'react-router'
 import moment from 'moment'
 
 // Utils
-import projectDescriptions from '../../data/projects.json'
 import { cutAtWord } from '../utils/format'
 import { translate } from '../utils/translation'
 

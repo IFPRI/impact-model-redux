@@ -1,8 +1,6 @@
 'use strict'
 import React from 'react'
 
-import projectDescriptions from '../../data/projects.json'
-import { translate } from '../utils/translation'
 import RelatedArticleCardHome from './related-article-card-home'
 
 class ProjectCard extends React.Component {
