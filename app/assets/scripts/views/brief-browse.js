@@ -14,7 +14,7 @@ export class BriefBrowse extends React.Component {
           <div className='row'>
             <div className='browse__header-text'>
               <h2 className='header--xxlarge with-metadata'>Briefs</h2>
-              <p className='header__descriptions'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut augue aliquet ligula aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ut augue aliquet ligula aliquam.</p>
+              <p className='header__descriptions'>Briefs, including general custom briefs, commodity summaries and country summaries, highlight results, findings and messages from a variety of projects that relied on the IMPACT model (and other associated models). You can explore the Briefs and filter them by type, commodity, geographical location, tag, and project name.</p>
             </div>
           </div>
         </header>
