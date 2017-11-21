@@ -49,7 +49,7 @@ export class Home extends React.Component {
           <div className='row'>
             <header className='header-internal'>
               <h3 className='header--xlarge with-description'>How to Get More Information</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et dui gravida, posuere diam id, congue augue. Pellentesque nec purus ex.</p>
+              <p>Use the CONTACT US button to get in touch or to sign up for updates through Mailchimp. Use the ACCESS DATA button to access all the currently publicly-available data from IMPACT model simulations. Data are made available through the IFPRI Dataverse.</p>
             </header>
             <ul className='secondary--content'>
               <li className='card--large'>
