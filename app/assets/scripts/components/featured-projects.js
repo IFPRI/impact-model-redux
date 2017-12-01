@@ -14,7 +14,7 @@ class FeaturedProjects extends React.Component {
         <div className='split-content'>
           <header className='header-internal'>
             <h3 className='header--xlarge with-description'>Featured Briefs</h3>
-            <p className='internal__descriptions'>Newly added and most viewed Briefs are featured in the section below. Simply click on a Briefs to read more about a specific project and explore IMPACT results.</p>
+            <p className='internal__descriptions'>Newly added and most viewed Briefs are featured in the section below. Simply click on a brief to read more about a specific project and explore related IMPACT results.</p>
           </header>
           <div className='content-internal'>
             <ul ref={(node) => (this.ul = node)}>
