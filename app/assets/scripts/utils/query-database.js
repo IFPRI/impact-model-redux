@@ -7,6 +7,7 @@ import config from '../config'
 
 const queryDatabase = (data) => {
   const exclusions = []
+  let rateVar = false
   const groups = String(data.encoding.x.field).split(',').map(a => a.trim())
   let group
   if (groups.length === 1) {
@@ -16,14 +17,23 @@ const queryDatabase = (data) => {
   }
 
   // construct a where clause for our sql statement
+  // we treat 'data.fixed' and dropdown options the same
+  Object.keys(data).forEach(dataKey => {
+    if (dataKey.match(/dropdown/)) {
+      data.fixed[data[dataKey].field] = data[dataKey].values[0]
+    }
+  })
+
   const where = _.flatten(_.map(data.fixed, (val, param) => {
     let vals = String(val).split(',').map(a => a.trim())
 
-    if (group === 'impactparameter' && param === 'impactparameter') {
+    if (param === 'impactparameter') {
+      console.log(vals);
       // if we have certain filters, make sure we have the rate components
       // track these to exclude them from the final output
       if (vals.includes('tyldxagg')) {
-        ['qsupxagg', 'tareaxagg'].forEach(par => {
+        rateVar = true
+        ;['qsupxagg', 'tareaxagg'].forEach(par => {
           if (!vals.includes(par)) {
             vals.push(par)
             exclusions.push(par)
@@ -34,11 +44,6 @@ const queryDatabase = (data) => {
 
     return vals.length === 1 ? `${param} = ${val}` : `${param} in ${vals.join(',')}`
   }))
-  Object.keys(data).forEach(dataKey => {
-    if (dataKey.match(/dropdown/)) {
-      where.push(data[dataKey].field + ' = ' + data[dataKey].values[0])
-    }
-  })
 
   // group by for sql statement, add series if necessary
   const groupBy = [group]
@@ -55,6 +60,11 @@ const queryDatabase = (data) => {
   if (change && change.field && change.values) {
     groupBy.push(change.field)
     where.push(`${change.field} in ${change.values}`)
+  }
+
+  // if we've ever "switched on" the rate variable, group by that
+  if (rateVar && !groupBy.includes('impactparameter')) {
+    groupBy.push('impactparameter')
   }
 
   let val = data.encoding.y.field
@@ -76,12 +86,13 @@ const queryDatabase = (data) => {
         return `where_${b}_multiple`
       }
     })
+    console.log(resp);
     const queryData = {
       values: _.flattenDeep(_.get(resp.aggregations, wherePath)[`group_by_${group}`].buckets.map((obj, i, b) => {
-        if (exclusions.includes(obj.key)) return false
-        return parseDataObject(obj, group, val, {}, change, b)
+        return parseDataObject(obj, group, val, {}, change, b, exclusions)
       })).filter(Boolean)
     }
+    console.log(queryData);
     return Object.assign(
       queryData,
       data.fixed,
@@ -91,7 +102,8 @@ const queryDatabase = (data) => {
   })
 }
 
-const parseDataObject = (obj, group, val, otherKeys, change, fullBucket) => {
+const parseDataObject = (obj, group, val, otherKeys, change, fullBucket, exclusions) => {
+  if (exclusions.includes(obj.key)) return false
   var nextGroup = Object.keys(obj).find(a => a.match('group_by'))
   // we may have other groupings to parse through
   if (nextGroup) {
@@ -111,7 +123,7 @@ const parseDataObject = (obj, group, val, otherKeys, change, fullBucket) => {
     } else {
     // normal procedure
       return obj[nextGroup].buckets.map((a, _, b) => {
-        return parseDataObject(a, nextGroup.replace('group_by_', ''), val, Object.assign({}, otherKeys, {[group]: obj.key}), change, b)
+        return parseDataObject(a, nextGroup.replace('group_by_', ''), val, Object.assign({}, otherKeys, {[group]: obj.key}), change, b, exclusions)
       })
     }
   } else {
