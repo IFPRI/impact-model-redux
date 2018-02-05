@@ -23,7 +23,7 @@ const queryDatabase = (data) => {
       // if we have certain filters, make sure we have the rate components
       // track these to exclude them from the final output
       if (vals.includes('tyldxagg')) {
-        ['qdxagg', 'tareaxagg'].forEach(par => {
+        ['qsupxagg', 'tareaxagg'].forEach(par => {
           if (!vals.includes(par)) {
             vals.push(par)
             exclusions.push(par)
@@ -78,9 +78,9 @@ const queryDatabase = (data) => {
     })
     const queryData = {
       values: _.flattenDeep(_.get(resp.aggregations, wherePath)[`group_by_${group}`].buckets.map((obj, i, b) => {
-        console.log(obj, i, b);
+        if (exclusions.includes(obj.key)) return false
         return parseDataObject(obj, group, val, {}, change, b)
-      }))
+      })).filter(Boolean)
     }
     return Object.assign(
       queryData,
@@ -117,14 +117,13 @@ const parseDataObject = (obj, group, val, otherKeys, change, fullBucket) => {
   } else {
     // we're at the lowest level, make our object
     // if it's a rate, calculate it
-    console.log(fullBucket);
     switch (obj.key) {
       case 'tyldxagg':
-        const demand = fullBucket.find(o => o.key === 'qdxagg')
+        const production = fullBucket.find(o => o.key === 'qsupxagg')
         const area = fullBucket.find(o => o.key === 'tareaxagg')
         return Object.assign({}, {
           [group]: obj.key,
-          [val]: demand[`sum_${val}`].value / area[`sum_${val}`].value
+          [val]: production[`sum_${val}`].value / area[`sum_${val}`].value
         }, otherKeys)
       default:
         return Object.assign({}, {
