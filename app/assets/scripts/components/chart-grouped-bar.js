@@ -14,7 +14,7 @@ import { translate } from '../utils/translation'
 import queryDatabase from '../utils/query-database'
 
 // Constants
-import { fourteenColorPalette } from '../constants'
+import { multiColorPalette } from '../constants'
 
 export class ChartGroupedBar extends React.Component {
   constructor (props, context) {
@@ -119,8 +119,7 @@ export class ChartGroupedBar extends React.Component {
           data: [],
           label: serie[0][secondaryGrouping]
         })
-
-        chart.data.datasets[i].backgroundColor = fourteenColorPalette[i]
+        chart.data.datasets[i].backgroundColor = multiColorPalette[i]
         const aggregation = data.encoding.x.field
         _.forEach(serie, item => {
           if (i === 0) {
