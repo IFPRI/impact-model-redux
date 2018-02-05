@@ -6,6 +6,7 @@ import _ from 'lodash'
 import config from '../config'
 
 const queryDatabase = (data) => {
+  const exclusions = []
   const groups = String(data.encoding.x.field).split(',').map(a => a.trim())
   let group
   if (groups.length === 1) {
@@ -16,7 +17,21 @@ const queryDatabase = (data) => {
 
   // construct a where clause for our sql statement
   const where = _.flatten(_.map(data.fixed, (val, param) => {
-    const vals = String(val).split(',').map(a => a.trim())
+    let vals = String(val).split(',').map(a => a.trim())
+
+    if (group === 'impactparameter' && param === 'impactparameter') {
+      // if we have certain filters, make sure we have the rate components
+      // track these to exclude them from the final output
+      if (vals.includes('tyldxagg')) {
+        ['qdxagg', 'tareaxagg'].forEach(par => {
+          if (!vals.includes(par)) {
+            vals.push(par)
+            exclusions.push(par)
+          }
+        })
+      }
+    }
+
     return vals.length === 1 ? `${param} = ${val}` : `${param} in ${vals.join(',')}`
   }))
   Object.keys(data).forEach(dataKey => {
@@ -62,8 +77,9 @@ const queryDatabase = (data) => {
       }
     })
     const queryData = {
-      values: _.flattenDeep(_.get(resp.aggregations, wherePath)[`group_by_${group}`].buckets.map((obj) => {
-        return parseDataObject(obj, group, val, {}, change)
+      values: _.flattenDeep(_.get(resp.aggregations, wherePath)[`group_by_${group}`].buckets.map((obj, i, b) => {
+        console.log(obj, i, b);
+        return parseDataObject(obj, group, val, {}, change, b)
       }))
     }
     return Object.assign(
@@ -75,7 +91,7 @@ const queryDatabase = (data) => {
   })
 }
 
-const parseDataObject = (obj, group, val, otherKeys, change) => {
+const parseDataObject = (obj, group, val, otherKeys, change, fullBucket) => {
   var nextGroup = Object.keys(obj).find(a => a.match('group_by'))
   // we may have other groupings to parse through
   if (nextGroup) {
@@ -94,16 +110,28 @@ const parseDataObject = (obj, group, val, otherKeys, change) => {
       }
     } else {
     // normal procedure
-      return obj[nextGroup].buckets.map(a => {
-        return parseDataObject(a, nextGroup.replace('group_by_', ''), val, Object.assign({}, otherKeys, {[group]: obj.key}), change)
+      return obj[nextGroup].buckets.map((a, _, b) => {
+        return parseDataObject(a, nextGroup.replace('group_by_', ''), val, Object.assign({}, otherKeys, {[group]: obj.key}), change, b)
       })
     }
   } else {
     // we're at the lowest level, make our object
-    return Object.assign({}, {
-      [group]: obj.key,
-      [val]: obj[`sum_${val}`].value
-    }, otherKeys)
+    // if it's a rate, calculate it
+    console.log(fullBucket);
+    switch (obj.key) {
+      case 'tyldxagg':
+        const demand = fullBucket.find(o => o.key === 'qdxagg')
+        const area = fullBucket.find(o => o.key === 'tareaxagg')
+        return Object.assign({}, {
+          [group]: obj.key,
+          [val]: demand[`sum_${val}`].value / area[`sum_${val}`].value
+        }, otherKeys)
+      default:
+        return Object.assign({}, {
+          [group]: obj.key,
+          [val]: obj[`sum_${val}`].value
+        }, otherKeys)
+    }
   }
 }
 
