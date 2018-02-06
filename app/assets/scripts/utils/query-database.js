@@ -5,6 +5,8 @@ import _ from 'lodash'
 
 import config from '../config'
 
+import { RATE_VARIABLES } from '../constants'
+
 const queryDatabase = (data) => {
   const exclusions = []
   let rateVar = false
@@ -31,15 +33,17 @@ const queryDatabase = (data) => {
     if (param === 'impactparameter') {
       // if we have certain filters, make sure we have the rate components
       // track these to exclude them from the final output
-      if (vals.includes('tyldxagg')) {
-        rateVar = true
-        ;['qsupxagg', 'tareaxagg'].forEach(par => {
-          if (!vals.includes(par)) {
-            vals.push(par)
-            exclusions.push(par)
-          }
-        })
-      }
+      RATE_VARIABLES.forEach(rate => {
+        if (vals.includes(rate.impactparameter)) {
+          rateVar = true
+          ;[rate.numerator, rate.denominator].forEach(par => {
+            if (!vals.includes(par)) {
+              vals.push(par)
+              exclusions.push(par)
+            }
+          })
+        }
+      })
     }
 
     return vals.length === 1 ? `${param} = ${val}` : `${param} in ${vals.join(',')}`
@@ -117,21 +121,27 @@ const parseDataObject = (obj, group, val, otherKeys, change, fullBucket, exclusi
           const innerBucketZero = obj[nextGroup].buckets[0].group_by_impactparameter.buckets
           const params = innerBucketOne.filter(p => !exclusions.includes(p.key))
           return params.reduce((a, b) => {
-            switch (b.key) {
-              case 'tyldxagg':
-                const productionOne = innerBucketOne.find(o => o.key === 'qsupxagg')
-                const areaOne = innerBucketOne.find(o => o.key === 'tareaxagg')
-                const yieldOne = productionOne[`sum_${val}`].value / areaOne[`sum_${val}`].value
-                const productionZero = innerBucketZero.find(o => o.key === 'qsupxagg')
-                const areaZero = innerBucketZero.find(o => o.key === 'tareaxagg')
-                const yieldZero = productionZero[`sum_${val}`].value / areaZero[`sum_${val}`].value
-                return Object.assign({}, {
-                  [group]: obj.key,
-                  [val]: yieldOne - yieldZero /
-                    (_.includes(['percentage', 'percent', '%', 'p'], change.type) ? yieldZero : 1)
-                }, a)
-              default:
-                return a
+            const rate = RATE_VARIABLES.find(r => r.impactparameter === b.key)
+            if (rate) {
+              const numeratorOne = innerBucketOne.find(o => o.key === rate.numerator)
+              const denominatorOne = innerBucketOne.find(o => o.key === rate.denominator)
+              const rateOne = numeratorOne[`sum_${val}`].value / denominatorOne[`sum_${val}`].value
+              const numeratorZero = innerBucketZero.find(o => o.key === rate.numerator)
+              const denominatorZero = innerBucketZero.find(o => o.key === rate.denominator)
+              const rateZero = numeratorZero[`sum_${val}`].value / denominatorZero[`sum_${val}`].value
+              return Object.assign({}, {
+                [group]: obj.key,
+                [val]: rateOne - rateZero /
+                  (_.includes(['percentage', 'percent', '%', 'p'], change.type) ? rateZero : 1)
+              }, a)
+            } else {
+              const one = innerBucketOne.find(o => o.key === b.key)
+              const zero = innerBucketZero.find(o => o.key === b.key)
+              return Object.assign({}, {
+                [val]: (one[`sum_${val}`].value - zero[`sum_${val}`].value) /
+                  (_.includes(['percentage', 'percent', '%', 'p'], change.type) ? zero[`sum_${val}`].value : 1),
+                [group]: obj.key
+              }, a)
             }
           }, {})
         } else {
@@ -155,19 +165,19 @@ const parseDataObject = (obj, group, val, otherKeys, change, fullBucket, exclusi
   } else {
     // we're at the lowest level, make our object
     // if it's a rate, calculate it
-    switch (obj.key) {
-      case 'tyldxagg':
-        const production = fullBucket.find(o => o.key === 'qsupxagg')
-        const area = fullBucket.find(o => o.key === 'tareaxagg')
-        return Object.assign({}, {
-          [group]: obj.key,
-          [val]: production[`sum_${val}`].value / area[`sum_${val}`].value
-        }, otherKeys)
-      default:
-        return Object.assign({}, {
-          [group]: obj.key,
-          [val]: obj[`sum_${val}`].value
-        }, otherKeys)
+    const rate = RATE_VARIABLES.find(r => r.impactparameter === obj.key)
+    if (rate) {
+      const numerator = fullBucket.find(o => o.key === rate.numerator)
+      const denominator = fullBucket.find(o => o.key === rate.denominator)
+      return Object.assign({}, {
+        [group]: obj.key,
+        [val]: numerator[`sum_${val}`].value / denominator[`sum_${val}`].value
+      }, otherKeys)
+    } else {
+      return Object.assign({}, {
+        [group]: obj.key,
+        [val]: obj[`sum_${val}`].value
+      }, otherKeys)
     }
   }
 }
