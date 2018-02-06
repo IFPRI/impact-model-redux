@@ -18,6 +18,7 @@ const queryDatabase = (data) => {
 
   // construct a where clause for our sql statement
   // we treat 'data.fixed' and dropdown options the same
+  if (!data.fixed) data.fixed = {}
   Object.keys(data).forEach(dataKey => {
     if (dataKey.match(/dropdown/)) {
       data.fixed[data[dataKey].field] = data[dataKey].values[0]
