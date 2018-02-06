@@ -28,7 +28,6 @@ const queryDatabase = (data) => {
     let vals = String(val).split(',').map(a => a.trim())
 
     if (param === 'impactparameter') {
-      console.log(vals);
       // if we have certain filters, make sure we have the rate components
       // track these to exclude them from the final output
       if (vals.includes('tyldxagg')) {
@@ -86,13 +85,13 @@ const queryDatabase = (data) => {
         return `where_${b}_multiple`
       }
     })
-    console.log(resp);
+
     const queryData = {
       values: _.flattenDeep(_.get(resp.aggregations, wherePath)[`group_by_${group}`].buckets.map((obj, i, b) => {
         return parseDataObject(obj, group, val, {}, change, b, exclusions)
-      })).filter(Boolean)
+      })).filter(Boolean).filter(_.negate(_.isEmpty))
     }
-    console.log(queryData);
+
     return Object.assign(
       queryData,
       data.fixed,
@@ -110,13 +109,39 @@ const parseDataObject = (obj, group, val, otherKeys, change, fullBucket, exclusi
     // special parsing for change by variables
     if (change && nextGroup === `group_by_${change.field}`) {
       if (obj[nextGroup].buckets[1]) {
-        return Object.assign({}, {
-          // assumes later value in bucket 1 and early value in bucket 0
-          // divide by earlier value if we want a percentage
-          [val]: (obj[nextGroup].buckets[1][`sum_${val}`].value - obj[nextGroup].buckets[0][`sum_${val}`].value) /
-            (_.includes(['percentage', 'percent', '%', 'p'], change.type) ? obj[nextGroup].buckets[0][`sum_${val}`].value : 1),
-          [group]: obj.key
-        }, otherKeys)
+        // if it's a rate, we'll have one extra grouping to handle
+        if (obj[nextGroup].buckets[1].hasOwnProperty('group_by_impactparameter')) {
+          // loop over all non-exclusion parameters in this bucket
+          const innerBucketOne = obj[nextGroup].buckets[1].group_by_impactparameter.buckets
+          const innerBucketZero = obj[nextGroup].buckets[0].group_by_impactparameter.buckets
+          const params = innerBucketOne.filter(p => !exclusions.includes(p.key))
+          return params.reduce((a, b) => {
+            switch (b.key) {
+              case 'tyldxagg':
+                const productionOne = innerBucketOne.find(o => o.key === 'qsupxagg')
+                const areaOne = innerBucketOne.find(o => o.key === 'tareaxagg')
+                const yieldOne = productionOne[`sum_${val}`].value / areaOne[`sum_${val}`].value
+                const productionZero = innerBucketZero.find(o => o.key === 'qsupxagg')
+                const areaZero = innerBucketZero.find(o => o.key === 'tareaxagg')
+                const yieldZero = productionZero[`sum_${val}`].value / areaZero[`sum_${val}`].value
+                return Object.assign({}, {
+                  [group]: obj.key,
+                  [val]: yieldOne - yieldZero /
+                    (_.includes(['percentage', 'percent', '%', 'p'], change.type) ? yieldZero : 1)
+                }, a)
+              default:
+                return a
+            }
+          }, {})
+        } else {
+          return Object.assign({}, {
+            // assumes later value in bucket 1 and early value in bucket 0
+            // divide by earlier value if we want a percentage
+            [val]: (obj[nextGroup].buckets[1][`sum_${val}`].value - obj[nextGroup].buckets[0][`sum_${val}`].value) /
+              (_.includes(['percentage', 'percent', '%', 'p'], change.type) ? obj[nextGroup].buckets[0][`sum_${val}`].value : 1),
+            [group]: obj.key
+          }, otherKeys)
+        }
       } else {
         return {}
       }
