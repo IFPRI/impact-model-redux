@@ -1,6 +1,11 @@
 export const articleBrowsePageLength = 15
 
-
+export const RATE_VARIABLES = [
+  { impactparameter: 'tyldxagg', numerator: 'qsupxagg', denominator: 'tareaxagg' },
+  { impactparameter: 'anmlyldxagg', numerator: 'qsupxagg', denominator: 'anmlnumxagg' },
+  { impactparameter: 'pcgdpxagg', numerator: 'gdpxagg', denominator: 'popxagg' },
+  { impactparameter: 'shareatriskxagg', numerator: 'populationatriskxagg', denominator: 'popxagg' }
+]
 
 export const multiColorPalette = [
   '#73AF48', '#1D6996', '#CC503E', '#E17C05',
