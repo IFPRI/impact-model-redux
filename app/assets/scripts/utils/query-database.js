@@ -131,7 +131,7 @@ const parseDataObject = (obj, group, val, otherKeys, change, fullBucket, exclusi
               const rateZero = numeratorZero[`sum_${val}`].value / denominatorZero[`sum_${val}`].value
               return Object.assign({}, {
                 [group]: obj.key,
-                [val]: rateOne - rateZero /
+                [val]: (rateOne - rateZero) /
                   (_.includes(['percentage', 'percent', '%', 'p'], change.type) ? rateZero : 1)
               }, a)
             } else {
