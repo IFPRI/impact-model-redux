@@ -182,9 +182,9 @@ export class MapComponent extends React.Component {
         })
         .style('stroke', d => mapColor(d))
         .style('stroke-width', 1)
-
+      console.log(percentileLow, percentileHigh);
     this.mapSvg.selectAll('.label')
-      .data(_.sortBy(percentileLow > 0 ? [0, percentileLow, percentileHigh] : [0, percentileHigh], label => label))
+      .data(_.sortBy(percentileLow > 0 ? [0, percentileLow, percentileHigh] : [percentileLow, 0, percentileHigh], label => label))
     .enter().append('text')
       .attr('class', 'label')
       .attr('x', function (d) {
