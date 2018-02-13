@@ -4,18 +4,12 @@ import { Panel } from 'rc-collapse'
 import _ from 'lodash'
 import c from 'classnames'
 
-// Actions
+import { BRIEF_TYPES } from '../constants'
 import { updateArticleFilters, updateMobileFilters } from '../actions'
-
-// Utils
 import { translate, invertCommodities } from '../utils/translation'
-
-// Data
 import filterCategories from '../../data/filter-categories'
 import commodityAggregation from '../../data/aggregate-commodity'
 import locationAggregation from '../../data/aggregate-region'
-
-// Components
 import BrowseFilter from './browse-filter'
 
 export class BrowseFilters extends React.Component {
@@ -31,7 +25,7 @@ export class BrowseFilters extends React.Component {
       // generate list of type filters
       this.filters.push({
         name: 'Type',
-        list: ['custom', 'commodity-summary', 'country-summary'],
+        list: BRIEF_TYPES,
         type: 'checkbox'
       })
       // generate list of commodities organized by type
