@@ -18,7 +18,7 @@ const toTitleCase = (str) => {
 }
 
 const conditionalFix = (num) => {
-  return num === Math.round(num) ? num : num.toFixed(2)
+  return Math.abs(num - Math.round(num)) < 0.000001 ? Math.round(num) : num.toFixed(2)
 }
 
 const formatNumber = (num, label, data) => {
