@@ -2,6 +2,20 @@
 
 const PERCENT_SIGNALS = require('../constants').PERCENT_SIGNALS
 
+// indexOf but returns all the indices
+const ind = (array, value) => array.reduce((a, e, i) => (e === value) ? a.concat(i) : a, [])
+const CUT_LENGTH = 15
+function twoLiner (string) {
+  if (string.length > CUT_LENGTH) {
+    const cuts = ind(string.split(''), ' ')
+    const dist = cuts.map(c => Math.abs(c - (string.length / 2)))
+    const lowestCut = cuts[dist.indexOf(Math.min(...dist))]
+    return [string.slice(0, lowestCut), string.slice(lowestCut)]
+  } else {
+    return string
+  }
+}
+
 // Extract n characters of preview text, rounded to the closest full word
 const cutAtWord = (text, characters) => {
   if (text.length < characters) return text
@@ -40,5 +54,6 @@ module.exports = {
   commaSeparate,
   toTitleCase,
   formatNumber,
-  formatScenario
+  formatScenario,
+  twoLiner
 }

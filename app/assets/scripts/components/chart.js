@@ -10,7 +10,7 @@ const ChartJS = require('chart.js')
 import { updatePreviewerError } from '../actions'
 
 // Utils
-import { formatNumber } from '../utils/format'
+import { formatNumber, twoLiner } from '../utils/format'
 import { translate } from '../utils/translation'
 import queryDatabase from '../utils/query-database'
 
@@ -134,7 +134,7 @@ export class Chart extends React.Component {
         }
       }).sort((a, b) => a.label > b.label)
       chart.data.datasets[0].data = dataset.map((item) => item.data)
-      chart.data.labels = dataset.map((item) => item.label)
+      chart.data.labels = dataset.map((item) => twoLiner(item.label))
 
       if (isPieChart || chartType === 'polarArea') {
         chart.options.tooltips = {callbacks: {label: (tooltipItem, d) => {
