@@ -21,9 +21,10 @@ const conditionalFix = (num) => {
   return num === Math.round(num) ? num : num.toFixed(2)
 }
 
-const formatNumber = (num, label, change) => {
+const formatNumber = (num, label, data) => {
   if (label) num = num[label]
-  if (change && change.type && PERCENT_SIGNALS.includes(change.type)) {
+  if (data && ((data.format && data.format === 'percentage') ||
+    data.change && data.change.type && PERCENT_SIGNALS.includes(data.change.type))) {
     return `${conditionalFix(num * 100)} %`
   }
   if (Math.abs(num) < 999) return conditionalFix(num)

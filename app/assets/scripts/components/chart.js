@@ -89,17 +89,17 @@ export class Chart extends React.Component {
       chart.options.responsive = true
       chart.options.maintainAspectRatio = false
       chart.data.datasets[0].backgroundColor = '#83C61A'
-      chart.options.scales.yAxes[0].ticks.userCallback = (value) => isNaN(value) || data.encoding.y.field === 'year' ? value : formatNumber(value, null, data.change)
-      chart.options.scales.xAxes[0].ticks.userCallback = (value) => isNaN(value) || data.encoding.x.field === 'year' ? value : formatNumber(value, null, data.change)
-      chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel', data.change)}}
+      chart.options.scales.yAxes[0].ticks.userCallback = (value) => isNaN(value) || data.encoding.y.field === 'year' ? value : formatNumber(value, null, data)
+      chart.options.scales.xAxes[0].ticks.userCallback = (value) => isNaN(value) || data.encoding.x.field === 'year' ? value : formatNumber(value, null, data)
+      chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel', data)}}
     }
 
     if (chartType === 'horizontalBar') {
       chart.data.datasets[0].backgroundColor = '#83C61A'
       chart.options.maintainAspectRatio = false
-      chart.options.scales.yAxes[0].ticks.userCallback = (value) => isNaN(value) || data.encoding.y.field === 'year' ? value : formatNumber(value, null, data.change)
-      chart.options.scales.xAxes[0].ticks.userCallback = (value) => isNaN(value) || data.encoding.x.field === 'year' ? value : formatNumber(value, null, data.change)
-      chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'xLabel', data.change)}}
+      chart.options.scales.yAxes[0].ticks.userCallback = (value) => isNaN(value) || data.encoding.y.field === 'year' ? value : formatNumber(value, null, data)
+      chart.options.scales.xAxes[0].ticks.userCallback = (value) => isNaN(value) || data.encoding.x.field === 'year' ? value : formatNumber(value, null, data)
+      chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'xLabel', data)}}
     }
 
     const isPieChart = chartType === 'pie' || chartType === 'doughnut'
@@ -140,7 +140,7 @@ export class Chart extends React.Component {
         chart.options.tooltips = {callbacks: {label: (tooltipItem, d) => {
           const label = chart.data.labels[tooltipItem.index]
           const datasetLabel = d.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]
-          return ` ${label}: ${formatNumber(datasetLabel, null, data.change)}`
+          return ` ${label}: ${formatNumber(datasetLabel, null, data)}`
         }}}
       }
       try {
