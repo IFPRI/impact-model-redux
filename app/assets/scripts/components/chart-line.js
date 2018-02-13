@@ -40,7 +40,7 @@ export class ChartLine extends React.Component {
         tooltips: {
           enabled: true,
           callbacks: {
-            label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')
+            label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel', data.change)
           }
         },
         legend: {
@@ -57,7 +57,7 @@ export class ChartLine extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
-              userCallback: (value) => isNaN(value) || data.encoding.y.field === 'year' ? value : formatNumber(value),
+              userCallback: (value) => isNaN(value) || data.encoding.y.field === 'year' ? value : formatNumber(value, null, data.change),
               beginAtZero: false,
               padding: 5,
               fontColor: '#9E9E9E',
@@ -71,7 +71,7 @@ export class ChartLine extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
-              userCallback: (value) => isNaN(value) || data.encoding.x.field === 'year' ? value : formatNumber(value),
+              userCallback: (value) => isNaN(value) || data.encoding.x.field === 'year' ? value : formatNumber(value, null, data.change),
               autoSkip: false,
               fontColor: '#9E9E9E',
               fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif",

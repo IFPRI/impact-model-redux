@@ -5,7 +5,7 @@ import _ from 'lodash'
 
 import config from '../config'
 
-import { RATE_VARIABLES } from '../constants'
+import { RATE_VARIABLES, PERCENT_SIGNALS } from '../constants'
 
 const queryDatabase = (data) => {
   const exclusions = []
@@ -132,14 +132,14 @@ const parseDataObject = (obj, group, val, otherKeys, change, fullBucket, exclusi
               return Object.assign({}, {
                 [group]: obj.key,
                 [val]: (rateOne - rateZero) /
-                  (_.includes(['percentage', 'percent', '%', 'p'], change.type) ? rateZero : 1)
+                  (PERCENT_SIGNALS.includes(change.type) ? rateZero : 1)
               }, a)
             } else {
               const one = innerBucketOne.find(o => o.key === b.key)
               const zero = innerBucketZero.find(o => o.key === b.key)
               return Object.assign({}, {
                 [val]: (one[`sum_${val}`].value - zero[`sum_${val}`].value) /
-                  (_.includes(['percentage', 'percent', '%', 'p'], change.type) ? zero[`sum_${val}`].value : 1),
+                  (PERCENT_SIGNALS.includes(change.type) ? zero[`sum_${val}`].value : 1),
                 [group]: obj.key
               }, a)
             }
@@ -149,7 +149,7 @@ const parseDataObject = (obj, group, val, otherKeys, change, fullBucket, exclusi
             // assumes later value in bucket 1 and early value in bucket 0
             // divide by earlier value if we want a percentage
             [val]: (obj[nextGroup].buckets[1][`sum_${val}`].value - obj[nextGroup].buckets[0][`sum_${val}`].value) /
-              (_.includes(['percentage', 'percent', '%', 'p'], change.type) ? obj[nextGroup].buckets[0][`sum_${val}`].value : 1),
+              (PERCENT_SIGNALS.includes(change.type) ? obj[nextGroup].buckets[0][`sum_${val}`].value : 1),
             [group]: obj.key
           }, otherKeys)
         }

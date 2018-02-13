@@ -42,7 +42,7 @@ export class ChartGroupedBar extends React.Component {
         },
         tooltips: {
           callbacks: {
-            label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')
+            label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel', null, data.change)
           }
         },
         scales: {
@@ -53,7 +53,7 @@ export class ChartGroupedBar extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
-              userCallback: (value) => isNaN(value) || data.encoding.y.field === 'year' ? value : formatNumber(value),
+              userCallback: (value) => isNaN(value) || data.encoding.y.field === 'year' ? value : formatNumber(value, null, data.change),
               beginAtZero: false,
               padding: 5,
               fontColor: '#9E9E9E',

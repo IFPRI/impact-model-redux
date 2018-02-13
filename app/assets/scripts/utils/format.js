@@ -1,5 +1,7 @@
 'use strict'
 
+const PERCENT_SIGNALS = require('../constants').PERCENT_SIGNALS
+
 // Extract n characters of preview text, rounded to the closest full word
 const cutAtWord = (text, characters) => {
   if (text.length < characters) return text
@@ -15,11 +17,16 @@ const toTitleCase = (str) => {
   })
 }
 
-const formatNumber = (num, label) => {
+const conditionalFix = (num) => {
+  return num === Math.round(num) ? num : num.toFixed(2)
+}
+
+const formatNumber = (num, label, change) => {
   if (label) num = num[label]
-  const abs = Math.abs(num)
-  if (abs < 1) return `${(num * 100).toFixed(2)} %`
-  if (abs < 100) return num.toFixed(2)
+  if (change && change.type && PERCENT_SIGNALS.includes(change.type)) {
+    return `${conditionalFix(num * 100)} %`
+  }
+  if (Math.abs(num) < 999) return conditionalFix(num)
   return Math.round(num).toLocaleString()
 }
 

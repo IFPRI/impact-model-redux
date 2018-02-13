@@ -7,6 +7,8 @@ export const RATE_VARIABLES = [
   { impactparameter: 'shareatriskxagg', numerator: 'populationatriskxagg', denominator: 'popxagg' }
 ]
 
+export const PERCENT_SIGNALS = ['percentage', 'percent', '%', 'p']
+
 export const BRIEF_TYPES = ['custom', 'commodity-summary', 'country-summary']
 
 export const multiColorPalette = [
