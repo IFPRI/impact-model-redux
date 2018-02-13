@@ -50,10 +50,10 @@ export class BrowseList extends React.Component {
       const projectFilters = articleFilters.filter(f => filterCategories.projects.includes(f))
       return articles.filter((article) => {
         return (!typeFilters.length || typeFilters.includes(article.briefType)) &&
-          (!commodityFilters.length || article.commodities.some(c => commodityFilters.includes(c))) &&
-          (!locationFilters.length || article.locations.some(l => locationFilters.includes(l))) &&
-          (!tagFilters.length || article.tags.some(t => tagFilters.includes(t))) &&
-          (!projectFilters.length || article.projects.some(p => projectFilters.includes(p)))
+          (!commodityFilters.length || (article.commodities || []).some(c => commodityFilters.includes(c))) &&
+          (!locationFilters.length || (article.locations || []).some(l => locationFilters.includes(l))) &&
+          (!tagFilters.length || (article.tags || []).some(t => tagFilters.includes(t))) &&
+          (!projectFilters.length || (article.projects || []).some(p => projectFilters.includes(p)))
       })
     }
     return articles
