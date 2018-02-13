@@ -328,3 +328,7 @@ ssp2_gfdl_sk,SSP2_GFDL
 ssp2_hgem_sk,SSP2_HGEM
 ssp2_ipsl_sk,SSP2_IPSL
 ssp2_nocc_sk,SSP2_NoCC
+agg_continent,Continent
+agg_subcontinet,Subcontinent
+year,Year
+commodity,Commodity
