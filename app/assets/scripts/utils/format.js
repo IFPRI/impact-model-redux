@@ -23,8 +23,8 @@ const conditionalFix = (num) => {
 
 const formatNumber = (num, label, data) => {
   if (label) num = num[label]
-  if (data && ((data.format && data.format === 'percentage') ||
-    data.change && data.change.type && PERCENT_SIGNALS.includes(data.change.type))) {
+  if (data && data.format && data.format === 'percentage') return `${conditionalFix(num)} %`
+  if (data && data.change && data.change.type && PERCENT_SIGNALS.includes(data.change.type)) {
     return `${conditionalFix(num * 100)} %`
   }
   if (Math.abs(num) < 999) return conditionalFix(num)
