@@ -60,12 +60,12 @@ export class MapComponent extends React.Component {
         // this will have to be custom/manually adjusted to account for countries with unusual bounding boxes, like nam_usa
         switch (d.id) {
           case 'nam_usa':
-            return [75, -300]
+            return [25, -250]
           default:
             return [-10, 0]
         }
       })
-      .html(d => `<strong>${translate(d.id)}</strong><br>Value: ${formatNumber(d.properties.val)}`)
+      .html(d => `<strong>${translate(d.id)}</strong><br>Value: ${formatNumber(d.properties.val, null, this.props.data)}`)
 
     this.mapSvg = mapSvg
     this.mapPath = mapPath
