@@ -23,7 +23,8 @@ export class MapComponent extends React.Component {
   constructor (props, context) {
     super(props, context)
     this.state = {
-      mapAggregation: 'region'
+      mapAggregation: 'region',
+      data: props.data
     }
 
     this.initializeChart = this.initializeMap.bind(this)
@@ -65,7 +66,7 @@ export class MapComponent extends React.Component {
             return [-10, 0]
         }
       })
-      .html(d => `<strong>${translate(d.id)}</strong><br>Value: ${formatNumber(d.properties.val, null, this.props.data)}`)
+      .html(d => `<strong>${translate(d.id)}</strong><br>Value: ${formatNumber(d.properties.val, null, this.state.data)}`)
 
     this.mapSvg = mapSvg
     this.mapPath = mapPath
@@ -79,7 +80,7 @@ export class MapComponent extends React.Component {
     })
     this.world = world
     this.drawMap()
-    this.queryMapData(this.props.data)
+    this.queryMapData(this.state.data)
   }
 
   queryMapData (newData, aggregation) {
@@ -201,26 +202,29 @@ export class MapComponent extends React.Component {
   handleDropdown (e) {
     const valueToFront = e.target.value
     const dropdown = e.target.id
-    const newData = _.cloneDeep(this.props.data)
-    newData[dropdown].values = [valueToFront, ...this.props.data[dropdown].values.filter(a => a !== valueToFront)]
+    const newData = _.cloneDeep(this.state.data)
+    newData[dropdown].values = [valueToFront, ...this.state.data[dropdown].values.filter(a => a !== valueToFront)]
+    this.setState({ data: newData })
     this.queryMapData(newData)
   }
 
   handleMapAggregation (e) {
     this.setState({ mapAggregation: e.target.value })
-    this.queryMapData(this.props.data, e.target.value)
+    this.queryMapData(this.state.data, e.target.value)
   }
 
   render () {
-    const { data, name } = this.props
+    const { name } = this.props
+    const { data } = this.state
 
+    // we use props data here to keep the order the same
     const Dropdowns = Object.keys(this.props.data)
       .filter(key => key.match(/dropdown/))
       .map(key => {
         return <div key={key} className='map-dropdown'>
-          <label>{translate(this.props.data[key].field)}:</label>
+          <label>{translate(data[key].field)}:</label>
           <div className='select--wrapper'>
-            <select id={key} className={`${name}`} defaultValue={this.props.data[key].values[0]} onChange={this.handleDropdown}>
+            <select id={key} className={`${name}`} defaultValue={data[key].values[0]} onChange={this.handleDropdown}>
               {this.props.data[key].values.map((value, i) => {
                 return <option value={value} key={`${name}-${key}-${i}`}>{translate(value)}</option>
               })}
