@@ -4,7 +4,8 @@ export const RATE_VARIABLES = [
   { impactparameter: 'tyldxagg', numerator: 'qsupxagg', denominator: 'tareaxagg' },
   { impactparameter: 'anmlyldxagg', numerator: 'qsupxagg', denominator: 'anmlnumxagg' },
   { impactparameter: 'pcgdpxagg', numerator: 'gdpxagg', denominator: 'popxagg' },
-  { impactparameter: 'shareatriskxagg', numerator: 'populationatriskxagg', denominator: 'popxagg' }
+  { impactparameter: 'shareatriskxagg', numerator: 'populationatriskxagg', denominator: 'popxagg' },
+  { impactparameter: 'percapkcalxagg', numerator: 'totcalxagg', denominator: 'popxagg' }
 ]
 
 export const PERCENT_SIGNALS = ['percentage', 'percent', '%', 'p']
