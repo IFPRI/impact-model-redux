@@ -53,7 +53,7 @@ export class BrowseList extends React.Component {
           (!commodityFilters.length || (article.commodities || []).some(c => commodityFilters.includes(c))) &&
           (!locationFilters.length || (article.locations || []).some(l => locationFilters.includes(l))) &&
           (!tagFilters.length || (article.tags || []).some(t => tagFilters.includes(t))) &&
-          (!projectFilters.length || (article.projects || []).some(p => projectFilters.includes(p)))
+          (!projectFilters.length || projectFilters.includes(article.project))
       })
     }
     return articles
