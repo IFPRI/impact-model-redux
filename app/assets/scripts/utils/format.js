@@ -31,17 +31,22 @@ const toTitleCase = (str) => {
   })
 }
 
-const conditionalFix = (num) => {
-  return Math.abs(num - Math.round(num)) < 0.000001 ? Math.round(num) : num.toFixed(2)
+const conditionalFix = (num, data) => {
+  const decimals = data && data.decimals
+  // if a number is mostly zero, return it rounded, otherwise two decimals
+  // override decimals in BOTH cases if the graph data has the `decimals` prop
+  return Math.abs(num - Math.round(num)) < 0.000001
+  ? (decimals !== 'undefined' ? Math.round(num).toFixed(decimals) : Math.round(num))
+  : num.toFixed(decimals !== 'undefined' ? decimals : 2)
 }
 
 const formatNumber = (num, label, data) => {
   if (label) num = num[label]
-  if (data && data.format && data.format === 'percentage') return `${conditionalFix(num)} %`
+  if (data && data.format && data.format === 'percentage') return `${conditionalFix(num, data)} %`
   if (data && data.change && data.change.type && PERCENT_SIGNALS.includes(data.change.type)) {
-    return `${conditionalFix(num * 100)} %`
+    return `${conditionalFix(num * 100, data)} %`
   }
-  if (Math.abs(num) < 999) return conditionalFix(num)
+  if (Math.abs(num) < 999) return conditionalFix(num, data)
   return Math.round(num).toLocaleString()
 }
 

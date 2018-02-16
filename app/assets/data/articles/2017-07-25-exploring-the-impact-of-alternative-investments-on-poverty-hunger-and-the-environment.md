@@ -119,6 +119,7 @@ series:
   field: _type
   values: ssp2_nocc2, ssp2_hgem2
 format: percentage
+decimals: 2
 ```
 
 Projected increase in production between 2010 and 2050 and higher calorie availability would lead to a steady decrease in undernourished children as well as in the population at risk of hunger but CC would reduce the gains.
