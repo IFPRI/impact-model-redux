@@ -88,10 +88,10 @@ export class ChartGroupedBar extends React.Component {
 
     const axes = ['x', 'y']
     axes.forEach((axis) => {
-      if (data.encoding[axis].field !== 'Val') {
+      if (axis === 'x' || data.yAxisTitle) {
         chart.options.scales[axis + 'Axes'][0].scaleLabel = {
           display: true,
-          labelString: translate(data.encoding.x.field),
+          labelString: axis === 'x' ? translate(data.encoding.x.field) : data.yAxisTitle,
           fontColor: '#9E9E9E',
           fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif"
         }
