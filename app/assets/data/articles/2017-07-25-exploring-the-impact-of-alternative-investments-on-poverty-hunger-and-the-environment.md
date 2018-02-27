@@ -48,7 +48,7 @@ Under the population and economic growth assumptions used in this analysis (SSP2
 mark: bar
 title: Change in income per capita 2010-2050(%)
 width: 80%
-height: 40rem
+height: 120%
 encoding:
   x:
     type: nominal
@@ -76,7 +76,7 @@ However, climate change is projected to reduce these gains. Average cereal yield
 mark: bar
 title: Production will increase but gains are lower under CC
 width: 80%
-height: 40rem
+height: 120%
 encoding:
   x:
     type: nominal
