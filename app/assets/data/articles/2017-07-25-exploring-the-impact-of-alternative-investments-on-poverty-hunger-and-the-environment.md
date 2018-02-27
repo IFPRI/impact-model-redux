@@ -48,7 +48,7 @@ Under the population and economic growth assumptions used in this analysis (SSP2
 mark: bar
 title: Change in income per capita 2010-2050(%)
 width: 80%
-height: 200%
+height: 35rem
 encoding:
   x:
     type: nominal
@@ -76,7 +76,7 @@ However, climate change is projected to reduce these gains. Average cereal yield
 mark: bar
 title: Production will increase but gains are lower under CC
 width: 80%
-height: 200%
+height: 35rem
 encoding:
   x:
     type: nominal
@@ -103,7 +103,7 @@ change:
 mark: line
 title: Yields of cereals decrease under CC
 width: 80%
-height: 200%
+height: 35rem
 legend: top
 encoding:
   x:
@@ -132,7 +132,7 @@ In 2010, the estimated number of people at risk of hunger was comparable between
 mark: line
 title: Population at risk of hunger
 width: 80%
-height: 200%
+height: 35rem
 legend: top
 encoding:
   x:
@@ -154,7 +154,7 @@ series:
 mark: line
 title: Undernourished children (weight for age)
 width: 80%
-height: 200%
+height: 35rem
 legend: top
 encoding:
   x:
@@ -192,7 +192,7 @@ fixed:
 mark: bar
 title: Change in food security in 2050(%)
 width: 80%
-height: 200%
+height: 35rem
 encoding:
   x:
     type: nominal
@@ -216,7 +216,7 @@ change:
 mark: line
 title: food security indicators
 width: 80%
-height: 200%
+height: 35rem
 legend: top
 encoding:
   x:
