@@ -235,7 +235,7 @@ export class Brief extends React.Component {
           <div className='row'>
             <header className='header-internal'>
               <h3 className='header--large with-description'>How to Get More Information</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et dui gravida, posuere diam id, congue augue. Pellentesque nec purus ex.</p>
+              <p>Use the CONTACT US button to get in touch or to sign up for updates through Mailchimp. Use the DOWNLOAD OUR DATA button to access all the currently publicly-available data from IMPACT model simulations. Data are made available through the IFPRI Dataverse.</p>
             </header>
             <a href='https://dataverse.harvard.edu/dataverse/impact' target='_blank' className='button button--main button--small button-group'>Download Our Data</a>
             <Link className='button button--main button--small' to={'/contact'}>Contact Us</Link>
