@@ -14,11 +14,14 @@ import { translate } from '../utils/translation'
 import queryDatabase from '../utils/query-database'
 
 // Constants
-import { fourteenColorPalette } from '../constants'
+import { multiColorPalette } from '../constants'
 
 export class ChartGroupedBar extends React.Component {
   constructor (props, context) {
     super(props, context)
+    this.state = {
+      data: props.data
+    }
 
     this.initializeChart = this.initializeChart.bind(this)
     this.updateQuery = this.updateQuery.bind(this)
@@ -30,7 +33,8 @@ export class ChartGroupedBar extends React.Component {
   }
 
   initializeChart () {
-    const { name, data } = this.props
+    const { name } = this.props
+    const { data } = this.state
 
     const chart = {
       type: 'bar',
@@ -42,7 +46,7 @@ export class ChartGroupedBar extends React.Component {
         },
         tooltips: {
           callbacks: {
-            label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')
+            label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel', null, data)
           }
         },
         scales: {
@@ -53,7 +57,7 @@ export class ChartGroupedBar extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
-              userCallback: (value) => isNaN(value) || data.encoding.y.field === 'year' ? value : formatNumber(value),
+              userCallback: (value) => isNaN(value) || data.encoding.y.field === 'year' ? value : formatNumber(value, null, data),
               beginAtZero: false,
               padding: 5,
               fontColor: '#9E9E9E',
@@ -84,10 +88,10 @@ export class ChartGroupedBar extends React.Component {
 
     const axes = ['x', 'y']
     axes.forEach((axis) => {
-      if (data.encoding[axis].field !== 'Val') {
+      if (axis === 'x' || data.yAxisTitle) {
         chart.options.scales[axis + 'Axes'][0].scaleLabel = {
           display: true,
-          labelString: translate(data.encoding.x.field),
+          labelString: axis === 'x' ? translate(data.encoding.x.field) : data.yAxisTitle,
           fontColor: '#9E9E9E',
           fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif"
         }
@@ -119,8 +123,7 @@ export class ChartGroupedBar extends React.Component {
           data: [],
           label: serie[0][secondaryGrouping]
         })
-
-        chart.data.datasets[i].backgroundColor = fourteenColorPalette[i]
+        chart.data.datasets[i].backgroundColor = multiColorPalette[i]
         const aggregation = data.encoding.x.field
         _.forEach(serie, item => {
           if (i === 0) {
@@ -170,22 +173,24 @@ export class ChartGroupedBar extends React.Component {
   handleDropdown (e) {
     const valueToFront = e.target.value
     const dropdown = e.target.id
-    const newData = _.cloneDeep(this.props.data)
-    newData[dropdown].values = [valueToFront, ...this.props.data[dropdown].values.filter(a => a !== valueToFront)]
-    this.props.updateChart(newData, this.props.name)
+    const newData = _.cloneDeep(this.state.data)
+    newData[dropdown].values = [valueToFront, ...this.state.data[dropdown].values.filter(a => a !== valueToFront)]
+    this.setState({ data: newData })
     this.updateQuery(newData)
   }
 
   render () {
-    const { name, data } = this.props
+    const { name } = this.props
+    const { data } = this.state
 
+    // we use props data here to keep the order the same
     const Dropdowns = Object.keys(this.props.data)
       .filter(key => key.match(/dropdown/))
       .map(key => {
         return <div key={key} className='chart-dropdown'>
           <label>{translate(this.props.data[key].field)}:</label>
           <div className='select--wrapper'>
-            <select id={key} className={`${name}`} defaultValue={this.props.data[key].values[0]} onChange={this.handleDropdown}>
+            <select id={key} className={`${name}`} defaultValue={data[key].values[0]} onChange={this.handleDropdown}>
               {this.props.data[key].values.map((value, i) => {
                 return <option value={value} key={`${name}-${key}-${i}`}>{translate(value)}</option>
               })}

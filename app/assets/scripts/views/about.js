@@ -16,16 +16,16 @@ export class About extends React.Component {
             <p>The IMPACT web tool is a fully interactive online tool designed to highlight and make public the results of simulations performed with the IMPACT model and carried out through various projects. The tool offers:</p>
             <ul>
               <li>User-friendly access to results data coming from IMPACT simulations runs.</li>
-              <li>Through a link with Dataverse (http://dataverse.org/) it provides access to the output and input data that drive the IMPACT simulations.</li>
-              <li>Downloadable publications describing IMPACT analyses addressing policy issues relevant to global agricultural markets, including issues of climate change, technology change, food security, and resource management.</li>
+              <li>Access to the output and input data that drive the IMPACT simulations, through a link with Dataverse (http://dataverse.org/).</li>
+              <li>Downloadable publications describing IMPACT analyses addressing policy issues relevant to global agricultural markets. Most typically the available studies will tackle issues related to climate change, technology change, food security, and resource management.</li>
             </ul>
             <h3 className='header--xlarge'>What is the IMPACT model?</h3>
-            <p>IMPACT is a global multimarket economic model designed to examine alternative futures for global food supply, demand, trade, prices, and food security.</p>
-            <p>The model allows IFPRI to provide global baseline projections of agricultural commodity production and trade and malnutrition outcomes, along with cutting-edge research results on quickly evolving topics such as bioenergy, climate change, changing diet/food preferences, and other themes.</p>
+            <p>IMPACT is a partial-equilibrium global multimarket economic model designed to examine alternative futures of global food supply, demand, trade, prices, and food security.</p>
+            <p>The model is used by IFPRI and its partners to provide global baseline projections of agricultural commodity production, trade and malnutrition outcomes, along with cutting-edge research results on quickly evolving topics such as bioenergy, climate change, changing diet/food preferences, nutrition and other themes.</p>
             <p>See <a href='https://www.ifpri.org/program/impact-model'>this page</a> for more information on the model and on the simulations process.</p>
 
             <h3 className='header--xlarge'>Data Access</h3>
-            <p>Input and output data from IMPACT simulations can be downloaded through a link to Dataverse.</p>
+            <p>Input and output data from IMPACT simulations can be downloaded through a link to Dataverse. Please use the ACCESS DATA button on the main landing page to retrieve the publicly available data.</p>
 
             <h3 className='header--xlarge'>Acknowledgments</h3>
             <p>We thank the Bill and Melinda Gates Foundation, the CGIAR Research Program on Policies, Institutions, and Markets (PIM), and the CGIAR Research Program on Climate Change, Agriculture and Food Security (CCAFS) for funding this work.</p>

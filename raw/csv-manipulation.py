@@ -55,6 +55,10 @@ def es_format(column):
     except ValueError:
         return re.sub(' |-', '_', column).lower().strip()
 
+# for finding matching population for calculating total calories
+def pop_match(data_row, match_row):
+    return data_row[0].lower() == 'popxagg' and (data_row[1:5] == match_row[1:5])
+
 
 # create output files based on mappings and cleaning necessary for elasticsearch
 for file in all_files:
@@ -64,8 +68,19 @@ for file in all_files:
         creader = csv.reader(csvfile)
         for row in creader:
             data.append(row)
+
+    full_data = []
     for row in data:
-        ### first add fields
+        full_data.append(row)
+        if row[0].lower() == 'percapkcalxagg':
+            # calculate total calories
+            matching_pop = [drow for drow in data if pop_match(drow, row)][0]
+            total_cal = float(row[5]) * float(matching_pop[5])
+            new_row = ['totcalxagg'] + row[1:5] + [total_cal]
+            full_data.append(new_row)
+
+    for row in full_data:
+        ### add fields
         # if we have a matching commodity, insert the commodity aggregation
         if row[2] in agg_map:
             row.append(agg_map[row[2]])
@@ -79,14 +94,14 @@ for file in all_files:
             row.append('')
             row.append('')
 
-        ### now transform the data
+        ### transform the data
         # for impactparameter, anything after the first space is removed
         row[0] = re.sub(' .*', '', row[0])
         # replace spaces and dashes with underscores in all columns
         for index, col in enumerate(row):
             row[index] = es_format(col)
 
-        ### then remove fields
+        ### remove fields
         # eliminate column 4 (production type) if it there
         if production_type:
             row.pop(4)
@@ -94,13 +109,13 @@ for file in all_files:
         row.pop(1)
 
     # insert header row
-    data.insert(0, ['impactparameter', 'commodity', 'region', 'year', 'Val',
+    full_data.insert(0, ['impactparameter', 'commodity', 'region', 'year', 'Val',
                     'agg_commodity', 'agg_continent', 'agg_subcontinent'])
 
     # write files
     with open(file.replace('file_', 'scenarios/'), 'wb') as fo:
         a = csv.writer(fo, delimiter=',')
-        a.writerows(data)
+        a.writerows(full_data)
 
     # delete temporary files
     os.remove(file)

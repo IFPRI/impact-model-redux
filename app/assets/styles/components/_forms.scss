@@ -46,6 +46,7 @@ select {
   }
 }
 .automcomplete-list {
+  z-index: 2;
   position: absolute;
   background-color: #fff;
   height: 15em;

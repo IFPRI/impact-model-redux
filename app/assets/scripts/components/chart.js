@@ -10,7 +10,7 @@ const ChartJS = require('chart.js')
 import { updatePreviewerError } from '../actions'
 
 // Utils
-import { formatNumber } from '../utils/format'
+import { formatNumber, twoLiner } from '../utils/format'
 import { translate } from '../utils/translation'
 import queryDatabase from '../utils/query-database'
 
@@ -20,6 +20,9 @@ import { multiColorPaletteSort } from '../constants'
 export class Chart extends React.Component {
   constructor (props, context) {
     super(props, context)
+    this.state = {
+      data: props.data
+    }
 
     this.initializeChart = this.initializeChart.bind(this)
     this.updateQuery = this.updateQuery.bind(this)
@@ -31,7 +34,8 @@ export class Chart extends React.Component {
   }
 
   initializeChart () {
-    const { name, data } = this.props
+    const { name } = this.props
+    const { data } = this.state
     const chartType = data.mark
 
     let chart = {
@@ -89,17 +93,17 @@ export class Chart extends React.Component {
       chart.options.responsive = true
       chart.options.maintainAspectRatio = false
       chart.data.datasets[0].backgroundColor = '#83C61A'
-      chart.options.scales.yAxes[0].ticks.userCallback = (value) => isNaN(value) || data.encoding.y.field === 'year' ? value : formatNumber(value)
-      chart.options.scales.xAxes[0].ticks.userCallback = (value) => isNaN(value) || data.encoding.x.field === 'year' ? value : formatNumber(value)
-      chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')}}
+      chart.options.scales.yAxes[0].ticks.userCallback = (value) => isNaN(value) || data.encoding.y.field === 'year' ? value : formatNumber(value, null, data)
+      chart.options.scales.xAxes[0].ticks.userCallback = (value) => isNaN(value) || data.encoding.x.field === 'year' ? value : formatNumber(value, null, data)
+      chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel', data)}}
     }
 
     if (chartType === 'horizontalBar') {
       chart.data.datasets[0].backgroundColor = '#83C61A'
       chart.options.maintainAspectRatio = false
-      chart.options.scales.yAxes[0].ticks.userCallback = (value) => isNaN(value) || data.encoding.y.field === 'year' ? value : formatNumber(value)
-      chart.options.scales.xAxes[0].ticks.userCallback = (value) => isNaN(value) || data.encoding.x.field === 'year' ? value : formatNumber(value)
-      chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'xLabel')}}
+      chart.options.scales.yAxes[0].ticks.userCallback = (value) => isNaN(value) || data.encoding.y.field === 'year' ? value : formatNumber(value, null, data)
+      chart.options.scales.xAxes[0].ticks.userCallback = (value) => isNaN(value) || data.encoding.x.field === 'year' ? value : formatNumber(value, null, data)
+      chart.options.tooltips = {callbacks: {label: (tooltipItem) => formatNumber(tooltipItem, 'xLabel', data)}}
     }
 
     const isPieChart = chartType === 'pie' || chartType === 'doughnut'
@@ -113,10 +117,10 @@ export class Chart extends React.Component {
 
     const axes = ['x', 'y']
     axes.forEach((axis) => {
-      if (data.encoding[axis].field !== 'Val' && !isPieChart) {
+      if (!isPieChart && (axis === 'x' || data.yAxisTitle)) {
         chart.options.scales[axis + 'Axes'][0].scaleLabel = {
           display: true,
-          labelString: translate(data.encoding.x.field),
+          labelString: axis === 'x' ? translate(data.encoding.x.field) : data.yAxisTitle,
           fontColor: '#9E9E9E',
           fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif"
         }
@@ -134,13 +138,13 @@ export class Chart extends React.Component {
         }
       }).sort((a, b) => a.label > b.label)
       chart.data.datasets[0].data = dataset.map((item) => item.data)
-      chart.data.labels = dataset.map((item) => item.label)
+      chart.data.labels = dataset.map((item) => twoLiner(item.label))
 
       if (isPieChart || chartType === 'polarArea') {
-        chart.options.tooltips = {callbacks: {label: (tooltipItem, data) => {
+        chart.options.tooltips = {callbacks: {label: (tooltipItem, d) => {
           const label = chart.data.labels[tooltipItem.index]
-          const datasetLabel = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]
-          return ` ${label}: ${formatNumber(datasetLabel)}`
+          const datasetLabel = d.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]
+          return ` ${label}: ${formatNumber(datasetLabel, null, data)}`
         }}}
       }
       try {
@@ -173,14 +177,15 @@ export class Chart extends React.Component {
   handleDropdown (e) {
     const valueToFront = e.target.value
     const dropdown = e.target.id
-    const newData = _.cloneDeep(this.props.data)
-    newData[dropdown].values = [valueToFront, ...this.props.data[dropdown].values.filter(a => a !== valueToFront)]
-    this.props.updateChart(newData, this.props.name)
+    const newData = _.cloneDeep(this.state.data)
+    newData[dropdown].values = [valueToFront, ...this.state.data[dropdown].values.filter(a => a !== valueToFront)]
+    this.setState({ data: newData })
     this.updateQuery(newData)
   }
 
   render () {
-    const { name, data } = this.props
+    const { name } = this.props
+    const { data } = this.state
     const chartType = data.mark
 
     const chartClass = classNames(
@@ -189,13 +194,14 @@ export class Chart extends React.Component {
         'pie-chart': chartType === 'pie' || chartType === 'doughnut' || chartType === 'polarArea'
       })
 
+    // we use props data here to keep the order the same
     const Dropdowns = Object.keys(this.props.data)
       .filter(key => key.match(/dropdown/))
       .map(key => {
         return <div key={key} className='chart-dropdown'>
           <label>{translate(this.props.data[key].field)}:</label>
           <div className='select--wrapper'>
-            <select id={key} className={`${name}`} defaultValue={this.props.data[key].values[0]} onChange={this.handleDropdown}>
+            <select id={key} className={`${name}`} defaultValue={data[key].values[0]} onChange={this.handleDropdown}>
               {this.props.data[key].values.map((value, i) => {
                 return <option value={value} key={`${name}-${key}-${i}`}>{translate(value)}</option>
               })}

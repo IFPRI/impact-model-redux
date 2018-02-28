@@ -4,16 +4,11 @@ import ReactDOM from 'react-dom'
 import c from 'classnames'
 import _ from 'lodash'
 
-// Actions
 import { updateArticleFilters, updateArticlePage, updateMobileFilters } from '../actions'
-
-// Components
 import ListArticleCard from './list-article-card.js'
+import { articleBrowsePageLength, BRIEF_TYPES } from '../constants.js'
+import filterCategories from '../../data/filter-categories'
 
-// Constants
-import { articleBrowsePageLength } from '../constants.js'
-
-// Utils
 import { translate } from '../utils/translation'
 
 export class BrowseList extends React.Component {
@@ -40,29 +35,25 @@ export class BrowseList extends React.Component {
     this.props.dispatch(updateArticlePage(page))
   }
 
-  sortArticles (articles, articleFilters) {
+  sortArticles (articles) {
     const sortedArticles = articles.slice(0)
-    if (articleFilters.length) {
-      sortedArticles.sort((a, b) => b.matches - a.matches)
-    } else {
-      sortedArticles.sort((a, b) => new Date(b.date) - new Date(a.date))
-    }
+    sortedArticles.sort((a, b) => new Date(b.date) - new Date(a.date))
     return sortedArticles
   }
 
   filterArticles (articles, articleFilters) {
     if (articleFilters.length) {
+      const typeFilters = articleFilters.filter(f => BRIEF_TYPES.includes(f))
+      const commodityFilters = articleFilters.filter(f => filterCategories.commodities.includes(f))
+      const locationFilters = articleFilters.filter(f => filterCategories.locations.includes(f))
+      const tagFilters = articleFilters.filter(f => filterCategories.tags.includes(f))
+      const projectFilters = articleFilters.filter(f => filterCategories.projects.includes(f))
       return articles.filter((article) => {
-        const metadata = _.concat(
-          [article.briefType],
-          article.tags,
-          article.commodities,
-          article.locations,
-          article.project
-        ).filter(Boolean)
-        const matches = _.intersection(metadata, articleFilters).length
-        article.matches = matches
-        return matches
+        return (!typeFilters.length || typeFilters.includes(article.briefType)) &&
+          (!commodityFilters.length || (article.commodities || []).some(c => commodityFilters.includes(c))) &&
+          (!locationFilters.length || (article.locations || []).some(l => locationFilters.includes(l))) &&
+          (!tagFilters.length || (article.tags || []).some(t => tagFilters.includes(t))) &&
+          (!projectFilters.length || projectFilters.includes(article.project))
       })
     }
     return articles
@@ -85,7 +76,7 @@ export class BrowseList extends React.Component {
 
   render () {
     const { articlePage, articleFilters, path } = this.props
-    let articles = this.sortArticles(this.filterArticles(this.props.articles, articleFilters), articleFilters)
+    let articles = this.sortArticles(this.filterArticles(this.props.articles, articleFilters))
     const articleCount = articles.length
     articles = articles.slice(articleBrowsePageLength * articlePage, articleBrowsePageLength * articlePage + articleBrowsePageLength)
 

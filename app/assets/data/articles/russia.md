@@ -39,7 +39,7 @@ fixed:
   year: 2015,2030,2050
 dropdown:
   field: agg_commodity
-  values: amt,aot,cer,r&t,pul,f&v,sgc,sgr,ols,oil,mls,cot,for
+  values: amt,aot,cer,r&t,pul,f&v,sgc,sgr,ols,oil,mls,cot
 ```
 
 ```chart
@@ -59,7 +59,7 @@ fixed:
   year: 2015,2030,2050
 dropdown:
   field: agg_commodity
-  values: amt,aot,cer,r&t,pul,f&v,sgc,sgr,ols,oil,mls,cot,for
+  values: amt,aot,cer,r&t,pul,f&v,sgc,sgr,ols,oil,mls,cot
 ```
 
 

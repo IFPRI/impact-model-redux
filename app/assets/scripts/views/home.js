@@ -29,7 +29,7 @@ export class Home extends React.Component {
         <header className='home__header'>
           <div className='row row--shortened'>
             <h2 className='header--xxxlarge'>Answering Questions About Our World’s Food Supply</h2>
-            <p className='header__descriptions'>The International Model for Policy Analysis of Agricultural Commodities and Trade (IMPACT) provides a look into the policies and actions needed to feed the world, reduce poverty, and protect the natural resource base. Use the Briefs button below to learn how the model has been used to answer questions about different areas of agricultural development through 2050.</p>
+            <p className='header__descriptions'>We use a modeling system based on the International Model for Policy Analysis of Agricultural Commodities and Trade (IMPACT) to analyze future challenges and policy responses to feed the world, reduce poverty, and protect the natural resource base. Use the "View Briefs" button below to learn how the model has been used to answer questions about different areas of agricultural development through 2050.</p>
             <Link className='button button--outline' to={'/about'}>Learn More</Link>
             <Link className='button button--outline' to={'/briefs'}>View Briefs</Link>
           </div>
@@ -49,7 +49,7 @@ export class Home extends React.Component {
           <div className='row'>
             <header className='header-internal'>
               <h3 className='header--xlarge with-description'>How to Get More Information</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et dui gravida, posuere diam id, congue augue. Pellentesque nec purus ex.</p>
+              <p>Use the CONTACT US button to get in touch or to sign up for updates through Mailchimp. Use the ACCESS DATA button to access all the currently publicly-available data from IMPACT model simulations. Data are made available through the IFPRI Dataverse.</p>
             </header>
             <ul className='secondary--content'>
               <li className='card--large'>

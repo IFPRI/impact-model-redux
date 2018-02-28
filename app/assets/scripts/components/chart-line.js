@@ -20,6 +20,9 @@ import { oneColorPalette, multiColorPalette, stripeChartFill } from '../constant
 export class ChartLine extends React.Component {
   constructor (props, context) {
     super(props, context)
+    this.state = {
+      data: props.data
+    }
 
     this.initializeChart = this.initializeChart.bind(this)
     this.updateQuery = this.updateQuery.bind(this)
@@ -31,7 +34,8 @@ export class ChartLine extends React.Component {
   }
 
   initializeChart () {
-    const { name, data } = this.props
+    const { name } = this.props
+    const { data } = this.state
     let chart = {
       type: 'line',
       options: {
@@ -40,7 +44,7 @@ export class ChartLine extends React.Component {
         tooltips: {
           enabled: true,
           callbacks: {
-            label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel')
+            label: (tooltipItem) => formatNumber(tooltipItem, 'yLabel', data)
           }
         },
         legend: {
@@ -57,7 +61,7 @@ export class ChartLine extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
-              userCallback: (value) => isNaN(value) || data.encoding.y.field === 'year' ? value : formatNumber(value),
+              userCallback: (value) => isNaN(value) || data.encoding.y.field === 'year' ? value : formatNumber(value, null, data),
               beginAtZero: false,
               padding: 5,
               fontColor: '#9E9E9E',
@@ -71,7 +75,7 @@ export class ChartLine extends React.Component {
               tickMarkLength: 8
             },
             ticks: {
-              userCallback: (value) => isNaN(value) || data.encoding.x.field === 'year' ? value : formatNumber(value),
+              userCallback: (value) => isNaN(value) || data.encoding.x.field === 'year' ? value : formatNumber(value, null, data),
               autoSkip: false,
               fontColor: '#9E9E9E',
               fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -89,10 +93,10 @@ export class ChartLine extends React.Component {
 
     const axes = ['x', 'y']
     axes.forEach((axis) => {
-      if (data.encoding[axis].field !== 'Val') {
+      if (axis === 'x' || data.yAxisTitle) {
         chart.options.scales[axis + 'Axes'][0].scaleLabel = {
           display: true,
-          labelString: translate(data.encoding.x.field),
+          labelString: axis === 'x' ? translate(data.encoding.x.field) : data.yAxisTitle,
           fontColor: '#9E9E9E',
           fontFamily: "'Nunito', 'Helvetica Neue', Helvetica, Arial, sans-serif"
         }
@@ -198,16 +202,18 @@ export class ChartLine extends React.Component {
   handleDropdown (e) {
     const valueToFront = e.target.value
     const dropdown = e.target.id
-    const newData = _.cloneDeep(this.props.data)
-    newData[dropdown].values = [valueToFront, ...this.props.data[dropdown].values.filter(a => a !== valueToFront)]
-    this.props.updateChart(newData, this.props.name)
+    const newData = _.cloneDeep(this.state.data)
+    newData[dropdown].values = [valueToFront, ...this.state.data[dropdown].values.filter(a => a !== valueToFront)]
+    this.setState({ data: newData })
     this.updateQuery(newData)
   }
 
   render () {
-    const { name, data } = this.props
+    const { name } = this.props
+    const { data } = this.state
     const chartType = data.mark
 
+    // we use props data here to keep the order the same
     const Dropdowns = Object.keys(this.props.data)
       .filter(key => key.match(/dropdown/))
       .map(key => {
@@ -215,7 +221,7 @@ export class ChartLine extends React.Component {
           <div key={key} className='chart-dropdown'>
             <label>{translate(this.props.data[key].field)}:</label>
             <div className='select--wrapper'>
-              <select id={key} className={`${name}`} defaultValue={this.props.data[key].values[0]} onChange={this.handleDropdown}>
+              <select id={key} className={`${name}`} defaultValue={data[key].values[0]} onChange={this.handleDropdown}>
                 {this.props.data[key].values.map((value, i) => {
                   return <option value={value} key={`${name}-${key}-${i}`}>{translate(value)}</option>
                 })}

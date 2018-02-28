@@ -283,7 +283,7 @@ dvd,Developed countries
 _type,Scenario
 anmlnumxagg,Animal numbers
 anmlyldxagg,Animal yield
-gdpxAgg,Income(GDP)
+gdpxAgg,Income (GDP)
 pcgdpxagg,Income per capita
 percapkcalcxagg,Kcal. per capita by commodity
 percapkcalxagg,Kcal. per capita
@@ -297,14 +297,14 @@ qnxagg,Net trade
 qsupxagg,Production
 shareatriskxagg,Share at risk of hunger
 tareaxagg,Total area
-totalmalnourishedxagg,Undernourished childen(weight for age)
+totalmalnourishedxagg,Undernourished childen (weight for age)
 tyldxagg,Total yield
 africa,Africa
 wld,World
 asia,Asia
-eapg,Eastern Asia(developing countries only)
+eapg,Eastern Asia (developing countries only)
 fsu,Former Soviet Union
-meng,Middle East & North Africa(developing countries only)
+meng,Middle East & North Africa (developing countries only)
 oceania,Oceania
 ssp2_hgem2,REF_HGEM
 ssp2_hgem_hinars2,HIGH+NARS
@@ -328,3 +328,7 @@ ssp2_gfdl_sk,SSP2_GFDL
 ssp2_hgem_sk,SSP2_HGEM
 ssp2_ipsl_sk,SSP2_IPSL
 ssp2_nocc_sk,SSP2_NoCC
+agg_continent,Continent
+agg_subcontinet,Subcontinent
+year,Year
+commodity,Commodity
