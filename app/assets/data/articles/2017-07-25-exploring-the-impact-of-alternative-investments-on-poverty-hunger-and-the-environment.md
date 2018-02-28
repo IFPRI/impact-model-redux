@@ -124,7 +124,7 @@ dropdown:
 series:
   field: _type
   values: ssp2_nocc2, ssp2_hgem2
-decimals: 2
+decimals: 1
 ```
 
 Projected increase in production between 2010 and 2050 and higher calorie availability would lead to a steady decrease in undernourished children as well as in the population at risk of hunger but CC would reduce the gains.
@@ -134,7 +134,7 @@ In 2010, the estimated number of people at risk of hunger was comparable between
 mark: line
 title: Population at risk of hunger
 width: 80%
-height: 35rem
+height: 20rem
 legend: top
 encoding:
   x:
@@ -156,7 +156,7 @@ series:
 mark: line
 title: Undernourished children (weight for age)
 width: 80%
-height: 35rem
+height: 20rem
 legend: top
 encoding:
   x:
@@ -179,6 +179,7 @@ Additional investments in agricultural R&D across CGIAR and NARS can deliver imp
 
 ```map
 title: Change in Production between high-nars and hgem in 2050 (%)
+height: 20rem
 dropdown:
   field: commodity
   values: allc, cer, cer_maize, cer_rice, cer_wheat, r&t, f&v, pul, amt, amt_beef, amt_pork, amt_poultry
@@ -194,7 +195,7 @@ fixed:
 mark: bar
 title: Change in food security in 2050(%)
 width: 80%
-height: 35rem
+height: 20rem
 encoding:
   x:
     type: nominal
@@ -218,7 +219,7 @@ change:
 mark: line
 title: food security indicators
 width: 80%
-height: 35rem
+height: 20rem
 legend: top
 encoding:
   x:
