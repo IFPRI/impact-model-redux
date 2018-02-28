@@ -50,6 +50,7 @@ title: Change in income per capita 2010-2050(%)
 width: 80%
 height: 20rem
 yAxisTitle: Percent change
+decimals: 1
 encoding:
   x:
     type: nominal
@@ -79,6 +80,7 @@ title: Production will increase but gains are lower under CC
 width: 80%
 height: 20rem
 yAxisTitle: Percent change
+decimals: 1
 encoding:
   x:
     type: nominal
@@ -135,6 +137,7 @@ mark: line
 title: Population at risk of hunger
 width: 80%
 height: 20rem
+yAxisTitle: Million people
 legend: top
 encoding:
   x:
@@ -157,6 +160,7 @@ mark: line
 title: Undernourished children (weight for age)
 width: 80%
 height: 20rem
+yAxisTitle: Million children
 legend: top
 encoding:
   x:
@@ -180,6 +184,7 @@ Additional investments in agricultural R&D across CGIAR and NARS can deliver imp
 ```map
 title: Change in Production between high-nars and hgem in 2050 (%)
 height: 20rem
+decimals: 1
 dropdown:
   field: commodity
   values: allc, cer, cer_maize, cer_rice, cer_wheat, r&t, f&v, pul, amt, amt_beef, amt_pork, amt_poultry
@@ -196,6 +201,8 @@ mark: bar
 title: Change in food security in 2050(%)
 width: 80%
 height: 20rem
+decimals: 1
+yAxisTitle: Percent change
 encoding:
   x:
     type: nominal
@@ -221,6 +228,7 @@ title: food security indicators
 width: 80%
 height: 20rem
 legend: top
+yAxisTitle: Kcal. per capita/day OR Million people
 encoding:
   x:
     type: nominal
