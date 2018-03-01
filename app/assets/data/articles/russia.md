@@ -8,17 +8,12 @@ locations:
   - fsu_russia
   - eastern_europe
   - europe
-scenarios:
+tags:
  - ssp2_gfdl
  - ssp2_hgem
  - ssp2_miroc
  - ssp2_ipsl
  - ssp2_nocc
-tags:
- - fsu_russia
- - eastern_europe
- - europe
- - baseline
 ---
 # Overview
 

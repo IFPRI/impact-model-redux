@@ -6,16 +6,12 @@ briefType: commodity-summary
 project: 'baseline'
 commodities:
   - cer_wheat
-scenarios:
+tags:
  - ssp2_gfdl
  - ssp2_hgem
  - ssp2_miroc
  - ssp2_ipsl
  - ssp2_nocc
-tags:
- - cer_wheat
- - cer
- - baseline
 ---
 Summary of IMPACT model outputs for wheat
 

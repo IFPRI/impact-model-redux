@@ -8,17 +8,12 @@ locations:
   - lac_brazil
   - south_america
   - americas
-scenarios:
+tags:
  - ssp2_gfdl
  - ssp2_hgem
  - ssp2_miroc
  - ssp2_ipsl
  - ssp2_nocc
-tags:
- - lac_brazil
- - south_america
- - americas
- - baseline
 ---
 # Overview
 

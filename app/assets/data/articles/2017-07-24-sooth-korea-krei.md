@@ -9,14 +9,10 @@ locations:
   - eastern_asia
 commodities:
   - cer_rice
-scenarios:
+tags:
   - ssp2_hgem
   - ssp2_nocc
   - ssp2_gfdl
-tags:
-  - cer_rice
-  - cer
-  - eastern_asia
 download: >-
   https://www.ifpri.org/publication/climate-change-agriculture-and-adaptation-republic-korea-2050-integrated-assessment
 ---

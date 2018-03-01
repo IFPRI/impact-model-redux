@@ -8,17 +8,12 @@ locations:
   - ssa_ghana
   - western_africa
   - africa
-scenarios:
+tags:
  - ssp2_gfdl
  - ssp2_hgem
  - ssp2_miroc
  - ssp2_ipsl
  - ssp2_nocc
-tags:
- - ssa_ghana
- - western_africa
- - africa
- - baseline
 ---
 # Overview
 
