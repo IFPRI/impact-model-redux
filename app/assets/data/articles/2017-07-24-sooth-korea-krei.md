@@ -60,6 +60,7 @@ SSP2 represents a middle of the road projection for population and GDP. The five
 mark: line
 title: Trends across time
 width: 70%
+height: 20rem
 legend: top
 encoding:
   x:
@@ -84,6 +85,9 @@ series:
 mark: stripe
 title: Yields across time
 width: 70%
+height: 20rem
+decimals: 1
+yAxisTitle: Yield(tons/ha)
 legend: top
 encoding:
   x:
@@ -106,6 +110,9 @@ series:
 mark: bar
 title: Percent change between 2010 and 2050
 width: 70%
+height: 20rem
+decimals: 1
+yAxisTitle: Percent change
 encoding:
   x:
     type: nominal
