@@ -4,11 +4,8 @@ date: 5/26/2017
 type: scenario
 briefType: scenario
 project: 'baseline'
-scenarios:
- - ssp2_ipsl
 tags:
  - ssp2_ipsl
- - baseline
 ---
 Summary of IMPACT model outputs for SSP2_IPSL
 

@@ -46,8 +46,12 @@ export class BrowseList extends React.Component {
       const typeFilters = articleFilters.filter(f => BRIEF_TYPES.includes(f))
       const commodityFilters = articleFilters.filter(f => filterCategories.commodities.includes(f))
       const locationFilters = articleFilters.filter(f => filterCategories.locations.includes(f))
-      const tagFilters = articleFilters.filter(f => filterCategories.tags.includes(f))
       const projectFilters = articleFilters.filter(f => filterCategories.projects.includes(f))
+      // force tag uniqueness from other filters
+      const tagFilters = articleFilters
+        .filter(f => filterCategories.tags.includes(f))
+        .filter(f => !typeFilters.concat(commodityFilters).concat(locationFilters).concat(projectFilters).includes(f))
+
       return articles.filter((article) => {
         return (!typeFilters.length || typeFilters.includes(article.briefType)) &&
           (!commodityFilters.length || (article.commodities || []).some(c => commodityFilters.includes(c))) &&

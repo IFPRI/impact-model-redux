@@ -9,7 +9,6 @@ import { updateArticleFilters, updateMobileFilters } from '../actions'
 import { translate, invertCommodities } from '../utils/translation'
 import filterCategories from '../../data/filter-categories'
 import commodityAggregation from '../../data/aggregate-commodity'
-import locationAggregation from '../../data/aggregate-region'
 import BrowseFilter from './browse-filter'
 
 export class BrowseFilters extends React.Component {
@@ -45,8 +44,7 @@ export class BrowseFilters extends React.Component {
       // generate list of regions
       this.filters.push({
         name: 'Regions',
-        list: _.uniq(_.flatten(_.values(locationAggregation).map(loc => _.values(loc)))
-          .filter(Boolean).map(translate)).sort(),
+        list: filterCategories.locations.map(translate).sort(),
         type: 'autocomplete',
         placeholder: 'Enter in region or country'
       })

@@ -6,16 +6,12 @@ briefType: commodity-summary
 project: 'baseline'
 commodities:
   - cot_coffee
-scenarios:
+tags:
  - ssp2_gfdl
  - ssp2_hgem
  - ssp2_miroc
  - ssp2_ipsl
  - ssp2_nocc
-tags:
- - cot_coffee
- - cot
- - baseline
 ---
 Summary of IMPACT model outputs for coffee
 

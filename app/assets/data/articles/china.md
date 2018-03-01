@@ -8,17 +8,12 @@ locations:
   - eap_china
   - eastern_asia
   - asia
-scenarios:
+tags:
  - ssp2_gfdl
  - ssp2_hgem
  - ssp2_miroc
  - ssp2_ipsl
  - ssp2_nocc
-tags:
- - eap_china
- - eastern_asia
- - asia
- - baseline
 ---
 # Overview
 

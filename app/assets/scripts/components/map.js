@@ -92,7 +92,7 @@ export class MapComponent extends React.Component {
     })
     queryDatabase(mapQuery, DEFAULT_SCENARIO)
     .then((mapData) => {
-      this.updateMap(mapData)
+      this.updateMap(mapData, newData)
     })
   }
 
@@ -118,7 +118,7 @@ export class MapComponent extends React.Component {
         .attr('style', 'fill:url(#maphash)')
   }
 
-  updateMap (mapData) {
+  updateMap (mapData, otherData) {
     this.mapSvg.selectAll('.overlay').remove()
     this.mapSvg.selectAll('.legend-line').remove()
     this.mapSvg.selectAll('.label').remove()
@@ -196,7 +196,7 @@ export class MapComponent extends React.Component {
       .style('font-size', 10)
       .style('font-weight', 400)
       .style('fill', '#333')
-      .text(d => (d * 100).toFixed(1) + '%')
+      .text(d => formatNumber(d, null, otherData))
   }
 
   handleDropdown (e) {

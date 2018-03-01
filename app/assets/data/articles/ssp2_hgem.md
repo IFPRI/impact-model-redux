@@ -4,11 +4,8 @@ date: 5/26/2017
 type: scenario
 briefType: scenario
 project: 'baseline'
-scenarios:
- - ssp2_hgem
 tags:
  - ssp2_hgem
- - baseline
 ---
 Summary of IMPACT model outputs for SSP2_HGEM
 

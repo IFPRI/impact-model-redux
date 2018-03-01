@@ -18,7 +18,6 @@ commodities:
   - cer
 tags:
   - baseline
-  - USAID
 ---
 
 ## What is on this brief and how to interpret the results
