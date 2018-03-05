@@ -21,7 +21,7 @@ tags:
 ---
 
 ## What is on this brief and how to interpret the results
-The brief shows highlights from global and regional IMPACT results estimating the effects of alternative investments options on agriculture production, trade and food security.
+The brief shows highlights from global and regional IMPACT results estimating the effects of alternative investments options on agriculture production, trade and food security.test
 
 ## Source project & acknowledgments ##
 The Global Futures and [Strategic Foresight program](http://globalfutures.cgiar.org/project-overview/) recently released a study using quantitative foresight modeling to explore the effects of alternative investments options (in agricultural research, resource management, and infrastructure) on the 3 goals underpinning the [Strategy framework of the CGIAR](http://www.cgiar.org/our-strategy/). These three goals, also called System Level Outcomes SLOs), relate to poverty (SLO1), food and nutrition security (SLO2), and natural resources and ecosystem services (SLO3). Impacts on these goals to 2050 were analyzed in the context of overarching trends related to changes in population, income, technology, and climate. The report is intended to help the CGIAR centers, CG Research Programs (CRPs), decision makers and donors to complement other efforts and assess the potential impacts and benefits of long-term investment strategies toward agricultural research and development.
