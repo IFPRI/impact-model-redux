@@ -1,0 +1,932 @@
+{
+  "afg": {
+    "region": "sas_afghanistan",
+    "continent": "sas",
+    "subcontinent": "southern_asia"
+  },
+  "ago": {
+    "region": "ssa_angola",
+    "continent": "ssa",
+    "subcontinent": "middle_africa"
+  },
+  "alb": {
+    "region": "eur_albania",
+    "continent": "eur",
+    "subcontinent": "southern_europe"
+  },
+  "ald": {
+    "region": "eur_finland",
+    "continent": "eur",
+    "subcontinent": "northern_europe"
+  },
+  "and": {
+    "region": "eur_spain",
+    "continent": "eur",
+    "subcontinent": "southern_europe"
+  },
+  "are": {
+    "region": "men_rest_of_arabia",
+    "continent": "men",
+    "subcontinent": "western_asia"
+  },
+  "arg": {
+    "region": "lac_argentina",
+    "continent": "lac",
+    "subcontinent": "south_america"
+  },
+  "arm": {
+    "region": "fsu_armenia",
+    "continent": "fsu",
+    "subcontinent": "western_asia"
+  },
+  "aus": {
+    "region": "eap_australia",
+    "continent": "eap",
+    "subcontinent": "oceania"
+  },
+  "aut": {
+    "region": "eur_austria",
+    "continent": "eur",
+    "subcontinent": "western_europe"
+  },
+  "aze": {
+    "region": "fsu_azerbaijan",
+    "continent": "fsu",
+    "subcontinent": "western_asia"
+  },
+  "bdi": {
+    "region": "ssa_burundi",
+    "continent": "ssa",
+    "subcontinent": "eastern_africa"
+  },
+  "bel": {
+    "region": "eur_belgium_luxembourg",
+    "continent": "eur",
+    "subcontinent": "western_europe"
+  },
+  "ben": {
+    "region": "ssa_benin",
+    "continent": "ssa",
+    "subcontinent": "western_africa"
+  },
+  "bfa": {
+    "region": "ssa_burkina_faso",
+    "continent": "ssa",
+    "subcontinent": "western_africa"
+  },
+  "bgd": {
+    "region": "sas_bangladesh",
+    "continent": "sas",
+    "subcontinent": "southern_asia"
+  },
+  "bgr": {
+    "region": "eur_bulgaria",
+    "continent": "eur",
+    "subcontinent": "eastern_europe"
+  },
+  "bhr": {
+    "region": "men_rest_of_arabia",
+    "continent": "men",
+    "subcontinent": "western_asia"
+  },
+  "bih": {
+    "region": "eur_other_balkans",
+    "continent": "eur",
+    "subcontinent": "southern_europe"
+  },
+  "blm": {
+    "region": "lac_other_caribbean",
+    "continent": "lac",
+    "subcontinent": "caribbean"
+  },
+  "blr": {
+    "region": "fsu_belarus",
+    "continent": "fsu",
+    "subcontinent": "eastern_europe"
+  },
+  "blz": {
+    "region": "lac_belize",
+    "continent": "lac",
+    "subcontinent": "central_america"
+  },
+  "bol": {
+    "region": "lac_bolivia",
+    "continent": "lac",
+    "subcontinent": "south_america"
+  },
+  "bra": {
+    "region": "lac_brazil",
+    "continent": "lac",
+    "subcontinent": "south_america"
+  },
+  "brn": {
+    "region": "eap_other_southeast_asia",
+    "continent": "eap",
+    "subcontinent": "south_eastern_asia"
+  },
+  "btn": {
+    "region": "sas_bhutan",
+    "continent": "sas",
+    "subcontinent": "southern_asia"
+  },
+  "bwa": {
+    "region": "ssa_botswana",
+    "continent": "ssa",
+    "subcontinent": "southern_africa"
+  },
+  "caf": {
+    "region": "ssa_central_african_rep.",
+    "continent": "ssa",
+    "subcontinent": "middle_africa"
+  },
+  "can": {
+    "region": "nam_canada",
+    "continent": "nam",
+    "subcontinent": "northern_america"
+  },
+  "che": {
+    "region": "eur_switzerland",
+    "continent": "eur",
+    "subcontinent": "western_europe"
+  },
+  "chl": {
+    "region": "lac_chile",
+    "continent": "lac",
+    "subcontinent": "south_america"
+  },
+  "chn": {
+    "region": "eap_china",
+    "continent": "eap",
+    "subcontinent": "eastern_asia"
+  },
+  "civ": {
+    "region": "ssa_ivory_coast",
+    "continent": "ssa",
+    "subcontinent": "western_africa"
+  },
+  "cmr": {
+    "region": "ssa_cameroon",
+    "continent": "ssa",
+    "subcontinent": "middle_africa"
+  },
+  "cod": {
+    "region": "ssa_drc",
+    "continent": "ssa",
+    "subcontinent": "middle_africa"
+  },
+  "cog": {
+    "region": "ssa_congo",
+    "continent": "ssa",
+    "subcontinent": "middle_africa"
+  },
+  "col": {
+    "region": "lac_colombia",
+    "continent": "lac",
+    "subcontinent": "south_america"
+  },
+  "cpv": {
+    "region": "ssa_other_atlantic",
+    "continent": "ssa",
+    "subcontinent": "western_africa"
+  },
+  "cri": {
+    "region": "lac_costa_rica",
+    "continent": "lac",
+    "subcontinent": "central_america"
+  },
+  "cub": {
+    "region": "lac_cuba",
+    "continent": "lac",
+    "subcontinent": "caribbean"
+  },
+  "cyp": {
+    "region": "eur_cyprus",
+    "continent": "eur",
+    "subcontinent": "western_asia"
+  },
+  "cze": {
+    "region": "eur_czech_republic",
+    "continent": "eur",
+    "subcontinent": "eastern_europe"
+  },
+  "deu": {
+    "region": "eur_germany",
+    "continent": "eur",
+    "subcontinent": "western_europe"
+  },
+  "dji": {
+    "region": "ssa_djibouti",
+    "continent": "ssa",
+    "subcontinent": "eastern_africa"
+  },
+  "dnk": {
+    "region": "eur_denmark",
+    "continent": "eur",
+    "subcontinent": "northern_europe"
+  },
+  "dom": {
+    "region": "lac_dominican_republic",
+    "continent": "lac",
+    "subcontinent": "caribbean"
+  },
+  "dza": {
+    "region": "men_algeria",
+    "continent": "men",
+    "subcontinent": "northern_africa"
+  },
+  "ecu": {
+    "region": "lac_ecuador",
+    "continent": "lac",
+    "subcontinent": "south_america"
+  },
+  "egy": {
+    "region": "men_egypt",
+    "continent": "men",
+    "subcontinent": "northern_africa"
+  },
+  "eri": {
+    "region": "ssa_eritrea",
+    "continent": "ssa",
+    "subcontinent": "eastern_africa"
+  },
+  "esp": {
+    "region": "eur_spain",
+    "continent": "eur",
+    "subcontinent": "southern_europe"
+  },
+  "est": {
+    "region": "eur_baltic_states",
+    "continent": "eur",
+    "subcontinent": "northern_europe"
+  },
+  "eth": {
+    "region": "ssa_ethiopia",
+    "continent": "ssa",
+    "subcontinent": "eastern_africa"
+  },
+  "fgy": {
+    "region": "lac_guyanas",
+    "continent": "lac",
+    "subcontinent": "south_america"
+  },
+  "fin": {
+    "region": "eur_finland",
+    "continent": "eur",
+    "subcontinent": "northern_europe"
+  },
+  "fji": {
+    "region": "eap_fiji",
+    "continent": "eap",
+    "subcontinent": "melanesia"
+  },
+  "fra": {
+    "region": "eur_france",
+    "continent": "eur",
+    "subcontinent": "western_europe"
+  },
+  "gab": {
+    "region": "ssa_gabon",
+    "continent": "ssa",
+    "subcontinent": "middle_africa"
+  },
+  "gaz": {
+    "region": "men_palestine",
+    "continent": "men",
+    "subcontinent": "western_asia"
+  },
+  "gbr": {
+    "region": "eur_uk",
+    "continent": "eur",
+    "subcontinent": "northern_europe"
+  },
+  "geo": {
+    "region": "fsu_georgia",
+    "continent": "fsu",
+    "subcontinent": "western_asia"
+  },
+  "gha": {
+    "region": "ssa_ghana",
+    "continent": "ssa",
+    "subcontinent": "western_africa"
+  },
+  "gin": {
+    "region": "ssa_guinea",
+    "continent": "ssa",
+    "subcontinent": "western_africa"
+  },
+  "gmb": {
+    "region": "ssa_gambia",
+    "continent": "ssa",
+    "subcontinent": "western_africa"
+  },
+  "gnb": {
+    "region": "ssa_guinea_bissau",
+    "continent": "ssa",
+    "subcontinent": "western_africa"
+  },
+  "gnq": {
+    "region": "ssa_equatorial_guinea",
+    "continent": "ssa",
+    "subcontinent": "middle_africa"
+  },
+  "grc": {
+    "region": "eur_greece",
+    "continent": "eur",
+    "subcontinent": "southern_europe"
+  },
+  "grl": {
+    "region": "nam_greenland",
+    "continent": "nam",
+    "subcontinent": "northern_america"
+  },
+  "gtm": {
+    "region": "lac_guatemala",
+    "continent": "lac",
+    "subcontinent": "central_america"
+  },
+  "guy": {
+    "region": "lac_guyanas",
+    "continent": "lac",
+    "subcontinent": "south_america"
+  },
+  "hkg": {
+    "region": "eap_china",
+    "continent": "eap",
+    "subcontinent": "eastern_asia"
+  },
+  "hnd": {
+    "region": "lac_honduras",
+    "continent": "lac",
+    "subcontinent": "central_america"
+  },
+  "hrv": {
+    "region": "eur_croatia",
+    "continent": "eur",
+    "subcontinent": "southern_europe"
+  },
+  "hti": {
+    "region": "lac_haiti",
+    "continent": "lac",
+    "subcontinent": "caribbean"
+  },
+  "hun": {
+    "region": "eur_hungary",
+    "continent": "eur",
+    "subcontinent": "eastern_europe"
+  },
+  "idn": {
+    "region": "eap_indonesia",
+    "continent": "eap",
+    "subcontinent": "south_eastern_asia"
+  },
+  "ind": {
+    "region": "sas_india",
+    "continent": "sas",
+    "subcontinent": "southern_asia"
+  },
+  "irl": {
+    "region": "eur_ireland",
+    "continent": "eur",
+    "subcontinent": "northern_europe"
+  },
+  "irn": {
+    "region": "men_iran",
+    "continent": "men",
+    "subcontinent": "southern_asia"
+  },
+  "irq": {
+    "region": "men_iraq",
+    "continent": "men",
+    "subcontinent": "western_asia"
+  },
+  "isl": {
+    "region": "eur_iceland",
+    "continent": "eur",
+    "subcontinent": "northern_europe"
+  },
+  "isr": {
+    "region": "men_israel",
+    "continent": "men",
+    "subcontinent": "western_asia"
+  },
+  "ita": {
+    "region": "eur_italy",
+    "continent": "eur",
+    "subcontinent": "southern_europe"
+  },
+  "jam": {
+    "region": "lac_jamaica",
+    "continent": "lac",
+    "subcontinent": "caribbean"
+  },
+  "jor": {
+    "region": "men_jordan",
+    "continent": "men",
+    "subcontinent": "western_asia"
+  },
+  "jpn": {
+    "region": "eap_japan",
+    "continent": "eap",
+    "subcontinent": "eastern_asia"
+  },
+  "kaz": {
+    "region": "fsu_kazakhstan",
+    "continent": "fsu",
+    "subcontinent": "central_asia"
+  },
+  "ken": {
+    "region": "ssa_kenya",
+    "continent": "ssa",
+    "subcontinent": "eastern_africa"
+  },
+  "kgz": {
+    "region": "fsu_kyrgyzstan",
+    "continent": "fsu",
+    "subcontinent": "central_asia"
+  },
+  "khm": {
+    "region": "eap_cambodia",
+    "continent": "eap",
+    "subcontinent": "south_eastern_asia"
+  },
+  "kor": {
+    "region": "eap_south_korea",
+    "continent": "eap",
+    "subcontinent": "eastern_asia"
+  },
+  "kos": {
+    "region": "eur_other_balkans",
+    "continent": "eur",
+    "subcontinent": "southern_europe"
+  },
+  "kwt": {
+    "region": "men_rest_of_arabia",
+    "continent": "men",
+    "subcontinent": "western_asia"
+  },
+  "lao": {
+    "region": "eap_laos",
+    "continent": "eap",
+    "subcontinent": "south_eastern_asia"
+  },
+  "lbn": {
+    "region": "men_lebanon",
+    "continent": "men",
+    "subcontinent": "western_asia"
+  },
+  "lbr": {
+    "region": "ssa_liberia",
+    "continent": "ssa",
+    "subcontinent": "western_africa"
+  },
+  "lby": {
+    "region": "men_libya",
+    "continent": "men",
+    "subcontinent": "northern_africa"
+  },
+  "lie": {
+    "region": "eur_switzerland",
+    "continent": "eur",
+    "subcontinent": "western_europe"
+  },
+  "lka": {
+    "region": "sas_sri_lanka",
+    "continent": "sas",
+    "subcontinent": "southern_asia"
+  },
+  "lso": {
+    "region": "ssa_lesotho",
+    "continent": "ssa",
+    "subcontinent": "southern_africa"
+  },
+  "ltu": {
+    "region": "eur_baltic_states",
+    "continent": "eur",
+    "subcontinent": "northern_europe"
+  },
+  "lux": {
+    "region": "eur_belgium_luxembourg",
+    "continent": "eur",
+    "subcontinent": "western_europe"
+  },
+  "lva": {
+    "region": "eur_baltic_states",
+    "continent": "eur",
+    "subcontinent": "northern_europe"
+  },
+  "mac": {
+    "region": "eap_china",
+    "continent": "eap",
+    "subcontinent": "eastern_asia"
+  },
+  "mar": {
+    "region": "men_morocco",
+    "continent": "men",
+    "subcontinent": "northern_africa"
+  },
+  "mco": {
+    "region": "eur_france",
+    "continent": "eur",
+    "subcontinent": "western_europe"
+  },
+  "mda": {
+    "region": "fsu_moldova",
+    "continent": "fsu",
+    "subcontinent": "eastern_europe"
+  },
+  "mdg": {
+    "region": "ssa_madagascar",
+    "continent": "ssa",
+    "subcontinent": "eastern_africa"
+  },
+  "mex": {
+    "region": "lac_mexico",
+    "continent": "lac",
+    "subcontinent": "central_america"
+  },
+  "mkd": {
+    "region": "eur_other_balkans",
+    "continent": "eur",
+    "subcontinent": "southern_europe"
+  },
+  "mli": {
+    "region": "ssa_mali",
+    "continent": "ssa",
+    "subcontinent": "western_africa"
+  },
+  "mlt": {
+    "region": "eur_italy",
+    "continent": "eur",
+    "subcontinent": "southern_europe"
+  },
+  "mmr": {
+    "region": "eap_myanmar",
+    "continent": "eap",
+    "subcontinent": "south_eastern_asia"
+  },
+  "mne": {
+    "region": "eur_other_balkans",
+    "continent": "eur",
+    "subcontinent": "southern_europe"
+  },
+  "mng": {
+    "region": "eap_mongolia",
+    "continent": "eap",
+    "subcontinent": "eastern_asia"
+  },
+  "moz": {
+    "region": "ssa_mozambique",
+    "continent": "ssa",
+    "subcontinent": "eastern_africa"
+  },
+  "mrt": {
+    "region": "men_mauritania",
+    "continent": "men",
+    "subcontinent": "western_africa"
+  },
+  "mwi": {
+    "region": "ssa_malawi",
+    "continent": "ssa",
+    "subcontinent": "eastern_africa"
+  },
+  "mys": {
+    "region": "eap_malaysia",
+    "continent": "eap",
+    "subcontinent": "south_eastern_asia"
+  },
+  "nam": {
+    "region": "ssa_namibia",
+    "continent": "ssa",
+    "subcontinent": "southern_africa"
+  },
+  "ner": {
+    "region": "ssa_niger",
+    "continent": "ssa",
+    "subcontinent": "western_africa"
+  },
+  "nga": {
+    "region": "ssa_nigeria",
+    "continent": "ssa",
+    "subcontinent": "western_africa"
+  },
+  "nic": {
+    "region": "lac_nicaragua",
+    "continent": "lac",
+    "subcontinent": "central_america"
+  },
+  "nld": {
+    "region": "eur_netherlands",
+    "continent": "eur",
+    "subcontinent": "western_europe"
+  },
+  "nor": {
+    "region": "eur_norway",
+    "continent": "eur",
+    "subcontinent": "northern_europe"
+  },
+  "npl": {
+    "region": "sas_nepal",
+    "continent": "sas",
+    "subcontinent": "southern_asia"
+  },
+  "nzl": {
+    "region": "eap_new_zealand",
+    "continent": "eap",
+    "subcontinent": "oceania"
+  },
+  "omn": {
+    "region": "men_rest_of_arabia",
+    "continent": "men",
+    "subcontinent": "western_asia"
+  },
+  "pak": {
+    "region": "sas_pakistan",
+    "continent": "sas",
+    "subcontinent": "southern_asia"
+  },
+  "pan": {
+    "region": "lac_panama",
+    "continent": "lac",
+    "subcontinent": "central_america"
+  },
+  "per": {
+    "region": "lac_peru",
+    "continent": "lac",
+    "subcontinent": "south_america"
+  },
+  "phl": {
+    "region": "eap_philippines",
+    "continent": "eap",
+    "subcontinent": "south_eastern_asia"
+  },
+  "png": {
+    "region": "eap_papua_new_guinea",
+    "continent": "eap",
+    "subcontinent": "melanesia"
+  },
+  "pol": {
+    "region": "eur_poland",
+    "continent": "eur",
+    "subcontinent": "eastern_europe"
+  },
+  "prk": {
+    "region": "eap_north_korea",
+    "continent": "eap",
+    "subcontinent": "eastern_asia"
+  },
+  "prt": {
+    "region": "eur_portugal",
+    "continent": "eur",
+    "subcontinent": "southern_europe"
+  },
+  "pry": {
+    "region": "lac_paraguay",
+    "continent": "lac",
+    "subcontinent": "south_america"
+  },
+  "qat": {
+    "region": "men_rest_of_arabia",
+    "continent": "men",
+    "subcontinent": "western_asia"
+  },
+  "rou": {
+    "region": "eur_romania",
+    "continent": "eur",
+    "subcontinent": "eastern_europe"
+  },
+  "rus": {
+    "region": "fsu_russia",
+    "continent": "fsu",
+    "subcontinent": "eastern_europe"
+  },
+  "rwa": {
+    "region": "ssa_rwanda",
+    "continent": "ssa",
+    "subcontinent": "eastern_africa"
+  },
+  "sah": {
+    "region": "men_morocco",
+    "continent": "men",
+    "subcontinent": "northern_africa"
+  },
+  "sau": {
+    "region": "men_saudi_arabia",
+    "continent": "men",
+    "subcontinent": "western_asia"
+  },
+  "sdn": {
+    "region": "ssa_sudan",
+    "continent": "ssa",
+    "subcontinent": "northern_africa"
+  },
+  "sds": {
+    "region": "ssa_sudan",
+    "continent": "ssa",
+    "subcontinent": "northern_africa"
+  },
+  "sen": {
+    "region": "ssa_senegal",
+    "continent": "ssa",
+    "subcontinent": "western_africa"
+  },
+  "sgp": {
+    "region": "eap_other_southeast_asia",
+    "continent": "eap",
+    "subcontinent": "south_eastern_asia"
+  },
+  "slb": {
+    "region": "eap_solomon_islands",
+    "continent": "eap",
+    "subcontinent": "melanesia"
+  },
+  "sle": {
+    "region": "ssa_sierra_leon",
+    "continent": "ssa",
+    "subcontinent": "western_africa"
+  },
+  "slv": {
+    "region": "lac_el_salvador",
+    "continent": "lac",
+    "subcontinent": "central_america"
+  },
+  "smr": {
+    "region": "eur_italy",
+    "continent": "eur",
+    "subcontinent": "southern_europe"
+  },
+  "sol": {
+    "region": "ssa_somalia",
+    "continent": "ssa",
+    "subcontinent": "eastern_africa"
+  },
+  "som": {
+    "region": "ssa_somalia",
+    "continent": "ssa",
+    "subcontinent": "eastern_africa"
+  },
+  "srb": {
+    "region": "eur_other_balkans",
+    "continent": "eur",
+    "subcontinent": "southern_europe"
+  },
+  "sur": {
+    "region": "lac_guyanas",
+    "continent": "lac",
+    "subcontinent": "south_america"
+  },
+  "svk": {
+    "region": "eur_slovakia",
+    "continent": "eur",
+    "subcontinent": "eastern_europe"
+  },
+  "svn": {
+    "region": "eur_slovenia",
+    "continent": "eur",
+    "subcontinent": "southern_europe"
+  },
+  "swe": {
+    "region": "eur_sweden",
+    "continent": "eur",
+    "subcontinent": "northern_europe"
+  },
+  "swz": {
+    "region": "ssa_swaziland",
+    "continent": "ssa",
+    "subcontinent": "southern_africa"
+  },
+  "syc": {
+    "region": "eap_other_indian_ocean",
+    "continent": "eap",
+    "subcontinent": "southern_asia"
+  },
+  "syr": {
+    "region": "men_syria",
+    "continent": "men",
+    "subcontinent": "western_asia"
+  },
+  "tcd": {
+    "region": "ssa_chad",
+    "continent": "ssa",
+    "subcontinent": "middle_africa"
+  },
+  "tgo": {
+    "region": "ssa_togo",
+    "continent": "ssa",
+    "subcontinent": "western_africa"
+  },
+  "tha": {
+    "region": "eap_thailand",
+    "continent": "eap",
+    "subcontinent": "south_eastern_asia"
+  },
+  "tjk": {
+    "region": "fsu_tajikistan",
+    "continent": "fsu",
+    "subcontinent": "central_asia"
+  },
+  "tkm": {
+    "region": "fsu_turkmenistan",
+    "continent": "fsu",
+    "subcontinent": "central_asia"
+  },
+  "tls": {
+    "region": "eap_timor_l'este",
+    "continent": "eap",
+    "subcontinent": "south_eastern_asia"
+  },
+  "tun": {
+    "region": "men_tunisia",
+    "continent": "men",
+    "subcontinent": "northern_africa"
+  },
+  "tur": {
+    "region": "men_turkey",
+    "continent": "men",
+    "subcontinent": "western_asia"
+  },
+  "twn": {
+    "region": "eap_china",
+    "continent": "eap",
+    "subcontinent": "eastern_asia"
+  },
+  "tza": {
+    "region": "ssa_tanzania",
+    "continent": "ssa",
+    "subcontinent": "eastern_africa"
+  },
+  "uga": {
+    "region": "ssa_uganda",
+    "continent": "ssa",
+    "subcontinent": "eastern_africa"
+  },
+  "ukr": {
+    "region": "fsu_ukraine",
+    "continent": "fsu",
+    "subcontinent": "eastern_europe"
+  },
+  "ury": {
+    "region": "lac_uruguay",
+    "continent": "lac",
+    "subcontinent": "south_america"
+  },
+  "usa": {
+    "region": "nam_usa",
+    "continent": "nam",
+    "subcontinent": "northern_america"
+  },
+  "uzb": {
+    "region": "fsu_uzbekistan",
+    "continent": "fsu",
+    "subcontinent": "central_asia"
+  },
+  "vat": {
+    "region": "eur_italy",
+    "continent": "eur",
+    "subcontinent": "southern_europe"
+  },
+  "ven": {
+    "region": "lac_venezuela",
+    "continent": "lac",
+    "subcontinent": "south_america"
+  },
+  "vnm": {
+    "region": "eap_vietnam",
+    "continent": "eap",
+    "subcontinent": "south_eastern_asia"
+  },
+  "vut": {
+    "region": "eap_vanuatu",
+    "continent": "eap",
+    "subcontinent": "melanesia"
+  },
+  "web": {
+    "region": "men_palestine",
+    "continent": "men",
+    "subcontinent": "western_asia"
+  },
+  "wlf": {
+    "region": "eap_other_pacific_ocean",
+    "continent": "eap",
+    "subcontinent": "polynesia"
+  },
+  "yem": {
+    "region": "men_yemen",
+    "continent": "men",
+    "subcontinent": "western_asia"
+  },
+  "zaf": {
+    "region": "ssa_south_africa",
+    "continent": "ssa",
+    "subcontinent": "southern_africa"
+  },
+  "zmb": {
+    "region": "ssa_zambia",
+    "continent": "ssa",
+    "subcontinent": "eastern_africa"
+  },
+  "zwe": {
+    "region": "ssa_zimbabwe",
+    "continent": "ssa",
+    "subcontinent": "eastern_africa"
+  }
+}
