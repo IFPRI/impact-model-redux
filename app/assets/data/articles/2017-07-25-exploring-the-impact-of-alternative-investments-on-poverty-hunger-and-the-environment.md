@@ -16,8 +16,6 @@ locations:
   - fsu
 commodities:
   - cer
-tags:
-  - baseline
 ---
 
 ## What is on this brief and how to interpret the results
