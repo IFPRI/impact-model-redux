@@ -104,7 +104,7 @@
     "jeet": "^6.1.5",
     "node-bourbon": "^4.2.8",
     "node-notifier": "^4.5.0",
-    "node-sass": "^3.7.0",
+    "node-sass": "^4.14.1",
     "nyc": "^10.1.2",
     "queue-async": "^1.2.1",
     "react-addons-test-utils": "^15.4.2",
